@@ -1,0 +1,68 @@
+diff --git a/Smarty/templates/ActivityEditView.tpl b/Smarty/templates/ActivityEditView.tpl
+index ca7f25e..85d3054 100755
+--- a/Smarty/templates/ActivityEditView.tpl
++++ b/Smarty/templates/ActivityEditView.tpl
+@@ -36,7 +36,7 @@ var gVTModule = '{$smarty.request.module|@vtlib_purify}';
+ {*<!-- Contents -->*}
+ <form name="EditView" method="POST" action="index.php"
+ 	{if $ACTIVITY_MODE neq 'Task'} onsubmit="if(check_form()){ldelim} VtigerJS_DialogBox.block(); {rdelim} else {ldelim} return false; {rdelim}"
+-	{else} onsubmit="maintask_check_form();if(formValidate()) {ldelim} VtigerJS_DialogBox.block(); {rdelim} else {ldelim} return false; {rdelim}" {/if} >
++	{else} onsubmit="if(maintask_check_form() && formValidate()) {ldelim} VtigerJS_DialogBox.block(); {rdelim} else {ldelim} return false; {rdelim}" {/if} >
+ <input type="hidden" name="time_start" id="time_start">
+ <input type="hidden" name="view" value="{$view}">
+ <input type="hidden" name="hour" value="{$hour}">
+diff --git a/modules/Calendar/addEventUI.php b/modules/Calendar/addEventUI.php
+index 1994b00..d254c01 100644
+--- a/modules/Calendar/addEventUI.php
++++ b/modules/Calendar/addEventUI.php
+@@ -777,7 +777,7 @@ list($startHour, $startMin) = explode(':', $date->getDisplayTime());
+ </table>
+ </div>
+ <div class="calAddEvent layerPopup" style="display:none;width:700px;left:200px;" id="createTodo" align=center>
+-<form name="createTodo" onSubmit="task_check_form();if(formValidate()) { VtigerJS_DialogBox.block(); } else { return false; }" method="POST" action="index.php">
++<form name="createTodo" onSubmit="if(task_check_form() && formValidate()) { VtigerJS_DialogBox.block(); } else { return false; }" method="POST" action="index.php">
+ <input type="hidden" name="return_action" value="index">
+ <input type="hidden" name="return_module" value="Calendar">
+   <input type="hidden" name="module" value="Calendar">
+diff --git a/modules/Calendar/script.js b/modules/Calendar/script.js
+index ec45889..1bc3aa6 100644
+--- a/modules/Calendar/script.js
++++ b/modules/Calendar/script.js
+@@ -415,6 +415,11 @@ function check_form() {
+ 		if(getObj("recurringcheck") && document.EditView.recurringcheck.checked == false) {
+ 			document.EditView.recurringtype.value = '--None--';
+ 		}
++		if(getObj("parent_id") && document.EditView.parent_id.value == '') {
++			alert("El evento ha de estar relacionado");
++			return false;
++		}
++
+ 		return true;
+ 	}
+ }
+@@ -453,6 +458,12 @@ function task_check_form()
+         {
+         	document.createTodo.mode.value = 'create';
+         }
++		if(getObj("task_parent_id") && document.createTodo.task_parent_id.value == '') {
++			alert("El evento ha de estar relacionado");
++			return false;
++		} else {
++			return true;
++		}
+ 
+ }
+ 
+@@ -482,6 +493,12 @@ function maintask_check_form()
+ 	starthour = _2digit(starthour);
+         startmin = _2digit(startmin);
+         document.EditView.time_start.value = starthour+':'+startmin;
++		if(getObj("parent_id") && document.EditView.parent_id.value == '') {
++			alert("El evento ha de estar relacionado");
++			return false;
++		} else {
++			return true;
++		}
+ }
+ 
+ 

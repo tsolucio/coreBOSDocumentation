@@ -1,0 +1,15 @@
+====== Obtención del precio de producto al cambiar de moneda en los módulos de inventario ======
+
+En los módulos de inventario: presupuesto, orden de venta, orden de compra y factura, tenemos la posibilidad de trabajar con distintas monedas. Para ello, la aplicación **permite definir diferentes monedas** con su cambio respecto a la moneda base y **cada producto** puede tener configurado **diferentes precios unitarios** según la moneda.
+
+Al definir los precios unitarios en el producto, se calculará el precio de la moneda correspondiente partiendo del precio unitario base y el cambio de la moneda, pero podremos ajustar el valor según necesitemos. De esta manera cada producto puede tener precios según la moneda en la que se vende.
+
+Una vez en el módulo de inventario correspondiente, si elegimos cambiar la moneda, todos los precios de los productos se recalcularán para estar en la moneda dada. Este cálculo se realiza siguiendo la siguiente lógica:
+
+  * se accede a la ficha del producto,
+  * si tiene un precio unitario calculado para la moneda destino, se utiliza ese valor
+  * si no tiene precio unitario para la moneda destino, se convierte el precio unitario base utilizando el tipo de cambio definido en configuración para esa moneda
+
+Así que, si quieres que la conversión de moneda se haga tomando el valor de la configuración de moneda actual, edita los productos y elimina los precios que tengas configurados en "//más monedas...//" quitando la marca de las casillas. De esta manera no se guardarán precios por moneda y se calcularán cada vez que los uses en la factura.
+
+

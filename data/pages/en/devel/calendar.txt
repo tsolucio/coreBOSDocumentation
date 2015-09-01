@@ -1,0 +1,22 @@
+====== Calendar Development ======
+
+===== Integrate Custom Modules =====
+
+For a custom module to be correctly supported in the Calendar module it must register itself by creating a few records in two tables.
+
+==== Module Fields Definitions ====
+
+This table indicates the base start and end date fields and a comma separated list of fields to show in the popup summary box.
+
+The table is //its4you_calendar_modulefields// and you can see an example looking at the code we use to fill in this table for the default modules (build/changeSets/ModulesOnCalendar.php).
+
+==== Module Status Definitions ====
+
+This table indicates the search conditions to be used when filtering records on the calendar.
+
+You can give search conditions for three status:
+  * **Planned**
+  * **Held**
+  * **Not Held**
+
+The table is //its4you_calendar_modulestatus// and you can see an example looking at the code we use to fill in this table for the default modules (build/changeSets/ModulesOnCalendar.php).

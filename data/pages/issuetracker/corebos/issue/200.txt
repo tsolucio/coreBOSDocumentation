@@ -1,0 +1,7 @@
+====== 200: Add support for translating from inside the application ======
+
+Issue Reference in Tracker: ~~issue:200~~
+
+===== Detailed Explanation =====
+
+{{page>en:devel:translating}}

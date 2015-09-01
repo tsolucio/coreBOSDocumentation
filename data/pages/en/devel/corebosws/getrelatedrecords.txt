@@ -1,0 +1,95 @@
+====== Web service get Related Records method ======
+
+Implemented in ~~issue:127~~
+
+{{youtube>5B0A6IPMnJM}}
+\\
+
+The **getRelatedRecords()** webservice interface function permits us to retrieve the set of related records that belong to any given record. In other words, given an entity ID that represents one record in the application and the name of a module that is related to this entity, we will get the full set of records related to the ID.
+
+For example, suppose we have a contact record with id 22. We know that one contact can have many invoices. So if we want to see the invoices related to the contact with id 22 we would execute something like this:
+
+<code>getRelatedRecords('4x22','Contacts','Invoice');</code>
+
+The profile of the function is:
+
+<code>getRelatedRecords($id, $module, $relatedModule, $productDiscriminator, $user) return records=array({records})</code>
+
+where
+  * **id**  a webservice ID corresponding to the main record we want to relate
+  * **module** the module name of the id, this must be of the same type as the ID, if not an error will be returned
+  * **relatedModule** the name of the module related to the main module, this represents the type of records to be returned
+  * **queryParameters** an array with parameters to modify the query and set of returned results in different ways. Accepted values in the array are:
+    * **productDiscriminator**: a string with one of the next values
+      * ProductBundle: relation Products-Products, return bundle products, this is the default behavior
+      * ProductParent: relation Products-Products, return parent product
+      * ProductLineInvoice{Only}: relation Account|Contact-Products, return products related through Invoice (only)
+      * ProductLineSalesOrder{Only}: relation Account|Contact-Products, return products related through SalesOrder (only)
+      * ProductLineQuote{Only}: relation Account|Contact-Products, return products related through Quote (only)
+      * ProductLineAll: relation Account|Contact-Products, return products related through Quote, SalesOrder and Invoice
+      * ProductLineNone: relation Account|Contact-Products, return only products directly related, this is the default behavior
+    * **limit**: a string indicating the limit of records to be returned. this is needed for paging
+    * **offset**: a string indicating the initial offset for returning values. this is needed for paging
+    * **orderby**: a syntactically and semantically correct order by directive wihtout the "order by", only the fields and their order (no validation is done)
+    * **columns**: a a comma separated string of column names that are to be returned. The special value "*" will return all fields. for example: 'assigned_user_id,id,createdtime,notes_title,filedownloadcount,filelocationtype,filesize'
+
+  * **returns** an array where each element represents a webservice record of the type of the related module. Only the columns and records the current user has access to will be returned. If the current user cannot access the main module or the related module, an error will be returned.
+
+The method has been created with complete support in mind, but this is really hard to achieve due to the great variety of relations that exist and the different ways in which they are established. On top of that there is no one place to turn to to get the information on how two entities are related.
+
+Since we try to cover all the relations we have forced the method to return some non-standard relations that I will try to explain next.
+
+===== Comments =====
+
+With the introduction of the ModComments module we now have a standard way of applying comments to any module, but this module is not related in a normal way to it's parents as it has a special interface. The getRelatedRecords() method supports access to related comments on an entity as if it was related normally, so we just have to call it as if it were related and the function will do the work for us. For example, to get the comments of a contact we would execute:
+
+<code>getRelatedRecords('4x22','Contacts','ModComments');</code>
+
+Before we had ModComments, both HelpDesk (Trouble Tickets) and Faq had native support for comments. These comments are stored in a totally different way and directly related by code. The getRelatedRecords() method supports access to both these comments as if they belonged to ModComments (in the end I am sure that this is what is going to happen sooner or later and we will be able to eliminate the specific code I have created to cover this case). To get the comments of a HelpDesk record we would execute:
+
+<code>getRelatedRecords('9x114','HelpDesk','ModComments');</code>
+
+The result set will **NOT** be ModComments records because they aren't internally but I have tried to make the structure as similar to ModComments as possible for compatibility reasons.
+
+The same approach can be used with Faq comments.
+
+
+===== Products =====
+
+The products module is a very related entity in the system, not only is it related with many other entities in many ways but it is also related with itself in product bundles and has special relations to accounts and contacts through the product lines in quotes, sales orders and invoices.
+
+Thus, I have added a special parameter specifically to cater to this proliferation of relations: **productDiscriminator**
+
+If we call the getRelatedRecords() function asking for the records related between Products and Products, for example:
+
+<code>getRelatedRecords('6x58','Products','Products');</code>
+
+we can be expecting one of two things:
+  * get the parent record of the bundle which the product 6x58 belongs to (**ProductParent**)
+  * get the set of bundle products that the product 6x58 is the parent of (**ProductBundle**)
+
+Since the method has no way of knowing which relation you are asking for we need an additional parameter to decide. The parameter is **productDiscriminator** and can take two values **ProductParent**, to represent the first case and **ProductBundle** for the second.
+
+For the **relation of Accounts and Contacts with Products** a similar, but more complex, scenario can be found. First we have a direct relation between the entities and then we have the products that a given account or contact has on his quotes, sales orders and invoices. The getRelatedRecords() function has support to retrieve all of these products in various ways, depending on the value of the **productDiscriminator** parameter.
+
+The possible combinations are: 
+  * **ProductLineNone**: with this option we will get only the products directly related to the given Account or Contact. This is the default behavior if the productDiscriminator parameter has no valid value.
+  * **ProductLineInvoice**: with this option we will get the products directly related to the given Account or Contact **AND** all those products related to the Account|Contact because it is on one or more of their invoices. Products are only present once no matter where they appear in the relation.
+  * **ProductLineSalesOrder**: with this option we will get the products directly related to the given Account or Contact **AND** all those products related to the Account|Contact because it is on one or more of their sales orders. Products are only present once no matter where they appear in the relation.
+  * **ProductLineQuote**: with this option we will get the products directly related to the given Account or Contact **AND** all those products related to the Account|Contact because it is on one or more of their quotes. Products are only present once no matter where they appear in the relation.
+  * **ProductLineInvoiceOnly**: with this option we will get only the products related to the Account|Contact because it is on one or more of their invoices. Products are only present once no matter how many invoices they may be on.
+  * **ProductLineSalesOrderOnly**: with this option we will get only the products related to the Account|Contact because it is on one or more of their sales orders. Products are only present once no matter how many sales orders they may be on.
+  * **ProductLineQuoteOnly**: with this option we will get only the products related to the Account|Contact because it is on one or more of their quotes. Products are only present once no matter how many quotes they may be on.
+  * **ProductLineAll**: with this option we will get **ALL** related products, both directly related and related through Quote, SalesOrder and Invoice
+
+
+**NOTES:**\\
+  * This exact same functionality is available for Services. The productDiscriminator parameter accepts the SAME values; ProductLine* not ServiceLine*
+  * The user may have no permission to read Quotes, SO or Invoices and will still retrieve products related through these entities as long as the user has read permission on products.
+===== Others =====
+
+The rest of relations are based on a great idea of Prasad from vtiger where we retrieve the query that represents the relation from the relation function used in the related list //more information// tab. This way we use the same information that is already in the application to relate the two entities.
+
+The biggest limitation of this approach is that these functions are basically static in their column set as the columns present in the +info tab cannot be changed without coding so, in some cases, the query is limited to obtain only those columns, while we have made the getRelatedRecords function to return all the columns the current user has access to. So to get this working we have had to manipulate the SQL returned from the functions.
+
+In general this approaches permits the function to support any relation established using the related list vtlib, which makes it very powerful and flexible.

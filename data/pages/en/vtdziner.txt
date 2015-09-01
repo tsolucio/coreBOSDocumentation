@@ -1,0 +1,7 @@
+====== vtDZiner ======
+
+===== coreBOS 5.5 =====
+
+I installed vtDZiner on coreBOS 5.5 yesterday. I had to manually patch the base file changes because it was breaking webservice enhancements and the PHP 5.4/5.5 support enhancements (among a few others).
+
+{{:devel:extensions:vtdziner_corebos55.zip|I leave here the fully modified files and (more important) the patch}}.

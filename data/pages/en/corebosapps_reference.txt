@@ -1,0 +1,559 @@
+====== coreBOSApps Developers Reference Guide ======
+
+coreBOSApps are server-client applications. The coreBOSApps engine tries to make it easy to develop these applications in a way that allows them to live in the same page and interact with each other.
+
+The most important framework components are:
+  * Server:
+    * coreBOSAppManager manages everything at the highest level.
+    * coreBOSAppLauncher handles coreBOSApps properties.
+    * coreBOSAppBase is the base class for every coreBOSApp.
+  * Client:
+    * coreBOSAppLauncher handles the launcher on screen.
+    * coreBOSAppWindow handles everything related to the coreBOSApp on screen.
+
+To better understand how they work together we'll split the functionality these components provide in the following blocks:
+  * coreBOSApp Definition
+  * Server-side API
+  * Client-side API
+  * Translations
+
+===== coreBOSApp Definition =====
+
+A coreBOSApp is defined and implemented by using several files following some conventions to make them easier to manage.
+
+Mandatory files for a coreBOSApp:
+  * vtapp.ini
+  * vtapp.php 
+  * icon.png
+
+Optional files:
+  * languages/xx_xx.php
+  * vtapp.js
+  * vtapp.css
+
+The basic features available in a coreBOSApp are defined thru properties in a file called //vtapp.ini//. It follows the format of a conventional PHP ini file.
+
+This is a complete example:
+
+<code>
+name = coreBOSApp_name
+key = com.tsolucio.coreBOSApp.DemoApp
+class_name = coreBOSAppcomTSolucioDemoApp
+short_description = coreBOSApp_shortDescription
+long_description = coreBOSApp_longDescription
+window_default_width = 800
+window_default_height = 400
+editable = yes
+resizable = yes
+clonable = yes
+visible = yes
+js_files = js/highcharts.js, js/themes/gray.js, js/modules/exporting.js
+css_files = css/mystyles.css
+</code>
+
+Many of this properties can be made optional. FIXME
+
+==== vtapp.ini properties ====
+
+=== name ===
+
+The name of the coreBOSApp, it'll be automatically translated.
+
+=== key ===
+
+A key to uniquely identify the coreBOSApp. Please, use a fully qualified name for your coreBOSApps to avoid problems. This should be something like: "com.mycompany.myapp". This is very important.
+
+=== short_description ===
+
+A short description for your coreBOSApp, it'll be automatically translated.
+
+=== long_description ===
+
+A long description for your coreBOSApp, it'll be automatically translated.
+
+=== class_name ===
+
+The class name that implements your coreBOSApp. This is the name of the class contained in vtapp.php. The class name should follow the same principle as the key but instead of using dots you should capitalize the components and prepend "coreBOSApp_" to it, like "coreBOSApp_ComTsolucioDemoApp".
+
+More on this later.
+
+=== window_default_width ===
+
+The default window width when created.
+
+=== window_default_height ===
+
+The default window height when created.
+
+=== editable ===
+
+It's a boolean value. When set, the window will show an edit button binded to a coreBOSApp event.
+
+=== resizable ===
+
+It's a boolean value. When set, the window will be resizable.
+
+=== clonable ===
+
+It's a boolean value. When set, the window will be clonable, it will be possible to open more than one window.
+
+More on window management later.
+
+=== visible ===
+
+It's a boolean value which indicates if the coreBOSApp will be automatically open on first accessing the coreBOSApp canvas.
+
+=== canshow ===
+
+It's a boolean value. When set, the coreBOSApp will be allowed to have windows.
+
+
+=== canhide ===
+
+It's a boolean value. When set, the user will be allowed to minimize and close the windows.
+
+=== js_files ===
+
+A comma-separated list of Javascript files. The files defined here will be loaded and executed when the page loads. Put here any javascript files your coreBOSApp might need.
+
+You shouldn't put here the vtapp.js file, it's always loaded.
+
+=== css_files ===
+
+A comma-separated list of CSS files. The files defined here will be loaded when the page loads. Put here any CSS files your coreBOSApp might need.
+
+You shouldn't put here the vtapp.css file, it's alwasy loaded.
+
+===== Server-side API =====
+
+The //vtapp.php// file contains all the server-side code specific to your coreBOSApp inside a class that inherits from VtAppBase. The name of the class is defined in //vtapp.ini//.
+
+Here's an example:
+<code php>
+<?php
+class ComMycompanyMyApp extends VtAppBase {
+}
+?>
+</code>
+
+For every window in the screen the server has an instance of this class which holds the state of it. Even when the coreBOSApp is defined to be window-less (not visible) an instance of this class is created to handle operations, but only one.
+
+Any property you define in your coreBOSApp class will automatically be saved. This can be used to save configuration and real-time state that should be persistent.
+
+Most programming can be done thru the methods in the VtAppBase class, but there's some useful methods in VtAppLauncher and VtAppManager too.
+
+==== VtAppBase ====
+
+This class is the base to every coreBOSApp. There's some methods in it you will want to override, but most are helper methods.
+
+=== getContent() ===
+
+This method is called to get the content for the coreBOSApp window, everytime it's open or refreshed. This is the most important method and you will most probably need to override it since the default implementation returns nothing.
+
+It's the recommended way to show content in the window. It should return only HTML, no Javascript nor CSS.
+
+You can use any valid ids in the DOM elements returned since they will get automatically transformed to avoid clashing with other windows or coreBOSApps.
+
+You can use your own CSS class names but you should be careful for not clashing with other coreBOSApps. It's recommended to use class names named after your capitalized coreBOSApp key, like "ComMycompanyMycoreBOSApp-myclass".
+
+=== getTitle() ===
+
+Returns the title for the window, by default this is the coreBOSApp name. You can override this method to return dinamically generated titles.
+
+=== getTop() ===
+
+Returns the top position of the window.
+
+=== getLeft() ===
+
+Returns the left position for the window.
+
+=== getWidth() ===
+
+Returns the window width.
+
+=== getHeight() ===
+
+Returns the window height.
+
+=== translate($str) ===
+
+Returns a translation for $str in the user language. If there's no translation returns the English translation, if that doesn't exist either returns the original string unchanged.
+
+=== getPath($path) ===
+
+Returns a path that can be used as a relative URL from a path relative to the coreBOSApp directory.
+
+=== getUser() ===
+
+Returns the coreBOS user object that is currently using the coreBOSApp. It's important to use this method rather than the global $current_user variable since future developments might involve running the engine with a different user than the one using vtiger.
+
+=== getLauncher() ===
+
+Returns the coreBOSApp Launcher object for this instance.
+
+===postUpdate()===
+
+This method is called at the end of the update process of a coreBOSApp and is where any additional database logic should be inserted for the update.
+
+===postInstall()===
+
+This method is called at the end of the install process of a coreBOSApp and is where any additional database logic should be inserted for the coreBOSApp.
+
+===unInstall()===
+
+This method is called just before the elimination of a coreBOSApp and is where the database logic of the coreBOSApp should be deleted.
+
+==== VtAppLauncher ====
+
+There's only a few methods of interest in this object, it holds the coreBOSApp properties read from the //vtapp.ini// file.
+
+Possibly useful methods: getIconPath(), getName(), getShortDescription() and getLongDescription().
+
+A reference to a coreBOSApp's launcher is reachable using the getLauncher() method in the VtAppBase class.
+
+===== Client-side API =====
+
+The //vtapp.js// file contains all the client-side code specific to your coreBOSApp. This file declares a Javascript object that basically contains event handlers as object properties.
+
+Here's an example file:
+
+<code javascript>
+{
+  onLoad: function() {
+    ...
+  },
+  onRefresh: function() {
+    ...
+  }
+}
+</code>
+
+You must define methods just for the events you want to manage, none is required. You can define custom methods too, this is useful in case you want to call some code from more than one event handler, but to avoid overriding engine methods use names starting with one underscore, like '_myMethod()'.
+
+Since this is a static file you can't put nor should you try to put dynamic data inside this file. It gets loaded at the start of the session only once per coreBOSApp. If you need access to server data you should use Ajax calls or return hidden containers in the getContent() server method. Examples to do this easily will come in another section. FIXME
+
+Everything is invoked in the context of the coreBOSAppWindow, and it should be kept this way to make it easy. This means the 'this' variable is always the current coreBOSAppWindow and you can invoke its methods as 'this.get()'. When you have to provide a function callback always passing 'this' as the context will make it easier. This is taken care of when using our own methods.
+
+The coreBOSApp extension is developed using [[http://jquery.com|jquery]] and [[http://kendoui.com|kendoui]], so any of this functionality can be directly used. There's some important considerations regarding selectors, see the VtAppWindow.get() function below for more information.
+
+==== VtAppWindow event handlers ====
+
+=== onLaunch() ===
+
+Called when the canvas icon is clicked on. This hook is useful when we need our coreBOSApp to do something different than opening a window and show some contents. If false is returned, the default action will not be taken, so if we need to take some action and then continue with the normal process the function must return true.
+
+The object "this" is the window and "this.launcher" is the new window instance before it is shown, so conditions to limit the number of instances could also be taken here.
+
+=== onLoad() ===
+
+This handler gets called when the coreBOSApps page loads and the window coreBOSApp is created. Inside this handler we know the window is created but it might be empty since a refresh still hasn't occurred or is being processed.
+
+Here you can do some tasks that should only be done once for a coreBOSApp session, like subscribing to the messaging system or starting timer processes.
+
+=== onRefresh() ===
+
+This handler gets called after a window refresh. Inside this handler we know the window is created and filled with the contents returned by the server's getContent() method.
+
+Here you can bind event handlers to DOM elements. This is prefered to defining event handlers in HTML attributes.
+
+Example:
+<code javascript>
+{
+  onRefresh: function() {
+    this.get('#button').click($.proxy(this._buttonPress, this));
+  }
+}
+</code>
+
+=== onResize() ===
+
+This handler gets called after a window resize. Inside this handler we know the window has been resized or is being resized. Since it's impossible to know when the user has stopped resizing we call this method only after a timeout to avoid too much calls while resizing.
+
+No refresh is automatically done since most HTML can adapt automatically to the new size. In case you need the window to refresh automatically at every resize define this event handler:
+<code javascript>
+{
+  onResize: function() {
+    this.refresh();
+  }
+}
+</code>
+
+=== onDestroy() ===
+
+This handler gets called when the close button is pressed on those windows which have various instances. This function MUST return a true or false value. If true is returned the window will be destroyed, if false is returned the close operation will not continue.
+
+By default this function asks for confirmation of the operation before destroying the window. For example, we can override the default behaviour with our own message.
+
+<code javascript>
+{
+  onDestroy: function() {
+     return confirm(this.translate('Our Own Message'));
+  }
+}
+</code>
+
+Note that this code is executed BEFORE any operation has been done on the window.
+
+=== onEdit() ===
+
+This handler gets called when the edit button is pressed. Here you can take any action needed for editing.
+
+If you want to have an area on the top of the window with some configuration switches that can be hidden you can use the following handler to show/hide the edit area:
+<code javascript>
+{
+  onEdit: function() {
+    this.get('#edit-area').toggle();
+  }
+}
+</code>
+
+==== VtAppWindow ====
+
+=== this.get(selector) ===
+
+Returns the jQuery object/s matched by the selector. It's very important to use this method instead of the jQuery() method since all ids in the coreBOSApp window are transformed automatically when content is loaded. This method ensures ids don't clash and also restricts class selectors to the current window coreBOSApp. Using this method you know you're getting just DOM elements contained in this coreBOSApp window.
+
+=== this.getPath(path) ===
+
+Returns a path that can be used as a relative URL from a path relative to the coreBOSApp directory. This method is analogous to the getPath($path) method in the VtAppBase server class.
+
+=== this.isVisible() ===
+
+Returns true if the window is not hidden/minimized.
+
+=== this.hide() ===
+
+Hide the window.
+
+=== this.show() ===
+
+Show the window.
+
+=== this.refresh() ===
+
+Forces a refresh of the window content.
+
+=== this.translate(str) ===
+
+Translates the string passed as argument. This method is analogous to the translate($str) method in the VtAppBase server class except that it uses the Javascript translations.
+
+=== this.ajaxRequest(action, parameters, function, context) ===
+
+This function is used to call the server-side object from the client-side. You provide an action that is the name of a method in the server, you can provide any parameters you want in the form of an array, a function that will be called when the server replies and a context for the function.
+
+All arguments are optional except the first one (action). You don't need to supply a context, it will automatically use 'this'.
+
+Example:
+<code javascript>
+// Call the getAccounts method in the main coreBOSApp class with parameter and callback function
+this.ajaxRequest('getAccounts', [ 0, 20 ], this._showAccounts);
+</code>
+
+The server class will need to define those methods:
+<code php>
+<?php
+public class coreBOSApp_ComMycompanyMyApp extends VtAppBase {
+  public function getAccounts($offset, $length) {
+    ...
+  }
+}
+?>
+</code>
+
+The parameters in the array must be in the same order they are defined in the server method.
+
+=== this.safeId(id) ===
+
+Returns the transformed id of the elements. coreBOSApps will transform all id's of HTML elements being sent by getContents() to avoid conflicting id's in the browser. This method will return the name given to your HTML elements. For example, if we define a div with id "chart", we can use this->safeId('chart') to get the real id in the browser. Useful when creating DOM elements with jQuery.
+
+=== this.getServerMethodURL(action) ===
+
+Returns URL to the given coreBOSApp action. It can be useful for Kendo widgets that need a URL to pull/push data from/to.
+
+=== this.addListener(key, listener) ===
+
+Adds a listener for coreBOSApp messages with the given key. The first argument is a key to the messages we're interested in, the second argument is a function that will be called when this message arrives.
+
+=== this.removeListener(key) ===
+
+Remove listener for a specific key. All listeners are automatically removed when a window is removed so you don't need to call this method in this case.
+
+=== this.sendMessage(key, data) ===
+
+Sends a message with optional data.
+
+==== Messaging coreBOSApps ====
+
+The messaging system allows coreBOSApps sending messages and register a listener function that gets called when certain messages are sent. Messages are identified by keys built from the coreBOSApp key. The message can contain data too, message key and data are passed to the listener function.
+
+Imagine coreBOSApp1 wants to know about helloWorld messages sent by coreBOSApp2 and has a method _heardHello(key, data) that should process it.
+
+coreBOSApp1 code:
+<code javascript>
+{
+  onLoad: function() {
+    this.addListener('com.mycompany.coreBOSApp2.helloWorld', this._heardHello);
+  },
+  _heardHello(key, data) {
+    alert('Heard hello! Said: '+data);
+  }
+}
+</code>
+
+coreBOSApp2 has a button than sends a message to any application listening for it.
+
+coreBOSApp2 code:
+<code javascript>
+{
+  onRefresh: function() {
+    // Bind an action that sends a hello message to a button
+    this.get('#hello-button').click($.proxy(function() { this.sendMessage('helloWord', 'I\'m a coreBOSApp'); }, this)):
+  }
+}
+</code>
+
+When the button is pressed in coreBOSApp2 the message will be sent and coreBOSApp1 will show an alert window.
+
+A coreBOSApp can listen for any event from another coreBOSApp by passing just the coreBOSApp key to the addListener method.
+
+A coreBOSApp can listen for messages generated by itself.
+
+==== coreBOSApp.css ====
+
+In this file you can define your CSS styles. You shouldn't use id selectors since they won't work the way you would expect. Use just class selectors and follow the rules described in the getContent() method description above.
+
+===== Translations =====
+
+The translation are stored in the languages subdirectory with a file per language in the same way coreBOS stores its translations.
+
+Every file stores translations for one language, translations might be meant for the server code (PHP) or the UI code (Javascript), so two arrays are used. Array $vtApps_strings stores server translations and array $vtApps_js_strings stores Javascript translations. The separation is done so we send to the browser the mininum amount of data needed.
+
+Example file:
+<code php>
+<?php
+$vtApps_strings = Array (
+ ...
+);
+
+$vtApps_js_strings = Array (
+ ...
+);
+?>
+</code>
+
+===== Go to any given coreBOSApp directly =====
+
+The coreBOSApps environment accepts to additional parameters in it's URL to establish the canvas and the application to be shown on load. These variables are:
+
+  * **evvtApps_canvas** =windows|dashboard|allapps, name of the canvas to load
+  * **evvtApps_gotoapp**=internal name of the coreBOSApp to show on load, for example: com.tsolucio.Listview. This only works on the windows and allapps canvas
+
+For example, a URL that will load the all applications canvas with Timecontrol loaded would be: <code>http:://..../index.php?module=evvtApps&action=index&evvtApps_canvas=allapps&evvtApps_gotoapp=com.tsolucio.QuickTimeControl</code>
+===== Use cases =====
+
+==== Timed action ====
+
+Execute some code in the client every 5 seconds.
+
+coreBOSApp.js:
+<code javascript>
+{
+  onLoad: function() {
+    setInterval($.proxy(this._timedAction, this), 5000);
+  },
+  _timedAction: function() {
+    ...
+  }
+} 
+</code>
+
+==== Saving and retrieving window state ====
+
+Window state can be automatically saved and retrieved using class properties in the PHP class, freeing us from manually doing it.
+
+In the following example, property $accountId will be saved and retrieved without doing anything special, methods getAccountId() and setAccountId() could be called from other PHP methods or Javascript methods in the client.
+
+vtapp.php:
+<code php>
+<?php
+class coreBOSApp_ComMycompanyMyApp extends VtAppBase {
+  public $accountId;
+  
+  public function getAccountId() {
+    return $this->accountId;
+  }
+  
+  public function setAccountId($accountId) {
+    $this->accountId = $accountId;
+  }
+}
+?>
+</code>
+
+This can free us from creating tables and update them to take care of coreBOSApp data per window and user.
+
+==== Chart data ====
+
+This example showcases passing data and translations to the Javascript layer with the getContent() method.
+
+vtapp.php:
+<code php>
+<?php
+class coreBOSApp_ComMycompanyMyApp extends VtAppBase {
+  public function getContent() {
+    // Code that generates some data in $data
+    $data = ...;
+    // Generate a title with the current date
+    $title = $this->translate('Series ').date();
+    // Json data
+    $jsonData = json_encode($data);
+    // Return HTML
+    return "<div id=\"chart\" title=\"{$title}\" style=\"width: 800px; height: 400px; margin: 0 auto\"></div><div id=\"potData\" style=\"display:none\">{$jsonData}</div>";
+  }
+}
+?>
+</code>
+
+vtapp.js:
+<code javascript>
+{
+  onRefresh: function() {
+    new Highcharts.Chart({
+        chart: {
+          renderTo: this.get('#chart').attr('id'),
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false
+        },
+        title: {
+          text: this.get('#chart').attr('title')
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: false
+            },
+            showInLegend: true
+          }
+        },
+        series: [{
+            type: 'pie',
+            data: $.parseJSON(this.get('#potData').html())
+        }]
+    });
+  }
+}
+</code>
+
+
+====== Disclaimer ======
+
+coreBOSApps does not pretend to be a secure environment, we do not impose any restrictions on the coreBOSApps possibilities, just as anyone can send you a coreBOS module that you can install in your coreBOS and have it do anything to your information, also a coreBOSApp has full access to all the information contained inside your coreBOS and the coreBOSApp can do anything with it. Although we will strive to evaluate and respond to all suspicious code conducts we probably won't have time to go through all the code of all the coreBOSApps, so the full responsibility of the acts of any coreBOSApp is beyond our control. You will install coreBOSApps at your own risk.

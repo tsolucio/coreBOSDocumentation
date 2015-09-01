@@ -1,0 +1,29 @@
+====== Third Party FAQ ======
+
+~~QNA~~
+
+??? Can I install vtDZiner
+
+!!! [[en:vtdziner|Yes.]]
+
+??? How can I add new fonts to pdfmaker? I need to use Helvetica Neue Light
+
+!!! PDFMaker uses the mpdf library so you'll find a definitive answer at http://www.mpdf1.com/mpdf/index.php or https://discussions.vtiger.com/index.php?p=/discussion/53074/pdf-maker-own-font/p1
+
+I've styled my pdfs with a css file referenced from each pdf template.  If you can do it this will be the way.
+
+Matt Bracewell
+
+??? Can I install the theme from neevtech
+
+!!! Yes. Just you have to download the zip from http://www.neevtech.com/vtigerpage/ and extract. 
+  * Inside the new folder you have to copy the script called **neevdbentry.php** in corebos root directory and the directory inside enterdata/themes/ inside theme corebos directory.
+  * Now you have to edit the file **Smarty/templates/Header.tpl** and add the next line: 
+<code php>
+   {if $THEME eq 'enterdata'}      
+       <script type="text/javascript" src="themes/enterdata/theme.js"></script>
+   {/if}
+</code>
+  * Finally you have to execute the script **neevdbentry.php** from your browser like: http://your_corebos/neevdbentry.php
+
+After that you will can select this new theme from user preferences.

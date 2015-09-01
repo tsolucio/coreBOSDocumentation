@@ -1,0 +1,21 @@
+??? El tema es que defino un Profile al que le desactivo el Ver Todo y Usar Todo y de los módulos le desactivo todos menos Leads, Contacts y Cuentas.
+
+Pues cuándo entro con ese usuario no veo el link de Convert Lead en la ficha de Leads. Te suena a ti esto? Te ha pasado alguna vez?
+
+Sólo veo el Link si activo el Ver Todo y Usar Todo, pero claro entonces al entrar el usuario ve todos los elementos de otros usuarios, que no es lo que quiero.
+
+!!! Lo acabo de probar y me ha funcionado correctamente.
+
+{{youtube>wFnoEiOtNDU}}
+
+Ha de ser porque te falta algún campo que necesita para la conversión.
+
+He mirado el código y dice que para que esté accesible la acción de "Convertir Lead" se ha de cumplir que:
+
+  * el usuario tiene permiso de edición sobre el cuenta, contacto y precontacto
+  * el usuario ha de tener permiso de conversión en su perfil (mira imagen más abajo)
+  * los módulos de Contactos y Cuentas están activos
+  * no se ha convertido el precontacto ya
+  * el campo "empresa" en el precontacto no está vacío
+
+{{ :es:user:convertleadtoolpermission.png?nolink&800 |}}

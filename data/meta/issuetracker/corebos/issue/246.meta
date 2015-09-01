@@ -1,0 +1,21 @@
+a:2:{s:7:"current";a:8:{s:4:"date";a:2:{s:7:"created";i:1417129100;s:8:"modified";i:1417129100;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:7:{s:4:"date";i:1417129100;s:2:"ip";s:13:"46.25.162.146";s:4:"type";s:1:"C";s:2:"id";s:30:"issuetracker:corebos:issue:246";s:4:"user";s:9:"joebordes";s:3:"sum";s:7:"created";s:5:"extra";s:0:"";}s:5:"title";s:46:"246: speed optimization: calls to getParentTab";s:11:"description";a:2:{s:15:"tableofcontents";a:5:{i:0;a:4:{s:3:"hid";s:39:"speed_optimizationcalls_to_getparenttab";s:5:"title";s:46:"246: speed optimization: calls to getParentTab";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:18:"speed_optimization";s:5:"title";s:18:"Speed Optimization";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:43:"before_after_optimizationhelpdesk_list_view";s:5:"title";s:45:"Before/After optimization: HelpDesk List view";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:3;a:4:{s:3:"hid";s:43:"before_after_optimizationaccounts_list_view";s:5:"title";s:45:"Before/After optimization: Accounts List view";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:4;a:4:{s:3:"hid";s:10:"conclusion";s:5:"title";s:10:"Conclusion";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:503:"246: speed optimization: calls to getParentTab
+
+Issue Reference in Tracker: 
+
+Speed Optimization
+
+Before/After optimization: HelpDesk List view
+
+
+
+
+
+Before/After optimization: Accounts List view
+
+
+
+
+
+Conclusion
+
+As can be seen in the images above the time spent by the getParentTab() method has been reduced significantly. This optimization won't have a big impact in the overall usage of the application, specially because we aren't optimizing the real bottle neck which is elsewhere, but all in all…";}s:8:"relation";a:2:{s:5:"media";a:4:{s:44:"devel:issue:optimize_getparenttab_pre_hd.png";b:1;s:44:"devel:issue:optimize_getparenttab_pst_hd.png";b:1;s:45:"devel:issue:optimize_getparenttab_pre_acc.png";b:1;s:45:"devel:issue:optimize_getparenttab_pst_acc.png";b:1;}s:10:"firstimage";s:44:"devel:issue:optimize_getparenttab_pre_hd.png";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:4:{s:4:"date";a:1:{s:7:"created";i:1417129100;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:7:{s:4:"date";i:1417129100;s:2:"ip";s:13:"46.25.162.146";s:4:"type";s:1:"C";s:2:"id";s:30:"issuetracker:corebos:issue:246";s:4:"user";s:9:"joebordes";s:3:"sum";s:7:"created";s:5:"extra";s:0:"";}}}

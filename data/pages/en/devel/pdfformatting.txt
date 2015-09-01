@@ -1,0 +1,24 @@
+====== Developer Tips and Tricks on PDF Formatting ======
+~~QNA~~
+
+
+??? How to eliminate the background status watermark
+
+!!! The next patch shows how to do this for Invoices:
+
+<code>
+diff --git a/modules/Invoice/InvoicePDFController.php b/modules/Invoice/InvoicePDFController.php
+index f1a0605..25236c0 100644
+--- a/modules/Invoice/InvoicePDFController.php
++++ b/modules/Invoice/InvoicePDFController.php
+@@ -58,7 +58,7 @@ class Vtiger_InvoicePDFController extends Vtiger_InventoryPDFController{
+ 	}
+ 
+ 	function getWatermarkContent() {
+-		return $this->focusColumnValue('invoicestatus');
++		return ''; //$this->focusColumnValue('invoicestatus');
+ 	}
+ }
+ ?>
+</code>
+

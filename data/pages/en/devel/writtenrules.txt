@@ -1,0 +1,13 @@
+====== Writing It All Down ======
+
+One of our many inspirations is the pragmatic and useful book [[http://producingoss.com|Producing Open Source Software]] by [[http://www.red-bean.com/kfogel/|Karl Fogel]].
+
+In the part of the book where he touches on documenting developer best practices he, once again, perfectly nails the situation, so I am basically just going to copy one paragraph I think is specially important and redirect you there: [[http://producingoss.com/en/written-rules.html|Writing It All Down]]
+
+<WRAP center round box 60%>
+Don't try to be comprehensive. No document can capture everything people need to know about participating in a project. Many of the conventions a project evolves remain forever unspoken, never mentioned explicitly, yet adhered to by all. Other things are simply too obvious to be mentioned, and would only distract from important but non-obvious material. For example, there's no point writing guidelines like "Be polite and respectful to others on the mailing lists, and don't start flame wars," or "Write clean, readable bug-free code." Of course these things are desirable, but since there's no conceivable universe in which they might not be desirable, they are not worth mentioning. If people are being rude on the mailing list, or writing buggy code, they're not going to stop just because the project guidelines said to. Such situations need to be dealt with as they arise, not by blanket admonitions to be good. On the other hand, if the project has specific guidelines about how to write good code, such as rules about documenting every API in a certain format, then those guidelines should be written down as completely as possible.
+</WRAP>
+
+That said we will add some guidelines as needed below.
+
+===== Developer Guidelines =====

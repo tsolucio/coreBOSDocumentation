@@ -1,0 +1,3 @@
+====== coreBOS Business Intelligence Issue Tracker ======
+
+~~SEARCHPATTERN:'Issue Reference in Tracker'?? +issuetracker:corebosbi:issue: ??~~

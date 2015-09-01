@@ -1,0 +1,17 @@
+====== 238: Permit sorting of detail view widget blocks  ======
+
+Issue Reference in Tracker: ~~issue:238~~
+
+===== Detailed Explanation =====
+
+We have added the rendering process of [[en:devel:add_special_block|Detail View Widget blocks]] into the rendering process of normal blocks. This way we start with the normal blocks (so the first block will ALWAYS be a normal block) and mix in the [[en:devel:add_special_block|special Detail View Widget blocks]] in order.
+
+{{ :devel:issue:detailviewwidgetsortcontacts.png?750 |}}
+
+We have enhanced the layout editor so you can easily determine where you want these blocks to appear, exactly as you could already do with the normal blocks.
+
+{{ :devel:issue:detailviewwidgetblocksorting.png?750 |}}
+
+
+
+

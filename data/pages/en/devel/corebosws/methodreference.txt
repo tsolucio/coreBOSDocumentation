@@ -1,0 +1,16 @@
+====== Webservice Method Reference ======
+
+=====Retrieve Attachment=====
+^Purpose:|Retrieve file attached to a document as a base64 encoded string. This method was added instead of modifying the already existing Retrieve method to avoid having to download all attachments when only a list is required and so we wouldn't have to modify the existing interface of the retrieve method.|
+^Profile:|retrievedocattachment(id:Id,returnfile:boolean):Map|
+^Send as:|POST|
+^Parameters:|<code> id: comma separated list of document identifiers to obtain
+ returnfile: true if we need to really get the file, false to just get the information of the attachment</code>|
+^Response:|A map object with all the information of the attachment|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=retrievedocattachment&sessionName=[session id]&id=[id documento]&returnfile=[0|1]</code>|
+^Examples:|[[en:devel:corebosws:docenhance_examples|REST Document Manipulation Enhancements]]|
+
+=====Revise=====
+
+The main difference between vtws_revise and vtws_update is that for revise you can send only those fields that needs to be changed, but for update api you need to send all the mandatory fields to update a record. 
+If you send unknown fields then it will silently ignore them, the reason for this behavior is that the user may not have permission for few fields and the system may not know if these fields are not available in the system or the user does not have permission for these fields.

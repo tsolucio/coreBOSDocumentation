@@ -1,0 +1,45 @@
+====== Configuration Editor ======
+
+The **Configuration Editor** extension permits us to edit global configuration variables to adjust the functionality of our application.
+
+All of these variables are saved in the main //config.inc.php// file and can also be edited there. This is just an easy way of modifying those variables without needing access to the server.
+
+The functionality of this extension is straight forward; as soon as we access we are greeted with an edit screen for the available variables and their current value. Clicking on the <wrap em>save button</wrap> will update the //config.inc.php// file and the new values will be available on the next load of any page in the application.
+
+<WRAP center round important 75%>
+If the //config.inc.php// file is not editable by the webserver user you will see a warning message indicating this state and you WILL NOT be able to change any variables.
+</WRAP>
+
+<WRAP center round alert 75%>
+There is a warning message that states:
+
+"**You are editing the configuration details. Please do double check before saving the values.**"
+
+I stress this here again: any incorrect value in any variable will break the WHOLE application, please be careful and use correct values for each variable!
+</WRAP>
+
+The available variables are:
+
+^Mini Calendar Display|boolean|Calendar on global tool bar|
+^World Clock Display|boolean|Clock of the world on global tool bar|
+^Calculator Display|boolean|Calculator on global tool bar|
+^Use RTE|boolean|Whether to use Rich Text Editor or not in a few places that it is available|
+^Helpdesk Support Email-Id|string|This is the email that will be used when sending emails related to tickets|
+^Helpdesk Support Name|string|This is the name that will be used when sending emails related to tickets|
+^Max.Upload Size (Max 5MB)|number|This is the application file size limit of files you can upload. Note that your PHP may have more restrictive values.|
+^Max. entries per page in listview|number|The number of records to show in the list views. Note that incrementing this value will affect loading time.|
+^Max. History Viewed|number|This number controls the number of entries you see when you click the history icon at the Tools Area.|
+^Default Module|string|Module that will be loaded when we log into the application|
+^Max. text length in listview|number|Values in listviews are truncated to make the table easier to read. This variable establishes how many characters are shown. A maximum of 100 characters is permitted|
+^[[issuetracker:corebos:issue:208|Domains authorized for CORS]]|string|Space or comma separated list of domains we will accept [[http://en.wikipedia.org/wiki/Cross-origin_resource_sharing|Cross-origin resource sharing]] from|
+
+<WRAP center round info 75%>
+There are more fine tuning variables available directly in the //config.inc.php// file and also in //config.performance.php//
+</WRAP>
+
+===== Adding new variables =====
+
+To add a new variable to the list we must do three things:
+  - add the variable to the //config.inc.php// file (and also //config.templat.php// if we plan to distribute the application as an installable with the new variable)
+  - add the variable to //modules/ConfigEditor/config.php// in the array element //$__ConfigEditor_Config['allow.editing.variables']//
+  - add the translations to the //modules/ConfigEditor/language// files

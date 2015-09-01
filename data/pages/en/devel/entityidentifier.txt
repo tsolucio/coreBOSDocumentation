@@ -1,0 +1,27 @@
+====== How to change entity identifier ======
+
+Sometime we the default entity identifier field is not import for us and we want to change for other field that yes.
+
+For example. In Opportunity module the default identifier is "Opportunity Name", but we want need the "Opportunity No". 
+For this we have to create a scritp like the next.
+
+<code>
+<?php
+
+// Turn on debugging level
+$Vtiger_Utils_Log = true;
+
+require_once 'include/utils/utils.php';
+include_once('vtlib/Vtiger/Module.php');
+require_once('config.inc.php');
+
+$module = Vtiger_Module::getInstance('Potentials');
+
+$module->unsetEntityIdentifier();//This unset the potentialname like a entity identifeir
+
+$field = VTiger_Field::getInstance('potential_no',$module); //Now you get the field that you want to entity identifier
+
+$module->setEntityIdentifier($field);//And finally you set this field.
+
+?>
+</code>

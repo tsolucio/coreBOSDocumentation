@@ -1,0 +1,54 @@
+====== Importing Data::Inventory modules ======
+
+Import of Inventory modules (Quotes, SO, PO and Invoices) is very similar to the [[en:import_basic|normal import process]], the only difference appears in the mapping of fields.
+
+If the module being imported is an inventory module the field mapping step of the import process will show not only the fields of the module but also a set of "virtual" fields that represent the product/service lines of the module.
+
+These fields must be mapped to columns being imported from the CSV file. Basically they represent the fields that can be found in the product lines of the inventory modules as can be seen in the next table:
+
+^ Field Name ^ Description ^
+|Item Name|Product or Service. Should be in import format Products::::ProductName or Services::::ServiceName. The item will be created if it does not exist|
+|Item Comment|Description of the product or service|
+|Quantity|The number of units sold on this line|
+|List Price|The unit price of product or service in this line|
+|Item Discount Amount|Direct discount if applied|
+|Item Discount Percent|Percentage discount if applied|
+|Discount Amount|Direct discount of the Quote, SO, PO or Invoice if applied. This field, although repeated in every line of the import CSV will be applied only once to the total of the record being imported|
+|Discount Percent|Percentage discount of the Quote, SO, PO or Invoice if applied. This field, although repeated in every line of the import CSV will be applied only once to the total of the record being imported|
+|S&H Amount|Shipping and handling costs of the Quote, SO, PO or Invoice. This field, although repeated in every line of the import CSV will be applied only once to the total of the record being imported|
+|Currency|Currency the record should be created with. This currency must exist in the system, it will NOT be created. This field, although repeated in every line of the import CSV will be applied only once to the total of the record being imported|
+
+So, to import an inventory module we need a flat or denormalized view of the record where all the information of the record is repeated as many times as product lines are required. In other words, our CSV file will have one row per each product line in a record, each row will have different values in the special product line columns and the exact same values in the common base field of the entity.
+
+For example, {{:en:corebos:import:sales_order.csv|this CSV file}} contains 3 SalesOrder records, The first one has 4 product lines, 2 products and 2 services:
+
+<code>Products::::Cd-R CD Recordable
+Products::::Double Panel See-thru Clipboard
+Services::::srv
+Services::::srv2</code>
+
+the other two Sales Order have two products each. As can be seen the base fields like "Subject", "Contact", "Organization" or Billing and Shipping details are all repeated identically on all lines. When importing only the values of one row will be used, but they should be repeated on all lines.
+
+The import process will group lines by the "**Subject**" column so this column MUST be unique for each record in the CSV file. This is **very important** because this is how the program identifies which product lines belong to each record. Let me repeat that again in a more colorful way:
+
+<WRAP center round alert 70%>The import process will group lines by the "**Subject**" column so this column MUST be unique for each record in the CSV file. This is **very important** because this is how the program identifies which product lines belong to each record.</WRAP>
+
+See next the contents of the CSV file described.
+
+^Subject^Opportunity Name^Customer No^SalesOrder No^Quote Name^Purchase Order^Contact Name^Due Date^Carrier^Pending^Status^Sales Commission^Excise Duty^Organization Name^Assigned To^Created Time^Modified Time^Billing Address^Shipping Address^Billing PO Box^Shipping PO Box^Billing City^Shipping City^Billing State^Shipping State^Billing Postal Code^Shipping Postal Code^Billing Country^Shipping Country^Terms & Conditions^Description^Enable Recurring^Frequency^Start Period^End Period^Payment Duration^Invoice Status^Adjustment^Total^Sub Total^Tax Type^Discount Amount^Discount Percent^S&H Amount^Currency^Item Name^Quantity^List Price^Item Comment^Item Discount Amount^Item Discount Percent^VAT^Sales^Service^V.A.T.^
+|SO_vtiger| | |SO1|Quotes::::Vendor_Quote| |Contacts::::Jones Barbara|2015-04-13|FedEx| |Created|0.00|0.00|Accounts::::t3M Invest A/S|admin|2014-06-26 23:12:15|2015-06-02 20:44:51|999 Baker Way|123 Anywhere Street| | |San Mateo|San Jose|CA|CA|15191|63999|USA|USA| | |0| | | | | |100.000|4232.900|4182.900|individual|100.000|0.00|50.000|USA Dollars|Products::::Cd-R CD Recordable|3.00|130.000|This is test comment for product of Quotes|20.000|0.00|14.50|0.00|12.50|0.00|
+|SO_vtiger| | |SO1|Quotes::::Vendor_Quote| |Contacts::::Jones Barbara|2015-04-13|FedEx| |Created|0.00|0.00|Accounts::::t3M Invest A/S|admin|2014-06-26 23:12:15|2015-06-02 20:44:51|999 Baker Way|123 Anywhere Street| | |San Mateo|San Jose|CA|CA|15191|63999|USA|USA| | |0| | | | | |100.000|4232.900|4182.900|individual|100.000|0.00|50.000|USA Dollars|Products::::Double Panel See-thru Clipboard|3.00|1230.000|This is test comment for product of SalesOrder|200.000|0.00|0.00|0.00|0.00|0.00|
+|SO_vtiger| | |SO1|Quotes::::Vendor_Quote| |Contacts::::Jones Barbara|2015-04-13|FedEx| |Created|0.00|0.00|Accounts::::t3M Invest A/S|admin|2014-06-26 23:12:15|2015-06-02 20:44:51|999 Baker Way|123 Anywhere Street| | |San Mateo|San Jose|CA|CA|15191|63999|USA|USA| | |0| | | | | |100.000|4232.900|4182.900|individual|100.000|0.00|50.000|USA Dollars|Services::::srv|3.00|1.000| |0.000|0.00|0.00|0.00|0.00|0.00|0.00
+|SO_vtiger| | |SO1|Quotes::::Vendor_Quote| |Contacts::::Jones Barbara|2015-04-13|FedEx| |Created|0.00|0.00|Accounts::::t3M Invest A/S|admin|2014-06-26 23:12:15|2015-06-02 20:44:51|999 Baker Way|123 Anywhere Street| | |San Mateo|San Jose|CA|CA|15191|63999|USA|USA| | |0| | | | | |100.000|4232.900|4182.900|individual|100.000|0.00|50.000|USA Dollars|Services::::srv2|22.00|10.000| |0.000|0.00|0.00|0.00|0.00|0.00|
+|SO_vtiger5usrp| | |SO3|Quotes::::Vendor_Quote| |Contacts::::Miller Maria|2007-08-11|USPS| |Approved|0.00|0.00|Accounts::::demovtiger|admin|2014-06-26 23:12:17|2014-06-26 23:12:17|345 Sugar Blvd.|123 Anywhere Street| | |San Francisco|San Jose|CA|CA|82696|63999|USA|USA| | |0| | | | | |100.000|1080.000|1030.000|individual|100.000|0.00|50.000|USA Dollars|Products::::Vtiger 5 Users Pack|1.00|1230.000|This is test comment for product of SalesOrder|200.000|0.00|0.00|0.00|0.00|0.00|
+|SO_vtiger5usrp| | |SO3|Quotes::::Vendor_Quote| |Contacts::::Miller Maria|2007-08-11|USPS| |Approved|0.00|0.00|Accounts::::demovtiger|admin|2014-06-26 23:12:17|2014-06-26 23:12:17|345 Sugar Blvd.|123 Anywhere Street| | |San Francisco|San Jose|CA|CA|82696|63999|USA|USA| | |0| | | | | |100.000|1080.000|1030.000|individual|100.000|0.00|50.000|USA Dollars|Products::::Vtiger 50 Users Pack|1.00|1230.000|This is test comment for product of SalesOrder|200.000|0.00|0.00|0.00|0.00|0.00|
+|SO_vendtl| | |SO5|Quotes::::SO_Quote| |Contacts::::Wilson Susan|2007-02-28|BlueDart| |Approved|0.00|0.00|Accounts::::vtigeruser|admin|2014-06-26 23:12:19|2014-06-26 23:12:19|123 Anywhere Street|123 Anywhere Street| | |Sunnyvale|San Jose|CA|CA|70388|63999|USA|USA| | |0| | | | | |100.000|1080.000|1030.000|individual|100.000|0.00|50.000|USA Dollars|Products::::Vtiger 5 Users Pack|1.00|1230.000|This is test comment for product of SalesOrder|200.000|0.00|0.00|0.00|0.00|0.00|
+|SO_vendtl| | |SO5|Quotes::::SO_Quote| |Contacts::::Wilson Susan|2007-02-28|BlueDart| |Approved|0.00|0.00|Accounts::::vtigeruser|admin|2014-06-26 23:12:19|2014-06-26 23:12:19|123 Anywhere Street|123 Anywhere Street| | |Sunnyvale|San Jose|CA|CA|70388|63999|USA|USA| | |0| | | | | |100.000|1080.000|1030.000|individual|100.000|0.00|50.000|USA Dollars|Products::::Brother Ink Jet Cartridge|1.00|1230.000|This is test comment for product of SalesOrder|200.000|0.00|0.00|0.00|0.00|0.00|
+
+===== Taxes =====
+
+Currently, due to limitations of the system we cannot define the tax settings of the record being imported. All taxes defined in the system at the moment of the import will be applied to the records created.
+
+<WRAP center round important 70%>All taxes defined in the system at the moment of the import will be applied to the records created.</WRAP>
+
+This means that you have to group your import records in sets of identical taxes, define and set those taxes in the application and import the set. Then repeat the process for each set of changing taxes.

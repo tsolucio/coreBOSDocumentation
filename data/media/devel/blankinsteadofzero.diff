@@ -1,0 +1,44 @@
+diff --git a/include/ListView/ListViewController.php b/include/ListView/ListViewController.php
+index 5b84166..b65c0d4 100644
+--- a/include/ListView/ListViewController.php
++++ b/include/ListView/ListViewController.php
+@@ -339,6 +339,7 @@ class ListViewController {
+ 								$value = CurrencyField::convertToUserFormat($value);
+ 							}
+ 						}
++						if ($value==0) $value='';
+ 					}
+ 				} elseif($field->getFieldDataType() == 'url') {
+                     $matchPattern = "^[\w]+:\/\/^";
+diff --git a/Smarty/templates/DetailViewUI.tpl b/Smarty/templates/DetailViewUI.tpl
+index ceb7bb8..6ccb30a 100644
+--- a/Smarty/templates/DetailViewUI.tpl
++++ b/Smarty/templates/DetailViewUI.tpl
+@@ -25,11 +25,13 @@
+ 
+ 				{if $keyid eq 11 && $USE_ASTERISK eq 'true'}
+                     &nbsp;&nbsp;<span id="dtlview_{$label}"><a href='javascript:;' onclick='startCall("{$keyval}", "{$ID}")'>{$keyval}</a></span>
++				{elseif ($keyid eq '71' || $keyid eq '72') && $keyval eq "0"}
++					&nbsp;&nbsp;<span id="dtlview_{$label}"></span>
+ 				{else}
+ 					&nbsp;&nbsp;<span id="dtlview_{$label}">{$keyval}</span>
+ 				{/if}
+                 <div id="editarea_{$label}" style="display:none;">
+-                	<input class="detailedViewTextBox" onFocus="this.className='detailedViewTextBoxOn'" onBlur="this.className='detailedViewTextBox'" type="text" id="txtbox_{$label}" name="{$keyfldname}" maxlength='100' value="{$keyval}"></input>
++                	<input class="detailedViewTextBox" onFocus="this.className='detailedViewTextBoxOn'" onBlur="this.className='detailedViewTextBox'" type="text" id="txtbox_{$label}" name="{$keyfldname}" maxlength='100' value="{if !(($keyid eq '71' || $keyid eq '72') && $keyval eq "0")}{$keyval}{/if}"></input>
+                     <br><input name="button_{$label}" type="button" class="crmbutton small save" value="{$APP.LBL_SAVE_LABEL}" onclick="dtlViewAjaxSave('{$label}','{$MODULE}',{$keyid},'{$keytblname}','{$keyfldname}','{$ID}');fnhide('crmspanid');"/> {$APP.LBL_OR}
+                     <a href="javascript:;" onclick="hndCancel('dtlview_{$label}','editarea_{$label}','{$label}')" class="link">{$APP.LBL_CANCEL_BUTTON_LABEL}</a>
+                 </div>
+diff --git a/Smarty/templates/EditViewUI.tpl b/Smarty/templates/EditViewUI.tpl
+index 57e1348..2675f4d 100644
+--- a/Smarty/templates/EditViewUI.tpl
++++ b/Smarty/templates/EditViewUI.tpl
+@@ -420,7 +420,7 @@ alt="Clear" title="Clear" LANGUAGE=javascript	onClick="this.form.{$fldname}.valu
+ 					</div>
+ 					{/if}
+ 				{else}
+-					<input name="{$fldname}" tabindex="{$vt_tab}" type="text" class=detailedViewTextBox onFocus="this.className='detailedViewTextBoxOn'" onBlur="this.className='detailedViewTextBox'"  value="{$fldvalue}">
++					<input name="{$fldname}" tabindex="{$vt_tab}" type="text" class=detailedViewTextBox onFocus="this.className='detailedViewTextBoxOn'" onBlur="this.className='detailedViewTextBox'"  value="{if ($fldvalue neq "0")}{$fldvalue}{/if}">
+ 				{/if}
+ 			</td>
+ 

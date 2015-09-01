@@ -1,0 +1,49 @@
+====== Helper Scripts ======
+
+In the **build/HelperScripts** directory you can find a series of small scripts and tools that are useful to achieve some of those special tasks that help adapt the system to your specific needs. Some of these should be done directly inside the application, and hopefully someday they will be, but in the mean time, these are the steps to get it working.
+
+===== addActionLink.php =====
+This is an example script to show how you can add an action link in the right panel of the detailview of an existing module. In this case it is adding an **Add Ticket** action link to the Accounts module.
+
+
+===== addEntityMethod.php =====
+This is an example script to show how to associated a workflow custom method to a module. You can [[en:devel:addworkflowfunction|read more about it here.]]
+
+===== addModComments.php =====
+This script adds the comment functionality to any module. Copy it to the root of your install and execute in the browser with the module name you want to have the feature:
+
+<code>http://your_server/your_corebos/addModComments.php?modulename=Timecontrol</code>
+
+<WRAP center round alert 70%>Remember to delete the file when you are finished.</WRAP>
+
+===== composerinstallmodule.php =====
+This is the composer installer worker script. It is in charge of launching the install/update of modules installed using [[https://getcomposer.org/|composer]]. More on this can be read in the Perspective Initiative.
+
+===== convertTextFieldToPicklist.php =====
+This script converts a uitype 1 text field into a picklist respecting all the current values in the field. It accepts two parameters:
+  * module: the name of the module which contains the field to transform
+  * fieldname: the name of the field to convert
+===== coreBOSEvents* =====
+Script to load and show the functionality of the [[en:devel:corebos_hooks|coreBOS Eventing system]]
+===== deleteModule.php =====
+This is an example script to show how to delete a module
+
+
+===== evalwf.php =====
+This script is for debugging the workflow process. It executes a given workflow, against a record and gives us the result of the evaluation of the conditions on screen. If the workflow is a scheduled workflow it will show us the full SQL generated. If it is an event based workflow it will tell us if it evaluates to true or false for the record. 
+
+===== runwftask.php =====
+
+This helper script is a utility to manually execute one task inside a given workflow against a given entity in the system. We basically use this to debug workflows that fail for some reason and have more than one task. Once you know which task is failing you can concentrate on that one to debug it.
+===== installmodule.php =====
+This is an example script to show how to install a module from it's manifest.xml file when all files are already copied into place in the filesytem
+
+
+===== installupdater.php =====
+This script is a copy of the installmodule.php script specifically tailored to installing the [[en:devel:corebosupdater|coreBOS updater]] module.
+
+
+===== stressTest.php =====
+Script that creates 100 records and then deletes them. We use this one to test time impact of the optimization changes we make :-)
+
+<WRAP center round alert 70%>Please do not leave this files in the root of your install. Remember to delete the file when you are finished.</WRAP>

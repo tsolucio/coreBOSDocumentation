@@ -1,0 +1,11 @@
+====== Administrator Manual ======
+  * [[adminmanual:admintips|Tips and Tricks]]
+  * [[workflows|Workflows]]
+  * [[cyppasarela|Payments Control Module :: Payment Gateway]]
+  * [[configeditor|Configuration Editor]]
+  * [[configureoutgoingserver|How to Configure Outgoing Server]]
+  * [[email_tracking|Email tracking: Access count]]
+  * [[admin_faq|Administration FAQ]]
+  * [[lead_conversion|Lead Conversion]]
+  * [[logos_sizes|Logo sizes]]
+  * [[globalvariables|Global Variables]]

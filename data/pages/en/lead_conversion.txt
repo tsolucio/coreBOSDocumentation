@@ -1,0 +1,33 @@
+====== Lead Conversion ======
+
+Once a business opportunity emerges, the Lead can be converted to a Opportunity. At this time, the data contained within the lead are automatically split out into a contact and an organization and the Lead is deleted. Information about the specific business opportunity is stored as a Opportunity. All the information collected for the Lead is still available but is now split between Contacts, Organizations and Opportunities.
+===== Field Mapping =====
+
+====Create field on Contacts====
+{{ :en:corebos:leads:mapcf01_plcto.png?680 |}}
+
+====Create field on Leads, with the exact same name and value====
+{{ :en:corebos:leads:mapcf02_pllead.png?680 |}}
+
+====Access the mapping link in Settings====
+{{ :en:corebos:leads:mapcf03_cfmapping.png?680 |}}
+
+====Establish the relation between the fields====
+{{ :en:corebos:leads:mapcf04_plmap.png?680 |}}
+
+===== Controlling Conversion Options =====
+
+Most options in the conversion screen can be configured through the application. The full conversion screen has the options that can be seen in the next image:
+
+{{ :en:corebos:convertlead.png?750 |}}
+
+  * If the Accounts/Organization module is not active (that would be a B2C setup) the whole block of organization will not appear and neither will this module be an option below in the "Transfer records to" section.
+  * If Accounts is active, the block will appear, the organization name is mandatory
+  * If the Industry field is not active in the Accounts module, it will not appear in the conversion screen
+  * If the Potentials module is not active the whole potentials section will not appear
+  * If any of the fields shown the above screen shot are hidden in the Potentials module they will not appear in the conversion popup.
+  * If the Contacts module is not active (that would be a B2B or normal setup) the whole block of contacts will not appear and neither will this module be an option below in the "Transfer records to" section.
+  * If Contacts is active, the block will appear, the contact last name is mandatory
+  * The other two available fields for contacts will not appear if they are hidden in that module.
+  * Groups will only appear if they exist.
+  * Additional fields cannot be added to the screen without programming

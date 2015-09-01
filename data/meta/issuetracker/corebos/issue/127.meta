@@ -1,0 +1,13 @@
+a:2:{s:7:"current";a:10:{s:4:"date";a:2:{s:7:"created";i:1398604666;s:8:"modified";i:1398607229;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:7:{s:4:"date";i:1398607229;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"E";s:2:"id";s:30:"issuetracker:corebos:issue:127";s:4:"user";s:9:"joebordes";s:3:"sum";s:23:"[Detailed Explanation] ";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}s:5:"title";s:60:"127: Enhance REST query language to support related entities";s:11:"description";a:2:{s:15:"tableofcontents";a:3:{i:0;a:4:{s:3:"hid";s:55:"enhance_rest_query_language_to_support_related_entities";s:5:"title";s:60:"127: Enhance REST query language to support related entities";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:20:"detailed_explanation";s:5:"title";s:20:"Detailed Explanation";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:27:"related_entity_query_syntax";s:5:"title";s:27:"Related Entity Query Syntax";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:353:"127: Enhance REST query language to support related entities
+
+Issue Reference in Tracker: 
+
+Detailed Explanation
+
+Related Entity Query Syntax
+
+Implemented in 
+
+
+
+Constructing on top of the getRelatedRecords function we have extended the REST query syntax to benefit from that functionality, making it easy to query related entities and filter them also.";}s:14:"plugin_include";a:3:{s:12:"instructions";a:1:{i:0;a:4:{s:4:"mode";s:7:"section";s:4:"page";s:32:"en:devel:corebosws:querylanguage";s:4:"sect";s:27:"related_entity_query_syntax";s:9:"parent_id";s:30:"issuetracker:corebos:issue:127";}}s:5:"pages";a:1:{i:0;a:3:{s:2:"id";s:32:"en:devel:corebosws:querylanguage";s:6:"exists";b:1;s:9:"parent_id";s:30:"issuetracker:corebos:issue:127";}}s:15:"include_content";b:0;}s:8:"relation";a:3:{s:10:"references";a:3:{s:32:"en:devel:corebosws:querylanguage";b:1;s:36:"en:devel:corebosws:getrelatedrecords";b:1;s:36:"en:devel:corebosws:queryenhancements";b:1;}s:7:"haspart";a:1:{s:32:"en:devel:corebosws:querylanguage";b:1;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1398604666;s:8:"modified";i:1398607229;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:7:{s:4:"date";i:1398607229;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"E";s:2:"id";s:30:"issuetracker:corebos:issue:127";s:4:"user";s:9:"joebordes";s:3:"sum";s:23:"[Detailed Explanation] ";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}}}

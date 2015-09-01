@@ -1,0 +1,42 @@
+====== 123: Enhance field information returned from REST interface  ======
+
+Issue Reference in Tracker: ~~issue:123~~
+
+===== Detailed Explanation =====
+
+For certain external applications the information given by the REST interface referent to the fields is  insufficient to be able to order them on screen by their order defined in the application and also about complete information about their type.
+
+Before this patch the information returned looked like this:
+
+<code>{"name":"firstname",
+"label":"First Name",
+"mandatory":false,
+"type":{"name":"string"},
+"nullable":true,
+"editable":true,
+"default":""}</code>
+
+After the patch we get this structure:
+
+<code>{"name":"firstname",
+"label":"First Name",
+"mandatory":false,
+"type":{"name":"string"},
+"nullable":true,
+"editable":true,
+"uitype":"55",
+"typeofdata":"V~O",
+"sequence":"2",
+"block":{
+   "blockid":"4",
+   "blocksequence":"1",
+   "blocklabel":"LBL_CONTACT_INFORMATION",
+   "blockname":"Contact Information"
+},
+"default":""}</code>
+
+Using the {{http://github.com/tsolucio/coreboswsbrowser|coreBOSwsBrowser}} this change looks like this:
+
+{{ :issuetracker:corebos:issue:coreboswsfieldinfonormal.png?800 |}}
+
+{{ :issuetracker:corebos:issue:coreboswsfieldinfoextended.png?800 |}}

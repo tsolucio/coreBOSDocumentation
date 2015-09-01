@@ -1,0 +1,15 @@
+{{description>coreBOS - The one stop software solution for your business.}}
+{{keywords>marketing, email, invoice, support, tickets, sales}}
+
+<wrap em>[[http://corebos.org|Orgulloso miembro de la familia coreBOS!]]</wrap>\\
+<wrap em>Visita nuestra [[http://corebos.org|Web]] y siguenos en [[https://plus.google.com/communities/109845486286232591652|Google+]] y [[http://www.linkedin.com/groups/coreBOS-7479130?trk=my_groups-b-grp-v|LinkedIn]]</wrap>
+
+====== coreBOS  Documentación ======
+
+<menu col=1,align=left>
+  <item>Información sobre la Documentación|Objetivos y funcionamiento de la documentación|docguide|{{menu:info_32.png?direct|}}</item>
+  <item>Instalación y Actualización|Cómo instalar y actualizar la aplicación|installupdate|{{menu:software-icon_32.png?direct|}}</item>
+  <item>Manual de Usuario|Cómo utilizar la aplicación|usermanual|{{menu:little_knight_32.png?direct|}}</item>
+  <item>Manual del Administrador|Cómo administrar la aplicación|adminmanual|{{menu:hammer_32.png?direct|}}</item>
+  <item>Desarrollo|Desarrollo y Guía de Contribuciones|:en:devel|{{menu:developer_32.png?direct|}}</item>
+</menu>

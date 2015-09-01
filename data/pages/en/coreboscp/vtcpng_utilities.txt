@@ -1,0 +1,47 @@
+====== coreBOSCP - Development Utilities ======
+
+
+===== Ajax calls and interaction with browser =====
+
+In the major part of the application ajax calls are made to fill in the central part of the application, keeping both the header and menu static. To accomplish this we have a utility call ajaxResponse. This javascript method and it's counterpart object in php permit us to establish a defined and standard way to communicate the php world and the browser (javascript world) to accomplish certain actions that are needed to be done in the browser on behalf of the php code decisions.
+
+For example, using this utility we can show messages to the users or redirect the browser to another page.
+
+The general idea is:
+  * execute a normal ajax call
+  * php code will instantiate a new AjaxResponse object and define the actions to be taken
+  * on return from the ajax call, the AjaxResponse.handle()  method must be called with the result from the call, this method will execute the actions indicated
+
+Lets see an example:
+
+<code>
+public function actionDelete() {
+	$model=$this->loadModel();
+	$response = new AjaxResponse();
+	if (!$this->vtyii_canDelete($model->getModule())) {
+		$response->addNotification('error', Yii::t('core', 'error'), Yii::t('core', 'errorDeleteRow')."<br>".Yii::t('core', 'errorPermssion'));
+		$response->send();
+		return true;
+	}
+		$result=$model->delete();
+		if ($result) {
+			$response->addNotification('success', Yii::t('core', 'success'), Yii::t('core', 'successDeleteRow'));
+		} else {
+			$response->addNotification('error', Yii::t('core', 'error'), Yii::t('core', 'errorDeleteRow'));
+		}
+		$response->send();
+	}
+}
+</code>
+
+The code above is a reduced version of the Delete action. This method is called when the user in the browser clicks on the Delete button. On that button an ajax call is executed and this method is executed. Since this method knows it is being called by ajax it instantiates the AjaxResponse object to define it's answer. First it looks to see if the logged in user has permission to eliminate the loaded record. If not it adds a notification message to the AjaxResponse and finishes the execution. At that point the ajax call in the browser receives the result of the AjaxResponse and sends that data to the AjaxResponse.handle() method which sees that it has to show the user a notification message and executes this action.
+
+If the user does have permission to delete the record then the PHP Delete method tries to do so, and depending on the result it will, again, load a message into the AjaxResponse.
+
+Supported actions:
+  * $redirectUrl; :: Redirects the user to the given url
+  * $refresh; :: Refresh content in center area
+  * $reload; :: Reload the complete site
+  * $data;  :: simply return data, must be added through the addData method
+  * $notifications;  :: send message to user, must be added through the addNotification method
+  * $jsCode; :: javascript code to execute in browser, must be added through the executeJavaScript mehod

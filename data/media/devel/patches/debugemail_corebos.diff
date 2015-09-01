@@ -1,0 +1,61 @@
+diff --git a/modules/Emails/class.phpmailer.php b/modules/Emails/class.phpmailer.php
+index 56271f9..3877204 100644
+--- a/modules/Emails/class.phpmailer.php
++++ b/modules/Emails/class.phpmailer.php
+@@ -303,7 +303,7 @@ class PHPMailer
+      * @type int
+      * @see SMTP::$do_debug
+      */
+-    public $SMTPDebug = 0;
++    public $SMTPDebug = 2;
+ 
+     /**
+      * The function/method to use for debugging output.
+@@ -311,7 +311,7 @@ class PHPMailer
+      * @type string
+      * @see SMTP::$Debugoutput
+      */
+-    public $Debugoutput = "echo";
++    public $Debugoutput = "error_log";
+ 
+     /**
+      * Whether to keep SMTP connection open after each message.
+@@ -623,7 +623,7 @@ class PHPMailer
+         }
+         switch ($this->Debugoutput) {
+             case 'error_log':
+-                error_log($str);
++                error_log($str,3,'errmail.log');
+                 break;
+             case 'html':
+                 //Cleans up output a bit for a better looking display that's HTML-safe
+diff --git a/modules/Emails/class.smtp.php b/modules/Emails/class.smtp.php
+index e6b4522..286b202 100644
+--- a/modules/Emails/class.smtp.php
++++ b/modules/Emails/class.smtp.php
+@@ -77,14 +77,14 @@ class SMTP
+      * Options: 0 for no output, 1 for commands, 2 for data and commands
+      * @type int
+      */
+-    public $do_debug = 0;
++    public $do_debug = 1;
+ 
+     /**
+      * The function/method to use for debugging output.
+      * Options: 'echo', 'html' or 'error_log'
+      * @type string
+      */
+-    public $Debugoutput = 'echo';
++    public $Debugoutput = 'error_log';
+ 
+     /**
+      * Whether to use VERP.
+@@ -151,7 +151,7 @@ class SMTP
+         switch ($this->Debugoutput) {
+             case 'error_log':
+                 //Don't output, just log
+-                error_log($str);
++                error_log($str,3,'errmail.log');
+                 break;
+             case 'html':
+                 //Cleans up output a bit for a better looking, HTML-safe output

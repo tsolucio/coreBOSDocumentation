@@ -1,0 +1,22 @@
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1398440398;s:8:"modified";i:1419183317;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:7:{s:4:"date";i:1419183317;s:2:"ip";s:12:"46.25.161.91";s:4:"type";s:1:"E";s:2:"id";s:18:"en:devel:corebosws";s:4:"user";s:9:"joebordes";s:3:"sum";s:28:"[Web service documentation] ";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}s:5:"title";s:22:"Webservice Development";s:11:"description";a:2:{s:15:"tableofcontents";a:3:{i:0;a:4:{s:3:"hid";s:22:"webservice_development";s:5:"title";s:22:"Webservice Development";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:25:"web_service_documentation";s:5:"title";s:25:"Web service documentation";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:19:"web_service_roadmap";s:5:"title";s:19:"Web service roadmap";s:4:"type";s:2:"ul";s:5:"level";i:2;}}s:8:"abstract";s:503:"Webservice Development
+
+	*  coreBOS Web Service Developer Tool Code on GitHub
+	*  coreBOS Web Service Library Code on GitHub
+	*  coreBOS Web Service Developer Tool
+	*  Domains authorized for CORS
+	*  Webservice Stress Tests
+
+Web service documentation
+
+	*  Login to webservice
+	*  Method Reference
+	*  Query language
+	*  Working with Documents
+	*  Get inventory modules PDF output
+	*  get Related Records method
+	*  Frequently Asked Questions
+	*  Convert Lead Webservice
+
+Web service roadmap
+
+	*  Idea…";}s:8:"relation";a:2:{s:10:"references";a:12:{s:35:"en:devel:corebosws:coreboswsbrowser";b:1;s:30:"issuetracker:corebos:issue:208";b:1;s:20:"en:rest_stress_tests";b:1;s:24:"en:devel:corebosws:login";b:1;s:34:"en:devel:corebosws:methodreference";b:1;s:32:"en:devel:corebosws:querylanguage";b:1;s:38:"en:devel:corebosws:docenhance_examples";b:1;s:29:"en:devel:corebosws:getpdfdata";b:1;s:36:"en:devel:corebosws:getrelatedrecords";b:1;s:22:"en:devel:corebosws:faq";b:1;s:40:"en:devel:corebosws:convertleadwebservice";b:1;s:36:"en:devel:corebosws:queryenhancements";b:1;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1398440398;s:8:"modified";i:1419183317;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:7:{s:4:"date";i:1419183317;s:2:"ip";s:12:"46.25.161.91";s:4:"type";s:1:"E";s:2:"id";s:18:"en:devel:corebosws";s:4:"user";s:9:"joebordes";s:3:"sum";s:28:"[Web service documentation] ";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}}}

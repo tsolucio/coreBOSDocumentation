@@ -1,0 +1,7 @@
+====== 209: Enhance product line relation with assets and service contracts  ======
+
+Issue Reference in Tracker: ~~issue:209~~
+
+===== Detailed Explanation =====
+
+{{page>en:invoiceassetssc}}

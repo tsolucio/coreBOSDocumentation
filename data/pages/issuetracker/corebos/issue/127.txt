@@ -1,0 +1,8 @@
+====== 127: Enhance REST query language to support related entities  ======
+
+Issue Reference in Tracker: ~~issue:127~~
+
+===== Detailed Explanation =====
+
+{{section>en:devel:corebosws:querylanguage#related_entity_query_syntax}}
+

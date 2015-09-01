@@ -1,0 +1,25 @@
+diff --git a/include/ListView/ListViewController.php b/include/ListView/ListViewController.php
+index 5b84166..b65c0d4 100644
+--- a/include/ListView/ListViewController.php
++++ b/include/ListView/ListViewController.php
+@@ -339,6 +339,7 @@ class ListViewController {
+ 								$value = CurrencyField::convertToUserFormat($value);
+ 							}
+ 						}
++						if ($value==0) $value='';
+ 					}
+ 				} elseif($field->getFieldDataType() == 'url') {
+                     $matchPattern = "^[\w]+:\/\/^";
+diff --git a/Smarty/templates/DetailViewUI.tpl b/Smarty/templates/DetailViewUI.tpl
+index 6533aaa..d45a71e 100644
+--- a/Smarty/templates/DetailViewUI.tpl
++++ b/Smarty/templates/DetailViewUI.tpl
+@@ -25,6 +25,8 @@
+
+{if $keyid eq 11 && $USE_ASTERISK eq 'true'}
+&nbsp;&nbsp;<span id="dtlview_{$label}"><a href='javascript:;' onclick='startCall("{$keyval}", "{$ID}")'>{$keyval}</a></span>
++ {elseif ($keyid eq '71' || $keyid eq '72') && $keyval eq "0"}
++ &nbsp;&nbsp;<span id="dtlview_{$label}"></span>
+{else}
+&nbsp;&nbsp;<span id="dtlview_{$label}">{$keyval}</span>
+{/if}

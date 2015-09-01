@@ -1,0 +1,15 @@
+====== Web service Frequently Asked Questions ======
+
+~~QNA~~
+
+??? Using the count(*) operator in VQL, How do I get the number from the returned result?
+
+!!! The result returned is an array of one row, that contains an array with one element which is the count result. That result can be accessed as index 0 or with the key 'count':
+<code>Array(
+   [0] => Array(
+       [count] => 12
+   )
+)</code>
+
+{{ :en:devel:corebosws:webservicecount.png?700 |}}
+

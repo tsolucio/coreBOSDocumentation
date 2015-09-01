@@ -1,0 +1,67 @@
+====== Field Structure: Columns and definitions ======
+
+===== Display Types for Fields in Modules  =====
+
+Each field has to be displayed in two different ways for the Detail view and Edit view. Display type column defines a field to be displayed either in Edit view or the Detail view or both.
+
+The following are some of the display types that are used:
+
+  * **1** - Displayed both in Detail view and Edit view
+  * **2** - Displayed only in the Detail view (Ex. Created time, Modified time) Read only field. Must be given a value through the code
+  * **3** - It is not displayed neither in DetailView nor EditView, but can be shown in ListView. For example: Total, subtotal in Invoice Module. These Fields are not tied to any block.
+  * **4** - Added for handling passwords.
+
+===== typeofdata for Fields in Modules  =====
+
+^ typeofdata ^ data type ^
+|C|Checkbox/Boolean|
+|D|Date|
+|DT|DateTime|
+|E|EMail|
+|I|Integer|
+|N|Number|
+|NN|Negative Number|
+|O|RecurringType/Duration_minutes|
+|P|Password|
+|T|Time|
+|V|Varchar|
+
+**Examples:** extracted directly from database
+
+^ typeofdata ^
+|C~O|
+|DT~M~time_start|
+|DT~M~time_start~Time Start|
+|D~M|
+|D~M~OTH~GE~date_start~Start Date &amp; Time|
+|D~O|
+|D~O~OTH~GE~sales_start_date~Sales Start Date|
+|D~O~OTH~GE~start_date~Start Date|
+|D~O~OTH~GE~support_start_date~Support Start Date|
+|D~O~OTH~G~start_period~Start Period|
+|E~M|
+|E~O|
+|I~M|
+|I~O|
+|NN~O|
+|N~M|
+|N~O|
+|N~O~10,2|
+|N~O~2,2|
+|N~O~2~2|
+|O~O|
+|P~M|
+|T~M|
+|T~O|
+|V~M|
+|V~O|
+|V~O~LE~150|
+|V~O~LE~16|
+|V~O~LE~25|
+|V~O~LE~4|
+|V~O~LE~9|
+
+In the above examples: 
+
+  *M; Indicates Mandatory field 
+  *O; Indicates Optional field

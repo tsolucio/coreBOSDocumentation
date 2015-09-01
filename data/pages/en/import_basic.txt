@@ -1,0 +1,130 @@
+====== Importing Data::Basic functionality ======
+
+The import feature enables users to import data or records from various sources into coreBOS. Currently, CSV format and VCF (Vcard) format are allowed to import. (Exceptionally iCal import is supported for Calendar module).
+
+Export/Import feature is enabled on almost all modules. There are a few that are still not supported like price books or FAQ and Documents whose import process is more complex and is supported by an external tool which is not free (ask us if you need it).
+
+=====Steps to Import=====
+
+====Step 1: Select File====
+After clicking on Import icon, the first step is to select the file. Click on the Browse button to select a file from your local system and upload it to the server for Import. Currently, csv and vcf formats are accepted.
+
+{{ :en:corebos:import:importcontacts.png }}
+
+====Step 2: Specify Format====
+
+{{ :en:corebos:import:specifyformat.png }}
+
+===File Type===
+  * csv and vcf (vcard) are the 2 file types, currently supported.
+  * Character Encoding: Make sure you select the right character set in which your import file has been encoded. Just because file has UTF-8 characters in it, do not expect the tool to import the UTF-8 characters in right format, by selecting UTF-8 encoding. You need to ensure you select the right encoding of the file irrespective of the file contents.
+Following 2 sections, apply only for csv file import:
+
+===Delimiter===
+Currently comma(,) and semi-colon(;) are supported as field delimiters. This delimiter indicates the character separator used to separate field values from each other within a row. In the case that you need to use the same character in your data and do not want the tool to read it as delimiter, enclose the string in double quotes ("). Then, only delimiter characters, outside the double quotes, will be treated as actual delimiter.
+===Has Header===
+The 'Has Header' property is to indicate whether the csv file has a header row or not. If you indicate that the csv file has a header, then the first row from the csv file is treated to be header and skipped from importing into the csv file. Having a header in the csv file, makes it easier for the user to map the csv columns to right CRM fields.
+
+==== Step 3: Duplicate Record Handling====
+This is an optional step, which allows you to configure duplicate record handling during Import. You can configure the criteria, for duplicate records look up and can also configure the action to be taken when duplicate records are found.
+
+{{ :en:corebos:import:duplicaterecordhandling.png }}
+
+    * Select the action to be taken on duplicate records. Actions allowed are:
+      *Skip : When a record from the import file is a duplicate of already existing record in the CRM, then that record is skipped from importing into the system.
+      *Overwrite: When a record from the import file, has duplicate records in the CRM, all the existing duplicate records in the CRM are deleted except for the last one. Last duplicate record is overwritten by the newly imported record from the file.
+      *Merge : When a record from the import file, has duplicate records in the CRM, all the existing duplicate records in the CRM are deleted except for the last one. Only the non-empty values from the newly imported record from the file, are overwritten on the last duplicate record of the system.
+
+    * Select the fields for duplicate records look up: Configure the combination of fields, based on which the duplicate records need to be searched for. All the records which have the same values for the combination of the selected fields, will be considered as duplicate records.
+
+==== Step 4: Map Columns to Module Fields====
+The last step is to configure the mapping between the import file columns/headers to the Module fields.
+
+{{ :en:corebos:import:mapcolumns.png }}
+
+    *When importing CSV file, if the csv file has header, and the header name matches with the Field label, then those columns are automatically mapped.
+    *Default values can be provided for the mapped fields, which will be picked up, in case the value for the field in the file is empty.
+    *Mandatory fields need to be compulsorily mapped.
+    *If value of the mandatory fields is empty, they will be set to the string '????'.
+    *A particular field cannot be mapped more than once.
+
+===Saved Maps===
+  *Commonly used mapping can be saved and re-used.
+  *Saved maps are accessible across all users.
+  *When a particular map is picked up from the selected list, the save mapping information reflects by mapping the fields configured for the map.
+  *Saved maps can also be deleted.
+
+{{ :en:corebos:import:s-contacts.png }}
+
+
+=====Import Process=====
+
+====Terminology====
+  * **Immediate Import Threshold** – Record count configured for immediate import. Value is configured through modules/Import/config.inc and the default value is set to 1000.
+  * **Batch Import Threshold** – Record count configured for batch import. Value is configured through modules/Imoprt/config.inc and the default value is set to 250.
+  * **Scheduled Import** - Import which is carried out through cron job which is generally configured to be run for every 15 minutes.
+
+====Process====
+Clicking on Import button in Step 4, triggers Import.
+
+  *If number of records in file is less than 'Immediate Import Threshold', then import starts immediately. Otherwise, Import is scheduled and is triggered when the cron job runs (generally configured to run for every 15 minutes).
+  *When immediate import is triggered, 'Batch Import Threshold' decides the number of records to be imported as a batch and the status is available to the user on the screen.
+
+<WRAP center round info 70%>**1.** When a user triggers import in one particular module, the user cannot start another import in the same or any other modules of the CRM.\\
+**2.** When user X triggers import on a particular module, no other users can trigger import on the same module, whereas they can trigger import on other modules of the CRM.</WRAP>
+
+====Intermediate status update====
+
+{{ :en:corebos:import:importrunning.png }}
+
+
+====Final Result of the Import====
+
+
+{{ :en:corebos:import:importfinalresult.png }}
+
+
+  * **Cancel Import** - Stops import abruptly leaving behind, partially imported records.
+  * **Import More** – Lets to start another import
+  * **Last Imported Records** – Allows you to view the records imported during the last/current import in a popup window with paging support.
+
+
+{{ :en:corebos:import:lastimportedrecords.png }}
+
+
+  * **Undo Last Import** – Deletes all the records created during the last/current import.
+    * Undo Last Import option is available only during Import which do not involve duplicate record handling.
+    * Undo Last Import only deletes the records of the current module where import is performed. Any reference module records created during import, are not deleted.
+
+
+{{ :en:corebos:import:successmessageImport.png }}
+
+
+If the record limit has crossed 'Immediate Import Threshold' count, then the import is scheduled and the following message is shown:
+
+     
+{{ :en:corebos:import:importscheduled.png }}
+
+Once the scheduled Import is completed, an email notification is sent to the user who scheduled the Import along with the Import Result.
+
+=====Understanding error messages=====
+
+
+====Data Corruption Error====
+
+{{ :en:corebos:import:importerror.png }}
+
+This error shows up when the import has been interrupted for various reasons like crashed in between or canceled by a user etc. This error indicates that the import table still has records to be imported into the system, but all the information related to the import (like mapping, default values, merge criteria) are all lost. So these records can not be imported and the user needs to clear this data before starting any other import.
+
+====Import Locked Error====
+
+{{ :en:corebos:import:importlocked.png }}
+
+This error indicates that the Import on the module that user is trying to import, has been locked by another user's import. The details of the module, user and the time at which the Import has been locked, are exposed in the error message itself.
+
+====Import Interrupted Error====
+
+{{ :en:corebos:import:errormessage.png }}
+
+When a non-admin user triggers an import, and admin user tries to import to the same module, at the same time, admin user will not get Import locked error. Instead, admin user will be able to see the current status of the Import triggered by the non-admin user and will also be able to Cancel the import. In this case, when non-admin user is in the middle of the import and the admin user cancels the import, the error message above is shown to the non-admin user.
+

@@ -1,0 +1,9 @@
+====== 225: Provide Meta Values for Filters on Assigned To  ======
+
+Issue Reference in Tracker: ~~issue:225~~
+
+===== Detailed Explanation =====
+
+{{page>en:using_filters#meta_variables_for_special_fields}}
+
+

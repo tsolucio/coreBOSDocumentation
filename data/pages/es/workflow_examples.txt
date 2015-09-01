@@ -1,0 +1,26 @@
+====== Workflow Examples ======
+
+??? Me gustaría que cuando quedan 15 días para que llegue la fecha fin de un proyecto automáticamente envíe un recordatorio a su usuario propietario (asignado) recordándole que quedan 15 días. Igualmente cuando queden 10 y cuando queden 5. ¿Cómo podríamos hacer esto en CoreBos desde los flujos de trabajo?
+
+
+!!! Según estés utilizando coreBOS o coreBOSCRM tienes dos posibilidades:
+
+**En coreBOS:**
+  * creas flujo de trabajo asociado al proyecto
+  * le añades tres tareas, cada una se ejecuta con un retraso de 15, 10 y 5 días frente a la fecha fin
+
+{{ :es:adminmanual:15diasantes.png?800 |}}
+
+el inconveniente es que este correo se mandará siempre, o sea, si cancelas el proyecto antes, recibirás los correos igual. si cambias la fecha final se generarán 3 correos nuevos para la nueva fecha pero los tres que tienes ya programados se mandarán igual
+
+**En coreBOSCRM**
+
+haces lo mismo que en coreBOS pero añades condiciones al flujo y marcas una nueva opción que hemos añadido que se encuentra en las condiciones del flujo que se llama "//Evaluar condiciones en el momento de la ejecución//"
+
+{{ :es:adminmanual:noenviarsiterminado.png?800 |}}
+
+esta nueva opción hace que se evalúen las condiciones de nuevo justo en el momento de la ejecución. en el caso que te propongo si el proyecto ha sido cancelado no se enviarán los correos.
+
+Para el caso de que se haya movido la fecha de ejecución no lo he pensado bien pero si pones una condición del tipo si hoy faltan 15 días o la fecha de fin ha cambiado debería funcionar. En el caso de la creación o cambio de fecha se cumple la segunda parte de la condición y en el caso de que se haya de mandar el correo se cumplirá la primera parte.
+
+{{ :es:adminmanual:targetenddatehaschanged.png?800 |}}

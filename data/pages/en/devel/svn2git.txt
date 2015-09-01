@@ -1,0 +1,45 @@
+====== SVN > GIT ======
+
+  * [[https://github.com/nirvdrum/svn2git|svn2git]]
+  * [[https://help.github.com/articles/importing-from-subversion|Importing SVN to GitHub]]
+  * [[http://john.albin.net/git/convert-subversion-to-git|Converting a Subversion repository to Git]]
+  * [[http://ao2.it/wiki/How_to_migrate_an_SVN_repository_to_Git|How to migrate an SVN repository to Git]]
+  * [[https://www.atlassian.com/en/git/migration|Migrate to Git]]
+
+===== Procedure =====
+<code>
+mkdir svn
+cd svn
+svn2git https://url_to_svn_project/trunk --rootistrunk
+
+#if that one doesn't work you can try this one:
+#svn2git https://url_to_svn_project/trunk --trunk / --nobranches --notags
+
+cd ..
+git clone <git-project> import
+cd import
+git remote add svn ../svn
+git fetch svn
+git checkout -b svn svn/master
+git checkout -b wip
+git reset --hard $(git rev-list --max-parents=0 HEAD)
+git reset $(git rev-list --max-parents=0 master)
+git add -A
+git commit -m <message in first commit of svn branch>
+git rebase --onto wip --root svn
+git tag  tagname   wip o idcommit
+git checkout master
+git merge svn
+</code>
+=====Pull Request=====
+
+<code>git checkout -b temp_branch upstream/master (or upstream/branch)
+
+git cherry-pick <SHA hash of commit>
+
+git push origin temp_branch</code>
+
+[[http://stackoverflow.com/questions/5256021/send-a-pull-request-on-github-for-only-latest-commit|Send a pull request on GitHub for only latest commit]]
+
+[[http://stackoverflow.com/questions/5340790/easiest-way-to-replay-commits-on-new-git-repository|Easiest way to replay commits on new git repository]]
+

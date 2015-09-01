@@ -1,0 +1,22 @@
+====== Instalar y Actualizar ======
+
+Como instalar y actualizar la aplicación
+
+FIXME: Hay que traducir esto > de momento mira en inglés
+
+====== Instalar ======
+
+  * [[install560|Install coreBOS 5.6.0]]
+  * [[install550|Install coreBOS 5.5.0]]
+  * [[install540|Install coreBOS 5.4.0]]
+
+====== Actualizar ======
+
+  * [[upgradecb5502cb560|Upgrade from coreBOS 5.5.0 to coreBOS 5.6.0]]
+  * [[upgradecb5402cb550|Upgrade from coreBOS 5.4.0 to coreBOS 5.5.0]]
+  * [[upgradevt2cb540|Upgrade from vtiger CRM 5.4.0 to coreBOS 5.4.0]]
+
+
+====== Extensiones de Terceros ======
+
+  * [[vtdziner|vtDZiner]]

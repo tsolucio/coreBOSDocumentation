@@ -1,0 +1,29 @@
+====== Email tracking: Access count ======
+
+coreBOS incorporates a very basic email access counter. When sending an email it automatically adds a 1x1 transparent image to the email. If the receiver of the email accepts this image, a call will be made to the application to get it. We will send the image and also register the access count in the system.
+
+Obviously this is not fail proof. Not only can the user open the email and not open the image, in which case we would not know he opened it, but also, it could happen that the image be accepted but the person really doesn't read the email.
+
+For this to work we must have the tracking script publicly available. The script lives at:
+
+<code>http://your_server/your_coreBOS/modules/Emails/TrackAccess.php</code>
+
+Since this does pose a security risk as you are exposing your application URL, we have added the possibility to **disable this functionality**. You can access the system as an administrator and go to the section "//Configuration Editor//" in Settings. There you will find an option called: "**Disable Email Statistics Tracking**" which you can set to true so the application stops adding this image to the outgoing emails.
+
+If you do want to keep this functionality but protect your install you can configure your webserver (apache) to let this happen. In general we recommend that all your coreBOS installs be behind an [[http://httpd.apache.org/docs/2.2/howto/auth.html|Apache Authentication Scheme]]. This gives your data a first level of protection that your information deserves. Under this setup, none of your files is accessible without an initial user and password. That means that not even the TrackAccess.php that the email needs to count the access can be read, so it can't do it's work. To overcome this we can add exceptions to the Authentication Scheme. For Apache .htacces this would look like this:
+
+<code>AuthType Basic
+AuthName "Your Company Name"
+AuthUserFile your_password_file
+require valid user
+
+<FilesMatch "^/modules\/Emails\/TrackAccess\.php$">
+Allow from all
+Satisfy Any
+</FilesMatch></code>
+
+The exception is established in the "FilesMatch" directive. You can get more information on this in the apache link above.
+
+<WRAP center round info 80%>The email access count can be seen on the emails related list and also is accessible through reporting.</WRAP>
+
+To overcome the many limitations of this approach to email tracking **[[http://coreboscrm.tsolucio.com|coreBOS CRM]]** has a full integration with [[http://sendgird|SendGrid]] which not only gives us information about the access but will also inform us of deliveries, failed deliveries, clicks on different options in the email, automatic opt out, and many other features. Contact us if you need more advanced options.

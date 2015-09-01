@@ -1,0 +1,11 @@
+~~NOCACHE~~
+====== Things to do ======
+
+===== TODO =====
+~~SEARCHPATTERN#'/<todo[^>]*>.*?<\/todo[\W]*?>/'?? _ToDo -en:devel:thingstodo ??~~
+
+===== TBD =====
+~~SEARCHPATTERN#'/TBD/'?? _ToDo -en:devel:thingstodo ??~~
+
+===== FIXME =====
+~~SEARCHPATTERN#'/FIXME/'?? _ToDo -en:devel:thingstodo -wiki: ??~~

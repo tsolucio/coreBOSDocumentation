@@ -1,0 +1,8 @@
+====== Get inventory modules PDF output ======
+
+^Profile|array getpdfdata(id)|
+^Parameters| id – quote, salesorder, invoice or purchaseorder REST ID|
+^Returns| array –\\ **recordid**: ID passed as parameter,\\ **modulename**: name of the module of the ID,\\ **pdf_data**: base64 encoded string representing the PDF|
+^Notes|The user must have read access on the ID and the ID must belong to an inventory module.|
+^Example|see **400_getpdf.php** and **400_getpdfdirect.php** in [[http://github.com/tsolucio/coreboswsbrowser|coreBOSwsBrowser]]|
+^Issue Reference|~~issue:124~~|

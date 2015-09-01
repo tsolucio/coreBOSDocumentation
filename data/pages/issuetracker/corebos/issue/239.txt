@@ -1,0 +1,9 @@
+====== 239: Add system/hook to enable adding a method on an existing module  ======
+
+Issue Reference in Tracker: ~~issue:239~~
+
+===== Detailed Explanation =====
+
+{{page>en:devel:corebos_hooks#related_list_hook}}
+
+

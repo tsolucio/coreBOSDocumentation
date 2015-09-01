@@ -1,0 +1,75 @@
+====== Convert Lead Webservice ======
+
+FIXME  Validate this and make database change in coreBOS updater if really needed.
+
+Usage example of convert lead webservice in order to convert an existing Leads into Accounts, Contacts & Opportunity using Webservice.
+
+Important points to note before using following code:
+  * Check table vtiger_ws_entity to know the "id" (Webservice module ID) of "Leads" module. Ensure that the Lead ID passed to vtws_convertleads function is in 'x' format.
+  * Modify "vtiger_ws_operation_parameters" table as showen below to reflect right parameters for "convertlead" Webservice call.
+<code>DELETE FROM vtiger_ws_operation_parameters WHERE operationid = (SELECT operationid from vtiger_ws_operation WHERE name = 'convertlead');
+INSERT INTO vtiger_ws_operation_parameters (operationid, name, type, sequence) VALUES ('13', 'element', 'encoded', '1');</code>
+
+We are making this change in above table because parameters required in vtws_convertlead function in include/Webservices/vtws_convertlead.php is changed in vTiger 5.4 compared to earlier versions. But corresponding change in vtiger_ws_operation_parameters is not made.
+
+  * Following example uses standard vtwsclib library.
+  * Sample code:<code><?php
+include_once('vtwsclib/Vtiger/WSClient.php');
+
+function vtws_login(){
+        $$url = 'http://en.vtiger.com/wip';
+	$client = new Vtiger_WSClient($url);
+	$login = $client->doLogin('admin', 'KpS9EjNz16JtPmoe');
+        if(!$login) return 0;
+        return $client;
+}
+
+function vtws_convertleads($recordid){
+        $client = vtws_login();
+        if ($client <> 0){
+                $recordInfo = $client->doRetrieve($recordid);
+                $wasError= $client->lastError();
+                if($wasError) {
+                        return $wasError['code'] . ':' . $wasError['message'];
+                }
+                if($recordInfo) {
+                        $client1 = vtws_login();
+                        $convert_lead_array = array();
+                        $convert_lead_array['leadId'] = $recordInfo['id'];
+                        $convert_lead_array['assignedTo'] = $recordInfo['assigned_user_id'];
+                        $convert_lead_array['entities']['Accounts']['create']=true;
+                        $convert_lead_array['entities']['Accounts']['name']='Accounts';
+                        $convert_lead_array['entities']['Accounts']['accountname'] = $recordInfo['company'];
+                        $convert_lead_array['entities']['Accounts']['industry']=$recordInfo['industry'];
+                        $convert_lead_array['entities']['Potentials']['create']=true;
+                        $convert_lead_array['entities']['Potentials']['name']='Potentials';
+                        $convert_lead_array['entities']['Potentials']['potentialname']=$recordInfo['company'];
+                        $convert_lead_array['entities']['Potentials']['closingdate']= date("Y-m-d", strtotime("+1 week Saturday"));
+                        $convert_lead_array['entities']['Potentials']['sales_stage']= 'Prospecting';
+                        $convert_lead_array['entities']['Potentials']['amount']= 0;
+                        $convert_lead_array['entities']['Contacts']['create']=true;
+                        $convert_lead_array['entities']['Contacts']['name']='Contacts';
+                        $convert_lead_array['entities']['Contacts']['lastname']=$recordInfo['lastname'];
+                        $convert_lead_array['entities']['Contacts']['firstname']=$recordInfo['firstname'];
+                        $convert_lead_array['entities']['Contacts']['email']=$recordInfo['email'];
+                        $convert_lead_json = json_encode($convert_lead_array);
+                        $response = $client1->doInvoke('convertlead', array('element'=>$convert_lead_json));
+                        $wasError = $client1->lastError();
+                        if($wasError) {
+                                return $wasError['code'] . ':' . $wasError['message'];
+                        } else {
+                                return 1;
+                        }
+                }
+        }else{
+                return 'Login failed';
+        }
+}
+
+$d = '2x21022';
+echo vtws_convertleads($d);
+
+?></code>
+
+
+[[https://discussions.vtiger.com/index.php?p=/discussion/166499/usage-example-of-convert-lead-webservice|Thanks Ashutosh]]  

@@ -1,0 +1,7 @@
+====== {ticket number}: {issue description: copy from ticket}  ======
+
+Issue Reference in Tracker: ~~issue:{ticket number}~~
+
+===== Detailed Explanation =====
+
+

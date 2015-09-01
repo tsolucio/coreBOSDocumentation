@@ -1,0 +1,19 @@
+====== Frequently Asked Questions ======
+
+~~QNA~~
+
+??? {Siam Translations LLP wrote}: Hi, wondering if anybody see it useful to record IP while webform is completed. I like this idea but not sure how to get it working.
+
+!!! I'm not too sure this is very useful. I think it is much better to track your visitor with [[http://www.google.com/analytics/index.html|Google Analytics]] or [[http://piwik.org/|PiWik]] (which is what we usually do), but it should be rather easy to accomplish:
+
+  * create a custom field in CRM
+  * in the form create a hidden field for that custom field and fill it in with the _SERVER["REMOTE_ADDR"] value
+
+that's it.
+
+??? I want to create task from the leads/contacts/opportunity/organization's list view so that I can apply various filters while assigning mass events to various leads/contacts/opportunity/organization.
+{amanthakral [[https://discussions.vtiger.com/index.php?p=/discussion/171433/workflowmass-edit]]}
+!!! That would have to be programmed if you want a specific button, but you can try this:
+  * create a custom field, maybe call it "create task", let it be a checkbox (for simplicity)
+  * create a workflow that creates a task when the "create task" field is true and then sets the "create task" field to false
+  * now simply mass edit and set the field to true

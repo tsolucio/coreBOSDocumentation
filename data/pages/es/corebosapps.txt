@@ -1,0 +1,76 @@
+====== coreBOSApps Guía de Usuario ======
+
+Desde el punto de vista de los usuarios, la extensión coreBOSApps es muy sencilla de usar, ya que en realidad es una infraestructura para facilitar a los desarrolladores ofrecer soluciones simples y encapsulados en ventanas. Cada una de estas aplicaciones tendrá su propia funcionalidad y necesidades, que cada usuario deberá aprender para sacar el máximo partido de la coreBOSApp.
+
+Así que aquí vamos a hablar acerca de la funcionalidad base y experiencia de usuario que se necesita para trabajar con la extensión coreBOSApps.
+
+Acceder a coreBOSApps es como acceder a cualquier otro módulo de coreBOS, basta hacer clic en el enlace del menú que se encuentra en Análisis y nos llevará a la lona coreBOSApps que nos muestra una barra de herramientas con tres opciones: **Ventanas**, **Cuadro de Mando** y **Aplicaciones**. Esta barra de herramientas nos permitirá elegir qué vista queremos activar, pasando de una a otra y también establecer la vista por defecto mediante un pequeño icono en la parte superior de cada opción y también nos permitirá minimizar tanto la barra de herramientas como todo el menú superior de coreBOS.
+
+{{ :coreBOSApps:cbapps_topbar_es.png?direct&800 |}}
+
+====Ventanas====
+
+Una vista de iconos en un tapiz donde podemos abrir las aplicaciones haciendo clic en los iconos y se nos presentarán en forma de ventanas emergentes que flotan por encima del tapiz.
+
+En el lienzo nos encontraremos con una lista ordenada de los iconos coreBOSApp. Cada icono representa una aplicación individual.
+
+Al pasar el ratón sobre cualquier icono nos mostrará una breve descripción de la funcionalidad prevista de la coreBOSApp.
+
+Todos los iconos se pueden ordenar con sólo arrastrar el icono a la posición deseada.
+
+Al hacer clic en el icono de la coreBOSApp se abrirá una ventana en la que podremos ver a la ejecución de la misma. Cada ventana tiene una serie de funcionalidades base. Se puede cambiar el tamaño y mover. La mayoría tienen un botón de actualización para ejecutar la coreBOSApp de nuevo sin tener que cerrar y abrir la ventana, y algunos también tienen un botón de edición que abrirá una ventana adicional con opciones de ajuste que afectarán el comportamiento de la coreBOSApp. Tanto el contenido de la coreBOSApp y de la ventana de configuración relacionada son totalmente dependientes de la funcionalidad de la coreBOSApp.
+
+De algunas ventanas se pueden crear instancias, o sea que se ejecutan o se abren más de una vez, de modo que el usuario puede configurar cada una independientemente de las otras, aunque la funcionalidad básica es la misma. Para lograr esto debemos **mantener presionado el botón CONTROL** mientras hacemos clic en el icono de la coreBOSApp.
+
+{{  :coreBOSApps:cbapptitlebarbuttons.png?600  |}}
+
+Cada usuario podrá ordenar y posicionar las ventanas a su gusto y la configuración se guardará para cuando regresa de nuevo.
+
+====Cuadro de Mando====
+
+Una vista donde podemos dividir el tapiz en cuadros fijados al navegador y dentro del cual se ejecutarán las aplicaciones. Podremos distribuir las secciones en filas y columnas definiendo para cada cuadro características como tamaño, estado y aplicación que se ejecutará en su interior.
+
+{{ :coreBOSApps:cbapps_cmando.png?direct&800 |}}
+
+{{ :coreBOSApps:cbappdb.png?direct&800 |}}
+
+
+====Aplicaciones====
+
+Una vista donde cada aplicación dispondrá del tapiz entero para su ejecución y donde podremos pasar de una aplicación a la siguiente mediante botones laterales de movimiento.
+
+En la parte superior derecha, en la barra de herramientas de coreBOSApps disponemos de un icono identificativo de la aplicación en ejecución y también un desplegable con un índice de todas las aplicaciones para poder saltar a cualquiera de ellas rápidamente.
+
+{{ :coreBOSApps:cbapps_topbarapps_es.png?direct&800 |}}
+
+==== coreBOSApps Especiales====
+
+Hay dos coreBOSApps especiales que se instalan de forma predeterminada y no se pueden eliminar. Estos son la coreBOSApps Shop y la coreBOSApps Configurator, que nos ayudarán a instalar y configurar permisos en las coreBOSApps instalados.
+
+=== coreBOSApps Shop. Instalar y Actualizar. ===
+
+** FIXME **
+
+=== coreBOSApps Configurator ===
+
+Esta coreBOSApp permite a los usuarios administrativos establecer ciertos parámetros para cada coreBOSApp y usuario. Inicialmente sólo los usuarios administradores de coreBOS tienen acceso a la coreBOSApp Configurator, pero un usuario administrador puede permitir el acceso a este coreBOSApp a cualquier usuario que será capaz de afectar a la configuración de cualquier otro usuario. Para cada usuario se puede establecer las siguientes variables:
+
+^Abierto (al inicio)| Si una ventana se abrirá por defecto cuando se accede a la extensión coreBOSApps. Si es true, el coreBOSApp se abrirá y se ejecutará de forma automática cuando el usuario abre coreBOSApps. Cada usuario puede cambiar este valor mediante el cierre de la ventana cuando configuran su lienzo. Si la variable Esconder se establece en false y ésta en true, el usuario no podrá cerrar la ventana y siempre estará abierta.|
+^Habilitado|Si es false el usuario no verá esta coreBOSApp, será como si no estuviera instalada.|
+^Escritura|Si es false el usuario no tendrá acceso a la opción de Editar la coreBOSApp|
+^Esconder|Si es false el usuario no podrá cerrar la ventana|
+^Mostrar|Si es false, el usuario no será capaz de abrir la ventana, sólo verá el icono. Esto podría ser útil para mostrar simplemente un icono en el lienzo, pero también se puede utilizar para cambiar dinámicamente el icono bajo cierto evento en función del tiempo o de la ejecución de una aplicación en otra ventana|
+
+Solo el usuario administrador podrá instalar y desinstalar una coreBOSApp. Una vez que un coreBOSApp ha sido eliminada no se puede recuperar. Tendrás que volver a instalarla. Las coreBOSApps se pueden ocultar para ciertos usuarios por el administrador mediante la coreBOSApp de Configuración. Solamente los usuarios administradores pueden instalar y eliminar coreBOSApps 
+
+Modificar y guardar los valores es sencillo e intuitivo en la ventana de la coreBOSApp Configurator.
+
+===== Guía de Desarrollo y Otros Recursos =====
+
+  *[[:en:coreBOSApps_guide|Guía de Desarrollo coreBOSApps]]
+  *[[:en:coreBOSApps_reference|Guía de Referencia para Desarrolladores de coreBOSApps]]
+  *{{:coreBOSApps:cbappsdesign.jpg?linkonly| El Diseño :-)}}
+
+===== Renuncia =====
+
+coreBOSApps no pretende ser un entorno seguro, no imponemos ninguna restricción sobre las posibilidades de una coreBOSApp, al igual que cualquier persona puede enviarte un módulo de coreBOS que puedes instalar en tu CRM y haga lo que sea con tu información, también una coreBOSApp tiene acceso completo a toda la información contenida dentro de tu coreBOS y puede hacer lo que quiera con ella. Aunque haremos todo lo posible para evaluar y actuar ante conductas de codificación sospechosas, la realidad es que probablemente no tengamos tiempo para ir estudiando todo el código de todas las coreBOSApps, por lo que la total responsabilidad de los actos de cualquier coreBOSApp está más allá de nuestro control. Instalarás y utilizarás coreBOSApps bajo tu propia responsabilidad.

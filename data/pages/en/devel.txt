@@ -1,0 +1,50 @@
+====== Tools and References ======
+
+<wrap hi>[[http://corebos.org/development|Access coreBOS Issue Tracker]]</wrap>
+  * [[:issuetracker:start|coreBOS Issue Tracker]]
+  * [[en:devel:contribute|How to Contribute]]
+  * [[en:devel:commitguidelines|Commit Guidelines we try to adhere to]]
+  * [[:en:devel:bugreport|Bug Reports]]
+  * [[:en:devel:downloads|DOWNLOADS: The official list of milestones]]
+  * [[:en:upgradecb5402cb550|Upgrade coreBOS 5.4 to coreBOS 5.5]]
+  * [[:en:devel:vt5tocb1|Upgrade vtiger CRM 5.4 to coreBOS 5.4]]
+  * [[:en:devel:vt60tocb|Migrate from vtiger CRM 6.0 to coreBOS]]
+  * [[:en:devel:thirdparty|Third party extensions and changes]]
+
+====== Technical Articles ======
+  * [[:en:devel:debuging|Debugging]]
+  * [[en:devel:corebos_hooks|coreBOS Events, Links and Hooks]]
+  * [[:en:devel:develtutorials|Development Tutorials]]
+  * [[:en:devel:develtips|Developer Tips and Tricks]]
+  * [[:en:devel:database|Database Structure]]
+  * [[:en:devel:helperscripts|Helper Scripts]]
+  * [[:en:devel:packaging|Packaging and Release Numbers]]
+  * [[:en:devel:corebosupdater|coreBOS Updater]]
+  * [[:en:devel:translating|Translating]]
+  * [[:en:devel:stresstestlog|Logging stress test]]
+  * [[:en:devel:calendar|Calendar]]
+
+
+  * [[:en:devel:coreboscp|coreBOS Customer Portal Development]]
+  * [[:en:devel:corebosws|Webservice Development]]
+  * [[:en:devel:coreboswswebform|coreBOS Webservice Webform]]
+  * [[:en:devel:installprocess|coreBOS Installation Process]]
+
+====== Vulnerabilities ======
+  * [[en:devel:vulnerabilities|Vulnerabilities]]
+
+
+====== Contributors ======
+  * [[en:devel:contributors|Contributors]]
+
+====== Interesting Links ======
+  * [[en:devel:writtenrules|Written Rules]]
+  * [[en:devel:licensewoes|License Woes]]
+  * [[en:devel:cla|Contributor License Agreements]]
+  * [[:en:devel:svn2git|SVN > GIT]]
+  * [[http://sendgrid.com/blog/cheat-codes-for-good-documentation/|Cheat Codes for Good Documentation]]
+
+====== Things to do in the Wiki ======
+
+  * [[:en:devel:thingstodo|Things to do in the wiki]]
+

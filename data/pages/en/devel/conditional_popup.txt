@@ -1,0 +1,62 @@
+====== How to open a capture popup with a preselected set of records. ======
+
+When the user clicks on the select icon of a capture field (uitype 10) a popup screen appears with the list of records of the module being selected. In certain situations it is necessary to pre filter the results for the user
+
+In fact the application already does this in various parts, for example when selecting a contact after having selected an account on an invoice. Only the list of contacts related to the account will appear.
+
+This tutorial will teach you how to implement such a feature for your uitype10/capture fields.
+
+What we need to do to get this working is inform the popup code to launch a search on the set of records to return. This functionality already exists in the popup code, so we don't need to add any code there, we //just// have to pass in the right parameters to let the popup code know that it has to setup a conditional query instead of a full query.
+
+The three parameters the popup code expects to see in order to setup a conditional query are:
+  * **query** =true
+  * **search**	=true
+  * **searchtype** =[BasicSearch|advance]
+
+if **searchtype=BasicSearch** then we have to send in these additional variables:
+
+  * **search_field** = name of field to search on, for example accountname
+  * **search_text** = text to look for always as a non-sensitive "contains"
+
+if **searchtype=advance** then we have to send in this additional variable:
+
+  * **advft_criteria** =[{json object that defines conditions}] array of json objects which represent the conditions
+  * **advft_criteria_groups** =[null,{"groupcondition":""}] array or logical unions between the different groups. If you only have one group this variable is not needed.
+
+where the json object has this format:
+
+<code>{
+ "groupid":"number that identifies the group of conditions",
+ "columnname":"coreBOS advanced column identifier"
+ "comparator":"comparison operator"
+ "value":"text to look"
+ "columncondition":"and|or" (logical operator to join with the next condition)
+}</code>
+
+the coreBOS advanced column identifier has this format:
+
+**table_name:field_name:column_name:label:data_type**
+
+for example
+
+vtiger_account:accountname:accountname:Accounts_Account_Name:V
+
+the comparison operator can be
+  * e: igual | equal | "="
+  * n: distinto | not equal | "<>"
+  * s: empieza con | begins with | "LIKE" ("$value%")
+  * ew: termina con | ends with | "LIKE" ("%$value")
+  * c: contiene | like | "LIKE" ("%$value%")
+  * k: no contiene | not like | "NOT LIKE" ("%$value")
+  * l: menor que | less than | "<"
+  * b: menor que | less than | "<"
+  * g: mayor que | greater than | ">"
+  * a: mayor que | greater than | ">"
+  * m: menor o igual | less or equal | "<nowiki><=</nowiki>"
+  * h: mayor o igual | greater or equal | ">="
+
+<WRAP center round info 80%>
+Note that this JSON object is much more complex than is shown here supporting not only various fields but also different groupings of conditions. If you need a complex condition I would recommend creating a filter with the condition. On the filter there is a nice editor that will permit you to add the fields, conditions and different groupings. Then simply capture the save event to see how coreBOS creates the JSON object and use that.
+</WRAP>
+
+Now that we know what we have to do, [[en:devel:corebos_hooks:popup_open_hook|let's see some examples]].

@@ -1,0 +1,19 @@
+====== Upgrade from coreBOS 5.5.0 to coreBOS 5.6.0 ======
+
+<WRAP center round alert 80%>
+THIS PAGE IS A WORK IN PROGRESS. IT ONLY EXISTS SO WE CAN DOCUMENT OUR DEVELOPMENT EFFORT AS WE GO FORWARD.
+
+VERSION 5.6.0 HAS NOT BEEN RELEASED YET
+</WRAP>
+
+
+===== CORS Support for Webservice =====
+
+<WRAP center round important 85%>For CORS support it is necessary to manually change your //config.inc.php// (~~issue:208~~).
+    - edit //config.inc.php//
+    - move towards the end of the file although you can really add the variable wherever you want
+    - add this code:<code>// List of CORS Authorized Domains for Webservices
+$cors_enabled_domains = '';
+</code>
+    - save the file
+</WRAP>

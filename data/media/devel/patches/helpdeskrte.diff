@@ -1,0 +1,67 @@
+diff --git a/Smarty/templates/salesEditView.tpl b/Smarty/templates/salesEditView.tpl
+index 96ce7b2..febb003 100755
+--- a/Smarty/templates/salesEditView.tpl
++++ b/Smarty/templates/salesEditView.tpl
+@@ -251,7 +251,7 @@ function AddressSync(Addform,id)
+ <input name='search_url' id="search_url" type='hidden' value='{$SEARCH}'>
+ </form>
+ 
+-{if ($MODULE eq 'Emails' || $MODULE eq 'Documents' || $MODULE eq 'Timecontrol') and ($USE_RTE eq 'true')}
++{if ($MODULE eq 'Emails' || $MODULE eq 'Documents' || $MODULE eq 'Timecontrol' || $MODULE eq 'HelpDesk') and ($USE_RTE eq 'true')}
+ 	<script type="text/javascript" src="include/ckeditor/ckeditor.js"></script>
+ <script type="text/javascript" defer="1">
+ 	var textAreaName = null;
+@@ -279,6 +279,26 @@ function AddressSync(Addform,id)
+ 		{rdelim}
+ 	{rdelim});
+ 	var oCKeditor = CKEDITOR.instances[textAreaName];
++	{if $MODULE eq 'HelpDesk'}
++		textAreaNameSolution = "solution";
++		CKEDITOR.replace( textAreaNameSolution,
++		{ldelim}
++			extraPlugins : 'uicolor',
++			uiColor: '#dfdff1',
++				on : {ldelim}
++					instanceReady : function( ev ) {ldelim}
++						 this.dataProcessor.writer.setRules( 'p',  {ldelim}
++							indent : false,
++							breakBeforeOpen : false,
++							breakAfterOpen : false,
++							breakBeforeClose : false,
++							breakAfterClose : false
++					{rdelim});
++				{rdelim}
++			{rdelim}
++		{rdelim});
++		var oCKeditorsolution = CKEDITOR.instances[textAreaNameSolution];
++	{/if}
+ </script>
+ {/if}
+ 
+diff --git a/include/utils/DetailViewUtils.php b/include/utils/DetailViewUtils.php
+index 73c555e..b9f5515 100755
+--- a/include/utils/DetailViewUtils.php
++++ b/include/utils/DetailViewUtils.php
+@@ -237,7 +237,7 @@ function getDetailViewOutputHtml($uitype, $fieldname, $fieldlabel, $col_fields,
+                 $label_fld[] = '';
+         }
+ 	} elseif ($uitype == 19) {
+-		if ($fieldname == 'notecontent' or $module=='Timecontrol')
++		if ($fieldname == 'notecontent' or $module=='Timecontrol' or $module=='HelpDesk')
+ 			$col_fields[$fieldname] = decode_html($col_fields[$fieldname]);
+ 		else
+ 			$col_fields[$fieldname] = str_replace("&lt;br /&gt;", "<br>", $col_fields[$fieldname]);
+diff --git a/modules/HelpDesk/EditView.php b/modules/HelpDesk/EditView.php
+index a042b55..3331f20 100755
+--- a/modules/HelpDesk/EditView.php
++++ b/modules/HelpDesk/EditView.php
+@@ -22,7 +22,7 @@ if($_REQUEST['record'] != '') {
+ 	//Added to display the ticket comments information
+ 	$smarty->assign("COMMENT_BLOCK",$focus->getCommentInformation($_REQUEST['record']));
+ }
+-
++$smarty->assign("USE_RTE", vt_hasRTE());
+ 	$smarty->display("salesEditView.tpl");
+ 
+ ?>
+\ No newline at end of file

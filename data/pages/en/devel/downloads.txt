@@ -1,0 +1,19 @@
+====== DOWNLOADS: The official list of milestones ======
+
+[[http://corebos.org/page/downloads|The official list of milestones on our website]]
+
+<WRAP center round download 60%>
+[[https://github.com/tsolucio/corebos/releases/tag/coreBOS5.5|coreBOS 5.5.0]]\\
+[[en:install550|Install coreBOS 5.5.0]]\\
+[[en:upgradecb5402cb550|Upgrade from coreBOS 5.4.0 to coreBOS 5.5.0]]
+</WRAP>
+
+<WRAP center round download 60%>
+[[https://github.com/tsolucio/corebos/releases/tag/coreBOS5.4|coreBOS 5.4.0]]\\
+[[en:install540|Install coreBOS 5.4.0]]\\
+[[en:upgradevt2cb540|Upgrade from vtiger CRM 5.4.0 to coreBOS 5.4.0]]
+</WRAP>
+
+<WRAP center round download 60%>
+[[https://github.com/tsolucio/corebos/releases/tag/vtigerCRM5.4GA|We start our project from vtiger CRM 5.4.0GA]]
+</WRAP>

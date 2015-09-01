@@ -1,0 +1,53 @@
+====== Update Workflow Tasks ======
+
+TBD
+
+===== Examples =====
+
+??? **jgrossman** on discussion forum :: Hopefully someone can help me figure this out.
+
+I think it should be easy but I don't seem to be able to figure out how to have a workflow that updates a field with a message that has an expression with words and math together. So it would say //Your answer is 54 units to small//. The workflow would have in the expression the static text of "Your answer is" then math to come up with the 54 using (cf_### + cf_###) then back to static text for "units to small'.
+
+!!! Ok, It turns out it is as simple as I thought. The code below works.
+
+<code>concat('Your answer is ',cf_### + cf_###,' units to small')</code>
+
+??? Can you show us an example of an if-else formula?
+
+!!! Sure, he is one that sets a currency field depending on a country field
+
+<code>if cf_843 == 'Colombia' then 'USD' else if cf_843 == 'Madrid' then 'EURO' else if cf_843 == 'London' then 'GBP' else if cf_843 == 'Hong Kong' then 'HKD' else if cf_843 == 'Melbourne' then 'AUD' else ' ' end</code>
+
+Things to respect:
+  * all on one line, no new lines for nice formatting, although it may work, it may not
+  * simple quotes (') not double (")
+  * the last else value has a space ('[space here]'), that is important, if you put an empty string ('') it will not work
+
+??? In a workflow update task, we want to use a formula like the below, in order to update the value of a field:
+
+<code>if time_diffdays(cf_855,get_date('today')) > 60 then add_days(get_date('today'), 28) else '01-01-1970' end</code>
+
+That is, if the date in cf_855 is more than 60 days in the future, then the formula result is (today + 28 days), otherwise the formula result is 1-1-1970.
+
+We have tried several different syntaxes but none of them are working.  Can you help?
+
+
+!!! There are two issues here that are based on the same principle: we are very limited in the possibility of embedding operations. With that I mean that workflow update formulas do not accept having an expression inside an expression. So
+
+<code>if time_diffdays(cf_855,get_date('today')) > 60 then...</code>
+
+is incorrect because the condition must be basic operations. Also,
+
+<code>...add_days(get_date('today'), 28)...</code>
+
+is wrong for the same reason.
+
+So the solution is to use intermediate field calculations. In other words, artificial custom fields that hold the calculated values we need and also knowing that some base functions like add_days or time_diff accept only one parameter and "//know//" that the other is "today".
+
+The next image should achieve what you are asking:
+
+{{ :en:corebos:workflow:calcwf.png?700 |}}
+
+<WRAP center round important 70%>Note that this is NOT time based, it will not calculate automatically when "today" is over 60 days, you will have to edit the record EVERY day to see the changes.
+As of March 2015 you can use scheduled workflows for time based workflows.</WRAP>
+

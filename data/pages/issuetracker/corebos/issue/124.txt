@@ -1,0 +1,8 @@
+====== 124: get PDF output of inventory modules through REST  ======
+
+Issue Reference in Tracker: ~~issue:124~~ 
+
+===== Detailed Explanation =====
+
+{{page>en:devel:corebosws:getpdfdata}}
+

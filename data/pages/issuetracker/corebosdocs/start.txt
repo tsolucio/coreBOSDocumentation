@@ -1,0 +1,3 @@
+====== coreBOS Documentation Issue Tracker ======
+
+~~SEARCHPATTERN:'Issue Reference in Tracker'?? +issuetracker:corebosdocs:issue: ??~~

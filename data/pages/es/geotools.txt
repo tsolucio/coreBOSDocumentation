@@ -1,0 +1,52 @@
+====== GeoTools ======
+
+Extensión creada por Libertus Solutions, que permite buscar y visualizar nuestros clientes en google maps.
+
+[[http://forge.vtiger.com/frs/?group_id=373|Disponible en el forge]]
+
+Adrián (playman) [[http://crmevolutivo.com/forum/viewtopic.php?f=5&t=4042|ha compartido]] esta mejora sobre el producto:
+
+Hoy traigo una optimización del 100% sobre el módulo Geotools para Vtiger 5.4 creado por Libertus Solutions.
+
+Antes de nada decir que no sé cómo funciona la versión de vTiger 6 ya que Libertus decidió hacer este módulo de pago (199$) en la versión 6 desaprovechando así todo el potencial del software gratuito y Open Source.
+
+Archivo modules/GeoTools/lib/GeoToolsLib.php
+
+línea 723 sustituir con:
+<code php>$radii[$row['geotoolsid']] = $row;</code>
+
+línea 774, función buildMarkerMap sustituir por:
+
+<code php>
+    function buildMarkerMap($radii, $listview_entries, $module) {
+       $table = '<table id="markerMap" style="display:none"><tbody>';
+
+       $iconpath = getIconPath($module);
+
+       if (isset($radii) && isset($listview_entries)) {
+          $i = 0;
+          foreach($listview_entries as $id => $values) {
+                        if(array_key_exists($id, $radii))
+                        {
+                            $url = "index.php?module=" . $module . "&action=DetailView&record=" . $id;
+                            $table .= '<tr>';
+                            $table  .= '<td id="mapmarker_'.$id
+                            .'" iconpath="'.$iconpath
+                                    .'" lat="'.$radii[$id]['lat']
+                                    .'" lng="'.$radii[$id]['lng']
+                                    .'" url="'.$url
+                                    .'" distance="'.round($radii[$id]['distance'], 2)
+                                    .'" col1value="'.$values[0]
+                                    .'" col2value="'.$values[1]
+                                    .'" col3value="'.$values[2]
+                                    .'"></td>';
+                                    $table .= '</tr>';
+                        }
+          }
+          $table .= '</tbody></table>';
+       }
+       return $table;
+    }
+</code>
+
+Si analizais el código, nos hemos ahorrado hacer un bucle foreach dentro de otro (Por lo tanto nos hemos ahorrado un resultado exponencial).

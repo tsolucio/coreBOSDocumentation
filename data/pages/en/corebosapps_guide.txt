@@ -1,0 +1,180 @@
+====== coreBOSApps Developers Guide ======
+
+===== Installation =====
+  - Install module using module manager
+  - Apply patch to get necessary code changes:<code>patch -p 0 < modules/evvtApps/evvtApps.diff</code>
+  - <WRAP center round info 60%>The previous step is not necessary if you are running coreBOS</WRAP>
+  - Translate to any localized version not supported and send me the file (please)
+
+**Note:** For installing coreBOSApps see below the section [[coreBOSApps#coreBOSApps_shop|coreBOSApps Shop. Install and update]].
+
+==== Infrastructure and goals ====
+
+The intention of the coreBOSApps extension is to make it easy for developers to create small tools, informative dashboards and similar applications that tap into the information and power of coreBOS without having to go through all the hassle of new vtlib modules. At the same time we strive to create an environment where these simple apps can live and work together.
+
+We have developed this framework based on jquery and on the [[http://kendoui.com|kendoui toolkit]], so all coreBOSApps directly inherit this infrastructure and can use any part of it in their solutions, but all coreBOSApps live inside coreBOS and have full access to all the information that the application has and also to all the code and tools coreBOS gives us.
+
+Our ultimate goal is to completely substitute the current dashboard with equivalent coreBOSApps to the boxes we have now, and add a full set of new services and information coreBOSApps that will grow inside the coreBOSApps framework.
+
+==== Hello World coreBOSApp ====
+
+Let's create our first coreBOSApp. The functionality will be simply to open the coreBOSApp window and print out the text "Hello World!". This example will teach us the fundamentals of how to prepare our coreBOSApp for distribution.
+
+The coreBOSApp extension comes prepared with a template coreBOSApp that has the minimum functionality and structure required to start creating our required functionality. This template coreBOSApp can be found in the extension's directory:
+
+<code>modules/evvtApps/vtapps/templateapp</code>
+
+The steps to create our first coreBOSApp are:
+  - Copy the whole modules/evvtApps/vtapps/templateapp to a temporary directory <code>cp -a templateapp demoapp</code>
+  - Edit the vtapp.php script and change the name of the class. Change the class name on line 11 <code>class coreBOSApptldCompanyAppName extends vtApp {</code>As the default name encourages, we recommend you use the prefix "coreBOSApp", followed by the Top Level Domain of your company, then your company name and finally the name of the coreBOSApp. For example, the coreBOSApps from TSolucio.com have these names: "coreBOSAppcomTSolucioConfiguration", "coreBOSAppcomTSolucioDemoGraph1".
+  - zip the directory of the coreBOSApp, starting at the top, where the vtapp.php file is and name it the same as your class, the same name you used in the previous step. This is specially important for importing.
+  - That is all you need to do to have a new coreBOSApp with no functionality. Upload this zip file to the coreBOSApps extension through the coreBOSApp Configurator and you should have a default coreBOSApp prepared for you to start working on.
+
+Once the coreBOSApp is installed we can start editing it and adding functionality. If we go to the coreBOSApps extension after installing the zipped file we will see a new icon with the vtEvolutivo logo. A click on the icon will open a window with the default text. Our new coreBOSApp has been assigned an internal appid, you can easily find the appid of the new coreBOSApp by looking in the vtiger_evvtapps database table, or simply going to the directory with the highest number, as that will be the last one installed. Now we edit the three files contained in the template coreBOSApp:
+  * vtapp.php: We can see some of the window settings variables that can be established and our first method "**getContents**", this is the method called when the window is opened, resized and refreshed. This is where we will add the look and feel of our coreBOSApp, for now we will simply delete the text "This is the default template widget" and put in our Hello World! like this: <code>return 'Hello World!';</code> and now press the refresh button on the window title bar or close and open the window to see our Hello World! coreBOSApp.
+  * language/en_us.lang.php: you can see that the title of the window still reflects the template that the coreBOSApp comes from as does the hover tooltip text of the coreBOSApp icon on the canvas. To change this we must edit the language file and adapt the text variables to the desired values. Now is the time to create and translate any other language files that need to be supported. The language file prefixes are the exact same ones supported by coreBOS.
+  * icon.png: you should generate an image for your coreBOSApp, the image should be a png of size 64x64 pixels
+
+For our clients to get these new features all we have to do is zip the coreBOSApp from the it's root directory and use the coreBOSApp Configurator to upgrade the code.
+
+==== Click me coreBOSApp ====
+
+Let's add some functionality to our coreBOSApp, We will add the icon image of the coreBOSApp inside the window and then enable the click on the image to change the underlying image in our coreBOSApp.
+
+First we will add the icon image by changing the **getContents** method with the following code:
+
+<code>
+$about.= '<img src="'.$this->getAppIcon().'" style="float:left"><br/>';
+return $about;
+</code>
+
+as can be seen we are basically doing the same as in the previous example, just that in this case we are adding HTML mixed with php coreBOSApp variables.
+
+Next we will add some javascript to detect the onclick event of the image and launch a function that uses our [[coreBOSApps#coreBOSApp_javascript_reference|coreBOSApp javascript helper functions]] to change the underlying icon image accordingly.
+
+<code>
+$about = '<script language="javascript">function coreBOSAppdemoChgIcon() { var current_image=vtAppGetIcon('.$this->appid.');';
+$about.= 'if (current_image=="'.$this->apppath.'/evolutivo.png") next_image="icon.png"; else next_image="evolutivo.png";';
+$about.= 'vtAppChangeIcon('.$this->appid.",'".$this->apppath."/'+next_image);}";
+$about.= '</script>';
+$about.= '<img src="'.$this->getAppIcon().'" style="float:left" onclick="coreBOSAppdemoChgIcon()"><br/>';
+return $about;
+</code>
+
+==== coreBOS. Smarty templates ====
+
+The hard part of doing what we just did in the previous example is balancing all the quotes between javascript world and php world. It would be ideal if we could use some templating system to help us do this type of coding. coreBOS to the rescue!!
+
+The goal of creating coreBOSApps is to easily have access to coreBOS information and infrastructure, and we have accomplished that. Inside the coreBOSApp we have full access to all of coreBOS functionality and information. That means that we can use the predefined and already configured Smarty templating engine. All we have to do is invoke the Smarty class, point it to our coreBOSApp's directory and load the template. To get the previous example working with a Smarty template we would use this code.
+
+<code>
+public function getContent($lang) {		
+	global $adb,$current_language,$current_user;
+	$smarty = new vtigerCRM_Smarty;
+	$smarty->template_dir = $this->apppath;
+	$smarty->assign('appId',$this->appid);
+	$smarty->assign('appPath',$this->apppath);
+	$smarty->assign('appIcon',$this->getAppIcon());
+	return $smarty->fetch('demo.tpl');
+}
+</code>
+
+then we would create our demo.tpl Smarty template file **INSIDE** our coreBOSApp directory with this contents:
+
+<code>
+<script language="javascript">
+var appid={$appId};
+var apppath='{$appPath}';
+{literal}
+function coreBOSAppdemoChgIcon() {
+	var current_image=vtAppGetIcon(appid);
+	if (current_image==apppath+"/evolutivo.png")
+		next_image="icon.png";
+	else
+		next_image="evolutivo.png";
+	vtAppChangeIcon(appid,apppath+'/'+next_image);
+}
+{/literal}
+</script>';
+<img src="{$appIcon}" style="float:left" onclick="coreBOSAppdemoChgIcon()"><br/>';
+</code>
+
+which is obviously much easier to read and debug
+
+==== Edit Screen ====
+
+Let's add a simple edit screen to our demo coreBOSApp. This edit screen will simply contain a close button that will close the window and refresh the coreBOSApp content.
+
+First we will add a dynamic component to our current demo coreBOSApp so that when it gets refreshed we will notice the change. To do this I will simply add the current time to the contents output.
+
+<code>
+$about = '<script language="javascript">function coreBOSAppdemoChgIcon() { var current_image=vtAppGetIcon('.$this->appid.');';
+$about.= 'if (current_image=="'.$this->apppath.'/evolutivo.png") next_image="icon.png"; else next_image="evolutivo.png";';
+$about.= 'vtAppChangeIcon('.$this->appid.",'".$this->apppath."/'+next_image);}";
+$about.= '</script>';
+$about.= '<img src="'.$this->getAppIcon().'" style="float:left" onclick="coreBOSAppdemoChgIcon()"><br/>';
+$about.= date('H:i:s').'<br/>';
+return $about;
+</code>
+
+Now we create contents for our edit screen inside the **getEdit()** method.
+
+<code>
+public function getEdit($lang) {		
+	$editwindow='<br><b>Close me to see my main window refresh!</b><br><br>';
+	$editwindow.='<p align=center><input type=button onclick="$(\'#coreBOSAppedit'.$this->appid.'\').data(\'kendoWindow\').close()" value="Close"></p>';
+	return $editwindow;
+}
+</code>
+
+==== Canvas Javascript ====
+
+This next example uses the **getCanvasJavascript** method to change the coreBOSApp's icon every 5 seconds. As explained below the goal of this method is to permit the execution of code in the canvas, without having to open the coreBOSApp's window. This can be used to manually open the window on some given event or do some other type of notification.
+
+Add this code to our demo coreBOSApp and reload the whole coreBOSApp Canvas.
+<code>
+public function getCanvasJavascript($lang) {
+	$output = 'function coreBOSAppdemoCanvasChgIcon() { var current_image=vtAppGetIcon('.$this->appid.');';
+	$output.= 'if (current_image=="'.$this->apppath.'/evolutivo.png") next_image="icon.png"; else next_image="evolutivo.png";';
+	$output.= 'vtAppChangeIcon('.$this->appid.",'".$this->apppath."/'+next_image);setTimeout('coreBOSAppdemoCanvasChgIcon()',5000);}";
+	$output.= 'setTimeout("coreBOSAppdemoCanvasChgIcon()",5000);';		
+	return $output;
+}
+</code>
+
+==== coreBOS. Accessing information ====
+
+This example will access the coreBOS account table and retrieve 10 accounts and list them in the window. As already said we have full access to all of coreBOS functionality in our coreBOSApps so this is a relatively easy exercise.
+
+<code>
+public function getContent($lang) {		
+	global $adb,$current_language,$current_user;
+	$output='<table width="100%" border=1><th>Accounts</th>';
+	$accounts=$adb->query('select accountid from vtiger_account limit 10');
+	while ($account=$adb->fetch_array($accounts)) {
+		$acc=getEntityName('Accounts', $account['accountid']);
+		$output.='<tr><td>'.$acc[$account['accountid']].'</td></tr>';
+	}
+	$output.="</table>";
+	return $output;
+}
+</code>
+
+
+==== Next step ====
+
+Now it is all up to your imagination, show me where coreBOSApps can be taken.
+
+**Happy coreBOSApping!!!**
+
+===== coreBOSApps Reference for Developers =====
+
+[[:en:coreBOSApps_reference|coreBOSApps Reference for Developers]]
+
+===== Todo list =====
+  * App Store. Search and Install coreBOSApps
+  * Idea: when dropping coreBOSApp on trash can, mark it as deleted. Then click on trash to open a window with all coreBOSApps marked deleted and permit recovering of a coreBOSApp or definitely eliminating it.
+
+===== Disclaimer =====
+
+coreBOSApps does not pretend to be a secure environment, we do not impose any restrictions on the coreBOSApps possibilities, just as anyone can send you a coreBOS module that you can install in your coreBOS and have it do anything to your information, also a coreBOSApp has full access to all the information contained inside your coreBOS and the coreBOSApp can do anything with it. Although we will strive to evaluate and respond to all suspicious code conducts we probably won't have time to go through all the code of all the coreBOSApps, so the full responsibility of the acts of any coreBOSApp is beyond our control. You will install coreBOSApps at your own risk.

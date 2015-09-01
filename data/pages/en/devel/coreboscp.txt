@@ -1,0 +1,13 @@
+====== coreBOS Customer Portal Development ======
+
+**[[http://corebos.org/demos/coreboscp|Online demo]]**\\
+**[[http://corebos.org/demos/corebos|Associated coreBOS Online demo]]**\\
+
+  * [[:en:coreboscp:installconfig|Installation and Configuration]]
+  * [[:en:coreboscp:ruleguidelines|Development guidelines]]
+  * [[:en:coreboscp:vtcpng_utilities|Development Utilities]]
+  * [[:en:coreboscp:changelayout|How to change form and view layout]]
+  * [[:en:coreboscp:changedefaultmodule|How to change the default functionality of a module]]
+  * [[:en:coreboscp:addbutton2module|How to add an action button to a module::payment gateway]]
+  * [[:en:cyppasarela&#pasarela_de_pago_en_el_portal_del_cliente_coreboscp|Payment Gateway in Customer Portal]]
+  * [[:en:coreboscp:knownissues|Known Issues]]

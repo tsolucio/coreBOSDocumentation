@@ -1,0 +1,31 @@
+====== How to Contribute ======
+
+<wrap em>Thank you for contributing to coreBOS Open Source project!</wrap>
+
+=====One Time Action=====
+
+  *Sign up for an account on the [[http://corebos.tsolucio.com/development|coreBOS Open Source Ticket Tracking System]].
+  * <del>We match the email address from your CLA to this account.</del>
+  * <del>Fill out a [[en:devel:cla|Contributor License Agreement]]. If your contribution is happening on behalf of a company, they should sign a [[en:devel:cla|Corporate Contributor License Agreement]]</del>
+  * <del>Please complete, sign the form, scan it and [[corebos@tsolucio.com|send it to us via email]]</del>
+  * <del>We'll process it, and send you an introduction email.</del>
+  * <del>You'll then appear as a approved contributor, and be upgraded to a Developer on the Ticket Tracking System: allowing you to modify and transition ticket status.</del>
+
+<wrap hi>We Welcome GitHub Pull Requests</wrap>
+
+=====Individual Contributions=====
+
+  * Fork the project you would like to contribute to on GitHub.
+  * Create a branch to develop your change
+  * [[en:devel:bugreport|Create a ticket]] on the [[http://corebos.tsolucio.com/development|coreBOS Open Source Ticket Tracking System]], providing any useful information on the issue.
+
+<WRAP center round alert 60%>
+**DO NOT** put any sensitive information like passwords or private URLs
+</WRAP>
+
+  * Provide instructions on the ticket which GitHub repository and branch should be pulled from, and set the ticket status to "**acknowledged**" when you are complete.
+  * If neccessary [[https://github.com/tsolucio/corebosdocs|create a new issue page in this wiki]] to document the bug, fix and/or feature, and don't forget to add yourself to the [[en:devel:contributors|Contributors page]].
+  * We'll test, verify and merge your changes and then close the ticket, or get back to you with any comments we may have. Please be patient, our resources are limted.
+
+
+

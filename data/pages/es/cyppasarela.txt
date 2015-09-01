@@ -1,0 +1,121 @@
+====== Pasarela de pago ======
+
+El módulo CyP de coreBOS incluye una pasarela de pago que podemos configurar para que use cualquiera de los servicios de pago online soportados. Una vez configurada sólo tenemos que incluir el código HTML necesario para enviar al usuario a la pasarela y el resto del proceso es automático.
+
+===== Instalación =====
+
+Antes de poder usarlo es necesario instalar algunas dependencias. Sigue los pasos siguientes para preparar coreBOS. Todos los comandos se deben ejecutar en el directorio principal de coreBOS.
+
+  - <WRAP>Instala Composer:
+
+<code>
+curl -sS https://getcomposer.org/installer | php
+</code>
+
+[[https://getcomposer.org/doc/00-intro.md#installation-windows|Instrucciones de instalación para Windows]]
+</WRAP>
+  - <WRAP>Instalar dependencias con Composer:
+
+<code>
+php composer.phar install
+</code>
+</WRAP>
+  - <WRAP>Instalar coreboswslibrary:
+
+<code>
+git clone https://github.com/tsolucio/coreboswslibrary
+</code>
+</WRAP>
+
+===== Configuración =====
+
+Para poder usar la pasarela es necesario crear el fichero de configuración Pay.config.php. Hay un fichero de ejemplo con el nombre Pay.config.php.default que puede servir de base para crear nuestra propia configuración.
+
+La configuración contiene un bloque con la clave //corebos// para configurar el acceso a coreBOS y una clave //omnipay// para configurar el acceso a la pasarela por Omnipay. Lo que sigue es un ejemplo para usar Redsys, otras pasarelas usarán diferentes parámetros.
+
+===== Uso =====
+
+Los casos de uso contemplados son los siguientes:
+
+  - **Pago pendiente.** Se requiere que el cliente pague una deuda pendiente.
+  - **Registro del pedido + Pago.** Registramos un pedido del cliente y seguidamente le solicitamos el pago.
+
+En cualquiera de estos casos el pago se realiza en un navegador web.
+
+==== Pago pendiente ====
+
+El cliente tiene ya registrada una deuda en el módulo CyP de coreBOS, lo podemos haber hecho nosotros manualmente o por otros medios como por ejemplo Webservices. Como el cliente no tiene acceso a coreBOS le podemos enviar un correo detallando el pago pendiente y el acceso a la pasarela para realizar este pago o, si tenemos una web para clientes, podemos hacerlo allí en su página de pagos pendientes.
+
+{{ :cyp:paymentgatewayexist.png?700 |}}
+
+=== Implementación ===
+
+Incluiremos el siguiente formulario en el correo o página web que deba redirigir a nuestra pasarela.
+
+<code html>
+<form action="https://url/Pay.php" method="POST">
+  <input type="hidden" name="cpid" value="...">
+  <input type="submit" value="Pagar">
+</form>
+</code>
+
+Opcionalmente podemos incluir estas variables en el formulario para tener mayor control de la transacción:
+
+^Páginas de retorno^^
+|notify_url  |URL para notificar el resultado del pago  |
+|return_url  |URL de la página a la que volverá el usuario si el pago es correcto  |
+|cancel_url  |URL de la página a la que volverá el usuario si hay un problema  |
+
+La notificación se envía como una petición POST a la URL que indiquemos en notify_url.
+
+==== Registro del pedido + Pago ====
+
+Si el cliente registra su propia compra, por ejemplo en una tienda online, podemos registrar desde allí los datos de la compra en coreBOS en el mismo momento en que se confirma para a continuación dirigir al cliente a la pasarela de pago.
+
+{{ :cyp:paymentgatewaycart.png?700 |}}
+
+Los datos que necesita esta operación son:
+
+^Datos del cliente^^
+|nif  |NIF  |
+|firstname  |Nombre  |
+|lastname  |Apellidos  |
+|mobile  |Número de móvil  |
+|email  | Dirección de correo electrónico  |
+^Datos de la venta^^
+|subject  |Referencia  |
+|moreinfo  |Descripción  |
+|fecha  |Fecha  |
+|pdoid  |Id del producto  |
+^Páginas de retorno^^
+|notifyUrl  |URL para notificar el resultado del pago  |
+|returnUrl  |URL de la página a la que volverá el usuario si el pago es correcto  |
+|cancelUrl  |URL de la página a la que volverá el usuario si hay un problema  |
+
+Incluiremos estos datos en un formulario como el siguiente:
+
+<code html>
+<form action="https://url/Buy.php" method="POST">
+  <input type="hidden" name="..." value="...">
+  ...
+  <input type="submit" value="Pagar">
+</form>
+</code>
+
+Al enviar el formulario se creará el Pago y se iniciará el proceso de pago en la pasarela configurada.
+
+==== Pasarela de Pago en el Portal del Cliente coreBOSCP ====
+
+La pasarela de pago de coreBOS está directamente integrada en el portal del cliente. Los registros de pago asociados a cada contacto se pueden ver en el portal y aparecen con unos botones para realizar el pago como se puede ver en las siguientes dos imágenes:
+
+{{ :cyp:pasarelacypenportallv.png?760 |}}
+
+{{ :cyp:pasarelacypenportaldv.png?760 |}}
+
+Al pulsar sobre el icono accedermos directamente a la pasarela de pago definida y al terminar el pago volveremos al portal del cliente, bien a la página //index.php#site/ThankYouForPayment// si se ha realizado el pago correctamente o a //index.php#site/ErrorInPayment// si ha habido algún error.
+
+<WRAP center round info 75%>
+Las páginas de pago correcto y erróneo en el portal se pueden personalizar fácilmente editando los ficheros:
+  * protected/views/site/ThankYouForPayment.php
+  * protected/views/site/ErrorInPayment.php
+</WRAP>

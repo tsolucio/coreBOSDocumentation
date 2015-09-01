@@ -1,0 +1,8 @@
+====== Contributors ======
+
+^developer's list, partners, team members both at TSolucio and OpenCubed, friends||I couldn't express my gratitud enough to all the people who have made this project a reality. You know who you are :-) and I invite you to add you names above. You deserve it. **Thank you!**|
+^vtiger|vtiger|Our starting point and long time base. **Thank you!**|
+
+
+===== Template for Contributors =====
+^Full Name|Company Name|Description of contributions|

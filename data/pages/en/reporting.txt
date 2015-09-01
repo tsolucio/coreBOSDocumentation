@@ -1,0 +1,7 @@
+====== User Manual::Reporting ======
+
+??? But how to make a dynamic filter for a date range?
+
+!!! You can establish time based filters in step 7 (Filters) of the report configuration.
+
+{{ :en:corebos:reports:timebasedreportfilters.png?700 |}}

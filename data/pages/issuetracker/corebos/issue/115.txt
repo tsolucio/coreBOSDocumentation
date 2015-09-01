@@ -1,0 +1,7 @@
+====== 115: Enhance import to search related fields on any field  ======
+
+Issue Reference in Tracker: ~~issue:115~~
+
+===== Detailed Explanation =====
+
+{{section>en:importingdata#search_reference_fields_on_almost_any_field_of_the_referenced_module}}

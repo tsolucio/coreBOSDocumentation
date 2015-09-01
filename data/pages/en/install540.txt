@@ -1,0 +1,114 @@
+====== Install coreBOS 5.4.0 ======
+===== Requirements =====
+  * Apache 2.0.40 or above.
+  * MySQL 5.1.x
+  * PHP 5.3.x
+<WRAP center round info 75%>
+This is a typical **WAMP/LAMP stack**. All linux distributions have this natively so we recommend you install the packages from your distribution (make sure you have the right versions). On windows download the XAMPP stack from apache friends. You can see the [[http://code.stephenmorley.org/articles/xampp-version-history-apache-mysql-php|list of application versions here]]. You should download [[http://sourceforge.net/projects/xampp/files/XAMPP%20Windows/1.7.7|version 1.7.7 from sourceforge]].
+</WRAP>
+
+==== MYSQL Requirements ====
+Please make sure to review MySQL configuration (my.cnf or server start parameters)
+
+|SQL_MODE|Should not have STRICT_TRANS_TABLE|
+|ENGINE=InnoDB|Should be available. (Turn off --skip-innodb)|
+
+==== PHP Extensions  ====
+
+Following extensions should be enabled for your PHP setup 
+
+|GD|Mandatory|Charts and graphs generation are dependent on this library.|
+|IMAP|Mandatory|Webmails Module is dependent on this library.|
+|Zlib|Mandatory|
+|OpenSSL|Optional|Imap with OpenSSL should be enabled in case Mail server needs to be connected via SSL|
+|Curl|Optional|
+
+==== PHP Configuration  ====
+
+Make sure to verify if your PHP configuration meets the recommended values. 
+
+^Variable^Value^
+|allow_call_time_pass_reference|on|
+|error_reporting|E_ERROR|
+|safe_mode|off|
+|display_errors|on|
+|file_uploads|on|
+|max_execution_time|600|
+|max_input_vars|2000|
+|post_max_size|16M|
+|memory_limit|512M|
+|log_errors|off|
+|output_buffering|on|
+|register_globals|off|
+
+<WRAP center round info 75%>
+If you have the PHP Suhosin extension installed, this extension adds restrictions to make PHP more secure, but some of these restrictions break coreBOS.
+
+To solve this problem you must change two variables in the suhosin config file: (normally: /etc/php5/conf/suhosin.ini)
+
+<code>suhosin.post.max_vars = 2000
+suhosin.request.max_vars = 2000</code>
+
+After this you must restart your apache server.
+</WRAP>
+
+==== File Permissions  ====
+
+Provide read-write access to the following files and folder (recursively): 
+
+<WRAP center round important 60%>
+Read and Write permissions should be enabled for user/group who owns webserver process (like www-data or httpd or apache).
+</WRAP>
+
+  *config.inc.php 
+  *tabdata.php 
+  *install.php 
+  *parent_tabdata.php 
+  *cache 
+  *cache/images/ 
+  *cache/import/ 
+  *storage/ 
+  *install/ 
+  *user_privileges/ 
+  *Smarty/cache/ 
+  *Smarty/templates_c/ 
+  *modules/Emails/templates/ 
+  *modules/ 
+  *cron/modules/ 
+  *test/vtlib/ 
+  *backup/ 
+  *Smarty/templates/modules/ 
+  *test/wordtemplatedownload/ 
+  *test/product/ 
+  *test/user/ 
+  *test/contact/ 
+  *test/logo/ 
+  *logs/ 
+  *modules/Webmails/tmp/
+
+<WRAP center round important 60%>
+Please make sure you meet all these requirements
+</WRAP>
+
+=====Install=====
+
+  * Download the source code from GitHub
+  * copy the code into a folder in accessible from your webserver install
+  * type in the URL of the folder into your browser
+  * you should get the **Configuration Wizard** welcome page
+
+{{ :en:corebosinstall01.png?800 |}}
+
+  * click on the Install button and accept the license
+  * Review all the pre installation checks. You should be able to proceed with some PHP recommendations in red, but ONLY those, any other red check MUST be fixed before proceeding.
+  * Fill in all the information required and continue
+    * you will need a mysql user with access to a database that may exist or not, if it doesn't exist you will also need a mysql user with enough permission to create a database
+    * you can chose to load a set of example information and the password for the only user that will be created.
+
+{{ :en:corebosinstall02.png?800 |}}
+
+  * next select the modules and languages you wish to have available by default in the application. You can install these and also deactivate them later, so don't worry too much about it.
+  * now wait for all the installation work to be done
+  * if all goes well you should receive a verification page welcoming you to the application
+  * press the **Finish** button to reach the login page
+

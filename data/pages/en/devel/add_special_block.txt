@@ -1,0 +1,36 @@
+====== How to add a special block to a module ======
+
+The goal of this tutorial is to show how we could add a new block in the detail view of a module where we could add some special functionality that we may need.
+
+This is basically a two step process; first we have to add the information into the database so the application knows that it has to load a new block and what code it has to launch to fill it in, then we have to implement that class to generate the output.
+
+For this tutorial I am simply going to sum the number of Purchase Orders related to a contact and show that in a block on the contacts detail view.
+
+To change the database we use vtlib and add a DetailViewWidget Link using vtlib:
+
+<code>$module->addLink('DETAILVIEWWIDGET', 'DetailViewPOINFOBlockWidget', "block://ContactPOInfoWidget:modules/Contacts/ContactPOInfoWidget.php");</code>
+
+As can be seen we are adding a DETAILVIEWWIDGET with the label DetailViewPOINFOBlockWidget and with the link 
+
+<code>block://ContactPOInfoWidget:modules/Contacts/ContactPOInfoWidget.php</code>
+
+this last part is the really important one. It is saying that to generate the widget, the application must load a class named //ContactPOInfoWidget// which can be found in the file //modules/Contacts/ContactPOInfoWidget.php//. Obviously we can call the class as we like (as long as it doesn't conflict with existing classes) and put the file wherever we want (as long as it is accessible inside coreBOS).
+
+This class must implement only one method: //getWidget()// which will return the name of another class which will implement our functionality.
+
+<WRAP center round info 75%>
+The full script can be accessed in the download link at the end.
+</WRAP>
+
+Now we have to implement the logic. This happens in a class that we must create and that can do anything we need it to. The class runs inside coreBOS so it has access to all the functionality of the application and we can use Smarty to generate output.
+
+This class must implement one method called //process()// which will be called to generate the output on screen.
+
+In the case of this tutorial, that method executes a query against the database to obtain the purchase order information and then loads a Smarty template to generate a similar output to the existing blocks.
+
+Have a look at the code which can be downloaded below and here is a screen shot of how it looks on screen:
+
+{{ :devel:contactpostatswidget.png?800 |}}
+<WRAP center round info 80%>We could also add an additional HeaderScript link to load some external javascript library we may need to implement our functionality or load the information we need via ajax/javascript which is how ModComments works. You can see an example by studying that code.</WRAP>
+
+<WRAP center round download 60%>{{:devel:adddvw.zip|Contact Purchase Order Statistics Widget}}</WRAP>

@@ -1,0 +1,30 @@
+====== Install and Update ======
+
+How to install and update the application
+
+[[:en:devel:downloads|DOWNLOADS: The official list of milestones]]
+
+====== Install ======
+
+  * [[install560|Install coreBOS 5.6.0]]
+  * [[install550|Install coreBOS 5.5.0]]
+  * [[install540|Install coreBOS 5.4.0]]
+
+====== Update ======
+
+  * [[upgradevt2cb|Upgrade from vtiger CRM 5.4.0 to coreBOS]]
+  * [[:en:devel:vt60tocb|Migrate from vtiger CRM 6.x to coreBOS]]
+
+  * [[upgradecb5502cb560|Upgrade from coreBOS 5.5.0 to coreBOS 5.6.0]]
+  * [[upgradecb5402cb550|Upgrade from coreBOS 5.4.0 to coreBOS 5.5.0]]
+  * [[upgradevt2cb540|Upgrade from vtiger CRM 5.4.0 to coreBOS 5.4.0]]
+
+
+====== Third Party Extensions ======
+
+  * [[en:devel:thirdparty|FAQ]]
+  * [[vtdziner|vtDZiner]]
+  * [[geotools|GeoTools]]
+====== Frequently Asked Questions ======
+
+  * [[installfaq|Installation FAQ]]

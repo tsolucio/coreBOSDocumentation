@@ -1,0 +1,158 @@
+====== Módulo de control de pagos y contabilidad ======
+
+El objetivo de esta ampliación es ser capaz de registrar los pagos entrantes (de clientes) y salientes (a proveedores) realizadas por nuestra empresa y asociar el pago con otras entidades en la aplicación coreBOS. La extensión permite registrar los pagos que vamos a recibir o tendremos que hacer en el futuro, por lo que es fácil de crear un informe de previsión de pagos. Con un poco de esfuerzo podríamos calcular el flujo de caja o incluso el dinero en la caja registradora al final del día.
+
+Este módulo nos permite registrar pagos contra cualquiera de estas entidades entre otras:
+  *Factura
+  *Orden de Compra
+  *Orden de Venta
+  *Presupuesto
+  *Campañas
+  *Oportunidades de Negocio
+  *Incidencias
+  *Proyectos y Actividades
+  *Recursos
+  *Productos
+  *Servicios
+  *Contratos de Servicio
+por una Cuenta, Contacto, Proveedor o PreContacto
+
+Los campos informativos son:
+  ***Usuario Asignado**
+  ***Referencia**: texto libre para referencia del cobro/pago
+  ***Fecha**: fecha en la que se registra el cobro/pago
+  ***Fecha pago**: fecha en la que debemos cobrar o pagar
+  ***Pagado**: casilla de verificación que indica si se ha realizado el cobro/pago o no. Utilizado para filtrar e informes
+  ***Crédito**: casilla de verificación que indica si estamos recibiendo dinero o pagando (débito)
+  ***Forma de Pago**: lista desplegable (Efectivo, Cheque, Tarjeta,...)
+  ***Categoría de Pago**: lista desplegable, básicamente para categorizar los registros según la lógica de negocio de tu empresa, por ejemplo podría servir para casar con grupos contables
+  ***Cantidad** pagada/recibida: cuanto debemos pagar o vamos a cobrar
+  ***Coste** cuanto cuesta suministrar el servicio
+  ***Beneficio**: se calcula automáticamente. Util en informes.
+  ***Comercial**: Utilizado para asignar el movimiento de dinero a un usuario, por ejemplo un comercial. Muy útil para calcular comisiones.
+  ***Descripción**: texto libre para comentarios
+
+Puedes utilizar el sistema de informes de coreBOS para obtener información de este módulo.\\
+Este módulo es compatible vtlib y respeta la funcionalidad normal de coreBOS como son los roles, permisos, campos personalizados, editor de listas desplegables, importación/exportación, ...
+
+Cuando instalamos este módulo a nuestros clientes personalizamos las relaciones según sus necesidades. Algunos necesitan ver los pagos de una cuenta, otros de la factura. Así, este es una de las muchas mejoras que se pueden añadir partiendo de este módulo. Otros podrían ser:
+  *se aceptan prepagos y son automáticamente insertados al crear una Orden de Venta o Factura (por ejemplo)
+  *cantidad pendiente de pago se calcula automáticamente e impreso en el PDF
+  *la relación de pagos realizados sobre una Orden de Venta o Factura aparecen en su pestaña de "Mas Información"
+  *...
+
+Sin estas mejoras habría que crear una nueva entrada de cobro/pago cada vez que se hace un pago. Las mejoras que propongo son sólo para que el flujo de trabajo sea más fácil y dependen en gran medida del funcionamiento de cada empresa, el módulo de pago "//tal cual//" ya es muy útil si necesitas controlar el dinero moviéndose en tu empresa.
+
+Este módulo tiene una lista relacionada de **Histórico de Pagos** básico donde se pueden ver una lista de los cambios realizados a cada registro.
+
+También tenemos este módulo integrado en nuestra [[http://bievolutivo.com/|integración de inteligencia de negocio (business intelligence)]] para la presentación de informes especiales semanales, mensuales y anuales del dinero de la empresa. Entre otras, como la navegación OLAP de los pagos.
+
+También contamos con un simple parche que mejora el módulo con capacidad de soportar fácilmente **pagos parciales**. Añadimos algunos campos en la factura y que el módulo de pago rellena automáticamente los campos en cada pago. Añadimos un campo de cantidad pagada y otro de cantidad pendiente, a medida que los pagos asociados a la factura se van marcando como pagados estos campos se llenan, así podemos ver las cantidades pendientes y recibidas con facilidad, y por tratarse de campos normales puedes realizar informes sobre ellos directamente en el sistema de información de coreBOS.
+
+El flujo de trabajo de **pago parcial** sería algo como esto: se crea una factura por el importe total, se crean los pagos acordados, por ejemplo, el 30% en el día de la creación, el 30% en 30 días y el 40% en 60 días. Marcas el primer pago como pagado y los demás están pendientes. La cantidad pendiente en la factura muestra el 70% del total. Con este sencillo esquema se puede informar sobre los pagos pendientes en cualquier fecha, o en los pagos adeudados, ...
+
+La extensión de **Control de Pagos Totales y Pendientes en Cuentas y Contactos** añade tres nuevos campos en el módulo que suman el total de pagos realizados, pendientes y el balance.
+
+=== Bloqueo de Registros ===
+Como característica adicional, se puede bloqueat registros de cobro/pago pagados. Si se marca un pago como pagado no se podrá editar. Este comportamiento se puede cambiar a través de la configuración del módulo accesible en el *//Administrador de Módulos//*
+
+===== Precios =====
+
+  * Módulo de Cobros y Pagos: gratis, código abierto, donaciones son muy necesarias, por considera apoyar nuestro esfuerzo
+  * Control de Pagos Parciales sobre facturas: 45 euros.
+  * Control de Pagos Parciales sobre ordenes de compra: 45 euros.
+  * Control de Pagos Totales y Pendientes en Cuentas: 45 euros.
+  * Control de Pagos Totales y Pendientes en Contactos: 45 euros.
+  * Control de Pagos Totales y Pendientes en Proveedores: 45 euros.
+
+Nuestra cuenta paypal:  paypal (at) tsolucio (dot) com
+
+Gracias
+
+
+===== Algunas demos =====
+
+** Demo de Control de Pagos Totales y Pendientes **
+{{youtube>kPNFB8PL87w}}
+===== Creación automática de pagos parciales con flujos de trabajo =====
+
+coreBOS 5.4.0 ha introducido una nueva funcionalidad en los flujos de trabajo: **Creación de Entidades**. Con esta funcionalidad podemos crear nuevos registros en un módulo cuando se produce un evento de guardar en otro módulo relacionado. Por ejemplo, podemos crear registros de pagos parciales cuando creamos una factura de manera automática.
+
+Este es una característica muy potente en muchos casos, pero adquiere una relevancia especial cuando se utiliza conjuntamente con Cobros y Pagos. Por ejemplo, podríamos añadir una lista desplegable con formas de pago en la factura y crear los pagos parciales de manera automática al crear la factura según el método elegido. Supongamos que tenemos una forma de pago del 30% al crear, 30% a los 45 días y 40% a los 75 días, entonces podríamos crear un flujo de trabajo que creara automáticamente los tres registros de cobro.
+
+A continuación se aprecian unas capturas de pantalla de cómo se vería esta configuración (más o menos):
+
+{{:cyp:cypwf01.png?850|}}
+
+{{:cyp:cypwf02.png?850|}}
+
+{{:cyp:cypwf03.png?850|}}
+
+
+===== Preguntas Frecuentes =====
+
+???  ¿Dónde lo puedo descargar?
+!!! Está disponible en coreBOS desde la versión 5.6. Lo puedes conseguir en GitHub
+
+??? ¿Cómo funciona?
+??? Cuando se crea una factura…. ¿muestra cuánto nos debe el cliente?… cuando se hace el pago, ¿resta la cantidad de la factura?
+??? ¿Muestra la cantidad pendiente que nos debe la cuenta?
+!!! El módulo solo registra cobros y pagos, y esta tarea se tiene que hacer manualmente en el módulo.\\
+Por ejemplo, creas una factura, después vas al módulo de cobros y pagos y añades el pago, un cliente realiza un pago parcial de una factura, accedes al módulo y añades un cobro, recibes una orden de compra y realizas un pago, accedes al módulo y creas un registro de pago.
+
+Si registras todos los cobros y pagos y los relacionas con las cuentas y facturas/ordenes, entonces podrás obtener totales utilizando los informes.
+
+Esto es para lo que sirve el módulo de cobros y pagos.
+
+Así que nuestro módulo de cobros y pagos nos da un buen punto de partida para registrar todos los movimientos de dinero y personalizarlo para ayudarte a llevar el control del dinero en tu empresa.
+
+??? ¿Podré crear una factura parcial, controlar el pendiente y crear una factura final al recibir el pago?
+!!! Esta pregunta es similar a la anterior: este módulo te da un punto de partida para gestionar y automatizar tu proceso de negocio. Esta es la misma filosofía que utilizamos con toda la aplicación.
+
+En este caso, yo no recomendaría la creación de dos facturas para el mismo concepto. Lo que solemos hacer para seguir los pagos parciales es añadir un poco de proceso a la factura. Cada vez que un pago se registra contra una factura, actualizamos un nuevo campo personalizado llamado "Cantidad Pendiente", una vez tienes este campo puedes realizar informes y obtener fácilmente las facturas con alguna cantidad pendiente. A continuación, añadimos un poco más de proceso y cambiamos el estado de la factura cuando la cantidad pendiente es cero. Así que nuestra implementación //más utilizada// crea facturas como lo haces normalmente en coreBOS y luego el módulo de pagos registra los pagos efectuados contra la factura y controla las cantidades pendientes y el estado de la factura.
+
+Aunque esto es lo que recomiendo para este caso, podemos adaptar el módulo a tus necesidades.
+
+Esta implementación **NO ESTA** incluida en el módulo base.
+
+??? Necesito implementar un módulo de pago, pero estoy un poco perdido con los diferentes precios y lo que hace. Necesito un módulo de pago real y completo. Si no puedo recibir pagos parciales, si no se puede vincular el pago a la factura, si no se puede marcar una factura como pagada o pagada parcialmente, si no se puede enviar recordatorios automáticos mediante la agrupación de todas las facturas pendientes de pago, etc. .. entonces el módulo de pago es un artilugio y no se puede utilizar. ¿Puedes ayudarme a averiguar lo que hace el módulo y lo que NO HACE?
+
+!!! Entiendo tu desconcierto, pero es que, ya que es de código abierto tenemos muchas solicitudes de un mero punto de partida básico sobre el que otros construyen sus propias necesidades, por lo que el artilugio es útil para algunos. Asimismo, puesto que, las otras características requieren modificaciones de código que hace la distribución de la solución un poco más complejo (como modificaciones en el código base), tratamos de evitar distribuir ese tipo de cambio.
+
+En cualquier caso, en cuanto a tu solicitud, necesitas las tres opciones: el módulo, las relaciones de este nuevo módulo y el control de pago parcial.
+
+Con los tres serás capaz de gestionar los pagos parciales, vinculadas a las facturas y otras entidades, ya se puede marcar una factura pagada o parcialmente pagada ya que estos son sólo los estados que se crea en la factura, enviar recordatorios no es realmente algo asociado al módulo de pago, sino directamente a las facturas, puedes utilizar la extensión de flujo de trabajo para enviar los recordatorios, a pesar de que está limitado, además la agrupación de una lista de facturas pendientes de pago según la fecha es fácil con un filtro o un informe, el envío de recordatorios es un poco más difícil, pero podemos hablar de una solución si es necesario.
+
+??? ¿Es multi-idioma (Francés e Inglés)?
+!!! Si. Inglés, Espàñol y Francés, entre otros.
+
+??? ¿Es multi-moneda?
+!!! No, no es multi-moneda.
+
+??? ¿Es independiente de la plataforma (Linux o Windows o ambos)?
+!!! Es independiente de la plataforma, pero funciona mucho mejor en linux :-)
+
+
+??? ¿Cual es la diferencia entre las dos extensiones con costo?
+!!! El módulo de pagos que te puedes bajar no está integrado con otros módulos de manera automática, o sea, si haces una factura, y le asocias un pago parcial, este hecho no se refleja en la factura. Obviamente, podrás ir a la pestaña de +info de la factura y ver los pagos, pero no habrá ningún cambio en los campos de a factura. La extensión de pagos parciales, lo que hace es añadir unos campos nuevos en la factura que representan las cantidades abonadas y la cantidad pendiente de manera automática, o sea si haces un pago asociado a una factura, automáticamente se actualiza la cantidad pagada y la pendiente, incluso, si la cantidad pendiente es 0 se cambia el estado de la factura. Esto facilita mucho el tema de informes de cantidades pendientes.
+
+La otra extensión hace algo similar, añade unos campos en la cuenta donde se suma el total de pagos realizados, independientemente de las facturas y la cantidad de dinero pendiente de pagar por cada cuenta. Estos cálculos se hacen de manera automática la crear registros de pagos.
+
+Ambas son independientes, y se pueden adquirir por separado
+
+??? Hemos instalado el módulo, pero no veo cómo generar múltiples facturas, por ejemplo:
+  ***primera factura: 30% del total**
+  ***segunda factura: 30% del total**
+  ***última factura: 40% del total**
+
+!!! Este módulo de control de pagos no es para generar facturas. La idea es que generas una única factura por la cantidad total del servicio y recibes pagos parciales sobre la factura hasta que se cumple el total de la misma. El módulo controla las cantidades satisfechas y pendientes en la factura. Puedes crear salidas PDF para las facturas dependiendo de su estado de pagos.
+
+Obviamente, puedes crear las tres facturas y asociar un pago a cada uno. Conforme vaya marcando los pagos como satisfechos las facturas van a cambiar su estado para que puedas controlar fácilmente las facturas pendientes también con este sistema.
+
+Tenemos algunos clientes que hacen esto: crear la primera factura y asociar los tres pagos. El primer pago cancela la primera factura. Los otros dos pagos pendientes y relacionados con la primera factura. Cuando llega el momento de crear la segunda factura, crean la factura y asocian el segundo pago a éste y así sucesivamente.
+
+??? Cuando genero el PDF, ¿se refleja el/los Cobros y Pagos?
+!!! No, hay que programarlo, bien en el PDF de coreBOS o mediante funciones de PDFMaker. Utilizando PDFMaker, puedes generar un PDF por cada CyP o puedes crear una función personalizada que te incluya los CyP directamente en el PDF de la factura según el formato que necesites. Nosotros hemos creado ya varias de estas funciones para distintos clientes con sus formatos específicos así que será fácil que podamos hacer la función que necesites con rapidez.
+
+??? La captura de Cuentas/Contactos y otros campos relacionados muestran todos los registros de la aplicación. ¿Se podría restringir los valores dependiendo de los valores de los otros campos (mostrar solo la cuenta de una factura por ejemplo)? 
+!!! Esto es complicado de hacer en coreBOS, así que lo que hemos hecho es implementar el caso más frecuente de uso. Intenta crear un pago desde la lista relacionada de una factura, verás que la mayoría de campos del nuevo registro se han rellenado automáticamente. Esto ocurre también con la orden de venta. La idea es que creas una factura, y ya que estás en la factura accedes a su lista relacionada de pagos y añades el pagó ahí.

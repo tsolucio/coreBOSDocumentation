@@ -1,0 +1,38 @@
+====== Upgrade from vtiger CRM 5.4.0 to coreBOS using coreBOS Updater======
+
+  * make a copy of your database
+  * get a copy of the latest version of coreBOS and copy it into a subdirectory on your server
+    * download the code from [[https://github.com/tsolucio/corebos/archive/master.zip|the download button on github]] or MUCH BETTER, clone the repository <code>git clone https://github.com/tsolucio/corebos</code>
+  * copy from your current install:
+    * storage
+    * test/logo
+    * user_privileges (overwrite any existing files)
+    * config.inc.php
+    * and any non standard modules that you may have:
+      * for example, PDFMaker would require that you copy:
+        * modules/PDFMaker
+        * Smarty/templates/PDFMaker
+      * if you have others, then you copy their directories
+  * edit config.inc.php
+    * change the database access to point to the database copy and $site_url and $root_directory accordingly
+  * edit vtigerversion.php and change the version to 5.4
+  * now log in as admin to make sure you are working ok: you can log in and the initial home page appears
+  * copy build/HelperScripts/installupdater.php to the root of your install and execute it: <code>http://your_server/your_install/installupdater.php</code>
+  * reload the page and go to coreBOS updater
+  * click on "Load Updates"
+  * click on "Apply All". Note that you may have to do this a few times to get all the changes applied as there are some dependencies. Also there will be some SQL errors because we have a set of changes that cover many different cases and your install is different for sure.
+
+you are done! you should be on the latest version of coreBOS
+
+====== Upgrade from vtiger CRM 5.2/5.3 to coreBOS ======
+
+  * get a copy of the latest version of coreBOS and copy it into a subdirectory on your server
+    * download the code from [[https://github.com/tsolucio/corebos/archive/master.zip|the download button on github]] or MUCH BETTER, clone the repository <code>git clone https://github.com/tsolucio/corebos</code>
+  * access the directory you have copied the code into and press on the "Migrate" button
+  * follow the instructions
+  * go to coreBOS updater
+  * click on "Load Updates"
+  * click on "Apply All". Note that you may have to do this a few times to get all the changes applied as there are some dependencies. Also there will be some SQL errors because we have a set of changes that cover many different cases and your install is different for sure.
+
+you are done! you should be on the latest version of coreBOS
+

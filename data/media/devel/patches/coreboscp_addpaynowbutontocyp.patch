@@ -1,0 +1,143 @@
+diff --git a/js/main.js b/js/main.js
+index 821058c..7d31eec 100644
+--- a/js/main.js
++++ b/js/main.js
+@@ -192,3 +192,25 @@ var filedownload = {
+ 		
+ 	}
+ };
++
++function sendtopaygateway(cypid) {
++	// create form with data values and send
++	var url = 'https://your.corebos.tld/Payment.php';
++	var data = {
++		'cpid': cypid,
++		'returnUrl': 'https://your.coreboscp.tld/index.php#site/ThankYouForPayment.php',
++		'cancelUrl': 'https://your.coreboscp.tld/index.php#site/ErrorInPayment.php'
++	};
++	var form = $('<form id="paypal-form" action="' + url + '" method="POST"></form');
++	
++	for(x in data){
++		form.append('<input type="hidden" name="'+x+'" value="'+data[x]+'" />');
++	}
++	
++	// append form
++	$('body').append(form);
++	
++	// submit form
++	$('#paypal-form').submit();
++
++}
+\ No newline at end of file
+diff --git a/protected/components/vtyiicpngButtonColumn.php b/protected/components/vtyiicpngButtonColumn.php
+index 30a260a..ad39f14 100644
+--- a/protected/components/vtyiicpngButtonColumn.php
++++ b/protected/components/vtyiicpngButtonColumn.php
+@@ -55,6 +55,10 @@ class vtyiicpngButtonColumn extends CButtonColumn
+ 				$mod = $data->getModule();
+ 				$ret = $moduleAccessInformation[$mod]['retrieveable'] && in_array($mod,array('Invoice','Quotes','SalesOrder','PurchaseOrder'));
+ 				break;
++			case 'pay':
++				$mod = $data->getModule();
++				$ret = $moduleAccessInformation[$mod]['retrieveable'] && $mod == 'CobroPago';
++				break;
+ 			default:
+ 				$ret = true;
+ 				break;
+diff --git a/protected/controllers/VtentityController.php b/protected/controllers/VtentityController.php
+index 32b6ac2..a2ba830 100644
+--- a/protected/controllers/VtentityController.php
++++ b/protected/controllers/VtentityController.php
+@@ -41,6 +41,7 @@ class VtentityController extends Controller
+ 	public $viewButtonCreate=false;
+ 	public $viewButtonSearch=false;
+ 	public $viewButtonDownloadPDF=false;
++	public $viewButtonPayCyP=false;
+ 
+ 	public function __construct($id,$module)
+ 	{
+@@ -345,6 +346,7 @@ class VtentityController extends Controller
+ 		$this->setCRUDpermissions($model->getModule());
+ 		$this->viewButtonSearch=false;
+ 		$this->viewButtonDownloadPDF=true;
++		$this->viewButtonPayCyP=true;
+ 		$dataProvider=$model->search($pos);
+ 		$this->render('//vtentity/index',array(
+ 			'dataProvider'=>$dataProvider,
+@@ -402,6 +404,7 @@ class VtentityController extends Controller
+ 			if ($model->getAttribute('filelocationtype') == 'E')
+ 				$this->viewButtonDownloadPDF=false;
+ 		}
++		$this->viewButtonPayCyP=true;
+ 		$this->render('//vtentity/view',array(
+ 			'model'=>$model,
+ 		));
+diff --git a/protected/messages/en/core.xml b/protected/messages/en/core.xml
+index 3a3bf17..7bbd3dc 100644
+--- a/protected/messages/en/core.xml
++++ b/protected/messages/en/core.xml
+@@ -192,4 +192,5 @@
+ 	<entry id="impuestos">Taxes</entry>
+ 	<entry id="customerPortalNotConfigured">Customer Portal is not correctly configured.&lt;br/&gt;Please contact your application administrator.</entry>
+ 	<entry id="customerPortalPageNotFound">The requested page could not be found in the Customer Portal.&lt;br/&gt;Review the URL or contact your application administrator with the steps to reproduce the error.</entry>
++	<entry id="paycyp">Pay</entry>
+ </category>
+diff --git a/protected/messages/es_es/core.xml b/protected/messages/es_es/core.xml
+index 16bfb10..3dfb4af 100644
+--- a/protected/messages/es_es/core.xml
++++ b/protected/messages/es_es/core.xml
+@@ -192,4 +192,5 @@
+   <entry id="impuestos">Impuestos</entry>
+   <entry id="customerPortalNotConfigured">El Portal del Cliente no está correctamente configurado.&lt;br/&gt;Por favor avisa al administrador de la aplicación.</entry>
+   <entry id="customerPortalPageNotFound">La página solicitada no se ha encontrado en el Portal del Cliente.&lt;br/&gt;Revisa la URL o informa al administrador de la aplicación con los pasos para reproducir el error.</entry>
++  <entry id="paycyp">Pagar</entry>
+ </category>
+diff --git a/protected/views/layouts/_tableMenu.php b/protected/views/layouts/_tableMenu.php
+index a15c387..0499af3 100644
+--- a/protected/views/layouts/_tableMenu.php
++++ b/protected/views/layouts/_tableMenu.php
+@@ -88,6 +88,19 @@
+ 				'visible' => $this->viewButtonDownloadPDF && in_array($this->entity,array('Invoice','Quotes','SalesOrder','PurchaseOrder','Documents')),
+ 			),
+ 			array(
++				'label' => Yii::t('core','paycyp'),
++				'icon' => 'pay',
++				'link' => array(
++					'url' => 'javascript:void(0)',
++					'htmlOptions' => array(
++						'class'=>'icon',
++						'id' => 'paycyp-button',
++						'onclick'=>'javascript: sendtopaygateway($("#entityidValue").val());return false;'
++					),
++				),
++				'visible' => $this->viewButtonPayCyP && $this->entity=='CobroPago',
++			),
++			array(
+ 				'label' => Yii::t('core','export'),
+ 				'icon' => 'export',
+ 				'link' => array(
+diff --git a/protected/views/vtentity/admin.php b/protected/views/vtentity/admin.php
+index 5afc7e7..8433dad 100644
+--- a/protected/views/vtentity/admin.php
++++ b/protected/views/vtentity/admin.php
+@@ -55,7 +55,7 @@ $('.search-form form').submit(function(){
+ 		$model->gridViewColumns(),// $model->getDetailGridFields($lvfields,$lvlinkfields), this worked in ENTITY
+ 		array(array(
+ 			'class'=>'vtyiicpngButtonColumn',
+-			'template'=>'{view}{update}{delete}{dlpdf}', //{related}',               
++			'template'=>'{view}{update}{delete}{dlpdf}{pay}', //{related}',
+ 			'header'=>CHtml::dropDownList('pageSize',
+ 				$pageSize,
+ 				array(5=>5,10=>10,20=>20,30=>30,50=>50,100=>100),
+@@ -77,6 +77,11 @@ $('.search-form form').submit(function(){
+ 					'imageUrl'=>ICONPATH . '/16/pdf_icon_16.gif',
+ 					'url'=>'"javascript: filedownload.download(\''.yii::app()->baseUrl.'/index.php/'.$modelURL.'/downloadpdf/".$data["'.$model->entityidField."\"].\"','')\"",
+ 				),
++				'pay' => array (
++					'label'=>Yii::t('core', 'paycyp'),
++					'imageUrl'=>ICONPATH . '/16/pay.png',
++					'url'=>'"javascript: sendtopaygateway(\'".$data["'.$model->entityidField."\"].\"')\"",
++				),
+ 			),
+ 		/*
+ 			'buttons'=>array(

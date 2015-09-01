@@ -1,0 +1,9 @@
+====== 191: custom workflow associated to Q/SO/I/PO to associate product/service  ======
+
+Issue Reference in Tracker: ~~issue:191~~
+
+===== Detailed Explanation =====
+
+{{page>en:relateproductservice_workflow}}
+
+

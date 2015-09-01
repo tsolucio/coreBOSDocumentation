@@ -1,0 +1,43 @@
+====== coreBOS Web Service Developer Tool ======
+
+Announcement video
+
+{{youtube>PWY9tRcES9o}}
+
+===== Installation =====
+
+[[https://github.com/tsolucio/coreBOSwsBrowser|Code on GitHub]]\\
+
+Installation is very easy, basically extract the code from [[https://github.com/tsolucio/coreBOSwsBrowser|GitHub]] and copy it into a directory accessible from the web, point your browser to the directory and you should be ready to go.
+
+===== Usage =====
+
+The different parts of the application are:
+
+==== Query Launcher ====
+
+Simply type your query into the text box and click on the execute button.
+
+==== Type List ====
+
+This is an information page, so simply accessing is enough to get all available information.
+
+==== Test Code for PHP and Javascript ====
+
+Write your code into the code editor or load a pre-existing script and edit it. You can click on execute as many times as you need to see the internals of the executions.
+
+In order to simplify the scripts, there are a set of variables and functions you have access to in your scripts:
+  * URL of the site we logged in with: **$cbURL**
+  * Username we logged in with: **$cbUserName**
+  * UserID we logged in with: **$cbUserID**
+  * Accesskey we logged in with: **$cbAccessKey**
+  * SessionID we logged in with: **$cbSessionID**
+  * cbwsLibrary connection to coreBOS: **$cbconn**, this is a coreboswslibrary object
+  * http_curl connection to coreBOS: **$httpc**, this is a cURL wrapper
+  * Obviously any PHP code is valid and supported
+  * Finally there is a high level debug function called **debugmsg()** which accepts two parameters, a header string which will be printed in bold and a variable of any time which will be dumped using the PHP print_r function
+
+
+=== Adding test code ===
+
+Just copy the script into the **testcode** directory and it will be detected automatically.

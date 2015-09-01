@@ -1,0 +1,10 @@
+====== 81: On send PDF by email fill in email address by default  ======
+
+Issue Reference in Tracker: ~~issue:81~~
+
+===== Detailed Explanation =====
+
+{{ :issuetracker:corebos:issue:fillinaccountemailbefore.png?800 |}}
+
+
+{{ :issuetracker:corebos:issue:fillinaccountemailafter.png?800 |}}

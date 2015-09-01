@@ -1,0 +1,25 @@
+====== Workflows ======
+
+Workflows are a very powerful part of the application. They permit us to automate our business logic to some extent making it possible to standardize process and have the application do some of the repetitive tasks our business requires.
+
+It is necessary to execute four steps to configure and setup a workflow:
+  * Select a module against which the workflow will be executed and give it a name
+  * Select when the workflow will be triggered
+  * Select any conditions that restrict for what records the workflow must take it's actions
+  * Define and configure the different tasks that the workflow will perform
+
+In the next sections you will be able to find more information on these steps.
+
+
+  * [[workflow_launch_conditions|Workflow launch conditions]]
+  * [[scheduled_workflows|Scheduled Time based Workflows]]
+  * [[workflow_conditions|Workflow conditions]]
+
+===== Workflow Tasks =====
+  * [[update_workflows|Update Workflow Tasks]]
+  * [[addeltag_workflows|Add/Delete Tags Workflow Tasks]]
+  * [[relateproductservice_workflow|Related Product/Service Workflow Task]]
+  * [[invokecustomfunction_workflows|Invoke Custom Functions Workflow Tasks]]
+
+===== Workflow Examples =====
+  * [[workflow_examples|Workflow Examples]]

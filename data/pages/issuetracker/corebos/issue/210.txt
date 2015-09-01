@@ -1,0 +1,7 @@
+====== 210: eliminate 100 record limit on select queries  ======
+
+Issue Reference in Tracker: ~~issue:210~~
+
+===== Detailed Explanation =====
+
+{{page>en:devel:corebosws:querylanguage#query_return_limit}}

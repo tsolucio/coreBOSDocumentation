@@ -1,0 +1,46 @@
+====== Importing Data::Special references and comments ======
+
+{{youtube>41fQCIenRUU}}
+
+===== Search Reference Fields on (almost) any field of the referenced module =====
+<WRAP center round important 70%>
+**Starting at coreBOS 5.5**
+</WRAP>
+
+When importing information into the application we can automatically related the record we are importing with another module when that relation is direct. For example, if we import a Contact record we can import the Account column with the identifier field of accounts and the new contact will get related correctly.
+
+The CSV contact file shown next will result in a new contact related to the **EDFG Group Limited** account.
+
+<code>"Salutation","First Name","Last Name","Office Phone","Organization Name","Mobile"
+"","Susan","Wilson","(694) 186-6696","EDFG Group Limited","(838) 935-6869"</code>
+
+When the import process reaches the **Organization Name** field, it sees that it is a reference field and automatically searches the Account module for an account with "account name" equal to the value in the import CSV. If found it will related the two records correctly, if not, a new account will be created and then the relation will be established.
+
+These types of reference fields support an //extended// syntax whereas you can indicate the module that the value belongs to. This can be seen in the next CSV file:
+
+<code>"Salutation","First Name","Last Name","Office Phone","Organization Name","Mobile"
+"","Susan","Wilson","(694) 186-6696","Accounts::::EDFG Group Limited","(838) 935-6869"</code>
+
+To all effects this second CSV file will result in the **exact same import process** as the previous one.
+
+This extended functionality is useful when we import a record with a reference field that can point to more than one module. For example, when importing tickets or potentials, where the reference field can point either to an Account or a Contact, so we have to indicate in which module the import process must search for the given value.
+
+The next CSV would be an example of importing opportunity records:
+
+<code>"Opportunity Name","Related To","Amount","Type","Expected Close Date"
+"EDFG Group Limited - 1000 units","Accounts::::EDFG Group Limited","25000.00","Existing Business","2016-01-07"
+"samplevtiger - 1000 units","Contacts::::Susan Wilson","75000.00","--None--","2016-01-03"</code>
+
+The field upon which the relation is searched is ALWAYS the identifier field of the module. Every module has a special field called the **entity identifier field**, this special field is the one you can click on inside the application to get to the **detail view** of the record. For example, for Accounts that is the "account name", for potentials the "opportunity name" and for tickets the title or subject of the ticket.
+
+Sometimes we don't have that special field in our import data or, if we do, we can't be sure that the values match exactly. This specially happens when importing to Accounts and Contacts. For these cases it would be ideal to be able to have the import process search on some other field that we have at hand or that we know is supposed to be unique between the application and the import data.
+
+The ideal/typical scenario is where you have done the **first import right (!)** and added a custom field to the module that indicates the ID of that record in your other system. This is fundamental where you have two system coexisting in the company and you have to do regular imports of information.
+
+**As of coreBOS 5.5** we have extended the extended syntax 8-) so you can indicate the field you want to search upon to find the referenced module. You can now add the field name upon which you want to search AFTER the extended syntax with the same separator "::::". So the next CSV would import potentials searching the first record on the Accounts' siccode field and the second on the Contacts' cf_640  field.
+
+<code>"Opportunity Name","Related To","Amount","Type","Expected Close Date"
+"Extended Test Account","Accounts::::987654::::siccode","987654","Existing Business","2016-01-07"
+"Extended Test Contact","Contacts::::123456::::cf_640","123456","--None--","2016-01-03"</code>
+
+{{youtube>qKV4DZRiXu0}}

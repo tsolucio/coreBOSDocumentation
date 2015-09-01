@@ -1,0 +1,210 @@
+====== coreBOS Updater :: How to keep your coreBOS application up to date ======
+
+__coreBOS 5.5__ has brought a new tool to our //powerful business operating system//: **coreBOS Updater**.
+
+Since we have a **very stable and tested code base**, and thanks to the powerful code administration and distribution system that [[https://github.com|GitHub]] gives us, it just seems natural to put your coreBOS install under code versioning with git (be that private or open) and point a remote to the [[https://github.com/tsolucio/corebos|public, open source coreBOS project]].
+
+Once you have that setup, updating your code with our (constant) changes is fairly easy, as git carries all the heavy weight during **merge**, leaving us to fix the minor details.
+
+So with the approach above and the fact that the majority of changes we make are also **tested and stable**, you really don't have to wait for us to release an official download to get the new features, you just update your code and __apply the database changes__ the new code may require.
+
+**<wrap em>Wait!!</wrap>**  <wrap hi>Apply database changes???  How do you do that?  git doesn't do that, how do I know what changes I need to apply?</wrap>
+
+Enter **coreBOS Updater**.
+
+**coreBOS Updater** is a tool that will control the state of our database with respect to the code and will be able to automatically apply the pending changes that are needed. This way the upgrade process is converted into these steps:
+  - update your code with git (or manually if you are brave :-))
+  - log into the application and go to the coreBOS Updater module
+  - click on the "Load Updates" button
+  - click on the "Apply All" button
+
+**You are finished! That easy!** coreBOS updater has taken care of all the pending database changes and your code and database are in sync and ready for you to start working.
+
+Going forward all future releases of coreBOS will follow this procedure to apply database changes for the upgrades.
+
+If you have a look at the module you will see that each changeset is created as a record in the module. You can see the **details** of the change and also **undo** some of them, all those that are not pure **system** updates. The **system** type changesets are mandatory for the application to work correctly.
+
+====== coreBOS Updater :: How to prepare and distribute system changes ======
+
+From a developers point of view, the coreBOS Updater tool is a clean way of recording database changes in code. This permits us to control (to some extent) the set of database changes that are needed in our version control system.
+
+Since we are really programming the changes in files, we then version those changes along with the rest of file changes that define the new feature or bug fix and it all gets registered in the versioning system.
+
+To help us prepare the database changes coreBOS updater is going to take care of all the dirty work it can for us, so we basically just have to write the changes that are needed.
+
+===== Step 1: Define the change and the file that contains the work to be done =====
+
+Edit the file //modules/cbupdater/cbupdater.xml// and add your definition to the list of changes.
+
+<WRAP center round info 80%>
+The file //modules/cbupdater/cbupdater.xml// is the main change file of the coreBOS application. Although you can use this file to register your changes the correct way to distribute them is by creating your own changeset XML file inside the //modules/cbupdater/cbupdates// directory. When coreBOS Updater looks for changes it reads them from the base //modules/cbupdater/cbupdater.xml// file and then looks for any .xml file inside //modules/cbupdater/cbupdates// to pickup those changes also. That way each programmer can easily distribute changes without overwriting the base application changesets.
+</WRAP>
+
+
+The XML changeSet element contains various entries of which only two are mandatory, but all recommended:
+
+^author|optional|Name of the person or company adding this changeset|
+^description|optional|Explanation of the goals of this changeset|
+^filename|mandatory|Name of the file which contains the changes. This file can be anywhere on the file system as long as it is accessible by coreBOS. We propose and recommend that these changesets be saved all together in //build/changeSets// directory|
+^classname|mandatory|Name of the class that implements the changes (explained next)|
+^systemupdate|optional|True if the changeset is mandatory, false if it can be undone|
+^perspective|optional|True if the changeset is a [[en:devel:corebosupdater#corebos_updatercorebos_perspectives|perspective (see below)]]|
+^continuous|optional|True if the changeset must/can be executed always. Certain changeset are very general and can be (or must be) applied many times.|
+
+An example:
+<code><changeSet>
+    <author>joebordes</author>
+    <description>Custom field support on FAQ module</description>
+    <filename>build/changeSets/cffaq.php</filename>
+    <classname>cffaq</classname>
+    <systemupdate>true</systemupdate>
+    <perspective>false</perspective>
+    <continuous>false</continuous>
+</changeSet></code>
+
+The file //modules/cbupdater/cbupdater.xsd// defines the official schema accepted for the XML changeset file and it is used by coreBOS Updater to validate the XML format.
+
+{{ :devel:cbupdater_xsd.png?700 |}}
+===== Step 2: Implement your change =====
+
+  * copy //build/changeSets/cbupdate_template.php// to the name you used in the XML <filename> element
+  * edit your script
+  * change the license
+  * change the name of the class to the name you used in the XML <classname> element
+  * edit the applyChange() function: locate the line that contains "do your magic here" and start adding your changes
+  * edit the undoChange() function: locate the line that contains "undo your magic here" and start adding code to undo the change
+  * test and validate
+
+<WRAP center round info 80%>If your change cannot be undone you can eliminate the undo function completely and coreBOS Updater will take care of it.</WRAP>
+
+You can find a whole bunch of **real examples** of different types in the //build/changeSets// directory.
+===== Step 3: Test, validate and version the change =====
+
+**Really!!**: Test, validate and version the change.
+
+====== coreBOS Updater :: Class and helper functions explained ======
+
+coreBOS Updater changes are implemented by extending the **cbupdaterWorker** class. This class, gives us all the functionality to plug into the coreBOS system and do any type of action that may be required.
+
+Basically the only method we need to override is the **applyChange()** method. This method implements the changes that represent the changeset. If your change can be undone then you must also override the **undoChange()** method and add the necessary code to undo the change.
+
+The rest of methods that the **cbupdaterWorker** class implements are helper methods and some auxiliar methods for functionality:
+
+^__construct|will load the changeset definition from the database, if it isn't found there an error will be shown and the process will stop. If all goes will this method starts the output formatting on screen|
+^isApplied|boolean method which tells us the applied state as recorded in the database|
+^isBlocked|boolean method which tells us if the change set is blocked. If a changeset is blocked it cannot be applied nor undone. It will automatically be ignored|
+^isContinuous|boolean method which tells us if the changeset is of type Continuous. Continuous changesets can be applied many times without breaking the system and will be picked up when launching an "Apply All"|
+^isSystemUpdate|boolean method which tells us if the current changeset is a //system// changeset|
+^hasError|boolean method which indicates if there has been an error executing the changeset|
+^markApplied($stoponerror=true)|helper method which does the work of cleaning up after the changeset has been applied. This must be executed at the end of a correct execution of **applyChange()**|
+^markUndone($stoponerror=true)|helper method which does the work of cleaning up after the changeset has been undone. This must be executed at the end of a correct execution of **undoChange()**|
+^ExecuteQuery($query,$params=array())|helper method that permits us to send SQL commands to the database. This method shows the result on screen and counts updates the SQL command succees/failure counters. With this method it is not necessary to execute direct SQL commands against the global $adb object, although you can if you need/want to|
+^deleteWorkflow($wfid)|helper method that permits us to delete workflows|
+^installManifestModule($module)|helper method that simplifies the task of installing a new module|
+^isModuleInstalled($module)|helper method that looks in the vtiger_tab table to see if a given module is installed, be it active or not|
+^sendMsg($msg)|put the given successful message on screen following the coreBOS Updater on screen formatting|
+^sendMsgError($msg)|put the given error message on screen following the coreBOS Updater on screen formatting|
+^finishExecution|closes the on screen formatting and outputs the results of the execution|
+
+===== applyChange() =====
+
+After reading the above functionality we can see that the applyChange() method template prepares everything so we just have to write our changes:
+
+<code>function applyChange() {
+  if ($this->isBlocked()) return true;
+  if ($this->hasError()) $this->sendError();
+  if ($this->isApplied()) {
+     $this->sendMsg('Changeset '.get_class($this).' already applied!');
+  } else {
+     // do your magic here
+     $this->sendMsg('Changeset '.get_class($this).' applied!');
+     $this->markApplied();  // this should not be done if changeset is coninuous
+  }
+  $this->finishExecution();
+}</code>
+
+First it makes sure there is no error and it isn't blocked, then it checks if it is already applied, if that is ok, then it lets us do whatever we need to do and it ends up marking the changeset done, informing the user and finishing the changeset.
+===== undoChange() =====
+After reading the above functionality we can see that the undoChange() method template prepares everything so we just have to write code to undo our changes: 
+
+<code>function undoChange() {
+  if ($this->isBlocked()) return true;
+  if ($this->hasError()) $this->sendError();
+  if ($this->isSystemUpdate()) {
+    $this->sendMsg('Changeset '.get_class($this).' is a system update, it cannot be undone!');
+  } else {
+    if ($this->isApplied()) {
+       // undo your magic here
+       $this->sendMsg('Changeset '.get_class($this).' undone!');
+      $this->markUndone();  // this should not be done if changeset is coninuous
+    } else {
+     $this->sendMsg('Changeset '.get_class($this).' not applied!');
+    }
+  }
+ $this->finishExecution();
+}</code>
+
+First it makes sure there is no error and it isn't blocked, then it checks if it is a system update in which case it stops the execution as system changesets cannot be undone. Next it looks if it is applied because if it isn't it can't be undone. If that is ok, then it lets us do whatever we need to do and it ends up marking the changeset undone, informing the user and finishing the changeset.
+
+===== Examples =====
+
+You can find a whole bunch of **real examples** of different types in the //build/changeSets// directory, but I am going to comment on a few of the interesting ones.
+
+^[[https://github.com/tsolucio/corebos/blob/master/build/changeSets/add_workflow_tags.php|add_workflow_tags.php]]|this one is interesting for two things: one is to see how a new workflow method is added using the //VTTaskType::registerTaskType()// method, and the other because it implements it's own //isApplied()// because it looks for the new workflow tasks it wants to create before permitting it to be created|
+^[[https://github.com/tsolucio/corebos/blob/master/build/changeSets/installcyp.php|installcyp.php]]|interesting to see how a module is installed and deactivated when undone|
+^[[https://github.com/tsolucio/corebos/blob/master/build/changeSets/PotentialForecastAmount.php|PotentialForecastAmount.php]]|interesting to see how to add new fields and also a workflow associated to the field|
+^[[https://github.com/tsolucio/corebos/blob/master/build/changeSets/workflow_contactassignedto.php|workflow_contactassignedto.php]]|interesting to see how to add a workflow custom method and check if it can be undoone|
+
+
+===== Command Line Execution =====
+
+coreBOS updater has a set of scripts that permit loading and applying changesets from the command line:
+
+  * **getupdatescli.php** which loads changesets into the application from the default files or from an .xml file given as a parameter. This script returns a comma separated list of changesets IDs created
+  * **doworkcli.php** which can apply or undo a given set of coreBOS updater changesets or simply ALL
+  * **loadapplychanges.php** which executes in order the two previous scripts to directly load and apply all changesets in a given .xml definition file
+
+You can use this script in your composer.json file to apply changesets after loading some modules:
+
+<code>...
+  },
+  "scripts": {
+    "post-install-cmd": [
+    	"tsolucio\\ComposerInstall\\ComposerInstall::postPackageInstall",
+    	"php modules/cbupdater/loadapplychanges.php modules/ConfigEditor/composer.xml"
+    ],
+    "post-update-cmd": "tsolucio\\ComposerInstall\\ComposerInstall::postPackageUpdate"
+  }
+}</code>
+
+===== coreBOS Perspective Changeset Loader =====
+
+The coreBOS Perspective changeset loader is an extension for distributing coreBOS updater changesets. It gives the developer the infrastructure to simply create the set of changesets that need to be applied and distribute and apply them easily into any existing coreBOS application.
+
+Once defined the .xml change file and created all the changesets you can send this extension to any coreBOS application or include it as part of a perspective, to have the changes applied.
+
+[[https://github.com/tsolucio/cbPerspectiveCS|We have created a template project on github]] which you can use as a starting point for your changes or simply to study how it is done.
+
+Ideally you will create one of these extensions for your perspective in such a way that it will require first for all the new modules to be installed and then, the last one will be this extension which will apply the final changes to get all the functionality into place.
+			
+
+====== coreBOS Updater :: coreBOS Perspectives ======
+
+**coreBOS Updater** is one fundamental step towards an important concept that we have on our roadmap: **<wrap em>Perspectives</wrap>**.
+
+A perspective is a set of code and database changes that literally convert a stock coreBOS system into a verticalization prepared for a clearly defined market segment.
+
+The other big step upon which the perspective concept stands is the [[en:devel:packagemodules|code structure and packaging system]]. Since we have laid out the code in such a way that we do not need to update packages and all the code is simply there, in place, ready to be modified we can easily define a perspective as:
+
+  * a patch to change the code (this should not be required)
+  * an .xml coreBOS Updater changeset file and it's associated worker scripts
+  * a composer.json file to install the new modules
+
+The patch will add the changes that the code needs while the coreBOS updater .xml changeset file and the composer.json file will define the set of database changes and new modules that are needed to convert the raw application into the verticalization we need.
+
+To fulfill this view there are still a few things that need to be done:
+
+  * <del>import</del> any set of changes: currently coreBOS always reads it's set of changesets from the same hardcoded file, we must permit uploading a compressed package that will contain a set of code changeset scripts and a custom cbupdater.xml definition file and use that as the origin for applying the changesets (this is done)
+  * order: currently changesets are not guaranteed to be executed in any specific order
+  * dependencies: implement a way to restrict the execution of a changeset unless others exist
+  * <del>export</del>: export the current set of changesets in the database (this is done)

@@ -1,0 +1,79 @@
+====== Administration FAQ ======
+
+~~QNA~~
+
+??? "report to" field in user profile have some influence in hierarchy and permission?
+
+!!! No - it helps in identifying the owner. Sharing access (record level) permission is based on Roles instead.
+
+??? How to increment maximum file upload. File upload field with message 'Maximum upload size is MB'
+
+!!! Forums and Googles say to edit the php.ini file, increasing both upload_max_filesize and also post_max_size. I set them both to 25M & restarted server, but still no joy.
+
+So then changed config.inc.php for the upload_maxsize to 25000000 and it worked. NOTE: The configuration editor will show a value of 25, (to the right of “(Max 5MB)” but I tested it and it DOES work. Interestingly, it also shows the proper 25M value when the user uploads a file/document. 
+
+** reilogix ** [[https://discussions.vtiger.com/index.php?p=/discussion/166163/file-upload-field-with-message-039maximum-upload-size-is-mb039#Item_3|Forum Thread]]
+
+??? Hi, I'm looking at including the Project ID in a email sent from a workflow on project creation (to make a URL link in the email)
+
+!!!  Use the Detail View URL link meta variable.
+
+{{ :en:corebos:detailviewurl.png?700 |}}
+
+<WRAP center round info 70%>Versions of coreBOS after February 2015 have a new meta-variable called //RecordId// which you can use also.</WRAP>
+
+
+??? My vtigercron.php script isn't working because I don't have PHP CLI installed. How can I fix that?
+
+!!! I found this solution via google, so I guess more people have had problems. I changed line 19 of vtigercron.php into:
+
+<code php>if (PHP_SAPI === "apache2handler" || (isset($_SESSION["auth...</code>
+
+Originally the ‘apache2handler’ is set to ‘cgi’ if I remember correctly. I remember having to add a temporary line to the vtigercron.php file to check what my setting needed to be, so this could be used as a selector.
+
+I found [[https://discussions.vtiger.com/index.php?p=/discussion/53017/vtiger-5-4-0-cron-jobs/p1|this forum post in which this was mentioned that helped me]].
+
+This was the solution I used from that forum post:
+
+**FIX POSTED** for vtiger 5.4.0 cron error: "**Access Denied**" when file permissions set correctly
+
+After some debugging, I found that the error occuring in [vtiger]/vtigercron.php occurs in the first line of code after the includes:
+
+ERROR LOCATION
+
+<code php>if(PHP_SAPI === "cli" || (isset($_SESSION["authenticated_user_id"]) && isset($_SESSION["app_unique_key"]) && $_SESSION["app_unique_key"] == $application_unique_key)){</code>
+...
+
+This statement fails because PHP_SAPI <> "cli", furthermore session variables $_SESSION["app_unique_key"] and $_SESSION["authenticated_user_id"] are blank.
+
+
+FIX INSTRUCTIONS
+
+  - To fix, add the following line above that statement to find out what value PHP_SAPI is for YOUR server.<code php>echo(PHP_SAPI);</code>
+  - Check your adminstrative email for the cron job or check the log. You will notice that the value of PHP_SAPI is not "cli" but rather something like "cgi-fcgi" (or fast cgi).
+  - In the statement above , if(PHP_SAPI === "cli" .... , replace "cli" with "cgi-fcgi" or whatever your value of PHP_SAPI is. And of course, you can now delete the echo statement.
+
+??? My vtigercron.php script isn't working because I don't have PHP CLI installed. I changed the CLI to apache2handler following the previous question. Can that produce any problems?
+
+!!! The answer is that we don't know. The list of possible values and environments within which coreBOS cron can run are very big, the minor implications of each one and how they can affect the crons is nearly impossible to test. What we HAVE tested is PHP CLI and that will work.
+
+For example, simple crons like //SendReminder// which simply launches an SQL command and sends an email should have no problem in any environment, but workflows, scheduled reports or importing could have a different set of issues depending on the environment. Exactly apache2handler means you are running in a shared environment and under normal user restrictions, that could produce permission issues with the scheduled reports file attachments, in which case the email could not pick up the generated file, but that really depends on the configuration of the operating system....
+
+In short, you most probably won't have any problems with the change, but it is difficult for us to state that categorically.
+
+??? I know as a security feature vtigercrm and coreBOS will auto log out a user after a certain time. Is there a way to adjust how long the system waits before auto logging out a user?
+
+!!! Neither vtiger crm nor coreBOS have any timeout logout security measure. This is managed by PHP. What vtiger CRM and coreBOS do is save authentication information in the PHP session. If this session is deleted then your browser cannot login and will ask you for credentials again. For security reasons, PHP deletes the session information every now and then and you get kicked out of coreBOS. So to change this behavior you have to configure your PHP, not coreBOS. [[http://lmgtfy.com/?q=php+garbage+collection+gc_probability|Look for gc_probablity, gc_maxlifetime and the other garbage collector (gc_) variables]].
+
+??? From Portal column doesn't display the correct value. It seems that even though my customers create tickets from the Customer Portal, the column From Portal is NO for all the tickets. How does this work? Should it not be YES for the tickets created from Customer Portal?
+
+!!! The From Portal field is really an internal field for ticket notification management. So it's value is forced so that the workflow notifications work correctly. The value of this internal field is changed so that the notifications go out when they should.
+
+If you need a way to determine if a given ticket came from the portal or not I would recommend you do this:
+
+  * create yourself a custom field checkbox called "Created by portal" (or something like that)
+  * modify the "Workflow for Ticket Created from Portal" workflow by adding an "Update Field" task and set your custom field to true
+  * use your custom field for filtering and reports
+  * forget that the from_portal field exists :-)
+
+In any case if you do want to go down the path of changing the way that field works and adapting the workflows accordingly it all happens in the file: modules/HelpDesk/HelpDeskHandler.php

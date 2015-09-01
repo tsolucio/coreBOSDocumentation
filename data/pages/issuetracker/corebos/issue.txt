@@ -1,0 +1,4 @@
+~~NOCACHE~~
+====== open coreBOS Issue Details ======
+
+~~SEARCHPATTERN:'Issue Reference in Tracker'?? +issuetracker:corebos:issue: ??~~

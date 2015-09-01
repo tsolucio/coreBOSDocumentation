@@ -1,0 +1,43 @@
+====== Como Configurar el Servidor de Correo Saliente ======
+
+coreBOS necesita una cuenta de correo de salida para poder enviar correos administrativos relativos al funcionamiento de la aplicación. Utilizando esta cuenta de correo enviará correos de aviso provenientes de los flujos de trabajo, del calendario o al finalizar una importación (por ejemplo).
+
+Dado que es necesaria esta cuenta de correo se ha tomado la decisión de utilizarla también para enviar los correos de trabajo de los propios usuarios. Para que esto funcione y parezca que cada usuario manda los correos desde su propia cuenta se utiliza una técnica permitida por el protocolo de envíos de correo (SMTP) denominado RELAY. Esto consiste en que el programa se conecta al servidor con la cuenta que tiene configurada y le indica que va a mandar el correo en nombre de otra cuenta de correo.
+
+Esta característica propia del sistema SMTP ha pasado por una fase de mala prensa debido a su abuso por parte de generadores de spam y virus que lo aprovechan para enviar emails no autorizados en nombre de otros usuarios. Es por ello que **algunos servidores, más estrictos** con los emails que pasan por ellos, no lo permiten y **NO FUNCIONARAN** con coreBOS o solo permitirán enviar emails como un único usuario, el que se utiliza para conectar al servidor.
+
+Para introducir los datos de la cuenta de correo de salida hay que ir a la sección de Configuración y dentro de la misma a la sección Configuración del Servidor de Correo
+
+<code>Configuración > Configuración del Servidor de Correo</code>
+
+{{ :images:outgoingserver.png?750 |}}
+
+^Servidor de Correo Saliente|es el servidor al que hemos de conectar para poder enviar correos. este campo soporte una sintaxis extendida mediante la cual podremos indicar el protocolo y el puerto, algo así: <code>ssl://smtp.gmail.com:467</code> o <code>tsl://msexchange:587</code>|
+^Usuario y Contraseña|son el usuario y la contraseña para conectar al servidor|
+^Email de|este campo forzará que todos los emails que salgan del sistema parezcan que provienen de este email. No obstante el email del usuario que envía el email se utilizará como "Responder a". Esto significa que si el receptor pulsa sobre responder, su respuesta llegará al usuario que lo ha mandado aunque el correo se haya enviado desde este email. Supongo que por temas de spam y/o imagen tendrá alguna justificación|
+^Requiere autentificación|nos permite definir el protocolo a utilizar para la conexión|
+
+Al guardar los datos se hará una comprobación de conexión y envío de correo. Si no se consigue enviar correctamente el correo NO se guardarán los datos. Seremos devueltos a la página de configuración con un mensaje que indica que no se ha podido enviar el correo. Llegados a este punto hay un error de conexión o autentificación o de soporte de RELAY y hay que acudir a las [[en:devel:debuging#email|técnicas de depuración]].
+
+<WRAP center round important 75%>
+Cuando volvemos a la página de configuración, los valores anteriores están presentes. No podemos ver el campo de la contraseña, pero es lo más probable que sea incorrecta, el valor que se introduce NO es rellenado de nuevo. Debes introducir la contraseña en todas las pruebas que hagas.
+</WRAP>
+
+Si al depurar llegamos a un mensaje de error del tipo:
+<code>SMTP -> FROM SERVER:550 5.7.1 Client does not have permissions to send as this sender
+SMTP -> ERROR: DATA END command failed: 550 5.7.1 Client does not have permissions to send as this sender
+SMTP Error: data not accepted.</code>
+
+El servidor de correo está diciendo que no tenemos permiso para enviar. Básicamente dice que el error es porque la cuenta con la que se conecta ha de ser la misma que el remitente, el servidor no soporta RELAY.
+
+Si os pasa esto, os recomiendo pillar una cuenta en [[http://sendgrid.com|sendgrid]], de verdad que funciona de maravilla y os da mucha más información de la que tenéis ahora. Tienen cuentas gratuitas con un limite de 200 correos al día y por poco dinero podéis hacer aun más. Nosotros lo utilizamos con regularidad para envíos masivos desde coreBOSCRM y para controlar las entregas de correo administrativo. Vale más de lo que cuesta.
+
+===== Algunas páginas relativas al error de configuración =====
+
+[[http://community.office365.com/es-es/f/203/t/199699.aspx]]\\
+[[https://discussions.vtiger.com/index.php?p=/discussion/55230/smtp-mail-settings-for-office-365-exchange/p1]]\\
+[[http://technet.microsoft.com/en-us/library/dn554323.aspx]]\\
+
+====== Depurando errores ======
+
+{{page>en:devel:debuging#email}}

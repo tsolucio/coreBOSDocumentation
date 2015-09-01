@@ -1,0 +1,145 @@
+====== coreBOSCP::How to change the default functionality of a module ======
+
+The goal of this documentation page is to indicate the necessary steps to be taken to customize the functionality of any given module in the customer portal. By default the customer portal code knows how to perform the basic operations on any coreBOS module. Simply indicating the name of the module, the coreBOSCP code will be able to create, retrieve, update and delete the records of the module. This includes paging, advanced searching and a certain layout on the views while respecting the permission and role system implemented inside coreBOS.
+
+In any normal scenario we will inevitably need to perform specific customizations on certain modules, moving away from the standard functionality implemented by coreBOSCP. We have kept this in mind when creating the application and although you will need to be comfortable with php and yii framework programming to enhance the customer portal, that will be about all you will need to benefit from all our work and build upon it.
+
+In the rest of the article I will describe how to create a special view for the FAQ module. My goal is to keep all the functionality we already have but apply a special layout view for the details of the FAQ contents where we will give more visible importance to the question and answer and also add the attachments and comments related to the FAQ
+
+===== Extending and customizing the FAQ module =====
+
+yii framework uses the [[http://en.wikipedia.org/wiki/Model–view–controller|Model–View–Controller (MVC) design pattern]] so, coreBOSCP has implemented a model that represents any coreBOS module called vtentity, a controller that indicates the set of actions that can be executed against the model, called VtentityController and a set of views that show the information in forms of list and detail views.
+
+To pass control from the browser to the model, the VtentityController class accepts 4 URL formats, with these 4 invocation URL we can access all the functionality implemented in the model.
+
+So, if we want to enhance any given coreBOS module we will have to follow the same structure that already exists and that is inferred by the yii framework and create our own model, controller and views.
+
+Our first step is to tell yii that there is a set of new URLs (4) that must be accepted and treated differently than the default. The current (generic) URL formats can be found in the file protected/config/main.php and are:
+
+<code>// Default vtentity behaviour
+'vtentity/<module:'.URL_MATCH.'>'=>'vtentity/index',
+'vtentity/<module:'.URL_MATCH.'>/<action:'.URL_MATCH.'>'=>'vtentity/<action>',
+'vtentity/<module:'.URL_MATCH.'>/<action:'.URL_MATCH.'>/<id:'.URL_MATCH.'>'=>'vtentity/<action>',
+'vtentity/<module:'.URL_MATCH.'>/list/<id:'.URL_MATCH.'>/dvcpage/<dvcpage:'.URL_MATCH.'>'=>'vtentity/list',</code>
+
+as can be seen we define a format of vtentity/module/action, that means that when we access the FAQ module we will be seeing URL that say vtentity/Faq/action and when we access accounts we will see vtentity/Accounts/action. So our fist step is to define special rules for the module we want to treat specially. This looks like this:
+
+<code>// Faq module specific class
+'vtentity/<module:Faq>'=>'faq/index',
+'vtentity/<module:Faq>/<action:'.URL_MATCH.'>'=>'faq/<action>',
+'vtentity/<module:Faq>/<action:'.URL_MATCH.'>/<id:'.URL_MATCH.'>'=>'faq/<action>',
+'vtentity/<module:Faq>/list/<id:'.URL_MATCH.'>/dvcpage/<dvcpage:'.URL_MATCH.'>'=>'faq/list',</code>
+
+Comparing these rules with the default rules we can appreciate that fundamentally we are sending those URL where module=Faq to the faq model instead of the vtentity model which is the default.
+
+Now we have to create this new model and the associated controller.
+
+In the protected/models/ directory we create this Faq.php script:
+
+<code>class Faq extends Vtentity
+{
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
+}</code>
+
+In the protected/controllers/ directory we create this FaqController.php script:
+
+<code>class FaqController extends VtentityController
+{
+	
+	public function __construct($id,$module)
+	{
+		parent::__construct($id,$module);
+	}
+
+}</code>
+
+With these changes in place we can now access the Faq module and see the exact same behavior we already had. Not much as a customization but a good starting point none the less :-)
+
+The functional difference between the code before and after the change is that now the execution for Faq requests pass through our new FaqController and Faq model class. Since these classes extend the already existing vtentity classes and don't override any of their functions the on screen result is as if we hadn't done anything. But now we can implement any functionality we need inside our FaqController and Faq classes without modifying the base vtentity class.
+
+In this case, since I want to change the detail view layout I will override the List and View actions and call a new view that I will construct using yii infrastructure and I will leave all the other functionality to the underlying vtentity class. The code looks like this:
+
+<code>class FaqController extends VtentityController
+{
+	
+	public function __construct($id,$module)
+	{
+		parent::__construct($id,$module);
+	}
+
+	/**
+	 * Lists all records in DetailView (yii List View).
+	 */
+	public function actionList()
+	{
+		$pos=array('pageSize'=>1);
+		if(isset($_GET['dvcpage'])) {
+			$pos['currentPage']=$_GET['dvcpage'];                        
+			unset($_GET['dvcpage']);
+		}	
+                $model=$this->_model;
+                $model->unsetAttributes();
+                $model->setScenario('search');
+		if(isset($_GET[$this->modelName])) {                  
+			$model->setAttributes($_GET[$this->modelName]);
+			$_SESSION[$this->modelName]=$_GET[$this->modelName];
+		} elseif (isset($_SESSION[$this->modelName])) {                  
+			$model->setAttributes($_SESSION[$this->modelName]);
+		}                                   
+
+		$this->setCRUDpermissions($model->getModule());
+		$this->viewButtonSearch=false;
+		$this->viewButtonDownloadPDF=true;
+		$dataProvider=$model->search($pos);
+		$this->render('//faq/index',array(
+			'dataProvider'=>$dataProvider,
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Displays a particular model.
+	 */
+	public function actionView()
+	{
+		$this->_model=null;
+		$model=$this->loadModel();
+		$this->setCRUDpermissions($model->getModule());
+		$this->viewButtonSearch=false;
+		$this->render('//faq/_view',array(
+			'model'=>$model,
+			'data'=>$model,
+		));
+	}
+
+}</code>
+
+Note that I simply copied the whole action from vtentity and changed the view. Obviously I can implement any logic that may be needed. Then I created a new protected/views/faq directory where I added the new views with the desired layout. In this case I did not need to add any code to the model.
+
+This is the how the new FAQ view looks:
+
+{{:en:coreBOSCP:cpfaqview.png?950|}}
+
+
+**NOTE**: for specific CSS applied to the new view I import my own CSS file in the main themes/standard/css/style.css file
+
+<code>Index: themes/standard/css/style.css
+===================================================================
+--- themes/standard/css/style.css	(revisión: 289)
++++ themes/standard/css/style.css	(copia de trabajo)
+@@ -26,6 +26,7 @@
+ @import "pagination.css";
+ @import "code.css";
+ @import "../jquery-ui/start.css";
++@import 'faq.css'; /* Import CSS for special FAQ views */
+ 
+ @media screen, projection
+ {
+</code>
+
+and for the new translation strings I simply added them to the  protected/messages/*/core.xml translation files.

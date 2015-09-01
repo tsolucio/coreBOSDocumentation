@@ -1,0 +1,3 @@
+====== coreBOS Customer Portal Issue Tracker ======
+
+~~SEARCHPATTERN:'Issue Reference in Tracker'?? +issuetracker:coreboscp:issue: ??~~

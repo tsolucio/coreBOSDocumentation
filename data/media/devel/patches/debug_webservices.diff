@@ -1,0 +1,47 @@
+Index: include/Webservices/OperationManager.php
+===================================================================
+--- include/Webservices/OperationManager.php	(revisión: 413)
++++ include/Webservices/OperationManager.php	(copia de trabajo)
+@@ -139,7 +139,6 @@
+ 		
+ 		function runOperation($params,$user){
+ 			global $API_VERSION;
+-			try{
+ 				$operation = strtolower($this->operationName);
+ 				if(!$this->preLogin){
+ 					$params[] = $user;
+@@ -158,11 +157,6 @@
+ 						return $resp;
+ 					}
+ 				}
+-			}catch(WebServiceException $e){
+-				throw $e;
+-			}catch(Exception $e){
+-				throw new WebServiceException(WebServiceErrorCode::$INTERNALERROR,"Unknown Error while processing request");
+-			}
+ 			
+ 		}
+ 		
+Index: webservice.php
+===================================================================
+--- webservice.php	(revisión: 413)
++++ webservice.php	(copia de trabajo)
+@@ -73,7 +73,6 @@
+ 	$sessionManager = new SessionManager();
+ 	$operationManager = new OperationManager($adb,$operation,$format,$sessionManager);
+ 	
+-	try{
+ 		if(!$sessionId || strcasecmp($sessionId,"null")===0){
+ 			$sessionId = null;
+ 		}
+@@ -127,10 +126,4 @@
+ 		}
+ 		$rawOutput = $operationManager->runOperation($operationInput,$current_user);
+ 		writeOutput($operationManager, $rawOutput);
+-	}catch(WebServiceException $e){
+-		writeErrorOutput($operationManager,$e);
+-	}catch(Exception $e){
+-		writeErrorOutput($operationManager, 
+-			new WebServiceException(WebServiceErrorCode::$INTERNALERROR,"Unknown Error while processing request"));
+-	}
+ ?>

@@ -1,0 +1,9 @@
+====== 205: add workflow task: add/del tags ======
+
+Issue Reference in Tracker: ~~issue:205~~
+
+===== Detailed Explanation =====
+
+{{page>en:addeltag_workflows}}
+
+

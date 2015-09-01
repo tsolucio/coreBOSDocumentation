@@ -1,0 +1,20 @@
+====== Administrador Trucos y Consejos ======
+~~QNA~~
+
+??? Modelo de producto con varios seriales en stock. Como hacer en el caso de tener varios productos del mismo modelo pero con distintos seriales para agregarlos en el stock y poder controlar los seriales.
+
+!!! La solución es crear un **recurso** para cada producto vendido y seleccionar en el recurso la cuenta, la factura y el producto. Después rellenas todos los demás campos relevantes.
+
+{{ :es:adminmanual:factura_recurso.png?800 |}}
+
+Lo ideal sería que se pudiera ver esta lista de recursos desde la factura, la cuenta y el producto, pero en la versión 5.5 de coreBOS todavía no está esta relación. Espero añadirla pronto
+
+??? Outlook plugin 2.3 unknown error
+
+!!!  jaysmit9: I've found a partial solution to the problem. The /etc/hosts name must be exactly the same name in the https URL I say this is a partial problem because I have multi-domains hitting the same server. I need it to work for all!  [[https://discussions.vtiger.com/index.php?p=/discussion/165067/outlook-plugin-2-3-unknown-error|You can find the thread here.]]
+
+??? ¿Es posible “cerrar” registros (por ejemplo, proyectos) de modo que no se eliminen pero no aparezcan en los listados?
+
+!!! En el siguiente vídeo explico la solución comúnmente aceptada para hacerlo utilizando el sistema de permisos
+
+{{youtube>mOJWDOEpQb4}}

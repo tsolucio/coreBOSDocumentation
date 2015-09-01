@@ -1,0 +1,11 @@
+====== 126: Establish basic relations with other modules when creating a record via REST  ======
+
+Issue Reference in Tracker: ~~issue:126~~
+
+===== Detailed Explanation =====
+
+{{youtube>yGpzPTmvyhA}}
+
+
+Simply passing a new parameter called **relations** which can be a comma separated list of REST IDs of the records you want to relate.
+

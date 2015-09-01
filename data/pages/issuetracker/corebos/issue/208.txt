@@ -1,0 +1,18 @@
+====== 208: Add support for CORS to facilitate javascript REST coding  ======
+
+Issue Reference in Tracker: ~~issue:208~~.
+
+
+===== Detailed Explanation =====
+
+[[http://en.wikipedia.org/wiki/Cross-origin_resource_sharing|Cross origin resource sharing]]
+
+We have added a variable which must contain the list of valid domains/IPs we will accept webservice requests from.
+
+The variable is called //$cors_enabled_domains// and is established in the //config.inc.php// file.
+
+We have also enabled editing this variable from the [[:en:configeditor|configuration editor in Settings]].
+
+The variable can have two types of values:
+  * asterisk <wrap hi>*</wrap> which means that all origin domains are accepted
+  * a space or comma separated list of domains that will be searched for inclusion

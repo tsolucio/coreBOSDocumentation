@@ -1,0 +1,64 @@
+====== How to Configure Outgoing Server ======
+
+coreBOS needs an email account to send out administrative emails regarding the operation of the application. Using this email account the program will send warning emails from workflows, notification of calendar events and end of import information (for example).
+
+Since the application requires this email account we decided to also use it to send normal work email messages from the users. For this to work and appear that each user sends emails from his own email we use a feature implemented into the mailing protocol (SMTP) called RELAY. Using this technique, the program connects to the server with the account that is configured and tells it that it will be sending an mail on behalf of another email account.
+
+This characteristic of the SMTP system has gone through a phase of bad press because of its abuse by spammers and viruses that exploit it to send unauthorized messages on behalf of other users. That is why some servers, with stricter security measures, do not support this feature and will **NOT** work with coreBOS or only allow sending emails as one single user, the one configured in the outgoing server settings.
+
+The outgoing server settings can be set in the Settings section of the application and in there, in the Outgoing Server section.
+
+<code>Settings > Outgoing Server</code>
+
+{{ :images:outgoingserver.png?750 |}}
+
+^Outgoing Server|this is the server to which we must connect to send emails. This field supports a special extended syntax with which we can specify the protocol and port to use like this: <code>ssl://smtp.gmail.com:467</code> or <code>tsl://msexchange:587</code>|
+^User Name and Password|the user name and passwords that will give us access to the server|
+^Email From|This field will force all emails leaving the system to seem to come from this email. Although the email will be sent from this account, the "Reply to" field will be the email of the user sending the email. Thus if the recipient clicks on respond the response will be sent to the user. I suppose this has some spam/company image justification|
+^Requires Authentication?|permits us to define the protocol to use for the connection|
+
+When you save the connection data, coreBOS will launch a test to connect and send an email. If the email is not successfully sent **NO** data will be saved. We will be returned to the configuration page with a message saying that the email could not be sent. At this point there is a connection, authentication or lack of RELAY support error and you must go to the [[en:devel:debuging#email|debugging techniques]].
+
+<WRAP center round important 75%>
+When we are returned to the settings page, the previous values are present. We cannot see the password field, but is it most probably INCORRECT, the value you introduced is NOT filled in again. Please introduce the password on ALL tests that you launch.
+</WRAP>
+
+<WRAP center round important 75%>coreBOS prior to March 2015 did not support sending emails with an empty body. The error message returned was very misleading indicating that there was a problem with the email configuration. **DO NOT test** emails with empty bodies. As of March 2015 emails with no body are supported.</WRAP>
+
+If we reach this message while debugging:
+<code>SMTP -> FROM SERVER:550 5.7.1 Client does not have permissions to send as this sender
+SMTP -> ERROR: DATA END command failed: 550 5.7.1 Client does not have permissions to send as this sender
+SMTP Error: data not accepted.</code>
+
+The mail server is saying that we do NOT have permission to send. It basically says that the error is because the account that is connected must be the same as the sender, the server does not support RELAY.
+
+If you reach this point, I recommend you register for an account at [[http://sendgrid.com|sendgrid]], it really works great and gives you much more information than you have now. They have free accounts with a limit of 400 emails a day and for a small amount of money you can do even more. We use it regularly to mass mailings from coreBOSCRM and to control administrative email deliveries. It is worth more than it costs.
+
+===== Some pages related to problems configuring outgoing server =====
+
+[[http://community.office365.com/es-es/f/203/t/199699.aspx]]\\
+[[https://discussions.vtiger.com/index.php?p=/discussion/55230/smtp-mail-settings-for-office-365-exchange/p1]]\\
+[[http://technet.microsoft.com/en-us/library/dn554323.aspx]]\\
+
+
+=====  FAQ =====
+
+??? Method for installing coreBOS on a 1and1 Linux Shared Hosting Package
+
+!!! {{:en:corebos:vtigercrm_1and1_installation.pdf|This very old PDF file}} shared on the forum explains some issues. The important part is this one:
+
+Open the file vtigercrm/modules/Emails/class.phpmailer.php in your favourite text editor.
+
+Find the following lines:
+
+<code>function IsSMTP() {
+$this->Mailer = "smtp";</code>
+
+Change "smtp" to "sendmail"
+
+??? How do I configure a gmail account?
+
+!!! [[http://discussions.corebos.org/viewtopic.php?f=7&t=1020&p=2240|This forum thread says]] that you have to use **smtp.gmail.com** and select **TLS** as the authentication method. Also leave the "Email from" field empty as (I think) gmail does not support that feature.
+====== Debugging errors ======
+
+{{page>en:devel:debuging#email}}

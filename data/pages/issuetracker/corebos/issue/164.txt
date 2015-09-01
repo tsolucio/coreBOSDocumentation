@@ -1,0 +1,8 @@
+====== 164: REST Enhancement: Document manipulation  ======
+
+Issue Reference in Tracker: ~~issue:164~~
+
+===== Detailed Explanation =====
+
+  * [[en:devel:corebosws:docenhance_examples|Webservice: Working with Documents]]
+  * [[en:devel:corebosws:methodreference|Webservice Method Reference]]

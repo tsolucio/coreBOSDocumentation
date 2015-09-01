@@ -1,0 +1,17 @@
+====== coreBOS Documentation ======
+
+<WRAP center round box 80%>
+{{ :images:workinprogress.png?150|}} Documentation is a continuous and ever going, ungrateful task that **needs to be done**. No matter how much time and care you put into it, it is rarely used and even when it is, it is hard to understand because who wrote it knew to much of what he was explaining :-).
+</WRAP>
+
+As brilliantly put by [[http://www.red-bean.com/kfogel/|Karl Fogelin]] in his book [[http://producingoss.com/en/getting-started.html#documentation|Producing Open Source Software]]:
+
+> Documentation is essential. There needs to be something for people to read, even if it's rudimentary and incomplete. This falls squarely into the "drudgery" category referred to earlier, and is often the first area where a new open source project falls down. Coming up with a mission statement and feature list, choosing a license, summarizing development status—these are all relatively small tasks, which can be definitively completed and usually need not be revisited once done.
+  
+ Documentation, on the other hand, is never really finished, which may be one reason people sometimes delay starting it at all.The most insidious thing is that documentation's utility to those writing it is the reverse of its utility to those who will read it. The most important documentation for initial users is the basics: how to quickly set up the software, an overview of how it works, perhaps some guides to doing common tasks. Yet these are exactly the things the writers of the documentation know all too well—so well that it can be difficult for them to see things from the reader's point of view, and to laboriously spell out the steps that (to the writers) seem so obvious as to be unworthy of mention.
+
+That said, we are lucky. We are continuing a project that has been alive for many years, with a big community and a lot of existing documentation. In fact, we have contributed to a lot of it. So, currently, any book, article or video on vtiger CRM should help you understand and get the best out of **coreBOS**.
+
+But that isn't enough for us, so we have created this [[http://corebos.org/page/dokuwiki.org|dokuWiki]], open source documentation project called coreBOSDocs, where we will be writing articles about the application, uploading videos and tutorials for all those issues and hurdles you may run into.
+
+We invite you to participate and help us create a great documentation site for **coreBOS**, any help is welcome, from [[http://corebos.org/development|creating tickets]] of issues you would like us to talk or write about, to [[https://github.com/tsolucio/corebosdocs|writing those articles yourself]]. So, step right in and help out with the **//coreBOS Documentation Site//**

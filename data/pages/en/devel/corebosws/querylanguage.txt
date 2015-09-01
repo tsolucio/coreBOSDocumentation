@@ -1,0 +1,76 @@
+====== Web Service Query Language ======
+
+===== Basic Query Language =====
+
+<todo>Document coreBOS REST Query language</todo>
+
+==== Query return limit ====
+The select statement only returns 100 records. This is due to timeout and resource restrictions. If you want to obtain more records you must use the //limit// modifier. Any select statement with a limit modifier will try to return all the records indicated in the limit. So, if we have a contacts table with 150 records, this query:
+
+<code>select * from contacts;</code>
+
+will return 100 records, while this query:
+
+<code>select * from contacts limit 200;</code>
+
+will return the 150 records.
+
+<WRAP center round info 75%>If you are receiving timeouts you can increment the default timeout by modifying the code:
+[[https://github.com/tsolucio/coreBOSwsLibrary/blob/master/php/Net/HTTP_Client.php#L22|PHP]]\\
+[[https://github.com/tsolucio/coreBOSwsLibrary/blob/master/php/Net/HTTP_Client.php#L29|PHP]]\\
+[[https://github.com/tsolucio/coreBOSwsLibrary/blob/master/php/Net/curl_http_client.php#L162|cURL]]\\
+[[https://github.com/tsolucio/coreBOSwsLibrary/blob/master/php/Net/curl_http_client.php#L206|cURL]]\\
+</WRAP>
+
+===== Related Entity Query Syntax =====
+
+Implemented in ~~issue:127~~
+
+{{youtube>5B0A6IPMnJM}}
+\\
+Constructing on top of the [[en:devel:corebosws:getrelatedrecords|getRelatedRecords]] function we have extended the REST query syntax to benefit from that functionality, making it easy to query related entities and filter them also.
+
+The new syntax enhances the //where// conditional statement to support module names preceded with the "//related//" string and followed by the id of the entity:
+
+<code>where related.modulename=id</code>
+
+Examples:
+
+<code>
+select * from projecttask where related.project=30x144
+select * from projecttask where related.project=30x144 and projecttaskname='dsf'
+select * from documents where related.accounts=3x12
+select * from documents where filelocationtype='E' and related.contacts=4x22
+Select * from Documents where (related.Contacts='4x22') AND (filelocationtype LIKE '%I%') LIMIT 5;
+select * from modcomments where related.helpdesk=9x114
+select * from modcomments where related.helpdesk=9x114 and commentcontent like 'hdcc%'
+select * from products where related.products=6x58 // only product children are accessible with this syntax
+select * from products where related.contacts=4x22  // only directly related products
+select * from products where related.contacts=4x22 and productcategory='Software'  // only directly related products
+Select * from Products where related.Contacts='4x22' LIMIT 5;
+Select * from Products where related.Contacts='4x22' order by productname LIMIT 5;
+</code>
+
+  * queryparameters support //limit// and //offset// for those sets of related records where the total count is very high or simply high enough to want to be able to page through.
+  * queryparameters support column definitions, reducing the size of information being returned
+  * **multiple entities** is **NOT** supported, accept multiple IDs and even multiple related modules. This is really complex and can already be done calling the function various times. I'm not sure it is worth the effort because it also makes the code much more complex and increments the size of information sent to the browser. The only cases where I see it could be useful is when we want to retrieve related information for an account and it's contacts, or retrieving both Project Tasks and Project Milestones related to one project. After looking into this I reached the conclusion that the only good way to do this is through [[en:devel:corebosws:queryenhancements|query syntax enhancement as described here]].
+
+
+There are a few restrictions we couldn't overcome:
+  * only one related entity may be used, as the getRelatedRecords function works with only one entity ID, we inherit this restriction. If more than one is put in the query, only the first is used and the rest are ignored and eliminated.
+  * the product relation is limited to directly related records, which means that on a contact we will only have access to the ones on his +info tab, or for a product we can only see it's bundle child products.
+  * advanced filtering (limited by current query syntax)
+
+===== Errors that can be returned =====
+
+Besides errors that may be returned by the underlying code this function uses, it can return directly these errors:
+
+  * **INVALID_MODULE**: Given module (module) cannot be found.  Either of the two module parameters are incorrect, which one will be specified in the message.
+  * **ACCESSDENIED**: Permission to perform the operation on module (module) is denied. The current user cannot work with one of the two parameter modules
+  * **INVALIDID**: Id specified is incorrect. The given ID does not correspond to an entity in the application.
+  * **ACCESSDENIED**: Permission to read given object is denied.  The current user does not have read access to the related records.
+  * **RECORDNOTFOUND**: Record you are trying to access is not found. The given ID is pointing to a deleted record or is incorrect.
+
+
+
+

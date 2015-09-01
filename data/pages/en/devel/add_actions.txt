@@ -1,0 +1,97 @@
+====== How to add action links to a module ======
+
+===== Action links =====
+
+Action links are **hooks** into the user interface that can be created directly in the database without having to change any code. At most you will have to create new code to attend to the new actions.
+
+These actions will be easily upgradeable going forward as they are saved in the database and no base code changes are required.
+
+We have links to enhance the **List View**, the **Detail View** and some special hooks to load CSS and javascript to react to the new actions. See below for more information.
+
+Adding a new action can be done in **two ways**. The **first** is when creating a module in it's manifest file. There is a specific section there to add custom links that looks like this:
+
+<code><customlinks>
+<customlink>
+<linktype>DETAILVIEWWIDGET</linktype>
+<linklabel>Execute</linklabel>
+<linkurl><![CDATA[module=cbupdater&action=cbupdaterAjax&file=cbupdaterWidget&record=$RECORD$]]></linkurl>
+<linkicon><![CDATA[]]></linkicon>
+<sequence>0</sequence>
+<handler_path><![CDATA[]]></handler_path>
+<handler_class><![CDATA[]]></handler_class>
+<handler><![CDATA[]]></handler>
+</customlink>
+<customlink>
+<linktype>LISTVIEWBASIC</linktype>
+<linklabel>GetUpdates</linklabel>
+<linkurl><![CDATA[javascript:gotourl('index.php?module=cbupdater&action=getupdates')]]></linkurl>
+<linkicon><![CDATA[]]></linkicon>
+<sequence>0</sequence>
+<handler_path><![CDATA[]]></handler_path>
+<handler_class><![CDATA[]]></handler_class>
+<handler><![CDATA[]]></handler>
+</customlink>
+</customlinks></code>
+
+The above code is extracted from the coreBOSUpdater manifest.xml file. It adds a DETAILVIEWWIDGET and a LISTVIEWBASIC action. As can  be seen the action has these parameters:
+
+^linktype|Type of Link like DETAILVIEW etc..|
+^linklabel|Label to use for the link when displaying (will be translated)|
+^linkurl|URL of the action link. You can use the special variables $RECORD$ which will evaluate to the current record ID and $MODULE$ which evaluates to the current module|
+^linkicon|path to a small 16x16 icon to show before the DETAILVIEWBASIC action link|
+^sequence|order in which the actions should be displayed|
+^handler_path|currently not used|
+^handler_class|currently not used|
+^handler|currently not used|
+
+The **second** form is for when we have an already installed module and we want to modify it. In this case we have to load the vtlib programming API, get a link to our module and execute the **addLink()** method. This looks like this:
+
+<code>include_once('vtlib/Vtiger/Module.php');
+$module = Vtiger_Module::getInstance('Contacts');
+$module->addLink('LISTVIEWBASIC', 'LBL_SELECT_ALL', 'toggleSelectAllEntries_ListView();');</code>
+
+or
+
+<code>include_once('vtlib/Vtiger/Module.php');
+$mod_acc = Vtiger_Module::getInstance('Accounts');
+$mod_acc->addLink('DETAILVIEWBASIC', 'Add Ticket', 'index.php?module=HelpDesk&action=EditView&parent_id=$RECORD$');</code>
+
+The first example adds a button to the list view of the contacts module while the second adds a link to the right action panel of accounts.
+
+You can get a copy of the full script in the [[https://github.com/tsolucio/corebos/tree/master/build/HelperScripts|build/HelperScripts directory of coreBOS]].
+
+===== Action links on List View =====
+
+We have two possible options on the list view. The **LISTVIEWBASIC** value will add a new button on the list view exactly the same as the already existing buttons, while the **LISTVIEW** value will add the link to a "More actions" drop down menu.
+===== Action links on Detail View =====
+
+We have three types of possible actions on the detail view screen. The **DETAILVIEWBASIC** option will add a link to the right action panel, at the same level as the normal existing links. The **DETAILVIEW** option will add the link inside a "More Actions" drop down menu. This is useful when we have many options.
+
+Finally the **DETAILVIEWWIDGET** option will permit us to add a small widget (box) on the right action panel, within which we will be able to execute some actions. Very useful to add functionality to the module.
+
+The **DETAILVIEWWIDGET** URL is called within the context of the application, it does not need index.php because that will be called always. You simply have to add the MVC parameters. This will normally be in the form;
+
+<code>module={MODULE}&action={MODULE}Ajax&file={ACTION}...</code>
+
+<WRAP center round info 80%>As of coreBOS January 2015 any javascript code sent with the widget content will be executed automatically making it easy to load some additional libraries and/or execute some process.
+
+You can study the [[https://github.com/tsolucio/Timecontrol|Timecontrol]] module stop watch widget and also the [[https://github.com/tsolucio/corebos/commit/cbfb301b12688d260fc3c5d7144cdea163da5868|Mass Image Upload widget on Products]]</WRAP>
+
+
+
+===== Other Action links =====
+
+Three other types of links exist that will permit us to insert CSS (**HEADERCSS**), javascript (**HEADERSCRIPT**) and a global drop down menu (**HEADERLINK**) with actions on the upper right button bar. See the next section for more information.
+
+
+===== Summary of Action link types =====
+
+^Linktype^Description^
+|LISTVIEWBASIC|Button on the list view|
+|LISTVIEW|Drop down menu on the list view|
+|DETAILVIEW|Drop down menu on the right action panel in detail view|
+|DETAILVIEWBASIC|Link on the right action panel in detail view|
+|DETAILVIEWWIDGET|Small widget block section at the bottom of the right action panel on detail view. Look at the Timecontrol stopwatch for an example. It can also be a [[en:devel:add_special_block|full fledged block inserted into the existing field blocks]]|
+|HEADERSCRIPT|The link will be treated as a javascript type and will be imported in the head section of the HTML output page as <script type='text/javascript' src='linkurl'></script>|
+|HEADERCSS|The link will be treated as a CSS type and will be imported in the head section of the HTML output page as <link rel='stylesheet' type='text/css' href='linkurl>|
+|HEADERLINK|You can see these link grouped under More on the top header panel. Useful if you want to provide utility tools like Bookmarklet etc.|

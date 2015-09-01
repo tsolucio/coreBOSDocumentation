@@ -1,0 +1,433 @@
+====== Developer Tips and Tricks ======
+~~QNA~~
+
+??? How can I activate Single Pane for only one (my) module, independent of the system settings?
+
+!!! You have to force the state in DetailView and CallRelatedList {{:devel:patches:singlepaneforcedonmodule.diff|Single Pane forced on module patch}}
+
+<code>--- a/CallRelatedList.php
++++ b/CallRelatedList.php
+@@ -16,7 +16,7 @@
+ $action = vtlib_purify($_REQUEST['action']);
+ $record = vtlib_purify($_REQUEST['record']);
+ $isduplicate = vtlib_purify($_REQUEST['isDuplicate']);
+-
++$singlepane_view = 'true';
+ if($singlepane_view == 'true' && $action == 'CallRelatedList') {
+ 	header("Location:index.php?action=DetailView&module=$currentModule&record=$record&parenttab=$category");
+ } else {
+--- a/DetailView.php
++++ b/DetailView.php
+@@ -71,6 +71,7 @@
+ }
+ 
+ $smarty->assign('IS_REL_LIST', isPresentRelatedLists($currentModule));
++$singlepane_view = 'true';
+ $smarty->assign('SinglePane_View', $singlepane_view);
+ 
+ if($singlepane_view == 'true') {
+</code>
+
+??? Custom date fields load by default "today". We need a custom date field to be empty by default, how can we accomplish this.
+
+!!! Look for this field meta data in the database table vtiger_field and change the value of the column generatedtype to 2.
+
+??? How to create custom formula function for field expressions in workflows
+
+!!! [[https://discussions.vtiger.com/index.php?p=/discussion/168584/created-custom-formula-function-for-field-expressions-sub-string]]
+
+The next code adds a substring function and should suffice to show how to add more funtions. Please share if you create any.
+
+<code>Index: modules/com_vtiger_workflow/expression_engine/VTExpressionsManager.inc
+===================================================================
+--- modules/com_vtiger_workflow/expression_engine/VTExpressionsManager.inc	(revisión: 938)
++++ modules/com_vtiger_workflow/expression_engine/VTExpressionsManager.inc	(revisión: 939)
+@@ -41,7 +41,7 @@
+ 	function expressionFunctions() {
+ 		return array('concat' => 'concat(a,b)', 'time_diffdays' => 'time_diffdays(a,b)', 'time_diff' => 'time_diff(a,b)',
+ 			'add_days' => 'add_days(datefield, noofdays)', 'sub_days' => 'sub_days(datefield, noofdays)',
+-			'get_date' => "get_date('today')");
++			'get_date' => "get_date('today')", 'substring' => "substring(stringfield,start,end)");
+ 	}
+ }
+ 
+Index: modules/com_vtiger_workflow/expression_engine/VTExpressionEvaluater.inc
+===================================================================
+--- modules/com_vtiger_workflow/expression_engine/VTExpressionEvaluater.inc	(revisión: 938)
++++ modules/com_vtiger_workflow/expression_engine/VTExpressionEvaluater.inc	(revisión: 939)
+@@ -144,6 +144,15 @@
+ 	}
+ }
+ 
++function __vt_substring($arr) {
++	if (count($arr)<2 or count($arr)>3) return $arr[0];
++	if (count($arr)==2) {
++		return substr($arr[0],$arr[1]);
++	} else {
++		return substr($arr[0],$arr[1],$arr[2]);
++	}
++}
++
+ /** END * */
+ class VTFieldExpressionEvaluater{
+ 	function __construct($expr){
+@@ -165,7 +174,8 @@
+  	            'time_diffdays' => '__vt_time_diffdays',
+ 				'add_days' => '__vt_add_days',
+ 				'sub_days' => '__vt_sub_days',
+-				'get_date' => '__vt_get_date'
++				'get_date' => '__vt_get_date',
++				'substring' => '__vt_substring'
+ 		);
+ 
+ 		$this->operations = array_merge($this->functions, $this->operators);
+</code>
+
+{{youtube>k4RgrfxY880}}
+
+??? How can I get the Edit button to open in a new window
+([[http://crmevolutivo.com/forum/viewtopic.php?f=6&t=3862|pregunta en el foro]])
+
+!!! You have to apply this next code change.
+
+<code>diff --git a/include/js/general.js b/include/js/general.js
+index d79cc33..c5eae5d 100755
+--- a/include/js/general.js
++++ b/include/js/general.js
+@@ -4066,6 +4066,7 @@ function submitFormForActionWithConfirmation(formName, action, confirmationMsg)
+ function submitFormForAction(formName, action) {
+ 	var form = document.forms[formName];
+ 	if (!form) return false;
++	form.target="_blank";
+ 	form.action.value = action;
+ 	form.submit();
+ 	return true;
+</code>
+
+<WRAP center round important 70%>
+Note that you may have to make a similar change in some other parts of the code, I **ONLY** did a quick test to answer the forum question.
+</WRAP>
+
+??? PDF Formatting
+
+!!! See this page for tips on playing with PDF output: [[en:devel:pdfformatting|PDF Formatting]]
+
+??? List View maxTextLength variable is limited to 100 in Settings > Configuration Editor
+
+!!! This is hard coded for usability reasons. It can be changed in the code as shown in the next example which changes the limit to 200:
+
+<code>
+diff --git a/Smarty/templates/modules/ConfigEditor/index.tpl b/Smarty/templates/modules/ConfigEditor/index.tpl
+index cd99871..5ce8ef1 100644
+--- a/Smarty/templates/modules/ConfigEditor/index.tpl
++++ b/Smarty/templates/modules/ConfigEditor/index.tpl
+@@ -95,7 +95,7 @@
+ 				document.getElementById('msg_history_max_viewed').innerHTML=maxHistory;
+ 				history1.focus();
+ 				return false;
+-			}else if((reg1.test(maxtext.value) == false) || (maxtext.value < 0) || (maxtext.value > 100) || (maxtext.value === "")){
++			}else if((reg1.test(maxtext.value) == false) || (maxtext.value < 0) || (maxtext.value > 200) || (maxtext.value === "")){
+ 				document.getElementById('msg_listview_max_textlength').innerHTML=maxTextLength;
+ 				maxtext.focus();
+ 				return false;
+diff --git a/modules/ConfigEditor/language/en_us.lang.php b/modules/ConfigEditor/language/en_us.lang.php
+index 3088962..88f3c70 100644
+--- a/modules/ConfigEditor/language/en_us.lang.php
++++ b/modules/ConfigEditor/language/en_us.lang.php
+@@ -21,7 +21,7 @@ $mod_strings = Array (
+ 	'LBL_EMPTY_NAME_MSG'=> 'Support Name cannot be empty',
+ 	'LBL_MAX_LISTVIEW_ENTRIES_MSG'=>'Maximum entries in the ListView is 100',
+ 	'LBL_MAX_HISTORY_VIEWED_MSG'=>'Please enter a number in the range 1-5',
+-	'LBL_MAX_TEXTLENGTH_LISTVIEW_MSG'=>'Maximum text length is 100',
++	'LBL_MAX_TEXTLENGTH_LISTVIEW_MSG'=>'Maximum text length is 200',
+ 	'LBL_MB'=>'MB',
+ 	'LBL_MINI_CALENDAR_DISPLAY' => 'Mini Calendar Display',
+ 	'LBL_WORLD_CLOCK_DISPLAY'=>'World Clock Display',
+</code>
+
+??? How to eliminate currency sign in report exports
+
+!!! This patch accomplishes this functionality. You don't have to collect the currency symbol, just save the value and format like with the php function "number_format" to get the value with the correct decimals.
+
+<code>
+Index: modules/Reports/ReportUtils.php
+===================================================================
+--- modules/Reports/ReportUtils.php     (revisión: 5892)
++++ modules/Reports/ReportUtils.php     (revisión: 5964)
+@@ -75,11 +75,10 @@
+                        $cur_sym_rate = getCurrencySymbolandCRate($currency_id);
+                        if($value!='') {
+                                $formattedCurrencyValue = CurrencyField::convertToUserFormat($currency_value, null, true);
+-                               $fieldvalue = CurrencyField::appendCurrencySymbol($formattedCurrencyValue, $cur_sym_rate['symbol']);
++                               $fieldvalue = number_format($formattedCurrencyValue,2,'.','');
+                        }
+                } else {
+-                       $currencyField = new CurrencyField($value);
+-                       $fieldvalue = $currencyField->getDisplayValue();
++                       $fieldvalue = number_format($value,2,'.','');
+                }
+
+        } elseif ($dbField->name == "PurchaseOrder_Currency" || $dbField->name == "SalesOrder_Currency"
+
+</code>
+
+??? Modify record default view order
+
+!!! Each module has defined it's default column for sorting. This must be changed in the code in the module's main script. For example, for Accounts we can find:
+
+<code php>
+  //Added these variables which are used as default order by and sortorder in ListView
+  var $default_order_by = 'accountname';
+  var $default_sort_order = 'ASC';
+</code>
+
+where we can change the variable $default_order_by to any valid column of the account
+
+<WRAP center round important 70%>
+For this to work we must set the variable 'LISTVIEW_DEFAULT_SORTING' to true in the file config.performance.php
+</WRAP>
+
+??? How can I deactivate the delete button on my custom fields in layout editor
+
+!!! Go to the database and change the value of vtiger_field.presence to
+
+  * 0: always active, cannot be modified in layout editor
+  * 1: inactive
+  * 2: active and editable
+
+??? How to recalculate privileges and regenerate user_privilege files from the command line.
+
+!!! This is a very useful trick when we lose the user_privileges directory or the admin user files and can't login.
+
+<code php>cd <application root directory>
+php -r "require_once 'include/utils/UserInfoUtil.php'; RecalculateSharingRules();"
+</code>
+
+??? When we go to create a quote, we choose the opportunity to relate, with a popup window to select among the created opportunities. Is there any way to **ONLY** see the open opportunities, so that by default all closed opportunities do not appear. (Cuando vamos a hacer un presupuesto como saben escogemos la oportunidad a relacionar, donde aparece una ventana para elegir la oportunidad creada. Hay alguna manera en que NO aparezca la oportunidad que se haya cerrado o clasificado en (Cerrado Ganado) ya que como saben, siguen apareciendo todas las oportunidades que tenga el vendedor).
+
+!!! This should work although I have my doubts about this functionality because I understand that you may want to associate the closed won opportunity to the quote. NOTE that the patch affects Quotes and SalesOrders.
+
+<code>diff --git a/Popup.php b/Popup.php
+index 16e7048..c6faf32 100644
+--- a/Popup.php
++++ b/Popup.php
+@@ -237,6 +237,9 @@ else
+ 		$url_string .='&recordid='.vtlib_purify($_REQUEST['recordid']);
+         	$where_relquery = getRelCheckquery($currentModule,$_REQUEST['return_module'],$_REQUEST['recordid']);
+ 	}
++	if ($currentModule=='Potentials' and (isset($_REQUEST['restrictclosed']) and $_REQUEST['restrictclosed']=='1')) {
++		$where_relquery = " and sales_stage not like 'Closed%' ";
++	}
+ 	if(isset($_REQUEST['relmod_id']) || isset($_REQUEST['fromPotential']))
+ 	{
+ 		if($_REQUEST['relmod_id'] !='')
+diff --git a/include/js/general.js b/include/js/general.js
+index d0feb0a..72db333 100755
+--- a/include/js/general.js
++++ b/include/js/general.js
+@@ -2379,9 +2379,9 @@ function selectPotential()
+ 		parent_module = 'Contacts';
+ 	}
+ 	if(record_id != '')
+-		window.open("index.php?module=Potentials&action=Popup&html=Popup_picker&popuptype=specific_potential_account_address&form=EditView&relmod_id="+record_id+"&parent_module="+parent_module,"test","width=640,height=602,resizable=0,scrollbars=0");
++		window.open("index.php?module=Potentials&action=Popup&html=Popup_picker&popuptype=specific_potential_account_address&form=EditView&restrictclosed=1&relmod_id="+record_id+"&parent_module="+parent_module,"test","width=640,height=602,resizable=0,scrollbars=0");
+ 	else
+-		window.open("index.php?module=Potentials&action=Popup&html=Popup_picker&popuptype=specific_potential_account_address&form=EditView","test","width=640,height=602,resizable=0,scrollbars=0");
++		window.open("index.php?module=Potentials&action=Popup&html=Popup_picker&popuptype=specific_potential_account_address&form=EditView&restrictclosed=1","test","width=640,height=602,resizable=0,scrollbars=0");
+ }
+ //to select Quote Popup
+ function selectQuote()</code>
+
+
+??? How can I make the related to field in Calendar mandatory?
+
+!!! With a quick and dirty code hack :-)
+
+{{:devel:patches:calendarrelatedtomandatory.diff|make the related to field in Calendar mandatory}}
+
+??? How can I get a blank currency field instead of 0?
+
+!!! More or less like this:
+
+{{:devel:blankinsteadofzero.diff|}}
+
+??? How can I add a module to an existing uitype10 field? or, How can I relate a module with another module that already has a uitype 10 field for relations?
+
+!!! This is very easy with vtlib. Simply get an instance of the field you want to modify and use the setRelatedModules() method. Have a look at the code below:
+
+<code php><?php
+// Turn on debugging level
+$Vtiger_Utils_Log = true;
+
+include_once('vtlib/Vtiger/Module.php');
+
+$modname = 'Potentials';
+$module = Vtiger_Module::getInstance($modname);
+
+if($module) {
+	$field = Vtiger_Field::getInstance('related_to',$module);
+	$field->setRelatedModules(Array('Invoice'));
+
+	echo "<br><b>Modified Field on $modname module.</b><br>";
+
+} else {
+	echo "<b>Failed to find $modname module.</b><br>";
+}
+
+?></code>
+
+??? How can I get the SQL constructed for a Report?
+
+!!! Applying this patch:
+<code php>diff --git a/modules/Reports/ReportRun.php b/modules/Reports/ReportRun.php
+index 6f22783..2b6810c 100644
+--- a/modules/Reports/ReportRun.php
++++ b/modules/Reports/ReportRun.php
+@@ -1905,6 +1905,7 @@ class ReportRun extends CRMEntity
+             $reportquery = $this->replaceSpecialChar($report);
+         }
+ 		$log->info("ReportRun :: Successfully returned sGetSQLforReport".$reportid);
++		echo $reportquery;
+ 		return $reportquery;
+ 
+ 	}
+</code>
+
+??? How can I get the SQL constructed for a List View?
+
+!!! Applying this patch:
+<code php>diff --git a/modules/Vtiger/ListView.php b/modules/Vtiger/ListView.php
+index 937edcd..ed5bc42 100644
+--- a/modules/Vtiger/ListView.php
++++ b/modules/Vtiger/ListView.php
+@@ -149,7 +149,7 @@ if(!empty($order_by)) {
+ 		$list_query .= ' ORDER BY ' . $tablename . $order_by . ' ' . $sorder;
+ 	}
+ }
+-
++echo $list_query;
+ //Postgres 8 fixes
+ if( $adb->dbType == "pgsql")
+ 	$list_query = fixPostgresQuery( $list_query, $log, 0);
+</code>
+
+??? How can I get the SQL constructed for a Report?
+
+!!! Applying this patch:
+<code php>diff --git a/modules/Reports/ReportRun.php b/modules/Reports/ReportRun.php
+index 6f22783..2b6810c 100644
+--- a/modules/Reports/ReportRun.php
++++ b/modules/Reports/ReportRun.php
+@@ -1905,6 +1905,7 @@ class ReportRun extends CRMEntity
+             $reportquery = $this->replaceSpecialChar($report);
+         }
+ 		$log->info("ReportRun :: Successfully returned sGetSQLforReport".$reportid);
++		echo $reportquery;
+ 		return $reportquery;
+ 
+ 	}
+</code>
+
+??? How can I activate workflows when importing records?
+
+!!! The import module set variable $VTIGER_BULK_SAVE_MODE = true , to not load the events to execute workflows.
+When you need to execute workflows when import records, you can apply the next patch. This patch force the validation to isBulkSaveMode, with this the workflows always will be load in any part of code.
+
+After your importation, remember to undo the patch.
+
+<code php>
+diff --git a/data/CRMEntity.php b/data/CRMEntity.php
+index 30b7c2e..c737722 100755
+--- a/data/CRMEntity.php
++++ b/data/CRMEntity.php
+@@ -48,6 +48,7 @@ class CRMEntity {
+         * to improve performance.
+         */
+        static function isBulkSaveMode() {
++               return false;
+                global $VTIGER_BULK_SAVE_MODE;
+                if (isset($VTIGER_BULK_SAVE_MODE) && $VTIGER_BULK_SAVE_MODE) {
+                        return true;
+</code>
+
+??? How can I save() a record in a custom workflow function without launching the workflows and events again?
+
+!!! Instead of calling save(), use saveentity(), that will not trigger the workflows again.
+
+<WRAP center round info 70%>The answer to this is not only for workflow custom functions but in general whenever we need to save a record without launching workflow or events.</WRAP>
+
+??? A question regarding the functions to add in common utils, for example google drive file saving. For that I need to create a function in utils files and need to use those either in save.php file or in custom workflow functions. Is it a good idea?
+
+!!! I would suggest that you add your function and libraries in the event/custom code that you create. For example, suppose that you need to include some google drive library and some new functions to the save event of a document. You decide to add a **vtiger.aftersave** event. In the file where your new functionality resides you will add the library include at the beginning and your functions inside the new class so you don't need to modify the common utils base code. Something like this:
+
+<code php><?php
+require_once('google drive library');
+
+class YourCustomEventHandlerClass extends VTEventHandler {
+
+    function YourNewFunction() {
+     ...
+    }
+
+    function handleEvent($eventName, $entityData) {
+      global $log, $adb;
+      ...
+      $this->YourNewFunction();
+      ...
+    }
+}
+?></code>
+
+??? I get an SQL error when launching the FAQ custom field support changeset. What can I do to fix it?
+
+!!! It seems that your database can't setup the foreign key constraint for some reason. The correct path would be to review your data and make sure it is correct. In other words, the SQL must work, if it doesn't there is some inconsistency in your FAQ table. As an extreme case you can eliminate the constraint, the program will work the same and you will have custom field support on the FAQ module, simply the information in those custom fields will not be deleted when you eliminate a FAQ. Here is the change:
+
+<code>diff --git a/build/changeSets/cffaq.php b/build/changeSets/cffaq.php
+index 3a10292..cf4896a 100644
+--- a/build/changeSets/cffaq.php
++++ b/build/changeSets/cffaq.php
+@@ -23,8 +23,7 @@ class cffaq extends cbupdaterWorker {
+                } else {
+                        $this->ExecuteQuery("CREATE TABLE IF NOT EXISTS vtiger_faqcf (
+                                                faqid int(19),
+-                                               PRIMARY KEY (faqid),
+-                                               CONSTRAINT fk_1_vtiger_faqcf FOREIGN KEY (faqid) REFERENCES vtiger_faq(id) ON DELETE CASCADE
++                                               PRIMARY KEY (faqid)
+                                                ) ENGINE=InnoDB DEFAULT CHARSET=utf8", array());
+                        $this->sendMsg('Changeset '.get_class($this).' applied!');
+                        $this->markApplied();
+</code>
+
+
+??? Race condition in webservice 2-steps login process
+
+!!! I encountered a race condition using the 2-steps login process provided by vtiger's webservices.
+Say that you have a multi-process / multi-threaded application using vtiger's webservices.
+Each thread/process has to call getchallenge+login before proceeding in doing what they have to do (that's what doLogin() in vtwsclib does).
+
+The problem lies in the getchallenge phase. include/Webservices/AuthToken.php does <code>delete from vtiger_ws_userauthtoken where userid=?</code> for the current user. This instruction can be executed in between the 2 getchallenge+login steps of another webservice thread/process, therefore destroying its chance of doing a correct login.
+
+Maybe the solution would be for the getchallenge step to detect if there is already an existing (not expired) outstanding getchallenge request for the current user and return that.
+
+[[http://trac.vtiger.com/cgi-bin/trac.cgi/ticket/6500|trac #6500]]
+<code php>
+Index: trunk/include/Webservices/AuthToken.php
+===================================================================
+--- trunk/include/Webservices/AuthToken.php	(revision 7)
++++ trunk/include/Webservices/AuthToken.php	(working copy)
+@@ -19,6 +19,14 @@
+ 		$servertime = time();
+ 		$expireTime = time()+(60*5);
+ 		
++		$sql = "select userid,token,expiretime, count(*) as count from vtiger_ws_userauthtoken group by userid=?";
++		$res = $adb->pquery($sql,array($userid,$servertime));
++		$result = $adb->fetchByAssoc($res);
++		if ($result['count']>=1) {
++			return array("token"=>$result["token"],"serverTime"=>$servertime,"expireTime"=>$result["expiretime"]);
++		}
++		
++
+ 		$sql = "delete from vtiger_ws_userauthtoken where userid=?";
+ 		$adb->pquery($sql,array($userid));
+ 		
+</code>

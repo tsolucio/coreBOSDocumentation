@@ -1,0 +1,45 @@
+====== Ideal REST Query syntax enhancements ======
+
+The getRelatedRecords method approach has limited filtering capabilities which are very hard to overcome. The ideal would be to be able to tell REST queries to relate the entities for us and give us access to all the fields of the relation.
+
+I would propose a syntax like this:
+
+<code>
+select * | <column_list> | <count(*)> 
+
+from <object>
+
+[related <object>]
+
+[where <conditionals>] 
+
+[order by <column_list>] [limit [<m>, ]<n>]; 
+</code>
+
+where we can repeat the related section as many times as we need. For example,
+
+<code>
+select *
+ from documents
+ related accounts
+ related contacts
+ where accounts=3x12 or contacts=4x22 or contacts=4x26
+
+select *
+ from documents
+ related accounts
+ where bill_city='Els Poblets'
+
+select *
+ from projecttask
+ related project
+ where (linkstoaccountcontact=3x12 or linkstoaccountcontact=4x22 or linkstoaccountcontact=4x26) and projectstatus='In progress'
+
+select (distinct) *
+ from products
+ related contacts
+ related invoice
+ where contacts=4x22 or contacts=4x26
+</code>
+
+To achieve this we need modifications in the VQL parser and query generator, at least, and probably some new metadata table to define the relations.

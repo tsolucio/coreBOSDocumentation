@@ -1,0 +1,7 @@
+====== Flujos de Trabajo ======
+
+  * [[update_workflows|Flujos de Trabajo]]
+  * [[addeltag_workflows|Flujo de Trabajo Añadir/Eliminar Etiquetas]]
+  * [[invokecustomfunction_workflows|Flujo de Trabajo Ejecutar Función]]
+
+  * [[workflow_examples|Ejemplos de Flujos de Trabajo]]

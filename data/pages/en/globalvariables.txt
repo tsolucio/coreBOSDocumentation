@@ -1,0 +1,4 @@
+====== Global Variables ======
+
+===== Fields =====
+  * Blocked: this field is simply for grouping certain variables together, it has no logic nor process associated. The use case this field was created for was for the admin user to be able to hide it in all profiles or not permit editing of the field so he can use it to group certain important variables together. Once those variables are ticked we can easily create a filter or search on the field so we can find them quickly.

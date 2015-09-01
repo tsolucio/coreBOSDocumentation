@@ -1,0 +1,20 @@
+====== Commit Guidelines we try to adhere to ======
+
+[[https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/mobilebasic?pli=1|AngularJS Git Commit Message Conventions]]
+
+<code><type>(<scope>): <subject></code>
+  * Any line of the commit message cannot be longer 100 characters! This allows the message to be easier to read on github as well as in various git tools.
+  * Allowed **<type>**
+    * **feat**: feature
+    * **adapt**: this is a feature, but it only affects a particular install, not the whole coreBOS project
+    * **fix**: bug fix
+    * **security**
+    * **i18n**: translation strings and enhancements
+    * **docs**: documentation
+    * **style**: formatting, missing semi colons, …
+    * **refactor**: code refactor
+    * **test**: when adding missing tests
+    * **chore**: maintenance tasks
+  * Allowed **<scope>** could be anything specifying place of the commit change. For example a module name, webservice or functional feature
+  * **<subject>** line contains succinct description of the change. Use imperative, present tense: “change” not “changed” nor “changes”. If the commit fixes or is related to a ticket we will put the [[https://www.mantisbt.org/|MantisBT]] regular expression here
+

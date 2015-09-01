@@ -1,0 +1,92 @@
+====== coreBOS Issue Tracker Documentation ======
+
+<wrap hi>[[http://corebos.tsolucio.com/development|Access coreBOS Issue Tracker]]</wrap>
+
+===== coreBOS Family Projects =====
+  * [[issuetracker:corebos:start|coreBOS]]
+  * [[issuetracker:corebosdocs:start|coreBOS Documentation]]
+  * [[issuetracker:corebosmail:start|coreBOS Mail]]
+  * [[issuetracker:coreboscp:start|coreBOS Customer Portal]]
+  * [[issuetracker:corebosbi:start|coreBOS Business Intelligence]]
+  * [[issuetracker:corebosapps:start|coreBOS Apps]]
+
+===== Issue Tracker Integration with Wiki =====
+
+[[http://www.mantisbt.org/wiki/doku.php/mantisbt:issue:7075:integration_with_dokuwiki|Integration With dokuwiki]]
+
+This part of the documentation is an integration between [[http://mantisbt.org|mantisBT]] (our issue tracking software) and [[http://dokuwiki.org|dokuwiki]] (our documentation software).
+
+This integration flows in both directions.
+
+From the issue tracker we can find two wiki links:
+  * the top menu wiki link will direct us to this page if "All Projects" are selected or directly to the selected project's page if one is selected.
+  * the wiki link on the top of each issue will take us directly to a specific wiki page where that issue can be explained.
+
+From the wiki we can reference any issue with this syntax:
+
+<code>~~issue:nnn~~</code>
+
+where nnn is the number of the ticket in [[http://mantisbt.org|mantisBT]]
+
+===== Issue Tracker Integration with GITHUB =====
+
+[[https://github.com/mantisbt-plugins/source-integration]]
+
+[[http://noswap.com/projects/source-integration]]
+
+===== Issue Tracker Integration with Subversion =====
+
+Create repository entries using WebSVN if you want the compare, diff and files links to work.
+
+[[http://noswap.com/blog/integrating-git-svn-with-mantisbt]]
+
+I had to also add this patch:
+
+<code>
+Index: plugins/SourceWebSVN/SourceWebSVN.php
+===================================================================
+--- plugins/SourceWebSVN/SourceWebSVN.php	(revisión: 3663)
++++ plugins/SourceWebSVN/SourceWebSVN.php	(copia de trabajo)
+@@ -95,7 +95,7 @@
+ 			$t_url = $this->get_websvn_url( $p_repo );
+ 
+ 			if( !is_blank( $p_op ) ) {
+-				$t_url .= "$p_op.php";
++				$t_url .= "$t_name/$p_op.php";
+ 			}
+ 
+ 			if( is_blank( $p_file ) ) {
+@@ -107,7 +107,8 @@
+ 				$p_opts['path'] = $t_path;
+ 			}
+ 
+-			$p_opts['repname'] = $t_name;
++			//$p_opts['repname'] = $t_name;
++			$p_opts['repname'] = $this->get_websvn_path( $p_repo );
+ 		}
+ 
+ 		return $t_url . '?' . http_build_query( $p_opts );
+@@ -127,7 +128,8 @@
+ 
+ 	public function url_changeset( $p_repo, $p_changeset ) {
+ 		$t_rev = $p_changeset->revision;
+-		$t_path = $this->get_websvn_path( $p_repo );
++		//$t_path = $this->get_websvn_path( $p_repo );
++		$t_path = '/'.$this->$p_repo->info['trunk_path'];
+ 		$t_opts = array();
+ 		$t_opts['compare[0]'] = $t_path . '@' . ($t_rev - 1);
+ 		$t_opts['compare[1]'] = $t_path . '@' . $t_rev;
+Index: plugins/SourceSVN/SourceSVN.php
+===================================================================
+--- plugins/SourceSVN/SourceSVN.php	(revisión: 3663)
++++ plugins/SourceSVN/SourceSVN.php	(copia de trabajo)
+@@ -78,7 +78,7 @@
+ </tr>
+ <tr <?php echo helper_alternate_class() ?>>
+ <td class="category"><?php echo lang_get( 'plugin_SourceSVN_svn_password' ) ?></td>
+-<td><input name="svn_password" maxlength="250" size="40" value="<?php echo string_attribute( $t_svn_password ) ?>"/></td>
++<td><input name="svn_password" type="password" maxlength="250" size="40" value="<?php echo string_attribute( $t_svn_password ) ?>"/></td>
+ </tr>
+ <tr <?php echo helper_alternate_class() ?>>
+ <td class="category"><?php echo lang_get( 'plugin_SourceSVN_standard_repo' ) ?></td>
+</code>
