@@ -1,0 +1,7 @@
+base   searchpattern
+author Matthieu Rioteau; Leo Eibler
+email  matthieu<dot>rioteau<at>skf<dot>com; dokuwiki@sprossenwanne.at
+date   2013-06-16c
+name   SearchPattern plugin
+desc   Find a specified pattern inside wiki pages. syntax : ~~SEARCHPATTERN(:|;|\#)\'[pattern or regexp to search]\'~~ ; ~~SEARCHPATTERN:\'myString\'~~ -> search "myString" - case sensitive ; ~~SEARCHPATTERN;\'myString\'~~ -> search "myString" - case insensitive ; ~~SEARCHPATTERN\#\'myRegex\'~~ -> search myRegex ; Regex syntax is strictly the same as the one used with PHP "preg_match" function. In all cases, every single quote inside the string/regex shall be doubled. Options can be passed to limit pages/namespaces search. See website. In combination with dokuwiki todo plugin (at least v20130411) it is a lightweight task list management system. Use this searchpattern expression for open todos: ~~SEARCHPATTERN\#'/<todo[^\#>]*>.*?<\/todo[\W]*?>/'?? _ToDo ??~~ Use this searchpattern expression for completed todos: ~~SEARCHPATTERN\#'/<todo[^\#>]*\#[^>]*>.*?<\/todo[\W]*?>/'?? _ToDo ??~~ A other syntax plugin can implement the method _searchpatternHandler() and the searchpattern option _PluginName can be used to handle all output by this plugin (used in todo implementation). Or the $ListOfNumberOfMatch option can be used to display the regex matches (listet by a comma seperated list) instead of the count: ~~SEARCHPATTERN\#'/<todo[^@>]*@([^\W]+)[^\#>]*(\#)?[^>]*>(.*?)<\/todo[\W]*?>/'?? $2,1,3 ??~~
+url    https://www.dokuwiki.org/plugin:searchpattern

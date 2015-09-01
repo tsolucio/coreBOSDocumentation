@@ -1,0 +1,8 @@
+# General Plugin Info do not edit
+
+author Markus Birth
+email  markus@birth-online.de
+date   2011-06-22
+name   Google +1 Plugin
+desc   Embeds a Google +1 button in the top of the page.
+url    http://www.dokuwiki.org/plugin:googleplusone

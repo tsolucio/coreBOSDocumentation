@@ -1,0 +1,25 @@
+/*****************************************************************
+ * SearchPattern plugin for dokuwiki / CSS Style
+ * Author : Matthieu Rioteau (matthieu<dot>rioteau<at>skf<dot>com)
+ * Creation : 2009-12-22
+ * Releases list :
+ * - ver 0.1 : 2009-12-22 : Initial release
+ *****************************************************************/
+
+
+table.sp_main_table {
+	text-align: center;
+	border: 10px solid;
+	border-spacing: 0px;
+}
+
+table.sp_main_table td,th {
+	border: 3px green solid;
+}
+
+table.sp_main_table tr {
+}
+
+.sp_error {
+	background-color: red;
+}

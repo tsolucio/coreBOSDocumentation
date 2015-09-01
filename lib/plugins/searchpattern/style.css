@@ -1,0 +1,135 @@
+/*****************************************************************
+ * SearchPattern plugin for dokuwiki / CSS Style
+ * Author : Matthieu Rioteau (matthieu<dot>rioteau<at>skf<dot>com)
+ * Creation : 2009-12-22
+ * Releases list :
+ * - ver 0.1 : 2010-01-04 : Initial release
+ * - ver 0.2 : 2010-07-05 : Restriciton/exclusion capability
+ * - ver 0.3 : 2013-04-07 : Leo Eibler <dokuwiki@sprossenwanne.at>: add no result td.sp_nores background-color
+ * - ver 20130616         : Leo Eibler <dokuwiki@sprossenwanne.at>: add sp_warning, sp_warning_pat
+ *****************************************************************/
+
+div.dokuwiki div.sp_main div.sp_main{	/* the div containing the result table (not the error message)*/
+}
+
+div.dokuwiki div.sp_main table.sp_main_table{	/*the table containing the results (not the error message) / standard wiki type is applied first*/
+}
+
+div.dokuwiki div.sp_main table.sp_main_table tr{	/*the rows of the table*/
+}
+
+div.dokuwiki div.sp_main table.sp_main_table th,
+div.dokuwiki div.sp_main table.sp_main_table td{	/*the cells of the table*/
+	text-align: center;
+	padding: 0.2em 2em;
+}
+
+div.dokuwiki div.sp_main table.sp_main_table tr.sp_title{	/*the main title row of the table*/
+}
+
+div.dokuwiki div.sp_main table.sp_main_table th.sp_title{	/*the main title cell of the table*/
+	background-color: #CAD2D7;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+div.dokuwiki div.sp_main table.sp_main_table span.sp_src{	/*the pattern displayed in title*/
+	font-style: italic;
+	font-weight: bolder;
+	color : #489948;
+}
+
+div.dokuwiki div.sp_main table.sp_main_table span.sp_src_params{	/*the search parameters displayed in title*/
+	font-weight: normal;
+	font-style: italic;
+	color: gray;
+	font-size: 0.9em;
+}
+
+div.dokuwiki div.sp_main table.sp_main_table tr.sp_warning{	/*the warning row*/
+}
+
+div.dokuwiki div.sp_main table.sp_main_table td.sp_warning{	/*the warning cell*/
+	font-size: 0.8em;
+	line-height: 0.9em;
+	background-color: #FFFFCC;
+	color: #FF8000;
+	font-style: italic;
+}
+
+div.dokuwiki div.sp_main table.sp_main_table td.sp_warning ul {	/*the list inside warning cells*/
+	color: #FF8000;
+	font-style: normal;
+	text-align: left;
+	margin-bottom: 0px;
+}
+
+div.dokuwiki div.sp_main table.sp_main_table td.sp_options { /*the options cell*/
+	background-color: #EEEEEE;
+	font-weight: bold;
+}
+
+div.dokuwiki div.sp_main table.sp_main_table td.sp_options ul { /*the inside options cell*/
+	color: black;
+	text-align: left;
+	font-weight: normal;
+	margin-bottom: 0px;
+}
+
+div.dokuwiki div.sp_main table.sp_main_table tr.sp_col_head{	/*the column header row*/
+}
+
+div.dokuwiki div.sp_main table.sp_main_table th.sp_col_head{	/*the column header cells*/
+}
+
+div.dokuwiki div.sp_main table.sp_main_table tr.sp_result{	/*the result rows*/
+}
+
+div.dokuwiki div.sp_main table.sp_main_table td.sp_page{	/*the page name cells in results*/
+	text-align:left;
+}
+
+div.dokuwiki div.sp_main table.sp_main_table td.sp_count{	/*the match number cells in results*/
+}
+
+div.dokuwiki div.sp_main table.sp_main_table td.sp_nores{	/*the "no result" cell*/
+	/* @date 20130407 by Leo Eibler <dokuwiki@sprossenwanne.at> add no_result cell background-color */
+	background-color: #C0C0C0;
+}
+
+div.dokuwiki div.sp_error{	/*the error display div*/
+	background-color: #FFDDDD;
+	border: 2px dashed red;
+	margin:auto 2em;
+	padding: 1em 5em;
+	color: #990000;
+}
+
+div.dokuwiki div.sp_error span.sp_error_pat{	/*the faulty pattern*/
+	font-size: 1.1em;
+	font-weight: bold;
+	font-style: italic;
+}
+
+div.dokuwiki div.sp_error ul.sp_error{	/*the list of error(s)*/
+}
+
+div.dokuwiki div.sp_error li.sp_error{	/*each item (error) of the error list*/
+	color: #990000;
+	font-style: italic;
+	text-decoration: underline;
+}
+
+div.dokuwiki div.sp_warning {	/*the warning display div*/
+	background-color: #FFFFCC;
+	color: #FF8000;
+	border: 2px dashed red;
+	margin:auto 2em;
+	padding: 1em 5em;
+}
+
+div.dokuwiki div.sp_warning span.sp_warning_pat{	/*the faulty pattern*/
+	font-size: 1.1em;
+	font-weight: bold;
+	font-style: italic;
+}
