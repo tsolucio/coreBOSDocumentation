@@ -39,6 +39,20 @@ if (!defined('DOKU_INC')) die();
         <?php if ($conf['useacl']): ?>
             <div id="dokuwiki__usertools">
                 <h3 class="a11y"><?php echo $lang['user_tools']; ?></h3>
+<?php
+$translation = plugin_load('helper','translation');
+if ($translation) echo $translation->showTranslations();
+?>
+<div id="googleplusone" class="no" style="width:35px;float:left;border-bottom:0px;margin-left: 6px;"><g:plusone size="small"></g:plusone></div>
+<div id="cbfacebooklike" class="no" style="width:75px;float:left;border-bottom:0px;margin-left: 16px;">
+<fb:like href="http://corebos.org/documentation/doku.php?id=<?php echo $ID; ?>"
+layout="button_count"
+show_faces="on"
+width="80"
+action="like"
+font="arial"
+colorscheme="light"></fb:like>
+</div>
                 <ul>
                     <?php
                         if (!empty($_SERVER['REMOTE_USER'])) {

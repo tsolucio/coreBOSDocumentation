@@ -1,5 +1,5 @@
 .dokuwiki div.plugin_translation {
-    float: right;
+    /* float: right; */
     font-size: 95%;
     padding-right: 0.1em;
     margin : 0.0em 0 0.3em 0;
@@ -16,7 +16,7 @@
     float: left;
     list-style-type: none;
     padding: 0;
-    margin: 0.2em 0 0 0;
+    margin: 0.2em 0 0 0 !important;
 }
 .dokuwiki div.plugin_translation ul li img {
     margin: -0.1em 0.2em;
