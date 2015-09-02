@@ -144,7 +144,7 @@ class action_plugin_include extends DokuWiki_Action_Plugin {
      * @author Michael Klier <chi@chimeric.de>
      * @author Michael Hamann <michael@content-space.de>
      */
-    function handle_parser(Doku_Event &$event, $param) {
+    function handle_parser(Doku_Event $event, $param) {
         global $ID;
 
         $level = 0;
@@ -340,7 +340,14 @@ class action_plugin_include extends DokuWiki_Action_Plugin {
 
         // break the pattern up into its parts
         list($mode, $page, $sect) = preg_split('/>|#/u', $syntax, 3);
-        $newpage = $handler->adaptRelativeId($page);
+
+        if (method_exists($handler, 'adaptRelativeId')) { // move plugin before version 2015-05-16
+            $newpage = $handler->adaptRelativeId($page);
+        } else {
+            $newpage = $handler->resolveMoves($page, 'page');
+            $newpage = $handler->relativeLink($page, $newpage, 'page');
+        }
+
         if ($newpage == $page) {
             return $match;
         } else {

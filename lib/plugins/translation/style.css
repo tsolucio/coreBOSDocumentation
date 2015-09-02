@@ -26,7 +26,7 @@
 .dokuwiki div.plugin_translation ul li a.wikilink1:hover,
 .dokuwiki div.plugin_translation ul li a.wikilink1:active,
 .dokuwiki div.plugin_translation ul li a.wikilink1:visited {
-    background-color: #000080 !important;
+    background-color: #000080;
     color: #fff !important;
     text-decoration:none;
     padding: 0 0.2em;
@@ -38,7 +38,7 @@
 .dokuwiki div.plugin_translation ul li a.wikilink2:hover,
 .dokuwiki div.plugin_translation ul li a.wikilink2:active,
 .dokuwiki div.plugin_translation ul li a.wikilink2:visited {
-    background-color: #808080 !important;
+    background-color: #808080;
     color: #fff !important;
     text-decoration:none;
     padding: 0 0.2em;

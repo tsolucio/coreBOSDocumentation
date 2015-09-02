@@ -5,6 +5,7 @@
  * 
  * @author     Esther Brunner <wikidesign@gmail.com>
  * @author Dominik Eckelmann <deckelmann@gmail.com>
+ * @author     Christian Paul <info@jaller.de>
  */
 $lang['noheader']              = 'Verstecke die erste Überschrift der eingefügten Seite/Sektion';
 $lang['firstseconly']          = 'Nur erster Abschnitt von eingebundenen Seiten';
@@ -20,14 +21,13 @@ $lang['showlinkbacks']         = 'Linkbacks unter eingebundener Seite anzeigen (
 $lang['showtags']              = 'Tags unter eingebundener Seite anzeigen (Tag Plugin wird benötigt)';
 $lang['showeditbtn']           = 'Bearbeiten-Tasten anzeigen';
 $lang['doredirect']            = 'Nach dem Bearbeiten der eingebundenen Seite zur ursprünglichen Seite weiterleiten';
-$lang['usernamespace']         = 'Namensraum für Benutzerseiten';
 $lang['doindent']              = 'Eingebundene Seiten relativ zur Seite, in der sie eingebunden sind einrücken';
 $lang['linkonly']              = 'Nur einen Link anzeigen statt dem Inhalt der eingebundenen Seite';
 $lang['title']                 = 'Erste Überschrift im Link benutzen auch wenn "useheading" ausgeschaltet ist (betrifft nur den "linkonly"-Modus)';
 $lang['pageexists']            = 'Keinen Link anzeigen, wenn die verlinkte Seite nicht existiert (betrifft nur den "linkonly"-Modus)';
 $lang['parlink']               = 'Einen Absatz um den Link herum anzeigen (betrifft nur den "linkonly"-Modus)';
-$lang['safeindex']             = 'Verhindere das indizieren von Metadaten auf eingebundenen, nicht öffentlichen Seiten';
-$lang['order']                 = 'Sortierkriterium beim einfügen von mehreren Seiten';
+$lang['safeindex']             = 'Verhindere das Indizieren von Metadaten auf eingebundenen, nicht öffentlichen Seiten';
+$lang['order']                 = 'Sortierkriterium beim Einfügen von mehreren Seiten';
 $lang['order_o_id']            = 'Seiten ID';
 $lang['order_o_title']         = 'Titel';
 $lang['order_o_created']       = 'Erstellungsdatum';
@@ -35,4 +35,5 @@ $lang['order_o_modified']      = 'Änderungsdatum';
 $lang['order_o_indexmenu']     = 'Benutzerdefinierte Reihenfolge mit Indexmenu Syntax.';
 $lang['order_o_custom']        = 'Benutzerdefinierte Reihenfolge mit Include Syntax';
 $lang['rsort']                 = 'Umgekehrte Reihenfolge bei der Sortierung von eingefügten Seiten';
-$lang['depth']                 = 'Maximale tiefe von Namensräumen, 0 für unendliche tiefe';
+$lang['depth']                 = 'Maximale Tiefe von Namensräumen, 0 für unendliche Tiefe';
+$lang['readmore']              = 'Zeige einen \'Weiterlesen\'-Link bei aktiviertem "firstseconly"-Modus';
