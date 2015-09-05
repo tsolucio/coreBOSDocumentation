@@ -51,7 +51,7 @@ A **filter** will be called to do some tasks and will return a value, with which
 
 It also means that we have to be specially careful with the things that are done, our code has to be fast and efficient in order not to block the user experience and also resistant to errors.
 
-Although this may seem and incorrect approach, experience shows that it is extremely powerful.
+Although this may seem an incorrect approach, experience shows that it is extremely powerful.
 </WRAP>
 
 ====Supported events====
@@ -169,6 +169,17 @@ Action launched AFTER two entities have been related. Action receives the names 
 ===corebos.entity.link.delete===
 Action launched when two entities are about to be UNrelated. Action receives the names and IDs of the records being UNrelated.
 
+===corebos.filter.preSaveCheck===
+Filter launched before starting the Save process. Will receive, the $_REQUEST variable and the current object trying to be saved. It must return, besides these two input parameters, an error status, an error message, an error action and an array of variables to return to the edit screen the process was initiated from.
+
+===corebos.filter.preEditCheck===
+Filter launched before starting the Edit process. Will receive, the $_REQUEST variable, the Smarty object and the current object trying to be edited.
+
+===corebos.filter.preViewCheck===
+Filter launched before starting the Detail View process. Will receive, the $_REQUEST variable, the Smarty object and the current object trying to be viewed.
+
+===corebos.audit.[authenticate|login|login.attempt|logout|action]===
+Actions called on the indicated events
 
 ====Events Examples====
 
