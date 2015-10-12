@@ -1,11 +1,3 @@
-1439025629	188.85.81.16	E	en:import_inventory_module	joebordes		
-1439025890	188.85.81.16	E	en:import_inventory_module	joebordes		
-1439025929	188.85.81.16	E	en:import_inventory_module	joebordes		
-1439025997	188.85.81.16	E	en:import_inventory_module	joebordes		
-1439026062	188.85.81.16	E	en:import_inventory_module	joebordes		
-1439026581	188.85.81.16	E	en:import_inventory_module	joebordes		
-1439027062	188.85.81.16	E	en:import_inventory_module	joebordes		
-1439027304	188.85.81.16	E	en:import_inventory_module	joebordes	[TAXES] 	
 1439027318	188.85.81.16	E	en:import_inventory_module	joebordes	[TAXES] 	
 1440155448	80.35.20.79	E	en:usermanual	joebordes		
 1440155820	80.35.20.79	C	en:recurringinvoice	joebordes	created	
@@ -22,3 +14,41 @@
 1441405965	127.0.0.1	E	en:devel:corebos_hooks	joebordes	[Supported events] 	
 1441406310	127.0.0.1	E	en:devel:corebos_hooks	joebordes	[Supported events] 	
 1441442791	127.0.0.1	C	en:sidebar	joebordes	created	
+1443633400	127.0.0.1	C	en:helpmenow	joebordes	created	
+1443633458	127.0.0.1	C	en:helpmenow:home	joebordes	created	
+1443633472	127.0.0.1	C	en:helpmenow:home:index	joebordes	created	
+1443633647	127.0.0.1	E	en:helpmenow:home:index	joebordes		
+1444645043	127.0.0.1	E	es:start	joebordes	[coreBOS  Documentación] 	
+1444645262	127.0.0.1	E	es:start	joebordes		
+1444646168	127.0.0.1	E	en:start	joebordes		
+1444646242	127.0.0.1	E	en:start	joebordes	[coreBOS Documentation Project] 	
+1444646428	127.0.0.1	E	es:start	joebordes		
+1444646456	127.0.0.1	E	es:start	joebordes		
+1444646508	127.0.0.1	E	es:start	joebordes		
+1444646580	127.0.0.1	E	es:sidebar	joebordes		
+1444646607	127.0.0.1	E	en:sidebar	joebordes		
+1444649345	127.0.0.1	E	es:usermanual	joebordes		
+1444663819	127.0.0.1	E	en:usermanual	joebordes		
+1444663845	127.0.0.1	E	es:adminmanual	joebordes		
+1444663952	127.0.0.1	E	es:adminmanual	joebordes		
+1444663974	127.0.0.1	E	es:usermanual	joebordes		
+1444664155	127.0.0.1	E	en:usermanual	joebordes		
+1444664187	127.0.0.1	E	en:adminmanual	joebordes		
+1444664577	127.0.0.1	E	en:adminmanual	joebordes		
+1444664809	127.0.0.1	E	en:adminmanual	joebordes		
+1444664847	127.0.0.1	E	es:adminmanual	joebordes		
+1444664905	127.0.0.1	E	es:usermanual	joebordes		
+1444664966	127.0.0.1	E	en:usermanual	joebordes		
+1444665004	127.0.0.1	E	es:usermanual	joebordes		
+1444665893	127.0.0.1	E	en:start	joebordes		
+1444666019	127.0.0.1	E	en:start	joebordes		
+1444666063	127.0.0.1	E	es:start	joebordes		
+1444666183	127.0.0.1	E	en:start	joebordes		
+1444666230	127.0.0.1	E	es:start	joebordes		
+1444666562	127.0.0.1	E	es:start	joebordes		
+1444666587	127.0.0.1	E	es:start	joebordes		
+1444666666	127.0.0.1	E	en:start	joebordes		
+1444667238	127.0.0.1	C	en:usermanual:faq	joebordes	↷ Page moved from en:faq to en:usermanual:faq	
+1444667238	127.0.0.1	D	en:faq	joebordes	↷ Page moved from en:faq to en:usermanual:faq	
+1444667238	127.0.0.1	e	en:usermanual	joebordes	↷ Links adapted because of a move operation	
+1444667303	127.0.0.1	E	en:usermanual	joebordes		
