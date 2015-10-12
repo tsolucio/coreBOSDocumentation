@@ -12,7 +12,7 @@ coreboshelp:$1$bRPHiXlZ$1AprT6IIP.ybGd2zDIT/r/:coreboshelp:your@email.tld:admin,
 ```
 
 * make sure the permissions are correct (web user can write freely in install)
-* you should now be able to login as admin user with user and password: coreboshelp
+* you should now be able to login as admin user with user and password: **coreboshelp**
 
 From now on you can follow the normal Pull Request system:
 
