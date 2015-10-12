@@ -1,0 +1,3 @@
+==== coreBOS  Documentación ====
+
+{{indexmenu>:en#10|js navbar context}}

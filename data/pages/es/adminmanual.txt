@@ -1,4 +1,12 @@
 ====== Manual del Administrador ======
+
+<menu col=1,align=left>
+  <item>Tutoriales|Casos de usos de la aplicación.|es:adminmanual:tutorial|{{menu:tutorial-icon.png?direct|}}</item>
+  <item>Guías|Guías detalladas sobre cómo utilizar la aplicación|es:adminmanual:guide|{{menu:guide.png?direct|}}</item>
+  <item>Referencias|Referencias paso a paso, para los que ya saben como va|es:adminmanual:reference|{{menu:referenceicon32.png?direct|}}</item>
+  <item>Preguntas Frecuentas|Preguntas y respuestas|es:adminmanual:faq|{{menu:faq_32.png?direct|}}</item>
+</menu>
+
   * [[:es:adminmanual:admintips|Trucos y consejos]]
   * [[workflows|Flujos de Trabajo]]
   * [[cyppasarela|Cobros y Pagos :: Pasarela de Pago]]

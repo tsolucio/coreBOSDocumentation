@@ -1,5 +1,12 @@
 ====== Manual del Usuario ======
 
+<menu col=1,align=left>
+  <item>Tutoriales|Casos de usos de la aplicación.|es:usermanual:tutorial|{{menu:tutorial-icon.png?direct|}}</item>
+  <item>Guías|Guías detalladas sobre cómo utilizar la aplicación|es:usermanual:guide|{{menu:guide.png?direct|}}</item>
+  <item>Referencias|Referencias paso a paso, para los que ya saben como va|es:usermanual:reference|{{menu:referenceicon32.png?direct|}}</item>
+  <item>Preguntas Frecuentas|Preguntas y respuestas|es:usermanual:faq|{{menu:faq_32.png?direct|}}</item>
+</menu>
+
   * [[Convertir PreContacto]]
   * [[openoffice_integration|Uso de OpenOffice con Datos de la Aplicación]]
   * [[imprimir_etiquetas|Uso de OpenOffice con Datos de la Aplicación: Impresión de Etiquetas]]

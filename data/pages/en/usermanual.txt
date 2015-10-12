@@ -1,7 +1,13 @@
 ====== User Manual ======
 
+<menu col=1,align=left>
+  <item>Tutorials|Use cases of the application.|en:usermanual:tutorial|{{menu:tutorial-icon.png?direct|}}</item>
+  <item>Guides|Detailed guides about how to use the application|en:usermanual:guide|{{menu:guide.png?direct|}}</item>
+  <item>References|Step by step, high level, reference, just to remind you how it is done|en:usermanual:reference|{{menu:referenceicon32.png?direct|}}</item>
+  <item>Frequently Asked Questions|Questions and answers|en:usermanual:faq|{{menu:faq_32.png?direct|}}</item>
+</menu>
+
   * [[importingdata|Importing Data]]
-  * [[faq|Frequently Asked Questions]]
   * [[coreboscyp|Payment Control Module]]
   * [[invoiceassetssc|Invoice relation with assets and service contracts]]
   * [[recurringinvoice|Recurring Invoice setups]]
