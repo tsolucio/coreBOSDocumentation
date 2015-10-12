@@ -6,7 +6,11 @@ coreBOS Documentation
 * fork this documentation project
 * clone your fork documentation project into a clean directory
 * create a conf/users.auth.php file by copying conf/users.auth.php.dist and adding this line:
-```coreboshelp:$1$bRPHiXlZ$1AprT6IIP.ybGd2zDIT/r/:coreboshelp:your@email.tld:admin,user```
+
+```
+coreboshelp:$1$bRPHiXlZ$1AprT6IIP.ybGd2zDIT/r/:coreboshelp:your@email.tld:admin,user
+```
+
 * make sure the permissions are correct (web user can write freely in install)
 * you should now be able to login as admin user with user and password: coreboshelp
 
