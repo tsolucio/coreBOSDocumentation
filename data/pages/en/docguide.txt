@@ -1,3 +1,14 @@
+====== coreBOS Documentation Structure ======
+
+The wiki is divided into some top level categories like [[.usermanual|User Manual]] and [[.adminmanual|Administrator Manual]]. Each of these is divided into four additional categories:
+
+  * **Tutorials**: These teach your users specific things that they can do with the application, and are usually tightly focused on just a few pieces of functionality. Bonus points if you include working sample code.
+  * **Guides**: This is somewhere between the reference and tutorials. It should be like your reference with prose that explains how to use the application.
+  * **Reference**: This is the listing of all the functionality in excruciating detail. This includes all datatype and function specifications.
+  * **FAQ**: Frequently Asked Questions and Answers
+
+There are some top level special categories like [[.installupdate|Installation]] and [[.helpmenow|HelpMeNow]] for the application inline help.
+
 ====== coreBOS Documentation ======
 
 <WRAP center round box 80%>
@@ -14,4 +25,6 @@ That said, we are lucky. We are continuing a project that has been alive for man
 
 But that isn't enough for us, so we have created this [[http://corebos.org/page/dokuwiki.org|dokuWiki]], open source documentation project called coreBOSDocs, where we will be writing articles about the application, uploading videos and tutorials for all those issues and hurdles you may run into.
 
-We invite you to participate and help us create a great documentation site for **coreBOS**, any help is welcome, from [[http://corebos.org/development|creating tickets]] of issues you would like us to talk or write about, to [[https://github.com/tsolucio/corebosdocs|writing those articles yourself]]. So, step right in and help out with the **//coreBOS Documentation Site//**
+We invite you to participate and help us create a great documentation site for **coreBOS**, any help is welcome, from [[http://corebos.org/development|creating tickets]] of issues you would like us to talk or write about, to [[https://github.com/tsolucio/corebosdocs|writing those articles yourself]].
+
+<wrap hi>So, step right in and help out with the **//coreBOS Documentation Site//**</wrap>
