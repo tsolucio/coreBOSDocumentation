@@ -44,7 +44,3 @@
   * [[:en:devel:svn2git|SVN > GIT]]
   * [[http://sendgrid.com/blog/cheat-codes-for-good-documentation/|Cheat Codes for Good Documentation]]
 
-====== Things to do in the Wiki ======
-
-  * [[:en:devel:thingstodo|Things to do in the wiki]]
-
