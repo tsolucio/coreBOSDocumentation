@@ -48,3 +48,9 @@
 1444812891	127.0.0.1	E	es:extensions	joebordes		
 1444813053	127.0.0.1	C	en:extensions	joebordes	created	
 1444813775	127.0.0.1	E	es:usermanual	joebordes		
+1444817136	127.0.0.1	C	es:extensions:geotools	joebordes	↷ Page moved from es:geotools to es:extensions:geotools	
+1444669464	127.0.0.1	E	es:geotools		editor externo	
+1444817136	127.0.0.1	D	es:geotools	joebordes	↷ Page moved from es:geotools to es:extensions:geotools	
+1444817395	127.0.0.1	C	en:extensions:coreboscp	joebordes	↷ Page moved from en:devel:coreboscp to en:extensions:coreboscp	
+1444669464	127.0.0.1	E	en:devel:coreboscp		external edit	
+1444817395	127.0.0.1	D	en:devel:coreboscp	joebordes	↷ Page moved from en:devel:coreboscp to en:extensions:coreboscp	
