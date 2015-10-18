@@ -1,4 +1,4 @@
-====== coreBOSCP::How to change the default functionality of a module ======
+====== coreBOSCP - How to change the default functionality of a module ======
 
 The goal of this documentation page is to indicate the necessary steps to be taken to customize the functionality of any given module in the customer portal. By default the customer portal code knows how to perform the basic operations on any coreBOS module. Simply indicating the name of the module, the coreBOSCP code will be able to create, retrieve, update and delete the records of the module. This includes paging, advanced searching and a certain layout on the views while respecting the permission and role system implemented inside coreBOS.
 
