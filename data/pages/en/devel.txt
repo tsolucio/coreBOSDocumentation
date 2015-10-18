@@ -9,7 +9,6 @@
   * [[:en:upgradecb5402cb550|Upgrade coreBOS 5.4 to coreBOS 5.5]]
   * [[:en:devel:vt5tocb1|Upgrade vtiger CRM 5.4 to coreBOS 5.4]]
   * [[:en:devel:vt60tocb|Migrate from vtiger CRM 6.0 to coreBOS]]
-  * [[:en:devel:thirdparty|Third party extensions and changes]]
 
 ====== Technical Articles ======
   * [[:en:devel:debuging|Debugging]]
@@ -27,7 +26,6 @@
 
   * [[:en:devel:coreboscp|coreBOS Customer Portal Development]]
   * [[:en:devel:corebosws|Webservice Development]]
-  * [[:en:devel:coreboswswebform|coreBOS Webservice Webform]]
   * [[:en:devel:installprocess|coreBOS Installation Process]]
 
 ====== Vulnerabilities ======

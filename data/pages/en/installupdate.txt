@@ -20,11 +20,7 @@ How to install and update the application
   * [[upgradevt2cb540|Upgrade from vtiger CRM 5.4.0 to coreBOS 5.4.0]]
 
 
-====== Third Party Extensions ======
 
-  * [[en:devel:thirdparty|FAQ]]
-  * [[vtdziner|vtDZiner]]
-  * [[geotools|GeoTools]]
 ====== Frequently Asked Questions ======
 
   * [[installfaq|Installation FAQ]]

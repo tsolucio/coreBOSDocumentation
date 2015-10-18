@@ -1,10 +1,10 @@
-====== Third Party FAQ ======
+====== Frequently Asked Questions ======
 
 ~~QNA~~
 
 ??? Can I install vtDZiner
 
-!!! [[en:vtdziner|Yes.]]
+!!! [[en:extensions:vtdziner|Yes.]]
 
 ??? How can I add new fonts to pdfmaker? I need to use Helvetica Neue Light
 
