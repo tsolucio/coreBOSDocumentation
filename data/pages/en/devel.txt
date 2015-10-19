@@ -36,7 +36,6 @@
   * [[en:devel:contributors|Contributors]]
 
 ====== Interesting Links ======
-  * [[en:devel:writtenrules|Written Rules]]
   * [[en:devel:licensewoes|License Woes]]
   * [[en:devel:cla|Contributor License Agreements]]
   * [[:en:devel:svn2git|SVN > GIT]]
