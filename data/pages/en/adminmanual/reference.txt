@@ -1,0 +1,59 @@
+====== Administrator Reference Guide ======
+
+===== Application Administration Issues =====
+
+  * [[en:adminmanual:lead_conversion|Lead Conversion]]
+
+===== Users & Access Management =====
+
+  * [[en:adminmanual:users|Users]]
+  * [[en:adminmanual:roles|Roles]]
+  * [[en:adminmanual:profiles|Profiles]]
+  * [[en:adminmanual:groups|Groups]]
+  * [[en:adminmanual:sharingaccess|Sharing Access]]
+  * [[en:adminmanual:fieldaccess|Fields Access]]
+  * [[en:adminmanual:audittrails|Audit Trails]]
+  * [[en:adminmanual:loginhistory|User Login History]]
+
+===== Studio =====
+
+  * [[en:adminmanual:modulemanager|Module Manager]]
+  * [[en:adminmanual:picklisteditor|Picklist Editor]]
+  * [[en:adminmanual:picklistdependency|Picklist Dependency Setup]]
+  * [[en:adminmanual:menueditor|Menu Editor]]
+
+
+===== Communication Templates =====
+
+  * [[en:adminmanual:mailmerge|Mail Merge]]
+  * [[en:adminmanual:notifications|Notification Schedulers]]
+  * [[en:adminmanual:inventorynotifications|Inventory Notifications]]
+  * [[en:adminmanual:emailtemplates|E-mail Templates]]
+  * [[en:adminmanual:companydetails|Company Details]]
+
+
+===== Other Settings =====
+
+  * [[en:adminmanual:currencies|Currencies]]
+  * [[en:adminmanual:taxcalculations|Tax Calculations]]
+  * [[en:adminmanual:proxyserver|Proxy Server]]
+  * [[en:adminmanual:outgoingserver|Outgoing Server]]
+  * [[en:adminmanual:Announcements|Announcements]]
+  * [[en:adminmanual:backupserver|Backup Server]]
+  * [[en:adminmanual:moduleview|Default Module View]]
+  * [[en:adminmanual:termsconditions|Inventory : Terms & Conditions]]
+  * [[en:adminmanual:recordnumbering|Customize Record Numbering]]
+  * [[en:adminmanual:mailconverter|Mail Converter]]
+  * [[en:adminmanual:workflows|Workflows]]
+  * [[en:adminmanual:configeditor|Configuration Editor]]
+  * [[en:adminmanual:modtracker|ModTracker]]
+  * [[en:adminmanual:scheduler|Scheduler]]
+  * [[en:adminmanual:vtcustomerportal|vtiger CRM Customer Portal]]
+  * [[en:adminmanual:webforms|Webforms]]
+
+
+===== Other Administration Issues =====
+
+  * [[en:adminmanual:logos_sizes|Logo sizes]]
+  * [[en:adminmanual:globalvariables|Global Variables]]
+  * [[en:adminmanual:email_tracking|Email tracking: Access count]]

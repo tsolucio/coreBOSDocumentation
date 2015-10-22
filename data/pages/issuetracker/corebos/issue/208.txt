@@ -11,7 +11,7 @@ We have added a variable which must contain the list of valid domains/IPs we wil
 
 The variable is called //$cors_enabled_domains// and is established in the //config.inc.php// file.
 
-We have also enabled editing this variable from the [[:en:configeditor|configuration editor in Settings]].
+We have also enabled editing this variable from the [[en:adminmanual:configeditor|configuration editor in Settings]].
 
 The variable can have two types of values:
   * asterisk <wrap hi>*</wrap> which means that all origin domains are accepted

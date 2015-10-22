@@ -6,14 +6,3 @@
   <item>References|Step by step, high level, reference, just to remind you how it is done|en:adminmanual:reference|{{menu:referenceicon32.png?direct|}}</item>
   <item>Frequently Asked Questions|Questions and answers|en:adminmanual:faq|{{menu:faq_32.png?direct|}}</item>
 </menu>
-
-
-  * [[adminmanual:admintips|Tips and Tricks]]
-  * [[workflows|Workflows]]
-  * [[cyppasarela|Payments Control Module :: Payment Gateway]]
-  * [[configeditor|Configuration Editor]]
-  * [[configureoutgoingserver|How to Configure Outgoing Server]]
-  * [[email_tracking|Email tracking: Access count]]
-  * [[lead_conversion|Lead Conversion]]
-  * [[logos_sizes|Logo sizes]]
-  * [[globalvariables|Global Variables]]

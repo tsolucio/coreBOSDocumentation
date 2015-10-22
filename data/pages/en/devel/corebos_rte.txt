@@ -1,6 +1,6 @@
 ====== How to activate RTE on a module ======
 
-  * Activate RTE feature in [[en:configeditor|Config Editor]]
+  * Activate RTE feature in [[en:adminmanual:configeditor|Config Editor]]
   * modify template to add support for the module you want. If the module has more than one field with this feature you have to also add a block of code to launch CKEditor on the field
   * modify the EditView.php script of the module by passing the USE_RTE variable
   * modify the detail view of the fields to process and show HTML symbols

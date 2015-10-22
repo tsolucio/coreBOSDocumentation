@@ -11,15 +11,15 @@ It is necessary to execute four steps to configure and setup a workflow:
 In the next sections you will be able to find more information on these steps.
 
 
-  * [[workflow_launch_conditions|Workflow launch conditions]]
-  * [[scheduled_workflows|Scheduled Time based Workflows]]
-  * [[workflow_conditions|Workflow conditions]]
+  * [[..:workflow_launch_conditions|Workflow launch conditions]]
+  * [[..:scheduled_workflows|Scheduled Time based Workflows]]
+  * [[..:workflow_conditions|Workflow conditions]]
 
 ===== Workflow Tasks =====
-  * [[update_workflows|Update Workflow Tasks]]
-  * [[addeltag_workflows|Add/Delete Tags Workflow Tasks]]
-  * [[relateproductservice_workflow|Related Product/Service Workflow Task]]
-  * [[invokecustomfunction_workflows|Invoke Custom Functions Workflow Tasks]]
+  * [[..:update_workflows|Update Workflow Tasks]]
+  * [[..:addeltag_workflows|Add/Delete Tags Workflow Tasks]]
+  * [[..:relateproductservice_workflow|Related Product/Service Workflow Task]]
+  * [[..:invokecustomfunction_workflows|Invoke Custom Functions Workflow Tasks]]
 
 ===== Workflow Examples =====
-  * [[workflow_examples|Workflow Examples]]
+  * [[..:workflow_examples|Workflow Examples]]
