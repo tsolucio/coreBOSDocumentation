@@ -71,7 +71,7 @@ $ticket->retrieve_entity_info($recordid, 'HelpDesk');
 $ticket->id = $recordid;
 $ticket->column_fields['ticketstatus'] = $newStatus;
 $ticket->mode = 'edit';
-$handler = vtws_getModuleHandlerFromName('Events', $adminUser);
+$handler = vtws_getModuleHandlerFromName('HelpDesk', $adminUser);
 $meta = $handler->getMeta();
 $ticket->column_fields = DataTransform::sanitizeForInsert($ticket->column_fields,$meta);
 $ticket->column_fields = DataTransform::sanitizeTextFieldsForInsert($ticket->column_fields,$meta);
