@@ -1,0 +1,46 @@
+====== Business Mappings ======
+
+The Business Mappings module permits **implementors** to define high level configuration options for the execution of the application.
+
+Using different types of structured XML or direct SQL, this module will define conditions, field mappings and other advanced logic to modify the functionality of the application without the need to get into programming details.
+
+This module also serves another purpose: separating the programmers from the implementors. In other words, it permits the programmers to create functionality in the application while giving to the implementor total control on **how** that functionality should act in different cases for different installations.
+
+With this module we achieve a much more configurable application without the need to depend on specific programming knowledge.
+
+Note that in the end, many of these mappings or conditions are actually a washed down configuration screen. Many times, from a programmers point of view, creating certain functionality is easy, the problem is creating a GUI for the user to be able to configure the different options that are present in the code. Many times we spend more time programming the interface than the actual solution. With the Business Mappings we create a spartan generic interface to many features without getting to complicated.
+
+====== Fields of Business Mappings ======
+
+  * **Map Name**: this is a textual identifier of the mapping. It is very important to use the exact name that each feature requires as that is what the code looks for. These names are constantly evolving as we add new features that use the mappings module
+  * **Map Number**: autonumeric reference field
+  * **Map Type**: the type of mapping that is required, Depending on the type, the structure of the contents field is different
+  * **Map Contents**: the actual definition of the mappings, normally this will be an XML structure
+
+====== Types of Business Mappings ======
+
+There are currently these different types of mappings:
+
+  * [[en:adminmanual:businessmappings#condition|Condition]]
+  * [[en:adminmanual:businessmappings#mapping|Mapping]]
+  * [[en:adminmanual:businessmappings#send_mail|Send Mail]]
+  * [[en:adminmanual:businessmappings#block_access|Block Access]]
+  * [[en:adminmanual:businessmappings#import|Import]]
+  * [[en:adminmanual:businessmappings#map_fields|Map fields]]
+  * [[en:adminmanual:businessmappings#iomap|IOMap]]
+  * [[en:adminmanual:businessmappings#query|Query]]
+  * [[en:adminmanual:businessmappings#search_and_update|Search and Update]]
+  * [[en:adminmanual:businessmappings#field_dependency|Field Dependency]]
+
+Depending on the type of the business mapping the contents of the record changes as explained next.
+
+===== Condition =====
+===== Mapping =====
+===== Send Mail =====
+===== Block Access =====
+===== Import =====
+===== Map fields =====
+===== IOMap =====
+===== Query =====
+===== Search and Update =====
+===== Field Dependency =====

@@ -56,4 +56,5 @@
 
   * [[en:adminmanual:logos_sizes|Logo sizes]]
   * [[en:adminmanual:globalvariables|Global Variables]]
+  * [[en:adminmanual:businessmappings|Business Mappings]]
   * [[en:adminmanual:email_tracking|Email tracking: Access count]]
