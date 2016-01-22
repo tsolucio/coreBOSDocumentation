@@ -20,6 +20,12 @@ The Calendar allows you to add Google events into coreBOS (see blue link “Add 
 <WRAP center round important 70%>Important note: Events added from Google to coreBOS have to be updated/edited/moved in the Calendar only (not in the Google calendar) in order to synchronize the changes done in the Calendar towards Google calendar.</WRAP>
 
 
+===== Separating Events/Calendars =====
+
+??? The problem I am facing is that personal events that I have on my Google calendar are showing up on my task list in coreBOS. How can I get this to stop?  I do not keep 2 calendars and I prefer to work with only one. I see in calendar settings that "Google is connected" for my user name. Is this why my task list is picking up everything from my Google calendar?
+
+!!! Have a [[en:calendar_google_separating_events|read at this page]] for some indications.
+
 
 ===== Setup calendar event synchronization =====
 
@@ -40,16 +46,16 @@ We implement this approach so it is easy to define which events should be import
 
 We have updated Google Integration from API v.1 //(already deprecated by Google)// to the newest API v.3.
 
-The integration is being done through Web Application Client ID, which lets a user login to Google Calendar in background by previously entering three parameters: 
+The integration is being done through Web Application Client ID, which lets a user login to Google Calendar in the background by previously entering these parameters: 
   * API Key, 
   * Client ID.
   * Client Secret
   * Redirect URL.
 
-Due to Google Security issues, integration does not require user's email password anymore. So you just to config this parameters and validate for **admin user**, the rest of users, just click in **//Authorize and Connect//** link to give permission to manage and share their calendars.
+Due to Google Security issues, integration does not require user's email password anymore. So you just have to configure the parameters above and validate the **admin user**, the rest of users, just need to click on the **//Authorize and Connect//** link to give permission to the admin user to manage and share their calendars.
 
 
-=====Here's a step by step guide to help you configure your Google Account.=====
+=====Here is a step by step guide to help you configure your Google Account.=====
 
 1.- Go to the link [[https://console.developers.google.com/project]]
 
