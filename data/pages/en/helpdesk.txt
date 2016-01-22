@@ -1,5 +1,7 @@
 ====== Help Desk:: Trouble Tickets ======
 
+~~QNA~~
+
 
 ??? Is it possible to make coreBOS work using "block hours" or "term contracts"?
 
@@ -16,3 +18,15 @@ You can see below an example setup for a **one year contract billed monthly**:
 {{ :en:corebos:oneyearcontractbilledmonthly.png?830 |}}
 
 This setup will create 11 invoices starting on 1st of November and ending on 1st of September. You have to create the first one manually.
+
+??? Is there a way that the block hours accepts decimal e.g like 1.7hours?﻿
+
+!!!I just did a test and all I had to do to get it working with decimals was change the typeofdata of the ticket field. It is set to integer so it won't accept decimal values.
+
+This is the query I used:
+
+<code sql>UPDATE `vtiger_field`
+ SET `uitype` = '7',`typeofdata` = 'N~O'
+ WHERE `vtiger_field`.`fieldname` = 'hours' and tabid=13;</code>
+
+It would be better to change the type of the hours field in tickets from varchar to decimal but it works the same.
