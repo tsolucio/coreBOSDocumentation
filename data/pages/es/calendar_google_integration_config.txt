@@ -1,0 +1,72 @@
+===== Configurar tu conexión con Google Calendar =====
+
+La integración se realiza utilizando la versión 3 del API de Google que se basa en OAuth que nos permite realizar una configuración central para todos los usuarios y después acceder a sus calendarios sin necesidad de autentificarse cada vez.
+
+Esto nos permite trabajar en paralelo creando y actualizando los eventos mientras el usuario trabaja con la aplicación.
+
+Como usuario administrador hay que configurar el acceso general utilizando estos parámetros: 
+  * API Key, 
+  * Client ID.
+  * Client Secret
+  * Redirect URL.
+
+después autorizar y validar el usuario administrador. A partir de ese momento los demás usuarios solo tendrán que pulsar sobre el enlace de **//Autorizar y Conectar//** para confirmar el acceso de la aplicación a sus calendarios.
+
+
+=====Guía de configuración paso a paso.=====
+
+1.- Acceder a [[https://console.developers.google.com/project|la consola de desarrollo de Google]]
+
+2.- Crear un proyecto. En la siguiente imagen le hemos puesto el nombre "coreBOSGSync"
+
+{{ :es:calendar:cbgsync_01.png |}}
+
+3.- Accede al proyecto y haz click en la sección de Habilitar y Administrar API y activa el API del Calendarip
+
+{{ :es:calendar:cbgsync_02.png |}}
+{{ :es:calendar:cbgsync_03.png |}}
+{{ :es:calendar:cbgsync_04.png |}}
+{{ :es:calendar:cbgsync_05.png |}}
+
+
+4.- Accede a la sección de Credenciales
+
+{{ :es:calendar:cbgsync_06.png |}}
+
+5.- Crea una nueva de tipo OAuth (ID de cliente OAuth)
+
+{{ :es:calendar:cbgsync_07.png |}}
+
+6.- Acepta la pantalla de creación dejando las URLs de política y explicación vacías.
+
+{{ :es:calendar:cbgsync_08.png |}}
+{{ :es:calendar:cbgsync_09.png |}}
+
+7.- En la pantalla de Autorización, elige "Aplicación Web" e introduce la URL de tu instalación coreBOS y en la URL de redirección introduce: **http://yourcorebos.tld/sync,php**. 
+
+{{ :es:calendar:cbgsync_10.png |}}
+
+8.- Ahora debemos crear una clave API. Selecciona la opción Añadir Credenciales > Clave de API > Clave de Servidor. Introduce una IP si la conoces para mayor seguridad.
+
+{{ :es:calendar:cbgsync_13.png |}}
+{{ :es:calendar:cbgsync_14.png |}}
+{{ :es:calendar:cbgsync_15.png |}}
+{{ :es:calendar:cbgsync_16.png |}}
+
+
+9.- Ahora accede como administrador a tu instalación de coreBOS, abre el calendario gráfico y haz click en el icono de preferencias. En la parte inferior introduce todos los valores que has creado en Google.
+
+{{ :es:calendar:cbgsync_17.png |}}
+
+<WRAP center round help 70%>La casilla de verificación **¿Insertar desde Google?** es para perimitit la importación de eventos desde Google. Si no está marcado solo se enviarán eventos al calendario de Google.</WRAP>
+
+10.- Guarda los valores introducidos que se validarán y serás dirigido a la pantalla de autorización de Google (con la información introducida en el primer paso).
+
+{{ :es:calendar:cbgsync_18.png |}}
+
+11.- Finalmente cada usuario que quiera utilizar el servicio tendrá que acceder a sus preferencias y autorizar el acceso.
+
+A partir de este punto solo hay que configurar los eventos y tener los cron activados en el planificador para tener los calendarios vinculados.
+
+{{ :es:calendar:cbgsync_12.png |}}
+{{ :es:calendar:cbgsync_19.png |}}
