@@ -1,94 +1,21 @@
-1445152900	127.0.0.1	E	en:extensions:coreboscp		external edit	
-1445152900	127.0.0.1	E	en:docguide		external edit	
-1445160834	127.0.0.1	C	es:extensions:cyppasarela	joebordes	↷ Page moved from es:cyppasarela to es:extensions:cyppasarela	
-1445160834	127.0.0.1	D	es:cyppasarela	joebordes	↷ Page moved from es:cyppasarela to es:extensions:cyppasarela	
-1445160834	127.0.0.1	e	es:adminmanual	joebordes	↷ Links adapted because of a move operation	
-1445160933	127.0.0.1	E	en:coreboscp:changedefaultmodule	joebordes	[coreBOSCP::How to change the default functionality of a module] 	
-1445161767	127.0.0.1	C	en:extensions:coreboscp:installconfig	joebordes	↷ Page moved from en:coreboscp:installconfig to en:extensions:coreboscp:installconfig	
-1445161767	127.0.0.1	D	en:coreboscp:installconfig	joebordes	↷ Page moved from en:coreboscp:installconfig to en:extensions:coreboscp:installconfig	
-1445161767	127.0.0.1	e	en:extensions:coreboscp	joebordes	↷ Links adapted because of a move operation	
-1445161968	127.0.0.1	C	en:extensions:coreboscp:knownissues	joebordes	↷ Page moved from en:coreboscp:knownissues to en:extensions:coreboscp:knownissues	
-1445161968	127.0.0.1	D	en:coreboscp:knownissues	joebordes	↷ Page moved from en:coreboscp:knownissues to en:extensions:coreboscp:knownissues	
-1445161969	127.0.0.1	C	en:extensions:coreboscp:changelayout	joebordes	↷ Page moved from en:coreboscp:changelayout to en:extensions:coreboscp:changelayout	
-1445161969	127.0.0.1	D	en:coreboscp:changelayout	joebordes	↷ Page moved from en:coreboscp:changelayout to en:extensions:coreboscp:changelayout	
-1445161969	127.0.0.1	C	en:extensions:coreboscp:ruleguidelines	joebordes	↷ Page moved from en:coreboscp:ruleguidelines to en:extensions:coreboscp:ruleguidelines	
-1445161969	127.0.0.1	D	en:coreboscp:ruleguidelines	joebordes	↷ Page moved from en:coreboscp:ruleguidelines to en:extensions:coreboscp:ruleguidelines	
-1445161969	127.0.0.1	C	en:extensions:coreboscp:changedefaultmodule	joebordes	↷ Page moved from en:coreboscp:changedefaultmodule to en:extensions:coreboscp:changedefaultmodule	
-1445161969	127.0.0.1	D	en:coreboscp:changedefaultmodule	joebordes	↷ Page moved from en:coreboscp:changedefaultmodule to en:extensions:coreboscp:changedefaultmodule	
-1445161969	127.0.0.1	C	en:extensions:coreboscp:addbutton2module	joebordes	↷ Page moved from en:coreboscp:addbutton2module to en:extensions:coreboscp:addbutton2module	
-1445161969	127.0.0.1	D	en:coreboscp:addbutton2module	joebordes	↷ Page moved from en:coreboscp:addbutton2module to en:extensions:coreboscp:addbutton2module	
-1445161969	127.0.0.1	C	en:extensions:coreboscp:vtcpng_utilities	joebordes	↷ Page moved from en:coreboscp:vtcpng_utilities to en:extensions:coreboscp:vtcpng_utilities	
-1445161969	127.0.0.1	D	en:coreboscp:vtcpng_utilities	joebordes	↷ Page moved from en:coreboscp:vtcpng_utilities to en:extensions:coreboscp:vtcpng_utilities	
-1445161969	127.0.0.1	e	en:extensions:coreboscp	joebordes	↷ Links adapted because of a move operation	
-1445162891	127.0.0.1	E	en:extensions:coreboscp	joebordes		
-1445162927	127.0.0.1	E	en:extensions:coreboscp	joebordes		
-1445163640	127.0.0.1	E	en:docguide	joebordes		
-1445163678	127.0.0.1	E	en:docguide	joebordes		
-1445163724	127.0.0.1	E	en:docguide	joebordes		
-1445163740	127.0.0.1	C	en:docguide:docwoes	joebordes	created	
-1445163809	127.0.0.1	C	en:docguide:cbdocstodo	joebordes	↷ Page moved and renamed from en:devel:thingstodo to en:docguide:cbdocstodo	
-1445163809	127.0.0.1	D	en:devel:thingstodo	joebordes	↷ Page moved and renamed from en:devel:thingstodo to en:docguide:cbdocstodo	
-1445163809	127.0.0.1	e	en:devel	joebordes	↷ Links adapted because of a move operation	
-1445163961	127.0.0.1	E	en:devel	joebordes	[Things to do in the Wiki] 	
-1445164509	127.0.0.1	C	en:extensions:coreboswswebform	joebordes	↷ Page moved from en:devel:coreboswswebform to en:extensions:coreboswswebform	
-1445164509	127.0.0.1	D	en:devel:coreboswswebform	joebordes	↷ Page moved from en:devel:coreboswswebform to en:extensions:coreboswswebform	
-1445164509	127.0.0.1	e	en:devel	joebordes	↷ Links adapted because of a move operation	
-1445164850	127.0.0.1	C	en:extensions:faq	joebordes	↷ Page moved and renamed from en:devel:thirdparty to en:extensions:faq	
-1445164850	127.0.0.1	D	en:devel:thirdparty	joebordes	↷ Page moved and renamed from en:devel:thirdparty to en:extensions:faq	
-1445164850	127.0.0.1	e	en:installupdate	joebordes	↷ Links adapted because of a move operation	
-1445164850	127.0.0.1	e	en:devel	joebordes	↷ Links adapted because of a move operation	
-1445164949	127.0.0.1	E	en:extensions:faq	joebordes		
-1445165584	127.0.0.1	E	en:devel	joebordes	[Tools and References] 	
-1445165618	127.0.0.1	E	en:devel	joebordes	[Technical Articles] 	
-1445165732	127.0.0.1	e	en:installupdate	joebordes	↷ Links adapted because of a move operation	
-1445165732	127.0.0.1	e	en:extensions:faq	joebordes	↷ Links adapted because of a move operation	
-1445165732	127.0.0.1	C	en:extensions:vtdziner	joebordes	↷ Page moved from en:vtdziner to en:extensions:vtdziner	
-1445165732	127.0.0.1	D	en:vtdziner	joebordes	↷ Page moved from en:vtdziner to en:extensions:vtdziner	
-1445165760	127.0.0.1	E	en:installupdate	joebordes	[Third Party Extensions] 	
-1445166471	127.0.0.1	E	en:docguide:docwoes	joebordes		
-1445166499	127.0.0.1	E	en:docguide:docwoes	joebordes	[Writing It All Down] 	
-1445166609	127.0.0.1	E	en:devel	joebordes	[Interesting Links] 	
-1445494503	127.0.0.1	C	en:adminmanual:faq	joebordes	↷ Page moved and renamed from en:admin_faq to en:adminmanual:faq	
-1445494503	127.0.0.1	D	en:admin_faq	joebordes	↷ Page moved and renamed from en:admin_faq to en:adminmanual:faq	
-1445494504	127.0.0.1	e	en:adminmanual	joebordes	↷ Links adapted because of a move operation	
-1445494550	127.0.0.1	E	en:adminmanual	joebordes		
-1445494843	127.0.0.1	E	en:adminmanual:faq	joebordes		
-1445495239	127.0.0.1	C	es:adminmanual:faq	joebordes	↷ Page name changed from es:adminmanual:admintips to es:adminmanual:faq	
-1445495239	127.0.0.1	D	es:adminmanual:admintips	joebordes	↷ Page name changed from es:adminmanual:admintips to es:adminmanual:faq	
-1445495239	127.0.0.1	e	es:adminmanual	joebordes	↷ Links adapted because of a move operation	
-1445495297	127.0.0.1	E	es:adminmanual	joebordes		
-1445532202	127.0.0.1	E	en:adminmanual	joebordes		
-1445533083	127.0.0.1	C	en:adminmanual:reference	joebordes	created	
-1445533178	127.0.0.1	E	en:adminmanual:reference	joebordes		
-1445533577	127.0.0.1	E	en:adminmanual:reference	joebordes		
-1445534143	127.0.0.1	E	en:adminmanual:reference	joebordes		
-1445534365	127.0.0.1	C	en:adminmanual:configeditor	joebordes	↷ Page moved from en:configeditor to en:adminmanual:configeditor	
-1445534365	127.0.0.1	D	en:configeditor	joebordes	↷ Page moved from en:configeditor to en:adminmanual:configeditor	
-1445534365	127.0.0.1	e	issuetracker:corebos:issue:208	joebordes	↷ Links adapted because of a move operation	
-1445534365	127.0.0.1	e	en:adminmanual	joebordes	↷ Links adapted because of a move operation	
-1445534365	127.0.0.1	e	en:devel:corebos_rte	joebordes	↷ Links adapted because of a move operation	
-1445534420	127.0.0.1	C	en:adminmanual:workflows	joebordes	↷ Page moved from en:workflows to en:adminmanual:workflows	
-1445534420	127.0.0.1	D	en:workflows	joebordes	↷ Page moved from en:workflows to en:adminmanual:workflows	
-1445534420	127.0.0.1	e	en:adminmanual	joebordes	↷ Links adapted because of a move operation	
-1445534430	127.0.0.1	e	en:adminmanual:workflows	joebordes	↷ Links adapted because of a move operation	
-1445534504	127.0.0.1	C	en:adminmanual:globalvariables	joebordes	↷ Page moved from en:globalvariables to en:adminmanual:globalvariables	
-1445534504	127.0.0.1	D	en:globalvariables	joebordes	↷ Page moved from en:globalvariables to en:adminmanual:globalvariables	
-1445534504	127.0.0.1	e	en:adminmanual	joebordes	↷ Links adapted because of a move operation	
-1445534556	127.0.0.1	C	en:adminmanual:logos_sizes	joebordes	↷ Page moved from en:logos_sizes to en:adminmanual:logos_sizes	
-1445534556	127.0.0.1	D	en:logos_sizes	joebordes	↷ Page moved from en:logos_sizes to en:adminmanual:logos_sizes	
-1445534556	127.0.0.1	e	en:adminmanual	joebordes	↷ Links adapted because of a move operation	
-1445534591	127.0.0.1	E	en:adminmanual	joebordes		
-1445534620	127.0.0.1	E	en:adminmanual:reference	joebordes	[Other Administration Issues] 	
-1445534697	127.0.0.1	E	en:adminmanual:reference	joebordes	[Other Administration Issues] 	
-1445534820	127.0.0.1	C	en:adminmanual:outgoingserver	joebordes	↷ Page moved and renamed from en:configureoutgoingserver to en:adminmanual:outgoingserver	
-1445534820	127.0.0.1	D	en:configureoutgoingserver	joebordes	↷ Page moved and renamed from en:configureoutgoingserver to en:adminmanual:outgoingserver	
-1445534820	127.0.0.1	e	en:adminmanual	joebordes	↷ Links adapted because of a move operation	
-1445534821	127.0.0.1	e	en:devel:debuging	joebordes	↷ Links adapted because of a move operation	
-1445534913	127.0.0.1	E	en:adminmanual	joebordes		
-1445534948	127.0.0.1	E	en:adminmanual:reference	joebordes	[Other Administration Issues] 	
-1445534974	127.0.0.1	E	en:adminmanual:reference	joebordes	[Application Administration Issues] 	
-1445535011	127.0.0.1	E	en:adminmanual:reference	joebordes	[Application Administration Issues] 	
-1445535102	127.0.0.1	C	en:adminmanual:en:lead_conversion	joebordes	↷ Page moved from en:lead_conversion to en:adminmanual:en:lead_conversion	
-1445535102	127.0.0.1	D	en:lead_conversion	joebordes	↷ Page moved from en:lead_conversion to en:adminmanual:en:lead_conversion	
-1445535292	127.0.0.1	C	en:adminmanual:lead_conversion	joebordes	↷ Page moved from en:adminmanual:en:lead_conversion to en:adminmanual:lead_conversion	
-1445535292	127.0.0.1	D	en:adminmanual:en:lead_conversion	joebordes	↷ Page moved from en:adminmanual:en:lead_conversion to en:adminmanual:lead_conversion	
+1446815506	80.35.20.79	E	en:helpdesk	joebordes		
+1446815569	80.35.20.79	E	en:helpdesk	joebordes		
+1447066714	46.24.36.183	E	en:devel:saverecordfromwithin	joebordes	[Example of DataTransform transformation] 	
+1447957039	188.85.235.194	E	en:extensions:coreboswswebform	joebordes	[Configuration and Usage] 	
+1447957125	188.85.235.194	E	en:extensions:coreboswswebform	joebordes	[Questions and Answers] 	
+1448876345	80.35.20.79	E	en:calendar_google_integration	joebordes	[Configuring your connection with Google Calendar] 	
+1448876518	80.35.20.79	E	en:calendar_google_integration	joebordes	[Here's a step by step guide to help you configure your Google Account.] 	
+1448973606	46.25.154.155	C	es:calendar_google_integration_config	joebordes	creado	
+1448979128	46.25.154.155	E	es:calendar_google_integration_config	joebordes	[Guía de configuración paso a paso.] 	
+1449145531	46.25.154.155	E	en:calendar_google_integration	joebordes	[Google Synchronization] 	
+1449145656	46.25.154.155	E	en:calendar_google_integration	joebordes	[Separating Events/Calendars] 	
+1449145930	46.25.154.155	C	en:calendar_google_separating_events	joebordes	created	
+1449145947	46.25.154.155	E	en:calendar_google_separating_events	joebordes		
+1449160014	46.25.154.155	E	en:calendar_google_separating_events	joebordes		
+1449161689	46.25.154.155	E	en:calendar_google_separating_events	joebordes		
+1450205185	46.25.162.208	E	en:adminmanual:faq	joebordes		
+1450205214	46.25.162.208	E	en:adminmanual:faq	joebordes		
+1450205234	46.25.162.208	E	en:adminmanual:faq	joebordes		
+1452103579	46.25.162.208	E	en:adminmanual:faq	joebordes		
+1452104368	46.25.162.208	E	en:adminmanual:faq	joebordes		
+1453457746	188.85.63.155	E	en:calendar_google_integration	joebordes	[Separating Events/Calendars] 	
