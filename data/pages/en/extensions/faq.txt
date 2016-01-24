@@ -4,7 +4,7 @@
 
 ??? Can I install vtDZiner
 
-!!! [[en:extensions:vtdziner|Yes.]]
+!!! [[en:extensions:extensions:vtdziner|Yes.]]
 
 ??? How can I add new fonts to pdfmaker? I need to use Helvetica Neue Light
 
