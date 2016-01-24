@@ -57,13 +57,6 @@ class helper_plugin_move_handler {
 
         if($type != 'media' && $type != 'page') throw new Exception('Not a valid type');
 
-        if($conf['useslash']) {
-            $old = str_replace('/', ':', $old);
-            $delimiter = '/';
-        } else {
-            $delimiter = ':';
-        }
-
         $old = resolve_id($this->origNS, $old, false);
 
         if($type == 'page') {
@@ -71,40 +64,28 @@ class helper_plugin_move_handler {
             // resolve_pageid does a lot more here, but we can't really assume this as the original pages might have been
             // deleted already
             if(substr($old, -1) === ':') $old .= $conf['start'];
-            $old = cleanID($old);
 
             $moves = $this->page_moves;
         } else {
             $moves = $this->media_moves;
         }
 
-        if (substr($old,0,1) !== $delimiter) {
-            $tempColon = true;
-            $old = $delimiter . $old;
-        }
+        $old = cleanID($old);
 
         foreach($moves as $move) {
-            if (substr($move[0],0,1) !== $delimiter) {
-                $move[0] = $delimiter . $move[0];
-            }
             if($move[0] == $old) {
                 $old = $move[1];
-                if (substr($old,0,1) !== $delimiter) {
-                    $old = $delimiter . $old;
-                }
             }
         }
-        if ($tempColon) {
-            $old = substr($old,1);
-        }
+
         return $old; // this is now new
     }
 
     /**
      * if the old link ended with a colon and the new one is a start page, adjust
      *
-     * @param $relold the old, possibly relative ID
-     * @param $new    the new, full qualified ID
+     * @param $relold string the old, possibly relative ID
+     * @param $new    string the new, full qualified ID
      * @param $type   'media' or 'page'
      * @return string
      */
@@ -160,6 +141,7 @@ class helper_plugin_move_handler {
 
         // if it wasn't relative then, leave it absolute now, too
         if(!$wasrel) {
+            if($this->ns && !getNS($new)) $new = ':' . $new;
             $new = $this->_nsStartCheck($relold, $new, $type);
             return $new;
         }

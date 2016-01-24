@@ -596,5 +596,33 @@ EOT;
 
 	}
 
+    function test_move_start_ns_into_ns_page() {
+        saveWikiText('bugs:start', 'Bug page', 'created');
+        idx_addPage('bugs:start');
+        saveWikiText('foo:bugs:test', '[[bugs:start]]', 'created');
+        idx_addPage('foo:bugs:test');
+
+        /** @var helper_plugin_move_op $move */
+        $move = plugin_load('helper', 'move_op');
+
+        $this->assertTrue($move->movePage('bugs:start', 'bugs'));
+        $this->assertEquals('[[:bugs]]', rawWiki('foo:bugs:test'));
+
+        $this->assertTrue($move->movePage('bugs', 'start'));
+        $this->assertEquals('[[:start]]', rawWiki('foo:bugs:test'));
+    }
+
+    function test_clean_id_move() {
+        saveWikiText('some_space:start', 'Space page', 'created');
+        idx_addPage('some_space:start');
+        saveWikiText('foo:bar:test', '[[some space:start]]', 'created');
+        idx_addPage('foo:bar:test');
+
+        /** @var helper_plugin_move_op $move */
+        $move = plugin_load('helper', 'move_op');
+
+        $this->assertTrue($move->movePage('some_space:start', 'spaceless:start'));
+        $this->assertEquals('[[spaceless:start]]', rawWiki('foo:bar:test'));
+    }
 }
 
