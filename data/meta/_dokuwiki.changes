@@ -1,32 +1,50 @@
-1446815569	80.35.20.79	E	en:helpdesk	joebordes		
-1447066714	46.24.36.183	E	en:devel:saverecordfromwithin	joebordes	[Example of DataTransform transformation] 	
-1447957039	188.85.235.194	E	en:extensions:coreboswswebform	joebordes	[Configuration and Usage] 	
-1447957125	188.85.235.194	E	en:extensions:coreboswswebform	joebordes	[Questions and Answers] 	
-1448876345	80.35.20.79	E	en:calendar_google_integration	joebordes	[Configuring your connection with Google Calendar] 	
-1448876518	80.35.20.79	E	en:calendar_google_integration	joebordes	[Here's a step by step guide to help you configure your Google Account.] 	
-1448973606	46.25.154.155	C	es:calendar_google_integration_config	joebordes	creado	
-1448979128	46.25.154.155	E	es:calendar_google_integration_config	joebordes	[Guía de configuración paso a paso.] 	
-1449145531	46.25.154.155	E	en:calendar_google_integration	joebordes	[Google Synchronization] 	
-1449145656	46.25.154.155	E	en:calendar_google_integration	joebordes	[Separating Events/Calendars] 	
-1449145930	46.25.154.155	C	en:calendar_google_separating_events	joebordes	created	
-1449145947	46.25.154.155	E	en:calendar_google_separating_events	joebordes		
-1449160014	46.25.154.155	E	en:calendar_google_separating_events	joebordes		
-1449161689	46.25.154.155	E	en:calendar_google_separating_events	joebordes		
-1450205185	46.25.162.208	E	en:adminmanual:faq	joebordes		
-1450205214	46.25.162.208	E	en:adminmanual:faq	joebordes		
-1450205234	46.25.162.208	E	en:adminmanual:faq	joebordes		
-1452103579	46.25.162.208	E	en:adminmanual:faq	joebordes		
-1452104368	46.25.162.208	E	en:adminmanual:faq	joebordes		
 1453457746	188.85.63.155	E	en:calendar_google_integration	joebordes	[Separating Events/Calendars] 	
 1453663155	188.85.63.155	C	en:extensions:extensions:vtdziner	joebordes	↷ Page moved from en:extensions:vtdziner to en:extensions:extensions:vtdziner	
-1445705385	127.0.0.1	E	en:extensions:vtdziner		external edit	
 1453663155	188.85.63.155	D	en:extensions:vtdziner	joebordes	↷ Page moved from en:extensions:vtdziner to en:extensions:extensions:vtdziner	
-1445705385	127.0.0.1	E	en:extensions:faq		external edit	
 1453663155	188.85.63.155	e	en:extensions:faq	joebordes	↷ Links adapted because of a move operation	
-1445705385	127.0.0.1	E	en:extensions		external edit	
 1453663619	188.85.63.155	E	en:extensions	joebordes	[Extensions] 	
 1453663772	188.85.63.155	E	en:extensions	joebordes		
 1453663825	188.85.63.155	E	en:extensions	joebordes		
 1453663889	188.85.63.155	C	en:extensions:extensions	joebordes	created	
 1453663943	188.85.63.155	E	en:extensions	joebordes		
 1453663967	188.85.63.155	E	en:extensions:extensions	joebordes		
+1453812834	80.35.20.79	E	en:extensions:extensions	joebordes		
+1453814818	80.35.20.79	E	en:extensions:extensions	joebordes		
+1453815637	80.35.20.79	C	en:extensions:howtoregister	joebordes	created	
+1453816249	80.35.20.79	E	en:devel:packagemodules	joebordes	[1.- File structure] 	
+1453816314	80.35.20.79	E	en:extensions:howtoregister	joebordes		
+1453816342	80.35.20.79	E	en:extensions:howtoregister	joebordes		
+1453831517	188.85.63.155	E	en:extensions:howtoregister	joebordes		
+1453833259	188.85.63.155	C	en:extensions:extensions:massdocumentimport	joebordes	created	
+1453833325	188.85.63.155	E	en:extensions:extensions:massdocumentimport	joebordes		
+1453833432	188.85.63.155	E	en:extensions:extensions:massdocumentimport	joebordes		
+1453833454	188.85.63.155	E	en:extensions:extensions:massdocumentimport	joebordes		
+1453833468	188.85.63.155	E	en:extensions:extensions:massdocumentimport	joebordes	[Mass Document Import] 	
+1453834039	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
+1453834160	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
+1453834256	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
+1453834283	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
+1453834375	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
+1453834595	188.85.63.155	E	en:extensions:howtoregister	joebordes	[3.- Add register data.] 	
+1453835710	188.85.63.155	C	en:extensions:extensions:corebosemployee	joebordes	created	
+1453835796	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
+1453836075	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
+1453836178	188.85.63.155	E	en:extensions:extensions	joebordes		
+1453836191	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
+1453836243	188.85.63.155	E	en:extensions:extensions:corebosemployee	joebordes	[Employee Module] 	
+1453836413	188.85.63.155	E	en:extensions:howtoregister	joebordes		
+1453836426	188.85.63.155	E	en:extensions:howtoregister	joebordes	[3.- Add a title to the page.] 	
+1453836616	188.85.63.155	E	en:extensions:extensions:massdocumentimport	joebordes	[Data entry] 	
+1453836727	188.85.63.155	E	en:extensions:extensions:corebosemployee	joebordes	[Employee Module] 	
+1453854181	188.85.63.155	C	en:extensions:extensions:affiliates	joebordes	created	
+1453881484	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes		
+1453881745	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes	[Data entry] 	
+1453889769	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes		
+1453889793	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes		
+1453889867	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes		
+1453889879	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes	[Affiliates] 	
+1453889949	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes		
+1453890059	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes	[Custom Information] 	
+1453890616	188.85.63.155	E	en:extensions:extensions:corebosemployee	joebordes		
+1453890903	188.85.63.155	E	en:extensions:howtoregister	joebordes	[4.- Add register data.] 	
+1453890935	188.85.63.155	E	en:extensions:howtoregister	joebordes	[4.- Add register data.] 	
