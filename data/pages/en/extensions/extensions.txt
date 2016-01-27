@@ -1,1 +1,13 @@
-====== List of Registered Modules, Extensions, Patches and Plugins ======
+====== Registered Modules, Extensions, Patches and Plugins ======
+
+---- datatable ----
+cols    : %title%, description, type, distribution, authorname
+max     : 50
+dynfilters : 1
+sort    : %title%
+----
+
+
+====== How to Register your Module, Extension, Patch or Plugin ======
+
+You can [[:en:extensions:howtoregister|find instructions and steps on this page]].
