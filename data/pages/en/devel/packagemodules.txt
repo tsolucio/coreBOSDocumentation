@@ -28,8 +28,130 @@ Once your module is working as you like and you want to package it, follow these
 You must have these files in place:
   * modules/{ModuleName}
   * modules/{ModuleName}/manifest.xml
+  * manifest.xml (this is a copy of the modules/{ModuleName}/manifest.xml file)
+  * composer.json (optional, this is for direct command line install [[https://getcomposer.org/|using composer]])
   * cron/modules/{ModuleName}  (**optional** only if needed)
   * Smarty/templates/modules/{ModuleName}  (**optional** only if needed)
+
+The complete composer.json format supported is:
+
+<code json>
+{
+    "name": "Package",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Package name, including 'vendor-name/' prefix."
+        },
+        "description": {
+            "type": "string",
+            "description": "Short package description."
+        },
+        "keywords": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "description": "A tag/keyword that this package relates to."
+            }
+        },
+        "homepage": {
+            "type": "string",
+            "description": "Homepage URL for the project.",
+            "format": "uri"
+        },
+        "version": {
+            "type": "string",
+            "description": "Package version, see https://getcomposer.org/doc/04-schema.md#version for more info on valid schemes."
+        },
+        "time": {
+            "type": "string",
+            "description": "Package release date, in 'YYYY-MM-DD', 'YYYY-MM-DD HH:MM:SS' or 'YYYY-MM-DDTHH:MM:SSZ' format."
+        },
+        "license": {
+            "type": ["string", "array"],
+            "description": "License name. Or an array of license names."
+        },
+        "extra": {
+            "price": [number],
+            "buyemail": [email],
+            "buyurl": [uri],
+            "distribution": ["Sale","Free","Subscription","Donationware"]
+        },
+        "authors": {
+            "type": "array",
+            "description": "List of authors that contributed to the package. This is typically the main maintainers, not the full list.",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [ "name"],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Full name of the author."
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "Email address of the author.",
+                        "format": "email"
+                    },
+                    "homepage": {
+                        "type": "string",
+                        "description": "Homepage URL for the author.",
+                        "format": "uri"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "Author's role in the project."
+                    }
+                }
+            }
+        },
+        "support": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Email address for support.",
+                    "format": "email"
+                },
+                "issues": {
+                    "type": "string",
+                    "description": "URL to the issue tracker.",
+                    "format": "uri"
+                },
+                "forum": {
+                    "type": "string",
+                    "description": "URL to the forum.",
+                    "format": "uri"
+                },
+                "wiki": {
+                    "type": "string",
+                    "description": "URL to the wiki.",
+                    "format": "uri"
+                },
+                "irc": {
+                    "type": "string",
+                    "description": "IRC channel for support, as irc://server/channel.",
+                    "format": "uri"
+                },
+                "source": {
+                    "type": "string",
+                    "description": "URL to browse or download the sources.",
+                    "format": "uri"
+                },
+                "docs": {
+                    "type": "string",
+                    "description": "URL to the documentation.",
+                    "format": "uri"
+                }
+            }
+        }
+    }
+}
+</code>
+
+where only the first **//name//** and **//type//** are mandatory.
 
 ==== 2.- Package the module ====
 There are different ways to achieve this.
