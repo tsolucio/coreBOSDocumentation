@@ -1,0 +1,90 @@
+~~NOTOC~~
+====== coreBOS Employee Module ======
+
+Employee module for coreBOS
+\\
+---- dataentry ----
+name : tsolucio/coreBOSEmployee
+type : corebos-module
+description_wiki: Employee module for coreBOS
+keywords_tags : employee,user
+version : 1.1
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:corebosemployee
+release_dt : 2014-12-12
+licenses : Vizsage
+distribution : Free
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+authorhomepage_url : http://tsolucio.com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : https://github.com/tsolucio/coreBOSEmployee
+supportforum_url : http://discussions.corebos.org/
+supportsource_url : https://github.com/tsolucio/coreBOSEmployee
+----
+\\
+
+===== How it works =====
+
+This is a normal vtlib module which can be installed through the module manager. It contains a set of fields and information about your employees. The assigned to field can be linked to the user accessing the application as a means to extend the information we have about each employee that has access to coreBOS, but it is not really linked in any special way.
+
+====== Fields =====
+
+==== Employee Information ===
+^Field^Type^Values^
+|Employee No|4| |
+|SSN|1| |
+|Name|1| **Identifier** |
+|ID|1| |
+|Situation|1| |
+|Marital Status|1| |
+|Category|1| |
+|numchildren|7| |
+|User|52| |
+|People in charge of|7| |
+|Birth Date|5| |
+|Birth Place|1| |
+|Age|7| |
+|Assigned To|53| |
+|Created Time|70| |
+|Modified Time|70| |
+==== Employment Information ===
+^Field^Type^Values^
+|Yearly Compensation|1| |
+|Type of Contract|1| |
+|Hourly Compensation|1| |
+|Departament|1| |
+|Joined Company on|5| |
+==== Contact Information ===
+^Field^Type^Values^
+|Address|21| |
+|Personal Phone|11| |
+|City|1| |
+|Cell Phone|11| |
+|State|1| |
+|Work Phone|11| |
+|Postal Code|1| |
+|Personal Email|13| |
+|LinkedIn Profile|17| |
+|Work Email|13| |
+|Twitter Profile|17| |
+|Skype ID|85| |
+|Facebook Profile|17| |
+|GTalk ID|1| |
+==== Studies Information ===
+^Field^Type^Values^
+|High School|1| |
+|High School Graduation Year|1| |
+|High School GPA|1| |
+|High School Comments|21| |
+|Undergraduate School|1| |
+|Undergraduate School Graduation Year|1| |
+|Undergraduate School GPA|1| |
+|Undergraduate Comments|21| |
+|Postgraduate Degree/School|1| |
+|Postgraduate School Graduation Year|1| |
+|Postgraduate Degree School GPA|1| |
+|Postgraduate Comments|21| |
+==== Custom Information ===
+==== Additional Information ===
+^Field^Type^Values^
+|Description|19| |

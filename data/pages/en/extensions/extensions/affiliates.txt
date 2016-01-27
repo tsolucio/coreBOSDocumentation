@@ -1,0 +1,76 @@
+~~NOTOC~~
+====== Affiliates ======
+
+Contact like module created to track people who in one form or another endorse our company and are directly related to it.
+\\
+---- dataentry  ----
+name              : ABO/Affiliates # 
+type              : corebos-module # 
+description_wiki  : Contact like module created to track people who in one form or another endorse our company and are directly related to it. # 
+keywords_tags     : contact,client,subscriber # 
+version           : 1.2 # 
+homepage_url      : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:affiliates # 
+release_dt        : 2014-12-12 # 
+licenses          : Vizsage # 
+distribution      : Subscription # 
+authorname        : JPL TSolucio, S.L. # 
+authoremail_mail  : info(at)tsolucio(dot)com # 
+supportemail_mail : info(at)tsolucio(dot)com # 
+supportissues_url : http://[subscription Contract] # 
+supportsource_url : http://[subscription URI]/Affiliates.git # 
+----
+\\
+
+====== Fields =====
+
+==== Affiliate Information ===
+^Field^Type^Values^
+|First Name|1| **Identifier** |
+|Affiliate No|4| |
+|Last Name|1| **Identifier** |
+|Company Name|1| |
+|Affiliate TIN-EIN|1| |
+|Date Active|5| |
+|Promotional Code|1| |
+|Date Affiliation Terminated|5| |
+==== Affiliate Address ===
+^Field^Type^Values^
+|Mailing Address|21| |
+|Mailing City|1| |
+|Mailing State/Province|15| |
+|Mailing Zip/Postal Code|1| |
+|Shipping Address|21| |
+|Shipping City|1| |
+|Shipping State/Province|15| |
+|Shipping Zip/Postal Code|1| |
+==== Phones, E-mails, Website, Social Network Information ===
+^Field^Type^Values^
+|Main Phone|11| |
+|Mobile Phone|11| |
+|Alternate Phone|11| |
+|Email|1| |
+|Alternate Email|1| |
+|LinkedIn Profile|17| |
+|Twitter Page|17| |
+|Facebook Page|17| |
+|Website|17| |
+|Skype ID|85| |
+|GTalk ID|1| |
+==== Affiliate Category ===
+^Field^Type^Values^
+|GL Account|10|GLAccounts |
+|Affiliate Industry Category|15| |
+==== Compensation Amount ===
+^Field^Type^Values^
+|Compensation|1| |
+|Percentage Rate|1| |
+==== Custom Information ===
+
+==== Description ===
+^Field^Type^Values^
+|Description|19| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|53| |
+|Created Time|70| |
+|Modified Time|70| |
