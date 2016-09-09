@@ -1,0 +1,26 @@
+====== Asterisk ======
+
+===== Diseño =====
+
+{{:en:devel:corebosasterisk.svg|}}
+
+===== FAQ =====
+
+??? Dado que la extensión está haciendo polling, ¿hay alguna manera de reducir el número de eventos detectados?
+
+!!! Solo es poner en el manager.conf (en freepbx seria manager_custom.conf ) los filtros de eventos (a partir de asterisk 1.8 es posible) para nuestro caso:
+<code>
+read = all
+write = all
+writetimeout = 2000
+eventfilter=!Event: DMTF
+eventfilter=!Event: RTCPSent
+eventfilter=!Event: RTCPReceived
+eventfilter=!Event: VarSet
+eventfilter=!Event: Cdr
+eventfilter=!Event: ExtensionStatus
+eventfilter=!Event: ChannelUpdate
+eventfilter=!Event: PeerStatus
+eventfilter=!Event: Registry
+</code>
+Hasta ahora, al disminuir considerablemente el numero de eventos a escuchar y procesar, el asteriskclient esta muchísimo mas estable.
