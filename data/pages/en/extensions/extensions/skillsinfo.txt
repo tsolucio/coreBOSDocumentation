@@ -1,0 +1,40 @@
+~~NOTOC~~
+====== Skills and Talents Information ======
+
+Skills information module to register information about the skills and talents of your employees and contacts.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+\\
+---- dataentry ----
+name : tsolucio/SkillsInfo
+type : corebos-module
+description_wiki: Skills information module to register information about the skills and talents of your employees and contacts.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+keywords_tags : HR,human resource,language,skill,contact,employee,talent
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:skillsinfo
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/SkillsInfo.git
+----
+\\
+
+====== Fields =====
+
+==== Skill Information ===
+^Field^Type^Values^
+|Related to|relation|Attorneys,Managers,Paralegals,Secretaries,SupportPersonnel,Procurador |
+|Years of Experience|string| |
+|Skill Type|picklist|--- Please Select ---,Ability To Work With Little Supervision,Ability To Work With No Supervision,Active Learning ,Active Listening ,Administering Programs,Administration Support,...,Writing Reports,Writing Skills |
+==== Custom Information ===
+==== Comments ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Skill Reference|autonumber| **Identifier** |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

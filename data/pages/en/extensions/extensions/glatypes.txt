@@ -1,0 +1,41 @@
+~~NOTOC~~
+====== General Ledger Types ======
+
+General Ledger Types module.\\ This is part of the Attorney's BackOffice **accounting extensions**.
+\\
+---- dataentry ----
+name : tsolucio/GLATypes
+type : corebos-module
+description_wiki: General Ledger Types module.\\ This is part of the Attorney's BackOffice **accounting extensions**.
+\\
+
+keywords_tags : accounting,ledger
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:glatypes
+release_dt : 2013-03-02
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/GLATypes.git
+----
+\\
+
+====== Fields =====
+
+==== LBL_GLATYPES_INFORMATION ===
+^Field^Type^Values^
+|Class Type Name|string| **Identifier** |
+|Class Name|string| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Record Information ===
+^Field^Type^Values^
+|Class Type Record No|autonumber| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

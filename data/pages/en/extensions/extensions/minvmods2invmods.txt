@@ -1,0 +1,22 @@
+~~NOTOC~~
+====== Inventory Modules Grouping and Converting ======
+
+This extension permits mass conversion of different inventory modules into other inventory modules with optional grouping on accounts and products. For example you will be able to convert a set of SalesOrders into Invoices or PurchaseOrders and vice versa. All six (6) inventory modules are supported in possible conversions.
+\\
+---- dataentry ----
+name : tsolucio/mInvMods2InvMods
+type : corebos-extension
+description_wiki: This extension permits mass conversion of different inventory modules into other inventory modules with optional grouping on accounts and products. For example you will be able to convert a set of SalesOrders into Invoices or PurchaseOrders and vice versa. All six (6) inventory modules are supported in possible conversions.
+keywords_tags : Inventory,conversion,grouping,mass,invoicing,purchasing
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:minvmods2invmods
+release_dt : 2015-11-19
+licenses : Vizsage
+price : 220eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\

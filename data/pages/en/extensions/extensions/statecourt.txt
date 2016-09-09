@@ -1,0 +1,69 @@
+~~NOTOC~~
+====== State Court ======
+
+Module to record US State Courts
+\\
+---- dataentry ----
+name : tsolucio/StateCourt
+type : corebos-module
+description_wiki: Module to record US State Courts
+keywords_tags : ABO,Attorney Back Office,court
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:statecourt
+release_dt : 2013-06-12
+licenses : Vizsage
+price : 150eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== State Court Information ===
+^Field^Type^Values^
+|State Court Name|string| **Identifier** |
+|State Court ID No|autonumber| |
+|Name of the State/Province|picklist| |
+|Court Address|string| |
+|Name of the County|relation|County |
+|Courthouse General Information|url| |
+|State Court Type|picklist| |
+|Courthouse Office and Service Directory|url| |
+|Judicial Officer Name|string| |
+|Court Calendar|url| |
+|Judge|checkbox| |
+|ADR Information|url| |
+|Assigned Judge|checkbox| |
+|Courthouse Juror Information|url| |
+|Commissioner|checkbox| |
+|Local Forms|url| |
+|Referee|checkbox| |
+|Local Rules|url| |
+|Department,Room,Floor|string| |
+|Tentative Rulings|url| |
+|Courtroom Phone No|11| |
+|Court of Appeals|url| |
+|Courthouse Main Phone No|11| |
+|Public Defender Information|url| |
+|Clerk Phone|11| |
+|Court Website|url| |
+|Other Phone|11| |
+|Email|email| |
+|Fax|11| |
+|Alternate Email|email| |
+==== Driving Directions ===
+^Field^Type^Values^
+|Driving Directions|url| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

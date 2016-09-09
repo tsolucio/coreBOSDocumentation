@@ -1,0 +1,40 @@
+~~NOTOC~~
+====== ARCO Module ======
+
+Módulo para registrar las incidencias de Acceso, Rectificación, Cancelación y Oposición para cumplir con la LOPD.
+\\
+---- dataentry ----
+name : tsolucio/ARCO
+type : corebos-module
+description_wiki: Módulo para registrar las incidencias de Acceso, Rectificación, Cancelación y Oposición para cumplir con la LOPD.
+keywords_tags : lopd,Acceso,Rectificación,Cancelación,Oposición,ARCO,protección,datos,ley
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:arco
+release_dt : 2010-02-27
+licenses : Vizsage
+price : 220eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== ARCO Information ===
+^Field^Type^Values^
+|Name|string| **Identifier** |
+|Account|relation|Accounts |
+|Type|picklist|Acceso,Rectificacion,Cancelacion,Oposicion |
+|Representation|picklist|Propio Interesado,Representante legal |
+|Petition|string| |
+|Address|text| |
+|Date|date| |
+|Exercice Status|picklist|Pendiente de atencion,Atendido |
+|Access Status|picklist|Registrado,Solicitada concrecion,Resuelta solicitud |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===

@@ -1,0 +1,51 @@
+~~NOTOC~~
+====== Research Request module ======
+
+Module to control research or investigation requests, used, for example, to document quote analysis requests or the study of possible solutions to problems that appear in the business. This module is related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:researchrequestactions|Research Request Actions module]] where each exact step is recorded.
+\\
+---- dataentry ----
+name : tsolucio/ResearchRequest
+type : corebos-module
+description_wiki: Module to control research or investigation requests, used, for example, to document quote analysis requests or the study of possible solutions to problems that appear in the business. This module is related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:researchrequestactions|Research Request Actions module]] where each exact step is recorded.
+keywords_tags : research,request,quality,ISO,standards,investigation,solution
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:researchrequest
+release_dt : 2015-12-09
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Research Request Information ===
+^Field^Type^Values^
+|Account Name|relation|Accounts |
+|Research Request No|autonumber| **Identifier** |
+|Member of|string| |
+|Title|string| |
+|Related Entity|relation|Project,HelpDesk |
+|Assigned To|assigned to| |
+|Product|picklist|--None-- |
+|Priority|picklist|--None-- |
+|Type|picklist|--None-- |
+|Contract Type|string| |
+|Filial|picklist|--None-- |
+|Location Technique|string| |
+|Distributor|picklist|--None-- |
+|Request Date|date| |
+|Finish Date|date| |
+|Department|string| |
+|Status|picklist|Creado,En espera,Rechazado,Anulado,Cerrado |
+|Responsible|picklist|--None-- |
+|Total Time|string| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

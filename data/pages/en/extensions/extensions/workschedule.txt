@@ -1,0 +1,87 @@
+~~NOTOC~~
+====== Work Schedule Module ======
+
+Module to record the different weekly hours that we work in the office.\\ This is part of the **Attorney's Back Office** extensions.
+\\
+---- dataentry ----
+name : tsolucio/WorkSchedule
+type : corebos-module
+description_wiki: Module to record the different weekly hours that we work in the office.\\ This is part of the **Attorney's Back Office** extensions.
+keywords_tags : work,schedule,timetable
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:workschedule
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/WorkSchedule.git
+----
+\\
+
+====== Fields =====
+
+==== Work Schedule Information ===
+^Field^Type^Values^
+|Work Schedule Name|string| **Identifier** |
+|Work Schedule No|autonumber| |
+|Work Schedule for|relation|Attorneys,Managers,Paralegals,Secretaries,SupportPersonnel,Procurador |
+|Works on weekends|checkbox| |
+|Year|string| |
+|Default|checkbox| |
+|Active|checkbox| |
+|Assigned To|assigned to| |
+==== Schedule ===
+^Field^Type^Values^
+|Monday Morning Start|number| |
+|Monday Afternoon Start|number| |
+|Monday Morning End|number| |
+|Monday Afternoon End|number| |
+|Tuesday Morning Start|number| |
+|Tuesday Afternoon Start|number| |
+|Tuesday Morning End|number| |
+|Tuesday Afternoon End|number| |
+|Wednesday Morning Start|number| |
+|Wednesday Afternoon Start|number| |
+|Wednesday Morning End|number| |
+|Wednesday Afternoon End|number| |
+|Thursday Morning Start|number| |
+|Thursday Afternoon Start|number| |
+|Thursday Morning End|number| |
+|Thursday Afternoon End|number| |
+|Friday Morning Start|number| |
+|Friday Afternoon Start|number| |
+|Friday Morning End|number| |
+|Friday Afternoon End|number| |
+|Saturday Morning Start|number| |
+|Saturday Afternoon Start|number| |
+|Saturday Morning End|number| |
+|Saturday Afternoon End|number| |
+|Sunday Morning Start|number| |
+|Sunday Afternoon Start|number| |
+|Sunday Morning End|number| |
+|Sunday Afternoon End|number| |
+==== Holidays ===
+^Field^Type^Values^
+|January|string| |
+|February|string| |
+|March|string| |
+|April|string| |
+|May|string| |
+|June|string| |
+|July|string| |
+|August|string| |
+|September|string| |
+|October|string| |
+|November|string| |
+|December|string| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Created Time|datetime| |
+|Modified Time|datetime| |

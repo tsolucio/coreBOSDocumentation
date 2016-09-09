@@ -1,0 +1,28 @@
+~~NOTOC~~
+====== Separate Account and Contact field on Payments ======
+
+This enhancement, which is coreBOS Updater compatible and does not modify any base files, will extract the Account from the RelatedTo field on the Payment module and create a new Account field.
+
+<WRAP center round important 60%>
+It will NOT copy any existing values. It just creates the new field.
+</WRAP>
+
+Then it will add an event controller to set the value of the new account field when we create a payment record from the related list of a contact.
+
+---- dataentry ----
+name : SeparateACCyP
+type : enhancement
+description_wiki: This enhancement will add a new Account field on the Payments module.
+keywords_tags : Payments, CobroPago, RelatedTo, separate, Account, Contact
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:enhancecyprelto
+release_dt : 2015-06-20
+license : Vizsage
+price: 25eur
+buyemail_mail: paypal(at)tsolucio(dot)com
+distribution: Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail :info(at)tsolucio(dot)com
+authorhomepage_url : http://tsolucio.com
+supportemail_mail :info(at)tsolucio(dot)com
+----

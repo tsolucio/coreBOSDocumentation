@@ -1,0 +1,41 @@
+~~NOTOC~~
+====== Relationships Module ======
+
+Module to register the relation between two accounts, contacts, vendors or leads.\\ The module enables you to record and analyze relationships of a lead, an account or a contact for a better understanding of its roles, dependencies and influences.
+\\
+---- dataentry ----
+name : tsolucio/cbRelations
+type : corebos-module
+description_wiki: Module to register the relation between two accounts, contacts, vendors or leads.\\ The module enables you to record and analyze relationships of a lead, an account or a contact for a better understanding of its roles, dependencies and influences.
+keywords_tags : relation,account,contact,lead,hr,human resources
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbrelations
+release_dt : 2015-06-27
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbRelations.git
+----
+\\
+
+====== Fields =====
+
+==== Relationship Information ===
+^Field^Type^Values^
+|Actor A|relation|Accounts,Contacts,Vendors,Leads |
+|Relation Start|date| |
+|Actor B|relation|Accounts,Contacts,Vendors,Leads |
+|Relation End|date| |
+|Relation Type|picklist|Network,Supplier,Family,Work |
+|Relation No|autonumber| **Identifier** |
+|Relation Status|picklist|Active,Inactive |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

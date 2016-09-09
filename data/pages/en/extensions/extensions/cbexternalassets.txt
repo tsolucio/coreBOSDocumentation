@@ -1,0 +1,46 @@
+~~NOTOC~~
+====== External Assets module ======
+
+An asset type module (really an asset clone) to register equipment and machines present in our clients installations that were not sold by us but that we are interested in controling/substituting.
+\\
+---- dataentry ----
+name : tsolucio/cbExternalAssets
+type : corebos-module
+description_wiki: An asset type module (really an asset clone) to register equipment and machines present in our clients installations that were not sold by us but that we are interested in controling/substituting.
+keywords_tags : asset,equipment,terminal,machine,inventory,competition,vendor
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbexternalassets
+release_dt : 2016-03-14
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbExternalAssets.git
+----
+\\
+
+====== Fields =====
+
+==== External Asset Information ===
+^Field^Type^Values^
+|External Asset No|autonumber| |
+|Product Name|relation|Products |
+|Serial Number|string| |
+|Date Sold|date| |
+|Date in Service|date| |
+|Status|picklist|In Service,Out-of-service |
+|Tag Number|string| |
+|Shipping Method|string| |
+|Shipping Tracking Number|string| |
+|Assigned To|assigned to| |
+|External Asset Name|string| **Identifier** |
+|Customer Name|relation|Accounts |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+|Last Modified By|52| |
+==== Custom Information ===
+==== Notes ===
+^Field^Type^Values^
+|Notes|text| |

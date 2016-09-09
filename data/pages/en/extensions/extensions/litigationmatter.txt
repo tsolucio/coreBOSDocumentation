@@ -1,0 +1,75 @@
+~~NOTOC~~
+====== Litigation Matter Details ======
+
+This project-like module permits defining the details of a litigation matter our business is working on.\\ This is part of the **Attorney's Back Office** extensions.
+\\
+---- dataentry ----
+name : tsolucio/LitigationMatter
+type : corebos-module
+description_wiki: This project-like module permits defining the details of a litigation matter our business is working on.\\ This is part of the **Attorney's Back Office** extensions.
+keywords_tags : litigation,users,work,contact,employee,team,attorney
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:litigationmatter
+release_dt : 2013-06-12
+licenses : Vizsage
+price : 350eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Parties to the Matter ===
+^Field^Type^Values^
+|Plaintiff|relation|Accounts,OpposingParty |
+|Defendant|relation|OpposingParty,Accounts |
+|Attorney|relation|Attorneys,OpposingAttorney |
+|Opposing Attorney|relation|OpposingAttorney,Attorneys |
+==== Litigation Matter Information ===
+^Field^Type^Values^
+|Matter Name/Caption|string| **Identifier** |
+|Office Assigned Matter No|autonumber| |
+|Matter Docket Number|string| |
+|Matter Filing Date|date| |
+|Related to Case|relation|Project |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Matter Circle ===
+^Field^Type^Values^
+|Related to Client|relation|Contacts |
+|Assigned Paralegal|relation|Paralegals |
+|Supervising Attorney|relation|Attorneys |
+|Assigned Secretary|relation|Secretaries |
+|Assigned Litigation Team|relation|LitigationTeam |
+|Matter Assigned To|assigned to| |
+==== Matter Details and Specifics ===
+^Field^Type^Values^
+|State|picklist| |
+|Judicial Officer|string| |
+|County|relation|County |
+|Origin of the Matter|picklist|--- Please Select ---,Appeal to District Judge from Magistrate Judgment,Multidistrict Litigation,Original Proceeding,Removed to Federal Court,Removed from State Court,Remanded to State Court,Remanded from Appellate Court,Reinstated or Reopened,Transferred from another District,Non-Litigation Revenue Opportunities |
+|Court Name|relation|StateCourt,FederalCourt |
+|Claim Specifics|picklist| |
+|Matter Type|picklist| |
+|Claim Amount|number| |
+|Court Type/Location|picklist| |
+|Nature of Suit|string| |
+|State/Federal Court Type|picklist| |
+|Additional Matter Information|text| |
+|Jurisdiction|picklist| |
+|Jury Requested|checkbox| |
+|Category|picklist| |
+==== Matter Status and Dismissal ===
+^Field^Type^Values^
+|Matter Status|picklist| |
+|Matter Handling Priority|picklist|--- Please Select ---,Low,Normal,High,Urgent |
+|Stage of the Matter|picklist| |
+|Next Appearance Date|date| |
+|Stage Status|picklist| |
+|Matter Dismissal Date|date| |
+|Matter Progress|picklist|--- Please Select ---,10%,20%,30%,40%,50%,60%,70%,80%,90%,100% |
+==== Custom Information ===

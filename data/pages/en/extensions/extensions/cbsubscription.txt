@@ -1,0 +1,37 @@
+~~NOTOC~~
+====== Subscription-Follow Changes module ======
+
+Module that permits following changes on any module for any user. This module will send notifications to all users subscribed to a record.
+\\
+---- dataentry ----
+name : tsolucio/cbSubscription
+type : corebos-module
+description_wiki: Module that permits following changes on any module for any user. This module will send notifications to all users subscribed to a record.
+keywords_tags : event,calendar,incident
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbsubscription
+release_dt : 2015-09-21
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbSubscription.git
+----
+\\
+<WRAP center round info 70%>See Spanish page for instructions. Translations are welcome!</WRAP>
+
+====== Fields =====
+
+==== Subscription Information ===
+^Field^Type^Values^
+|Related Record|relation| |
+|Subscription No|autonumber| **Identifier** |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

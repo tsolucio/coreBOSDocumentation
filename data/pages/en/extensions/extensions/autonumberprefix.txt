@@ -1,0 +1,87 @@
+~~NOTOC~~
+====== Auto Increment Number Field module ======
+
+This configuration module permits you to define different increment counters with a prefix for fields in modules and then apply them with conditions using workflows. It will permit you to have various counter/increment fields on any module or increment differently the same field depending on values in the record being saved.
+\\
+---- dataentry ----
+name : tsolucio/AutoNumberPrefix
+type : corebos-module
+description_wiki: This configuration module permits you to define different increment counters with a prefix for fields in modules and then apply them with conditions using workflows. It will permit you to have various counter/increment fields on any module or increment differently the same field depending on values in the record being saved.
+keywords_tags : claims,quality,ISO,standards
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:autonumberprefix
+release_dt : 2015-11-02
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Configuration ======
+
+You can create as many "counter" records as you need. They are created in the module's interface as any other record in any other module. The important fields are:
+
+^Field^Type^Values^
+|Prefix|string|This is the text prefix that will be added to the start of the identifier. It is totally equivalent to the text prefix you can find in the default autonumbering in **Settings**. It may be left empty.|
+|Module|module multi-list|This is the module that the counter is for.|
+|Format|string|[[en:extensions:extensions:autonumberprefix#number_formatting|see below]]|
+|Active|checkbox|Indicates if the counter is active or not. Any record marked as inactive will not be used by the extension.|
+|Current Value|number|This is the current maximum value of the counter.|
+|Default|checkbox|If more than one counter can be applied, the one marked as default will be used.|
+
+===== Install =====
+
+Once installed the module normally you have to apply the patch autonumwf.diff which you will find inside the module's main directory (modules/AutoNumberPrefix). This patch adds a new function to the workflow system:
+
+**AutoNumberInc(ANPid)**
+
+You can now use this function in an Update Field workflow task to assign the next counter value to any field based on any condition in the module.
+
+The **ANPid** number is the internal CRMID of the record you want to use for the sequence. This number can be found by looking in the URL of the Detail View of the record.
+
+
+===== Number formatting=====
+
+The format field accepts two forms:
+
+1.- Number\\
+A string of numbers that indicate both the number of characters and the actual counter that must appear in the result. This is the same as the default behaviour you can find in the autonumber in **Settings**. For example, with 000001 you will get the sequence:
+
+000001, 000002,..., 000022, 000023, ...000101,...010001....  always with 6 numbers in the counter
+
+2.- Date/Number\\
+An advanced format which accepts any [[http://php.net/manual/en/function.date.php|PHP supported date conversion letter]] and the special string **%u** for the number.
+
+The string **%u** accepts the [[http://php.net/manual/en/function.sprintf.php|PHP sprintf format]]. So to obtain the same sequence as in point 1 above you would use:
+
+<code>%'.06u</code>
+
+If you want to put the current year followed by the previous 6 number format you would use:
+
+<code>Y-\%'.06\u</code>
+
+which would produce the sequence:
+
+2015-000001, 2015-000002,..., 2015-000022, 2015-000023, ...2015-000101,...2015-010001....
+
+====== Fields =====
+
+==== Auto Number Prefix Information ===
+^Field^Type^Values^
+|Auto Number Prefix No|autonumber| **Identifier** |
+|Prefix|string| |
+|Module|module multi-list| |
+|Format|string| |
+|Active|checkbox| |
+|Current Value|number| |
+|Default|checkbox| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

@@ -1,0 +1,38 @@
+~~NOTOC~~
+====== Equipment Module ======
+
+Picklist-like module to record equipment/assets, their cost and amortization.
+\\
+---- dataentry ----
+name : tsolucio/cbEquipment
+type : corebos-module
+description_wiki: Picklist-like module to record equipment/assets, their cost and amortization.
+keywords_tags : asset,hardware,material,picklist,category,type,cost
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbequipment
+release_dt : 2015-07-21
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbEquipment.git
+----
+\\
+
+====== Fields =====
+
+==== Equipment Information ===
+^Field^Type^Values^
+|Equipment|string| |
+|Equipment No|autonumber| **Identifier** |
+|Cost|number| |
+|Assigned To|assigned to| |
+|Amortization|number| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

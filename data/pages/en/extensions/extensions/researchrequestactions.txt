@@ -1,0 +1,38 @@
+~~NOTOC~~
+====== Research Request Actions module ======
+
+This module is related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:researchrequest|Research Request module]] and details the different actions or steps taken to resolve or attend the request.
+\\
+---- dataentry ----
+name : tsolucio/ResearchRequestActions
+type : corebos-module
+description_wiki: This module is related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:researchrequest|Research Request module]] and details the different actions or steps taken to resolve or attend the request.
+keywords_tags : research,request,quality,ISO,standards,investigation,solution
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:researchrequestactions
+release_dt : 2015-12-10
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Research Request Actions Information ===
+^Field^Type^Values^
+|Research Request|relation|ResearchRequest |
+|RR Actions No|autonumber| **Identifier** |
+|Expide|101| |
+|Version|string| |
+|Fecha Entrega|date| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

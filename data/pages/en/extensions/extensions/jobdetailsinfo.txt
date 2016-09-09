@@ -1,0 +1,65 @@
+~~NOTOC~~
+====== Job Details Information ======
+
+Job Details Information module.\\ This is part of the **Attorney's Back Office Human Resource** enhancements.
+\\
+---- dataentry ----
+name : tsolucio/JobDetailsInfo
+type : corebos-module
+description_wiki: Job Details Information module.\\ This is part of the **Attorney's Back Office Human Resource** enhancements.
+\\
+
+keywords_tags : hr,human resource,job,work,position
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:jobdetailsinfo
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/JobDetailsInfo.git
+----
+\\
+
+====== Fields =====
+
+==== Job Title, Assigned Supervisor ===
+^Field^Type^Values^
+|Job Title|relation|JobTitle |
+|Employment Status|picklist|--- Please Select ---,Active,Unactive,Terminated,Permanent Full-Time,Permanent Part-Time,Temporary Full-Time,Temporary Part-Time,Contingent. On Call,Contract Full-Time,Contract Part-Time,Full Time Internship,Part Time Internship,Hourly Part-Time,Hourly Full-Time |
+|Date Job Started|date| |
+|Assigned Supervisor|assigned to| |
+==== Salary, Other Compensation Details ===
+^Field^Type^Values^
+|Pay Grade|relation|PayGrade |
+|Pay Frequency|picklist| |
+|Total Compensation Amount (per year)|number| |
+|Total Compensation Amount per Pay Period|number| |
+|Total Compensation Amount per Hour|number| |
+==== Direct Deposit Details ===
+^Field^Type^Values^
+|Bank Account Number|string| |
+|Bank Account Type|picklist|--- Please Select ---,Business Checking Account,Savings Account,Personal Checking,Interest-Bearing Checking Account,Money Market Deposit Account,Trust Account,Certificates of Deposit (CD) |
+|Bank Account Routing Number|string| |
+|Deposit Amount|number| |
+|Deposit comments|text| |
+==== Tax Exemptions Status ===
+^Field^Type^Values^
+|Federal Filing Status|picklist|--- Please Select ---,Single,Married Filing Jointly,Married Filing Separately,Head of Household,Qualifying Widow(er) With Dependent Child |
+|Number of Federal Allowances|number| |
+|Additional Federal Withholding|number| |
+|State/Province Filing Status|picklist|--- Please Select ---,Single,Married,Widowed,Divorced,Legally Separated,Civil Union,Domestic Partnership Dissolved,Registered Domestic Partner,Head of Household,Married Use Single Rate,Married Filing Separately |
+|Number of dependents|number| |
+|Additional State/Province Withholding|number| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Compensation comments|text| |
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Job Details Reference|autonumber| **Identifier** |
+|Created Time|datetime| |
+|Modified Time|datetime| |

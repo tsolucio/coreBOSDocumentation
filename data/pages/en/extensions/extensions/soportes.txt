@@ -1,0 +1,56 @@
+~~NOTOC~~
+====== Physical Support module ======
+
+This asset-like module records all the external devices and support hardware being used by an account. Necessary for inventory knowledge and legal requirements.
+\\
+---- dataentry ----
+name : tsolucio/Soportes
+type : corebos-module
+description_wiki: This asset-like module records all the external devices and support hardware being used by an account. Necessary for inventory knowledge and legal requirements.
+keywords_tags : inventory,support,byod,equipment,usb,storage,lopd
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:soportes
+release_dt : 2010-02-27
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== LBL_SOPORTES_INFORMATION ===
+^Field^Type^Values^
+|registro_no|string| **Identifier** |
+|soporte_no|autonumber| |
+|Tipo|picklist|Pen Drive USB,CD,DVD,ZIP,HD USB,Cinta DAT,Disquete 3,5,PDA,Armario / Archivador Bajo Llave,Soporte Papel,SAN,HD EXTERNO |
+|Contenido|picklist|Copia de Seguridad,Listados,Doc. Trabajo,Correo Electrónico,Expedientes Académicos,Expediente Laboral,Doc. Proveedores,Doc. Fiscal / Contable,Doc. Calidad,Informes Psicopedagógicos,Información alumnos |
+|Ubicacion|string| |
+|Fecha de Alta|date| |
+|Soporte Movil|checkbox| |
+|Texto Soporte Movil|string| |
+|RespSeg|relation|Contacts,Empleados |
+|Medidas de seguridad adicionales adoptadas|string| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+|Assigned To|assigned to| |
+|Description|text| |
+|tovalidate|checkbox| |
+|Destruido|checkbox| |
+|Cuenta|relation|Accounts |
+|Plantilla|relation|Documents |
+|NumSerie|string| |
+|Borrar contenido|checkbox| |
+==== Custom Information ===
+==== Discontinued Information ===
+^Field^Type^Values^
+|MetodoDestruccion|string| |
+|DestInfo|string| |
+|Fecha de baja|date| |
+==== Clave de cifrado ===
+^Field^Type^Values^
+|Clave de cifrado|text| |

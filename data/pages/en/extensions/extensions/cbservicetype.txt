@@ -1,0 +1,36 @@
+~~NOTOC~~
+====== Service Type ======
+
+Picklist-like module to record service categories or types
+\\
+---- dataentry ----
+name : tsolucio/cbServiceType
+type : corebos-module
+description_wiki: Picklist-like module to record service categories or types
+keywords_tags : service,picklist,category,type
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbservicetype
+release_dt : 2015-07-15
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbServiceType.git
+----
+\\
+
+====== Fields =====
+
+==== Service Type Information ===
+^Field^Type^Values^
+|Service Type|string| **Identifier** |
+|Assigned To|assigned to| |
+|Active|checkbox| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

@@ -1,0 +1,49 @@
+~~NOTOC~~
+====== Register Backups module ======
+
+This module records all the backups that have been done. Necessary for inventory knowledge and legal requirements.
+\\
+---- dataentry ----
+name : tsolucio/RegCpSeg
+type : corebos-module
+description_wiki: This module records all the backups that have been done. Necessary for inventory knowledge and legal requirements.
+keywords_tags : inventory,copias,seguridad,backup,lopd,record,register
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:registercopiaseguridad
+release_dt : 2010-02-27
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Incident Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+|Description|text| |
+|Identificacion|string| |
+|Frecuencia|picklist|No,Diaria,Semanal,Quincenal,Semanas Pares,Semanas Impares,Mensual,Trimestral,Anual |
+|ProcedimientoRealizacion|text| |
+|ProcedimientoRecuperacion|text| |
+|Ubicacion|string| |
+|UsuariosAutorizados|relation|Empleados,Contacts,Vendors |
+|Title|autonumber| **Identifier** |
+|Account|relation|Accounts |
+|StartTime|datetime (internal)| |
+|Nodisponible|checkbox| |
+|Plantilla|relation|Documents |
+|execProc|string| |
+|CopiaCifrada|picklist|Si,No |
+|Soportes|relation|Soportes |
+|Fichero|relation|Fichero |
+
+==== Description Information ===
+==== Solution Information ===

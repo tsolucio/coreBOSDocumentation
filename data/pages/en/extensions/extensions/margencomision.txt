@@ -1,0 +1,39 @@
+~~NOTOC~~
+====== Commission Range module ======
+
+Module to register commission ranges. This module will permit you to record a start and end number associated to a commission, which can then be used in other modules to establish payments or similar.
+\\
+---- dataentry ----
+name : tsolucio/MargenComision
+type : corebos-module
+description_wiki: Module to register commission ranges. This module will permit you to record a start and end number associated to a commission, which can then be used in other modules to establish payments or similar.
+keywords_tags : commission,sales,range,commercial,payment
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:margencomision
+release_dt : 2015-07-06
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/MargenComision.git
+----
+\\
+
+====== Fields =====
+
+==== Commission Range Information ===
+^Field^Type^Values^
+|Range Start|number| |
+|Range Group|picklist| |
+|Range End|number| |
+|CommissionRange No|autonumber| **Identifier** |
+|Commission|number| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

@@ -1,0 +1,39 @@
+~~NOTOC~~
+====== Adequacy: Steps module ======
+
+This module is part of the [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:adecuaciones|Adequacy functionality]]. It represents a pool of steps or actions that can be done in any given adequacy project. The [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:flujo|flow]] module will group these steps together into sequences to be used.
+\\
+---- dataentry ----
+name : tsolucio/Pasos
+type : corebos-module
+description_wiki: This module is part of the [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:adecuaciones|Adequacy functionality]]. It represents a pool of steps or actions that can be done in any given adequacy project. The [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:flujo|flow]] module will group these steps together into sequences to be used.
+keywords_tags : project,steps,process,implementation,adapt
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:pasos
+release_dt : 2010-03-03
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Step Information ===
+^Field^Type^Values^
+|Name|string| **Identifier** |
+|Status|picklist|-----,Terminado |
+|Required|checkbox| |
+|Duration|string| |
+|Template|relation|Documents |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+|Assigned To|assigned to| |
+==== Custom Information ===
+==== Step Description ===
+^Field^Type^Values^
+|Description|text| |

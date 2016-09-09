@@ -1,0 +1,29 @@
+~~NOTOC~~
+====== Separate RelatedTo field on HelpDesk ======
+
+This enhancement, which is coreBOS Updater compatible and does not modify any base files, will separate the Account/Contact RelatedTo field on the HelpDesk module.
+
+The current field will be used for Accounts, so all records that are related to accounts stay the same. If the ticket is related to a Contact, the current value in the RelatedTo field will be copied to the new Contact field and the RelatedTo field will get filled in with the Account related to the selected Contact.
+
+<WRAP center round alert 80%>
+This change can **NOT** be undone. Once the changeset has been applied we must work with both fields separated.
+</WRAP>
+
+---- dataentry ----
+name : HelpDeskSeparateRelatedTo
+type : enhancement
+description_wiki: This enhancement will separate the Account/Contact RelatedTo field on the HelpDesk module.
+keywords_tags : HelpDesk, RelatedTo, separate, Account, Contact
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:enhancehdrelto
+release_dt : 2015-05-20
+license : Vizsage
+price: 55eur
+buyemail_mail: paypal(at)tsolucio(dot)com
+distribution: Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail :info(at)tsolucio(dot)com
+authorhomepage_url : http://tsolucio.com
+supportemail_mail :info(at)tsolucio(dot)com
+----
+

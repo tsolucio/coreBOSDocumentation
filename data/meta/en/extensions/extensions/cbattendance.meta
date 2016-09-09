@@ -1,0 +1,13 @@
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1454245791;s:8:"modified";i:1454245863;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:7:{s:4:"date";i:1454245863;s:2:"ip";s:13:"188.85.63.155";s:4:"type";s:1:"E";s:2:"id";s:37:"en:extensions:extensions:cbattendance";s:4:"user";s:9:"joebordes";s:3:"sum";s:33:"[Attendance Details Information] ";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}s:5:"title";s:30:"Attendance Details Information";s:11:"description";a:2:{s:15:"tableofcontents";a:9:{i:0;a:4:{s:3:"hid";s:30:"attendance_details_information";s:5:"title";s:30:"Attendance Details Information";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:6:"fields";s:5:"title";s:6:"Fields";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:2;a:4:{s:3:"hid";s:22:"attendance_information";s:5:"title";s:22:"Attendance Information";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:3;a:4:{s:3:"hid";s:18:"custom_information";s:5:"title";s:18:"Custom Information";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:4;a:4:{s:3:"hid";s:11:"description";s:5:"title";s:11:"Description";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:5;a:4:{s:3:"hid";s:7:"fields1";s:5:"title";s:6:"Fields";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:6;a:4:{s:3:"hid";s:23:"attendance_information1";s:5:"title";s:22:"Attendance Information";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:7;a:4:{s:3:"hid";s:19:"custom_information1";s:5:"title";s:18:"Custom Information";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:8;a:4:{s:3:"hid";s:12:"description1";s:5:"title";s:11:"Description";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:270:"Attendance Details Information
+
+Module to register the fact of a contact assisting an event or session (related with cbSession module)
+
+
+
+
+
+
+Fields
+
+Attendance Information
+FieldTypeValuesAttendance Noautonumber Identifier SessionrelationcbSession StudentrelationContacts";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:0;}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1454245791;s:8:"modified";i:1454245863;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:7:{s:4:"date";i:1454245863;s:2:"ip";s:13:"188.85.63.155";s:4:"type";s:1:"E";s:2:"id";s:37:"en:extensions:extensions:cbattendance";s:4:"user";s:9:"joebordes";s:3:"sum";s:33:"[Attendance Details Information] ";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}}}

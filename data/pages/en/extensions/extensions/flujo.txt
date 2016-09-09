@@ -1,0 +1,36 @@
+~~NOTOC~~
+====== Adequacy: Flow module ======
+
+This module is part of the [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:adecuaciones|Adequacy functionality]]. It represents the exact sequence of steps that must be taken to achieve the implementation process in the company. The idea of this module is to permit creating as many business process flow as needed and then instantiate then using an [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:adecuaciones|Adequacy]]. A business flow is an exact sequence of [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:pasos|business steps]].
+\\
+---- dataentry ----
+name : tsolucio/Flujo
+type : corebos-module
+description_wiki: This module is part of the [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:adecuaciones|Adequacy functionality]]. It represents the exact sequence of steps that must be taken to achieve the implementation process in the company. The idea of this module is to permit creating as many business process flow as needed and then instantiate then using an [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:adecuaciones|Adequacy]]. A business flow is an exact sequence of [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:pasos|business steps]].
+keywords_tags : project,steps,process,implementation,adapt
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:flujo
+release_dt : 2010-03-03
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== WorkFlow Information ===
+^Field^Type^Values^
+|Name|string| **Identifier** |
+|Estado|picklist|-----,Vigente,Obsoleto |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+|Assigned To|assigned to| |
+==== Custom Information ===
+==== Description Information ===
+^Field^Type^Values^
+|Description|text| |

@@ -1,0 +1,80 @@
+~~NOTOC~~
+====== Support Personnel ======
+
+Contact-like module to register information about eventual or third party workers that support your business.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+\\
+---- dataentry ----
+name : tsolucio/SupportPersonnel
+type : corebos-module
+description_wiki: Contact-like module to register information about eventual or third party workers that support your business.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+keywords_tags : HR,human resource,support,skill,contact,employee,talent
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:supportpersonnel
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/SupportPersonnel.git
+----
+\\
+
+====== Fields =====
+
+==== Support Personnel Information ===
+^Field^Type^Values^
+|First Name|string| |
+|Personnel No|autonumber| |
+|Last Name|string| **Identifier** |
+|Middle Name|string| |
+|Date Joined the Firm|date| |
+|Job Title|relation|JobTitle |
+|Company Department|picklist| |
+==== Home Address ===
+^Field^Type^Values^
+|Address|string| |
+|Apt.-Suite|string| |
+|City|string| |
+|State/Province|picklist| |
+|Zip-Postal Code|string| |
+==== Phones, E-mails, Website, Social Network Information ===
+^Field^Type^Values^
+|Home Phone|11| |
+|Mobile Phone|11| |
+|Work Phone|11| |
+|Personal Email|email| |
+|Work Email|email| |
+|LinkedIn Profile|url| |
+|Twitter Page|url| |
+|Facebook Page|url| |
+|Skype ID|85| |
+|GTalk ID|string| |
+==== Compensation and Hourly Rates ===
+^Field^Type^Values^
+|Yearly Compensation|string| |
+|Hourly Rate|string| |
+==== Education ===
+^Field^Type^Values^
+|High School|string| |
+|HS Graduation Year|date| |
+|High School GPA|string| |
+|HS Comments|text| |
+|Undergraduate School|string| |
+|US Graduation Year|string| |
+|Undergraduate School GPA|string| |
+|US Comments|text| |
+|Postgraduate Degree-School|string| |
+|PG Graduation Year|string| |
+|Postgraduate Degree-School GPA|string| |
+|PG Comments|text| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

@@ -1,0 +1,42 @@
+~~NOTOC~~
+====== Pay Grades Module ======
+
+This module registers the different payment ranges our company works with and permits relating our staff with each one.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+\\
+---- dataentry ----
+name : tsolucio/PayGrade
+type : corebos-module
+description_wiki: This module registers the different payment ranges our company works with and permits relating our staff with each one.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+keywords_tags : HR,human resource,users,work,employee,payment,fee,wage,salary
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:paygrade
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/PayGrade.git
+----
+\\
+
+====== Fields =====
+
+==== Pay Grade Record Information ===
+^Field^Type^Values^
+|Pay Grade Code Name|string| |
+|Pay Grade Code ID|string| |
+|Minimum Salary|string| |
+|Maximum Salary|string| |
+|Step Increase|string| |
+|Pay Grade No|autonumber| **Identifier** |
+==== Custom Information ===
+==== Comments ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Record Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

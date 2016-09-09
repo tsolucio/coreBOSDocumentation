@@ -27,7 +27,7 @@ At the top of your new wiki page you must add this block of information:
 <code>
 ---- dataentry ----
 name : 
-type : [module|extension|patch|perspective]
+type : [module|extension|enhancement|perspective|patch]
 description_wiki: 
 keywords_tags : programming, coding, design, html
 version : 

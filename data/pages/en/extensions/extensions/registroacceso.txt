@@ -1,0 +1,44 @@
+~~NOTOC~~
+====== Access Registration module ======
+
+This module records all access different people do upon certain assets. Necessary for inventory knowledge and legal requirements.
+\\
+---- dataentry ----
+name : tsolucio/RegAcceso
+type : corebos-module
+description_wiki: This module records all access different people do upon certain assets. Necessary for inventory knowledge and legal requirements.
+keywords_tags : inventory,access,computer,hardware,lopd,files
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:registroacceso
+release_dt : 2010-02-27
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== LBL_REGACCESO_INFORMATION ===
+^Field^Type^Values^
+|Title|string| **Identifier** |
+|Assigned To|assigned to| |
+|Account Name|relation|Accounts |
+|Responsable|relation|Empleados,Contacts |
+|Fichero|relation|Fichero |
+|Fecha acceso|date| |
+|Hora acceso|time| |
+|TipoAcceso|picklist|FisicoTerceros,FisicoNoAuto,FisicoAuto,Otros,ACCESS_OK,ACCESS_NOK_BADDEV,ACCESS_NOK_DESTROY,ACCESS_NOK_DEVRETIRED,ACCESS_NOK_BADUSER,ACCESS_NOK_BADPASS |
+|Category|picklist|Acceso,PerdidaLlave,RoboLlave,RoboDoc |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+|Soportes|relation|Soportes |
+|Categoria|picklist|--None-- |
+
+==== DESCRIPTION ===
+^Field^Type^Values^
+|Description|text| |

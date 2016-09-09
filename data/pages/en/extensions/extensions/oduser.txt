@@ -1,0 +1,40 @@
+~~NOTOC~~
+====== OnDemand User module ======
+
+This extension modifes coreBOS to control the number of active users that are permitted to use the system. It was created to support On Demand hosting services so you will be able to limit the users accessig the system and enforce per-user costs.
+\\
+---- dataentry ----
+name : tsolucio/ODUser
+type : corebos-module
+description_wiki: This extension modifes coreBOS to control the number of active users that are permitted to use the system. It was created to support On Demand hosting services so you will be able to limit the users accessig the system and enforce per-user costs.
+keywords_tags : on demand,hosting,per user,access
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:oduser
+release_dt : 2014-06-12
+licenses : Vizsage
+price : 850eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== OD User Information ===
+^Field^Type^Values^
+|User Name|106| **Identifier** |
+|Status|picklist|Active,Inactive |
+|First Name|string| |
+|Last Name|string| |
+|Client Accounts|relation|Accounts |
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Custom Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

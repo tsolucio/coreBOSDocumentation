@@ -1,0 +1,45 @@
+~~NOTOC~~
+====== Work Experience ======
+
+Work Experience module to register information about the employment history of your employees and contacts.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+\\
+---- dataentry ----
+name : tsolucio/WorkExperience
+type : corebos-module
+description_wiki: Work Experience module to register information about the employment history of your employees and contacts.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+keywords_tags : HR,human resource,language,skill,contact,employee,employment
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:workexperience
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/WorkExperience.git
+----
+\\
+
+====== Fields =====
+
+==== Work Experience Information ===
+^Field^Type^Values^
+|Person|relation|Attorneys,Managers,Paralegals,Secretaries,SupportPersonnel,Procurador |
+|Job Title|relation|JobTitle |
+|Company Name|string| |
+|Worked from|date| |
+|Industry|picklist| |
+|Worked to|date| |
+|Company Address. Supervisor Name|text| |
+|Number of years|string| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Work Experience No|autonumber| **Identifier** |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

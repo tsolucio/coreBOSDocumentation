@@ -1,0 +1,41 @@
+~~NOTOC~~
+====== Language Skill ======
+
+Language Skills module to register information about the languages spoken by your employees and contacts.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+\\
+---- dataentry ----
+name : tsolucio/LanguageSkill
+type : corebos-module
+description_wiki: Language Skills module to register information about the languages spoken by your employees and contacts.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+keywords_tags : HR,human resource,language,skill,contact,employee
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:languageskill
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/LanguageSkill.git
+----
+\\
+
+====== Fields =====
+
+==== LanguageSkill Information ===
+^Field^Type^Values^
+|Related to|relation|Attorneys,Managers,Paralegals,Secretaries,SupportPersonnel,Procurador |
+|Language|picklist|--- Please Select ---,Albanian,Amharic,Arabic,Armenian,Azerbaijani,Belorussian,Bengali,Bulgarian,Chinese (Cantonese),Chinese (Mandarin),Croatian,Czech,Danish,Dari,Dutch,English,Estonian,Finnish,French,Georgian,German,Greek,Hebrew,Hindi,Hungarian,Indonesian,Italian,Japanese,Kazakh,Khmer,Kirgiz,Korean,Kurdish,Laotian,Latvian,Lithuanian,Macedonian,Malay,Moldovan,Mongolian,Norwegian,Persian,Polish,Portuguese (Brazilian),Portuguese (Classical),Pushtu,Romanian,Russian,Serbian,Spanish,Swedish,Tagalog,Tajik,Tamil,Thai,Turkish,Ukrainian,Urdu,Uzbek,Vietnamese |
+|Language Fluency|multipicklist|--- Please Select ---,Read,Write,Read+Write,Comprehend,Speak,Proficient |
+|Language Competency|multipicklist|--- Please Select ---,Listening,Reading,Writing,Speaking |
+==== Custom Information ===
+==== Comments ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Language Skill Reference|autonumber| **Identifier** |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

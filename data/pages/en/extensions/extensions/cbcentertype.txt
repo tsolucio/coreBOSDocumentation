@@ -1,0 +1,36 @@
+~~NOTOC~~
+====== Center Type ======
+
+Picklist-like module to record work centers, offices or similar. <WRAP center round info 75%>Does not contain address.</WRAP>
+\\
+---- dataentry ----
+name : tsolucio/cbCenterType
+type : corebos-module
+description_wiki: Picklist-like module to record work centers, offices or similar. <WRAP center round info 75%>Does not contain address.</WRAP>
+keywords_tags : service,picklist,category,type
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbcentertype
+release_dt : 2015-07-15
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbCenterType.git
+----
+\\
+
+====== Fields =====
+
+==== Center Type Information ===
+^Field^Type^Values^
+|Center Type|string| **Identifier** |
+|Assigned To|assigned to| |
+|Active|checkbox| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

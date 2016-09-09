@@ -1,0 +1,36 @@
+~~NOTOC~~
+====== Litigation Team Details ======
+
+This module permits defining the details and people working on a litigation. It is a very basic team management module.\\ This is part of the **Attorney's Back Office** extensions.
+\\
+---- dataentry ----
+name : tsolucio/LitigationTeam
+type : corebos-module
+description_wiki: This module permits defining the details and people working on a litigation. It is a very basic team management module.\\ This is part of the **Attorney's Back Office** extensions.
+keywords_tags : litigation,users,work,contact,employee,team
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:litigationteam
+release_dt : 2013-06-12
+licenses : Vizsage
+price : 250eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Litigation Team Information ===
+^Field^Type^Values^
+|Team Name/Description|string| **Identifier** |
+|Litigation Team No|autonumber| |
+|Matter Related to|relation|Accounts,Contacts |
+|Function-Responsibility|relation|LTFunctions |
+|Function/Responsibility Execution Priority|picklist|--- Please Select ---,Low,Medium,High,Urgent |
+|Function/Responsibility Execution Status|picklist|--- Please Select ---,10%,20%,30%,40%,50%,60%,70%,80%,90%,100% |
+|Team Leader|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

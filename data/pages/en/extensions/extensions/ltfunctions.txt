@@ -1,0 +1,36 @@
+~~NOTOC~~
+====== Litigation Team Functions ======
+
+This module permits defining the function or responsibility of people working on a litigation. We can define the role each team member working on the matter has as they participate on different litigations.\\ It is a part of the team management extensions of **Attorney's Back Office**.
+\\
+---- dataentry ----
+name : tsolucio/LTFunctions
+type : corebos-module
+description_wiki: This module permits defining the function or responsibility of people working on a litigation. We can define the role each team member working on the matter has as they participate on different litigations.\\ It is a part of the team management extensions of **Attorney's Back Office**.
+keywords_tags : litigation,users,work,contact,employee,team,Attorney
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:ltfunctions
+release_dt : 2013-06-12
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Function and Responsibility Information ===
+^Field^Type^Values^
+|Function-Responsibility Name|string| **Identifier** |
+|Function No|autonumber| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

@@ -1,0 +1,40 @@
+~~NOTOC~~
+====== Users Working on Projects ======
+
+This module permits relating users to different projects in the system. It is a very basic team management module.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+\\
+---- dataentry ----
+name : tsolucio/UserWorksIn
+type : corebos-module
+description_wiki: This module permits relating users to different projects in the system. It is a very basic team management module.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+keywords_tags : HR,human resource,users,work,contact,employee,team
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:userworksin
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/UserWorksIn.git
+----
+\\
+
+====== Fields =====
+
+==== User Works In Information ===
+^Field^Type^Values^
+|Litigation Team|relation|LitigationTeam |
+|User|101| |
+|Function-Responsibility|relation|LTFunctions |
+|Function-Responsibility Priority|picklist| |
+|Function-Responsibility Status|picklist| |
+|User-Team No|autonumber| **Identifier** |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

@@ -1,0 +1,55 @@
+~~NOTOC~~
+~~NOTOC~~
+====== Attendance Details Information ======
+
+Module to register the fact of a contact assisting an event or session (related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbsession|cbSession module]])
+\\
+---- dataentry ----
+name : tsolucio/cbAttendance
+type : corebos-module
+description_wiki: Module to register the fact of a contact assisting an event or session (related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbsession|cbSession module]])
+keywords_tags : hr,human resource,training,event,session
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbattendance
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbAttendance.git
+----
+\\
+
+====== Fields =====
+
+==== Attendance Information ===
+^Field^Type^Values^
+|Attendance No|autonumber| **Identifier** |
+|Session|relation|cbSession |
+|Student|relation|Contacts |
+|Assist?|checkbox| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+
+====== Fields =====
+
+==== Attendance Information ===
+^Field^Type^Values^
+|Attendance No|autonumber| **Identifier** |
+|Session|relation|cbSession |
+|Student|relation|Contacts |
+|Assist?|checkbox| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

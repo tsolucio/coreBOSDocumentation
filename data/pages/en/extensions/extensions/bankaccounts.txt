@@ -1,0 +1,62 @@
+~~NOTOC~~
+====== Bank Accounts ======
+
+Bank Accounts module to register information about the bank accounts you work with, either your company or your clients accounts.\\ This module is related with the Bank module and should be installed together.\\ This is part of the TSolucio **payments extensions** that support **SEPA and direct bank charges** to your clients.
+\\
+---- dataentry ----
+name : tsolucio/BankAccounts
+type : corebos-module
+description_wiki: Bank Accounts module to register information about the bank accounts you work with, either your company or your clients accounts.\\ This module is related with the Bank module and should be installed together.\\ This is part of the TSolucio **payments extensions** that support **SEPA and direct bank charges** to your clients.
+\\
+
+keywords_tags : bank,SEPA,payment
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:bankaccounts
+release_dt : 2015-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/Bank.git
+----
+\\
+
+====== Fields =====
+
+==== Bank Account Information ===
+^Field^Type^Values^
+|Bank Account Number|1| **Identifier** |
+|Account Current Balance|7| |
+|Account Status|15|--- Please Select ---,Active,Closed |
+|Bank Account Type|15| |
+|Related To Client (If Trust Account)|10|Contacts |
+|Bank Name|10|Bank |
+|GL Account|10|GLAccounts |
+|Account Opening Balance|71| |
+|Date Account Opened|5| |
+|Date Account Closed|5| |
+==== Other Miscellaneous Information ===
+^Field^Type^Values^
+|Account Service Fees|71| |
+|Account Interest Rate|1| |
+|Account Overdraft Protection Service Activated|56| |
+|Account Used for Overdraft Protection|10|BankAccounts |
+|Debit Card Overdraft Protection Service Activated|56| |
+|Direct Deposit|56| |
+|Bill Pay Activated|56| |
+|Account Statement Delivery|15|--- Please Select ---,by Mail,On-line,Combined |
+|Statement Cycle|1| |
+|Bank Account Nickname|1| |
+|Authorized Account Signor|1| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|19| |
+==== Additional Information ===
+^Field^Type^Values^
+|Account No|4| |
+|Assigned To|53| |
+|Created Time|70| |
+|Modified Time|70| |

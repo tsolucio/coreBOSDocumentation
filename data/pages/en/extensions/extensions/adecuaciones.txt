@@ -1,0 +1,42 @@
+~~NOTOC~~
+====== Adequacy module ======
+
+This project-like module is part of the Adequacy functionality. It represents the actual implementation process in the company designated by the [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:flujo|flow]] and [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:pasos|steps]] and controls the status of implementation of the adequacy project.
+\\
+---- dataentry ----
+name : tsolucio/Adecuaciones
+type : corebos-module
+description_wiki: This project-like module is part of the Adequacy functionality. It represents the actual implementation process in the company designated by the [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:flujo|flow]] and [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:pasos|steps]] and controls the status of implementation of the adequacy project.
+keywords_tags : project,steps,process,implementation,adapt
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:adecuaciones
+release_dt : 2010-03-03
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Adecuations Information ===
+^Field^Type^Values^
+|Name|string| **Identifier** |
+|Start Date|date| |
+|End Date|date| |
+|State|picklist|-----,Terminado |
+|Paso Actual|string| |
+|% Realizacion|number| |
+|Assigned To|assigned to| |
+|Account Name|relation|Accounts |
+|Flujo de Trabajo|relation|Flujo |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Customer Information ===
+==== Adecuations Description ===
+^Field^Type^Values^
+|Description|text| |

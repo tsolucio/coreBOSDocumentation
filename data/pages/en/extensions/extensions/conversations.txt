@@ -1,0 +1,42 @@
+~~NOTOC~~
+====== Conversations ======
+
+The Conversations module is similar to the native comments module in coreBOS but is intended to save large conversations that take place outside the application. For example, a hangout, skype or whatsapp dialog or a whole email thread that needs to be recorded in the application. When a conversation record is created a comment is automatically added to all related records with a link to the conversation, so just looking at the comments on the account you will see the conversation that took place and will be able to easily click to read the whole context.\\ The main goal is to save large conversations/comments without making navigating an account record uncomfortable.
+\\
+---- dataentry ----
+name : tsolucio/Conversation
+type : corebos-module
+description_wiki: The Conversations module is similar to the native comments module in coreBOS but is intended to save large conversations that take place outside the application. For example, a hangout, skype or whatsapp dialog or a whole email thread that needs to be recorded in the application. When a conversation record is created a comment is automatically added to all related records with a link to the conversation, so just looking at the comments on the account you will see the conversation that took place and will be able to easily click to read the whole context.\\ The main goal is to save large conversations/comments without making navigating an account record uncomfortable.
+\\
+
+keywords_tags : comment,conversation,large text,additional information
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:conversations
+release_dt : 2014-01-19
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/Bank.git
+----
+\\
+
+====== Fields =====
+
+==== Conversation ===
+^Field^Type^Values^
+|Title|1| **Identifier** |
+|Public|56| |
+|Conversation|19| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|53| |
+|Creator|52| |
+|Modified Time|70| |
+|Created Time|70| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|19| |

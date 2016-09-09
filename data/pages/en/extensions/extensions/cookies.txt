@@ -1,0 +1,37 @@
+~~NOTOC~~
+====== Cookies module ======
+
+This asset-like module records all the cookies being used by an account on their website. Necessary for inventory knowledge and legal requirements.
+\\
+---- dataentry ----
+name : tsolucio/Cookies
+type : corebos-module
+description_wiki: This asset-like module records all the cookies being used by an account on their website. Necessary for inventory knowledge and legal requirements.
+keywords_tags : inventory,cookies,website,lopd
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cookies
+release_dt : 2010-02-27
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== LBL_COOKIES_INFORMATION ===
+^Field^Type^Values^
+|cookie_no|autonumber| **Identifier** |
+|cookie_tipo|picklist|---,Sesion,Permanente,De funcionalidad,Terceros,Analiticas,Otros |
+|cookie|string| |
+|cookie_finalidad|string| |
+|cookie_caducidad|string| |
+|cookie_propietario|string| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===

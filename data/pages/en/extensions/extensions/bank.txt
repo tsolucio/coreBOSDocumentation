@@ -1,0 +1,50 @@
+~~NOTOC~~
+====== Banks ======
+
+Bank module to register information of the banks you work with.\\ This is part of the TSolucio **payments extensions** that support **SEPA and direct bank charges** to your clients.
+\\
+---- dataentry ----
+name : tsolucio/Bank
+type : corebos-module
+description_wiki: Bank module to register information of the banks you work with.\\ This is part of the TSolucio **payments extensions** that support **SEPA and direct bank charges** to your clients.
+\\
+
+keywords_tags : bank,SEPA,payment
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:bank
+release_dt : 2015-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/Bank.git
+----
+\\
+
+====== Fields =====
+
+==== Bank Information ===
+^Field^Type^Values^
+|Bank Name|1| **Identifier** |
+|Bank No|4| |
+|Bank Branch Manager Name|1| |
+|Branch Main Phone No|11| |
+|Bank Branch Officer Name|1| |
+|Other Phone|11| |
+|Bank Branch Address|1| |
+|Bank Branch Business Hours|1| |
+|Fax|11| |
+|Email|13| |
+|Alternate Email|13| |
+|Bank Website|17| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|19| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|53| |
+|Created Time|70| |
+|Modified Time|70| |

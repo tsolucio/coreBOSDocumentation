@@ -1,0 +1,39 @@
+~~NOTOC~~
+====== Session/Event Details Information ======
+
+Module to register the fact of a session of some event that will take place (related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbattendance|cbAttendance module]])
+\\
+---- dataentry ----
+name : tsolucio/cbSession
+type : corebos-module
+description_wiki: Module to register the fact of a session of some event that will take place (related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbattendance|cbAttendance module]])
+keywords_tags : hr,human resource,training,event,session
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbsession
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbSession.git
+----
+\\
+
+====== Fields =====
+
+==== Session Information ===
+^Field^Type^Values^
+|Session No|autonumber| **Identifier** |
+|Session Name|string| |
+|Course|relation|cbTraining |
+|Date Start|date| |
+|Time Start|14| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

@@ -1,0 +1,39 @@
+~~NOTOC~~
+====== Occupation module ======
+
+Occupation module to register official SOC Code information types.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+\\
+---- dataentry ----
+name : tsolucio/Occupation
+type : corebos-module
+description_wiki: Occupation module to register official SOC Code information types.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+keywords_tags : HR,human resource,occupation,skill,contact,employee,employment,SOC Code
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:occupation
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/Occupation.git
+----
+\\
+
+====== Fields =====
+
+==== Occupation Information ===
+^Field^Type^Values^
+|Occupation Name|string| **Identifier** |
+|Record No|autonumber| |
+|SOC Code|string| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

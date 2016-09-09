@@ -1,0 +1,71 @@
+~~NOTOC~~
+====== Opposing Party Module ======
+
+Contact-like module to register information about the Opposing Party we face in litigation matters.\\ This is part of the **Attorney's Back Office**.
+\\
+---- dataentry ----
+name : tsolucio/OpposingParty
+type : corebos-module
+description_wiki: Contact-like module to register information about the Opposing Party we face in litigation matters.\\ This is part of the **Attorney's Back Office**.
+keywords_tags : Attorneys,employee
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:opposingparty
+release_dt : 2013-06-12
+licenses : Vizsage
+price : 250eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Opposing Party Information ===
+^Field^Type^Values^
+|Party First Name|string| **Identifier** |
+|Opposing Party No|autonumber| |
+|Party Last Name|string| **Identifier** |
+|Company Name|string| |
+|Party Type|picklist| |
+|Occupation|relation|Occupation |
+|Party Designation|picklist|--- Please Select ---,Plaintiff,Defendant,Appellant,Appellee,Respondent,Intervenor,Third-Party Plantiff,Third-Party Defendant |
+|Industry Sector|picklist| |
+|Related to Matter|relation|Project,LitigationMatter |
+|Opposing Attorney Name|relation|OpposingAttorney |
+==== Phones, E-mails, Website, Social Network Information ===
+^Field^Type^Values^
+|Home Phone|11| |
+|Email|email| |
+|Mobile Phone|11| |
+|Alternate Email|email| |
+|Other Phone|11| |
+|LinkedIn Profile|url| |
+|Fax|11| |
+|Facebook Page|url| |
+|Website|url| |
+|Twitter Page|url| |
+|Skype ID|85| |
+|GTalk ID|string| |
+==== Opposing Party Address ===
+^Field^Type^Values^
+|Address|text| |
+|Alternate Address|text| |
+|City|string| |
+|Alternate City|string| |
+|State/Province|picklist| |
+|Alternate State/Province|picklist| |
+|Zip/Postal Code|string| |
+|Alternate Zip/Postal Code|string| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Notify Owner|checkbox| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

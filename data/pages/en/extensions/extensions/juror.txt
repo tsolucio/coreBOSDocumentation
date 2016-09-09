@@ -1,0 +1,78 @@
+~~NOTOC~~
+====== Juror ======
+
+Contact like module to register information about jurors.\\ This is part of the **Attorneys Back Office** application.
+\\
+---- dataentry ----
+name : tsolucio/Juror
+type : corebos-module
+description_wiki: Contact like module to register information about jurors.\\ This is part of the **Attorneys Back Office** application.
+keywords_tags : juror,lawyer,law,abo,attorney,jury
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:juror
+release_dt : 2013-06-12
+licenses : Vizsage
+price : 150eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Juror Information ===
+^Field^Type^Values^
+|Juror First Name|string| |
+|Juror Record No|autonumber| |
+|Juror Last Name|string| **Identifier** |
+|Juror Date of Birth|date| |
+|Juror Occupation|relation|Occupation |
+|Work Place - Company Name|string| |
+|Industry Sector|picklist| |
+|Requires Special Accommodation|checkbox| |
+|No of Years Employed by the same Company|string| |
+|Gender|picklist|--- Please Select ---,Male,Female |
+|Marital Status|picklist| |
+|Race-Ethnic Group|picklist|--- Please Select ---,White,Black or African American,American Indian or Alaska Native,Asian Indian,Chinese,Filipino,Japanese,Korean,Vietnamese,Other Asian,Central American or South American,Cuban,Dominican,Mexican, Mexican American, Chicano,Other Hispanic or Latino,Puerto Rican,Native Hawaiian,Guamian or Chamorro,Samoan,Other Pacific Islander,Islander,Other |
+|Smoker|checkbox| |
+|Military Service|checkbox| |
+|Has Children?|checkbox| |
+|Number of Children-Dependent|number| |
+|Prior Occupation-Profession|relation|Occupation |
+|Retired?|checkbox| |
+==== Phones, E-mails, Website, Social Network Information ===
+^Field^Type^Values^
+|Primary Phone|11| |
+|Email|email| |
+|Mobile Phone|11| |
+|Alternate Email|email| |
+|Alternate Phone|11| |
+|Fax|11| |
+|LinkedIn Profile|url| |
+|Facebook Page|url| |
+|Website|url| |
+|Twitter Page|url| |
+|Skype ID|85| |
+|GTalk ID|string| |
+==== Address Information ===
+^Field^Type^Values^
+|Address|text| |
+|Alternate Address|text| |
+|City|string| |
+|Alternate City|string| |
+|State/Province|picklist| |
+|Alternate State/Province|picklist| |
+|ZIP-Postal Code|string| |
+|Alternate ZIP-Postal Code|string| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

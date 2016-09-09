@@ -1,0 +1,49 @@
+~~NOTOC~~
+====== Product Catalog ======
+
+Product to product relation. Permits establishing a relation between products to indicate things like what date range a product is Required,Standard,Optional,Selectable by another.
+\\
+---- dataentry ----
+name : tsolucio/ProductCatalog
+type : corebos-module
+description_wiki: Product to product relation. Permits establishing a relation between products to indicate things like what date range a product is Required,Standard,Optional,Selectable by another.
+keywords_tags : product,relation,category,dependency
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:productcatalog
+release_dt : 2014-12-24
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/ProductCatalog.git
+----
+\\
+
+====== Fields =====
+
+==== Parent Product Information ===
+^Field^Type^Values^
+|Related to parent|relation|Products **Identifier** |
+|Parent Catalog|string| |
+|Parent Code|string| |
+|Product end sale date|date| |
+==== Dependent Product Information ===
+^Field^Type^Values^
+|Related to dependent|relation|Products |
+|Dependent Catalog|string| |
+|Dependent Code|string| |
+|Dependent end sale date|date| |
+==== Relation Information ===
+^Field^Type^Values^
+|Relation Mode|picklist|Required,Standard,Optional,Selectable |
+|Relation from|date| |
+|Relation Number|autonumber| |
+|Relation to|date| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

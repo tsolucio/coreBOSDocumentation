@@ -1,0 +1,78 @@
+~~NOTOC~~
+====== Opposing Attorneys Module ======
+
+Contact-like module to register information about the Opposing Attorneys we face in litigation matters.\\ This is part of the **Attorney's Back Office**.
+\\
+---- dataentry ----
+name : tsolucio/OpposingAttorney
+type : corebos-module
+description_wiki: Contact-like module to register information about the Opposing Attorneys we face in litigation matters.\\ This is part of the **Attorney's Back Office**.
+keywords_tags : Attorneys,employee
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:opposingattorneys
+release_dt : 2013-06-12
+licenses : Vizsage
+price : 250eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Opposing Attorney Information ===
+^Field^Type^Values^
+|Attorney First Name|string| **Identifier** |
+|Opposing Attorney No|autonumber| |
+|Middle Name|string| |
+|Law Firm-Company Name|string| |
+|Attorney Last Name|string| **Identifier** |
+|Attorney Legal Practice Area|picklist| |
+|Role|picklist|--- Please Select ---,Attorney,Department Manager,Case Manager,Account Representative,Home Preservation Specialist,Customer Case Representative,Customer Support Specialist,Clerk,Trustee |
+==== Phones, E-mails, Website, Social Network Information ===
+^Field^Type^Values^
+|Primary Phone|11| |
+|Email|email| |
+|Mobile Phone|11| |
+|Alternate Email|email| |
+|Alternate Phone|11| |
+|LinkedIn Profile|url| |
+|Fax|11| |
+|Facebook Page|url| |
+|Website|url| |
+|Twitter Page|url| |
+|Skype ID|85| |
+|GTalk ID|string| |
+==== Address Information ===
+^Field^Type^Values^
+|Address|text| |
+|Alternate Address|text| |
+|City|string| |
+|Alternate City|string| |
+|State/Province|picklist| |
+|Alternate State/Province|picklist| |
+|ZIP-Postal Code|string| |
+|Alternate ZIP-Postal Code|string| |
+==== Bar Association Information ===
+^Field^Type^Values^
+|Bar Member of the State of|picklist| |
+|Bar Number|string| |
+|Bar County|relation|County |
+|Bar Member Status - Active|checkbox| |
+|Undergraduate School|string| |
+|Bar Member Since|date| |
+|Law School|string| |
+|Disciplinary, Administrative or Related Actions|text| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Notify Owner|checkbox| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

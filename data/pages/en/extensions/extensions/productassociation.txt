@@ -1,0 +1,41 @@
+~~NOTOC~~
+====== Product Association ======
+
+Product to product relation. Permits establishing a relation between products to indicate things like what date range a product is Required,Incompatible,Optional,Marketing,Obsolete,Substitute by another.
+\\
+---- dataentry ----
+name : tsolucio/ProductAssociation
+type : corebos-module
+description_wiki: Product to product relation. Permits establishing a relation between products to indicate things like what date range a product is Required,Incompatible,Optional,Marketing,Obsolete,Substitute by another.
+keywords_tags : product,relation,category,association,dependency,obsolete
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:productassociation
+release_dt : 2016-05-19
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/ProductAssociation.git
+----
+\\
+
+====== Fields =====
+
+==== Product Association Information ===
+^Field^Type^Values^
+|From Product|relation|Products |
+|To Product|relation|Products |
+|Relation Mode|picklist|Required,Marketing,Substitue,Complement,Incompatible,Obsolesence |
+|Valid from|date| |
+|Relation Number|autonumber| **Identifier** |
+|Valid to|date| |
+|Quantity|number| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+|Instructions|text| |

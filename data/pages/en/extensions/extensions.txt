@@ -5,6 +5,7 @@ cols    : %title%, description, type, distribution, authorname
 max     : 50
 dynfilters : 1
 sort    : %title%
+filter  : type!=businessmapping
 ----
 
 

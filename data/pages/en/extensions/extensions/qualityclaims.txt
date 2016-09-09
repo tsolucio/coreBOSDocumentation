@@ -1,0 +1,44 @@
+~~NOTOC~~
+====== Quality Claims module ======
+
+Module to control Quality Claims, used to enforce and document ISO standards. It should capture the details of the claim, who is attending it, the date references and the outcome. This module is related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:qualityactions|Quality Actions module]] where each exact step is recorded.
+\\
+---- dataentry ----
+name : tsolucio/QualityClaims
+type : corebos-module
+description_wiki: Module to control Quality Claims, used to enforce and document ISO standards. It should capture the details of the claim, who is attending it, the date references and the outcome. This module is related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:qualityactions|Quality Actions module]] where each exact step is recorded.
+keywords_tags : claims,quality,ISO,standards
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:qualityclaims
+release_dt : 2015-12-10
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Quality Claims Information ===
+^Field^Type^Values^
+|Account Name|relation|Accounts |
+|Nº de Pedido|string| |
+|Entidad Relacionada|relation|Project,HelpDesk |
+|Claim Status|picklist|--None-- |
+|Assigned To|assigned to| |
+|Claim Priority|picklist|Low,Medium,High |
+|Emitting Department|string| |
+|Claim Type|picklist|--None-- |
+|Responsible|101| |
+|Claim Date|date| |
+|Receiving Department|string| |
+|Quality Claim No|autonumber| **Identifier** |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

@@ -1,0 +1,54 @@
+~~NOTOC~~
+====== Applications module ======
+
+This asset-like module records all the software applications and appliances we have in our company. Ideal for inventory, license control and renewals.
+\\
+---- dataentry ----
+name : tsolucio/Aplicaciones
+type : corebos-module
+description_wiki: This asset-like module records all the software applications and appliances we have in our company. Ideal for inventory, license control and renewals.
+keywords_tags : software,program,license,inventory,appliance
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:aplicaciones
+release_dt : 2010-02-27
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Information ===
+^Field^Type^Values^
+|Name|string| **Identifier** |
+|Assigned To|assigned to| |
+|Security Level|string| |
+|Validate|checkbox| |
+|Destruido|checkbox| |
+|Operating System|picklist|MS-DOS,OS/2,Windows XP Home,Windows XP,Windows Vista,Windows 7,Windows Server 2003,Windows Server 2008,UNIX,GNU/Linux,Novell,Mac OS X,Symbian,Android,BlackBerry,Microsoft .NET |
+|Data Base|picklist|NO,Microsoft SQL Server,FileMaker,Micrososoft Access,Open Access,Oracle,dBase,BBDD Pick/3D,MySQL,SI |
+|Remote Access|string| |
+|Where aplication is executed|string| |
+|Files aplication accesses|string| |
+|Time-Out|string| |
+|Fecha Baja|date| |
+==== Custom Information ===
+^Field^Type^Values^
+|Function|string| |
+|Template|relation|Documents |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+|System|string| |
+|Manufacture|string| |
+|Etiquetas|string| |
+==== Pruebas con Datos Reales ===
+^Field^Type^Values^
+|Test nº|number| |
+|Date|date| |
+|Security Level Measures|text| |
+|Test Description|text| |

@@ -1,0 +1,99 @@
+~~NOTOC~~
+====== Federal Court ======
+
+Module to record US Federal Courts
+\\
+---- dataentry ----
+name : tsolucio/FederalCourt
+type : corebos-module
+description_wiki: Module to record US Federal Courts
+\\
+
+keywords_tags : ABO,Attorney Back Office,court
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:federalcourt
+release_dt : 2013-06-12
+licenses : Vizsage
+price: 150eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Federal Court and Courtroom Information ===
+^Field^Type^Values^
+|Federal Court Name|string| **Identifier** |
+|Court Record ID No|autonumber| |
+|Name of the State/Province|picklist| |
+|Court Address|string| |
+|Name of the County|relation|County |
+|U.S. Appeals Court Circuit Name|relation|USAppealsCourtCircuit |
+|Federal Court Type|picklist|--- Please Select ---,Bankruptcy Court,Court of Appeals,Court of Federal Claims,Court of International Trade,Court of Veterans Appeals,District Court,Federal Administrative Agencies and Boards,Military Courts (Trial and Appellate),Supreme Court,Tax Court |
+|District Judge|checkbox| |
+|U.S. District Name|relation|USFederalDistricts |
+|Senior District Judge|checkbox| |
+|Judicial Officer Name|string| |
+|Assigned Judge|checkbox| |
+|Name of the Referring Judge|string| |
+|Chief Magistrate Judge|checkbox| |
+|Department,Room,Floor|string| |
+|Magistrate Judge|checkbox| |
+|Court Clerk|string| |
+|Presiding Judge|checkbox| |
+|Court Reporter|string| |
+|Name of the Presiding Judge|string| |
+|Courtroom Phone No|11| |
+|Referring Judge|checkbox| |
+|Courthouse Main Phone No|11| |
+|Electronic Filing Email|email| |
+|Clerk Phone|11| |
+|Alternate Email|email| |
+|Court Report Phone|11| |
+|Court Website|url| |
+|Other Phone|11| |
+|Courtroom Motion Calendar|url| |
+|Fax|11| |
+|Driving Directions|url| |
+==== Courthouse Information ===
+^Field^Type^Values^
+|Courthouse General Information|url| |
+|Courthouse Juror Information|url| |
+|Courthouse Office and Service Directory|url| |
+|Tentative Rulings|url| |
+|Local Forms|url| |
+|ADR Information|url| |
+|Local Rules|url| |
+|Clerk Office Services|url| |
+|Attorney Admissions|url| |
+|Attorney Admissions Search|url| |
+|Attorney Assistance|url| |
+|Services for Attorney|url| |
+|Criminal Justice Act Information|url| |
+|Criminal Duty Calendar|url| |
+|Master Calendar|url| |
+|Motion Calendar|url| |
+|PIA Calendar|url| |
+|PACER Information|url| |
+|Filing Procedures|url| |
+|General Orders|url| |
+|Judges Procedures and Schedules|url| |
+|Notices from the Clerk|url| |
+|Pro Bono Panel|url| |
+|Recently Issued Opinions and Orders|url| |
+|Court Rosters and Duty Schedules|url| |
+|NARA Inquiry|url| |
+|Courthouse Parking Information|url| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

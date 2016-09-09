@@ -1,0 +1,40 @@
+~~NOTOC~~
+====== US Appeals Court Circuit Module ======
+
+Information about courts we may work with.\\ This is part of the **Attorney's Back Office**.
+\\
+---- dataentry ----
+name : tsolucio/USAppealsCourtCircuit
+type : corebos-module
+description_wiki: Information about courts we may work with.\\ This is part of the **Attorney's Back Office**.
+keywords_tags : Attorneys,employee,Appeals,Court,Circuit
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:usappealscourtcircuit
+release_dt : 2013-06-12
+licenses : Vizsage
+price : 250eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== US Court of Appeals Circuit Information ===
+^Field^Type^Values^
+|US Appeals Court Circuit Name|string| **Identifier** |
+|Record No|autonumber| |
+|Chief Judge Name|string| |
+|No of Judges|number| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

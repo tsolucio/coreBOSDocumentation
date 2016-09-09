@@ -1,0 +1,44 @@
+~~NOTOC~~
+====== Dependents ======
+
+Contact like module related to Contacts where you can save information about people that depend upon the main Contact
+\\
+---- dataentry ----
+name : tsolucio/Dependents
+type : corebos-module
+description_wiki: Contact like module related to Contacts where you can save information about people that depend upon the main Contact
+\\
+
+keywords_tags : people,contact
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:dependents
+release_dt : 2014-01-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/Dependents.git
+----
+\\
+
+====== Fields =====
+
+==== Dependent Information ===
+^Field^Type^Values^
+|Parent or Legal guardian|relation|Attorneys,Managers,Paralegals,Secretaries,SupportPersonnel |
+|First, Last Name|string| **Identifier** |
+|Relationship|string| |
+|Date of Birth|date| |
+|Lives at same address|checkbox| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Dependent No|autonumber| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

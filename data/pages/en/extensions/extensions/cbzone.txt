@@ -1,0 +1,36 @@
+~~NOTOC~~
+====== Zone Module ======
+
+Picklist-like module to record different zones or regions in which we wish to divde countries or similar.
+\\
+---- dataentry ----
+name : tsolucio/cbZone
+type : corebos-module
+description_wiki: Picklist-like module to record different zones or regions in which we wish to divde countries or similar.
+keywords_tags : zone,picklist,city,region,province,state
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbzone
+release_dt : 2015-07-13
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbZone.git
+----
+\\
+
+====== Fields =====
+
+==== Zone Information ===
+^Field^Type^Values^
+|Zone|string| **Identifier** |
+|Assigned To|assigned to| |
+|Active|checkbox| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

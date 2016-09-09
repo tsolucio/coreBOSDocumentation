@@ -1,0 +1,39 @@
+~~NOTOC~~
+====== Backup Procedure module ======
+
+This documentation-like module records all the backups systems and their responsible parties that are used in the account. Necessary for inventory knowledge and legal requirements.
+\\
+---- dataentry ----
+name : tsolucio/CpSeg
+type : corebos-module
+description_wiki: This documentation-like module records all the backups systems and their responsible parties that are used in the account. Necessary for inventory knowledge and legal requirements.
+keywords_tags : inventory,copias,seguridad,backup,lopd
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:copiaseguridad
+release_dt : 2010-02-27
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Backup Information ===
+^Field^Type^Values^
+|Backup No|autonumber| **Identifier** |
+|Procedure Name|string| |
+|Account|relation|Accounts |
+|Copied data|string| |
+|Procedure description|text| |
+|Frequency|string| |
+|Backup Location|string| |
+|Person or area in charge of procedure|string| |
+|Template|relation|Documents |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

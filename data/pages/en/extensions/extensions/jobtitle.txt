@@ -1,0 +1,46 @@
+~~NOTOC~~
+====== Job Title Information ======
+
+Job Title Information module.\\ This is part of the **Attorney's Back Office Human Resource** enhancements.
+\\
+---- dataentry ----
+name : tsolucio/JobTitle
+type : corebos-module
+description_wiki: Job Title Information module.\\ This is part of the **Attorney's Back Office Human Resource** enhancements.
+\\
+
+keywords_tags : hr,human resource,job,work,position
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:jobtitle
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/JobTitle.git
+----
+\\
+
+====== Fields =====
+
+==== Job Title Information ===
+^Field^Type^Values^
+|Job Title Name|string| **Identifier** |
+|Job Title Record No|autonumber| |
+|Pay Grade|relation|PayGrade |
+|Employment Status|picklist| |
+|Department|picklist|--- Please Select ---,Litigation Department,Litigation Support Department,Transactional Department,HR Department,Marketing Department,Sales Department,Customer Support Department,IT Department,General Services Department,Other |
+|Reports to|101| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Job Description|text| |
+|Job-related Responsibilities|text| |
+|Comments|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

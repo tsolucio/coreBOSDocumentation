@@ -1,0 +1,51 @@
+~~NOTOC~~
+====== Retainer Contract Module ======
+
+Contract-like module to register information about condtions of payment agreed upon for a work to be done.\\ This is part of the **Attorney's Back Office** extensions, to control the retainments.
+\\
+---- dataentry ----
+name : tsolucio/Retainer
+type : corebos-module
+description_wiki: Contract-like module to register information about condtions of payment agreed upon for a work to be done.\\ This is part of the **Attorney's Back Office** extensions, to control the retainments.
+keywords_tags : Contract,retainer,payment,fees,Attorney
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:retainer
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/Retainer.git
+----
+\\
+
+====== Fields =====
+
+==== Retainer Agreement Information ===
+^Field^Type^Values^
+|Retainer Agreement Reference|string| **Identifier** |
+|Retainer Agreement No|autonumber| |
+|Client|relation|Contacts |
+|Retainer Agreement Date|date| |
+|Related to Matter|relation|Project,LitigationMatter |
+==== Hourly Fees and Retainer Deposit Information ===
+^Field^Type^Values^
+|Attorney Fees 1|number| |
+|Attorney Fees 2|number| |
+|Paralegal Fees 1|number| |
+|Paralegal Fees 2|number| |
+|Advanced Retainer Fees 1|number| |
+|Advanced Retainer Fees 2|number| |
+|Pay Frequency|picklist| |
+|Delinquent After Days|number| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

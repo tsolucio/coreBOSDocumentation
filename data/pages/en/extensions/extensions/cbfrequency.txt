@@ -1,0 +1,36 @@
+~~NOTOC~~
+====== Frequency Type ======
+
+Picklist-like module to record different frequencies.
+\\
+---- dataentry ----
+name : tsolucio/cbFrequency
+type : corebos-module
+description_wiki: Picklist-like module to record different frequencies.
+keywords_tags : frequency,picklist,category,type,schedule
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbfrequency
+release_dt : 2015-07-15
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbFrequency.git
+----
+\\
+
+====== Fields =====
+
+==== Frequency Information ===
+^Field^Type^Values^
+|Frequency|string| **Identifier** |
+|Assigned To|assigned to| |
+|Active|checkbox| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

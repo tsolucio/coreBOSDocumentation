@@ -1,0 +1,42 @@
+~~NOTOC~~
+====== Outsourcing Module ======
+
+Contact-like module to register information about outsourced third party people or teams working on our projects.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+\\
+---- dataentry ----
+name : tsolucio/Outsourcing
+type : corebos-module
+description_wiki: Contact-like module to register information about outsourced third party people or teams working on our projects.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+keywords_tags : HR,human resource,outsourcing,skill,contact,employee,talent
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:outsourcing
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/Outsourcing.git
+----
+\\
+
+====== Fields =====
+
+==== Outsourcing Information ===
+^Field^Type^Values^
+|Litigation Team|relation|LitigationTeam |
+|Vendor|relation|Vendors |
+|Function-Responsibility|relation|LTFunctions |
+|Function-Responsibility Priority|picklist| |
+|Function-Responsibility Status|picklist| |
+|Outsourcing No|autonumber| **Identifier** |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

@@ -1,0 +1,41 @@
+~~NOTOC~~
+====== Just Log It module ======
+
+An Event/Calendar type module to register things that happen, incidents worth recording or simply time spent on some task.
+\\
+---- dataentry ----
+name : tsolucio/JustLogIt
+type : corebos-module
+description_wiki: An Event/Calendar type module to register things that happen, incidents worth recording or simply time spent on some task.
+keywords_tags : event,calendar,incident
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:justlogit
+release_dt : 2015-09-07
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/JustLogIt.git
+----
+\\
+
+====== Fields =====
+
+==== Just Log It Information ===
+^Field^Type^Values^
+|Date|date| |
+|Log No|autonumber| **Identifier** |
+|Time|time| |
+|Assigned To|assigned to| |
+|Event|string| |
+|Created Time|datetime| |
+|Value|string| |
+|Modified Time|datetime| |
+|Related To|relation| |
+|Related Module|string| |
+|Done From|string| |
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

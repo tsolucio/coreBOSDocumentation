@@ -1,0 +1,83 @@
+~~NOTOC~~
+====== Procurator module ======
+
+Contact-like module to register information about procurators that work with our business.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+\\
+---- dataentry ----
+name : tsolucio/Procurador
+type : corebos-module
+description_wiki: Contact-like module to register information about procurators that work with our business.\\ This is part of the **Attorney's Back Office** **Human Resources** extensions.
+keywords_tags : HR,human resource,procurador,procurator,contact,employee
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:procurador
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/Procurador.git
+----
+\\
+
+====== Fields =====
+
+==== Solicitor Information ===
+^Field^Type^Values^
+|NIF/CIF|string| |
+|Solicitor No|autonumber| |
+|Name|string| **Identifier** |
+|Date Joined the Firm|date| |
+|Collegiate Number|string| |
+|Job Title|relation|JobTitle |
+|Company Department|picklist| |
+==== Home Address ===
+^Field^Type^Values^
+|Address|string| |
+|Apt./Suite|string| |
+|City|string| |
+|State/Province|picklist| |
+|Zip/Postal Code|string| |
+==== Phones, E-mails, Website, Social Network Information ===
+^Field^Type^Values^
+|Home Phone|11| |
+|Mobile Phone|11| |
+|Work Phone|11| |
+|Personal Email|email| |
+|Work Email|email| |
+|LinkedIn Profile|url| |
+|Twitter Page|url| |
+|Facebook Page|url| |
+|Skype ID|85| |
+|GTalk ID|string| |
+==== Legal Practice Areas Specialization ===
+^Field^Type^Values^
+|Area of Law Specialization|multipicklist| |
+==== Compensation and Hourly Rates ===
+^Field^Type^Values^
+|Yearly Compensation|string| |
+|Hourly Rate|string| |
+==== Education ===
+^Field^Type^Values^
+|High School|string| |
+|High School Graduation Year|string| |
+|High School GPA|string| |
+|Comments|text| |
+|Undergraduate School|string| |
+|Undergraduate School Graduation Year|string| |
+|Undergraduate School GPA|string| |
+|Comments|text| |
+|Postgraduate Degree/School|string| |
+|Postgraduate School Graduation Year|string| |
+|Postgraduate Degree-School GPA|string| |
+|Comments|text| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

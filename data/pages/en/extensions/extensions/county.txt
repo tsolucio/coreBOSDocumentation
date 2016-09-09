@@ -1,0 +1,39 @@
+~~NOTOC~~
+====== County ======
+
+County module to save local region/political divisions.
+\\
+---- dataentry ----
+name : tsolucio/County
+type : corebos-module
+description_wiki: County module to save local region/political divisions.
+\\
+
+keywords_tags : county,provincia,state,country,region
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:county
+release_dt : 2014-01-19
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/County.git
+----
+\\
+
+====== Fields =====
+
+==== County Information ===
+^Field^Type^Values^
+|Counties|string| **Identifier** |
+|County No|autonumber| |
+|State/Province|picklist| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description Information ===
+^Field^Type^Values^
+|Description|text| |

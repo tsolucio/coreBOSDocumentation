@@ -1,0 +1,39 @@
+~~NOTOC~~
+====== Quality Actions module ======
+
+This module is related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:qualityclaims|Quality Claims module]] and details the diferent actions or steps taken to resolve or attend the quality claim.
+\\
+---- dataentry ----
+name : tsolucio/QualityActions
+type : corebos-module
+description_wiki: This module is related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:qualityclaims|Quality Claims module]] and details the different actions or steps taken to resolve or attend the quality claim.
+keywords_tags : claims,quality,ISO,standards
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:qualityactions
+release_dt : 2015-12-10
+licenses : Vizsage
+price : 120eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== Quality Actions Information ===
+^Field^Type^Values^
+|Product|relation|Products |
+|Quality Claim|relation|QualityClaims |
+|Product Code|string| |
+|Action Status|picklist|--None-- |
+|Product Description|string| |
+|QC Actions N|autonumber| **Identifier** |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

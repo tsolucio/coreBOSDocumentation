@@ -1,0 +1,44 @@
+~~NOTOC~~
+====== General Ledger Accounts ======
+
+General Ledger Accounts module.\\ This is part of the Attorney's BackOffice **accounting extensions**.
+\\
+---- dataentry ----
+name : tsolucio/GLAccounts
+type : corebos-module
+description_wiki: General Ledger Accounts module.\\ This is part of the Attorney's BackOffice **accounting extensions**.
+\\
+
+keywords_tags : accounting,ledger
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:glaccounts
+release_dt : 2013-03-02
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/GLAccounts.git
+----
+\\
+
+====== Fields =====
+
+==== GL Account Information ===
+^Field^Type^Values^
+|GL Account Name|string| **Identifier** |
+|GL Account Record No|autonumber| |
+|GL Account Code|string| |
+|GL Account Code 2|string| |
+|GL Account Group|relation|GLAGroups |
+|Active GL Account|checkbox| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Record Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

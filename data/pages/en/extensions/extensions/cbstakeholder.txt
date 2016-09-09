@@ -1,0 +1,41 @@
+~~NOTOC~~
+====== Stake Holder Information ======
+
+Module to register the relation between accounts, contacts, vendors or leads against project or tickets. Representing their interest as stake holders on the project or ticket.
+\\
+---- dataentry ----
+name : tsolucio/cbStakeHolder
+type : corebos-module
+description_wiki: Module to register the relation between accounts, contacts, vendors or leads against project or tickets. Representing their interest as stake holders on the project or ticket.
+keywords_tags : hr,human resource,training,event,session
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbstakeholder
+release_dt : 2015-07-22
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbStakeHolder.git
+----
+\\
+
+====== Fields =====
+
+==== StakeHolder Information ===
+^Field^Type^Values^
+|StakeHolder|relation|Accounts,Contacts,Vendors,Leads |
+|Participation Start|date| |
+|Related To|relation|Project,HelpDesk |
+|Participation End|date| |
+|Participation Type|picklist|Network,Supplier,Family,Work |
+|StakeHolder No|autonumber| **Identifier** |
+|Participation Status|picklist|Activo,Inactivo |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

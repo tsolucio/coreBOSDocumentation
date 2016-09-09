@@ -1,0 +1,22 @@
+~~NOTOC~~
+====== Cloud File Extension ======
+
+This extension permits you to link files in different locations like Dropbox, Google Drive, Samba, Webdav or File System to any record in the application. It will only register the link to the file which will not be downloaded into coreBOS.
+\\
+---- dataentry ----
+name : tsolucio/CloudFile
+type : corebos-extension
+description_wiki: This extension permits you to link files in different locations like Dropbox, Google Drive, Samba, Webdav or File System to any record in the application. It will only register the link to the file which will not be downloaded into coreBOS.
+keywords_tags : Google,Dropbox,GDrive,Samba,Webdav,Filesystem,link,files,cloud,documents
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cloudfile
+release_dt : 2015-08-19
+licenses : Vizsage
+price : 100eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\

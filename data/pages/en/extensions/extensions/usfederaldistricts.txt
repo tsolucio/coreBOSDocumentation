@@ -1,0 +1,54 @@
+~~NOTOC~~
+====== US Federal Districts ======
+
+Module to record US Federal Districts
+\\
+---- dataentry ----
+name : tsolucio/USFederalDistricts
+type : corebos-module
+description_wiki: Module to record US Federal Districts
+keywords_tags : ABO,Attorney Back Office,district
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:usfederaldistricts
+release_dt : 2013-06-12
+licenses : Vizsage
+price : 150eur
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+====== Fields =====
+
+==== U.S. Federal Districts Information ===
+^Field^Type^Values^
+|US District Name|string| **Identifier** |
+|Record No|autonumber| |
+|Citation|string| |
+|US Court of Appeals Circuit|relation|USAppealsCourtCircuit |
+|No of Judges|number| |
+|Chief Judge Name|string| |
+==== U.S. District Divisions and Sub-divisions ===
+^Field^Type^Values^
+|Division-Subdivision 1|string| |
+|Division-Subdivision 2|string| |
+|Division-Subdivision 3|string| |
+|Division-Subdivision 4|string| |
+|Division-Subdivision 5|string| |
+|Division-Subdivision 6|string| |
+|Division-Subdivision 7|string| |
+|Division-Subdivision 8|string| |
+|Division-Subdivision 9|string| |
+|Division-Subdivision 10|string| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |

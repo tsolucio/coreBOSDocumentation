@@ -1,0 +1,39 @@
+~~NOTOC~~
+====== Training Details Information ======
+
+Module to record the registration of contacts to and the service price of an event that will take place (related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbattendance|cbAttendance module]])
+\\
+---- dataentry ----
+name : tsolucio/cbTraining
+type : corebos-module
+description_wiki: Module to record the registration of contacts to and the service price of an event that will take place (related with [[http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbattendance|cbAttendance module]])
+keywords_tags : hr,human resource,training,event,session
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbtraining
+release_dt : 2013-06-12
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbTraining.git
+----
+\\
+
+====== Fields =====
+
+==== Training Information ===
+^Field^Type^Values^
+|Training No|autonumber| **Identifier** |
+|Service|relation|Services |
+|Training Status|picklist|Active,Not active,Suspended,Canceled |
+|Location|picklist|- |
+|Date Start|date| |
+|Date End|date| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Description ===
+^Field^Type^Values^
+|Description|text| |

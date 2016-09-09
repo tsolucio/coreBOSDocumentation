@@ -1,0 +1,49 @@
+~~NOTOC~~
+====== Ingress and Expense Control module ======
+
+An accounting type module to register incoming and outgoing money charges that happen against different records in the application.
+\\
+---- dataentry ----
+name : tsolucio/cbControlIngresoGasto
+type : corebos-module
+description_wiki: An accounting type module to register incoming and outgoing money charges that happen against different records in the application.
+keywords_tags : accounting,Ingress,Expense,payment,money,charge,collection
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbcontrolingresogasto
+release_dt : 2016-29-02
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/cbControlIngresoGasto.git
+----
+\\
+
+====== Fields =====
+
+==== Payment Information: ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Payment No|autonumber| **Identifier** |
+|Payment Ref|string| |
+|Account/Contact|relation|Accounts,Vendors,Contacts,Leads |
+|Related entity|relation|Invoice,PurchaseOrder,SalesOrder,Quotes,Campaigns,Potentials,HelpDesk,Project,ProjectMilestone,ProjectTask,Assets,Products,Services,ServiceContracts |
+|Register Date|date| |
+|Due Date|date| |
+|Payment Date|date| |
+|Paid|checkbox| |
+|Credit|checkbox| |
+|Payment Mode|picklist|Cash,Check,Credit card |
+|Payment Category|picklist|Infrastructure,Stock,Sale |
+|Amount|number| |
+|Cost|number| |
+|Benefit|string| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+|Related user|101| |
+==== Custom Information ===
+==== Description Information: ===
+^Field^Type^Values^
+|Description|text| |

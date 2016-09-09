@@ -1,0 +1,41 @@
+~~NOTOC~~
+====== General Ledger Account Groups module ======
+
+General Ledger Account Groups module.\\ This is part of the Attorney's BackOffice **accounting extensions**.
+\\
+---- dataentry ----
+name : tsolucio/GLAGroups
+type : corebos-module
+description_wiki: General Ledger Account Groups module.\\ This is part of the Attorney's BackOffice **accounting extensions**.
+\\
+
+keywords_tags : accounting,ledger
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:glagroups
+release_dt : 2013-03-02
+licenses : Vizsage
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : [subscription Contract]
+supportsource_url : [subscription URI]/GLAGroups.git
+----
+\\
+
+====== Fields =====
+
+==== GL Account Group Information ===
+^Field^Type^Values^
+|GL Account Group Name|string| **Identifier** |
+|Group Record No|autonumber| |
+|G/L Account Type|relation|GLATypes |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
+==== Additional Record Information ===
+^Field^Type^Values^
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
