@@ -17,3 +17,21 @@ that's it.
   * create a custom field, maybe call it "create task", let it be a checkbox (for simplicity)
   * create a workflow that creates a task when the "create task" field is true and then sets the "create task" field to false
   * now simply mass edit and set the field to true
+
+
+??? does coreBOS have any kind of interface with GMail?  Specifically, the users told me it would be great if they could click the contact's email address (or an icon next to it), and it would open a GMail compose window with the TO: address populated.
+
+!!! Yes, this can be done. To activate this behavior two steps need to be taken. First, each user that wants this needs to go to their preferences screen and uncheck the "**Internal Email Client**" option. This option, which is checked by default, will open the application send email screen. When unselected the default browser behavior takes over. By default the browser will open the email client configured in the operating system but that can be changed in each browser. So our second step is to configure the browser to open GMail as [[https://support.mozilla.org/en-US/kb/change-program-used-open-email-links|can be read here]]:
+
+  * Click the menu button Menu and choose Preferences.
+  * Select the Applications panel.
+  * Search for the Content-type: mailto and select it.
+  * Click on the Actions column in the mailto row, to change the action to **Webmail**.
+  * Close the //about:preferences// page. Any changes you've made will automatically be saved.
+
+
+I was able to make it work in Windows/Chrome, with the following conditions:
+
+  * Unticked the preference box Internal Mail Composer
+  * Logged out of vTiger & logged back in
+  * Installed a free Chrome extension called Mailto

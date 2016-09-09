@@ -2,7 +2,7 @@
 {{keywords>marketing, email, invoice, support, tickets, sales}}
 <WRAP center round box hi 80%><wrap center 90%>**__Bienvenido a la Documentación de coreBOS__**</wrap>
 <wrap center 90% em>[[http://corebos.org|Orgulloso miembro de la familia coreBOS!]]</wrap>
-<wrap center em 90%>Visita nuestra [[http://corebos.org|Web]] y síguenos en [[https://plus.google.com/communities/109845486286232591652|Google+]] y [[http://discussion.corebos.org|el foro]]</wrap></WRAP>
+<wrap center em 90%>Visita nuestra [[http://corebos.org|Web]] y síguenos en [[https://plus.google.com/communities/109845486286232591652|Google+]] y [[http://discussions.corebos.org|el foro]]</wrap></WRAP>
 <menu col=1,align=left>
   <item>Instalación y Actualización|Cómo instalar y actualizar la aplicación|installupdate|{{menu:software-icon_32.png?direct|}}</item>
   <item>Manual de Usuario|Cómo utilizar la aplicación|usermanual|{{menu:little_knight_32.png?direct|}}</item>

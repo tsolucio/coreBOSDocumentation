@@ -128,3 +128,8 @@ This error indicates that the Import on the module that user is trying to import
 
 When a non-admin user triggers an import, and admin user tries to import to the same module, at the same time, admin user will not get Import locked error. Instead, admin user will be able to see the current status of the Import triggered by the non-admin user and will also be able to Cancel the import. In this case, when non-admin user is in the middle of the import and the admin user cancels the import, the error message above is shown to the non-admin user.
 
+=====Frequently Asked Questions=====
+
+??? I think I have all the columns correctly formatted but when I import all the records are rejected. None are imported and I get no error message.
+
+!!! Make sure all the date fields are in the same format as the user importing the data.

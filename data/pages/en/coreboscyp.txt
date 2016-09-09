@@ -52,6 +52,20 @@ We also have a simple patch that enhances the module with capability to easily s
 The **partial payment** workflow would be something like this: you create an invoice for the total amount, you create the agreed payments, for example, 30% on the day of creation, 30% in 30 days and 40% in 60 days. You mark the first payment as paid and the others are pending. The amount due on the invoice shows 70% of the total. With this simple scheme you can report on pending payments on any dates, or on payments due, or on pending payments, ...
 
 **Total and Pending Payment control on Accounts and Contacts** adds three new fields on the module that sum the total amount of payments made, pending and the balance due.
+==== Status changes of related modules =====
+
+When the sum of amounts of payment records related to a SalesOrder, PurchaseOrder or Invoice are equal to the total of the record, the status will be changed and workflows launched.
+
+You can define which status you want using the next global variables:
+  * CobroPago_Invoice_Status_OnPaid  -> default value is 'Paid'
+  * CobroPago_PurchaseOrder_Status_OnPaid  -> default value is 'Received Shipment'
+  * CobroPago_SalesOrder_Status_OnPaid  -> default value is 'Delivered'
+
+<WRAP center round info 60%>
+You can deactivate the status change by setting the global variable to 'DoNotChange'
+</WRAP>
+
+
 ==== Block Payment Record =====
 
 As an additional feature, this version blocks paid payments. If a payment is marked paid it cannot be edited. This behaviour can be changed through the $Block_paid variable in modules/CobroPago/bluepay_config.php
@@ -59,11 +73,12 @@ As an additional feature, this version blocks paid payments. If a payment is mar
 ===== Prices =====
 
   * Payment module: free, open source, donations are very necessary, please consider maintaining our effort
-  * Partial Payment control on invoices costs 45 euros.
-  * Partial Payment control on purchase orders costs 45 euros.
-  * Total and Pending Payment control on accounts costs 45 euros.
-  * Total and Pending Payment control on contacts costs 45 euros.
-  * Total and Pending Payment control on vendors costs 45 euros.
+  * Partial Payment control on invoices and purchase orders costs 45 euros.
+  * Total and Pending Payment control on accounts, contacts and vendors costs 45 euros.
+
+<WRAP center round info 60%>
+Both paid enhancements are included in our subscription package.
+</WRAP>
 
 Our paypal account:  paypal (at) tsolucio (dot) com
 

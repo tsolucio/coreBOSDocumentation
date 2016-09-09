@@ -135,3 +135,12 @@ Due to Google Security issues, integration does not require user's email passwor
 
 
 That's it. Enjoy!
+
+
+===== Considerations =====
+
+  * Google calendar update cron updates only **NOT HELD** events:<code> (vtiger_activity.status != 'Held' OR vtiger_activity.status IS NULL)</code>
+  * Deleting the event from google calendar doesn't delete it from the calendar in Corebos just from the table of google cal events
+  * Deleting a google calendar event from Corebos is done one by one (just for the deleted records) using the beforedelete handler.
+
+

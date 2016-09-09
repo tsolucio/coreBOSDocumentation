@@ -1,3 +1,5 @@
+==== Lead Conversion Options Explanation ====
+
 ??? I define a profile where I deactivate the top options of see and use all and then all the modules except Accounts, Contacts and Leads.
 
 Then I go to any Lead but the Convert Lead action is not there. Why?

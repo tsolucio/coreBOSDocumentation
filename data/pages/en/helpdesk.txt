@@ -30,3 +30,7 @@ This is the query I used:
  WHERE `vtiger_field`.`fieldname` = 'hours' and tabid=13;</code>
 
 It would be better to change the type of the hours field in tickets from varchar to decimal but it works the same.
+
+<WRAP center round info 60%>
+This has been incorporated as default behavior in coreBOS
+</WRAP>
