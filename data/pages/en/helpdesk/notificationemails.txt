@@ -1,0 +1,204 @@
+====== Help Desk:: Notification Emails ======
+
+coreBOS has four hard coded emails for ticket management and communication between the affected parties.
+
+^ Ticket Created from Portal^^
+^Purpose|Email confirmation of ticket creation from customer portal.|
+^From address|email of the contact creating ticket|
+^Template|Hard coded. Translatable.|
+^Sent to|Contact creating ticket and User assigned to the ticket|
+^Method|**HelpDeskHandler::NotifyOnPortalTicketCreation**|
+
+^ Ticket Updated from Portal^^
+^Purpose|Email confirmation of ticket comment/update from customer portal.|
+^From address|email of the contact creating ticket|
+^Template|Hard coded. Translatable.|
+^Sent to|User assigned to the ticket|
+^Method|**HelpDeskHandler::NotifyOnPortalTicketComment**|
+
+^ Ticket Change, not from the Portal^^
+^Purpose|Email confirmation of ticket comment/update from application.|
+^From address|$HELPDESK_SUPPORT_EMAIL_ID|
+^Template|Hard coded. Translatable.|
+^Sent to|Contact related to the ticket and User assigned to the ticket|
+^Method|**HelpDeskHandler::NotifyOwnerOnTicketChange**|
+^Method|**HelpDeskHandler::NotifyParentOnTicketChange**|
+
+These four emails are launched via workflows that can be configured by the administrator so they can be activated or deactivated individually at any time, giving the administrator control over the communications being done from the system, but not over the contents of these emails.
+
+This was done this way because the set of conditions to send the email and the retrieval of comments is a rather complex configuration.
+
+In the rest of this post I will explain how you can get full control of this email communication process and deactivate the default methods in favour of your own workflow tasks under your complete control.
+
+==== Substituting NotifyOnPortalTicketCreation ===
+
+This workflow launches **Only on the first save.** when the **From Portal** field is true. It sends an email to the user and contact assigned to the ticket. The email it sends looks like this:
+
+^From|Contact creating ticket|
+^Subject|[From Portal] {ticket_no} [ Ticket ID : {ticketid} ] {ticket_title}|
+^Contents|<code> Ticket No : {ticket_no}<br>
+ Ticket ID : {ticketid}<br>
+ Ticket Title : {ticket_title}<br>
+<br>
+{description}</code>|
+
+In order to substitute this email you must deactivate the workflow custom method and create an email task. Set the "From Email" field to the contact's email, send it to both the assigned user and the contact. Fill in the subject with this text:
+
+<code>[From Portal] $ticket_no [ Ticket ID : $(general : (__VtigerMeta__) recordId) ] $ticket_title</code>
+
+<WRAP center round info 80%>
+Meta variables do not appear in the subject field picklist but they can be used!
+</WRAP>
+
+I leave the body content as an exercise for you, I'm sure you can do MUCH better than the default :-)
+
+<WRAP center round tip 80%>
+Now that you are changing the ticket communication process, it may be a good idea to change the subject. The default subject is inherited from a very far past where the ticketid was useful. Now, this internal number, has no sense, you can't even search for it inside the application. I would suggest you change the subject to something more useful and update the regular expression you are using in Mail Converter.
+Maybe something like:
+
+<code>[Ticket: $ticket_no] [From Portal] $ticket_title</code>
+</WRAP>
+
+{{ :en:helpdesk:notificationemails:helpdesk_notifyonportalticketcreation.png |}}
+==== Substituting NotifyOnPortalTicketComment ===
+
+This workflow launches **Every time the record is modified.** when the **From Portal** field is true. It sends an email to the user assigned to the ticket. The email it sends looks like this:
+
+^From|Contact updating ticket|
+^Subject|Respond to Ticket ID ##$(general : (__VtigerMeta__) recordId)## in Customer Portal - URGENT|
+^Contents|<code>Dear {user first last name}<br>
+<br>
+Customer has provided the following additional information to your reply:<br>
+<br>
+<b>{last Comment}</b><br>
+<br>
+Kindly respond to above ticket at the earliest.<br>
+<br>
+Regards<br>
+Support Administrator</code>|
+
+In order to substitute this email, first you must add another condition upon the field **"Comment Added"**, this internal field (like From Portal) will be set to true when a new comment has been added. If you additionally want the email to be sent only when it is from the customer portal you can use another condition with the Last Modified By fields. Next you must deactivate the workflow custom method and create an email task. Set the "From Email" field to the contact's email, send it to the assigned user. Fill in the subject with this text:
+
+<code>Respond to Ticket ID ##$(general : (__VtigerMeta__) recordId)## in Customer Portal - URGENT</code>
+
+The body of this email needs to use the meta variable **Comments**. This variable gives us access to the whole set of comments related to a record with a whole bunch of different options and settings. In this case I am just going to do the minimum to emulate the existing hard coded functionality but you can [[en:email_workflows#comments|get more information on the possibilities in the wiki]].
+
+<code>Dear $(assigned_user_id : (Users) first_name) $(assigned_user_id : (Users) last_name)<br>
+<br>
+Customer has provided the following additional information to your reply:<br>
+<br>
+<b>$(general : (__VtigerMeta__) comments_1d_text_comment)</b><br>
+<br>
+Kindly respond to above ticket at the earliest.<br>
+<br>
+Regards<br>
+Support Administrator</code>
+
+<WRAP center round info 80%>
+**comments_1d_text_comment** means, get comments, just 1 in (d)escending order so we get the last one, we want it in text format and we want just the comment.
+</WRAP>
+
+{{ :en:helpdesk:notificationemails:helpdesk_notifyonportalticketcomment.png |}}
+
+==== Substituting NotifyParentOnTicketChange ===
+
+This workflow launches **Every time the record is saved.** when the **From Portal** field is false. It sends an email to the account or contact related to the ticket. It sends two different emails depending on the fact of the email being sent to a contact with customer portal access or not. It also sends these emails based on a whole bunch of conditions, mostly if the recipient has email opt out and if one of the fields on the ticket has changed it's value. The summary is more or less like this:
+
+^From|$HELPDESK_SUPPORT_NAME|
+^Subject on create|{ticket_no} [ Ticket Id : {ticket_id} ] {ticket_title}|
+^Subject on update|{ticket_no} [ Ticket Id : {ticket_id} ] RE: {ticket_title}|
+^Contents for Portal Contact|<code>Ticket No : {ticket_no}<br>
+Ticket ID : {ticket_id}<br>
+Subject {ticket_title}<br>
+<br>
+Dear {Related To Name}<br>
+<br>
+There is a reply to <b>{ticket_title}</b> in the "Customer Portal". You can use the following link to view the replies made:<br>
+{portalURL for ticket}<br>
+<br>
+Thanks<br>
+<br>
+Support Team</code>|
+^Contents for Non Portal Contact and Account|<code>Ticket ID: {ticket_id}<br>
+Ticket Title : {ticket_title}<br>
+<br>
+Hi {Related To Name},<br>
+<br>
+The Ticket is {replied|created} the details are :<br>
+<br>
+Ticket No : {ticket_no}<br>
+Status : {ticketstatus}<br>
+Category : {ticketcategories}<br>
+Severity : {ticketseverities}<br>
+Priority : {ticketpriorities}<br>
+<br>
+Description : <br>
+{description}<br>
+<br>
+Solution : <br>
+{solution}
+<br>
+<br>
+The comments are : 
+{$commentlist}
+<br><br>
+{all custom fields: their label and value}
+<br><br><br><br>
+Regards,<br>
+HelpDesk Team.<br></code>|
+^Conditions|These emails are sent if there is a related account or contact with no email opt out, the ticket is being created or closed, or has changed the solution, added a comment or changed the assigned user.|
+
+In order to substitute these emails we will need two workflows, one for ticket creation and the other for ticket modification. Both with two email tasks, one for portal user contact and the other for non portal contact and account.
+
+The email subject and body don't have much mystery, at most the use of the meta variable **Comments** to obtain the list of comments as you need, which will probably look like this if you want to do the same as the hard coded email does:
+
+<code>$(general : (__VtigerMeta__) comments_0d_html_comment)</code>
+
+and that you will have to use the meta variables //$(general : (__VtigerMeta__) supportName)// and //$(general : (__VtigerMeta__) supportEmailId)// in the **From** fields.
+
+So let's dedicate some effort to the complex set of conditions that we need to put in place to get an equivalent functionality.
+
+**The first workflow** for ticket creation launches **Only on first save** and has the condition of being related to an account or contact by checking that the **Related To** field is not empty and then checking that whomever is related doesn't have their email opt out checked. With these conditions we make sure that we have someone to send the email to who has accepted that we send them.
+
+{{ :en:helpdesk:notificationemails:helpdesk_notifyparentonticketchangecreate.png |}}
+
+Each email task has it's own conditions to check if it must send the email or not.
+
+For the portal contact we check that the ticket is related to a contact by making sure that the contact email is not empty, (and at the same time we make sure we have an email to send to), and we also check that this contact is a Portal User.
+
+{{ :en:helpdesk:notificationemails:helpdesk_notifyparentonticketchangecreateportal.png |}}
+
+For the non portal contact we check that we have an email, as the previous email task, and that, in case of a contact that the contact is not a portal user.
+
+{{ :en:helpdesk:notificationemails:helpdesk_notifyparentonticketchangecreatenonportal.png |}}
+
+**The second workflow** for ticket modification is a bit more complex. It launches **Every time a record is modified** and adds to the previous workflow conditions a set of restrictions to make sure the ticket has changed some important fields. These fields are:
+
+^Status|Has changed to Closed|
+^Solution|Has changed|
+^Assigned User|Has changed|
+^Comment|Has been added|
+
+This looks like this:
+
+{{ :en:helpdesk:notificationemails:helpdesk_notifyparentonticketchangeupdatenonportal.png |}}
+
+Finally the two emails have the same conditions that they have in the **Create Ticket** workflow and the subject and body can be easily adapted to your needs.
+
+
+
+==== Substituting NotifyOwnerOnTicketChange ===
+
+This one is almost identical to the previous one: [[en:helpdesk:notificationemails#substituting_notifyparentonticketchange|NotifyParentOnTicketChange]]. The only difference is that the emails go to the assigned user instead of the related Account/Contact. So it has less conditions because there is no Email Opt Out nor checking who is related. Besides that the email subject and body are the same (almost, so I am not going to bore you repeating details that are obvious.
+
+Personally I would recommend not even implementing these, in the NotifyParentOnTicketChange emails simply add the assigned user to the list of recipients, so the user gets the exact same email the client gets. If you don't want the client to see the user's email, put him on the BCC.
+ 
+===== Conclusion ====
+
+Now that you have seen a real example of how you can emulate the hard coded functionality by creating workflows and tasks, you can modify and adapt that to your particular needs, effectively automating the process to your needs.
+
+To be truthful there is one functionality that I have left out. In the hard coded version, if the ticket is assigned to a group, then the emails sent to users are sent to one of the users in the group. It is not defined which one, just one, the first one it gets from the database. I guess you could do that also, maybe checking if the ticket is associated to a user or not and sending the email accordingly. You also have the meta variable **groupEmailList** which gets the full list of all emails in the group, but I really haven't thought about how to do that.
+
+If you read the above explanation and understood it all you can get an idea of why vtiger ended up programming the functionality instead of creating the workflow but there was really another very important reason: it was vtiger crm NOT coreBOS. We can do this with workflows in coreBOS because we have enhanced the workflows making them that powerful, this simply couldn't be done in vtiger crm using workflows (I'm not sure it can be done now).
+
+**Enjoy your coreBOS** :-)

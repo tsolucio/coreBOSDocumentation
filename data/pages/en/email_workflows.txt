@@ -1,0 +1,110 @@
+====== Email Workflow Tasks ======
+
+TBD
+
+===== Meta Variables =====
+
+==== Comments ====
+
+This meta variable was created to support the help desk process and permits you to add and format a list of the comments on the ticket to your email.
+
+It also supports the FAQ module and all the other modules that have comments. So, although unlikely, you could send all the comments on an opportunity to the related account or contact, or, more interesting, send them to the user in charge of the opportunity when one is added.
+
+<WRAP center round info 70%>
+Note that the generic ModComments module is supported separately in the workflow settings, so you can send emails with the comments from there directly and probably have more conditions.
+</WRAP>
+
+The syntax of this meta variable is:
+
+<code>$(general : (__VtigerMeta__) comments[_num[sort][_format[_field]]])</code>
+
+where:
+
+^num|Indicates the number of comments you want, 0 will retrieve all comments|
+^sort|a one letter indicator to sort created time ascending (a) or descending (d)|
+^format|text or html|
+^field|creator, comment, date, all: indicates the field to retrieve|
+
+=== Examples ===
+
+^comments|returns all comments sorted ascending in HTML format, see below for exact format|
+^comments_1d_text_comment|return in text format the last comment added|
+^comments_1d_text|return all three fields (creator, date and comment) in text format of the last comment added. Each field will be ended with a new line character|
+^comments_4d|returns last 4 comments in HTML format|
+^comments_4a|returns first 4 comments in HTML format|
+^comments_4|returns first 4 comments in HTML format|
+^comments_0d|returns all comments sorted descending in HTML format|
+^comments_0d_text|returns all comments sorted descending in text format|
+
+=== Styles and Formats ===
+
+In **text format mode** the value of the field will be returned with no additional characters unless you asked for all the fields, in that case, each field will be ended with a new line character.
+
+The **creator field** will be returned as the first and last name of the user or contact.
+
+The **date field** will be formatted to the settings of the user assigned to the ticket launching the workflow.
+
+The **comment field** will be stripped of any inline style or scripts to avoid potential hacks or compromises of clients computers.
+
+In **html format mode** all fields will be returned in an unordered list element (UL). Each comment will be in it's own DIV which will contain the unordered list and contain each field being returned in it's own list item (LI).
+
+The whole set of comments will be enclosed in a DIV element.
+
+So the structure looks like this:
+
+<code HTML>
+<div class="comments">
+  <div class="commentdetails">
+    <ul class="commentfields">
+      <li class="commentcreator">...</li>
+      <li class="commentdate">...</li>
+      <li class="commentcomment">...</li>
+    </ul>
+  </div>
+  ...
+</div>
+</code>
+
+Since each element has it's own class you can add inline CSS to your email and format the comments as you like.
+
+As an example, this CSS:
+
+<code CSS>
+<style type="text/css">
+.comments {
+  margin: 10px
+}
+
+.commentfields {
+  color: brown;
+  list-style-type: none;
+}
+
+.commentfields:hover {
+  background-color: #F5FFCC;
+}
+
+.commentcreator {
+  position: absolute;
+  font: bold italic 16px/1.5 Helvetica, Verdana, sans-serif;
+  word-wrap: normal;
+  width: 160px;
+}
+
+.commentdate {
+  font: bold italic 16px/1.5 Helvetica, Verdana, sans-serif;
+  padding-left: 170px;
+}
+
+.commentcomment {
+  font: 14px/1.5 Helvetica, sans-serif;
+  padding-left: 170px;
+  color: #555;
+}
+</style>
+</code>
+
+will produce the output you can see in the next image which is from my email reader (thunderbird) with the hover effect captured:
+
+{{ :en:helpdesk:notificationemails:workflowemailcommentmetavariablehtmlformatexample.png |}}
+
