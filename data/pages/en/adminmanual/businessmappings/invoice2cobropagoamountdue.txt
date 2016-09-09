@@ -1,0 +1,47 @@
+~~NOTOC~~
+====== Business Mapping:: Invoice2CobroPago Amount Due ======
+
+In coreBOSCRM, there is a financial block to control the status of partial payments and pending amounts. This Field Mapping will copy the pending Amount Due field instead of Total Amount when adding Payments to an Invoice.
+
+
+---- dataentry ----
+name : Invoice2CobroPago
+type : businessmapping
+bmtype : Field Mapping
+description_wiki: Copy Amount Due field instead of Total Amount when adding Payments to Invoice in coreBOSCRM
+keywords_tags : payment,invoice,partial payment
+version : 1.0
+release_dt : 2016-05-10
+licenses : MPL
+price : Free
+distribution : Free
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Invoice</originname>
+  </originmodule>
+  <targetmodule>
+    <targetname>CobroPago</targetname>
+  </targetmodule>
+  <fields>
+    <field>
+      <fieldname>amount</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>amount_due</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+  </fields>
+</map>
+</code>
+
+<WRAP center round important 80%>
+You will have to manually add the "**cbfromid**" parameter to the "Add Payment" action.
+</WRAP>

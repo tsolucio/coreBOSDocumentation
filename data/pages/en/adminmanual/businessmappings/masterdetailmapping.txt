@@ -1,0 +1,50 @@
+====== Master Detail Mapping ======
+
+The purpose of this mapping is to define the structure of a master-detail module so it can be used to construct a special module editor.
+
+The inventory modules are examples of master-detail modules, there is a first section of "header" data followed by a set of lines that depend on it (product lines in this case).
+
+With this mapping we are able to specify the relation between parent and child modules and also the fields that we should show in the list and detail view of the dependent module. We also can detail the aggregation fields that need to be calculated and shown.
+
+This mapping cannot be used freely inside coreBOS because there is no generic master-detail editor. We use it in custom developments to make them flexible.
+
+That said there is one special implementation where this mapping can be used. The four existing inventory modules will look for specific master-detail mapping with the InventoryDetail module and, if found, they will permit you to edit fields on that module in the product lines. This makes it easy to track a serial number, add an expiration date, track units served or calculate costs for each line.
+
+Here is a Master-Detail mapping for the PurchaseOrder module that will permit you to edit units_delivered_received, a custom field and the product cost:
+
+<code XML>
+<map>
+  <originmodule>PurchaseOrder</originmodule>
+  <targetmodule>InventoryDetails</targetmodule>
+  <linkfields>
+  <originfield>lineitem_id</originfield>
+  <targetfield>lineitem_id</targetfield>
+  </linkfields>
+  <sortfield>sequence_no</sortfield>
+  <detailview>
+    <fields>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>units_delivered_received</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>cf_795</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>cost_price</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+      </field>
+   </fields>
+  </detailview>
+</map>
+</code>

@@ -1,0 +1,39 @@
+====== Condition Expression Business Mapping ======
+This mapping accepts two formats, one is a direct expression from the workflow expression engine and the other is a function expression that can be called from inside the system. The function parameters will be changed to the current record values if they exist.
+<code xml>
+ <map>
+  <expression>uppercase('this string')</expression>
+ </map>
+</code>
+<code xml>
+ <map>
+  <expression>accountname</expression>
+ </map>
+</code>
+<code xml>
+ <map>
+  <expression>employee + 10</expression>
+ </map>
+</code>
+<code xml>
+ <map>
+  <expression>if employee > 10 then true else false</expression>
+ </map>
+</code>
+
+<code xml>
+<map>
+  <function>
+   <name>isPermitted</name>
+   <parameters>
+    <parameter>Accounts</parameter>
+    <parameter>CreateView</parameter>
+    <parameter>record_id</parameter>
+   </parameters>
+  </function>
+ </map>
+</code>
+
+the isPermitted mapping above will be converted into:
+
+<code php>isPermitted('Accounts','CreateView','74');</code>

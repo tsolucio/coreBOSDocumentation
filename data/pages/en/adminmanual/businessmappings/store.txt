@@ -1,0 +1,15 @@
+====== Business Mappings Store ======
+
+Here you can find a whole set of different Business Mappings which can be used in your application directly or with easy modifications to adapt them to your needs.
+
+<WRAP center round box 80%>
+Please share your mappings with us!
+</WRAP>
+
+---- datatable ----
+cols    : %title%, description, bmtype, distribution, authorname
+max     : 50
+dynfilters : 1
+sort    : %title%
+filter  : type=businessmapping
+----

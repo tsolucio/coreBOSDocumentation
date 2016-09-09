@@ -1,0 +1,46 @@
+====== List Columns ======
+
+The purpose of this mapping is to override the predefined columns that appear on the related and popup lists for a module. Each module has two hard coded lists of columns, one defines the columns that are showed when the module is on a related lists (list_fields) and the other defines the columns that are shown in the module's popup capture screen (search_fields). Many times we want to be able to change these columns because the default ones aren't important for us or some users need more information in the popup screen. Using the List Columns mapping you can adapt these lists to your requirements without modifying the code.
+
+The accepted format is:
+
+<code XML>
+ <map>
+  <originmodule>
+    <originid>22</originid>  {optional}
+    <originname>{ModuleName}</originname>
+  </originmodule>
+  <relatedlists>
+   <relatedlist>
+   <module>{parentmodule}</module>
+   <linkfield></linkfield>
+    <columns>
+     <field>
+      <label></label>
+      <name></name>
+      <table></table>
+      <columnname></columnname>
+     </field>
+     ...
+    </columns>
+   </relatedlist>
+   ....
+  </relatedlists>
+  <popup>
+    <linkfield></linkfield>
+    <columns>
+     <field>
+      <label></label>
+      <name></name>
+      <table></table>
+      <columnname></columnname>
+     </field>
+     ...
+    </columns>
+  </popup>
+ </map>
+</code>
+
+where we can define a different set of columns per related lists and one for the popup screen.
+
+The name of the mapping must be **{ModuleName}_ListColumns** and the name of the global variable if you need it to be per user would be: **BusinessMapping_{ModuleName}_ListColumns**

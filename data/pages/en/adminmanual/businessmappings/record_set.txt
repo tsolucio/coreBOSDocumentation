@@ -1,0 +1,27 @@
+====== Record Set Mapping ======
+
+The purpose of this mapping is to define an heterogeneous set of record IDs. Simply a bunch of CRMIDs of records from different modules. This could be used to define a set of records to launch a mass operation upon or a set of records which must be excluded from some global process.
+
+In concept it is very similar to the [[en:adminmanual:businessmappings:condition_query|Condition Query Mapping]] where you can retrieve a set of records from a query. The big difference is that this mapping easily mixes records from different modules and with no special condition that the query must fulfill, you just put the IDs, no fuss.
+
+Obviously the set must be small or will get to complex to maintain.
+
+The accepted format is:
+<code xml>
+ <map>
+  <records>
+  <record>
+  <id>1</id> if given, module and value are ignored
+  <module>ModuleName</module>
+  <value>EntityCustomNumberValue</value> we only search on the uitype 4 field
+  <action>include</action>  Include | Exclude | Group  The default action is Exclude
+  </record>
+  .....
+  </records>
+  </map>
+</code>
+
+You will be able to ask for CRMids in each action group and module, if a given CRMid is in the group and also get a list of module names which have some CRMid in the record set.
+
+<WRAP center round info 80%>Only IDs that are not DELETED will be returned.</WRAP>
+

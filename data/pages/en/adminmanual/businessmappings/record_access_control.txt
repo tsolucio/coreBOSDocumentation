@@ -1,0 +1,135 @@
+====== Record Access Control ======
+
+<WRAP center round info 80%>
+For more advanced customizations of the permission system and how that compares to Record Access Control look at the [[http://corebos.org/documentation/doku.php?id=en:devel:corebos_permission_hooks|coreBOS Permission Hooks]].
+</WRAP>
+
+The accepted format is:
+<code xml>
+<map>
+  <originmodule>
+    <originid>22</originid>  {optional}
+    <originname>SalesOrder</originname>
+  </originmodule>
+  <listview>
+  <c>1</c>  Add button
+  <r>1</r>  View record
+  <u>1</u>  Edit action
+  <d>1</d>  Delete action
+  {conditiongroup}  Optional
+  </listview>
+  <detailview>
+  <c>1</c>  Duplicate button
+  <r>1</r>  View record
+  <u>1</u>  Edit action
+  <d>1</d>  Delete action
+  {conditiongroup}  Optional
+  </detailview>
+  <relatedlists>
+    <relatedlist>
+      <modulename>Invoice</modulename>
+      <c>1</c>  Add button
+      <r>1</r>  View list
+      <u>1</u>  Edit action
+      <d>1</d>  Delete action
+      <s>1</s>  Select button
+      {conditiongroup}  Optional
+    </relatedlist>
+    .....
+  </relatedlists>
+  </map>
+</code>
+
+where //{condtiongroup}// is
+
+<code xml>
+<condition>
+   <businessrule>{cbMapID}</businessrule>
+   <c>1</c>  Add button
+   <r>1</r>  View list
+   <u>1</u>  Edit action
+   <d>1</d>  Delete action
+   <s>1</s>  Select button
+</condition>
+</code>
+
+and the business rule must be of type **ConditionQuery** or **ConditionExpression** and return a number bigger than zero, a boolean true, the string 'true' or the string 'yes' to be accepted. Any other value will be false.
+
+If the condition is a **ConditionQuery**, the SQL will be executed with only one parameter, which is the CRMID of the Record launching the Record Access Control, if it is a **ConditionExpression** it will be executed with the full set of fields of the Record launching the Record Access Control. The //CRUDS// settings contained inside the <condition> will override the default settings if the condition is true.
+
+This Business Mapping is tied with the workflow system. Through the workflow system you can assign conditions for the mapping to be applied. For example, we can easily block editing and deleting of a project task depending on the status of it's parent project. That would look like this. First a workflow and business mapping to block the projects that are closed:
+
+{{ :en:corebos:businessmapping:racbm_01.png?800 |}}
+
+Next a workflow and mapping to block the project tasks:
+
+{{ :en:corebos:businessmapping:racbm_02.png?800 |}}
+
+You could easily add another condition to the workflows so that they applied only for certain users (for example).
+
+=====Condition Query Example=====
+As an example of the use of a condition query, we could add a rule whereas we permit adding ProjectTask to a Closed Project if the related Account has at least one potential record associated:
+
+<code XML>
+ <relatedlists>
+    <relatedlist>
+      <modulename>ProjectTask</modulename>
+      <c>0</c>
+      <r>1</r> 
+      <u>1</u>
+      <d>0</d>
+      <s>0</s>
+<condition>
+<businessrule>27183</businessrule>
+      <c>1</c>
+      <r>0</r> 
+      <u>0</u>
+      <d>1</d>
+      <s>1</s>
+</condition>
+    </relatedlist>
+    <relatedlist>
+      <modulename>ProjectMilestone</modulename>
+      <c>0</c>
+      <r>1</r> 
+      <u>0</u>
+      <d>0</d>
+      <s>0</s>
+    </relatedlist>
+  </relatedlists>
+</code>
+
+where the business rule with crmid=27183 is of type conditionquery and contains:
+
+<code XML>
+<map>
+<sql>SELECT count(*) as numpots
+FROM vtiger_potential
+INNER JOIN vtiger_account on vtiger_potential.related_to = vtiger_account.accountid
+INNER JOIN vtiger_project on vtiger_project.linktoaccountscontacts = vtiger_account.accountid
+INNER JOIN vtiger_crmentity ce ON ce.crmid=vtiger_potential.potentialid
+WHERE ce.deleted=0 AND vtiger_project.projectid =?
+</sql>
+<return>numpots</return>
+</map>
+</code>
+
+=====Block Sent Emails Delete and Edit Example=====
+
+Another example is to block editing and deleting of sent emails on the list view, which would be something like this:
+
+{{ :en:corebos:businessmapping:racsentemails.png?800 |}}
+
+with this mapping:
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Emails</originname>
+  </originmodule>
+    <listview>
+  <u>0</u>
+  <d>0</d>
+    </listview>
+  </map>
+</code>
