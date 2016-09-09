@@ -1,0 +1,12 @@
+diff --git a/include/js/dtlviewajax.js b/include/js/dtlviewajax.js
+index d8b6679..9870ec2 100644
+--- a/include/js/dtlviewajax.js
++++ b/include/js/dtlviewajax.js
+@@ -287,6 +287,7 @@ function dtlViewAjaxSave(fieldLabel,module,uitype,tableName,fieldName,crmId)
+ 					if(getObj(dtlView) != null) getObj(dtlView).innerHTML = "";
+ 					if(getObj("comments") != null) getObj("comments").value = "";
+ 				}
++				colorizer_after_change(fieldName, tagValue);
+ 				$("vtbusy_info").style.display="none";
+ 			}
+ 		}

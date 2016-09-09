@@ -1,0 +1,49 @@
+===== Seguir-Subscribir =====
+
+Este módulo permitirá activar subscripciones/avisos sobre registros. Cada usuario podrá activar los avisos sobre los registros que quiera mediante un clic en un botón que estará disponible en el panel derecho del registro en la vista detalle de la entidad o mediante la selección múltiple en la vista de lista.
+\\
+==== Configuración ====
+
+Una vez instalado el módulo podemos ir al módulo Subscripción e ir a la configuración de este.
+
+{{ :es:extensions:cbsubscriptions:ir_a_settings.png?nolink |}}
+
+En la siguiente pantalla ya podemos habilitar aquellos módulo que queramos que nuestros usuarios puedan suscribirse o no.
+
+{{ :es:extensions:cbsubscriptions:habilitar_modulos.png?nolink |}}
+
+Para el ejemplo habilitaremos el módulo de Proyectos e Incidencias.
+
+{{ :es:extensions:cbsubscriptions:incidencias_proyectos_habilitados.png?nolink |}}
+
+Hay que recordar que la instalación del módulo nos crea 6 plantillas de email que utilizará para las distintas notificaciones. Estas plantillas pueden ser modificadas por el Administrador.
+
+{{ :es:extensions:cbsubscriptions:plantillas_email.png?nolink |}}
+
+==== Ejemplo ====
+
+Vamos a hacer un ejemplo con el módulo de Proyectos y con dos usuarios (Administrador y Omar)
+
+Cada usuario puede seguir un proyecto si lo desea haciendo clic en la acción "Seguir". 
+
+{{ :es:extensions:cbsubscriptions:boton_seguir.png?nolink |}}
+
+Aquí por ejemplo el usuario admin ha hecho clic en "Seguir" y si vamos al módulo "Subscripción", veremos que se ha creado un nuevo registro donde se indica que es para el proyecto "Prueba 1" y para el usuario Administrador.
+
+{{ :es:extensions:cbsubscriptions:registro_admin_siguiendo.png?nolink |}}
+
+El usuario Administrador recibirá un email indicando que ha sido suscrito a un proyecto.
+
+{{ :es:extensions:cbsubscriptions:email_subscripcion.png?nolink |}}
+
+Ahora el Administrador podría encargarse de suscribir a todos los usuarios que considere a ese proyecto, creando registros desde el módulo "Subscripción" indicando el proyecto y el usuario.
+
+{{ :es:extensions:cbsubscriptions:crear_cbsubscription.png?nolink |}}
+
+Esta sería una forma, pero como se ha comentado antes también cada usuario puede ir al proyecto y decidir si seguirlo o no.
+
+{{ :es:extensions:cbsubscriptions:omar_siguiendo.png?nolink |}}
+
+Por último también hay que saber que si se modifica algún proyecto que esté siendo seguido por algún usuario, se enviará un email indicando los campos modificados con su valor anterior y el nuevo.
+
+{{ :es:extensions:cbsubscriptions:email_cambios.png?nolink |}}
