@@ -21,6 +21,8 @@
 /data/index/*
 /data/locks/*
 /data/tmp/*
+/data/attic/*
+data/media_attic/*
 !/data/pages/wiki/dokuwiki.txt
 !/data/pages/wiki/syntax.txt
 !/data/pages/wiki/welcome.txt
