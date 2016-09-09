@@ -31,6 +31,6 @@ that is it, there is nothing to configure as these are atomic action functions, 
 ^Functionality|Sends email when ticket is created pr commented on in portal|
 
 ==== Update Contact Assigned To ====
-^Modules|Accounts|
-^Functionality|changes the user assigned to all contacts associated to an account when the account is saved|
+^Modules|Accounts and Contacts|
+^Functionality|changes the user assigned to all contacts associated to an account when the account is saved OR changes the user assigned to the Contact being saved when it is related to an Account|
 
