@@ -1,0 +1,33 @@
+====== Envio de correo Gmail desde coreBOS ======
+
+Hay una opción de configuración en Gmail para poder enviar desde coreBOS.
+
+Entra en tu cuenta de Gmail:
+
+{{:es:adminmanual:outgoingservergmail:app_seguras_00.jpg?800|}}
+
+En la pantalla a la que accedes, has de ir a la opción "Inicio de sesión en Google"
+
+{{:es:adminmanual:outgoingservergmail:app_seguras_01.jpg?800|}}
+
+En la siguiente pantalla, debes buscar hacia el final de la página la opción "Permitir el acceso de aplicaciones menos seguras"
+
+{{:es:adminmanual:outgoingservergmail:app_seguras_02.jpg?800|}}
+
+
+Y establecer el valor a **SI**.
+
+{{:es:adminmanual:outgoingservergmail:app_seguras_03.jpg?800|}}
+
+Con esto ya debería dejar enviar correo a través de coreBOS.
+
+===== La configuración en coreBOS ha de ser: =====
+
+^Servidor:|smtp.gmail.com|
+^Usuario:|el usuario que uses en gmail, o sea la cuenta de correo|
+^Contraseña:|la contraseña para acceder al correo|
+^Email de:|no es necesario ya que gmail no soporta esta característica|
+^¿Requiere autentificación?:|Establecerla en TLS|
+
+{{:es:adminmanual:outgoingservergmail:app_seguras_04.jpg?800|}}
+

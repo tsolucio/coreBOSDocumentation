@@ -59,6 +59,9 @@ Change "smtp" to "sendmail"
 ??? How do I configure a gmail account?
 
 !!! [[http://discussions.corebos.org/viewtopic.php?f=7&t=1020&p=2240|This forum thread says]] that you have to use **smtp.gmail.com** and select **TLS** as the authentication method. Also leave the "Email from" field empty as (I think) gmail does not support that feature.
+
+Also [[es:adminmanual:outgoingservergmail|this page explains activating the service on Google side]].
+
 ====== Debugging errors ======
 
 {{page>en:devel:debuging#email}}

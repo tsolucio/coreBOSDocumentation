@@ -134,3 +134,9 @@ Got from [[http://discussions.corebos.org/thread-217.html|our forum]] and [[http
 !!! AFAIK you can't, this is a security measure imposed by the browser and there is nothing you can do about it. The only solution is to simply ignore it and continue on with your work.
 
 In case you have already checked it, Log out of the application, close the browser, open it again and access the application normally. The setting only lasts for the session, so alerts will be re-enabled once the new session begins in the new tab.
+
+??? How can I hide the Tag Cloud for all users?
+
+!!! Directly in the database:
+
+<code SQL>UPDATE `vtiger_homestuff` SET `visible`=1 WHERE `stufftype`='Tag Cloud'</code>

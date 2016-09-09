@@ -1,0 +1,97 @@
+===== Picklist Editor =====
+
+As the name itself says, picklist is a dropdown field with a list of options available, within which, only one option can be selected. For instance, //Lead status// in the //Leads// module.
+
+**Picklist Editor** can be used to customize the picklist values in different modules. Select a role before performing global actions such as add, edit and, delete; as the picklist values vary across roles.
+
+====Get started ====
+
+Click on Settings Icon > //CRM Settings// -> //Picklist Editor// (This can be found under studio block)
+
+{{ :en:adminmanual:picklist:locatepicklisteditor.png |}}
+
+To customize a picklist, select the module that it is in from //Select Module// dropdown (ex: Leads); consequently, //Select picklist// dropdown displays the corresponding picklist fields (//Industry//, //Lead Source//, //Lead Status//, //Rating//, //Salutation//) available for that module. This dropdown can be used to select the picklist field for performing global actions.
+
+{{ :en:adminmanual:picklist:globaloperationspicklist.png |}}
+
+==== Add new Picklist values ====
+
+  *Click on the //Add Item// button next to the //Select picklist// dropdown.
+  *This will bring up a popup with the existing picklist values displayed on the left-hand side.
+  *You can add new values in the textarea on top-right and assign role(s) on right hand lower side of the popup accordingly.
+  *Click //Save// to update your changes.
+
+<WRAP center round info 80%>
+Note: You can add multiple values and assign multiple roles at the same time
+</WRAP>
+
+For instance, add 'newValue' to //Lead source// field in Leads module
+
+{{ :en:adminmanual:picklist:picklisteditoradd.png |}}
+
+<WRAP center round info 80%>Note: If you don't select any role for the new picklist values, they will be present in the picklist values but not displayed for any role (other than admin).</WRAP>
+
+==== Edit picklist values ====
+
+  *Click on the //Rename Item// button next to the //Select picklist// dropdown.
+  *This will bring up a popup with the existing picklist values in select box.
+    *select a picklist value you intend to edit.
+    *you can edit the picklist value in the textbox below the existing picklist values.
+  *Once you are done with the changes, click on the //Apply// button to save your changes to the picklist.
+
+{{ :en:adminmanual:picklist:picklistadd.png |}}
+
+<WRAP center round info 80%>Note: It cannot be replaced with an empty value</WRAP>
+
+==== Delete existing picklist values ====
+
+This operation can be performed to delete the picklist value(s) of any module permanently.
+
+  *Click on the //Delete Item// button next to the //Select picklist// dropdown.
+  *This will bring up a popup with existing picklist values.
+  *Select the value(s) you intend to delete, choose a value from //Replace with// dropdown and click on //Delete// button.
+
+<WRAP center round info 80%>Note: You cannot select a blankvalue for replacement</WRAP>
+
+For example, delete picklist values (Partner,Public Relations,Direct Mail,other) and replace with 'Other'.
+
+{{ :en:adminmanual:picklist:picklistdelete.png |}}
+
+Deleted picklist values will be replaced with another value. The information stored in deleted values will be moved to newly defined value.
+
+<WRAP center round info 80%>Note: You should have at least one value in any picklist.</WRAP>
+
+==== Create a custom picklist field ====
+
+You can create new custom picklist fields using the layout editor.
+
+  *Go to //Settings// -> //Module Manager//
+  *Click on module settings icon, highlighted below, at extreme right of each module.
+
+{{ :en:adminmanual:picklist:contactssettings.png |}}
+
+  *Click on //Layout Editor//
+  *Click on add custom field icon, highlighted below.
+
+{{ :en:adminmanual:picklist:createcontactfield.png |}}
+
+  *Select field type as //Pick List// on left hand side, provide a picklist name in //Label// on top-right, and provide values in //Pick list Values// textarea on righthand lower side of the popup.
+
+{{ :en:adminmanual:picklist:newpicklist.png |}}
+
+==== Re-arrange Picklist Values ====
+
+You can re-arrange the existing picklist values for each role.
+
+  *Choose the desired module from the //Select Module// dropdown.; e.g. Leads.
+  *Select the role to which the changes should be reflected from //Picklist Available in Leads For// field.
+  *Click on the //Assign// button; Consequently, a popup will be displayed where you can add or hide picklist values by moving them around.
+  *Re-arrange the picklist values by clicking on the arrows provided on the right side of the popup.
+
+{{ :en:adminmanual:picklist:re-arrangePicklistvalues.png |}}
+
+To transfer the changes to other roles, click on the link //Add to Other Roles//, Select the desired role(s) and click the //Save// button to update changes.
+
+==== Video Tutorial ====
+
+{{youtube>p3VXYMP-wjY}}

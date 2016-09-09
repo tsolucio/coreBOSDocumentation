@@ -1,6 +1,6 @@
 ====== Lead Conversion ======
 
-Once a business opportunity emerges, the Lead can be converted to a Opportunity. At this time, the data contained within the lead are automatically split out into a contact and an organization and the Lead is deleted. Information about the specific business opportunity is stored as a Opportunity. All the information collected for the Lead is still available but is now split between Contacts, Organizations and Opportunities.
+Once a business opportunity emerges, the Lead can be converted to a Opportunity. At this time, the data contained within the lead are automatically split out into a contact and an organization and the Lead is deleted. Information about the specific business opportunity is stored as an Opportunity. All the information collected for the Lead is still available but is now split between Contacts, Organizations and Opportunities.
 ===== Field Mapping =====
 
 ====Create field on Contacts====
@@ -31,3 +31,198 @@ Most options in the conversion screen can be configured through the application.
   * The other two available fields for contacts will not appear if they are hidden in that module.
   * Groups will only appear if they exist.
   * Additional fields cannot be added to the screen without programming
+
+{{page>en:convertir_precontacto}}
+===== Creating Additional Records In Other Modules =====
+
+In occasions it could be required to create records in other modules upon conversion of the lead. In this case coreBOS relies on the [[[[en:adminmanual:businessmappings|Business Mappings]] infrastructure to know what needs to be done.
+
+It will look for a [[en:adminmanual:businessmappings:module_set|Module Set Mapping]] called **LeadConversion** which will contain the set of modules for which we need to create additional records. Then, for each module in this set it will look for a [[en:adminmanual:businessmappings:mapping|Field Mapping Business Mapping]] to get the correspondence of fields to be copied into the new record.
+
+The field mapping process is accumulative in order of the modules found in the LeadConversion set. So you will be able to map fields from any module previously converted into the new record being created.
+
+For example, let's suppose that we need to create a Project and a Project Task upon the conversion of a Lead.
+
+We will create a Module Set Mapping called LeadConversion like this:
+
+<code XML>
+<map>
+     <modules>
+        <module>Project</module>
+ 	<module>ProjectTask</module>
+     </modules> 
+ </map>
+</code>
+
+With that coreBOS knows that it must create a Project and a ProjectTask record when a Lead is converted. Now it needs to know what field value it must fill in to create those records. First it will create a Project, so it will look for Field Mapping Business Mappings and apply them in this order:
+
+  * Leads2Project
+  * Accounts2Project (if an account was created)
+  * Contacts2Project (if a contact was created)
+  * Potentials2Project (if a potential was created)
+
+Once the Project record has been created, it will proceed to create the ProjectTask looking for these mappings:
+
+  * Leads2ProjectTask
+  * Accounts2ProjectTask (if an account was created)
+  * Contacts2ProjectTask (if a contact was created)
+  * Potentials2ProjectTask (if a potential was created)
+  * Project2ProjectTask
+
+
+<WRAP center round important 80%>
+Leads, Accounts, Contacts, Potentials and Users will be ignored if they are found in the Module Set Mapping
+</WRAP>
+
+<WRAP center round important 80%>
+Remember to map **ALL** the mandatory fields. Don't forget the assigned_user_id !!
+</WRAP>
+
+As an example these are the mappings I created while testing this functionality which implement a very reduced case of the explanation above: creating a Project and ProjectTask.
+
+**LeadConversion**
+<code xml>
+<map>
+     <modules>
+        <module>Project</module>
+ 	<module>ProjectTask</module>
+     </modules> 
+ </map></code>
+
+
+**Leads2Project**
+<code xml>
+<map>
+  <originmodule>
+    <originname>Leads</originname>
+  </originmodule>
+  <targetmodule>
+    <targetname>Project</targetname>
+  </targetmodule>
+  <fields>
+    <field>
+      <fieldname>projectname</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>firstname</OrgfieldName>
+        </Orgfield>
+        <Orgfield>
+          <OrgfieldName>lastname</OrgfieldName>
+        </Orgfield>
+        <delimiter> </delimiter>
+      </Orgfields>
+    </field>
+  </fields>
+</map>
+</code>
+
+**Accounts2Project**
+<code xml>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+  <targetmodule>
+    <targetname>Project</targetname>
+  </targetmodule>
+  <fields>
+    <field>
+      <fieldname>linktoaccountscontacts</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>record_id</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+    <field>
+      <fieldname>assigned_user_id</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>assigned_user_id</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+  </fields>
+</map></code>
+
+**Potentials2Project**
+<code xml>
+<map>
+  <originmodule>
+    <originname>Potentials</originname>
+  </originmodule>
+  <targetmodule>
+    <targetname>Project</targetname>
+  </targetmodule>
+  <fields>
+    <field>
+      <fieldname>targetenddate</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>closingdate</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+  </fields>
+</map>
+</code>
+
+**Project2ProjectTask**
+<code xml>
+<map>
+  <originmodule>
+    <originname>Project</originname>
+  </originmodule>
+  <targetmodule>
+    <targetname>ProjectTask</targetname>
+  </targetmodule>
+  <fields>
+    <field>
+      <fieldname>projectid</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>record_id</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+    <field>
+      <fieldname>assigned_user_id</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>assigned_user_id</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+  </fields>
+</map>
+</code>
+
+**Potentials2ProjectTask**
+<code xml>
+<map>
+  <originmodule>
+    <originname>Potentials</originname>
+  </originmodule>
+  <targetmodule>
+    <targetname>ProjectTask</targetname>
+  </targetmodule>
+  <fields>
+    <field>
+      <fieldname>projecttaskname</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>potentialname</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+    <field>
+      <fieldname>projecttaskprogress</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>probability</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+  </fields>
+</map>
+</code>

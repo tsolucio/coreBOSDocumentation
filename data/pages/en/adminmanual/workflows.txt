@@ -10,8 +10,8 @@ It is necessary to execute four steps to configure and setup a workflow:
 
 In the next sections you will be able to find more information on these steps.
 
-
   * [[..:workflow_launch_conditions|Workflow launch conditions]]
+  * [[..:workflow_stepbystep|Workflow step by step explanation]]
   * [[..:scheduled_workflows|Scheduled Time based Workflows]]
   * [[..:workflow_conditions|Workflow conditions]]
 
