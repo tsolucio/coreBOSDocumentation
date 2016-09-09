@@ -21,4 +21,5 @@ $lang['supportwiki'] = 'Support Wiki';
 $lang['supportirc'] = 'Support IRC';
 $lang['supportsource'] = 'Source';
 $lang['supportdocs'] = 'Documentation';
+$lang['bmtype'] = 'Rule Type';
 ?>
