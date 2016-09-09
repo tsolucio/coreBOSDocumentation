@@ -1,6 +1,64 @@
 ====== Using and Defining Filters ======
 
-FIXME TBD
+Filters are an effective search tool that can rapidly group records in a module. You can limit your search to selected columns and search criteria.
+
+Steps to create a custom Filter.
+
+Select a module and click **Create Filter** link (highlighted below) in the //list view// of a module.
+
+{{:en:corebos:filter:createfilter.png|}}
+
+
+Provide a name to your filter in ''View Name'' and select the columns that you want to be displayed in list view, when filter is selected.
+
+{{:en:corebos:filter:CreateViewFilter.png|}}
+
+<WRAP center round important 80%>
+The module's link field should be mapped or you will not be able to access the //detail view//.
+</WRAP>
+
+On save you will be able to see filter in action. At this point you can see the list of records in selected columns.
+
+{{:en:corebos:filter:Filterstestfilter.png|}}
+
+Both **Standard Filters** and **Advanced Filters** are used to enhance and refine your filter.
+
+**Standard Filters** refine the search depending upon date intervals or particular period. You can find these options available:
+
+^Select a Column|This picklist allows users to refine search depending upon record Date fields.|
+^Select Duration|This picklist allows users to select time duration in accordance with the //Select a Column// option above.|
+^Start Date and End Date|You can fill these fields manually or if you select the duration, these fields will be automatically filled.|
+
+{{:en:corebos:filter:EditStandardFilter.png|}}
+
+**Advanced Filters** refine the search depending upon field values conditions specified.
+
+This block contains three columns. Select the desired field name from the picklist in the first column, set the desired condition from picklist in second column and enter one or multiple items in third column manually. Items you enter in third column should be separated with commas.
+
+For example:
+
+{{:en:corebos:filter:ConditionsTestFilter.png|}}
+
+
+After saving you will see the list of records the fulfill the conditions in the list view.
+
+{{:en:corebos:filter:RatingTestFilter.png|}}
+
+{{youtube>NiYGE6VRSNo|You can also see this Video Tutorial}}
+
+=====List in Metrics=====
+
+This option if enabled will show the count and details of the filter in the //Key Metrics// widget on the Home Page.
+
+{{:en:corebos:filter:metrics.png|}}
+
+=====Set as Default=====
+
+If this option is enabled, then this filter will be the default view loaded when you first access the module. Once you have selected another filter that selection will prevail until you exit the system.
+
+=====Set as public=====
+
+If this option is enabled, every user of the application, irrespective of role/position can view it. When a user marks a custom filter as public, it should be first approved by the admin user. It remains in pending state until admin approves it. Admin can see the request under the //Pending// section.
 
 
 ===== Meta variables for special fields =====
@@ -19,3 +77,9 @@ To accomplish this we can use a special meta-variable when defining our filters 
 ==== Blank Dates ====
 
 You can search on blank dates using the dollar sign $
+
+==== Blank Fields ====
+
+You can use the word //null// to search for empty values on related and text fields
+
+{{ :en:corebos:filter:blankrelationfieldonfilter.png?800 |}}
