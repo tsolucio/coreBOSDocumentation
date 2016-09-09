@@ -1,50 +1,42 @@
-1453457746	188.85.63.155	E	en:calendar_google_integration	joebordes	[Separating Events/Calendars] 	
-1453663155	188.85.63.155	C	en:extensions:extensions:vtdziner	joebordes	↷ Page moved from en:extensions:vtdziner to en:extensions:extensions:vtdziner	
-1453663155	188.85.63.155	D	en:extensions:vtdziner	joebordes	↷ Page moved from en:extensions:vtdziner to en:extensions:extensions:vtdziner	
-1453663155	188.85.63.155	e	en:extensions:faq	joebordes	↷ Links adapted because of a move operation	
-1453663619	188.85.63.155	E	en:extensions	joebordes	[Extensions] 	
-1453663772	188.85.63.155	E	en:extensions	joebordes		
-1453663825	188.85.63.155	E	en:extensions	joebordes		
-1453663889	188.85.63.155	C	en:extensions:extensions	joebordes	created	
-1453663943	188.85.63.155	E	en:extensions	joebordes		
-1453663967	188.85.63.155	E	en:extensions:extensions	joebordes		
-1453812834	80.35.20.79	E	en:extensions:extensions	joebordes		
-1453814818	80.35.20.79	E	en:extensions:extensions	joebordes		
-1453815637	80.35.20.79	C	en:extensions:howtoregister	joebordes	created	
-1453816249	80.35.20.79	E	en:devel:packagemodules	joebordes	[1.- File structure] 	
-1453816314	80.35.20.79	E	en:extensions:howtoregister	joebordes		
-1453816342	80.35.20.79	E	en:extensions:howtoregister	joebordes		
-1453831517	188.85.63.155	E	en:extensions:howtoregister	joebordes		
-1453833259	188.85.63.155	C	en:extensions:extensions:massdocumentimport	joebordes	created	
-1453833325	188.85.63.155	E	en:extensions:extensions:massdocumentimport	joebordes		
-1453833432	188.85.63.155	E	en:extensions:extensions:massdocumentimport	joebordes		
-1453833454	188.85.63.155	E	en:extensions:extensions:massdocumentimport	joebordes		
-1453833468	188.85.63.155	E	en:extensions:extensions:massdocumentimport	joebordes	[Mass Document Import] 	
-1453834039	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
-1453834160	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
-1453834256	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
-1453834283	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
-1453834375	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
-1453834595	188.85.63.155	E	en:extensions:howtoregister	joebordes	[3.- Add register data.] 	
-1453835710	188.85.63.155	C	en:extensions:extensions:corebosemployee	joebordes	created	
-1453835796	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
-1453836075	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
-1453836178	188.85.63.155	E	en:extensions:extensions	joebordes		
-1453836191	188.85.63.155	E	en:extensions:extensions	joebordes	[Registered Modules, Extensions, Patches and Plugins] 	
-1453836243	188.85.63.155	E	en:extensions:extensions:corebosemployee	joebordes	[Employee Module] 	
-1453836413	188.85.63.155	E	en:extensions:howtoregister	joebordes		
-1453836426	188.85.63.155	E	en:extensions:howtoregister	joebordes	[3.- Add a title to the page.] 	
-1453836616	188.85.63.155	E	en:extensions:extensions:massdocumentimport	joebordes	[Data entry] 	
-1453836727	188.85.63.155	E	en:extensions:extensions:corebosemployee	joebordes	[Employee Module] 	
-1453854181	188.85.63.155	C	en:extensions:extensions:affiliates	joebordes	created	
-1453881484	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes		
-1453881745	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes	[Data entry] 	
-1453889769	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes		
-1453889793	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes		
-1453889867	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes		
-1453889879	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes	[Affiliates] 	
-1453889949	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes		
-1453890059	188.85.63.155	E	en:extensions:extensions:affiliates	joebordes	[Custom Information] 	
-1453890616	188.85.63.155	E	en:extensions:extensions:corebosemployee	joebordes		
-1453890903	188.85.63.155	E	en:extensions:howtoregister	joebordes	[4.- Add register data.] 	
-1453890935	188.85.63.155	E	en:extensions:howtoregister	joebordes	[4.- Add register data.] 	
+1472934955	188.85.143.210	E	en:convertir_precontacto	joebordes		
+1472934990	188.85.143.210	E	en:convertir_precontacto	joebordes		
+1472935004	188.85.143.210	E	en:adminmanual:lead_conversion	joebordes	[Controlling Conversion Options] 	
+1472935080	188.85.143.210	E	en:helpdesk	joebordes		
+1472936040	188.85.143.210	C	en:helpdesk:notificationemails	joebordes	created	
+1472936071	188.85.143.210	E	en:helpdesk:notificationemails	joebordes		
+1472936660	188.85.143.210	E	en:helpdesk:notificationemails	joebordes		
+1472936727	188.85.143.210	E	en:helpdesk:notificationemails	joebordes		
+1472936744	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
+1472936770	188.85.143.210	E	en:helpdesk:notificationemails	joebordes		
+1472937873	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
+1472938377	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
+1472938409	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
+1472938428	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
+1472939025	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
+1472939243	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
+1472940469	188.85.143.210	C	en:email_workflows	joebordes	created	
+1472940918	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketComment] 	
+1472940978	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketComment] 	
+1472941060	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
+1472944749	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
+1472944968	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
+1472945204	188.85.143.210	E	en:helpdesk:notificationemails	joebordes		
+1472945810	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyParentOnTicketChange] 	
+1472946920	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyParentOnTicketChange] 	
+1472948411	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyParentOnTicketChange] 	
+1472948487	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
+1472989164	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyParentOnTicketChange] 	
+1472989319	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Conclusion] 	
+1473001705	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Conclusion] 	
+1473002374	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyParentOnTicketChange] 	
+1473002727	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
+1473002765	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
+1473005149	188.85.143.210	E	en:email_workflows	joebordes	[Comments] 	
+1473005611	188.85.143.210	E	en:email_workflows	joebordes		
+1473005755	188.85.143.210	E	en:email_workflows	joebordes	[Comments] 	
+1473006026	188.85.143.210	E	en:email_workflows	joebordes	[Comments] 	
+1473006218	188.85.143.210	E	en:email_workflows	joebordes		
+1473006280	188.85.143.210	E	en:email_workflows	joebordes		
+1473006336	188.85.143.210	E	en:email_workflows	joebordes		
+1473404449	80.35.20.79	E	es:start	omar		
+1473404473	80.35.20.79	E	en:start	omar		
