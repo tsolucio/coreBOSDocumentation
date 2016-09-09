@@ -21,14 +21,15 @@ To hook into this functionality you must create a function in your module's java
 ^recordid|the crmid of the record that has been selected in the popup|
 ^value|the text representation of the record that has been selected in the popup|
 ^target_fieldname|the destination field name in the form in the browser|
+^formname|the form that the destination field is in|
 
 Then you must add a property to your module: **popup_function** with the name of your function. That is all that is needed.
 
 To test this functionality you can try this: add this function to Accounts.js
 
-<code>function myspecialcapture(recordid,value,target_fieldname) {
+<code PHP>function myspecialcapture(recordid,value,target_fieldname,formname) {
   // first we launch the default functionality
-  vtlib_setvalue_from_popup(recordid,value,target_fieldname);
+  vtlib_setvalue_from_popup(recordid,value,target_fieldname,formname);
   alert('This is our special intercepted capture function');
   window.close();
 }</code>

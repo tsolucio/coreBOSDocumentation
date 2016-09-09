@@ -22,6 +22,7 @@
   * [[:en:devel:translating|Translating]]
   * [[:en:devel:stresstestlog|Logging stress test]]
   * [[:en:devel:calendar|Calendar]]
+  * [[:en:devel:asterisk|Asterisk]]
 
 
   * [[:en:devel:coreboscp|coreBOS Customer Portal Development]]

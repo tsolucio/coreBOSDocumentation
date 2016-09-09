@@ -32,9 +32,64 @@ Let's have a look at how the [[https://github.com/tsolucio/coreBOSAddress|coreBO
 
 First it adds a [[en:devel:corebos_hooks:popup_open_hook|pop-up open hook]] in order to capture the accountID and the contactID selected on the invoice and pass them to the pop-up capture code in the URL opening the window. This is similar to adding search conditions, the only difference being that in this case we pass in two variables that the pop-up capture code does not use, they are intended for our custom query method.
 
-Second it adds the //**getQueryByModuleField()**// method which looks like this:
+Second it adds the //**getQueryByModuleField()**// method [[https://github.com/tsolucio/coreBOSAddress/blob/master/modules/cbAddress/cbAddress.php#L155|which looks like this]]:
 
-<code php>FIXME</code>
+<code php>
+	function getQueryByModuleField($module, $fieldname, $srcrecord, $query='') {
+		// $srcrecord could be empty
+		global $adb,$log;
+		$query_relation = ' INNER JOIN vtiger_crmentityrel ON (vtiger_crmentityrel.relcrmid = vtiger_crmentity.crmid OR vtiger_crmentityrel.crmid = vtiger_crmentity.crmid) ';
+		$wherepos = stripos($query, 'where'); // there is always a where
+		$query_body = substr($query, 0, $wherepos-1);
+		$query_cond = substr($query, $wherepos+5);
+		if($module == 'Invoice' || $module == 'Contacts' || $module == 'Quotes' || $module == 'SalesOrder') {
+			$accountID = vtlib_purify($_REQUEST['acc_id']);
+			$contactID = vtlib_purify($_REQUEST['cont_id']);
+			/*$query = "SELECT vtiger_crmentity.*, vtiger_cbaddress.*, vtiger_cbaddresscf.* 
+			FROM vtiger_cbaddress 
+			INNER JOIN vtiger_crmentity ON vtiger_crmentity.crmid = vtiger_cbaddress.cbaddressid  
+			INNER JOIN vtiger_cbaddresscf ON vtiger_cbaddresscf.cbaddressid = vtiger_cbaddress.cbaddressid 
+			LEFT JOIN vtiger_users ON vtiger_users.id = vtiger_crmentity.smownerid 
+			LEFT JOIN vtiger_groups ON vtiger_groups.groupid = vtiger_crmentity.smownerid 
+			WHERE vtiger_cbaddress.cbaddressid > 0 AND vtiger_crmentity.deleted = 0" ORDER BY cbaddressno ASC ;*/
+			if(isset($_REQUEST['cont_id']) && $_REQUEST['cont_id'] !='' && $_REQUEST['acc_id'] =='') {
+				$query1 = $query_body . $query_relation . " WHERE (vtiger_crmentityrel.crmid = $contactID OR vtiger_crmentityrel.relcrmid = $contactID) and " . $query_cond;
+				return $query1;
+			}
+			elseif((isset($_REQUEST['acc_id']) && $_REQUEST['acc_id'] !='' && $_REQUEST['cont_id'] =='' )) {
+				$query1 = $query_body . $query_relation . " WHERE (vtiger_crmentityrel.crmid = $accountID OR vtiger_crmentityrel.relcrmid = $accountID) and " . $query_cond;
+				return $query1;
+			}
+			elseif(isset($_REQUEST['acc_id']) && $_REQUEST['acc_id'] !='' && isset($_REQUEST['cont_id']) && $_REQUEST['cont_id'] !=''){
+				$query1 = $query_body . $query_relation . " WHERE (vtiger_crmentityrel.crmid = $accountID OR vtiger_crmentityrel.relcrmid = $accountID or vtiger_crmentityrel.crmid = $contactID OR vtiger_crmentityrel.relcrmid = $contactID) and " . $query_cond;
+				$res = $adb->query($query1);
+				$number= $adb->num_rows($res);
+				if($number > 0){
+					 return $query1;
+				}
+				else return $query;
+			}
+			else return $query;
+		}
+		elseif($module == 'Accounts'){
+			$accountID = vtlib_purify($_REQUEST['acc_id']);
+			if((isset($_REQUEST['acc_id']) && $_REQUEST['acc_id'] !='')){
+				$query1 = $query_body . $query_relation . " WHERE (vtiger_crmentityrel.crmid = $accountID OR vtiger_crmentityrel.relcrmid = $accountID) and " . $query_cond;;
+				return $query1;
+			}
+			else return $query;
+		}
+		elseif($module == 'PurchaseOrder'){
+			$contactID = vtlib_purify($_REQUEST['cont_id']);
+			if((isset($_REQUEST['cont_id']) && $_REQUEST['cont_id'] !='')){
+				$query1 = $query_body . $query_relation . " WHERE (vtiger_crmentityrel.crmid = $contactID OR vtiger_crmentityrel.relcrmid = $contactID) and " . $query_cond;;
+				return $query1;
+			}
+			else return $query;
+		}
+		return $query;
+	}
+</code>
 
 where we can see that first it looks for the two variables that are intended for this code. If they do not exist then the module is being called from somewhere else that does not require the advanced custom query so it returns the query that the pop-up had already obtained (it could have also returned an empty string or FALSE to obtain the same result). If they do exist then it constructs a personalized SQL query that joins upon the vtiger_crmentityrel table where the many to many relation between account/contact and address is being held and adds the conditions to restrict the set of addresses to those related to the given account or contact. Giving this new SQL back to the pop-up capture code is all that we need to do to have the pop-up filled in with the records we want.
 

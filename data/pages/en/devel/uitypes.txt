@@ -14,6 +14,7 @@
 |11|A single line text field. Has no checks for the validity of input data. Changes color on selection.|
 |12|Email id field which stores the single email id (from email address), when mail is sent from the system|
 |13|A single line text field. Used to take the email-addresses as input from user. Checks for the validity of the entered email and gives an error if it is invalid. Changes color on selection.|
+|14|Time|
 |15|A dropdown combo that accepts input from the value selected in it. The values in the dropdown vary from module to module and Role-based.|
 |16|A dropdown combo that accepts input from the value selected in it. The values in the dropdown vary from module to module and doesn't depend on the current user's role (non-role based).|
 |17|Single line text field which is used to accept the names of websites from the users. In other words a URL. Does not check for the validity of input, but does parse the protocol. Changes color on selection.|
@@ -37,5 +38,9 @@
 |55|This uitype provides a combination of Salutation and Firstname. The Salutation field is a dropdown while the Firstname field is a single line text field which changes its color on selection.|
 |56|A checkbox which takes input in the form of yes or no.|
 |57|A single line uneditable text field. Takes its input from the link provided with it. Used to select a contact from a popup window. Contains a link which can be used to clear previous value. Also it contains a link to a popup which adds a new contact. Does not change color on selection.|
-|66| Calendar related entity picklist|
+|66|Calendar related entity picklist|
+|71|Currency for application usage|
+|72|Currency special for inventory module lines and totals|
+|85|Skype|
+|117|Currency picklist. field must be named currency_id|
 |255|In leads and contacts module, last name is mandatory but first name is not. So when first name is disabled for the profile, the salutation gets handled and added for the last name using this uitype.|

@@ -34,3 +34,7 @@ Have a look at the code which can be downloaded below and here is a screen shot 
 <WRAP center round info 80%>We could also add an additional HeaderScript link to load some external javascript library we may need to implement our functionality or load the information we need via ajax/javascript which is how ModComments works. You can see an example by studying that code.</WRAP>
 
 <WRAP center round download 60%>{{:devel:adddvw.zip|Contact Purchase Order Statistics Widget}}</WRAP>
+
+<WRAP center round info 70%>
+You can find a much easier way to add this type of block which also supports Edit View in [[en:devel:add_editdetail_block|this tutorial]].
+</WRAP>

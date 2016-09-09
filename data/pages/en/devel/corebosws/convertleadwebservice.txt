@@ -1,16 +1,20 @@
 ====== Convert Lead Webservice ======
 
-FIXME  Validate this and make database change in coreBOS updater if really needed.
-
 Usage example of convert lead webservice in order to convert an existing Leads into Accounts, Contacts & Opportunity using Webservice.
 
-Important points to note before using following code:
+Important points to note before using the following code:
   * Check table vtiger_ws_entity to know the "id" (Webservice module ID) of "Leads" module. Ensure that the Lead ID passed to vtws_convertleads function is in 'x' format.
   * Modify "vtiger_ws_operation_parameters" table as showen below to reflect right parameters for "convertlead" Webservice call.
-<code>DELETE FROM vtiger_ws_operation_parameters WHERE operationid = (SELECT operationid from vtiger_ws_operation WHERE name = 'convertlead');
-INSERT INTO vtiger_ws_operation_parameters (operationid, name, type, sequence) VALUES ('13', 'element', 'encoded', '1');</code>
 
-We are making this change in above table because parameters required in vtws_convertlead function in include/Webservices/vtws_convertlead.php is changed in vTiger 5.4 compared to earlier versions. But corresponding change in vtiger_ws_operation_parameters is not made.
+<code SQL>DELETE FROM vtiger_ws_operation_parameters WHERE operationid = (SELECT operationid from vtiger_ws_operation WHERE name = 'convertlead');
+INSERT INTO vtiger_ws_operation_parameters (operationid, name, type, sequence) VALUES ((SELECT operationid from vtiger_ws_operation WHERE name = 'convertlead'), 'element', 'encoded', '1');</code>
+
+We are making the change in the table vtiger_ws_operation_parameters because parameters required in vtws_convertlead function in include/Webservices/vtws_convertlead.php has changed in vtiger crm 5.4 compared to earlier versions. But corresponding change in vtiger_ws_operation_parameters has not been made.
+
+<WRAP center round info 80%>
+This change is not required in coreBOS where we have already applied it.
+</WRAP>
+
 
   * Following example uses standard vtwsclib library.
   * Sample code:<code><?php
@@ -71,5 +75,32 @@ echo vtws_convertleads($d);
 
 ?></code>
 
+[[https://discussions.vtiger.com/index.php?p=/discussion/166499/usage-example-of-convert-lead-webservice|Thanks Ashutosh]]
 
-[[https://discussions.vtiger.com/index.php?p=/discussion/166499/usage-example-of-convert-lead-webservice|Thanks Ashutosh]]  
+<WRAP center round info 90%>
+You can also find an [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/470_convertLead.php|example in the coreBOS Webservice development]] tool.
+</WRAP>
+
+<WRAP center round info 90%>
+By setting $convert_lead_array['entities'][__Contacts|Accounts|Potential__]['create'] to **false** you can avoid creating a record in that module.
+</WRAP>
+
+<WRAP center round info 90%>
+By default, a Lead is Converted into a Contact, but you can indicate the module you want to have the Lead values transferred to using the variable **//transferRelatedRecordsTo//**
+
+$convert_lead_array['entities']['transferRelatedRecordsTo'] = 'Accounts';
+
+If you indicate that no Contact should be created the Lead values will be transferred to the Account.
+
+If you indicate that neither a Contact nor an Account should be created the process will fail with a webservice exception.
+
+</WRAP>
+
+<WRAP center round info 90%>
+By default the process will search for an existing Account with the same company name and relate the new records with this Account. This is done to avoid duplicates. You can override this behaviour by assigning a value to the meta-variable **//forcecreate//** like this:
+
+$convert_lead_array['entities'][Accounts]['forcecreate'] = true;
+
+
+Be careful as this will easily create duplicate account names and you won't be able to edit them unless you set the global variable **//Accounts_BlockDuplicateName//** to false.
+</WRAP>

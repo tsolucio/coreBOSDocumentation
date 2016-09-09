@@ -1,0 +1,148 @@
+====== How to add custom validations to your module ======
+
+Each field in a module has two native types of validation:
+
+  * data type validation: when you define a field on a module you indicate the type that it is; integer, string, currency, date, ...  So when you are editing a record with that field on screen coreBOS will automatically insure that the value introduced is of the correct type.
+  * mandatory validation: you can indicate which fields must contain a value, in other words, they cannot be left empty
+
+Besides these two types which are supported by all fields, and some additional undocumented tricks that can be done using an extended syntax in the typeofdata field, there are only a handful of hardcoded validations in the system:
+
+  * no accountname duplicates
+  * mandatory email on contact if portail user checked
+  * contact birthday
+  * sales order recurring settings
+  * start and end dates on calendar
+
+If you want to add your own validations, for the moment you will have to add some code.
+
+Each module supports special validations that can be done in a PHP file called:
+
+<code>{ModuleName}Validation.php</code>
+
+which **must** live inside the module's directory.
+
+So, for example, you [[https://github.com/tsolucio/corebos/blob/master/modules/Accounts/AccountsValidation.php|can see in the application]] the file
+
+<code>modules/Accounts/AccountsValidation.php</code>
+
+which contains the validation of "no duplicate accountname".
+
+All these validation files support the same syntax; they will receive an array of all the values that are currently in the user's browser in the $_REQUEST variable called //structure// and they must return one of three outputs:
+
+  - <nowiki>%%%OK%%%</nowiki> to indicate that all validations have passed correctly
+  - <nowiki>%%%CONFIRM%%%</nowiki> followed by any message to produce a screen that will ask for confirmation using the text following the CONFIRM label
+  - Any other output/message which will be interpreted as an error message that will be shown to user
+
+===== Examples =====
+
+**No duplicate Leads based on email and phone**
+
+<code PHP>
+global $log,$currentModule,$adb;
+
+$screen_values = json_decode($_REQUEST['structure'],true);
+
+$query = 'SELECT count(*) as cnt
+	FROM vtiger_leaddetails
+	INNER JOIN vtiger_crmentity on vtiger_leaddetails.leadid = vtiger_crmentity.crmid
+	INNER JOIN vtiger_leadscf on vtiger_leaddetails.leadid = vtiger_leadscf.leadid
+	INNER JOIN vtiger_leadaddress on vtiger_leaddetails.leadid = vtiger_leadaddress.leadaddressid
+	WHERE vtiger_crmentity.deleted = 0 and vtiger_leaddetails.converted=0 ';
+
+$email = vtlib_purify($screen_values['email']);
+$phone = vtlib_purify($screen_values['phone']);
+if (!empty($email) and !empty($phone)) {
+	$query.='and (email = ? or phone = ?) ';
+	$params = array($email,$phone);
+} elseif (!empty($email)) {
+	$query.='and email = ? ';
+	$params = array($email);
+} elseif (!empty($phone)) {
+	$query.='and phone = ? ';
+	$params = array($phone);
+} else {
+	echo '%%%OK%%%';
+	die();
+}
+
+$id = vtlib_purify($screen_values['record']);
+if(!empty($id)) {
+	$query .= 'and vtiger_leaddetails.leadid != ?';
+	array_push($params, $id);
+}
+
+$result = $adb->pquery($query, $params);
+if($adb->query_result($result,0,'cnt') > 0) {
+	echo getTranslatedString('LBL_LEAD_EXISTS','Leads');
+	die;
+}
+
+echo '%%%OK%%%';
+</code>
+
+**No duplicate Contacts based on email**
+
+<code PHP>
+global $log,$currentModule,$adb;
+
+$screen_values = json_decode($_REQUEST['structure'],true);
+
+$query = 'SELECT count(*) as cnt
+	FROM vtiger_contactdetails
+	INNER JOIN vtiger_crmentity on vtiger_contactdetails.contactid = vtiger_crmentity.crmid
+	INNER JOIN vtiger_contactaddress on vtiger_contactaddress.contactaddressid=vtiger_contactdetails.contactid
+	INNER JOIN vtiger_contactsubdetails on vtiger_contactsubdetails.contactsubscriptionid=vtiger_contactdetails.contactid
+	INNER JOIN vtiger_contactscf on vtiger_contactscf.contactid=vtiger_contactdetails.contactid
+	WHERE vtiger_crmentity.deleted = 0 ';
+
+$email = vtlib_purify($screen_values['email']);
+if (!empty($email)) {
+	$query.='and (email = ? or secondaryemail = ?) ';
+	$params = array($email,$email);
+} else {
+	echo '%%%OK%%%';
+	die();
+}
+
+$id = vtlib_purify($screen_values['record']);
+if(!empty($id)) {
+	$query .= 'and vtiger_contactdetails.contactid != ?';
+	array_push($params, $id);
+}
+
+$result = $adb->pquery($query, $params);
+if($adb->query_result($result,0,'cnt') > 0) {
+	echo getTranslatedString('LBL_CONTACT_EXISTS','Contacts');
+	die;
+}
+
+echo '%%%OK%%%';
+</code>
+
+**Blocked Quotes depending on Quote Stage**
+
+<WRAP center round info 70%>
+This isn't really validation but you can do it this way also.
+</WRAP>
+
+<code PHP>
+global $log,$currentModule,$adb;
+
+$screen_values = json_decode($_REQUEST['structure'],true);
+
+$record = vtlib_purify($screen_values['record']);
+$closedstages = array('Approved','Cancel','Paid','Delivered');
+if (!empty($record)) { // editando
+	$qrs = $adb->pquery('SELECT quotestage FROM vtiger_quotes WHERE quoteid=?',array($record));
+	if ($qrs and $adb->num_rows($qrs)>0) {
+		$dbqstage = $adb->query_result($qrs, 0, 0);
+		//$frqstage = vtlib_purify($_REQUEST['quotestage']);
+		if (in_array($dbqstage, $closedstages)) {
+			echo 'This quote is closed. Please duplicate it to edit and change.';
+			die();
+		}
+	}
+}
+
+echo '%%%OK%%%';
+</code>

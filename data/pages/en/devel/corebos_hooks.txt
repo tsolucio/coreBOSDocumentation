@@ -167,7 +167,10 @@ Action launched BEFORE two entities are about to be related. Action receives the
 Action launched AFTER two entities have been related. Action receives the names and IDs of the records being related.
 
 ===corebos.entity.link.delete===
-Action launched when two entities are about to be UNrelated. Action receives the names and IDs of the records being UNrelated.
+Action launched when two entities are about to be UNrelated (BEFORE). Action receives the names and IDs of the records being UNrelated.
+
+===corebos.entity.link.delete.final===
+Action launched when two entities have just been UNrelated (AFTER). Action receives the names and IDs of the records being UNrelated.
 
 ===corebos.filter.preSaveCheck===
 Filter launched before starting the Save process. Will receive, the $_REQUEST variable and the current object trying to be saved. It must return, besides these two input parameters, an error status, an error message, an error action and an array of variables to return to the edit screen the process was initiated from.
@@ -181,6 +184,8 @@ Filter launched before starting the Detail View process. Will receive, the $_REQ
 ===corebos.audit.[authenticate|login|login.attempt|logout|action]===
 Actions called on the indicated events
 
+====Custom Permission Hooks====
+**corebos.permission.[accessquery|ispermitted]**: [[en:devel:corebos_permission_hooks|Custom Permission Hooks]]
 ====Events Examples====
 
 When you register an event in the application the details are saved in the **vtiger_eventhandlers** table, so the best way to find examples of the different types of events above is to look in that table for real working code. For example, you can find there:
@@ -214,7 +219,7 @@ When you register an event in the application the details are saved in the **vti
 | corebos.filter.ModComments.canAdd | build/HelperScripts/coreBOSEventsExample.php | coreBOSEventsExample |This example eliminates the add comment feature for the crmid record with value 2|
 | corebos.filter.ModComments.queryCriteria | build/HelperScripts/coreBOSEventsExample.php | coreBOSEventsExample |This example hides all comments that belong to user with ID equal to 1|
 
-<WRAP center round info 70%>For the coreBOSEventsExample.php examples you can find the script to register the events in the HelperScripts directory: build/HelperScripts/coreBOSEventsLoader.php</WRAP>
+<WRAP center round info 80%>For the coreBOSEventsExample.php examples you can find the script to register the events in the HelperScripts directory: build/HelperScripts/coreBOSEventsLoader.php</WRAP>
 
 
 ===== HOOKS: Types and usage =====
