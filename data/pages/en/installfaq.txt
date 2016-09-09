@@ -14,3 +14,7 @@
 git checkout modules/ProjectMilestone/schema.xml
 git pull
 </code>
+
+??? Some vtiger CRM 5.2 migration tips
+
+!!! [[http://discussions.corebos.org/thread-264-post-1404.html#pid1404|Have a read at this user's experience]]

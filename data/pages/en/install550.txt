@@ -1,8 +1,8 @@
-====== Install coreBOS 5.5.0 ======
+====== Install coreBOS ======
 ===== Requirements =====
   * Apache 2.0.40 or above.
   * MySQL 5.1.x
-  * PHP from 5.3.x to 5.5.x
+  * PHP from 5.3.x to 5.6.x
 <WRAP center round info 75%>
 This is a typical **WAMP/LAMP stack**. All linux distributions have this natively so we recommend you install the packages from your distribution (make sure you have the right versions). On windows download the XAMPP stack from apache friends. You can see the [[http://code.stephenmorley.org/articles/xampp-version-history-apache-mysql-php|list of application versions here]].
 </WRAP>
@@ -41,8 +41,9 @@ Make sure to verify if your PHP configuration meets the recommended values.
 |log_errors|off|
 |output_buffering|on|
 |register_globals|off|
+|request_order|GP|
 
-<WRAP center round info 75%>
+<WRAP center round info 85%>
 If you have the PHP Suhosin extension installed, this extension adds restrictions to make PHP more secure, but some of these restrictions break coreBOS.
 
 To solve this problem you must change two variables in the suhosin config file: (normally: /etc/php5/conf/suhosin.ini)
@@ -52,6 +53,17 @@ suhosin.request.max_vars = 2000</code>
 
 After this you must restart your apache server.
 </WRAP>
+
+<WRAP center round important 85%>
+For security reasons it is **VERY** important that you set the value of **request_order** to **GP**.
+
+coreBOS barely uses cookies and it does not look for them in the $_REQUEST superglobal.
+
+Most modern linux servers already set this value to GP by default so you are probably already covered but check just in case.
+
+You can [[https://www.owasp.org/index.php/PHP_Security_Cheat_Sheet#Use_of_.24_REQUEST|read a little more about this here]].
+</WRAP>
+
 
 ==== File Permissions  ====
 
@@ -117,14 +129,16 @@ If the database exists it **MUST** be empty, the install procedure DOES NOT migr
 
 == Firefox Timeout Marker ==
 
-<WRAP center round info 70%>
+<WRAP center round info 80%>
 Latest versions of Firefox have added a configuration option that limits the time a web page can take to execute. If this time is passed the browser will cancel the call. The install process easily passes this 5 minute limit on many machines producing a problem in the installation process and canceling it.
 
 **We will attend this issue in the next release because it causes us to redefine the install process.**
 
 In the mean time you can configure the browser increasing the timeout or use chrome for the installation process.
 
-To increment the time out type in "about:config" in the browser address, look for "network.http.response.timeout" and set it to 600 at least and restart the browser.
+To increment the time out type in "about:config" in the browser address, look for "**network.http.response.timeout**" or "**http.response.timeout**" and set it to 600 at least and restart the browser.
+
+[[https://support.mozilla.org/es/questions/998088|Stop connection timeouts from happening - want the page to wait]]
 
 {{ :en:firefoxtimeout.png?500 |}}
 </WRAP>

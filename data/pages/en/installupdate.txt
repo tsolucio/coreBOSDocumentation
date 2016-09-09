@@ -6,7 +6,9 @@ How to install and update the application
 
 ====== Install ======
 
-  * [[install560|Install coreBOS 5.6.0]]
+[[install550|Install coreBOS]]\\
+
+=== Obsolete install procedures ===
   * [[install550|Install coreBOS 5.5.0]]
   * [[install540|Install coreBOS 5.4.0]]
 
