@@ -17,11 +17,16 @@
 *.DS_Store
 *.iml
 .idea/
+# Eclipse IDE
+.buildpath
+.project
+.settings/
+# DokuWiki
+/data/attic/*
 /data/cache/*
 /data/index/*
 /data/locks/*
 /data/tmp/*
-/data/attic/*
 data/media_attic/*
 !/data/pages/wiki/dokuwiki.txt
 !/data/pages/wiki/syntax.txt
