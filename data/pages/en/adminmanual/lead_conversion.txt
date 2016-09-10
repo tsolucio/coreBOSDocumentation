@@ -15,6 +15,58 @@ Once a business opportunity emerges, the Lead can be converted to a Opportunity.
 ====Establish the relation between the fields====
 {{ :en:corebos:leads:mapcf04_plmap.png?680 |}}
 
+====Lead Field Mapping====
+
+In general, the assignment of copying one field from the Lead to another field on another module will be restricted to fields of the same type and smaller length. So you will only be able to map an email field on the Lead to an email field on Accounts, Contacts or Potentials.
+
+There are two exceptions:
+
+  * **text fields**: you will be able to map a text field on Leads to a text field on another module ONLY if the length of the field on Leads is SMALLER than the length of the destination field. If we permitted the contrary you could potentially lose information.
+  * **picklists**: you will be able to map a picklist to another picklist or a text field and there will be NO validation done. It will be your responsibility to assure that:
+    * both picklists have the same values or
+    * the destination text field has enough characters to hold the longest picklist value
+
+=== How to change the length of a text field ===
+
+It is a typical situation to have created two custom fields, one on the Leads module and the other on another module and then want to assign values from one to the other, but it turns out that both fields were created with different sizes and the smaller one is on the destination module, so the application won't permit the mapping.
+
+To solve this situation we have two options.
+
+1.- __Eliminate the destination custom field__ and create it again with the correct size. The problem with this option is that ALL data in the field you are deleting WILL BE LOST. So you can only do this if you still haven't saved any information in that field.
+
+2.- __Change the size of the destination field__ directly in the database. Let's look at how that would be done.
+
+The size of a custom field is saved in two places, the vtiger_field table and the destination module's custom field table, so we have to change it in both places.
+
+First we need to know the name of the field. If you are on a coreBOS release after September 2016 you can go to the field's property box in the layout editor. You will see the name of the column in the title. If not, go to the edit form of the module, right click on the field's input box and look for the "name" property. Let's suppose the field we want to change is called **cf_891**
+
+Open [[https://www.phpmyadmin.net/|phpmyadmin]] or [[https://www.adminer.org|adminer]] to access the coreBOS database. Navigate to the vtiger_field table and search the columnname for the field name we found, cf_891 in our case.
+
+Navigate to the //typeofdata// column. You will see that there is a number there reflecting the size of the field. Let's suppose that our custom text field cf_891 has a length of 10 characters. We will see that the column has this value:
+
+<code>V~O~LE~10</code>
+
+or 
+
+<code>V~M~LE~10</code>
+
+depending on if the field is mandatory or not. That 10 is the first change we need to make. Let's suppose we want to have a length of 20. We will edit the column and set it to:
+
+<code>V~O~LE~20</code>
+
+The row that is found contains the information we need to make the second change. Look in the column //tablename//, there is the name of the table that holds the real value of the field. Let's suppose that our cf_891 custom field belongs to the Accounts module. We will see that the column //tablename// has a value of //vtiger_accountscf//. So we navigate to the vtiger_accountscf table and go to the structure of the table. We will see that the cf_891 has been defined as //VARCHAR(10)//, we must ALTER that definition to //VARCHAR(20)//
+
+Both phpmyadmin and adminer will permit you to do that change in the graphical interface but in the end the necessary SQL will look something like this:
+
+<code SQL>ALTER TABLE vtiger_accountscf CHANGE cf_891 cf_891 varchar(20) NULL</code>
+
+After those two changes you should be able reload the Lead mapping screen and do the assignment you need.
+
+
+
+
+
+
 ===== Controlling Conversion Options =====
 
 Most options in the conversion screen can be configured through the application. The full conversion screen has the options that can be seen in the next image:
