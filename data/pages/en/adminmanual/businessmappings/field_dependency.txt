@@ -1,0 +1,55 @@
+====== Field Dependency Business Mapping ======
+The accepted format is
+<code XML>
+<map> 
+  <name>mymap</name> 
+  <targetmodule> 
+   <targetid>6</targetid> 
+   <targetname>Accounts</targetname> 
+  </targetmodule> 
+  <originmodule> 
+   <originid>6</originid> 
+   <originname>Accounts</originname> 
+  </originmodule> 
+  <fields>
+   <field>
+    <Orgfields> 
+     <Responsiblefield> 
+      <fieldname>obbietivochiamata</fieldname> 
+      <fieldvalue>Welcome Call</fieldvalue> 
+      <comparison>equal</comparison>
+     </Responsiblefield> 
+     .............
+     <Orgfield> 
+      <fieldname>metodopagamento</fieldname> 
+      <fieldaction>show/hide/readonly</fieldaction> 
+      <fieldvalue></fieldvalue> 
+      <mandatory>mandatory</mandatory>
+     </Orgfield> 
+     <ResponsibleMode> 
+      <values>DetailView</values>
+     .............
+     </ResponsibleMode>
+     <ResponsibleRole> 
+      <values>H16</values> 
+     .............
+     </ResponsibleRole>
+     .............
+     <Picklist> 
+      <fieldname>status</fieldname> 
+      <values>OK</values>
+      <values>KO</values>
+     .............
+     </Picklist>
+     .............
+    </Orgfields> 
+   </field>
+  </fields> 
+</map>
+</code>
+
+this type of map permits you to define dependencies between fields in edit mode. In other words ti will permit you to make a field mandatory or not depending on the value selected in a given field, or to change the available values in a picklist depending on the value.
+
+<WRAP center round alert 60%>
+This has not been implemented in the application yet
+</WRAP>

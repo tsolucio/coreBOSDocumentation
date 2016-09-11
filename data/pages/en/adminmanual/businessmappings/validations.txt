@@ -1,0 +1,96 @@
+====== Validation Business Mapping ======
+This type of map will permit you to add different types of validations on the fields of a module.
+
+The accepted format is
+<code XML>
+ <map>
+  <originmodule>
+    <originid>22</originid>  {optional}
+    <originname>SalesOrder</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>subject</fieldname>   {field to validate}
+      <fieldID>999</fieldID>  {optional}
+      <validations>  {if more than one is present they must all pass to accept the value}
+        <validation>
+          <rule>{rule_name}</rule>
+          <restrictions>
+          <restriction>{values depend on the rule}</restriction>
+          </restrictions>
+        </validation>
+        .....
+      </validations>
+    </field>
+    <field>
+     .....
+    </field>
+  </fields>
+</code>
+
+where {rule_name} can be:
+  *required - Required field
+    *restrictions: none
+  *equals - Field must match another field (email/password confirmation)
+    *restrictions: name of the other field
+  *different - Field must be different than another field
+    *restrictions: name of the other field
+  *accepted - Checkbox or Radio must be accepted (yes, on, 1, true)
+    *restrictions: none
+  *numeric - Must be numeric
+    *restrictions: none
+  *integer - Must be integer number
+    *restrictions: none
+  *array - Must be array
+    *restrictions: none
+  *length - String must be certain length
+    *restrictions: number
+  *lengthBetween - String must be between given lengths
+    *restrictions: two restriction of type number
+  *lengthMin - String must be greater than given length
+    *restrictions: number
+  *lengthMax - String must be less than given length
+    *restrictions: number
+  *min - Minimum
+    *restrictions: number
+  *max - Maximum
+    *restrictions: number
+  *in - Performs in_array check on given array values
+    *restrictions: list of values of the array
+  *notIn - Negation of in rule (not in array of values)
+    *restrictions: list of values of the array
+  *ip - Valid IP address
+    *restrictions: IP number
+  *email - Valid email address
+    *restrictions: none
+  *url - Valid URL
+    *restrictions: none
+  *urlActive - Valid URL with active DNS record
+    *restrictions: none
+  *alpha - Alphabetic characters only
+    *restrictions: none
+  *alphaNum - Alphabetic and numeric characters only
+    *restrictions: none
+  *slug - URL slug characters (a-z, 0-9, -, _)
+    *restrictions: none
+  *regex - Field matches given regex pattern
+    *restrictions: regular expression. be careful you may have to put this inside a CDATA
+  *date - Field is a valid date
+    *restrictions: none
+  *dateFormat - Field is a valid date in the given format
+    *restrictions: date format
+  *dateBefore - Field is a valid date and is before the given date
+    *restrictions: date in ISO format
+  *dateAfter - Field is a valid date and is after the given date
+    *restrictions: date in ISO format
+  *contains - Field is a string and contains the given string
+    *restrictions: string
+  *creditCard - Field is a valid credit card number
+    *restrictions: list of accepted credit cards, if none given all supported cards will be checked
+    *supported cards: Visa visa, Mastercard mastercard, Dinersclub dinersclub, American Express amex or Discover discover
+  *IBAN_BankAccount - validate IBAN Bank Account number
+    *restrictions: none
+  *EU_VAT - validate EU VAT number
+    *restrictions: none
+  *notDuplicate - checks that no other record with the same value exists on the given fieldname
+    *restrictions: fieldname
