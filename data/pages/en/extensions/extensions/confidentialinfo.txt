@@ -1,0 +1,123 @@
+~~NOTOC~~
+====== Confidential Information ======
+
+Extension to safely store sensitive information. Data will be encrypted and only accessible by users with the appropriate credentials. The goal of the module is to protect sensitive information both from unauthorized access from within the company and from anybody who could somehow get a hold of our full database, be them ill-intentioned or simply third parties that require access to support or solve problems.
+\\
+---- dataentry ----
+name : tsolucio/Confidential-Information
+type : corebos-module
+description_wiki: Extension to safely store sensitive information. Data will be encrypted and only accessible by users with the appropriate credentials. The goal of the module is to protect sensitive information both from unauthorized access from within the company and from anybody who could somehow get a hold of our full database, be them ill-intentioned or simply third parties that require access to support or solve problems.
+keywords_tags : security,confidential,encription,hide,secure,protect
+version : 1.2
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:confidentialinfo
+release_dt : 2015-11-30
+licenses : Vizsage
+distribution : Free
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : https://github.com/tsolucio/Confidential-Information
+supportforum_url : http://discussions.corebos.org/
+supportsource_url : https://github.com/tsolucio/Confidential-Information
+----
+\\
+
+====== Fields =====
+
+==== Confidential Information ===
+^Field^Type^Values^
+|CI INFO No|autonumber| **Identifier** |
+|CI Reference|string| |
+|CI Related to|relation|Accounts,Contacts |
+|CI Category|picklist|--- Please Select ---,Access Information,Personal Information,Other Information |
+|CI Asset|relation|Assets |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+|Description|text| |
+==== Custom Information ===
+==== Additional Information ===
+====== Confidential Information Module ======
+
+This module is relatd to an account/contact and an asset. You will be able to see the list of associated confidential information records in the +info tab of the related entities.
+
+A Confidential Info record will have two parts:
+  * **Header**
+    * CI Number (link field)
+    * Account/Contact (mandatory)
+    * Asset (optional)
+    * Name, text field for reference
+    * Category, picklist, exclusively for filtering purposes
+    * Description
+    * Created and Modified time
+  * **Rest of fields and blocks**
+    * All the rest of fields that are of text type will be encrypted, (even custom fields). Numbers, percent, currency, reference fields (uitype 10), checkbox, dates and time fields will **NOT** be encrypted as their values would be lost when saving to the database. If you need to encrypt numbers, create a text field and save the number there.
+
+<WRAP center round info 80%>
+Due to current limitations (not able to use MySQLi php extension) we cannot save binary information into the database. This limitation obliges us to encode the encrypted information using plain ascii text and use additional space. That means that if you want to save a 10 character text field you **MUST** create it as (at least) a 20 character text field. I would recommend you make all the text fields as large as possible (255).
+</WRAP>
+
+
+It will not have comments support, nor import/export capabilities.
+
+<WRAP center round info 80%>
+Import could be easily activated but would only be useful in one situation, which is the initial import. If we import sensible information it will be imported in plain text. Once imported we could launch the initial encryption process and it would all be encrypted. After that the import process would not work any more as the information would (again) come in plain while the module expected it to be encrypted.
+</WRAP>
+
+
+It will have an automatic history log, similar to the existing functionality in tickets or potentials.
+
+When trying to access detail or edit view, the user will automatically be prompted for a company wide password. If it is given correctly access will be granted and logged. If not, access will be denied and logged.
+
+Once access has been granted a time count down will start. Once the time has been consumed the browser will be redirected to the Confidential Information list view effectively hiding the information from sight. The length of this timer can be configured in Settings.
+
+If a record is recovered from the **Recycle Bin** it should still be accessible even if the company password was changed in between deleting and recovering.
+
+Internally all the information will be saved encrypted using php mcrypt library. The company password will be saved using sha1 hash and the necessary information vector will be changed each time the password is changed.
+
+In module manager administration tools for the module, you will be able to change the company password. This is a global process that will decrypt ALL the information saved in the module and encrypt them again using the new password and information vector.
+
+Since we are using standard encryption methods and following standards, if somebody does get a hold of your database, it should take them a VERY long time (years) to retrieve the company password necessary to decrypt the stored information, but, as usual with this type of requests and work, it is just as good as the passwords you use. If you decide to use your company name for the company wide password, then it won't take anybody to long to get at the information :-)
+
+===== How it works =====
+
+To use this module, you install it using the module manager, **apply the patch** that can be found in the module's directory and then create the custom fields that you need to save the sets of confidential information you have.
+
+This module **requires php_mcrypt** to be enabled in your PHP configuration as this extension is used to encrypt the information.
+
+Next, you can access the **Change Password** section through module manager:
+
+{{ :en:extensions:extensions:confinfo:cisettings.png |}}
+\\
+{{ :en:extensions:extensions:confinfo:cichgpass.png |}}
+
+Establish the company wide password and you can start using the module as you would with any other module. The difference will be that you will be asked for the company password each time you try to access the detail or edit view. If you give it correctly you will be able to access the information, if not you will not be able to see the information.
+
+===== Recover Information on Lost Password =====
+
+<WRAP center round important 80%>
+If you lose the password you lose your information, there is nothing more to say.
+</WRAP>
+
+
+<WRAP center round important 80%>
+Use this module at your own risk. We have not had any problems (yet), but we should not be held liable for any data loss or other events derived from the use of this module.
+</WRAP>
+
+
+
+===== Future Enhancements =====
+
+Future options to consider in design (not in scope yet)
+
+<WRAP center round important 70%>
+** IMPORTANT **\\ **resume password change**. If the password change is interrupted information will be lost, this must be fixed. The solution is to save the previous decrypt information until the whole process is done and mark each record as processed as they are changed. This way we can continue on non-processed records if something goes wrong without losing information.\\   ** IMPORTANT **\\ If anybody wants to sponsor this contact me
+</WRAP>
+ 
+  * Dual password login (like using SMS as second password)
+  * Access per category/user (so some users only can access category 1 other category 2)
+  * Option to force admin renew password after n-days.
+
+<WRAP center round info 70%>
+With the help and support of [[http://www.objectsolutions.eu|Object Solutions]], Thanks!!
+</WRAP>
