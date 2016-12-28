@@ -1,0 +1,64 @@
+====== ﻿Replacing prototype/scriptaculous with jQuery in coreBOS ======
+
+[[https://andykdocs.de/development/JavaScript/Migrating+from+PrototypeJS+to+jQuery/#3-Events|Reference: Migrating from PrototypeJS to jQuery]]
+
+^Event^Prototype^jQuery^Also recommended for coreBOS^
+|Selecting DOM Elements|<code javascript>$('id')</code>|<code javascript>jQuery("#id")</code>|<code javascript>document.getElementById("id")</code>|
+| |<code javascript>$$(selector)[x]</code>|<code javascript>jQuery(selector).eq(x)</code>| |
+| |<code javascript>$(element).select( selector )</code>|<code javascript>$(element).find( selector )</code>| |
+|GET/SET content|<code javascript>$F('id')</code>|<code javascript>jQuery("#id").val()</code>| |
+| |<code javascript>.innerHTML</code>|<code javascript>.html()</code>|<code javascript>document.getElementById(element).innerHTML</code>|
+| |<code javascript>element.update('new content')</code>|<code javascript>element.html('new content');
+vtlib_executeJavascriptInElement(document.getElementById(element));</code>|<code javascript>document.getElementById(element).innerHTML='new_content';
+vtlib_executeJavascriptInElement(document.getElementById(element));</code>|
+| |<code javascript>.value = x</code>|<code javascript>.val(x)</code>| |
+|Update style|<code javascript>.style.x = 'y'</code>|<code javascript>.css({ x: 'y' })</code>|
+| |<code javascript>.setStyle( style(s) )</code>|<code javascript>.css( propertyName, value )</code>| |
+| |<code javascript>.hasClassName( className )</code>|<code javascript>.hasClass( className )</code>| |
+| |<code javascript>.addClassName( className )</code>|<code javascript>.addClass( className(s) )</code>| |
+|Get/Set Attributes|<code javascript>.checked</code>|<code javascript>.prop('checked')</code>|
+| |<code javascript>disabled</code>|<code javascript>.prop('disabled')</code>| |
+| |<code javascript>.some_attr</code>|<code javascript>.attr('some_attr')</code>| |
+| |<code javascript>.getWidth()</code>|<code javascript>.width()</code>| |
+| |<code javascript>.empty()</code>|<code javascript>.is(':empty')</code>| |
+|Effects|<code javascript>.fade({duration: x})</code>|<code javascript>.fadeOut(x * 1000)</code>|
+| |<code javascript>.appear({duration: x})</code>|<code javascript>.appear({duration: x})</code>| |
+| |Effect.Appear|<code javascript>fadeIn()</code>| |
+| |Effect.Fade|<code javascript>fadeOut()</code>| |
+|Event Handlers|<code javascript>$(element_id).observe("click",
+ function(event){ ... })</code>|<code javascript>jQuery('#'+element_id).bind("click",
+ function(jQueryEvent){ ... })</code>|
+| |<code javascript>document.observe("dom:loaded",
+ function() { ... });</code>|<code javascript>$(document).ready()</code>| |
+| |<code javascript>Event.observe(element, eventName, handler)</code>|<code javascript>$('selector').bind(eventType, handler)</code>| |
+| |<code javascript>Sortable.create("element" {
+constraint:false,
+tag:'div',
+overlap:'Horizontal',
+handle:'headerrow',
+onUpdate:function(){
+// do smth
+}
+})</code>|<code javascript>jQuery("#element").sortabe({
+constraint: false,
+tag: 'div',
+overlap: 'Horizontal',
+handle: '.headerrow',
+update: function () {
+//do smth
+}
+})</code>| |
+|AJAX|<code javascript>new Ajax.Request('index.php', {
+queue : {position : 'end',
+scope : 'command'},
+method : 'post',
+postBody : "urlstring",
+onComplete : function(response) {
+// do smth
+}
+});</code>|<code javascript>jQuery.ajax({
+method: 'POST',
+url:'urlstring',
+}).done(function (response) {
+   //do smth
+});</code>| |

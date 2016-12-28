@@ -1,0 +1,40 @@
+====== Menu Selection ======
+
+coreBOS needs a better, more flexible menu system than what we inherited from vtiger CRM. So we set out to look for some options with some of these goals in mind:
+
+  * Dropdown menu system fully configurable by the user
+  * Multilevel sub-menus
+  * Support for multiple types of menu actions: module, url, separator
+  * Fast loading
+  * CSS based, ideally responsive
+
+[[https://github.com/SkeLa-|SkeLa-]] has contributed three menu options for coreBOS. One based on KendoUI, anther based on JQuery and another based on pure HTML5/CSS following [[https://www.lightningdesignsystem.com|Lightning Design System]] guidelines.
+
+I evaluated all three options and decided to incorporate the Lightning Design System menu. There were basically three main reasons for this decision:
+
+  - I really like how it looks: clean, simple, professional. LDS guidelines in general are VERY sane, very well thought out and I would like to recommend them in the whole application in due time, so seeing this menu system enforced my position on this point.
+  - I am currently in a mind set to stay away from libraries. I want to use pure HTML5, CSS and Javascript wherever possible
+  - Load timing. Being pure HTML5/CSS this menu just wins hands down on the other two.
+
+** time in miliseconds to load the menu**
+
+^ ^ jquery ^ LDS (1) ^ KendoUI ^ LDS (2) ^
+| |108,8|38,55|425,5|59,3|
+| |73,3|15,05|413,5|20,6|
+| |42,5|66,14|384,5|35,9|
+| |72,9|43,84|436,8|14,46|
+| |58|44,94|399,5|39,47|
+| |92|35,58|413,2|13,7|
+| |84,36|12,83|511,1|43,7|
+| |38,97|36,24|408,5|24,7|
+| |135,28|27,9|415,2|20,3|
+| |96,46|59,46|438,3|51,34|
+|**Total:**|802,57|380,53|4246,1|323,47|
+|**Average:**|80,257|**38,053**|424,61|**32,347**|
+
+
+So, as of the end of December 2016, coreBOS now has an advanced menu system based on Lightning Design System.
+
+<WRAP center round box 60%>
+Thank you [[https://github.com/SkeLa-|SkeLa-]]!
+</WRAP>
