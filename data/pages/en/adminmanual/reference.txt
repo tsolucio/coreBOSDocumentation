@@ -26,8 +26,7 @@
 ===== Communication Templates =====
 
   * [[en:adminmanual:mailmerge|Mail Merge]]
-  * [[en:adminmanual:notifications|Notification Schedulers]]
-  * [[en:adminmanual:inventorynotifications|Inventory Notifications]]
+  * [[en:adminmanual:emailssent|Emails Sent by the application]]
   * [[en:adminmanual:emailtemplates|E-mail Templates]]
   * [[en:adminmanual:companydetails|Company Details]]
 
@@ -36,16 +35,12 @@
 
   * [[en:adminmanual:currencies|Currencies]]
   * [[en:adminmanual:taxcalculations|Tax Calculations]]
-  * [[en:adminmanual:proxyserver|Proxy Server]]
   * [[en:adminmanual:outgoingserver|Outgoing Server]]
-  * [[en:adminmanual:Announcements|Announcements]]
   * [[en:adminmanual:backupserver|Backup Server]]
-  * [[en:adminmanual:moduleview|Default Module View]]
   * [[en:adminmanual:termsconditions|Inventory : Terms & Conditions]]
   * [[en:adminmanual:recordnumbering|Customize Record Numbering]]
   * [[en:adminmanual:mailconverter|Mail Converter]]
   * [[en:adminmanual:workflows|Workflows]]
-  * [[en:adminmanual:configeditor|Configuration Editor]]
   * [[en:adminmanual:modtracker|ModTracker]]
   * [[en:adminmanual:scheduler|Scheduler]]
   * [[en:adminmanual:vtcustomerportal|vtiger CRM Customer Portal]]

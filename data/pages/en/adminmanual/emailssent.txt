@@ -1,0 +1,132 @@
+====== Emails Sent by the application ======
+
+====vtigercron: scheduler ====
+
+^Service|**Send Reminder**|
+^Purpose|Send an email to remind of an upcoming activity. Send Reminder check box must be marked on the event.|
+^From address|Depends on workflow configuration|
+^Template|Workflow: Send Reminder Template. You can adapt and adjust the template and tasks in the workflow, for example, sending different translated messages to the assigned user depending on his language settings.|
+^Sent to|Depends on workflow configuration. By default to assigned and invited users. Not sent to contacts nor accounts.|
+^Note|This workflow is a special system workflow that is launched independently from all the other workflows.|
+
+^Service|**Scheduled Report**|
+^Purpose|Generate a report and send it by email.|
+^From address|From Email field in Outgoing Server Configuration|
+^Template|Hardcoded. Translatable.|
+^Sent to|CRM Users selected when scheduling the report. Not sent to contacts nor accounts.|
+
+^Service|**Scheduled Import**|
+^Purpose|Send email informing on the result of a scheduled import.|
+^From address|From Email field in Outgoing Server Configuration|
+^Template|Hardcoded. **NOT** Translatable.|
+^Sent to|CRM User who launched the import. Not sent to contacts nor accounts.|
+
+^Service|**Workflow**|
+^Purpose|Multiple and varied.|
+^From address|Depends on workflow configuration|
+^Template|Template based in the workflow editor.|
+^Sent to|Many. Depending on email workflow configuration|
+
+^Service|**Workflow: Send Email to user when Notifyowner is True**|
+^Purpose|Send an email on account/contact creation when the Notify Owner field is true.|
+^From address|Depends on workflow configurationl|
+^Template|Template based in the workflow editor.|
+^Sent to|User assigned to the account/contact. Not sent to account nor contact.|
+
+^Service|**Workflow: Send Email to users on Potential creation**|
+^Purpose|Send an email on creation of opportunity.|
+^From address|Depends on workflow configuration|
+^Template|Template based in the workflow editor.|
+^Sent to|User assigned to the opportunity|
+
+^Service|**Workflow: Send Email to user when Portal User is True**|
+^Purpose|Send an email on Portal User (contact) activation to the user assigned to the Contact, this is NOT the portal access details email.|
+^From address|Depends on workflow configuration|
+^Template|Template based in the workflow editor.|
+^Sent to|User assigned to the contact|
+
+^Service|**Workflow: Contact Creation or Modification**|
+^Purpose|Send email with **Portal User (contact) access details** to Contact.|
+^From address|email of the user activating the portal access|
+^Template|Template from email templates.|
+^Sent to|Contact being activated|
+
+----
+
+<WRAP center round info 60%>
+[[en:helpdesk:notificationemails|See the specific HelpDesk email notification section]]
+</WRAP>
+
+^Service|**Workflow: Ticket Created from Portal**|
+^Purpose|Email confirmation of ticket creation from customer portal.|
+^From address|email of the contact creating ticket|
+^Template|Hard coded. Translatable.|
+^Sent to|Contact creating ticket and User assigned to the ticket|
+
+^Service|**Workflow: Ticket Updated from Portal**|
+^Purpose|Email confirmation of ticket comment/update from customer portal.|
+^From address|email of the contact creating ticket|
+^Template|Hard coded. Translatable.|
+^Sent to|User assigned to the ticket|
+
+^Service|**Workflow: Ticket Change, not from the Portal**|
+^Purpose|Email confirmation of ticket comment/update from vtiger CRM.|
+^From address|$HELPDESK_SUPPORT_EMAIL_ID|
+^Template|Hard coded. Translatable.|
+^Sent to|Contact related to the ticket and User assigned to the ticket|
+
+
+----
+
+
+^Service|**Workflow: Events when Send Notification is True**|
+^Purpose|Send an email on creation of calendar event that has the "Send Notification" check box marked|
+^From address|Depends on workflow configuration|
+^Template|Template based in the workflow editor.|
+^Sent to|User assigned to the event|
+
+^Service|**Workflow: Calendar Todos when Send Notification is True**|
+^Purpose|Send an email on creation of calendar todos that has the "Send Notification" check box marked|
+^From address|Depends on workflow configuration|
+^Template|Template based in the workflow editor.|
+^Sent to|User assigned to the event|
+
+^Service|**Calendar Send Invitation**|
+^Purpose|Send email inviting other CRM users to an event.|
+^From address|Depends on workflow configuration|
+^Template|Workflow|
+^Sent to|Users invited on event|
+
+^Service|**Test email to admin user on outgoing server configuration**|
+^Purpose|Send email confirming correct configuration of the outgoing server.|
+^From address|email of the admin user|
+^Template|Hard coded.|
+^Sent to|admin user|
+
+^Service|**Login details for user on creation**|
+^Purpose|Send email with login details of a user being created.|
+^From address|email of the admin user|
+^Template|Hard coded. Translatable.|
+^Sent to|new user being created|
+
+^Service|**send_mail_for_password**|
+^Purpose|Send email with password to contact trying to recover Customer Portal lost password.|
+^From address|email of the user assigned to the Contact|
+^Template|Hard coded. Translatable.|
+^Sent to|Contact trying to recover his password|
+
+^Service|**Notify when a task is delayed beyond 24 hrs**|
+^Purpose|Notify task user that a task was due yesterday.|
+^Template|workflow|
+
+^Service|**Product Support Starting and Ending**|
+^Purpose|Notify product handler that support for a given product is starting or ending.|
+^Template|workflow|
+
+^Service|**Client End Support Notification 1 month**|
+^Purpose|Notify contact that their customer portal access is due to expire in a month.|
+^Template|workflow|
+
+^Service|**Client End Support Notification 1 week**|
+^Purpose|Notify contact that their customer portal access is due to expire in a week.|
+^Template|workflow|
