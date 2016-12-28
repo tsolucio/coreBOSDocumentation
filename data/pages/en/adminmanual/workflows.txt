@@ -20,6 +20,7 @@ In the next sections you will be able to find more information on these steps.
   * [[..:addeltag_workflows|Add/Delete Tags Workflow Tasks]]
   * [[..:relateproductservice_workflow|Related Product/Service Workflow Task]]
   * [[..:invokecustomfunction_workflows|Invoke Custom Functions Workflow Tasks]]
+  * [[en:smsnotifier#sms_task_with_work_flow|SMS Workflow Tasks]]
 
 ===== Workflow Examples =====
   * [[..:workflow_examples|Workflow Examples]]
