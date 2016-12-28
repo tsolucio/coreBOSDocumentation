@@ -18,3 +18,8 @@
 1420625444	80.35.20.79	E	en:devel:corebos_hooks:popup_open_hook	joebordes	[Example: basic search] 	
 1420625490	80.35.20.79	E	en:devel:corebos_hooks:popup_open_hook	joebordes	[Example: advanced search] 	
 1420625514	80.35.20.79	E	en:devel:corebos_hooks:popup_open_hook	joebordes	[insert the javascript file (HEADERSCRIPT)] 	
+1445705385	127.0.0.1	E	en:devel:corebos_hooks:popup_open_hook		external edit		0
+1478602707	95.60.145.18	E	en:devel:corebos_hooks:popup_open_hook	joebordes	[Restrictions] 		160
+1478602725	95.60.145.18	E	en:devel:corebos_hooks:popup_open_hook	joebordes	[Warnings] 		24
+1478602737	95.60.145.18	E	en:devel:corebos_hooks:popup_open_hook	joebordes	[Warnings] 		1
+1478602824	95.60.145.18	E	en:devel:corebos_hooks:popup_open_hook	joebordes	[Warnings] 		162

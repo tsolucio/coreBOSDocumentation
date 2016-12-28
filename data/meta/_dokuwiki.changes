@@ -1,42 +1,31 @@
-1472934955	188.85.143.210	E	en:convertir_precontacto	joebordes		
-1472934990	188.85.143.210	E	en:convertir_precontacto	joebordes		
-1472935004	188.85.143.210	E	en:adminmanual:lead_conversion	joebordes	[Controlling Conversion Options] 	
-1472935080	188.85.143.210	E	en:helpdesk	joebordes		
-1472936040	188.85.143.210	C	en:helpdesk:notificationemails	joebordes	created	
-1472936071	188.85.143.210	E	en:helpdesk:notificationemails	joebordes		
-1472936660	188.85.143.210	E	en:helpdesk:notificationemails	joebordes		
-1472936727	188.85.143.210	E	en:helpdesk:notificationemails	joebordes		
-1472936744	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
-1472936770	188.85.143.210	E	en:helpdesk:notificationemails	joebordes		
-1472937873	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
-1472938377	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
-1472938409	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
-1472938428	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
-1472939025	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
-1472939243	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketCreation] 	
-1472940469	188.85.143.210	C	en:email_workflows	joebordes	created	
-1472940918	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketComment] 	
-1472940978	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOnPortalTicketComment] 	
-1472941060	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
-1472944749	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
-1472944968	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
-1472945204	188.85.143.210	E	en:helpdesk:notificationemails	joebordes		
-1472945810	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyParentOnTicketChange] 	
-1472946920	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyParentOnTicketChange] 	
-1472948411	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyParentOnTicketChange] 	
-1472948487	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
-1472989164	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyParentOnTicketChange] 	
-1472989319	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Conclusion] 	
-1473001705	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Conclusion] 	
-1473002374	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyParentOnTicketChange] 	
-1473002727	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
-1473002765	188.85.143.210	E	en:helpdesk:notificationemails	joebordes	[Substituting NotifyOwnerOnTicketChange] 	
-1473005149	188.85.143.210	E	en:email_workflows	joebordes	[Comments] 	
-1473005611	188.85.143.210	E	en:email_workflows	joebordes		
-1473005755	188.85.143.210	E	en:email_workflows	joebordes	[Comments] 	
-1473006026	188.85.143.210	E	en:email_workflows	joebordes	[Comments] 	
-1473006218	188.85.143.210	E	en:email_workflows	joebordes		
-1473006280	188.85.143.210	E	en:email_workflows	joebordes		
-1473006336	188.85.143.210	E	en:email_workflows	joebordes		
-1473404449	80.35.20.79	E	es:start	omar		
-1473404473	80.35.20.79	E	en:start	omar		
+1479118470	95.60.145.18	E	en:adminmanual:emailssent	joebordes			-9
+1479118567	95.60.145.18	E	en:adminmanual:emailssent	joebordes			-421
+1479729918	80.35.20.79	E	en:devel:uitypes	joebordes			-86
+1480939757	80.35.20.79	E	en:devel:develtutorials	joebordes			94
+1480940643	80.35.20.79	C	en:devel:corebos_menufilter	joebordes	created		8274
+1480940753	80.35.20.79	E	en:devel:corebos_menufilter	joebordes			47
+1480940862	80.35.20.79	E	en:devel:corebos_menufilter	joebordes			69
+1480940991	80.35.20.79	E	en:devel:corebos_menufilter	joebordes			-16
+1480941201	80.35.20.79	E	en:devel:corebos_menufilter	joebordes			0
+1480941259	80.35.20.79	E	en:devel:corebos_menufilter	joebordes			1
+1480941631	80.35.20.79	E	en:devel:corebos_menufilter	joebordes			93
+1481630370	80.35.20.79	E	en:devel:corebos_menufilter	joebordes			-40
+1481926059	95.60.145.18	E	en:devel:packaging	joebordes	[Release Numbers] 		0
+1481926138	95.60.145.18	E	en:devel	joebordes	[Technical Articles] 		47
+1481927030	95.60.145.18	C	en:devel:menuselection	joebordes	created		1474
+1481927241	95.60.145.18	E	en:devel:menuselection	joebordes			429
+1481927266	95.60.145.18	E	en:devel:menuselection	joebordes			1
+1481927277	95.60.145.18	E	en:devel:menuselection	joebordes			1
+1481927313	95.60.145.18	E	en:devel:menuselection	joebordes			8
+1481927471	95.60.145.18	E	en:devel:menuselection	joebordes			3
+1445705385	127.0.0.1	E	en:usermanual		external edit		0
+1482948982	95.60.145.18	E	en:usermanual	joebordes			32
+1482950096	95.60.145.18	C	en:smsnotifier	joebordes	created		3940
+1482950117	95.60.145.18	E	en:smsnotifier	joebordes			-2
+1482950136	95.60.145.18	E	en:smsnotifier	joebordes	[SMS Server Configuration] 		-5
+1482950148	95.60.145.18	E	en:smsnotifier	joebordes	[SMS Server Configuration] 		1
+1482950213	95.60.145.18	E	en:smsnotifier	joebordes	[Writing Custom Providers] 		-2
+1473465671	127.0.0.1	E	en:adminmanual:workflows		external edit		0
+1482950338	95.60.145.18	E	en:adminmanual:workflows	joebordes	[Workflow Tasks] 		66
+1482950412	95.60.145.18	E	en:devel:develtutorials	joebordes			77
+1482950796	95.60.145.18	E	en:smsnotifier	joebordes	[Currently supported Providers] 		46
