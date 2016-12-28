@@ -1,4 +1,26 @@
 ====== Global Variables ======
 
+The Global Variables module permits us to customize the functionality of the application in a very easy way. The basic idea is that when we are programming something and need to establish a value or a decision, we create a global variable with a default value and use the result. So now any user can set the global variable to another value and effectively modify the program logic without having to modify the code. A really powerful and easy extension.
+ 
+The order Global Variables use as priority is:
+
+  * First it looks for a GV marked as 'mandatory'.
+  * If none is found, it'll look for one assigned to the current user.
+  * If none is found, it'll look for the group of the current user.
+  * Finally, it'll look for one that's marked as 'default'
+  * If no GV was set, default system behaviour will take place.
+
+
+===== Example =====
+Let's suppose I needed the invoice creation to leave the status of the related sales order alone. So I set my Global Variable up like this:
+
+  * I chose "SalesOrderStatusOnInvoiceChange" from the "name" dropdown. That handles this specific case.
+  * As a value I entered "DoNotChange", which is a special value the system checks for.
+  * I checked the 'mandatory' box.
+  * I chose "Module Functionality" from the 'Category' dropdown.
+
+You could also set a different value if you do want the SalesOrder status to change, but not to "Approved".
+
+
 ===== Fields =====
   * Blocked: this field is simply for grouping certain variables together, it has no logic nor process associated. The use case this field was created for was for the admin user to be able to hide it in all profiles or not permit editing of the field so he can use it to group certain important variables together. Once those variables are ticked we can easily create a filter or search on the field so we can find them quickly.

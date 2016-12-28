@@ -65,3 +65,13 @@ In the above examples:
 
   *M; Indicates Mandatory field 
   *O; Indicates Optional field
+
+===== Mass Edit =====
+  * 0 is blocked non editable, it cannot be activated in layout editor
+  * 1 is mass editable
+  * 2 is disabled mass editable but can be enabled in layout editor
+
+===== Presence =====
+  * 0 always active, cannot be modified in layout editor
+  * 1 inactive
+  * 2 active and editable

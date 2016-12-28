@@ -1,6 +1,6 @@
 ====== License Woes ======
 
-  * [[https://www.vtiger.com/vtiger-public-license-1-1/|Vtiger Public License Version 1.1]]  [[en:devel:vpl11|VPL 1.1 (local copy for future reference)]]
+  * [[en:devel:vpl11|Vtiger Public License Version 1.1]]
   * [[http://www.mozilla.org/MPL/1.1/annotated/|MPL 1.1 Annotated]]
     * We believe wholeheartedly in the benefits of open source development, but not everyone does. Some people or groups may try to take advantage of the work of open source development through claims of patent infringement. This is unfortunate, but it is also reality. We suggest that you be aware of the intellectual property implications of what you are working on to protect yourself and others from falling afoul of someone else's patent.
   * [[http://www.eionet.europa.eu/software/licenseexplained.html|MPL Explained]]
@@ -15,6 +15,7 @@
     * In this case, Section 3.3 of the MPL permits the individual files to be distributed as part of the Larger Work, with no further changes required. The developer may simply leave the file untouched, with all notices intact.
   * [[http://www.tomhull.com/ocston/docs/mozgpl.html|MPL / GPL Incompatibility]]
   * [[http://opensource.org|OSI]]
+  * [[en:devel:vizsage|Vizsage License]]
 
 {{:devel:vpl1.1_definitions.png?450|VPL 1.1 Definitions}}
 

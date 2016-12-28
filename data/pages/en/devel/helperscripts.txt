@@ -10,6 +10,12 @@ This is an example script to show how you can add an action link in the right pa
 This is an example script to show how to associated a workflow custom method to a module. You can [[en:devel:addworkflowfunction|read more about it here.]]
 
 ===== addModComments.php =====
+
+<WRAP center round info 75%>
+This is not needed anymore, you can now go to Settings > Module Manager > ModComments > Settings and activate it there.
+</WRAP>
+
+
 This script adds the comment functionality to any module. Copy it to the root of your install and execute in the browser with the module name you want to have the feature:
 
 <code>http://your_server/your_corebos/addModComments.php?modulename=Timecontrol</code>
@@ -47,3 +53,13 @@ This script is a copy of the installmodule.php script specifically tailored to i
 Script that creates 100 records and then deletes them. We use this one to test time impact of the optimization changes we make :-)
 
 <WRAP center round alert 70%>Please do not leave this files in the root of your install. Remember to delete the file when you are finished.</WRAP>
+
+===== dumpdatabase.php and addAuditModtracker.sql =====
+
+The dumpdatabase script will create a mysql dump of your database leaving out the the potentially big tables of audit trail and module tracker. This is very useful when those table get VERY big (as they do on long living installs) both to get a copy of the database to debug some behavior and to make faster backups during the work week leaving a full dump for company low or downtime.
+
+The addAuditModtracker.sql script will create the tables so you can use the database.
+
+<WRAP center round info 80%>
+[[https://github.com/omarllorens|Thank you Omar.]]
+</WRAP>

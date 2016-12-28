@@ -161,7 +161,9 @@ index cf4764d..70a7d83 100755
 {{:en:devel:corebos_hooks:productcaptureonassets.zip|Here is the code above with the patch for products.}}
 </WRAP>
 
-====Restrictions====
+====Warnings====
 <WRAP center round alert 80%>
-For the moment this hook ONLY works for uitype10 fields that point to ONE module. Capture fields that can have various modules for the relation are not supported.
+When a uitype10 field has more than one module to select from the FIRST module in the options list will be called to get the name of the custom function. Since the order of the modules can be changed/established in the database you MUST implement the getvtlib_open_popup_window_function() function in ALL the possible modules or make sure you remember to change the function to the first module if you change the order (which is much harder because you most probably won't remember :-) ).
+
+**As of November 2016**
 </WRAP>

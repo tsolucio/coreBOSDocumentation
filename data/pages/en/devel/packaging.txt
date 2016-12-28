@@ -4,7 +4,7 @@
 
 =====Release Numbers=====
 
-We will follow the convention laid our in the book [[http://producingoss.com|Produccing Open Source Software]] whereas, we will use three number components in the version name:
+We will follow the convention laid out in the book [[http://producingoss.com|Produccing Open Source Software]] whereas, we will use three number components in the version name:
 
 <wrap em>major_number.minor_nomber.micro_number</wrap>
 

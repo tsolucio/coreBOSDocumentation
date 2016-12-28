@@ -11,7 +11,7 @@
 |8|Json array is stored and the value when consumed will be comma separated strings.|
 |9|A single line text field which is used to accept percentage inputs from users. Checks if the input is less than 100 or not and gives and error otherwise. Changes color on selection.|
 |10|To create an input type of 'Linked Entity' wherein a field can be linked to one of the entity from multiple modules (e.g.: Member of field)|
-|11|A single line text field. Has no checks for the validity of input data. Changes color on selection.|
+|11|Phone and fax|
 |12|Email id field which stores the single email id (from email address), when mail is sent from the system|
 |13|A single line text field. Used to take the email-addresses as input from user. Checks for the validity of the entered email and gives an error if it is invalid. Changes color on selection.|
 |14|Time|

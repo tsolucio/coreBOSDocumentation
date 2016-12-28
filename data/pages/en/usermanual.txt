@@ -16,3 +16,4 @@
   * [[calendar|Calendar]]
   * [[reporting|Reporting]]
   * [[productstockcontrol|Product Stock Control]]
+  * [[smsnotifier|SMSNotifier]]

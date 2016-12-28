@@ -19,3 +19,5 @@
   * [[en:devel:corebos_hooks|coreBOS Events, Links and Hooks]]
   * [[en:devel:corebos_rte|How to activate RTE on a module]]
   * [[en:devel:corebos_validation|How to add custom validations to your module]]
+  * [[en:devel:corebos_menufilter|How to filter records on a module based on menu parameter]]
+  * [[en:smsnotifier#writing_custom_providers|Writing custom SMS providers]]
