@@ -33,7 +33,7 @@
 |32|**Reserved** User language dropdown|
 |33|This is a textarea which behaves like a dropdown combo. The values cannot be edited and the selected value is taken as the input. Does not change color on selection.|
 |51|Used to select an account from a popup window.|
-|52|A dropdown combo that accepts input from the value selected in it. The input is the name of handler (like admin, standarduser etc.) for the entity being created.|
+|52,77|A dropdown with a list of current active users. 77 must be named inventorymanager|
 |53|Combination of a dropdown combo and a radiobutton that accepts input from the value selected in the combo. The value of the radiobutton, in turn, decides the values in the combo. The input is the name of the user or group to which an activity is assigned to.|
 |55|This uitype provides a combination of Salutation and Firstname. The Salutation field is a dropdown while the Firstname field is a single line text field which changes its color on selection.|
 |56|A checkbox which takes input in the form of yes or no.|
@@ -42,5 +42,6 @@
 |71|Currency for application usage|
 |72|Currency special for inventory module lines and totals|
 |85|Skype|
+|101|User capture widget. Must be named reports_to|
 |117|Currency picklist. field must be named currency_id|
 |255|In leads and contacts module, last name is mandatory but first name is not. So when first name is disabled for the profile, the salutation gets handled and added for the last name using this uitype.|
