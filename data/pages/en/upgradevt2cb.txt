@@ -28,7 +28,8 @@ you are done! you should be on the latest version of coreBOS
 
   * get a copy of the latest version of coreBOS and copy it into a subdirectory on your server
     * download the code from [[https://github.com/tsolucio/corebos/archive/master.zip|the download button on github]] or MUCH BETTER, clone the repository <code>git clone https://github.com/tsolucio/corebos</code>
-  * access the directory you have copied the code into and press on the "Migrate" button
+  * copy the file install/migratefromvtigercrm.php to the root of your install (where config.inc.php is)
+  * execute the migratefromvtigercrm.php script in your browser
   * follow the instructions
   * go to coreBOS updater
   * click on "Load Updates"
