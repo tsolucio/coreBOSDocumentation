@@ -8,12 +8,21 @@ if(!defined('DOKU_INC')) die();
 require_once 'filePreparer.php';
 
 class namespacePreparer extends filePreparer {
-    function __construct($excludedFiles, $pregOn, $pregOff, $useTitle, $sortPageById, $useIdAndTitle, $sortPageByDate, $sortByCreationDate){
-        parent::__construct($excludedFiles, $pregOn, $pregOff, $useTitle, $sortPageById, $useIdAndTitle, $sortPageByData, $sortByCreationDate);
+    function __construct($excludedFiles, $pregOn, $pregOff, $pregTitleOn, $pregTitleOff, $useTitle, $sortPageById, $useIdAndTitle, $sortPageByDate, $sortByCreationDate){
+        parent::__construct($excludedFiles, $pregOn, $pregOff, $pregTitleOn, $pregTitleOff, $useTitle, $sortPageById, $useIdAndTitle, $sortPageByData, $sortByCreationDate);
     }
 
-    function isFileWanted($file){
-        return ($file['type'] == 'd') && parent::isFileWanted($file);
+    function isFileWanted($file, $useTitle){
+        return $file['type'] == 'd' && parent::isFileWanted($file, $useTitle);
+    }
+
+    function prepareFileTitle(&$ns){
+        $idMainPage = $this->getMainPageId($ns);
+        if ( !is_null($idMainPage) ){
+            $ns['title'] = p_get_first_heading($idMainPage, true);
+        } else {
+            $ns['title'] = null;
+        }
     }
 
     /**
@@ -24,11 +33,9 @@ class namespacePreparer extends filePreparer {
      * @param         $ns  A structure which represents a namespace
      */
     function prepareFile(&$ns){
-        $idMainPage = $this->getMainPageId($ns);
-
-        $ns['title'] = $this->buildTitle($idMainPage, noNS($ns['id']));
+        $ns['nameToDisplay'] = $this->buildNameToDisplay($ns['title'], noNS($ns['id']));
         $ns['id'] = $this->buildIdToLinkTo($idMainPage, $ns['id']);
-        $ns['sort'] = $this->buildSortAttribute($ns['title'], $ns['id'], $ns['mtime']);
+        $ns['sort'] = $this->buildSortAttribute($ns['nameToDisplay'], $ns['id'], $ns['mtime']);
     }
 
     private function getMainPageId($ns){
@@ -37,21 +44,18 @@ class namespacePreparer extends filePreparer {
         return $exist ? $idMainPage : null;
     }
 
-    private function buildTitle($idMainPage, $defaultTitle){
-        if ( ! is_null($idMainPage) ){
-            $title = p_get_first_heading($idMainPage, true);
-            if(!is_null($title)){
-              if($this->useIdAndTitle){
-                return $defaultTitle . " - " . $title;
-              }
+    private function buildNameToDisplay($title, $defaultName){
+        if ( ! is_null($title) ){
+            if($this->useIdAndTitle){
+                return $defaultName . " - " . $title;
+            }
 
-              if($this->useTitle) {
+            if($this->useTitle) {
                 return $title;
-              }
             }
         }
 
-        return $defaultTitle;
+        return $defaultName;
     }
 
     private function buildIdToLinkTo($idMainPage, $currentNsId){
@@ -62,13 +66,13 @@ class namespacePreparer extends filePreparer {
         }
     }
 
-    private function buildSortAttribute($nsTitle, $nsId, $mtime){
+    private function buildSortAttribute($nameToDisplay, $nsId, $mtime){
         if ( $this->sortPageById ){
             return curNS($nsId);
         } else if ( $this->sortPageByDate ){
             return $mtime;
         } else {
-            return $nsTitle;
+            return $nameToDisplay;
         }
     }
 }

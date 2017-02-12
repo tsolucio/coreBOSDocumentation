@@ -8,13 +8,17 @@ if(!defined('DOKU_INC')) die();
 require_once 'filePreparer.php';
 
 class pagePreparer extends filePreparer {
-    function __construct($excludedNs, $excludedFiles, $pregOn, $pregOff, $useTitle, $sortPageById, $useIdAndTitle, $sortPageByDate, $sortByCreationDate){
-        parent::__construct($excludedFiles, $pregOn, $pregOff, $useTitle, $sortPageById, $useIdAndTitle, $sortPageByDate, $sortByCreationDate);
+    function __construct($excludedNs, $excludedFiles, $pregOn, $pregOff, $pregTitleOn, $pregTitleOff, $useTitle, $sortPageById, $useIdAndTitle, $sortPageByDate, $sortByCreationDate){
+        parent::__construct($excludedFiles, $pregOn, $pregOff, $pregTitleOn, $pregTitleOff, $useTitle, $sortPageById, $useIdAndTitle, $sortPageByDate, $sortByCreationDate);
         $this->excludedNs = $excludedNs;
     }
 
-    function isFileWanted($file){
-        return ($file['type'] != 'd') && parent::isFileWanted($file) && $this->passSubNsfilterInRecursiveMode($file);
+    function isFileWanted($file, $useTitle){
+        return ($file['type'] != 'd') && parent::isFileWanted($file, $useTitle) && $this->passSubNsfilterInRecursiveMode($file);
+    }
+
+    function prepareFileTitle(&$file){
+        // Nothing to do: for pages the title is already set
     }
 
     private function passSubNsfilterInRecursiveMode($file){
@@ -27,22 +31,22 @@ class pagePreparer extends filePreparer {
     }
 
     function prepareFile(&$page){
-        $page['title'] = $this->buildTitle($page['title'], $page['id']);
-        $page['sort'] = $this->buildSortAttribute($page['title'], $page['id'], $page['mtime']);
+        $page['nameToDisplay'] = $this->buildNameToDisplay($page['title'], $page['id']);
+        $page['sort'] = $this->buildSortAttribute($page['nameToDisplay'], $page['id'], $page['mtime']);
     }
 
-    private function buildTitle($currentTitle, $pageId){
-        if($this->useIdAndTitle && $currentTitle !== null ){
-          return noNS($pageId) . " - " . $currentTitle;
+    private function buildNameToDisplay($title, $pageId){
+        if($this->useIdAndTitle && $title !== null ){
+          return noNS($pageId) . " - " . $title;
         }
 
-        if(!$this->useTitle || $currentTitle === null) {
+        if(!$this->useTitle || $title === null) {
             return noNS($pageId);
         }
-        return $currentTitle;
+        return $title;
     }
 
-    private function buildSortAttribute($pageTitle, $pageId, $mtime){
+    private function buildSortAttribute($nameToDisplay, $pageId, $mtime){
         if($this->sortPageById) {
             return noNS($pageId);
         } else if ( $this->sortPageByDate ){
@@ -51,7 +55,7 @@ class pagePreparer extends filePreparer {
             $meta = p_get_metadata($pageId);
             return $meta['date']['created'];
         } else {
-            return $pageTitle;
+            return $nameToDisplay;
         }
 
     }

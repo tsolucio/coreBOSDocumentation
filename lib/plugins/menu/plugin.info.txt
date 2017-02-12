@@ -1,0 +1,5 @@
+base  menu
+author Matthias Grimm <matthiasgrimm@users.sourceforge.net>
+date  2013-08-16
+name  Menu Plugin
+url http://dokuwiki.org/plugin:menu
