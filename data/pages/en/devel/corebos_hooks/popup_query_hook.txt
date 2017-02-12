@@ -30,9 +30,46 @@ These four parameters should be all we need to decide what query we need to retu
 
 Let's have a look at how the [[https://github.com/tsolucio/coreBOSAddress|coreBOS Address module]] handles this to restrict the set of address records shown to those of the account and/or contact selected on the invoice.
 
-First it adds a [[en:devel:corebos_hooks:popup_open_hook|pop-up open hook]] in order to capture the accountID and the contactID selected on the invoice and pass them to the pop-up capture code in the URL opening the window. This is similar to adding search conditions, the only difference being that in this case we pass in two variables that the pop-up capture code does not use, they are intended for our custom query method.
+First it adds a [[en:devel:corebos_hooks:popup_open_hook|pop-up open hook]] in order to capture the accountID and the contactID selected on the invoice and pass them to the pop-up capture code in the URL opening the window. This is similar to adding search conditions, the only difference being that in this case we pass in two variables that the pop-up capture code does not use, they are intended for our custom query method. [[https://github.com/tsolucio/coreBOSAddress/blob/master/modules/cbAddress/cbAddress.js#L25|This looks like this]]:
 
-Second it adds the //**getQueryByModuleField()**// method [[https://github.com/tsolucio/coreBOSAddress/blob/master/modules/cbAddress/cbAddress.php#L155|which looks like this]]:
+<code php>
+function cbAddressOpenCapture(fromlink,fldname,MODULE,ID) {
+	var WindowSettings = "width=680,height=602,resizable=0,scrollbars=0,top=150,left=200";
+	var baseURL = "index.php?module=cbAddress&action=Popup&html=Popup_picker&form=vtlibPopupView&forfield="+fldname+"&srcmodule="+MODULE;
+	if (MODULE != 'PurchaseOrder')
+		var accountid = document.getElementsByName("account_id")[0].value;
+	if (MODULE != 'Accounts')
+		var contactid = document.getElementsByName("contact_id")[0].value;
+	switch (MODULE) {
+		case 'Accounts':
+			window.open(baseURL+"&forrecord="+ID+"&acc_id="+ID+"&cbcustompopupinfo=acc_id","vtlibui10",WindowSettings);
+		break;
+		case 'Contacts':
+			window.open(baseURL+"&forrecord="+ID+"&acc_id="+accountid+"&cont_id="+contactid+"&cbcustompopupinfo=acc_id;cont_id","vtlibui10",WindowSettings);
+		break;
+		case 'SalesOrder':
+		case 'Invoice':
+			window.open(baseURL+"&cont_id="+contactid+"&acc_id="+accountid+"&relmod_id="+accountid+"&cbcustompopupinfo=acc_id;cont_id;relmod_id","vtlibui10",WindowSettings);
+		break;
+		case 'Quotes':
+			window.open(baseURL+"&forrecord="+ID+"&acc_id="+accountid+"&cont_id="+contactid+"&relmod_id="+accountid+"&cbcustompopupinfo=acc_id;cont_id;relmod_id","vtlibui10",WindowSettings);
+		break;
+		case 'PurchaseOrder':
+			window.open(baseURL+"&forrecord="+ID+"&cont_id="+contactid+"&relmod_id="+contactid+"&cbcustompopupinfo=cont_id;relmod_id","vtlibui10",WindowSettings);
+		break;
+	}
+}
+</code>
+{{anchor:cbcustompopupinfo:}}
+<WRAP center round important 90%>
+**!! NOTE: VERY IMPORTANT !!**\\
+In the above code there is an extremely important part that could be bypassed easily. It is the additional parameter <wrap hi>cbcustompopupinfo</wrap>. When we use this type of customization instead of the system [[en:devel:corebos_hooks:popup_open_hook|pop-up open hook]] we are artificially sending our own custom parameters to the application. In this case the acc_id, cont_id and relmod_id parameters. Since these parameters are totally unknown to the application they are not passed along to any subsequent request made by the popup screen. Normally there won't be any other requests as the set of records returned will fit on one popup screen and the user will simply select the right one, but if the popup screen has a few pages of records and the user goes to another page, launches a search or simply decides to sort them by some field, our custom parameters **WILL NOT** be sent and the query will fail because it expects these values. In order to inform the application that these values must be respected we have to add the <wrap hi>cbcustompopupinfo</wrap> parameter with a semi-colon separated list of the variable names we need to have sent around.\\
+
+[[https://github.com/omarllorens|Thank you Omar.]]
+</WRAP>
+
+
+Second it adds the //**getQueryByModuleField()**// method [[https://github.com/tsolucio/coreBOSAddress/blob/master/modules/cbAddress/cbAddress.php#L138|which looks like this]]:
 
 <code php>
 	function getQueryByModuleField($module, $fieldname, $srcrecord, $query='') {
