@@ -1,0 +1,43 @@
+~~NOTOC~~
+====== coreBOS Multi-Address ======
+
+Module to manage many addresses related to Accounts and Contacts. You will be able to relate as many addresses as you need to each account/contact and then establish the default billing and shipping address on them and on each individual Quote, SalesOrder, PurchaseOrder and Invoice.
+\\
+---- dataentry ----
+name : tsolucio/coreBOSAddress
+type : corebos-module
+description_wiki: Module to manage many addresses related to Accounts and Contacts. You will be able to relate as many addresses as you need to each account/contact and then establish the default billing and shipping address on them and on each individual Quote, SalesOrder, PurchaseOrder and Invoice.
+keywords_tags : address,multi-address
+version : 1.2
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:corebosaddress
+release_dt : 2015-11-30
+licenses : VPL
+distribution : Free
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : https://github.com/tsolucio/coreBOSAddress
+supportforum_url : http://discussions.corebos.org/
+supportsource_url : https://github.com/tsolucio/coreBOSAddress
+----
+\\
+
+====== Fields =====
+
+==== Address Information ===
+^Field^Type^Values^
+|Address Number|autonumber| **Identifier** |
+|Reference|string| |
+|Street|text| |
+|PO Box|string| |
+|City|string| |
+|State|string| |
+|Postal Code|string| |
+|Country|string| |
+|Assigned To|assigned to| |
+|Created Time|datetime| |
+|Modified Time|datetime| |
+==== Custom Information ===
+==== Description ===
+^Field^Type^Values^
+|Description|text| |
