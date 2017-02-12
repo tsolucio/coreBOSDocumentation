@@ -1,31 +1,142 @@
 ====== How to Contribute ======
 
-<wrap em>Thank you for contributing to coreBOS Open Source project!</wrap>
-
-=====One Time Action=====
-
-  *Sign up for an account on the [[http://corebos.tsolucio.com/development|coreBOS Open Source Ticket Tracking System]].
-  * <del>We match the email address from your CLA to this account.</del>
-  * <del>Fill out a [[en:devel:cla|Contributor License Agreement]]. If your contribution is happening on behalf of a company, they should sign a [[en:devel:cla|Corporate Contributor License Agreement]]</del>
-  * <del>Please complete, sign the form, scan it and [[corebos@tsolucio.com|send it to us via email]]</del>
-  * <del>We'll process it, and send you an introduction email.</del>
-  * <del>You'll then appear as a approved contributor, and be upgraded to a Developer on the Ticket Tracking System: allowing you to modify and transition ticket status.</del>
-
 <wrap hi>We Welcome GitHub Pull Requests</wrap>
 
-=====Individual Contributions=====
+<wrap em>Thank you for contributing to coreBOS Open Source project!</wrap>
 
-  * Fork the project you would like to contribute to on GitHub.
-  * Create a branch to develop your change
-  * [[en:devel:bugreport|Create a ticket]] on the [[http://corebos.tsolucio.com/development|coreBOS Open Source Ticket Tracking System]], providing any useful information on the issue.
+**coreBOS** is a git based open source project. That means that contributing to the project is basically the same as for any other git based project. The workflow applied is [[https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow|Forking Workflow]].
 
-<WRAP center round alert 60%>
-**DO NOT** put any sensitive information like passwords or private URLs
+There are a dozen concepts you need to know to get your head around the initial learning curve.
+ 
+To setup a development install for coreBOS you will need to take these steps
+  * fork the project on GitHub
+  * clone your fork on your local development computer
+  * set the permissions on the files so your user is the owner of all files (so you can edit them normally with your user) and the webserver user is the group (so it can write the files it needs to write to work)
+  * install the project as you would normally
+  * once you can log in, drop to the command line (I am assuming Linux here)
+  * move the renamed install directory and file back to their original place: the directory "install" and the file "install.php" will be renamed after the installation is complete to something like 8432658395801x3fab13af3.42704102intall" for security reasons. Rename them back to their original name
+  * launch git status you should get only three changes tabdata.php, config.inc.php and test/vtlib/HTML/README.txt file that was deleted. I usually leave it at that, those four are always there and I just ignore them. You can recover the deleted file (git checkout test/vtlib/HTML/README.txt) if you want to only see the config.inc.php and tabdata.php files.
+
+Now you are ready to start developing but first some other it comments:
+
+If you see many more files changed it is because git is controlling the files permissions changes and you probably have some differences, these are not important so configure your git to ignore file permissions with this command
+
+<code>
+git config --global core.fileMode false
+</code>
+
+You can also check that the only change on the file is the permissions with 
+
+<code>
+git diff filename
+</code>
+
+and then undo the change with 
+
+<code>
+git checkout filename
+</code>
+
+Another few git configuration changes that come in handy are 
+
+<code>git config --global user.email "bob@example.com"</code>
+
+<code>git config --global user.name "bob example"</code>
+
+<code>git config merge.renameLimit 999999</code>
+
+Now that you can launch a git status and see only the four files indicated above or less we can start the contribution process.
+
+For every change you want to implement you start from the master branch, which is the default branch, you create a new branch, develop want you need, with as many commits and time as you need, when you have it finished, tested and all committed you push it to gihub.
+
+Now go to GitHub and you will see the option to create a Pull Request from your branch. I will get notified, I will study your changes, comment, maybe ask you to make some more changes for which you will need to checkout your branch again and add them there, when you push them, GitHub will update the PR. I will finally accept your changes and incorporate them to the main master branch.
+
+Once that happens you update your fork and your master branch gets the changes so your branch is not needed anymore and you can delete it.
+
+Then you start all over again.
+
+Let's see that explanation in git commands. Let's suppose I have a coreBOS fork on https://github.com/joebordes/corebos and I want to develop a new feature. That would look something like this:
+
+<code>
+cd /var/www
+git clone https://github.com/joebordes/corebos cbjoebordes
+chgrp -R www-data cbjoebordes
+> Install coreBOS
+mv 123456789.install install
+mv 123456789.install.php install.php
+git checkout -b new_feature
+> Develop and test here
+git push
+git checkout master
+> Wait for approval
+> I ask for some additional adjustments
+git checkout new_feature
+> Make change and commit
+git push
+git checkout master
+> I accept your change
+git pull upstream master
+git branch -d new_feature
+> Start all over again
+</code>
+
+Obviously you can have as many branches as you need at the same time, developing many features in parallel.
+
+If you need to update your branch with the latest changes from the main stream master branch you would launch a **merge** command. When you launch the //git branch -b// command to create a new branch that branch starts from the state the master branch is in at that moment. Let's suppose that it takes you a few days to finish your feature and in that time coreBOS has added a few more commits. You need to add these changes to your branch before pushing, to do that we would execute:
+
+<code>
+git checkout master (just to make sure)
+git pull upstream master  (we get the new changes)
+git checkout new_feature
+git merge master
+> Fix conflicts if any appear
+</code>
+
+The new commits are now also in your branch
+
+=====Some last comments=====
+
+====Conflicts: Mergetool====
+
+When doing the pull and merge it is possible that you run into some conflicts. That means that you are changing a file that has changed in the main repository. It is your responsibility to fix that, because you are the one who knows what your changes are about. To make this process easier git has a syntax that helps you, but I usually configure merge tool with [[http://meldmerge.org/|meld]] like this
+
+<code>git config --global merge.tool meld</code>
+
+which gives me a nice graphical interface to resolve conflicts.
+
+==== All installs under git control====
+
+I would recommend you put all your installs under git control, that way moving changes around and keeping them all up to date is extremely easy. For example, let's suppose that I get a new project, a client that wants to make some changes to coreBOS for their particular needs. I Will create a new git repository for them, I will merge in the latest version of coreBOS, at that point my local clone of their repository has two remote repository, their private repository and the GitHub upstream open source project. I start developing and find an error in coreBOS or I see a feature that should be available for everybody, I can cherry-pick the relevant commits or simply develop the changes directly in the open source project and then pull them in to the private repository, this is all just as simple as the work flow I explained above about branching and pull request.
+
+But even more, when this clients starts working with coreBOS, after a few weeks he runs in to an error that we have already fixed in the main stream, it is just as easy to upgrade their private repository with a pull as we did above to update the master branch. Incredibly powerful!
+
+
+====Study git====
+
+Git is much more complex and flexible than what I explain here, but in the end you usually use the same commands over and over. I still recommend dedicating time to studying git but take your time one step at a time, let the concepts sink in it is really a very powerful tool.
+
+There is a lot of documentation and examples on the internet so look there for guidance and also join our [[https://gitter.im/corebos/discuss|gitter group]] where we have close and quick chats about development
+
+<wrap hi>**I look forward to seeing your code!**</wrap>
+
+
+<WRAP center round info 80%>
+We'll test, verify and merge your changes and then close the Pull Request, or get back to you with any comments we may have. Please be patient, our resources are limited.
 </WRAP>
 
-  * Provide instructions on the ticket which GitHub repository and branch should be pulled from, and set the ticket status to "**acknowledged**" when you are complete.
-  * If neccessary [[https://github.com/tsolucio/corebosdocs|create a new issue page in this wiki]] to document the bug, fix and/or feature, and don't forget to add yourself to the [[en:devel:contributors|Contributors page]].
-  * We'll test, verify and merge your changes and then close the ticket, or get back to you with any comments we may have. Please be patient, our resources are limted.
+
+
+=====Contributor License Agreement (CLA)=====
+
+<WRAP center round info 75%>
+We aren't doing this due to the small amount of contributors we have. We SHOULD be doing it though.
+</WRAP>
+
+
+  * Fill out a [[en:devel:cla|Contributor License Agreement]]. If your contribution is happening on behalf of a company, they should sign a [[en:devel:cla|Corporate Contributor License Agreement]]
+  * Please complete, sign the form, scan it and [[corebos@tsolucio.com|send it to us via email]]
+  * We'll process it, and send you an introduction email.
+  * You'll then appear as a approved contributor, and be upgraded to a Developer on the Ticket Tracking System: allowing you to modify and transition ticket status.
 
 
 
