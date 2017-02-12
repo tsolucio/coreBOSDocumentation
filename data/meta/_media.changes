@@ -1,16 +1,3 @@
-1465239109	188.85.196.48	C	en:adminmanual:mailconverter:mailconverterconfigurations.png	joebordes	created	
-1465239398	188.85.196.48	C	en:adminmanual:mailconverter:mailscanner-create-update-ticket-flow_166.jpg	joebordes	created	
-1467558242	46.24.67.135	C	en:corebos:businessmapping:racsentemails.png	joebordes	created	
-1470182447	188.85.143.210	C	en:extensions:extensions:gmp:googlemeasurementprotocol01.png	joebordes	created	
-1470183420	188.85.143.210	C	en:extensions:extensions:gmp:googlemeasurementprotocol02.png	joebordes	created	
-1470183895	188.85.143.210	C	en:extensions:extensions:gmp:googlemeasurementprotocol03.png	joebordes	created	
-1472939107	188.85.143.210	C	en:helpdesk:notificationemails:helpdesk_notifyonportalticketcreation.png	joebordes	created	
-1472940900	188.85.143.210	C	en:helpdesk:notificationemails:helpdesk_notifyonportalticketcomment.png	joebordes	created	
-1472948079	188.85.143.210	C	en:helpdesk:notificationemails:helpdesk_notifyparentonticketchangecreate.png	joebordes	created	
-1472948214	188.85.143.210	C	en:helpdesk:notificationemails:helpdesk_notifyparentonticketchangecreateportal.png	joebordes	created	
-1472948308	188.85.143.210	C	en:helpdesk:notificationemails:helpdesk_notifyparentonticketchangecreatenonportal.png	joebordes	created	
-1473002369	188.85.143.210	C	en:helpdesk:notificationemails:helpdesk_notifyparentonticketchangeupdatenonportal.png	joebordes	created	
-1473006019	188.85.143.210	C	en:helpdesk:notificationemails:workflowemailcommentmetavariablehtmlformatexample.png	joebordes	created	
 1473924220	80.35.20.79	C	en:extensions:extensions:confinfo:cisettings.png	joebordes	created		41545
 1473924220	80.35.20.79	C	en:extensions:extensions:confinfo:cichgpass.png	joebordes	created		59661
 1476650116	188.85.143.210	E	devel:patches:debugemail_corebos.diff	joebordes			-166
@@ -28,3 +15,6 @@
 1482949382	95.60.145.18	C	en:smsnotifier:smsstatus.jpeg	joebordes	created		26088
 1482949382	95.60.145.18	C	en:smsnotifier:workflowmessage.png	joebordes	created		35155
 1482949383	95.60.145.18	C	en:smsnotifier:workflowsmstask.png	joebordes	created		43772
+1484438629	95.60.145.18	C	en:adminmanual:createuserquery.png	joebordes	created		26357
+1484438630	95.60.145.18	C	en:adminmanual:createuserfillin.png	joebordes	created		156345
+1484477488	95.60.145.18	C	en:adminmanual:vtiger-ldap-integration-v1.0.pdf	joebordes	created		245359
