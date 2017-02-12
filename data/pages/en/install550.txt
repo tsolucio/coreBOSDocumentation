@@ -19,10 +19,10 @@ Following extensions should be enabled for your PHP setup
 
 |GD|Mandatory|Charts and graphs generation are dependent on this library.|
 |IMAP|Mandatory|Webmails Module is dependent on this library.|
-|Zlib|Mandatory|
+|Zlib|Mandatory|Used for backups and module packaging among others|
 |**DOM (php-xml)**|Mandatory|**New dependency** For coreBOS Updater|
 |OpenSSL|Optional|Imap with OpenSSL should be enabled in case Mail server needs to be connected via SSL|
-|Curl|Optional|
+|Curl|Optional|This one is optional but really important for any external communications, like SMS, Google Sync or RSS|
 
 ==== PHP Configuration  ====
 

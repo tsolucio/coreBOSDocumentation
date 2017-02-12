@@ -15,10 +15,10 @@
       * if you have others, then you copy their directories
   * edit config.inc.php
     * change the database access to point to the database copy and $site_url and $root_directory accordingly
-  * edit vtigerversion.php and change the version to 5.4
-  * now log in as admin to make sure you are working ok: you can log in and the initial home page appears
+  * <del>edit vtigerversion.php and change the version to 5.4</del>
   * copy build/HelperScripts/installupdater.php to the root of your install and execute it: <code>http://your_server/your_install/installupdater.php</code>
-  * reload the page and go to coreBOS updater
+  * now log in as admin to make sure you are working ok: you can log in and the initial home page appears
+  * go to coreBOS updater
   * click on "Load Updates"
   * click on "Apply All". Note that you may have to do this a few times to get all the changes applied as there are some dependencies. Also there will be some SQL errors because we have a set of changes that cover many different cases and your install is different for sure.
 
