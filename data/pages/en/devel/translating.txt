@@ -41,6 +41,10 @@ Now we can update our code:
 or
 <code>svn up</code>
 
+Next we need a list of all the translation files that have changed. For that we can ask git to show us all the files that have changed since **rorg** and our current state and we pass that through a **grep** to get only the files we are interested in:
+
+<code>git log --name-only rorg.. | grep fr_fr</code>
+
 Now for each reference language file we have to see if it has had any changes. For example, for the file include/language/en_us.lang.php you would execute
 
 <code>git diff -r rorg.. include/language/en_us.lang.php</code>
