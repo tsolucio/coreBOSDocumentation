@@ -1,43 +1,29 @@
-1484414433	95.60.145.18	C	en:adminmanual:users_auth	joebordes	created		156
-1484414485	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[OpenLDAP/Active Directory Authentication] 		26
-1484436152	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[Users Authentication] 		386
-1484438746	95.60.145.18	E	en:adminmanual:users_auth	joebordes			1653
-1484438769	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[LDAP Authentication] 		0
-1484439186	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[Active Directory Authentication] 		3752
-1484439236	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[Active Directory Authentication] 		192
-1484439251	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[Active Directory Authentication] 		4
-1484439353	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[OpenLDAP Authentication] 		1192
-1484439372	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[OpenLDAP Authentication] 		7
-1484439874	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[OpenLDAP Authentication] 		1219
-1484439908	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[Test adLDAPTest adLDAP] 		11
-1484439967	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[Notes and comments] 		2
-1484440005	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[Notes and comments] 		-2
-1484477308	95.60.145.18	E	en:adminmanual:users_auth	joebordes			246
-1484477624	95.60.145.18	E	en:adminmanual:users_auth	joebordes	[Notes and comments] 		239
-1484510305	95.60.145.18	E	en:devel:contribute	joebordes			6179
-1484906643	95.60.145.18	E	en:upgradevt2cb	joebordes			11
-1486021919	95.60.145.18	E	en:devel:contribute	joebordes	[How to Contribute] 		223
-1486025222	95.60.145.18	E	en:devel:contribute	joebordes	[How to Contribute] 		-128
-1473465672	127.0.0.1	E	en:devel:corebos_hooks:popup_query_hook		external edit		0
-1486897150	80.35.20.79	E	en:devel:corebos_hooks:popup_query_hook	joebordes			1564
-1486897255	80.35.20.79	E	en:devel:corebos_hooks:popup_query_hook	joebordes			224
-1486897588	80.35.20.79	E	en:devel:corebos_hooks:popup_query_hook	joebordes			1016
-1486897726	80.35.20.79	E	en:devel:corebos_hooks:popup_query_hook	joebordes			54
-1486902795	95.60.145.18	C	en:extensions:extensions:corebosaddress	joebordes	created		1643
-1486908316	95.60.145.18	E	en:devel:corebos_hooks:popup_query_hook	joebordes			29
-1486908375	95.60.145.18	E	en:devel:corebos_hooks:popup_query_hook	joebordes			27
-1486908405	95.60.145.18	E	en:devel:corebos_hooks:popup_query_hook	joebordes			-27
-1445705385	127.0.0.1	E	en:devel:downloads		external edit		0
-1486909078	95.60.145.18	E	en:devel:downloads	joebordes			8
-1473465671	127.0.0.1	E	en:installupdate		external edit		0
 1486909120	95.60.145.18	E	en:installupdate	joebordes			23
 1486909142	95.60.145.18	E	en:installupdate	joebordes			649
 1486909272	95.60.145.18	D	en:devel:downloads	joebordes	removed		-774
 1486909294	95.60.145.18	E	en:installupdate	joebordes			22
-1445705385	127.0.0.1	E	issuetracker:corebos:issue:208		external edit		0
 1486909449	95.60.145.18	E	issuetracker:corebos:issue:208	joebordes	[Detailed Explanation] 		-153
-1445705385	127.0.0.1	E	en:upgradecb5502cb560		external edit		0
 1486909484	95.60.145.18	D	en:upgradecb5502cb560	joebordes	removed		-683
 1486909514	95.60.145.18	E	en:installupdate	joebordes	[Update] 		-60
 1486909629	95.60.145.18	E	en:installupdate	joebordes	[Update] 		8
 1486909751	95.60.145.18	E	en:upgradevt2cb	joebordes	[Upgrade from vtiger CRM 5.2/5.3 to coreBOS] 		80
+1487166184	80.35.20.79	E	en:extensions:extensions:cbcolorizer	omar			266
+1487528800	95.60.145.18	E	en:devel:debuging	joebordes	[Email] 		1425
+1488017615	95.60.145.18	E	en:devel:uitypes	joebordes			239
+1488018027	95.60.145.18	E	en:devel:uitypes	joebordes			571
+1488018589	95.60.145.18	E	en:devel:uitypes	joebordes	[Steps to add a new uitype] 		89
+1488019510	95.60.145.18	E	en:devel:uitypes	joebordes	[Steps to add a new uitype] 		-7
+1488019593	95.60.145.18	E	en:devel:uitypes	joebordes	[Steps to add a new uitype] 		49
+1488020188	95.60.145.18	E	en:devel:uitypes	joebordes	[Steps to add a new uitype] 		267
+1488020494	95.60.145.18	E	en:devel:uitypes	joebordes	[Steps to add a new uitype] 		169
+1488020569	95.60.145.18	E	en:devel:uitypes	joebordes	[Steps to add a new uitype] 		105
+1490607660	95.60.145.18	E	en:devel:translating	joebordes	[Translating using version control system (GIT)] 		307
+1493109420	95.60.145.18	C	en:adminmanual:businessmappings:store:contact2accounts	joebordes	↷ Page moved from en:adminmanual:businessmappings:contact2accounts to en:adminmanual:businessmappings:store:contact2accounts		6581
+1473465670	127.0.0.1	E	en:adminmanual:businessmappings:contact2accounts		external edit		6581
+1493109420	95.60.145.18	D	en:adminmanual:businessmappings:contact2accounts	joebordes	↷ Page moved from en:adminmanual:businessmappings:contact2accounts to en:adminmanual:businessmappings:store:contact2accounts		-6581
+1493109421	95.60.145.18	e	en:adminmanual:businessmappings:mapping	joebordes	↷ Links adapted because of a move operation		6
+1493109466	95.60.145.18	C	en:adminmanual:businessmappings:store:invoice2cobropagoamountdue	joebordes	↷ Page moved from en:adminmanual:businessmappings:invoice2cobropagoamountdue to en:adminmanual:businessmappings:store:invoice2cobropagoamountdue		1282
+1473465670	127.0.0.1	E	en:adminmanual:businessmappings:invoice2cobropagoamountdue		external edit		1282
+1493109467	95.60.145.18	D	en:adminmanual:businessmappings:invoice2cobropagoamountdue	joebordes	↷ Page moved from en:adminmanual:businessmappings:invoice2cobropagoamountdue to en:adminmanual:businessmappings:store:invoice2cobropagoamountdue		-1282
+1493109863	95.60.145.18	C	en:adminmanual:businessmappings:store:businessmap_helpdesk2salesorder	joebordes	created		3780
+1493109904	95.60.145.18	E	en:adminmanual:businessmappings:store:businessmap_helpdesk2salesorder	joebordes			2
