@@ -1,0 +1,23 @@
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1493109863;s:8:"modified";i:1493109904;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1493109904;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"E";s:2:"id";s:69:"en:adminmanual:businessmappings:store:businessmap_helpdesk2salesorder";s:4:"user";s:9:"joebordes";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:2;}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}s:5:"title";s:38:"Business Mapping:: HelpDesk2SalesOrder";s:11:"description";a:2:{s:15:"tableofcontents";a:1:{i:0;a:4:{s:3:"hid";s:35:"business_mappinghelpdesk2salesorder";s:5:"title";s:38:"Business Mapping:: HelpDesk2SalesOrder";s:4:"type";s:2:"ul";s:5:"level";i:1;}}s:8:"abstract";s:503:"Business Mapping:: HelpDesk2SalesOrder
+
+If you create a direct (1:M) relation between HelpDesk and SalesOrder, this mapping created by Luke will fill in some fields on the SalesOrder
+
+
+
+
+
+
+<map>
+  <originmodule>
+    <originid>13</originid>
+    <originname>HelpDesk</originname>
+  </originmodule>
+  <targetmodule>
+    <targetid>22</targetid>
+    <targetname>SalesOrder</targetname>
+  </targetmodule>
+  <fields>
+    <field>
+      <fieldname>subject</fieldname>
+      <fieldID>370</fieldID>
+      <Orgfi…";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:0;}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1493109863;s:8:"modified";i:1493109904;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1493109904;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"E";s:2:"id";s:69:"en:adminmanual:businessmappings:store:businessmap_helpdesk2salesorder";s:4:"user";s:9:"joebordes";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:2;}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}}}

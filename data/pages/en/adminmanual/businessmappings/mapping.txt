@@ -199,7 +199,7 @@ Another example for User default values:
 </fields>
 </map>
 </code> 
-You can [[en:adminmanual:businessmappings:contact2accounts|see an example of converting a Contact into an Account in the Business Mapping Store]].
+You can [[en:adminmanual:businessmappings:store:contact2accounts|see an example of converting a Contact into an Account in the Business Mapping Store]].
 
 And there is an explanation and [[http://discussions.corebos.org/thread-338-post-1723.html#pid1723|small example of Invoice default values here.]]
 
