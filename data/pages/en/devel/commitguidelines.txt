@@ -2,7 +2,7 @@
 
 [[https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/mobilebasic?pli=1|AngularJS Git Commit Message Conventions]]
 
-<code><type>(<scope>): <subject></code>
+<code><type>(<scope>) <subject></code>
   * Any line of the commit message cannot be longer 100 characters! This allows the message to be easier to read on github as well as in various git tools.
   * Allowed **<type>**
     * **feat**: feature

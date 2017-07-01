@@ -2,7 +2,7 @@
 
 =====PHP=====
 
-  * Turn on log4php.debug library usage, in file config.performance.php <code>'LOG4PHP_DEBUG' => true,</code>
+  * Turn on log4php.debug library usage, in file config.inc.php <code>'LOG4PHP_DEBUG' => true,</code>
   * Set the log level, in file log4php.properties <code>log4php.rootLogger = DEBUG, A1</code>
   * The log files will be written in the **logs** directory. For the rootLogger it will be logs/vtigercrm.log
 <WRAP center round important 70%>
