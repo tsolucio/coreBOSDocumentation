@@ -1,6 +1,12 @@
-====== Envio de correo Gmail desde coreBOS ======
+====== Envio de correos desde coreBOS utilizando una cuenta de Gmail======
 
-Hay una opción de configuración en Gmail para poder enviar desde coreBOS.
+Para poder utilizar una cuenta de correo de GMail como servidor de correo saliente en coreBOS hay que realizar unas configuraciones en google.
+
+Existen dos posibilidades.
+
+Si tienes activado la autentificación a dos niveles en tu cuenta, tienes que crear una clave de aplicación igual que has hecho para los otros programas como Thunderbird u Outlook.
+
+Si no tienes activado esa opción de seguridad, tienes que activar la opción de acceso de aplicaciones menos seguras como se describe a continuación.
 
 Entra en tu cuenta de Gmail:
 
@@ -10,7 +16,7 @@ En la pantalla a la que accedes, has de ir a la opción "Inicio de sesión en Go
 
 {{:es:adminmanual:outgoingservergmail:app_seguras_01.jpg?800|}}
 
-En la siguiente pantalla, debes buscar hacia el final de la página la opción "Permitir el acceso de aplicaciones menos seguras"
+En la siguiente pantalla, debes buscar, hacia el final de la página, la opción "Permitir el acceso de aplicaciones menos seguras"
 
 {{:es:adminmanual:outgoingservergmail:app_seguras_02.jpg?800|}}
 
@@ -19,7 +25,7 @@ Y establecer el valor a **SI**.
 
 {{:es:adminmanual:outgoingservergmail:app_seguras_03.jpg?800|}}
 
-Con esto ya debería dejar enviar correo a través de coreBOS.
+Con esto ya debería dejar enviar correo desde dentro de tu coreBOS.
 
 ===== La configuración en coreBOS ha de ser: =====
 
