@@ -1,3 +1,12 @@
+
+<WRAP center round alert 100%>
+THIS EXTENSION DOES NOT EXIST ANYMORE!
+
+It has been made obsolete by the [[en:adminmanual:globalvariables|Global Variables module]] and has been eliminated.
+
+We leave the previous explanation below as a historical reference.
+</WRAP>
+
 ====== Configuration Editor ======
 
 The **Configuration Editor** extension permits us to edit global configuration variables to adjust the functionality of our application.
@@ -37,9 +46,3 @@ The available variables are:
 There are more fine tuning variables available directly in the //config.inc.php// file and also in //config.performance.php//
 </WRAP>
 
-===== Adding new variables =====
-
-To add a new variable to the list we must do three things:
-  - add the variable to the //config.inc.php// file (and also //config.templat.php// if we plan to distribute the application as an installable with the new variable)
-  - add the variable to //modules/ConfigEditor/config.php// in the array element //$__ConfigEditor_Config['allow.editing.variables']//
-  - add the translations to the //modules/ConfigEditor/language// files

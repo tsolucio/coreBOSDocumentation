@@ -2,13 +2,14 @@
 
 The Global Variables module permits us to customize the functionality of the application in a very easy way. The basic idea is that when we are programming something and need to establish a value or a decision, we create a global variable with a default value and use the result. So now any user can set the global variable to another value and effectively modify the program logic without having to modify the code. A really powerful and easy extension.
  
-The order Global Variables use as priority is:
+The order Global Variables use to return a value is:
 
   * First it looks for a GV marked as 'mandatory'.
   * If none is found, it'll look for one assigned to the current user.
-  * If none is found, it'll look for the group of the current user.
-  * Finally, it'll look for one that's marked as 'default'
-  * If no GV was set, default system behaviour will take place.
+  * If none is found, it'll look for one assigned to the group of the current user.
+  * Finally, it'll look for one that's marked as 'default'.
+  * If no GV was set, the default system behaviour will take place.
+  * Additionally the previous searches will take into considertion the checkbox 'In Module List'
 
 
 ===== Example =====
@@ -23,4 +24,61 @@ You could also set a different value if you do want the SalesOrder status to cha
 
 
 ===== Fields =====
-  * Blocked: this field is simply for grouping certain variables together, it has no logic nor process associated. The use case this field was created for was for the admin user to be able to hide it in all profiles or not permit editing of the field so he can use it to group certain important variables together. Once those variables are ticked we can easily create a filter or search on the field so we can find them quickly.
+  * **Global Variable Name**. This is a list of existing variables. It is a select box with the accepted values.
+  * **Value**. Is a string field that holds the actual value to be used for this variable. Each variable has its own possible values which are documented in the module. There is a special value accepted by all variables which is **[Use Description]**. Some variables have very long values, for example __Application_UserLoginIPs__ can be a long string of values. To make maintaining these long values easier you can put the value in the description field instead of the value field by setting the value to **[Use Description]**.
+  * **User**. the user this variable is for
+  * **Default**. This check box is the contrary to Mandatory. It permits the administrator to set a default value for all users but it can be overridden by any user who wants to have a different value. The record marked as Default will only be used if no other record is found
+  * **Mandatory**. This check box forces the value of the variable for all users. If it is checked no other record for this variable will be used. It is designed for the administrator to be able to set a variable globally for all users. To accomplish this you must set the module to private sharing and assign the record to the admin user so it can't be modified by any user.
+  * **Blocked**: this field is simply for grouping certain variables together, it has no logic nor process associated. The use case this field was created for was for the admin user to be able to hide it in all profiles or not permit editing of the field so he can use it to group certain important variables together. Once those variables are ticked we can easily create a filter or search on the field so we can find them quickly.
+  * **Module and In Module List**. Variable values can be applied per module with these two fields. If the in module list field is checked then the defined value will be applied only to the modules selected in the module multi-picklist field
+  * **Business Map**. When we look for business maps in the code we do that through the global variable module instead of going directly to the business map module. This way we permit any user to override the default selection and set a specific mapping for any case.
+  * **Category**. simply for organization purposes
+
+===== Documentation =====
+
+The list of variables is fully documented in the module itself. On the list view, there is a button to access the table, on the detail and edit view there is a block which contains the table with all the variables, their possible values and an explanation of what each is for.
+
+
+===== Test =====
+
+On the list and detail view, you will find a **Test** action which will permit you to validate the result of any variable on any module for any user. This is very useful when you have a lot of records for the same variable and need to make sure that the right value will be returned in each case.
+
+===== Web service =====
+
+External applications can get the values of global variables in the application using the **web service call: SearchGlobalVar**, which is a GET request with three parameters:
+ - gvname: name of the global variable
+ - defaultvalue: default value to be returned if not found
+ - gvmodule: module to be searched on
+
+You can see an [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/500_GetGlobalVariable.php|example of this call and try it out]] using the [[https://github.com/tsolucio/coreBOSwsBrowser|coreBOS web service developers' tool]].
+
+
+===== JavaScript =====
+In the browser we have a **JavaScript promise** that sets the value obtained from the application like this:
+
+<code>
+var calendar_call_default_duration = 5; // define the variable and set it's default value
+GlobalVariable_getVariable('Calendar_call_default_duration', 5, 'Calendar', gVTUserID).then(function(response) {
+	var obj = JSON.parse(response);
+	calendar_call_default_duration = obj.Calendar_call_default_duration;  // set value from application
+}, function(error) {
+	calendar_call_default_duration = 5; // set default value on error
+});
+// You MUST give this some time to execute, so do not use the value at this line, or
+// execute your code inside the promise
+</code>
+
+
+===== Create a new variable =====
+
+Creating a new variable is a three step process
+  - call the global variable method with the new variable in your code
+  - add the new variable to the DefineGlobalVariables.php continuous changeset so it gets added to the picklist of valid variables
+  - add the definition of the new variable in the language file 
+
+This [[https://github.com/tsolucio/corebos/commit/bffa964a4c3e8c658f3eb5a84900a8e0fc7c5865|commit is a good example of this process]].
+
+
+===== More Information =====
+
+[[http://blog.corebos.org:8080/en/blog/globalvariable|You can find some more information here]]
