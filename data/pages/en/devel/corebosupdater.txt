@@ -202,9 +202,4 @@ The other big step upon which the perspective concept stands is the [[en:devel:p
 
 The patch will add the changes that the code needs while the coreBOS updater .xml changeset file and the composer.json file will define the set of database changes and new modules that are needed to convert the raw application into the verticalization we need.
 
-To fulfill this view there are still a few things that need to be done:
-
-  * <del>import</del> any set of changes: currently coreBOS always reads it's set of changesets from the same hardcoded file, we must permit uploading a compressed package that will contain a set of code changeset scripts and a custom cbupdater.xml definition file and use that as the origin for applying the changesets (this is done)
-  * order: currently changesets are not guaranteed to be executed in any specific order
-  * dependencies: implement a way to restrict the execution of a changeset unless others exist
-  * <del>export</del>: export the current set of changesets in the database (this is done)
+[[http://blog.corebos.org:8080/en/blog/cbperspective|Read this blog post for more information]]

@@ -1,5 +1,10 @@
 ====== How to Make List Price Read Only On Inventory Modules ======
 
+<WRAP center round alert 75%>
+This can now be done using the **Inventory_ListPrice_ReadOnly** global variable
+</WRAP>
+
+
 [[https://plus.google.com/113336943928220103657/posts/E2TyYETZ5NA|From this Google+ discussion]] which starts from [[https://crmevolutivo.com/forum/viewtopic.php?f=3&t=3873&sid=8ac5786e02c49aa23bead17d2cc792b5|this question on vtiger-spain forum]], our friend and supporter **[[https://plus.google.com/u/0/105123673241771874278|David Fernandez]]** has created and shared a change to make the price list input box read only so users cannot change the value set by the application.
 
 **THANK YOU David!!**

@@ -9,7 +9,7 @@ The following are some of the display types that are used:
   * **1** - Displayed both in Detail view and Edit view
   * **2** - Displayed only in the Detail view (Ex. Created time, Modified time) Read only field. Must be given a value through the code
   * **3** - It is not displayed neither in DetailView nor EditView, but can be shown in ListView. For example: Total, subtotal in Invoice Module. These Fields are not tied to any block.
-  * **4** - Added for handling passwords.
+  * **4** - ReadOnly field which can be modified with workflows
 
 ===== typeofdata for Fields in Modules  =====
 
@@ -66,6 +66,23 @@ In the above examples:
   *M; Indicates Mandatory field 
   *O; Indicates Optional field
 
+===== Basic Validations on Numbers and Dates =====
+
+On numeric and date fields you can add some more information on the typeofdata column in order to perform some basic validations when editing.
+
+Numeric fields accept a comparison operator followed by a number to use in the comparison.
+
+<code>N~O~LE~22</code>
+
+will assure that the number in this field is smaller or equal to 22
+
+Date fields accept the same comparison operator followed by the field name of another date field being edited in the browser and will make sure that the relation indicated by the operator is true.
+
+<code>D~O~OTH~GE~dateinservice~Date in Service</code>
+
+the date in this field will be equal or bigger than the value in dateinservice field
+
+Accepted comparators are: L,LE,E,NE,G,GE
 ===== Mass Edit =====
   * 0 is blocked non editable, it cannot be activated in layout editor
   * 1 is mass editable
