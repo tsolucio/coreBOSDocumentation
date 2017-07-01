@@ -1,3 +1,30 @@
+
+====== How to activate RTE on a textarea field in a module ======
+
+  * set the Global Variable **Application_Use_RTE** to 1 for the module, which is it's default value
+  * create an [[en:adminmanual:businessmappings:fieldinfo|Extended Field Information Mapping]] declaring the fields you want to have RTE activated
+  * enjoy!
+
+
+----
+
+----
+
+
+
+<WRAP center round alert 100%>
+THE PATCH BELOW IS NOT NECESSARY ANYMORE!
+
+It has been made obsolete by the [[en:adminmanual:businessmappings:fieldinfo|Extended Field Information Mapping]] where you can establish which textarea fields in which modules you want to edit with RTE.
+
+We leave the patch here as a historical reference.
+</WRAP>
+----
+
+----
+
+
+
 ====== How to activate RTE on a module ======
 
   * Activate RTE feature in [[en:adminmanual:configeditor|Config Editor]]
