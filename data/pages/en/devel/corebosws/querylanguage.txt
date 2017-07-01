@@ -2,8 +2,118 @@
 
 ===== Basic Query Language =====
 
-<todo>Document coreBOS REST Query language</todo>
+coreBOS provides a simple query language for fetching data based on a similar syntax to select queries in SQL. The general syntax looks like this:
 
+<code>select * | <column_list> | <count(*)>
+from <object>
+[where <conditionals>] 
+[order by <column_list>] [limit [<m>, ]<n>];
+</code>
+
+The column list in the order by clause can have at most two column names.
+
+  * column_list: comma separated list of field names
+  * object: module name
+  * conditionals: condition operations, in clauses, or like clauses separated by 'and' or 'or' operands these are processed from left to right
+  * conditional operators: <, >, <=, >=, =, !=
+  * in clauses: <column name> in (<value list>)
+  * like clauses: <column name> in (<value pattern>)
+  * value list: a comma separated list of values
+  * m, n: integer values to specify the offset and limit respectively
+
+There are three different syntaxes supported.
+
+One is the original query language inherited from vtiger CRM. This is rather limited as it doesn't support related entities nor parenthesis in the conditions.
+
+So we made a first enhancement based on the [[en:devel:corebosws:getrelatedrecords|getRelatedRecords]] work. This second syntax was created before we started the coreBOS project and was added as a base feature when it was born. You can read about this second syntax below and see it in use in our [[en:extensions:coreboscp|Customer Portal Extension]].
+
+Finally, we enhanced the syntax a third time based on the work done in the QueryGenerator class which gives us a rich and flexible syntax with support for related modules and advanced conditions.
+
+The problem is that in order to maintain backward compatibility we have kept all the syntaxes together and detect dynamically which one to use for each query. This is a bit misleading sometimes.
+
+When a query is sent to the webservice query API it looks for the string "related.", if this string is found we apply the [[en:devel:corebosws:querylanguage#related_entity_query_syntax|Related Entity Query Syntax ]], if the string is not found we look for "not in", "not null", "." or "(". None of these strings are supported by the query syntax inherited from vtiger CRM so we apply the Extended QueryGenerator syntax. Finally, we apply the original VQL syntax.
+
+<WRAP center round important 60%>
+So, be careful when sending a query as it can easily be sent to the syntax parser you don't expect.
+</WRAP>
+
+For example, we can launch a query like this:
+
+<code>
+select projectname,modifiedtime
+from project
+where projectname like '%o%' and modifiedtime>'2016-06-30 19:11:59'
+</code>
+
+which will be sent to the original query parser, but we can also send it like this
+
+<code>
+select projectname,modifiedtime
+from project
+where (projectname like '%o%' and modifiedtime>'2016-06-30 19:11:59')
+</code>
+
+which would be parsed by the QueryGenerator class. In this example, both should return the same set of values, but in this example, things are very different:
+
+<code>
+select projectname,modifiedtime
+from project
+where projectname like '%cap%' and modifiedtime>'2016-06-30 19:11:59' or modifiedtime<'2016-07-30 19:11:59'
+</code>
+
+<code>
+select projectname,modifiedtime
+from project
+where projectname like '%cap%' and (modifiedtime>'2016-06-30 19:11:59' or modifiedtime<'2016-07-30 19:11:59')
+</code>
+
+returning a completely different set as the original query parser evaluates the conditions in order of appearance with no parenthesis.
+
+Besides the enhanced syntax, there are **two very important things to note** about this dynamic switch.
+
+**One** is that the original query parser and QueryGenerator parser use different ways of identifying a related record. The original parser uses the webservice ID while the QueryGenerator uses the record's entity field name. In other words, when adding conditions on related fields (uitype10), the original parser expects the CRMID of the related record while the QueryGenerator parser expects the value of the entity link field.
+
+For example, this query:
+
+<code>
+select projecttaskname,projectid,modifiedtime
+from ProjectTask
+where projectid='33x6772' and  modifiedtime>'2015-08-12 10:10:48' and modifiedtime<'2015-09-12 10:10:48'
+</code>
+
+looks like this:
+
+{{ :en:devel:corebosws:wsvqlrelfieldreference01.png |}}
+
+but if we add parenthesis and launch the query we get no results returned.
+
+<code>
+select projecttaskname,projectid,modifiedtime
+from ProjectTask
+where (projectid='33x6772' and  modifiedtime>'2015-08-12 10:10:48' and modifiedtime<'2015-09-12 10:10:48')
+</code>
+
+with the parenthesis we are using the QueryGenerator parser and must set the projectid field to the entity link field which is project name. The correct query looks like this:
+
+<code>
+select projecttaskname,projectid,modifiedtime
+from ProjectTask
+where (projectid='Owen' and  modifiedtime>'2015-08-12 10:10:48' and modifiedtime<'2015-09-12 10:10:48')
+</code>
+
+{{ :en:devel:corebosws:wsvqlrelfieldreference02.png |}}
+
+Optionally, we can search directly on the project ID with the extended QueryGenerator syntax:
+
+<code>
+select projecttaskname,projectid,modifiedtime
+from ProjectTask
+where (Project.id='33x6772' and  modifiedtime>'2015-08-12 10:10:48' and modifiedtime<'2015-09-12 10:10:48')
+</code>
+
+The **second** is that the original query parser will automatically add the "limit 100" to the query while the QueryGenerator will not do this.
+
+You can find a whole set of examples in the [[en:devel:corebosws:coreboswsbrowser|coreBOS Web Service Developer Tool]] and the [[https://github.com/tsolucio/coreBOSTests/blob/master/include/Webservices/VtigerModuleOperation_QueryTest.php|webservice query unit tests suite]].
 ==== Query return limit ====
 The select statement only returns 100 records. This is due to timeout and resource restrictions. If you want to obtain more records you must use the //limit// modifier. Any select statement with a limit modifier will try to return all the records indicated in the limit. So, if we have a contacts table with 150 records, this query:
 
@@ -53,13 +163,18 @@ Select * from Products where related.Contacts='4x22' order by productname LIMIT 
 
   * queryparameters support //limit// and //offset// for those sets of related records where the total count is very high or simply high enough to want to be able to page through.
   * queryparameters support column definitions, reducing the size of information being returned
-  * **multiple entities** is **NOT** supported, accept multiple IDs and even multiple related modules. This is really complex and can already be done calling the function various times. I'm not sure it is worth the effort because it also makes the code much more complex and increments the size of information sent to the browser. The only cases where I see it could be useful is when we want to retrieve related information for an account and it's contacts, or retrieving both Project Tasks and Project Milestones related to one project. After looking into this I reached the conclusion that the only good way to do this is through [[en:devel:corebosws:queryenhancements|query syntax enhancement as described here]].
+  * **multiple entities, IDs or related modules** are **NOT** supported with this API. We have created the extended query language functionality, based on Query Generator for this.
 
 
 There are a few restrictions we couldn't overcome:
   * only one related entity may be used, as the getRelatedRecords function works with only one entity ID, we inherit this restriction. If more than one is put in the query, only the first is used and the rest are ignored and eliminated.
   * the product relation is limited to directly related records, which means that on a contact we will only have access to the ones on his +info tab, or for a product we can only see it's bundle child products.
   * advanced filtering (limited by current query syntax)
+
+<WRAP center round info 60%>
+The Webservice extended query language functionality, based on Query GeneratorQuery overcomes some of these limitations.
+</WRAP>
+
 
 ===== Errors that can be returned =====
 

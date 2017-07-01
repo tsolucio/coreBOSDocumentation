@@ -18,6 +18,3 @@
   * [[:en:devel:corebosws:convertleadwebservice|Convert Lead Webservice]]
 
 
-===== Web service roadmap =====
-
-  * [[:en:devel:corebosws:queryenhancements|Ideal REST Query syntax enhancements]]
