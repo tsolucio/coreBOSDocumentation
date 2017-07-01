@@ -48,3 +48,8 @@ Here is a Master-Detail mapping for the PurchaseOrder module that will permit yo
   </detailview>
 </map>
 </code>
+
+See this video for a demonstration:
+
+{{youtube>zfuEuGUhKm0}}
+

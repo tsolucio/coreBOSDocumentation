@@ -1,0 +1,40 @@
+====== Import Business Mapping ======
+The accepted format is
+<code XML>
+  <map>
+  <targetmodule>
+  <targetname>ProductDetail</targetname>
+  </targetmodule>
+  *
+  <fields>
+     <field>
+          <fieldname>productvin</fieldname>
+          <fieldID></fieldID>
+          <value>productvin</value>
+          <predefined></predefined>
+          <Orgfields>
+              <Relfield>
+                  <RelfieldName>cf_880</RelfieldName>
+                  <RelModule>Products</RelModule>
+                  <linkfield>productvin</linkfield>
+              </Relfield>
+          </Orgfields>
+      </field>
+      .............
+  </fields>
+ <matches>
+      <match>
+          <fieldname>productdetailname</fieldname>
+          <fieldID> </fieldID>
+          <value>productdetailname</value>
+          <predefined></predefined>
+      </match>
+      ....................
+  </matches>
+  <options>
+  <update>FIRST/LAST/ALL</update>
+  </options>
+  </map>
+</code>
+
+This type of map is a developer tool. It permits you to define the relation of fields between two system in order to import and sync the information.

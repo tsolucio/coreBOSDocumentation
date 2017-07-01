@@ -37,3 +37,8 @@ This mapping accepts two formats, one is a direct expression from the workflow e
 the isPermitted mapping above will be converted into:
 
 <code php>isPermitted('Accounts','CreateView','74');</code>
+
+===== Additional Information =====
+
+  * [[http://discussions.corebos.org/thread-642.html|Forum thread]]
+

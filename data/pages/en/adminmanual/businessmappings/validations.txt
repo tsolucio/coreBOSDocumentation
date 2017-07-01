@@ -5,13 +5,11 @@ The accepted format is
 <code XML>
  <map>
   <originmodule>
-    <originid>22</originid>  {optional}
     <originname>SalesOrder</originname>
   </originmodule>
   <fields>
     <field>
       <fieldname>subject</fieldname>   {field to validate}
-      <fieldID>999</fieldID>  {optional}
       <validations>  {if more than one is present they must all pass to accept the value}
         <validation>
           <rule>{rule_name}</rule>
@@ -93,4 +91,130 @@ where {rule_name} can be:
   *EU_VAT - validate EU VAT number
     *restrictions: none
   *notDuplicate - checks that no other record with the same value exists on the given fieldname
-    *restrictions: fieldname
+    *restrictions: none
+  *custom - launch custom function that can be found in the indicated file
+    * restrictions: file name, validation test name, function name and label to show on error (will be translated)
+
+<WRAP center round info 100%>
+The trigger for these maps is that they must be of type "Validations" and the "Target Module" must be set correctly. If more than one record is found, they will ALL be applied.
+</WRAP>
+
+You can use the values of other fields on the form by putting the field name inside two curly brackets. For example, the next map will validate that the field dtstart is before the value in field dtend.
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>cbCalendar</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>dtend</fieldname>
+      <validations>
+        <validation>
+          <rule>dateAfter</rule>
+          <restrictions>
+          <restriction>{{dtstart}}</restriction>
+          </restrictions>
+        </validation>
+      </validations>
+    </field>
+</map>
+</code>
+
+<WRAP center round important 85%>
+There is an important limitation when using the values of other fields. These values will only be available when editing the whole record. If the user is doing inline individual field edit on the detail view, the value of the other fields will not be available. To overcome this limitation if you need to create a custom validation rule and access the values you need from the database.
+</WRAP>
+
+
+Another example of how to limit the accepted values in a picklist, even making it mandatory if needed.
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>cbCalendar</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>activitytype</fieldname>
+      <validations>
+        <validation>
+          <rule>notIn</rule>
+          <restrictions>
+          <restriction>Call</restriction>
+          <restriction>Meeting</restriction>
+          </restrictions>
+        </validation>
+      </validations>
+    </field>
+  </fields>
+</map></code>
+
+===== Test Validation Business Mapping =====
+
+These are the two validation maps I used while developing the integration of the mapping in the save process:
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>accountname</fieldname>
+      <validations>
+        <validation>
+          <rule>required</rule>
+        </validation>
+        <validation>
+          <rule>contains</rule>
+          <restrictions>
+          <restriction>mex</restriction>
+          </restrictions>
+        </validation>
+      </validations>
+    </field>
+    <field>
+      <fieldname>industry</fieldname>
+      <validations>
+        <validation>
+          <rule>notDuplicate</rule>
+        </validation>
+      </validations>
+    </field>
+  </fields>
+</map>
+</code>
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>email1</fieldname>
+      <validations>
+        <validation>
+          <rule>custom</rule>
+          <restrictions>
+          <restriction>modules/cbMap/Validation.php</restriction>
+          <restriction>testemail</restriction>
+          <restriction>validate_testacccemail</restriction>
+          </restrictions>
+        </validation>
+      </validations>
+    </field>
+  </fields>
+</map>
+</code>
+
+both are set for the Accounts module.
+
+This is the custom validation script:
+
+<code PHP>
+function validate_testacccemail($field) {
+	global $log;$log->fatal('validation for'.$field);
+	return true;
+}
+</code>

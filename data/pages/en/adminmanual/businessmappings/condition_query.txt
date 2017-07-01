@@ -33,3 +33,8 @@ WHERE ce.deleted=0 AND vtiger_account.accountid =?
 <return>recordset</return>
 </map>
 </code>
+
+===== Additional Information =====
+
+  * [[http://discussions.corebos.org/thread-642.html|Forum thread]]
+

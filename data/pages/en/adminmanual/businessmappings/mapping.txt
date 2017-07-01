@@ -12,17 +12,14 @@ The accepted format is:
 <code xml>
  <map>
   <originmodule>
-    <originid>22</originid>  {optional}
     <originname>SalesOrder</originname>
   </originmodule>
   <targetmodule>
-    <targetid>23</targetid>  {optional}
     <targetname>Invoice</targetname>
   </targetmodule>
   <fields>
     <field>
       <fieldname>subject</fieldname>   {destination field on invoice}
-      <fieldID>999</fieldID>  {optional}
       <Orgfields>  {if more than one is present they will be concatenated with the delimiter}
         <Orgfield>
           <OrgfieldName>subject</OrgfieldName>
@@ -38,6 +35,7 @@ The accepted format is:
         </Orgfield>
         <delimiter>;</delimiter>
       </Orgfields>
+      <master>true|false</master> {optional: used for integration mapping between two systems}
     </field>
      <field>
       <fieldname>description</fieldname>   {destination field on invoice}
@@ -59,7 +57,6 @@ The accepted format is:
     </field>
    <field>
       <fieldname>due_date</fieldname>   {destination field on invoice}
-      <fieldID>999</fieldID>  {optional}
       <Orgfields>
         <Orgfield>
           <OrgfieldName>add_days(get_date('today'), 30)</OrgfieldName>
@@ -91,11 +88,9 @@ Then call the create page of Potentials from a link passing in the variable **cb
 <code xml>
 <map>
   <originmodule>
-    <originid>4</originid>
     <originname>Contacts</originname>
   </originmodule>
   <targetmodule>
-    <targetid>2</targetid>
     <targetname>Potentials</targetname>
   </targetmodule>
   <fields>

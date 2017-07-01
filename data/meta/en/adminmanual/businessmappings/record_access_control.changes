@@ -1,3 +1,6 @@
 1468947818	188.85.134.135	C	en:adminmanual:businessmappings:record_access_control	joebordes	created	
 1468948027	188.85.134.135	E	en:adminmanual:businessmappings:record_access_control	joebordes		
 1472375615	188.85.143.210	E	en:adminmanual:businessmappings:record_access_control	joebordes	[Record Access Control] 	
+1473465670	127.0.0.1	E	en:adminmanual:businessmappings:record_access_control		external edit		0
+1496829459	95.60.145.18	E	en:adminmanual:businessmappings:record_access_control	joebordes	[Block Sent Emails Delete and Edit Example] 		98
+1496829493	95.60.145.18	E	en:adminmanual:businessmappings:record_access_control	joebordes	[Block Tickets if assigned user is not creator] 		-17

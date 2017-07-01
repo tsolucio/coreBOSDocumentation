@@ -1,0 +1,70 @@
+====== Extended Field Information Mapping ======
+
+The purpose of this mapping is to define a set of additional features on fields. Instead of adding columns to the vtiger_field table and creating different UI settings options we add this mapping where you can configure the extra information for each field.
+
+The accepted format is:
+<code xml>
+<map>
+  <originmodule>
+    <originname>SalesOrder</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>description</fieldname>
+      <features>
+        <feature>
+          <name>RTE</name>
+          <value>1</value>
+        </feature>
+      </features>
+    </field>
+  </fields>
+</map>
+</code>
+
+Currently RTE (Rich Text Editor) for textarea fields is the only supported feature. The above map will activate the RTE in the SalesOrder description field.
+
+As with other Business Maps, the name of the record is what will determine if it is used or not and on what module. In this case the name of the record must be: **{MODULENAME}_FieldInfo**. For the example map above to work it must be saved in a record whose name is **SalesOrder_FieldInfo**
+
+The information in this mapping is available directly in the DetailViewUtils and EditViewUtils scripts and also in the Detail and Edit View Smarty templates. You can [[https://github.com/tsolucio/corebos/commit/97d26c2a7d32a84fee4737e40f099a8166484e64|study this commit]] where we access this information to add generic support for RTE fields.
+
+Another idea would be to have different settings for an autocomplete field. Something like this:
+
+<code xml>
+<map>
+  <originmodule>
+    <originname>Potentials</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>autocompletefieldx</fieldname>
+      <features>
+        <feature>
+          <name>searchfields</name>
+          <value>field1,field2,...,fieldn</value>
+        </feature>
+        <feature>
+          <name>searchcondition</name>
+          <value>startswith</value>
+        </feature>
+        <feature>
+          <name>entityfield</name>
+          <value>field</value>
+        </feature>
+        <feature>
+          <name>showfields</name>
+          <value>field1,field2,...,fieldn</value>
+        </feature>
+        <feature>
+          <name>fillfields</name>
+          <value>field1=fillfield1,field2=fillfield2,...,fieldn=fillfieldn</value>
+        </feature>
+      </features>
+    </field>
+  </fields>
+</map>
+</code>
+
+Which defines that the autocomplete must show the "entityfield" followed by the list of "showfields" to the user while it permits them to search on the list of "searchfields" and then will fill in the "fillfields" with the values of the indicated record fields.
+
+

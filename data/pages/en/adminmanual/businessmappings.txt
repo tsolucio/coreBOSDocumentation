@@ -40,9 +40,8 @@ There are currently these different types of mappings:
   * [[en:adminmanual:businessmappings:field_dependency|Field Dependency]]
   * [[en:adminmanual:businessmappings:validations|Validations]]
   * [[en:adminmanual:businessmappings:relatedpanes|Related Panes]]
-  * <del>[[en:adminmanual:businessmappings:block_access|Block Access]]</del> TBD
-  * <del>[[en:adminmanual:businessmappings:import|Import]]</del> TBD
-  * <del>[[en:adminmanual:businessmappings:map_fields|Map fields]]</del> TBD
+  * [[en:adminmanual:businessmappings:import|Import]]
+  * [[en:adminmanual:businessmappings:duplicaterecords|Duplicate Records]]
   * <del>[[en:adminmanual:businessmappings:search_and_update|Search and Update]]</del> TBD
 
 Depending on the type of the business mapping the contents of the record changes as explained next.
