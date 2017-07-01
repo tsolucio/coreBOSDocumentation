@@ -1,22 +1,22 @@
-1473924220	80.35.20.79	C	en:extensions:extensions:confinfo:cichgpass.png	joebordes	created		59661
-1476650116	188.85.143.210	E	devel:patches:debugemail_corebos.diff	joebordes			-166
-1477665079	188.85.143.210	C	images:vizsage-logo-180.png	joebordes	created		8949
-1477665079	188.85.143.210	C	images:vizsage-by-nc-sa-icon.png	joebordes	created		9833
-1477666878	188.85.143.210	C	devel:vizsagelicense.zip	joebordes	created		28524
-1480941625	80.35.20.79	C	en:devel:filteraustralia.zip	joebordes	created		2735
 1482949364	95.60.145.18	C	en:smsnotifier:addnewaccount.png	joebordes	created		11910
 1482949380	95.60.145.18	C	en:smsnotifier:composesms.png	joebordes	created		10106
+1482949381	95.60.145.18	C	en:smsnotifier:selectphonefield.png	joebordes	created		13841
 1482949381	95.60.145.18	C	en:smsnotifier:sendsms.png	joebordes	created		39143
 1482949381	95.60.145.18	C	en:smsnotifier:smsserverconfiguration.png	joebordes	created		24133
 1482949381	95.60.145.18	C	en:smsnotifier:smsstaskworkflow.png	joebordes	created		7577
 1482949381	95.60.145.18	C	en:smsnotifier:detailviewsms.png	joebordes	created		29206
-1482949381	95.60.145.18	C	en:smsnotifier:selectphonefield.png	joebordes	created		13841
-1482949382	95.60.145.18	C	en:smsnotifier:smsstatus.jpeg	joebordes	created		26088
 1482949382	95.60.145.18	C	en:smsnotifier:workflowmessage.png	joebordes	created		35155
+1482949382	95.60.145.18	C	en:smsnotifier:smsstatus.jpeg	joebordes	created		26088
 1482949383	95.60.145.18	C	en:smsnotifier:workflowsmstask.png	joebordes	created		43772
 1484438629	95.60.145.18	C	en:adminmanual:createuserquery.png	joebordes	created		26357
 1484438630	95.60.145.18	C	en:adminmanual:createuserfillin.png	joebordes	created		156345
 1484477488	95.60.145.18	C	en:adminmanual:vtiger-ldap-integration-v1.0.pdf	joebordes	created		245359
 1487166001	80.35.20.79	E	en:extensions:extensions:cbcolorizer:dtlajaxedit.diff	omar			108
-1445705385	95.60.145.18	E	wiki:logo.png	joebordes			4874
 1493124775	95.60.145.18	E	wiki:logo.png	joebordes			3174
+1493331607	95.60.145.18	C	en:devel:mfmq.png	joebordes	created		152480
+1494926144	95.60.145.18	C	en:corebos:contacts:google-api-contacts-enable.png	joebordes	created		6606
+1494926144	95.60.145.18	C	en:corebos:contacts:google-api-list.png	joebordes	created		28471
+1498294453	95.60.145.18	C	en:devel:corebos_hooks:massdelete.png	joebordes	created		65263
+1498298309	95.60.145.18	C	en:devel:corebos_hooks:massdeletebefore.png	joebordes	created		87054
+1498909958	95.60.145.18	C	en:devel:corebosws:wsvqlrelfieldreference01.png	joebordes	created		65963
+1498909959	95.60.145.18	C	en:devel:corebosws:wsvqlrelfieldreference02.png	joebordes	created		65656

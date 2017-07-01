@@ -54,3 +54,4 @@
   * [[en:adminmanual:globalvariables|Global Variables]]
   * [[en:adminmanual:businessmappings|Business Mappings]]
   * [[en:adminmanual:email_tracking|Email tracking: Access count]]
+  * [[en:adminmanual:monitorstatus|Monitor Health of you coreBOS]]

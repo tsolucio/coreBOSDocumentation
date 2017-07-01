@@ -21,3 +21,5 @@
   * [[en:devel:corebos_validation|How to add custom validations to your module]]
   * [[en:devel:corebos_menufilter|How to filter records on a module based on menu parameter]]
   * [[en:smsnotifier#writing_custom_providers|Writing custom SMS providers]]
+  * [[en:devel:corebos_mqtm|coreBOS Message Queue and Task Manager]]
+  * [[en:devel:corebos_settings|coreBOS settings]]
