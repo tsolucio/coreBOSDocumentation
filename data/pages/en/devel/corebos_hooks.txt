@@ -263,3 +263,8 @@ You can find a real example in the [[en:devel:helperscripts#addactionlinkphp|add
 <WRAP center round info 90%>Get more details in the [[en:devel:add_actions|How to add action links to a module]] development tutorial.</WRAP>
 
 
+
+===== coreBOS JavaScript Hooks =====
+
+[[en:devel:corebosjshooks|Read all about them here]]
+

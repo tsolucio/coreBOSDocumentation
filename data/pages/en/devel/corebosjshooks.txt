@@ -1,0 +1,78 @@
+===== coreBOS JavaScript Hooks =====
+
+You can override any javascript function with the **corebosjshook** class.
+
+This class is an instantiation of the [[https://github.com/cujojs/meld|meld class from cujoJS]] and you can use any of the many options this library has to insert your functionality where you need to.
+
+I would recommend reading the [[https://github.com/cujojs/meld/blob/master/docs/reference.md|meld reference guide]], the [[https://github.com/cujojs/meld/blob/master/docs/api.md|meld API]] and have a look at the different examples they have in [[https://github.com/cujojs/meld/blob/master/docs/aspects.md|their Bundled Aspects]] to get an idea of what can be done.
+
+Let's see an example of how to use this class in coreBOS.
+
+I am going to pick the **massDelete** JavaScript function which is executed when you click on the "Delete" button on any list view and add a simple "Hello world" message.
+
+{{ :en:devel:corebos_hooks:massdelete.png |}}
+
+First we need a place where we can load our own JavaScript code, this is done using the coreBOS PHP action links as explained in the [[en:devel:add_actions|How to add action links to a module]] development tutorial and looks like this:
+
+<code PHP>
+include_once('vtlib/Vtiger/Module.php');
+$module = Vtiger_Module::getInstance('Accounts');
+$module->addLink('FOOTERSCRIPT', 'corebosjshookexample', 'corebosjshookexample.js', '', 1, null, TRUE);
+</code>
+
+<WRAP center round info 60%>
+We put the code in the footer to make sure it loads after all the other functions we need to plug into.
+</WRAP>
+
+After executing that code any JavaScript we put inside the file //corebosjshookexample.js// will be loaded and executed in the browser, so our first version will simply output the message always so we make sure it is loaded correctly.
+
+<code javascript>
+alert('Hello world');
+</code>
+
+Our next version will add the message before the mass delete function:
+
+<code javascript>
+function massdeleteBeforeHelloWorld(module) {  // use the same signature as the function we override
+  alert('BEFORE: Hello world from ' + module);
+}
+var beforemassdelete = corebosjshook.before('massDelete',massdeleteBeforeHelloWorld);
+</code>
+
+Now after
+
+<code javascript>
+function massdeleteBeforeHelloWorld(module) {  // use the same signature as the function we override
+  alert('BEFORE: Hello world from ' + module);
+}
+function massdeleteAfterHelloWorld(module) {  // use the same signature as the function we override
+  alert('AFTER: Hello world from ' + module);
+}
+var beforemassdelete = corebosjshook.before(window,'massDelete',massdeleteBeforeHelloWorld);
+var aftermassdelete = corebosjshook.after(window,'massDelete',massdeleteAfterHelloWorld);
+</code>
+
+Finally, we completely override the whole function and call it from our own function
+
+<code javascript>
+function massdeleteBeforeHelloWorld(module) {  // use the same signature as the function we override
+  alert('BEFORE: Hello world from ' + module);
+}
+function massdeleteAfterHelloWorld(module) {  // use the same signature as the function we override
+  alert('AFTER: Hello world from ' + module);
+}
+function massdeleteAroundHelloWorld(jpoint) {
+  console.log(jpoint);
+  alert('AROUND: Hello world');
+  jpoint.proceed(jpoint.args[0]);
+}
+var beforemassdelete = corebosjshook.before(window,'massDelete',massdeleteBeforeHelloWorld);
+var aftermassdelete = corebosjshook.after(window,'massDelete',massdeleteAfterHelloWorld);
+var onmassdelete = corebosjshook.around(window,'massDelete',massdeleteAroundHelloWorld);
+</code>
+
+{{ :en:devel:corebos_hooks:massdeletebefore.png |}}
+
+As you can see it is very simple to plug in functionality into any existing function or class method and we barely skimmed the possibilities in this article.
+
+You can [[https://gist.github.com/joebordes/bb2e74f5dcedfa247451e378730438bc|find the code on this gist.]]
