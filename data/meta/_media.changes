@@ -1,12 +1,3 @@
-1482949364	95.60.145.18	C	en:smsnotifier:addnewaccount.png	joebordes	created		11910
-1482949380	95.60.145.18	C	en:smsnotifier:composesms.png	joebordes	created		10106
-1482949381	95.60.145.18	C	en:smsnotifier:selectphonefield.png	joebordes	created		13841
-1482949381	95.60.145.18	C	en:smsnotifier:sendsms.png	joebordes	created		39143
-1482949381	95.60.145.18	C	en:smsnotifier:smsserverconfiguration.png	joebordes	created		24133
-1482949381	95.60.145.18	C	en:smsnotifier:smsstaskworkflow.png	joebordes	created		7577
-1482949381	95.60.145.18	C	en:smsnotifier:detailviewsms.png	joebordes	created		29206
-1482949382	95.60.145.18	C	en:smsnotifier:workflowmessage.png	joebordes	created		35155
-1482949382	95.60.145.18	C	en:smsnotifier:smsstatus.jpeg	joebordes	created		26088
 1482949383	95.60.145.18	C	en:smsnotifier:workflowsmstask.png	joebordes	created		43772
 1484438629	95.60.145.18	C	en:adminmanual:createuserquery.png	joebordes	created		26357
 1484438630	95.60.145.18	C	en:adminmanual:createuserfillin.png	joebordes	created		156345
@@ -20,3 +11,10 @@
 1498298309	95.60.145.18	C	en:devel:corebos_hooks:massdeletebefore.png	joebordes	created		87054
 1498909958	95.60.145.18	C	en:devel:corebosws:wsvqlrelfieldreference01.png	joebordes	created		65963
 1498909959	95.60.145.18	C	en:devel:corebosws:wsvqlrelfieldreference02.png	joebordes	created		65656
+1499626931	95.60.145.18	C	en:adminmanual:backups:backup.png	joebordes	created		85587
+1499627254	95.60.145.18	C	en:adminmanual:backups:backupconfig.png	joebordes	created		62104
+1499627474	95.60.145.18	C	en:adminmanual:backups:backupschedule.png	joebordes	created		172734
+1500152847	95.60.145.18	C	en:adminmanual:2faactivation.png	joebordes	created		65410
+1500160448	95.60.145.18	C	en:devel:execfunx01.png	joebordes	created		94303
+1500160787	95.60.145.18	C	en:devel:execfunc02.png	joebordes	created		58643
+1500247623	95.60.145.18	C	en:devel:corebos_hooks:crmidevenodd.png	joebordes	created		191568

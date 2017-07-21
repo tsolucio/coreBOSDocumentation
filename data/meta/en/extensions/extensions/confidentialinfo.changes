@@ -8,3 +8,9 @@
 1498683037	95.60.145.18	E	en:extensions:extensions:confidentialinfo	joebordes			7
 1498692278	95.60.145.18	E	en:extensions:extensions:confidentialinfo	joebordes	[Future Enhancements] 		645
 1498776450	95.60.145.18	E	en:extensions:extensions:confidentialinfo	joebordes	[Libsodium Encryption] 		502
+1499962603	95.60.145.18	E	en:extensions:extensions:confidentialinfo	joebordes	[openSSL Encryption] 		347
+1499977700	95.60.145.18	E	en:extensions:extensions:confidentialinfo	joebordes	[Other Encryption Methods] 		816
+1499977726	95.60.145.18	E	en:extensions:extensions:confidentialinfo	joebordes	[PKI Encryption Methods] 		1
+1499977751	95.60.145.18	E	en:extensions:extensions:confidentialinfo	joebordes	[Confidential Information as an Encryption/Decryption Engine] 		4
+1499977775	95.60.145.18	E	en:extensions:extensions:confidentialinfo	joebordes	[Confidential Information as an Encryption/Decryption Engine] 		-2
+1499979602	95.60.145.18	E	en:extensions:extensions:confidentialinfo	joebordes	[Confidential Information as an Encryption/Decryption Engine] 		786
