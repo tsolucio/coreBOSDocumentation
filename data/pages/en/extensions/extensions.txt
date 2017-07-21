@@ -1,5 +1,20 @@
 ====== Registered Modules, Extensions, Patches and Plugins ======
 
+=====Get your access to this code!======
+
+Select your subscription to more of our awesome code or contract a support plan so we can help you get the best out of coreBOS.
+
+{{paypal>desplegableSuscripcion}}
+
+
+You will be able to cancel your subscription at any moment, either in your paypal account or by clicking on this button: {{paypal>botonCancelar}}
+
+
+To make a payment of any amount to buy one of our products or to make a donation use the form below:
+
+{{paypal>botonCualquierPrecio}}
+
+
 ---- datatable ----
 cols    : %title%, description, type, distribution, authorname
 max     : 50

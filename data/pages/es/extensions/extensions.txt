@@ -1,0 +1,29 @@
+====== Módulos Registrados, Extensiones, Parches y Modificaciones ======
+
+=====Obtén tu acceso a este código!======
+
+Selecciona tu subscripción a más de nuestro fantástico código o contrata un plan de soporte para que podamos ayudarte a sacar lo mejor de coreBOS
+
+{{paypal>desplegableSuscripcion}}
+
+
+Podrás cancelar la suscripción en cualquier momento, acudiendo de nuevo a esta página y pulsando sobre el botón de cancelar: {{paypal>botonCancelar}}
+
+
+Para realizar el pago de una cantidad cualquiera por uno de nuestros productos o realizar una donación puedes utilizar el siguiente formulario:
+
+{{paypal>botonCualquierPrecio}}
+
+
+---- datatable ----
+cols    : %title%, description, type, distribution, authorname
+max     : 50
+dynfilters : 1
+sort    : %title%
+filter  : type!=businessmapping
+----
+
+
+====== How to Register your Module, Extension, Patch or Plugin ======
+
+You can [[:en:extensions:howtoregister|find instructions and steps on this page]].
