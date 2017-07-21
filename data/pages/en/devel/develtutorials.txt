@@ -22,4 +22,7 @@
   * [[en:devel:corebos_menufilter|How to filter records on a module based on menu parameter]]
   * [[en:smsnotifier#writing_custom_providers|Writing custom SMS providers]]
   * [[en:devel:corebos_mqtm|coreBOS Message Queue and Task Manager]]
-  * [[en:devel:corebos_settings|coreBOS settings]]
+  * [[en:devel:corebos_settings|coreBOS Settings]]
+  * [[en:devel:corebos_rules|coreBOS Rules]]
+  * [[en:devel:confidentalinfoaddencryption|Add Encryption/Decryption methods to Confidential Information module]]
+  * [[en:devel:executefunctions|Generic Javascript API Access to backend: Execute Function]]

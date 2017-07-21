@@ -122,16 +122,44 @@ Here are some links on the benefits and how to install the library for it's use 
 
 Alternatively to the mcrypt methods, we can also encrypt the information with the more secure openSSL library.
 
-Here are some links on the benefits and how to install the library for it's use with PHP.
+Here are some links on the benefits and how to install the library for its use with PHP.
 
   * [[http://thefsb.tumblr.com/post/110749271235/using-opensslendecrypt-in-php-instead-of|Using openssl_en/decrypt() in PHP instead of Mcrypt]]
   * [[https://sockpuppet.org/blog/2014/02/25/safely-generate-random-numbers/|How To Safely Generate A Random Number]]
 
+===== PKI Encryption Methods =====
+
+This method expects to find both the private and public key in some directory accessible from the coreBOS install. This means that the security of this method is inexistent. PKI security is based on how secure you can keep your private key. Since we have both public and private together, in the code, anyone who gets access to your code has direct access to the information.
+
+So, **why did we implement it?** Because you can use the public key to encrypt the information and not save the private key in the system. If the private key does not exist, no information will be shown. If you need to access the information you must send it to some other system where the private key lives and decrypt it there.
 
 
+===== Other Encryption Methods =====
+
+The module has a generalized layer for the encryption and decryption actions making it fairly easy to implement other ways of protecting your information.
+
+If you are interested, you can contact us for help or have a look at [[en:devel:confidentalinfoaddencryption|this article that explains how that can be done]].
 
 
+===== Confidential Information as an Encryption/Decryption Engine =====
 
+As with most of the development we create, we try to create infrastructure, things you can use in your own developments, not just functionality. Once an encryptionmethod is configured, you can use this module to encrypt and decrypt any information anywhere in the application. For example, in after_save event or in some hook,...
+
+This is what a small script to encrypt a couple of values looks like:
+
+<code PHP>
+include 'vtlib/Vtiger/Module.php';
+include_once 'modules/ConfidentialInfo/ConfidentialInfo.php';
+
+$info = array('text'=>'text example','num'=>'123.456');
+$encrypted = ConfidentialInfo::encryptFields_pki($info, 'file://public.key');
+
+var_dump($encrypted);
+
+$decrypted = ConfidentialInfo::decryptFields_pki($encrypted, 'file://private.key');
+
+var_dump($decrypted);
+</code>
 
 ===== Future Enhancements =====
 

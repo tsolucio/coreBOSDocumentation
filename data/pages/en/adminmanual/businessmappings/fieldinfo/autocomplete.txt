@@ -1,0 +1,117 @@
+===== Configuring Autocomplete Fields: Business Mappings =====
+
+An autocomplete field has three configurable options:
+
+  - **where and how to search**: we must be able to define the module/table where we will look for values and if we want to use startswith or contains. This must include the possibility to use Sql inside cbMap  that can overwrite the query to search on specific situations.Ex: search and show all the fields of one module,or show the options of one picklist. Also, it is normal to be able to configure the number of characters that launch the search
+  - **what information we should return**: there will be one main entity identifier and possibly some additional fields to support the decision of what record to select
+  - **what fields to fill in and with what information**. automatically copy related fields of the source module into the destinations fields of the current module (ex: address fields of Accounts into address fields of Contacts)
+
+Using the Extended Field Information mapping we can define all of these options.
+
+This next map will activate the functionality on the Potentials Name and RelatedTo field:
+
+**Potentials_FieldInfo**
+
+<code xml>
+<map>
+    <originmodule>
+        <originname>Potentials</originname>
+    </originmodule>
+    <fields>
+        <field>
+            <fieldname>related_to</fieldname>
+            <features>
+                <feature>
+                    <name>searchmodule</name>
+                    <value>Contacts</value>
+                </feature>
+                <feature>
+                    <name>searchfields</name>
+                    <values>
+                        <value>
+                            <module>Accounts</module>
+                            <value>accountname</value>
+                        </value>
+                        <value>
+                            <module>Contacts</module>
+                            <value>firstname,lastname</value>
+                        </value>
+                    </values>
+                </feature>
+                <feature>
+                    <name>searchcondition</name>
+                    <value>startswith</value>
+                </feature>
+                <feature>
+                    <name>entityfield</name>
+                    <values>
+                        <value>
+                            <module>Accounts</module>
+                            <value>accountname</value>
+                        </value>
+                        <value>
+                            <module>Contacts</module>
+                            <value>firstname</value>
+                        </value>
+                    </values>
+                </feature>
+                <feature>
+                    <name>showfields</name>
+                    <values>
+                        <value>
+                            <module>Accounts</module>
+                            <value>accountname,phone,email1</value>
+                        </value>
+                        <value>
+                            <module>Contacts</module>
+                            <value>firstname,email,mailingstreet</value>
+                        </value>
+                    </values>
+                </feature>
+                <feature>
+                    <name>fillfields</name>
+                    <values>
+                        <value>
+                            <module>Accounts</module>
+                            <value>forecast_amount=annual_revenue</value>
+                        </value>
+                        <value>
+                            <module>Contacts</module>
+                            <value>leadsource=leadsource,assigned_user_id=assigned_user_id,closingdate=support_end_date</value>
+                        </value>
+                    </values>
+                </feature>
+            </features>
+        </field>
+        <field>
+            <fieldname>potentialname</fieldname>
+            <features>
+                <feature>
+                    <name>searchmodule</name>
+                    <value>Contacts</value>
+                </feature>
+                <feature>
+                    <name>searchfields</name>
+                    <value>firstname,lastname</value>
+                </feature>
+                <feature>
+                    <name>searchcondition</name>
+                    <value>startswith</value>
+                </feature>
+                <feature>
+                    <name>entityfield</name>
+                    <value>firstname</value>
+                </feature>
+                <feature>
+                    <name>showfields</name>
+                    <value>firstname,email,mailingstreet</value>
+                </feature>
+                <feature>
+                    <name>fillfields</name>
+                    <value>leadsource=leadsource,assigned_user_id=assigned_user_id,closingdate=support_end_date</value>
+                </feature>
+            </features>
+        </field>
+    </fields>
+</map>
+</code>

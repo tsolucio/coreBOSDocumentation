@@ -175,11 +175,22 @@ Action launched when two entities have just been UNrelated (AFTER). Action recei
 ===corebos.filter.preSaveCheck===
 Filter launched before starting the Save process. Will receive, the $_REQUEST variable and the current object trying to be saved. It must return, besides these two input parameters, an error status, an error message, an error action and an array of variables to return to the edit screen the process was initiated from.
 
+[[en:devel:corebos_hooks:precrud|You can read a little more about this filter here]]
+
 ===corebos.filter.preEditCheck===
 Filter launched before starting the Edit process. Will receive, the $_REQUEST variable, the Smarty object and the current object trying to be edited.
 
+[[en:devel:corebos_hooks:precrud|You can read a little more about this filter here]]
+
 ===corebos.filter.preViewCheck===
 Filter launched before starting the Detail View process. Will receive, the $_REQUEST variable, the Smarty object and the current object trying to be viewed.
+
+[[en:devel:corebos_hooks:precrud|You can read a little more about this filter here]]
+
+===corebos.filter.preDeleteCheck===
+Filter launched before deleting a record. Will receive, the current object trying to be deleted and must return a boolean indicating if the action may proceed or not and a message to show in case it cannot.
+
+[[en:devel:corebos_hooks:precrud|You can read a little more about this filter here]]
 
 ===corebos.audit.[authenticate|login|login.attempt|logout|action]===
 Actions called on the indicated events

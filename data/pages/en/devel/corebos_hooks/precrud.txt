@@ -1,0 +1,85 @@
+===== pre-CRUD filters =====
+
+There are four filters that are launched on each of the Create, Retrieve, Update and Delete actions.
+
+==== corebos.filter.preSaveCheck ====
+
+Filter launched before starting the Save process. Will receive, the $_REQUEST variable and the current object trying to be saved. It must return, besides these two input parameters, an error status, an error message, an error action and an array of variables to return to the edit screen the process was initiated from.
+
+You can find [[https://github.com/tsolucio/corebos/blob/master/modules/Documents/Documents.php#L180|an example of this filter in the Documents module]], where it checks if the attachment was correctly uploaded and aborts the save if it wasn't.
+
+<WRAP center round info 75%>
+Note that, in this example, the application has overridden the preSave method instead of registering an event. In the end, the result is the same.
+</WRAP>
+
+
+==== corebos.filter.preEditCheck ====
+
+Filter launched before starting the Edit process. Will receive, the $_REQUEST variable, the Smarty object and the current object trying to be edited.
+
+You can find [[https://github.com/tsolucio/corebos/blob/master/modules/CobroPago/CobroPago.php#L423|an example of this filter in the Payment module]], where it checks if the record can be edited or not.
+
+<WRAP center round info 75%>
+Note that, in this example, the application has overridden the preEdit method instead of registering an event. In the end, the result is the same.
+</WRAP>
+
+==== corebos.filter.preViewCheck ====
+
+Filter launched before starting the Detail View process. Will receive, the $_REQUEST variable, the Smarty object and the current object trying to be viewed.
+
+The next code will use this event to show a message on the DetailView of each record depending on the parity of its record ID.
+
+First, we create a script that will receive the event and do the desired work.
+
+**preViewCheck_msgIfCRMIDiseven**
+
+<code php>
+class preViewCheck_msgIfCRMIDiseven extends VTEventHandler {
+	private $_moduleCache = array();
+
+	/**
+	 * @param $handlerType
+	 * @param $entityData VTEntityData
+	 */
+	public function handleEvent($handlerType, $entityData) {
+	}
+
+	public function handleFilter($handlerType, $parameter) {
+		global $currentModule;
+		if ($handlerType == 'corebos.filter.preViewCheck') {
+				// $parameter is the QueryGenerator Object
+				$request = $parameter[0];
+				$smarty = $parameter[1];
+				$focus = $parameter[2];
+				if ($focus->column_fields['record_id'] % 2 == 0) {
+					$smarty->assign('ERROR_MESSAGE_CLASS', 'cb-alert-success');
+					$smarty->assign('ERROR_MESSAGE', 'CRMID is EVEN!');
+				} else {
+					$smarty->assign('ERROR_MESSAGE_CLASS', 'cb-alert-info');
+					$smarty->assign('ERROR_MESSAGE', 'CRMID is ODD!');
+				}
+		}
+		return $parameter;
+	}
+}
+</code>
+
+Next we register the event
+
+<code php>
+include 'vtlib/Vtiger/Module.php';
+require_once('include/events/include.inc');
+$em = new VTEventsManager($adb);
+$event = 'corebos.filter.preViewCheck';
+$em->registerHandler($event, 'preViewCheck_msgIfCRMIDiseven.php', 'preViewCheck_msgIfCRMIDiseven');
+echo "<h4>Event $event registered.</h4>";
+</code>
+
+The result looks like this:
+
+{{ :en:devel:corebos_hooks:crmidevenodd.png |}}
+
+
+==== corebos.filter.preDeleteCheck ====
+
+Filter launched before deleting a record. Will receive, the current object trying to be deleted and must return a boolean indicating if the action may proceed or not and a message to show in case it cannot.

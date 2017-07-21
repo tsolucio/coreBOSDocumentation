@@ -1,0 +1,111 @@
+====== coreBOS Translation Module ======
+
+=====Pros=====
+
+  *add strings to other modules with no code changes
+  *more control of labels: avoid duplicates
+  *Import/Export
+  *all module advantages: mass edit, deduplication
+  *modify any label easily
+  *easier to translate: external tools
+  *correct functionality of picklist search
+  *possibility to translate values on modules, not just labels
+  *Support for using Accept-Language header when fetching required language: [[https://github.com/tsolucio/corebos/blob/master/modules/cbtranslation/cbtranslation.php#L178|getLanguage]]
+  *Support for contextual and plural translations with full sprintf syntax (see syntax below)
+  *Full support for getting plural cases in 144 languages based on http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html?id=l10n/pluralforms
+  *Full backward compatibility
+
+=====Cons=====
+
+  *harder to install new language file: could be fixed easily
+  *slower: about 2% (needs validation)
+  *modifying and adding strings is harder: cbupdater?
+
+
+=====Accept-Language Header=====
+
+[[https://github.com/tsolucio/corebos/blob/master/modules/cbtranslation/cbtranslation.php#L178|cbTranslation::getLanguage()]]
+
+Will first try to find a user chosen locale in the user settings.
+
+If none found, it will next try to use the Accept-Language header provided by the browser. This is especially useful in the login screen for multilingual users.
+
+Finally, it will fallback to the global configuration
+
+=====Contextual and plural translations=====
+
+====Context translation====
+
+The use of context string lets tuning translation in special cases, e.g. taking care of gender.
+
+====Plural translations====
+
+Many languages have different ways of taking plurals into account, from none to 6 plural forms.
+
+====cbtranslation::get()====
+
+The [[https://github.com/tsolucio/corebos/blob/master/modules/cbtranslation/cbtranslation.php#L225|cbtranslation::get()]] method has full support for context and plurals, among other features.
+
+The basic usage is <wrap hi>cbtranslation::get('friend')</wrap> that will return the value of 'friend' taken from the module cbtranslation values (equivalent to the previous main translation file in include/language).
+
+Next we can pass in the module as we did before with getTranslatedString, <wrap hi>cbtranslation::get('friend','Users')</wrap>), which will return the value of 'friend' taken from the Users module translations entries in the database.
+
+The third parameter is an array with a set of options for the translation.
+
+  * language => <String> language to translate against, if not set $current_language will be used
+  * context => <String> label modifier for specific translation contexts, like gender. The context is simply added after key name separated by an underscore.
+  * count => <Integer> label modifier for plurals. Plurals are written following gettext format. For a language with 2 plural forms, you keep KEY_NAME for singular and KEY_NAME_PLURAL for plural. For a language with 3 or more plural forms, it will be KEY_NAME_0, KEY_NAME_1, ..., KEY_NAME_N for each case
+
+Some examples would be:
+
+  * <wrap hi>cbtranslation::get('friend','Users',array('language'=>'en_us'))</wrap> which will search in english
+  * <wrap hi>cbtranslation::get('friend','Users',array('language'=>'es_es'))</wrap> which will search in spanish
+  * <wrap hi>cbtranslation::get('friend','Users',array('language'=>'en_us','count'=>2))</wrap> which will search in english for the plural form of the label: 'friend_PLURAL'
+  * <wrap hi>cbtranslation::get('friend','Users',array('language'=>'en_us','count'=>1))</wrap> which will search in english for the singular form of the label: 'friend'
+  * <wrap hi>cbtranslation::get('friend','Users',array('language'=>'en_us','count'=>2, 'context'=>'female'))</wrap> which will search in english for the plural form of the label with 'female' suffix: 'friend_female_PLURAL'
+
+Finally, you can add more parameters to support sprintf formatting like this: <wrap hi>cbtranslation::get('friendcountry','Users',array('language'=>'en_us','context'=>'female','count'=>2),2,'England')</wrap>
+
+You can [[https://github.com/tsolucio/coreBOSTests/blob/master/modules/cbtranslation/cbtranslationTest.php|find a set of examples in our unit test for this module]].
+
+
+===Examples===
+Let's say that we have these values
+
+<code>
+'LBL_USER' => 'User',
+'LBL_USER_PLURAL' => 'Users',
+'LBL_USER_MALE' => 'Male User',
+'LBL_USER_FEMALE' => 'Female User',
+'LBL_USER_FEMALE_PLURAL' => 'Many female users',
+'LBL_CONNECTED_USERS' => '%d user is connected',
+'LBL_CONNECTED_USERS_PLURAL' => '%d users are connected',
+</code>
+
+Calling <wrap hi>cbtranslation::get('LBL_USER', $MODULE)</wrap> will return 'User'
+
+Calling <wrap hi>cbtranslation::get('LBL_USER', $MODULE, array('count'=>$CONNECTED_USERS_COUNT))</wrap> will return 'Users' if $CONNECTED_USERS_COUNT > 1 and 'User' if $CONNECTED_USERS_COUNT = 1
+
+Calling <wrap hi>cbtranslation::get('LBL_CONNECTED_USERS', $MODULE, array('count'=>$CONNECTED_USERS_COUNT),$CONNECTED_USERS_COUNT)</wrap> will return for instance '10 users are connected'
+
+Calling <wrap hi>cbtranslation::get('LBL_USER', $MODULE, array('context'=>'FEMALE','count'=>$CONNECTED_USERS_COUNT))</wrap> will return 'Female User' if $CONNECTED_USERS_COUNT = 1 and 'Many female users' if $CONNECTED_USERS_COUNT > 1
+
+===== cbtranslation webservice=====
+
+There is currently no webservice interface to this module's translation services. We could enhance the webservice getTranslatedString method, which, I think, would be the correct way to proceed.
+
+In the mean time, a normal query should get you the translation you need:
+
+<code SQL>
+select i18n from cbtranslation where translation_key = 'friend' and locale='es_es'
+select i18n,Products.productname from cbtranslation where Products.productname = 'Sexy Leggings';
+</code>
+=====References=====
+
+This enhancement to coreBOS is based on the [[http://code.vtiger.com/vtiger/vtigercrm/merge_requests/238|work of @bertrand.wattel]]. **Thank you very much!!**  I'm sure vtiger will pay just as much attention to your effort as I did LOL
+
+  *http://code.vtiger.com/vtiger/vtigercrm/merge_requests/238
+  *http://docs.translatehouse.org/projects/localization-guide/en/latest/guide/start.html
+  *http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html?id=l10n/pluralforms
+  *https://www.i18next.com/plurals.html
+  *https://www.i18next.com/context.html

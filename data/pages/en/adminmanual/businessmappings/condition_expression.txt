@@ -12,12 +12,12 @@ This mapping accepts two formats, one is a direct expression from the workflow e
 </code>
 <code xml>
  <map>
-  <expression>employee + 10</expression>
+  <expression>employees + 10</expression>
  </map>
 </code>
 <code xml>
  <map>
-  <expression>if employee > 10 then true else false</expression>
+  <expression>if employees > 10 then 'true' else 'false' end</expression>
  </map>
 </code>
 

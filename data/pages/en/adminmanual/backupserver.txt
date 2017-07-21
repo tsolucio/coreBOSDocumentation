@@ -1,0 +1,29 @@
+====== Backup Application ======
+
+The application has an extension that can be used to configure regular backups and create ad hoc backups.
+
+You can use the Menu Editor to create an access point to this URL:
+
+<code>index.php?module=VtigerBackup&action=index</code>
+
+or directly use the Module name like this:
+
+{{ :en:adminmanual:backups:backup.png |}}
+
+When we access the extension we will be able to activate the local backups and the offsite (FTP) backups.
+
+{{ :en:adminmanual:backups:backupconfig.png |}}
+
+<WRAP center round info 60%>
+The "backup" default directory exists and is protected from access through the web.
+</WRAP>
+
+Once configured the backups you can manually execute backups clicking on the **Backup Now** button and/or activate the **scheduled tasks** to make them regularly in Settings > Scheduled Tasks
+
+{{ :en:adminmanual:backups:backupschedule.png |}}
+
+There are two different types:
+  * Backup with no external tools. Can easily run into memory limitations and really slow down the server. Good for smaller sets of information.
+  * Backup with external tools. mysqldump and zip must be available on the server. Fast and good for big sets of information.
+
+You can find some more information on our youtube channel and in the coreBOS Manual.

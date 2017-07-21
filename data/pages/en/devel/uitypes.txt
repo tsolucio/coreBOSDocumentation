@@ -17,6 +17,10 @@
 |14|Time|
 |15|A dropdown combo that accepts input from the value selected in it. The values in the dropdown vary from module to module and Role-based.|
 |16|A dropdown combo that accepts input from the value selected in it. The values in the dropdown vary from module to module and doesn't depend on the current user's role (non-role based).|
+|1613|A dropdown of the entity modules available in the application|
+|1614|A dropdown of the entity and non-entity (extensions) modules available in the application|
+|1615|A dropdown of all the picklists in the application|
+|1024|A dropdown of all the roles in the application|
 |17|Single line text field which is used to accept the names of websites from the users. In other words a URL. Does not check for the validity of input, but does parse the protocol. Changes color on selection.|
 |19|Textarea used for accepting large inputs like "Description", "Solutions" etc. Changes color on selection.|
 |20|Same as uitype 19, but a mandatory field, i.e. it has to be filled and there is a star present before the field label. Changes color on selection.|
@@ -32,6 +36,8 @@
 |31|**Reserved** User theme dropdown|
 |32|**Reserved** User language dropdown|
 |33|Multipicklist. Does not change color on selection.|
+|3313|Multipicklist of the entity modules available in the application|
+|3314|Multipicklist of the entity and non-entity (extensions) modules available in the application|
 |50|Datetime field. Contains a link to "jsCalendar" which can be used to fill it in. Also displays he current users date format below it. Takes input date based on the current users date format. Does not allow to enter invalid date like 30th February. Does not change color on selection.|
 |51|Used to select an account from a popup window.|
 |52,77|A dropdown with a list of current active users. 77 must be named inventorymanager|

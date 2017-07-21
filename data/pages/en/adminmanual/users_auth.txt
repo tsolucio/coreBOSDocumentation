@@ -222,6 +222,29 @@ To make sure it is also working in Apache Webserver context, you may also open i
   * You can set the authentication variable to any value for any user, effectively authenticating each one using different methods
   * Make sure the case for the user names match that of your coreBOS usernames
   * You cannot have spaces or special characters in the LDAP username as these are not supported by coreBOS.
-  * These features are based on the work of others (thanks!)
+  * LDAP and Active Directory features are based on the work of others (thanks!)
     * {{ :en:adminmanual:vtiger-ldap-integration-v1.0.pdf |vtiger company}}
     * [[http://adminberlin.de/vtiger-crm-6-active-directory-authentication/|Marco at adminberlin.de]]
+
+==== Two-Factor Authentication ====
+
+coreBOS supports Two-Factor Authentication as of June 2017.
+
+<WRAP center round info 60%>
+This functionality should work with LDAP and Active Directory
+</WRAP>
+
+
+This functionality can be defined per user using global variables.
+
+The global variables are:
+
+  * **User_2FAAuthentication**: boolean 0 or 1 value that will activate the functionality
+  * **User_2FAAuthentication_SendMethod**: SMS, EMAIL, or MOBILE as the system to send the code to the user. If the value is set to SMS, the application will search first for phone_work and then phone_mobile. SMS **MUST** be active and configured, if not the EMAIL method will be used. The code will be sent to the user's main email. Read below to find out how MOBILE works.
+
+**MOBILE** expects you to have installed the [[https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2|Google Authenticator App]] on your mobile device. Then go to your users' profile and click on the "Two Factor Activation" button. This will take you to a screen where you can activate this functionality. Once activated you will see your secret code, both as a number and as a QRCode that can be scanned into the App.
+
+{{ :en:adminmanual:2faactivation.png |}}
+
+Once that is done, you will be able to generate codes that will let you login on your cell phone.
+

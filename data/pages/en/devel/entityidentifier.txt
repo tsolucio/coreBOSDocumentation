@@ -25,3 +25,5 @@ $module->setEntityIdentifier($field);//And finally you set this field.
 
 ?>
 </code>
+
+and then modify the main class of the module. In the header change some references to the previous entity field, at least list_link_field.

@@ -2,6 +2,10 @@
 
 <wrap hi>[[http://producingoss.com/en/share-management.html#translation-manager|Based on Produccing Open Source Software]]</wrap>
 
+===== coreBOS Translation Module =====
+
+[[en:devel:cbtranslation|coreBOS Translation module]]
+
 ===== Translating Application =====
 
 ==== Translating from within the application =====

@@ -36,8 +36,8 @@
 
   * [[en:adminmanual:currencies|Currencies]]
   * [[en:adminmanual:taxcalculations|Tax Calculations]]
-  * [[en:adminmanual:outgoingserver|Outgoing Server]]
-  * [[en:adminmanual:backupserver|Backup Server]]
+  * [[en:adminmanual:outgoingserver|Outgoing Email Server]]
+  * [[en:adminmanual:backupserver|Backup Application]]
   * [[en:adminmanual:termsconditions|Inventory : Terms & Conditions]]
   * [[en:adminmanual:recordnumbering|Customize Record Numbering]]
   * [[en:adminmanual:mailconverter|Mail Converter]]
@@ -53,5 +53,6 @@
   * [[en:adminmanual:logos_sizes|Logo sizes]]
   * [[en:adminmanual:globalvariables|Global Variables]]
   * [[en:adminmanual:businessmappings|Business Mappings]]
+  * [[en:adminmanual:businessmappings:fieldinfo:autocomplete|Configuring Autocomplete Fields: Business Mappings]]
   * [[en:adminmanual:email_tracking|Email tracking: Access count]]
   * [[en:adminmanual:monitorstatus|Monitor Health of you coreBOS]]

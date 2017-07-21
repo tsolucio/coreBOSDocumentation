@@ -31,6 +31,7 @@ There are currently these different types of mappings:
   * [[en:adminmanual:businessmappings:condition_query|Condition Query]]
   * [[en:adminmanual:businessmappings:condition_expression|Condition Expression]]
   * [[en:adminmanual:businessmappings:mapping|(Field) Mapping]]
+  * [[en:adminmanual:businessmappings:fieldinfo|Extended Field Information Mapping]]
   * [[en:adminmanual:businessmappings:record_access_control|Record Access Control]]
   * [[en:adminmanual:businessmappings:list_columns|List Columns]]
   * [[en:adminmanual:businessmappings:record_set|Record Set Mapping]]
