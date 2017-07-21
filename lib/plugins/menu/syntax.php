@@ -14,6 +14,7 @@
  *
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  * @author     Matthias Grimm <matthiasgrimm@users.sourceforge.net>
+ * @author     Frank Schiebel <frank@linuxmuster.net>
  */
  
 if(!defined('DOKU_INC')) define('DOKU_INC',realpath(dirname(__FILE__).'/../../').'/');
@@ -27,6 +28,12 @@ require_once(DOKU_PLUGIN.'syntax.php');
 class syntax_plugin_menu extends DokuWiki_Syntax_Plugin {
 
     var $rcmd = array();  /**< Command array for the renderer */
+
+    function __construct() {
+        global $ID;
+        global $conf;
+    }
+
 
    /**
     * Get an associative array with plugin info.
@@ -157,7 +164,7 @@ class syntax_plugin_menu extends DokuWiki_Syntax_Plugin {
     * @see render()
     * @static
     */
-    function handle($match, $state, $pos, &$handler)
+    function handle($match, $state, $pos, Doku_Handler $handler)
     {
         switch ($state) {
             case DOKU_LEXER_ENTER: 
@@ -172,9 +179,12 @@ class syntax_plugin_menu extends DokuWiki_Syntax_Plugin {
                 if ($opts['align'] == "right")  $this->rcmd['float'] = "right";
                 if (!empty($opts['caption']))
                     $this->rcmd['caption'] = hsc($opts['caption']);
+                if (!empty($opts['type']))
+                    $this->rcmd['type'] = hsc($opts['type']);
             break;
           case DOKU_LEXER_MATCHED:
-                $menuitem = split('\|', trim(substr($match,6,-7)));
+
+                $menuitem = preg_split('/\|/', trim(substr($match,6,-7)));
 
                 $title = hsc($menuitem[0]);
                 if (substr($menuitem[2],0,2) == "{{")
@@ -268,47 +278,89 @@ class syntax_plugin_menu extends DokuWiki_Syntax_Plugin {
     * @public
     * @see handle()
     */
-    function render($mode, &$renderer, $data) {
-        global $ID;
-        global $conf;
+    function render($mode, Doku_Renderer $renderer, $data) {
 
         if (empty($data)) return false;
 
         if($mode == 'xhtml'){
-            // for IE6 2x10em does not fit into 20em, it needs 21em
-            $renderer->doc .= '<div class="menu" id="menu'.$data['float'].'"';
-            $renderer->doc .= ' style="width:'.($data['columns'] * $data['width'] + 2).'em;">'."\n";
-            if (isset($data['caption']))
-                $renderer->doc .= '<p class="caption">'.$data['caption'].'</p>'."\n";
+            if ($data['type'] != "menubar"){  
+                    // for IE6 2x10em does not fit into 20em, it needs 21em
+                    $renderer->doc .= '<div class="menu menu'.$data['float'].'"';
+                    $renderer->doc .= ' style="width:'.($data['columns'] * $data['width'] + 2).'em;">'."\n";
+                    if (isset($data['caption']))
+                        $renderer->doc .= '<p class="caption">'.$data['caption'].'</p>'."\n";
 
-            foreach($data['items'] as $item) {
-                $renderer->doc .= '<div class="menuitem" style="width:'.$data['width'].'em;">'."\n";
+                    foreach($data['items'] as $item) {
+                        $renderer->doc .= '<div class="menuitem" style="width:'.$data['width'].'em;">'."\n";
 
-                // create <img .. /> tag
-                list($type, $args) = $item['image'];
-                list($ext,$mime,$dl) = mimetype($args[0]);
-                $class = ($ext == 'png') ? ' png' : NULL;
-                $img = $renderer->_media($args[0],$args[1],$class,$args[3],$args[4],$args[5]);
+                        // create <img .. /> tag
+                        list($type, $args) = $item['image'];
+                        list($ext,$mime,$dl) = mimetype($args[0]);
+                        $class = ($ext == 'png') ? ' png' : NULL;
+                        $img = $renderer->_media($args[0],$args[1],$class,$args[3],$args[4],$args[5]);
 
-                // create <a href= .. /> tag
-                list($type, $args) = $item['link'];
-                $link = $this->_getLink($type, $args, $renderer);
-                $link['title'] = $args[1];
+                        // create <a href= .. /> tag
+                        list($type, $args) = $item['link'];
+                        $link = $this->_getLink($type, $args, $renderer);
+                        $link['title'] = $args[1];
 
-                $link['name']  = $img;
-                $renderer->doc .= $renderer->_formatLink($link);
+                        $link['name']  = $img;
+                        $renderer->doc .= $renderer->_formatLink($link);
 
-                $link['name']  = '<p class="menutext">'.$args[1].'</p>';
-                $renderer->doc .= $renderer->_formatLink($link);
-                $renderer->doc .= '<p class="menudesc">'.$item['descr'].'</p>';
-                $renderer->doc .= '</div>'."\n";
+                        $link['name']  = '<span class="menutext">'.$args[1].'</span>';
+                        $renderer->doc .= $renderer->_formatLink($link);
+                        $renderer->doc .= '<p class="menudesc">'.$item['descr'].'</p>';
+                        $renderer->doc .= '</div>'."\n";
+                    }
+
+                    $renderer->doc .= '</div>'."\n";
+
+                    if ($data['float'] == "right") /* center: clear text floating */
+                        $renderer->doc .= '<p style="clear:both;" />';
+                    if ($data['float'] == "left") /* center: clear text floating */
+                        $renderer->doc .= '<p style="clear:both;" />';
+                    if ($data['float'] == "center") /* center: clear text floating */
+                        $renderer->doc .= '<p style="clear:both;" />';
+
+                    return true;
+            }
+            // menubar mode: 1 row with small captions
+            if ($data['type'] == "menubar"){  
+                    // for IE6 2x10em does not fit into 20em, it needs 21em
+                    $renderer->doc .= '<div id="menu"><ul class="menubar">'."\n";
+                  //  if (isset($data['caption']))
+                  //      $renderer->doc .= '<p class="caption">'.$data['caption'].'</p>'."\n";
+
+                    foreach($data['items'] as $item) {
+                        $renderer->doc .= '<li>'."\n";
+
+                        // create <img .. /> tag
+                        list($type, $args) = $item['image'];
+                        list($ext,$mime,$dl) = mimetype($args[0]);
+                        $class = ($ext == 'png') ? ' png' : NULL;
+                        $img = $renderer->_media($args[0],$item['descr'],$class,$args[3],$args[4],$args[5]);
+
+                        // create <a href= .. /> tag
+                        list($type, $args) = $item['link'];
+                        $link = $this->_getLink($type, $args, $renderer);
+                        $link['title'] = $args[1];
+
+                        $link['name']  = $img;
+                        $renderer->doc .= $renderer->_formatLink($link);
+
+                        $link['name']  = '<p class="menutext">'.$args[1].'</p>';
+                        $renderer->doc .= $renderer->_formatLink($link);
+                        //$renderer->doc .= '<p class="menudesc">'.$item['descr'].'</p>';
+                        $renderer->doc .= '</li>';
+                    }
+
+                    $renderer->doc .= '</ul></div>'."\n";
+                    if ($data['float'] == "center") /* center: clear text floating */
+                        $renderer->doc .= '<p style="clear:both;" />';
+
+                    return true;
             }
 
-            $renderer->doc .= '</div>'."\n";
-            if ($data['float'] == "center") /* center: clear text floating */
-                $renderer->doc .= '<p style="clear:both;" />';
-
-            return true;
         }
         return false;
     }
