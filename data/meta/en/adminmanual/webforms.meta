@@ -1,0 +1,11 @@
+a:2:{s:7:"current";a:8:{s:4:"date";a:2:{s:7:"created";i:1500733776;s:8:"modified";i:1500733776;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1500733776;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"C";s:2:"id";s:23:"en:adminmanual:webforms";s:4:"user";s:9:"joebordes";s:3:"sum";s:7:"created";s:5:"extra";s:0:"";s:10:"sizechange";i:1167;}s:5:"title";s:8:"Webforms";s:11:"description";a:2:{s:15:"tableofcontents";a:3:{i:0;a:4:{s:3:"hid";s:8:"webforms";s:5:"title";s:8:"Webforms";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:1;a:4:{s:3:"hid";s:19:"webservice_webforms";s:5:"title";s:19:"Webservice Webforms";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:2;a:4:{s:3:"hid";s:18:"relaying_a_webform";s:5:"title";s:18:"Relaying a Webform";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:492:"Webforms
+
+Webservice Webforms
+
+coreBOS Webservice Webform
+
+Relaying a Webform
+
+postby jtrombley80 » Thu Nov 01, 2012 10:37 pm THANK YOU
+
+Ran into a situation recently where I needed a Webform sitting out on the internet to hit a server in a DMZ and then be relayed from that server to a coreBOS server behind a firewall. The DMZ server was the only one allowed to talk to the coreBOS instance and it wasn't the server hosting the webform. Here's what I did in case anyone has a similar need.";}s:8:"relation";a:2:{s:10:"references";a:1:{s:30:"en:extensions:coreboswswebform";b:1;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:4:{s:4:"date";a:1:{s:7:"created";i:1500733776;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1500733776;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"C";s:2:"id";s:23:"en:adminmanual:webforms";s:4:"user";s:9:"joebordes";s:3:"sum";s:7:"created";s:5:"extra";s:0:"";s:10:"sizechange";i:1167;}}}

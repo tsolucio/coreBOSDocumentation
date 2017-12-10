@@ -1,0 +1,11 @@
+a:2:{s:7:"current";a:8:{s:4:"date";a:2:{s:7:"created";i:1500837026;s:8:"modified";i:1500837026;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1500837026;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"C";s:2:"id";s:32:"temporaryhold:consolidaciondeuda";s:4:"user";s:9:"joebordes";s:3:"sum";s:7:"created";s:5:"extra";s:0:"";s:10:"sizechange";i:759;}s:5:"title";s:18:"Control de Deudas.";s:11:"description";a:2:{s:15:"tableofcontents";a:4:{i:0;a:4:{s:3:"hid";s:17:"control_de_deudas";s:5:"title";s:18:"Control de Deudas.";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:37:"consolidacion_y_negociacion_de_deudas";s:5:"title";s:39:"Consolidación y Negociación de Deudas";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:18:"proceso_de_control";s:5:"title";s:18:"Proceso de control";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:3;a:4:{s:3:"hid";s:13:"otras_mejoras";s:5:"title";s:14:"Otras  mejoras";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:306:"Control de Deudas.
+
+Consolidación y Negociación de Deudas
+
+
+
+Proceso de control
+
+	* Añadiremos varios tipos de cobros y pagos
+	* Cada pago que nos hace el cliente será un cobro en el sistema. Se dividirá en varias partes:
+		* ahorro, relacionado con cliente solamente, se añade a su total de entradas";}s:8:"relation";a:3:{s:5:"media";a:1:{s:37:"temporaryhold:consolidaciondeudas.png";b:1;}s:10:"references";a:1:{s:27:"temporaryhold:paymentmodule";b:0;}s:10:"firstimage";s:37:"temporaryhold:consolidaciondeudas.png";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:4:{s:4:"date";a:1:{s:7:"created";i:1500837026;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1500837026;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"C";s:2:"id";s:32:"temporaryhold:consolidaciondeuda";s:4:"user";s:9:"joebordes";s:3:"sum";s:7:"created";s:5:"extra";s:0:"";s:10:"sizechange";i:759;}}}

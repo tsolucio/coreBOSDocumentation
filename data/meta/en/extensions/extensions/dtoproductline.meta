@@ -1,0 +1,13 @@
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1500836700;s:8:"modified";i:1505738938;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1505738938;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"E";s:2:"id";s:39:"en:extensions:extensions:dtoproductline";s:4:"user";s:9:"joebordes";s:3:"sum";s:13:"[Data entry] ";s:5:"extra";s:0:"";s:10:"sizechange";i:149;}s:5:"title";s:40:"Discount on Product and Service Category";s:11:"description";a:2:{s:15:"tableofcontents";a:1:{i:0;a:4:{s:3:"hid";s:40:"discount_on_product_and_service_category";s:5:"title";s:40:"Discount on Product and Service Category";s:4:"type";s:2:"ul";s:5:"level";i:1;}}s:8:"abstract";s:503:"Discount on Product and Service Category
+
+This business settings module will permit you to define discounts per product/service line and/or clients.
+
+
+
+
+
+
+This extension is installed in our coreBOSCRM Demo
+
+
+The goal of this change is to permit direct discounts for each account based on the category of products and/or services. It will permit us, for example, to assign a 10% discount to any account when he buys products in the software category and an 8% discount if he uses services of the techn…";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:0;}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1500836700;s:8:"modified";i:1505738938;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1505738938;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"E";s:2:"id";s:39:"en:extensions:extensions:dtoproductline";s:4:"user";s:9:"joebordes";s:3:"sum";s:13:"[Data entry] ";s:5:"extra";s:0:"";s:10:"sizechange";i:149;}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}}}
