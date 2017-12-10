@@ -1,0 +1,83 @@
+{{description>roundcube vtigercrm integration, manage your email and your crm}}
+{{keywords>vtiger, vtigercrm, crm, email, read, roundcube}}
+\\
+====== Roundcube coreBOS CRM Integration. ======
+
+<WRAP center round info 80%>
+This project is fully documented and operative at [[http://corebosmail.tsolucio.com|coreBOSMail website]]
+</WRAP>
+
+
+With this extensión to round cube you will be able to easily manage your email and synchronize it with your vtiger CRM application. You will be able to upload your emails to the CRM and create many entities from any email.
+
+  * Select Email > Qualify.
+    * Both automatic and manual options are available
+    * Attachments respected
+
+{{ :en:integrations:rcvt:rcvt_menus.png?direct&500 |}}\\
+{{ :en:integrations:rcvt:rcvt_captureentity.png?direct&500 |}}
+
+  * Tag/Label Message
+  * Configure access information and functionality options
+
+{{ :en:integrations:rcvt:rcvt_config.png?direct&500 |}}
+
+  * Auto-fill-in search when sending
+    * search To/CC/BCC in Contact
+    * search in account, contact and lead
+    * search on name, email, secondary email
+
+{{ :en:integrations:rcvt:rcvt_autofillin.png?direct&500 |}}
+
+  * Autocreate Contact/Account and upload email on send
+
+
+===== Creating entities =====
+
+You can create various types of entities from an email. These are the ones that are currently supported:
+
+  * **Contacts**
+    * Firstname, Lastname
+    * Email
+
+  * **Accounts**
+    * Domain > Accountname
+    * Email
+    * Firstname, Lastname > Description
+
+  * **Lead**
+    * Domain > Company
+    * Dmail
+    * Firstname, Lastname
+
+  ***Potential**
+    * Subject > Name
+    * Related To
+    * Body > Description
+
+  * **Todo**
+    * Subject
+    * Related To
+    * Body > Description
+
+  * **HelpDesk**
+    * Subject > Title
+    * Related To
+    * Body > Description
+
+  * **Project**
+    * Subject > Name
+    * Related To
+    * Body > Description
+
+  * **Project Task**
+    * Subject > Name
+    * Body > Description
+
+
+===== Attach documents that are in vtiger CRM =====
+
+**on todo list/wish list**
+
+
+

@@ -1,0 +1,107 @@
+======Cuadro de Mando vtMarketing ======
+ 
+[[http://evolutivoteam.blogspot.com.es/2013/01/marketing-dashboard.html]]
+
+El **Cuadro de Mando vtMarketing** es un conjunto de tres módulos vtiger CRM y un avanzado sistema de búsqueda y ejecución de procesos que viene a rellenar el hueco existente entre las campañas y los contactos.
+
+{{ :en:vtmkt:emailmarketing.png?direct&800 |}}
+
+Este conjunto de extensiones construye encima de la relación muchos a muchos existente entre contactos/precontactos y campañas permitiéndonos, no solo rellenar masivamente una campaña sino también crear y seguir todo el trabajo que se realiza sobre la relación.
+
+Con esta herramienta seremos capaces de segmentar nuestro mercado y asociar cada segmento con campañas diferentes, y después hacer un seguimiento exhaustivo sobre los emails mandados y las acciones que se realicen en la campaña.
+
+Primero añadimos un nuevo módulo llamado **Mensaje** donde podemos registrar cada interacción con el cliente y su resultado.
+
+{{ :en:vtmkt:outcomes_of_email.png?direct&800 |}}
+
+Esto nos permite hacer un seguimiento sencillo del estado de cada email enviado, registrando si el email fue entregado, abierto, rechazado e incluso si se ha realizado algún click en cualquiera de los enlaces contenidos en el email. Conseguimos información de estado completa de los emails desde dentro de vtiger CRM mediante un simple y estándar módulo de vtiger CRM.
+
+Llevando esta idea más lejos, añadimos otro módulo normal denominado **Acción**, que emula el módulo de evento/tarea de vtiger CRM, pero siguiendo la operativa de módulos estándar de vtiger CRM con lo cual es sencillo utilizar el módulo para hacer operaciones normales de seguimiento.
+
+{{ :en:vtmkt:creating_tasks_on_outcomes.png?direct&800 |}}
+
+Añadiendo oportunidades a la combinación y creando una pantalla simple de **búsqueda-selección-proceso** damos al usuario pleno control sobre el proceso de campañas.
+
+{{ :en:vtmkt:potentials.png?direct&800 |}}
+
+El tercer módulo introducido es uno de plantillas de email que nos permite gestionar las plantillas de los correos a mandar en las campañas.
+
+
+===== Administración de Campañas =====
+
+En esta pestaña podremos **buscar-seleccionar-procesar** nuestras campañas.
+
+En la primera sección de la extensión encontramos una serie de diferentes opciones para segmentar nuestros clientes y prospectos. Podemos **buscar** PreContactos, Contactos, Cuentas, Mensajes, Acciones y Oportunidades. En cada una de estos apartados disponemos de diferentes opciones sobre las que realizar la búsqueda. Por ejemplo, en la sección de contactos que se ve en la siguiente imagen, podemos buscar por una combinación de condiciones:
+
+  * contactos relacionados con una cuenta y/o campaña
+  * contactos relacionados con cuentas contenidas en un filtro
+  * contactos contenidos en un filtro y relacionados a cuentas contenidas en un filtro
+  * contactos con mensajes o acciones relacionadas con una campaña o no
+  * ...
+
+{{ :en:vtmkt:vtmkt_buscarctos.png?direct&800 |}}
+
+De manera similar podemos realizar búsquedas sobre las otras entidades.
+
+Además las búsquedas son acumulativas, de tal manera que cualquier sección que esté abierta al realizar la búsqueda añadirá los valores encontrados a la tabla resultante de registros, lo que nos permitirá realizar operaciones avanzadas sobre los conjuntos de elementos.
+
+Una vez hemos encontrado el conjunto de registros con los que queremos trabajar, pasamos a la sección de selección de registros que consiste en una tabla que contiene toda la información que hemos encontrado en la búsqueda anterior. La funcionalidad de la tabla nos permitirá realizar filtrados adicionales sobre el conjunto de resultados  y **seleccionar** todos los registros con los que realmente queremos realizar procesos.
+
+{{ :en:vtmkt:vtmkt_seleccionarctos.png?direct&800 |}}
+
+Después de la selección llegamos a la sección de **proceso** de la extensión. Aquí encontramos cuatro opciones de procesamiento precedidos por una sección de **parámetros generales** que afecta a todos los procesos.
+
+{{ :en:vtmkt:vtmkt_procesarctos.png?direct&800 |}}
+
+Los parámetros generales definen el texto de referencia, la fecha, la campaña y el usuario asignado a las nuevas entidades que vamos a crear en cada sección de proceso. Por ejemplo, en la primera sección de **Mensaje** podremos seleccionar una plantilla de email y enviar mensajes de correo electrónico masivo a todos los contactos seleccionados. En la sección de **Acciones** seremos capaces de programar llamadas o visitas a los contactos y asignarles una fecha y un comercial, así como un estado inicial de la acción. También podemos crear **oportunidades de negocios** para hacer el seguimiento de las campañas y enlazar de nuevo con las características estándar del CRM  a través del módulo de Oportunidades. Finalmente, la última sección permitirá que logremos una de las características más demandadas en foros de vtiger CRM: **enlazar masivamente** muchos contactos que se han filtrado sobre la base de las condiciones de la cuenta a una campaña.
+
+==== Casos de Uso ====
+
+Algunos casos de uso frecuentes son:
+
+  * **Administración de Campañas**:
+    * segmentar mercado: crear filtros para segmentar nuestros contactos, buscar los contactos aplicando los filtros y otras restricciones, selecciona todos los contactos en la tabla de resultados
+    * enlazar con campaña: abrir la pestaña de Campañas en la sección de proceso y seleccionar una campaña creada previamente, enlazar todos los contactos seleccionados con la campaña
+    * enviar emails: rellenar los parámetros generales, concretamente la campaña para que quede relacionado, abrir la pestaña de Mensajes en la sección de proceso y seleccionar una plantilla de email existente, pulsar el botón de enviar para crear un registro de mensaje para cada contacto y realizar el envío de un email por cada registro de mensaje. A medida que los contactos van abriendo los emails el estado de los mensajes se irán actualizando.
+
+<note important>Para todos aquellos registros a los que no se les puede enviar el email siquiera, porque el email está vacío o de alguna manera mal, se creará un registro de mensaje marcado como **"No Enviado"** para que podamos hacer seguimiento de la calidad de nuestra información de manera sencilla mediante filtros y/o informes.</note>
+
+    * crear acciones de seguimiento: después de algún tiempo se realiza una búsqueda de mensajes abiertos, se seleccionan y se crean acciones correspondientes mediante la pestaña de Acciones en la sección de proceso para que los comerciales hagan visitas, llamadas o el seguimiento correspondiente.
+    * para todas aquellas acciones con un resultado positivo se pueden crear oportunidades que se procesan normalmente
+
+
+
+
+===== Crear Contactos =====
+
+Esta pestaña permite crear contactos desde cuentas. Es un creador masivo de contactos. Se utilizará la información típica de la cuenta para crear el contacto. El propósito de esta funcionalidad es permitir que los esfuerzos comerciales se realicen exclusivamente sobre contactos . En determinadas situaciones en las que la mayoría de nuestra campaña se realizará sobre contactos, tener una cierta cantidad de cuentas mezcladas en la misma es inconsistente. Para estos casos se podrá crear un contacto para cada cuenta que no tiene un contacto, básicamente copiando toda la información pertinente del registro de la cuenta. De esta manera podemos poner en marcha campañas de trabajo sólo con los contactos.
+===== Administrar Asignaciones =====
+
+En esta pestaña vamos a ser capaces de ejecutar dos procesos:
+
+   * **Asignaciones masivas de entidades relacionadas**: Con esta función podremos trabajar con comodidad en las configuraciones en las que la información es privada. Cuando trabajamos en un vtiger CRM configurado en privado y quieres asignar una cuenta o contacto a otro usuario, nos encontramos con el problema de que también tenemos que cambiar el usuario asignado a todas las entidades relacionadas de la cuenta/contacto, que rápidamente se convierte en una tarea tediosa de muchos clics y filtros. Este proceso de **asignación masivas** nos permite superar la restricción y masivamente asignar la cuenta/contacto y todas sus entidades relacionadas a cualquier usuario.
+
+   * **Copia de valores**: este proceso nos permitirá copiar el valor de cualquier campo contenido en un registro a sus entidades relacionadas, que es muy útil para los flujos de trabajo.
+
+Esta pestaña sigue el mismo método de **búsqueda-selección-proceso** de las pestañas anteriores, pero el trabajo a realizar no se pondrá en marcha inmediatamente. En lugar de ejecutar inmediatamente la asignación, se creará una tarea programada que será lanzada por el sistema operativo según lo haya programado el administrador del servidor. Una lista de trabajos cron existentes se puede ver en la última pestaña de **Trabajos programados**, donde también podremos ver la lista de los resultados de la última ejecución de cualquier tarea. En la pestaña de **Trabajos programados** también vamos a ser capaces de iniciar manualmente una tarea o eliminarla.
+
+===== Darse de baja de los envíos de emails =====
+
+El producto está preparado para gestionar el caso de que el receptor del email quiera darse de baja del servicio.
+
+Para ello pueden presentarse dos opciones. Si has contratado el servicio de envío de emails con nosotros (sendgrid), se control de dos maneras. El propio sendgrid se configura para añadir un enlace de baja en todos los correos. Si alguien elige esta opción automáticamente es añadido a una lista de exclusión en sendgrid que no le volverá a mandar emails y también se apunta en la aplicación, tanto en el mismo mensaje como en la ficha del precontacto, contacto o cuenta mediante el campo de "No enviar email" por lo que se podrá filtrar convenientemente de futuros envíos.
+
+Si llevas el control de envíos de correos con tu propio servidor de correo, deberás añadir el enlace en tus plantillas y preparar una página de destino para informar al usuario y lanzar un proceso en tu vtMarketing para actualizar los campos de "No enviar email". Ponte en contacto con nosotros si necesitas ayuda.
+
+===== Preguntas Frecuentes =====
+
+??? Se menciona que para casos en los que nuestros correos estén bounced o deleted podemos agendar acciones como por ejemplo llamadas. Me queda claro cómo generar acciones pero lo que no entiendo todavía es cómo a partir de un correo masivo enviado, todos aquellos correos que sean borrados o bounced por mis prospectos o cuentas, que se genere en automático una acción a realizar, como por ejemplo una llamada
+!!! Esto no es automático, es un proceso manual. O sea, al cabo de un tiempo se accede a la herramienta y se realiza una búsqueda con todos los mensajes que tenga el campo de bounced/deleted activado y se crea masivamente acciones utilizando la funcionalidad de la extensión.
+
+
+??? No entiendo muy bien lo del sendgrid, entendí en la información que la extensión ya incluía un control de los elementos enviados (entregados, leídos, etc).
+!!! La extensión tiene un control de mensaje abiertos y demás pero es manual. Si quieres que sea automático hemos de contratar el servicio de sendgrid que controlará los eventos y actualizará los campos correspondientes del registro de mensajes automáticamente. Si tu servidor de correo masivo actual tiene la funcionalidad de avisar de estos eventos ponte en contacto con nosotros para que podamos ayudarte a configurar el servicio.
+
+??? En el caso de las desuscripciones, ¿el sistema ya no enviará ningún correo manual, automático, masivo etc a dichas cuentas o prospectos? Y esta marcación se hace dentro del módulo de Marketing Dashboard o también dentro de los prospectos y cuentas correspondientes?
+
+!!! Si utilizas sendgrid, el que bloquea el envío es sendgrid, o sea, si alguien se da de baja, lo registramos en el CRM y en sendgrid. En realidad es sendgrid el que se lo anota y nos manda el evento para que nosotros lo apuntemos en el CRM. Lo suyo es que filtres por este campo y no mandes más pero si mandas un correo manual desde vtiger CRM, éste lo mandará, y sendgrid lo bloqueará, con lo que no llegará y perjudicarás tu reputación en sendgrid. Si no utilizas sendgrid todo este proceso dependerá de tu servidor de correo.

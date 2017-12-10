@@ -45,14 +45,47 @@ An **action** will be called to do some tasks without returning a value. Actions
 
 A **filter** will be called to do some tasks and will return a value, with which some action will be done in the application. Normally the returned value will be the same $parameter with some modifications. Filters use the **handleFilter($handlerType, $parameter)** method, which will return the new $parameter value.  
 
-<WRAP center round important 80%>Events are launched for ALL modules and executed ALWAYS. That means that we must encapsulate or protect our event code inside a condition that makes sure we are in the correct module. Looking at the different examples you can see that almost all of them start with a
+==== Event Launching ====
+
+Events are launched for ALL modules and executed ALWAYS.
+
+That means that we must encapsulate or protect our event code inside a condition that makes sure we are in the correct module. Looking at the different examples you can see that almost all of them start with a
 
 "//if ($moduleName=='whatever')//"
 
-It also means that we have to be specially careful with the things that are done, our code has to be fast and efficient in order not to block the user experience and also resistant to errors.
-
-Although this may seem an incorrect approach, experience shows that it is extremely powerful.
+<WRAP center round info 60%>
+This is the "de facto" standard
 </WRAP>
+
+It also means that we have to be especially careful with the things that are done, our code has to be fast and efficient in order to not block the user experience, and also resistant to errors.
+
+Although this may seem an incorrect approach, experience shows that it is extremely powerful for many situations.
+
+That said, the "save" events (and some others) support conditions directly in their definition and also dependency launching. These events have a "condition" column and a "dependent on" column.
+
+The **condition column** can accept expressions following this syntax:
+
+<code>
+The accepted grammer is:
+ *  comparision | inclause
+ * where
+ *   comparision is: SYMBOL == value
+ *   inclause is: SYMBOL IN listelement
+ *   listelement is: [ value (, value )* ]
+ *   SYMBOL can be: (a fieldname) | moduleName | id
+</code>
+
+for example, we can use expressions like:
+
+<code>
+moduleName in ['Contacts', 'Potentials']
+moduleName == 'Accounts'
+employees == '131'
+id == '74'
+rating in ['Active','Acquired']
+</code>
+
+The **dependent column** is a JSON encoded array of event handlers that must be executed before the one being defined. So you can ask the system to execute your event after some other event has finished.
 
 ====Supported events====
 

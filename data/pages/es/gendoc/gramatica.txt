@@ -1,0 +1,128 @@
+===== Generación Documentación::Gramática plantillas y campos =====
+
+Los campos disponibles se encuentran en el menu 'Herramientas' -> 'Etiquetas OpenOffice'
+
+==== Gramática plantillas ====
+  * **{entidad.campo}**
+    * será sustituido por el valor del campo en la entidad indicada
+    * si no se puede traducir, se deja como esta. Por ejemplo, {entidad_inexistente.campo}, {entidad.campo_inexistente}, {sihubiera} o {sinexiste}
+    * ejemplos: {cuenta.nombre}, {contacto.direccion}, {producto.nombre}
+  * **{siexiste entidad} ... {/siexiste}**
+    * todo el texto entre {siexiste} y {/siexiste} se pasará al documento final si existe al menos una entidad relacionada con la cuenta siendo tratada
+    * si no existe la entidad ({siexiste entidad_inexistente}) se elimina toda la sección
+    * dentro del bloque estarán disponibles para combinación los valores de la primera entidad encontrada
+    * ejemplos: {siexiste activo},  {siexiste contacto}, {siexiste campaña}, {siexiste product}, {siexiste servicio}
+  * **{siexiste entidad.campo=valor} ... {/siexiste}**
+    * todo el texto entre {siexiste} y {/siexiste} se pasará al documento final si existe al menos una entidad relacionada con la cuenta siendo tratada cuyo campo indicado tenga el valor indicado. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), se empleará la cadena |##| como separador entre valores, en este caso TODOS los valores en el campo y TODOS los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no existe la entidad y/o el campo se elimina toda la sección
+    * dentro del bloque estarán disponibles para combinación los valores de la primera entidad encontrada cuyo campo sea igual a valor
+    * ejemplos: {siexiste activo.tipo=Fichero},  {siexiste contacto.tipo=Responsable Seguridad}, {siexiste campaña=GAdwords Noviembre08}
+  * **{siexiste entidad.campo en (valor1,valor2,valor3)} ... {/siexiste}**
+    * todo el texto entre {siexiste} y {/siexiste} se pasará al documento final si existe al menos una entidad relacionada con la cuenta siendo tratada cuyo campo indicado tenga uno de los valores indicados. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), al menos uno de los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no existe la entidad y/o el campo se elimina toda la sección
+    * dentro del bloque estarán disponibles para combinación los valores de la primera entidad encontrada cuyo campo sea igual a valor
+    * ejemplos: {siexiste activo.tipo en (Fichero,Contacto,Aplicación)},  {siexiste contacto.tipo en (Responsable Seguridad,Responsable Ficheros)}
+  * **{sinoexiste entidad} ... {/sinoexiste}**
+    * caso negado de {siexiste...}
+  * **{sinoexiste entidad.campo=valor} ... {/sinoexiste}**
+    * caso negado de {siexiste...}
+  * **{sinoexiste entidad.campo en (valor1,valor2,valor2)} ... {/sinoexiste}**
+    * caso negado de {siexiste...}
+  * **{paracada entidad} ... {/paracada}**
+    * para cada una de los registros de la entidad indicada relacionada con la cuenta se combinará el texto entre las 2 directivas y se añadirá al documento
+    * si no hay registros desaparecerá el bloque entero
+    * esta directiva es OBLIGATORIA para recorrer entidades relacionadas (aunque la relación sea unitaria) a partir de noviembre/2011. Esto permite poder recorrer diferentes niveles en la relaciones, por ejemplo desde una Cuenta acceder a los empleados de los terceros relacionados con la cuenta.
+  * **{paracada entidad.campo=valor} ... {/paracada}**
+    * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo contenga el valor, se combinará el texto entre las 2 directivas y se añadirá al documento. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), se empleará la cadena |##| como separador entre valores, en este caso TODOS los valores en el campo y TODOS los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no hay registros desaparecerá el bloque entero
+  * **{paracada entidad.campo en (valor1,valor2,valor3)} ... {/paracada}**
+    * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo contenga uno de los valores indicados, se combinará el texto entre las 2 directivas y se añadirá al documento. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), al menos uno de los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no hay registros desaparecerá el bloque entero
+  * **{paracada entidad.campo!=valor} ... {/paracada}**
+    * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo NO contenga el valor, se combinará el texto entre las 2 directivas y se añadirá al documento.  Para campos con múltiples valores (por ejemplo en campos con selección múltiple), se empleará la cadena |##| como separador entre valores, en este caso TODOS los valores en el campo y TODOS los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no hay registros desaparecerá el bloque entero
+  * **{paracada entidad.campo !en (valor1,valor2,valor3)} ... {/paracada}**
+    * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo NO contenga ninguno de los valores indicados, se combinará el texto entre las 2 directivas y se añadirá al documento. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), ninguno de los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no hay registros desaparecerá el bloque entero
+  * **repeticion**: Existe una variable especial disponible dentro de los bloques paracada denominada "repeticion" a la que podemos acceder para obtener la iteración en la que estamos. Esto puede ser util para enumerar los elementos o para imprimir cosas según la iteración. Ver [[:gendoc:gendocejemplos|Ejemplos]].
+  * **{fecha}**: Con esta etiqueta podemos introducir en el documento la fecha en la que se ha generado. Se substituye por la fecha actual (en la que se genera el documento), en formato dd-mm-aaaa.
+  * **{entidad.campo.enletras}**: Con esta etiqueta podemos traducir un campo **NUMÉRICO** en letras. Por ejemplo, si le pesamos el total de un presupuesto: "{Quotes.hdnGrandTotal.enletras}" siendo este **160,00** se traducirá por **ciento sesenta**.
+  * **{incluir Num_Documento}**
+    *Con esta directiva podemos incluir cualquier documento guardado en el sistema dentro de otro. Por ejemplo, si tenemos el documento con número DOC699, pondremos al principio de un párrafo nuevo {incluir DOC699} en la posición donde queremos insertar el documento. Al compilar se incluirá todo el DOC699 donde se encuentra la directiva {incluir} y desaparecerá la directiva
+    *Se puede utilizar cualquier otra directiva dentro del documento incluido, siguiendo las mismas reglas que con cualquier otro documento
+    *NO se pueden anidar {incluir} (no lo hemos probado, no sabemos lo que pasará)
+    *Al principio de la página donde se incluye el documento,comprobar en Formato>>Párrafo>>Flujo del Texto>>Saltos>> que el numero de página este a 0 para evitar que el contador de páginas empieze a contar de nuevo. 
+  * **{incluir entidad}**
+    *Con esta directiva podemos incluir cualquier documento, de una entidad relacionada con la principal, guardado en el sistema dentro de otro. Por ejemplo, si tenemos alguna entidad //Copia de Seguridad// relacionada con la entidad sobre la que compilamos el documentos, pondremos al principio de un párrafo nuevo {incluir Copias de Seguridad} (en este caso deberá ir dentro de un bucle paracada) en la posición donde queremos insertar el documento. Al compilar se incluirá todo el documento relacionado con la Copia de Seguridad donde se encuentra la directiva {incluir} y desaparecerá la directiva
+    *Se puede utilizar cualquier otra directiva dentro del documento incluido, siguiendo las mismas reglas que con cualquier otro documento
+    *NO se pueden anidar {incluir} (no lo hemos probado, no sabemos lo que pasará)
+    *Al principio de la página donde se incluye el documento,comprobar en Formato>>Párrafo>>Flujo del Texto>>Saltos>> que el numero de página este a 0 para evitar que el contador de páginas empieze a contar de nuevo. 
+  * **{insertarindice}**
+    * Inserta un índice de contenidos creado a partir del esquema del documento.
+    * Se puede utilizar más de una vez en el mismo documento pero el índice será siempre el mismo.
+  * **{imagen entidad}**
+    *Esta directiva ha de estar al principio de un párrafo.
+    *El párrafo con la directiva desaparecerá por completo
+    *El siguiente párrafo ha de contener una imagen que será la que se sustituirá
+    *En caso de contener varias etiquetas imagen, cada imagen a sustituir deberá ser diferente
+    *Se respetará toda la configuración de la imagen que se haya hecho al poner la imagen, solo se sustituirá la imagen
+    *Las imagenes las tratamos de manera especial. El tema es que hay tantas opciones de configuración de una imagen (ancho, alto, alineación, anclaje, ....) que nos sería muy complicado incluirlas todas en la etiqueta para saber exactamente como quieres mostrar la imagen. Así que hemos decidido que incluyas una imagen cualquiera donde va a aparecer el logo y le das el formato que quieres utilizando las opciones que ya tienes disponible en openoffice. Después, cuando compilamos, respetamos todas las opciones que has elegido y solo cambiamos la imagen.
+  * **Reglas**
+    * Las etiquetas han de estar en el mismo párrafo. No puede haber un nuevo párrafo en medio de un etiqueta. Por ejemplo,<code>Estimado {contacto.
+nombre},</code> es incorrecto.
+    * Las directivas {siexiste}, {sinoexiste}, {paracada} y sus cierres correspondientes han de aparecer al inicio de línea y en su propio párrafo. Toda la línea desaparecerá. Por ejemplo,<code>este es el final del párrafo anterior.
+{siexiste activo.tipo=fichero}
+Este "si existe" funciona correctamente mientras que este {siexiste activo.tipo=fichero} es ignorado completamente
+y se quedará tal cual en el resultado final.
+Este es otro párrafo que puede contener etiquetas como el nombre del cliente: {cuenta.nombre}.
+{/siexiste}</code>
+    * Si se ponen directivas {siexiste}, {sinoexiste}, {paracada} al principio de párrafo (lo que es obligatorio) pero el párrafo está dentro de una lista, entonces sus cierres correspondientes también han de estar obligatoriamente como párrafo de la lista. Esto se consigue pulsando ALT-INTRO
+    * No se puede poner ningún carácter después de la directiva. Por ejemplo,<code>{siexiste activo.tipo=fichero} y más texto aqui en el mismo párrafo</code> es incorrecto.
+    * Los bloques {paracada} se pueden anidar.
+    * Los bloques {siexiste} se pueden anidar. Con la única excepción de los bloques {siexiste} en los que comprobamos un valor de una lista de elementos. Por ejemplo:<code>{paracada Soportes}
+  {siexiste Soportes.soporte_movil=1}
+     XXXXXXX
+  {/siexiste}
+{/paracada}</code>En este caso, el {siexiste} volverá a hacer una comprobación igual que un paracada, con lo que el proceso fallará. En general podremos poner un {siexiste} dentro de un paracada si estamos comprobando una entidad diferente a la del paracada, por ejemplo, esto ES CORRECTO:<code>{paracada Soportes}
+  {siexiste Accounts.bill_provincia=Alicante}
+       XXXXXXXXX
+  {/siexiste}
+{/paracada}</code> En este ejemplo listará todos los soportes y si la cuenta asociada es de la provincia de Alicante incorporará el bloque XXXXXXXXXXX.
+
+
+==== Formato de texto en etiquetas ====
+
+Se trata de permitir dar formato a texto proveniente de la aplicación. Con esta característica se permite dar formato al texto contenido en una etiqueta. O sea, el formato se introduce al crear el texto en el campo correspondiente de la aplicación y el generador de documentos convertirá esos formatos a directivas comprensibles para openoffice. Solo se permiten 4 elementos de formato, con los que se permitirá aplicar cualquier formato posible de openoffice a los textos.
+  * **<b>texto</b>**, se aplicará el estilo de carácter SIGPAC_BOLD
+  * **<strong>texto</strong>**, se aplicará el estilo de carácter SIGPAC_BOLD
+  * **<i>texto</i>**, se aplicará el estilo de carácter SIGPAC_ITALIC
+  * **<em>texto</em>**, se aplicará el estilo de carácter SIGPAC_ITALIC
+  * **<style estilo=estilo_openoffice>texto</style>**, se aplicará el estilo de carácter estilo_openoffice
+  * **<gendocstyle estilo=estilo_openoffice>texto</gendocstyle>**, se aplicará el estilo de carácter estilo_openoffice
+  * **<br> <br/>**, salto de línea (NO de párrafo)
+
+Este formato se aplicará a cualquier texto que contenga estas directivas.
+
+No funciona anidar <b> e <i>, utiliza <style> para conseguir este efecto.
+
+Los estilos de carácter SIGPAC_BOLD, SIGAC_ITALIC y cualquier otro estilo definido por el usuario o existente de openoffice ha de ser creado por el usuario en la plantilla, el generador solo aplica el estilo, si no está definido el texto aparecerá normal. Con esto realmente podríamos convertir la negrita en cualquier otro estilo que quisiéramos.
+
+Hay abundante información de los estilos de caracteres en la documentación online de openoffice. Aqui se ve la pantalla de estilos:
+{{:gendoc:estilocaracter.png|}}
+
+{{:gendoc:audit-sigpac-01.odt|Aqui la plantilla utilizada para hacer pruebas para que se vea donde y como definir los estilos.}}\\
+Aqui el texto con directivas de compilación.<code><b>EVIDENCIA</b>: El Responsable de seguridad declara que los sistemas de información se han sometido a la precpetiva auditoría bienal en <br/><style estilo=MiEstilo>materia de protección de datos</style>
+<i>DEFICIENCIA</i>: No se aprecian.</code>\\
+{{:gendoc:revision_50620.odt|Aqui el resultado de la compilación.}}\\
+{{:gendoc:formatocaracteres.odt|Otro ejemplo de formato de caracteres.}}\\
+
+{{youtube>RHZvIKqMWsg}}
+==== Gramática campos especiales ====
+  * En general toda combinación parte de una cuenta y pone a disposición de la generación todos los campos de todas las entidades relacionadas.
+  * Se podrá utilizar la infraestructura creada para otros tipos de combinaciones como facturas o contratos si se estima conveniente y en esos casos es posible que la generación parta de otra entidad
+  * Las combinaciones que se inicien en la cuenta tendrán a su disposición una serie de campo constantes que se obtienen del sistema como son:
+    * {empresa.campo}: los datos de la empresa
+    * {empresa.gerente_campo}: los datos del gerente de la empresa
+    * {empresa.responsable_campo}: los datos del responsable de la empresa
+    * {cuenta.responsable_campo}: los datos del responsable del cumplimiento de la LOPD en la empresa cliente
+

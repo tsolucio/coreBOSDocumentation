@@ -1,0 +1,17 @@
+====== vtigerCRM-Spain::Product Capture Enhancements ======
+
+I have various solutions for this:
+
+1.- What we do is make the current product name field writable and control how many letters have been written. Once the length gets to the established code length an automatic event is launched that converts the code into all the product details and fills in the line for you. It is **ideal for bar code readers**. If the code isn't found a message is returned and you can use the current search system to find the product. The restriction is that all part numbers must have the same length as the event is launched based on that length
+
+2.- For other clients we have done another hack. We permit writing in the product name field and when you hit the search button the popup automatically filters on the string contained in the product field.
+
+3.- In another occasion, we have added a new search button next to the current one, we make the product field writable and when you click on the new search button we look for the product based on what has been introduced, if we find the product we fill the line, if not we give a message. This is similar to the first solution but is for when the search field has different lengths so we don't know when to launch the event.
+
+4.- Only in one occasion have we implemented an autocomplete field. The problem we ran into was that each time the product field was modified there was a pause while the code went into the database and looked up the products to show the possible values, with a large product database it made the form useless, even worse than clicking on the search button.
+
+The first three solutions are very similar in effort.
+
+The fourth is a bit more complex as we have to integrate a third party plugin.
+
+If you have any questions, contact us

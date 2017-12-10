@@ -1,0 +1,67 @@
+====== I have setup a CRM in my company but Sales haven't gone up ======
+{{description>Speech on automating the sales process and optimizing the sales funnel using Theory of Constraints}}
+{{keywords>vtiger, vtigercrm, crm, spain, español, castellano, sales, funnel, theory of constraints}}
+\\
+** Speech: ** Analyzing the Sales Process\\
+** Speaker: ** Joe Bordes\\
+** Place: **  Faculty of Economics, University of Brescia. Italy\\
+** Date: ** Thursday, 5 of May 2011\\
+** Time: ** Pending confirmation\\
+** Hosted and Introduced: ** Eugenio Brentari (UniBS) and Andrea Alberici (Studio Synthesis)\\
+** Excerpt: **  In this speech I will try to analyze and answer some of the questions that arise when implementing a CRM in a business.\\
+** [[sporcessnotes|My Notes]] **\\
+
+  * **What a company expects when they approach a CRM implementation.**
+    * Basically there are two types of companies that need a CRM program, the companies that have no software controlling their work and those that have software that controls their production but they lack control on their sales process. In my first speech I spoke about how each company needs specific and personalized software to cover their needs and how a CRM can become the perfect software solution for a very big market segment. In this second speech I will try to analyze the second group and see what is happening with the sales process
+  * **What a company achieves from a CRM implementation.**
+    * Independent of the expectations of the implementation I will explain what every company that implements a CRM gets and how that affects the companies day to day life.
+  * **What a company does not achieve from a CRM implementation: more sales.**
+    * Many companies expect to increment their sales when implementing a CRM, or directly try to implement a CRM to achieve this goal, but it is rarely the case, at least not in a direct and spectacular way. I will try to explain why I think this happens.
+  * **What can we do to increment our sales.**
+    * We will talk about the current sales process, analyze and expose it's current weakness and apply the Theory of Constraints to the process to see how it can be segmented, demystified and controlled to obtain better sales.
+  * **What can we expect of the future of the sales process**
+    * Finally I will try to look forward and ask ourselves where the sales process is going and how we can be there when it arrives.
+
+
+----
+\\
+** Charla: ** Análisis del Proceso de Ventas\\
+**Ponente:** Joe Bordes\\
+**Lugar: ** Facultad de Ciencias Económicas de la Universidad de Brescia. Italia\\
+**Fecha: ** Jueves, 5 de mayo de 2011\\
+**Hora: ** Pendiente de confirmación\\
+**Auspiciado por: ** Eugenio Brentari (UniBS) y Andrea Alberici (Studio Synthesis)\\
+**Extracto: ** En este discurso voy a tratar de analizar y responder a algunas de las preguntas que surgen al implementar un CRM en una empresa.
+
+  * ** Lo que una empresa espera cuando aborda una implementación de CRM.**
+    * Básicamente hay dos tipos de empresas que necesitan un CRM, las empresas que no tienen software de control de su trabajo y los que tienen el software que controla su producción, pero carecen de control sobre su proceso de ventas. En mi primer discurso hablé de cómo cada empresa necesita un software específico y personalizado para cubrir sus necesidades y cómo un CRM puede convertirse en la solución de software perfecto para un segmento de mercado muy grande. En este segundo discurso voy a tratar de analizar el segundo grupo y ver lo que está pasando con el proceso de venta
+  * **Lo que una empresa logra al implantar un CRM.**
+    * Independientemente de las expectativas de la implantación, voy a explicar lo que cada empresa que implementa un CRM obtiene y cómo esto afecta al trabajo diario de la empresa.
+  * **Lo que una empresa no logra al implantar un CRM: más ventas.**
+    * Muchas empresas esperan incrementar sus ventas al implementar un CRM, o directamente tratan de implementar un CRM para lograr este objetivo, pero es raramente el caso, al menos no de forma directa y espectacular. Voy a tratar de explicar por qué creo que esto sucede.
+  * **Lo que podemos hacer para incrementar nuestras ventas.**
+    * Vamos a hablar sobre el proceso actual de ventas, analizar y exponer sus debilidades y aplicar la Teoría de las Restricciones al proceso para ver cómo se puede segmentar, desmitificar y controlar, para mejorar las ventas.
+  * **Lo que podemos esperar del futuro del proceso de ventas**
+    * Por último voy a tratar de mirar hacia adelante y preguntarnos, dónde estará el proceso de venta en el futuro y cómo estar allí cuando llegue.
+
+
+----
+\\
+
+
+The speech went very well, we had a very nice time and people seemed to be listening to me all the way to the end :-)\\
+I would like to thank the university and Studio Synthesis for their hospitality and for inviting me.\\
+I am not good at all at codifying video nor uploading to the video platforms, I found that a lot more difficult than preparing the speech and the best I could do without losing more time was 5 parts on youtube.\\
+Any comments are welcome.\\
+Thank you for listening\\
+\\
+{{youtube>R78yg9dVL6E}}\\
+[[http://www.youtube.com/watch?v=R78yg9dVL6E|Speech about Analyzing the Sales Process Part 1]]\\
+{{youtube>YrYhrhN8lhE}}\\
+[[http://www.youtube.com/watch?v=YrYhrhN8lhE|Speech about Analyzing the Sales Process Part 2]]\\
+{{youtube>hzl1a2Byvlg}}\\
+[[http://www.youtube.com/watch?v=hzl1a2Byvlg|Speech about Analyzing the Sales Process Part 3]]\\
+{{youtube>ScPkxz6iGOA}}\\
+[[http://www.youtube.com/watch?v=ScPkxz6iGOA|Speech about Analyzing the Sales Process Part 4]]\\
+{{youtube>LzHEtlqRjQM}}\\
+[[http://www.youtube.com/watch?v=LzHEtlqRjQM|Speech about Analyzing the Sales Process Part 5]]\\

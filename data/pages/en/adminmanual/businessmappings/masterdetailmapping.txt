@@ -6,6 +6,188 @@ The inventory modules are examples of master-detail modules, there is a first se
 
 With this mapping we are able to specify the relation between parent and child modules and also the fields that we should show in the list and detail view of the dependent module. We also can detail the aggregation fields that need to be calculated and shown.
 
+The full syntax of the map looks like this:
+
+<code XML>
+<map>
+  <originmodule>Master Module</originmodule>
+  <targetmodule>Detail Module</targetmodule>
+  <linkfields>
+  <originfield>id field of the master module</originfield>
+  <targetfield>id field of the detail module</targetfield>
+  </linkfields>
+  <sortfield>sequence field on the detail module to sort the records</sortfield>
+  <toolbar>
+    <title>translatable label of the header bar of the detail section</title>
+    <expandall>1</expandall>  if an expand all button is present
+    <create>1</create>  if an add button is present
+  </toolbar>
+  <listview>
+    <toolbar>
+     <moveup>1</moveup>  if a move up button is present on the line
+     <movedown>1</movedown>  if a move down button is present on the line
+     <delete>1</delete>  if the records can be deleted from the list view
+    </toolbar>
+    <fields>
+      <field>
+        <fieldtype>corebos.related</fieldtype>
+        <fieldname>...</fieldname>
+        <linkedto>...</linkedto>
+        <editable>0</editable>
+        <mandatory>0</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>codigo</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>cantidad</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>tipodescuento</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>descuento</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>dtomontante</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>      
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>linetotal</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+    </fields>
+  </listview>
+  <detailview>
+   <layout></layout>
+    <fields>
+      <field>
+        <fieldtype>corebos.related</fieldtype>
+        <fieldname>...</fieldname>
+        <linkedto>codigo</linkedto>
+        <editable>0</editable>
+        <mandatory>0</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>codigo</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>cantidad</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>tipodescuento</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>descuento</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <layout></layout>
+      </field>
+      <field>
+        <fieldtype>corebos</fieldtype>
+        <fieldname>linetotal</fieldname>
+        <editable>1</editable>
+        <mandatory>1</mandatory>
+        <hidden>0</hidden>
+        <position>top</position>
+        <currency>true</currency>
+        <layout></layout>
+      </field>
+    </fields>
+  </detailview>
+  <aggregations>
+      <operation>
+        <type>aggregation</type>
+        <items>callresponse</items>
+        <operation>count</operation>
+        <column>linetotal</column>
+        <variable>dqcilinesnum</variable>
+        <label>NumLines</label>
+        <position>top</position>
+      </operation>
+      <operation>
+        <type>aggregation</type>
+        <items>callresponse</items>
+        <operation>sum</operation>
+        <column>linetotal</column>
+        <variable>dqcilinestotal</variable>
+        <label>SumTotal</label>
+        <position>top</position>
+        <currency>true</currency>
+      </operation>
+      <operation>
+        <type>aggregation</type>
+        <items>callresponse</items>
+        <operation>sum</operation>
+        <column>dtomontante</column>
+        <variable>dqcidescuento</variable>
+        <label>SumDiscount</label>
+        <position>left</position>
+        <currency>true</currency>
+      </operation>
+  </aggregations>
+</map>
+</code>
+
+Inventory type Master-Details need an interface like this:
+
+{{ :en:adminmanual:businessmappings:masterdetaillistview.png |Inventory type Master-Details}}
+
+
+Support/History type Master-Details need an interface like this:
+
+{{ :en:adminmanual:businessmappings:gitlabmarkdown.png |Support/History type Master-Details}}
+====== Master Detail on Inventory Modules ======
+
 This mapping cannot be used freely inside coreBOS because there is no generic master-detail editor. We use it in custom developments to make them flexible.
 
 That said there is one special implementation where this mapping can be used. The four existing inventory modules will look for specific master-detail mapping with the InventoryDetail module and, if found, they will permit you to edit fields on that module in the product lines. This makes it easy to track a serial number, add an expiration date, track units served or calculate costs for each line.

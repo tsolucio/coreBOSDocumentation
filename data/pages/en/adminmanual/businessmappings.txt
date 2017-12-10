@@ -43,6 +43,7 @@ There are currently these different types of mappings:
   * [[en:adminmanual:businessmappings:relatedpanes|Related Panes]]
   * [[en:adminmanual:businessmappings:import|Import]]
   * [[en:adminmanual:businessmappings:duplicaterecords|Duplicate Records]]
+  * [[en:adminmanual:businessmappings:globalsearch|Global Search Autocomplete]]
   * <del>[[en:adminmanual:businessmappings:search_and_update|Search and Update]]</del> TBD
 
 Depending on the type of the business mapping the contents of the record changes as explained next.

@@ -3,25 +3,22 @@
 {{youtube>41fQCIenRUU}}
 
 ===== Search Reference Fields on (almost) any field of the referenced module =====
-<WRAP center round important 70%>
-**Starting at coreBOS 5.5**
-</WRAP>
 
-When importing information into the application we can automatically related the record we are importing with another module when that relation is direct. For example, if we import a Contact record we can import the Account column with the identifier field of accounts and the new contact will get related correctly.
+When importing information into the application we can automatically relate the record we are importing with another module when that relationship is direct. For example, if we import a Contact record we can import the Account column with the identifier field of accounts and the new contact will get related correctly.
 
 The CSV contact file shown next will result in a new contact related to the **EDFG Group Limited** account.
 
 <code>"Salutation","First Name","Last Name","Office Phone","Organization Name","Mobile"
 "","Susan","Wilson","(694) 186-6696","EDFG Group Limited","(838) 935-6869"</code>
 
-When the import process reaches the **Organization Name** field, it sees that it is a reference field and automatically searches the Account module for an account with "account name" equal to the value in the import CSV. If found it will related the two records correctly, if not, a new account will be created and then the relation will be established.
+When the import process reaches the **Organization Name** field, it sees that it is a reference field and automatically searches the Account module for an account with "account name" equal to the value in the import CSV. If found it will relate the two records correctly, if not, a new account will be created and then the relation will be established.
 
 These types of reference fields support an //extended// syntax whereas you can indicate the module that the value belongs to. This can be seen in the next CSV file:
 
 <code>"Salutation","First Name","Last Name","Office Phone","Organization Name","Mobile"
 "","Susan","Wilson","(694) 186-6696","Accounts::::EDFG Group Limited","(838) 935-6869"</code>
 
-To all effects this second CSV file will result in the **exact same import process** as the previous one.
+To all effects, this second CSV file will result in the **exact same import process** as the previous one.
 
 This extended functionality is useful when we import a record with a reference field that can point to more than one module. For example, when importing tickets or potentials, where the reference field can point either to an Account or a Contact, so we have to indicate in which module the import process must search for the given value.
 
@@ -33,7 +30,7 @@ The next CSV would be an example of importing opportunity records:
 
 The field upon which the relation is searched is ALWAYS the identifier field of the module. Every module has a special field called the **entity identifier field**, this special field is the one you can click on inside the application to get to the **detail view** of the record. For example, for Accounts that is the "account name", for potentials the "opportunity name" and for tickets the title or subject of the ticket.
 
-Sometimes we don't have that special field in our import data or, if we do, we can't be sure that the values match exactly. This specially happens when importing to Accounts and Contacts. For these cases it would be ideal to be able to have the import process search on some other field that we have at hand or that we know is supposed to be unique between the application and the import data.
+Sometimes we don't have that special field in our import data or, if we do, we can't be sure that the values match exactly. This especially happens when importing to Accounts and Contacts. For these cases, it would be ideal to be able to have the import process search on some other field that we have at hand or that we know is supposed to be unique between the application and the import data.
 
 The ideal/typical scenario is where you have done the **first import right (!)** and added a custom field to the module that indicates the ID of that record in your other system. This is fundamental where you have two system coexisting in the company and you have to do regular imports of information.
 
@@ -44,3 +41,23 @@ The ideal/typical scenario is where you have done the **first import right (!)**
 "Extended Test Contact","Contacts::::123456::::cf_640","123456","--None--","2016-01-03"</code>
 
 {{youtube>qKV4DZRiXu0}}
+
+
+
+===== Extended Export Options =====
+
+There are two global variables that will permit you to define the format that the application should use when exporting reference fields.
+
+By default, the format used will be the module name followed by the module entity name or link field.
+
+Using the **Export_RelatedField_GetValueFrom** global variable you can indicate which field of the module you want to use as the export reference value. So, for example, if you set this variable to **account_no** on the **Accounts** module, when you export Potentials, you will see that the reference field contains the account number and not the account name.
+
+Additionally, you can set the **Export_RelatedField_NameForSearch** global variable to any value in order to have that value appended to the end of the related field export.
+
+Another example. Let's suppose that we want to migrate information from one coreBOS system to another. In the origin application, you have a custom field on your accounts module labeled VATID. This field contains a unique identifier for each Account. The internal name of this fields is cf_999. In the second application, this field has been assigned the internal field name cf_888
+
+If we set the **Export_RelatedField_GetValueFrom** global variable to "cf_999" and the **Export_RelatedField_GetValueFrom** global variable to "cf_888" and export potentials from the first system, the "Related to" reference field will read the values of accounts from the "cf_999" field and export a string that looks like this:
+
+<code>Accounts::::B99999999::::cf_888</code>
+
+which is ready to import correctly into the second application.

@@ -1,0 +1,37 @@
+~~NOTOC~~
+====== Descuento en productos y servicios por categoría/cuenta ======
+
+This business settings module will permit you to define discounts per product/service line and/or clients.
+\\
+---- dataentry  ----
+name              : tsolucio/DiscountLine # 
+type              : corebos-module # 
+description_wiki  : This business settings module will permit you to define discounts per product/service line and/or clients.. # 
+keywords_tags     : discount, product, service, settings, account, inventory # 
+version           : 1.0 # 
+homepage_url      : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:dtoproductline # 
+release_dt        : 2010-03-03 # 
+licenses          : Vizsage # 
+price             : Subscription # 
+buyemail_mail     : paypal(at)tsolucio(dot)com # 
+distribution      : Subscription # 
+authorname        : JPL TSolucio, S.L. # 
+authoremail_mail  : info(at)tsolucio(dot)com # 
+supportemail_mail : info(at)tsolucio(dot)com # 
+----
+
+\\
+
+Esta extensión está instalada en nuestra [[https://demo.coreboscrm.com/|Demo de coreBOSCRM]]\\
+
+El objetivo de este cambio es permitir descuentos directos para cada cuenta en función de la categoría de productos y/o servicios. Esto nos permitirá, por ejemplo, asignar un 10% de descuento a cualquier cuenta cuando compra productos de la categoría de software y un 8% de descuento si utiliza los servicios de la categoría de técnico. Estos descuentos se aplicarán automáticamente al seleccionar el producto/servicio en el Presupuesto, Orden de Venta y Factura.
+
+Esta utilidad consiste en un nuevo módulo de vtiger CRM llamada Línea de descuento y algunas modificaciones en el código base para añadir funcionalidad a las líneas de producto/servicio en el Presupuesto, Orden de Venta y Factura.
+
+El primer cambio es para sincronizar las listas desplegables de Categoría en los módulos de servicio y producto, por lo que, una vez que el cambio se ha aplicado ambas listas de selección serán exactamente la misma en ambos módulos y puede ser mantenido fácilmente en el editor de lista desplegables de cualquiera de los módulos.
+
+El nuevo módulo de línea de descuento también comparte esta lista de selección con los dos módulos. Permite seleccionar la cuenta correspondiente e indicar la cantidad de descuento a aplicar en cualquier categoría. La relación de los descuentos se puede ver en la pestaña de más información de la cuenta donde además hay un control de seguridad por lo que no se puede aplicar dos o más descuentos de la misma categoría a la misma cuenta.
+
+Por último, el cambio modifica las líneas de productos para que el correspondiente descuento sea aplicado automáticamente al seleccionar los productos o servicios en el Presupuesto, Orden de Venta y Factura.
+
+Como es habitual en nuestro trabajo podemos adaptarlo a tus necesidades. Si no necesitas sincronizar las listas desplegables, quieres relacionarlo a los contactos o pedir cualquier otra funcionalidad adicional, ponte en contacto con nosotros.

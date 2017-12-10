@@ -1,0 +1,23 @@
+====== Mapas Geográficos para coreBOSCRM ======
+
+Esta extensión te permite localizar a tus clientes, potenciales, oportunidades y cualquier módulo con una dirección, geográficamente en un mapa utilizando la integración con Google Maps o OpenStreetMaps.
+\\
+---- dataentry ----
+name : tsolucio/GEOMAP
+type : corebos-extension
+description_wiki: Esta extensión te permite localizar a tus clientes, potenciales, oportunidades y cualquier módulo con una dirección, geográficamente en un mapa utilizando la integración con Google Maps o OpenStreetMaps.
+keywords_tags : geoencoding,map,googlemaps,openstreetmap,latitud,longitud
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbgeomap
+release_dt : 2010-02-27
+licenses : Vizsage
+price : on sale at http://coreboscrm.fr/
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+{{page>es:integrations:maps}}

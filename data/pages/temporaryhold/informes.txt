@@ -1,0 +1,160 @@
+====== vtigerCRM-Spain::Informes ======
+
+
+===== vtiger CRM Reporting =====
+
+vtiger CRM's reporting system is a fairly complete listing environment. It is capable of creating textual listings of all entities in the system and most of the relations between them. It permits adding parameters to the reports to limit the selected records with a flexible system that can accomplish retrieving the desired information in many cases. Certain information can become a bit cumbersome to obtain via reports, but a lot of valuable data can be obtained.
+
+On top of this the reporting system has a wizard to make creation easier and the reports can be organized in comprehensible folders for easy access. They also support a permission system with which the creator or administration user can decide who has access to the reports.
+
+The reports can be sorted by three columns at most, and include a sum, average, minimum and maximum of numeric columns for all records selected in the report. They can also be exported to Excel and PDF directly from the reporting page.
+
+An additional reporting feature is the Dashboard. I must admit that I barely use this and have barely touched this code for my clients, so my knowledge is limited. vtiger CRM's dashboard gives us a predefined set of graphics which summarize the information of the system. There a collection of different concepts by which we can see these graphics and some can e further personalized by date range and users. You cannot create new groups or graphs with the user interface (you must program them).
+
+
+
+
+
+==== Shortcomings ====
+
+Although there is a lot of useful information that can already be obtained from the existing reporting system there seems to be a recurrent need for a more powerful reporting solution.
+
+Some of the things that come to my mind are:
+  * subtotals for grouping elements
+  * report formating with templates so we can apply the company's look and feel
+  * possibility of reporting on certain tables that are not reachable with the current system (users, audits, currency, pricebooks, ...)
+  * report scheduling, to be able to launch a report at regular intervals and have them sent directly to whomever needs the information
+  * include support for invoice and other entities output in place of the existing (very cumbersome) PDF output
+  * more graphs and dashboard elements
+  * others?
+
+
+
+
+
+
+
+
+===== External Reporting =====
+
+In an attempt to solve these shortcomings for our clients we started to look for external solutions.
+
+When we started with vtiger CRM (way back in 2005 with version 4.2!!) we were already learning a (then) young project called Pentaho BI. The Pentaho Report Designer (PRD) back then wasn't really production ready but you could make reports. We learned to create OLAP cubes and use jpivot in a couple of projects coming and going. As time went by we would touch base frequently with Pentaho BI project, basically to keep our knowledge and existing projects alive.
+
+So when time came to create a reporting solution for vtiger CRM we were ready both from the knowledge necessary of the vtiger CRM database as for the knowledge of the Pentaho BI project functionality.
+
+We applied all the Business Intelligence theory and experience we had to create a datawarehouse for vtiger CRM, we then created the ETL transformations to regularly fill this datawarehouse with information, we created the OLAP cubes so you could navigate through the datawarehouse information, we created the metadata definitions so you could create reports directly inside the Pentaho BI interface, we created the whole project into Pentaho BI infrastructure so the user could use all of the existing Pentaho tools for their reporting. We even defined and created a simple SAAS scheme so that clients could sign up and get their own personalized reporting Pentaho interface.
+
+And then came reality.
+
+It turns out that each vtiger CRM is used in different ways by each company. Not only can each company create their own custom fields which will have their own internal and external name in each system but each of these custom fields can be of different types and be used to hold different and **IMPORTANT** information for each company. I assume the information must be important for the company or they wouldn't have needed to create a custom field for it.
+
+As if this problem weren't enough, each company recycles existing fields for their own purpose, which may not even be similar to the use vtger created them for. And then each company can add picklist values to represent different states or transitions in entities which, again, must be important information to capture, or else they wouldn't be defining these new values.
+
+So, the datawarehouse is VERY company dependent as each vtiger CRM customization is **VERY** company dependent.
+
+Each change we make in the datawarehouse implies changes in the ETL and the OLAP cube definitions.
+
+Even if we found a company that used vtiger CRM EXACTLY as it is, we still may have the ETL wrong as we have had to make decisions that may be wrong for that (unique) company. The idea is that for each company the definition of a field's importance is different. One company may say that a change in the accounts address shouldn't be registered and all previous instances of that entity be overwritten with the new address, whereas another company may say that a change in an address must registered and maintained consistently in time. The datawarehouse is prepared to register this change and return a report by address consistent no matter when you launch it.
+
+In short, we have a functional starting point, a **functional and operative Pentaho - vtiger CRM integration** that **NEEDS** to be modified and adapted to each company's use of their own vtiger CRM for it to be useful. We also have the knowledge to convert it into a working implementation but it is complex work depending on what each company needs.
+
+As if all this weren't enough it turns out that with the Pentaho interface we can now create reports using PRD and install them into Pentaho interface for them to be launched and/or scheduled. So we have a (more or less) wysiwyg reporting tool. Our experience is that PRD is not an intuitive tool to use and even when you do get a hang of it, it is **absolutely** necessary to understand all the complexity of the vtiger CRM database to get the information you are searching for (which is not at all easy as can be seen by the many questions that arise about this in the forum).
+
+So we have created a tool that requires customization to be used, technical training to make reports and training of OLAP usage and datawarehouse structure for users to navigate through their data. It isn't exactly what we were looking for, nor (in our opinion) what most of the users that come to an open source CRM project as wonderful as vtiger CRM are looking for nor willing to pay for, but it is a very powerful tool for those that need this type of integration.
+
+We had a look at JasperSoft, but found the exact same problem, so we didn't continue down that path.
+
+
+==== Spin-offs ====
+
+As most of our clients were really asking for a handful of reports and graphs they couldn't make with vtiger CRM reporting system we decided to use our knowledge of the PRD tool to create these reports, but we found it a bit cumbersome and it was complex to get it to work without the Pentaho interface (which also requires user validation). So we stumbled on BIRT.
+
+BIRT has a nice and intuitive interface in which it is easy to create the report you are try to achieve. It has an easy integration tool (birt-viewer) to launch the reports. As in the PRD solution it is absolutely necessary to understand the vtiger CRM database structure, so it isn't an end user tool.
+
+We created a patch that permits you to easily integrate into the vtiger CRM reporting page, reports created with BIRT and PRD. With this patch you can have your BIRT or PRD report link right next to your existing vtiger CRM reports, organized in the same folders as your other reports. Simply when you click on the link it will open the report in a new window with the BIRT/PRD reporting tool.
+
+This is an in-house tool which permits us to easily created visually attractive reports. Most people that come asking for Pentaho end up really needing a few graphical reports. This line is a lot much cheaper.
+
+Thanks to our collaboration with **Studio Synthesis** in this project, they created a plugin which permits us to launch PRD reports to obtain PDF, RTF and Excel outputs. This results in a perfect way to design Invoices and other PDF outputs in a friendly way.
+
+
+
+===== Conclusions =====
+
+  * Pentaho-vtigerCRM integration exists.
+  * Pentaho-vtigerCRM integration is complex and powerful tool
+  * Pentaho-vtigerCRM integration is probably NOT what you are looking for
+  * vtigerCRM reporting requires great knowledge of the vtiger CRM database (at least)
+  * No matter what external reporting tool you use, you need to know the vtiger CRM database
+  * It is very probable that a few reports/graphs integrated into your vtiger CRM will cover your reporting needs
+  * **Contact us, we can help you.**  Send a description of the reports you need done to info at tsolucio dot com and I will send you my opinion and a quote.
+
+===== Our procedure =====
+
+When a client asks us for a report this is what we do:
+
+  * Clearly define what columns, parameters and relations needed
+  * Dedicate a maximum of 15m to see if vtiger CRM can already do it (normally a lot less). If it can't, we have determined where the limitation is.
+  * Dedicate a maximum of 15m to see if we can modify the code to overcome the limitation.
+  * If we reach here we create the report with BIRT/PRD
+
+
+
+
+
+===== Case studies =====
+
+We have successfully implemented Pentaho-vtigerCRM integration in three installs. As explained above, each has their own problems and solutions. Some of the things we have accomplished:
+
+  * Complete maintenance of historical information. When an account changes his address, we register this information. When a quote changes we register the change and keep both versions,...
+  * Calculated fields. During the ETL transformation we create new fields that can then be used from the datawarehouse to make ore useful reports or OLAP cube studies. For example:
+    * Loss and Benefit. We extend all invoices and invoice lines with their information to the best we can as vtiger CRM doesn't have save all the necessary information:
+      * Quantity item per line
+      * Unitprice per line
+      * Extendedgross per line
+      * Extended Allowance 
+      * Extended discount
+      * Extended Net
+      * Extended cost
+      * Contribution
+      * Taxes
+  * HelpDesk attributes: total time, time spent on each status,
+  * We capture and register most of the status changes on all entities, so you can report on the "life" of your business process
+  * For those clients that use timecards we have a cube that permits you to study timecards against trouble tickets
+  * For those clients that use our **payments module** we have a cube that permits you to navigate through your payments. **This is a must have!!!**
+  * There are others I don't remember right now :-)
+
+
+
+
+
+
+
+
+
+===== Screen shots and other information =====
+
+  *[[reporting_ss|Reporting screen shots]]
+  *[[vtcrmreporttt|A trouble ticket report in vtiger CRM]]
+  * You can find various BIRT report examples in the [[http://crmevolutivo.com/vtTRControl|Time/Resource Control demo site]]. In the vtiger CRM reports page:
+    * look at the link on the **7 day Waiting Tickets** report and click on it to get a BIRT report of the tickets that haven't been modified in the last 7 days. This report condition CAN NOT be achieved inside vtiger CRM.
+    * look at the link on the **Trouble Tickets that fail the SLA** report and click on it to get a BIRT report of the tickets that don't comply to two types of SLA: not attended in under one hour and not attend in under four hours.
+    * look at the link on the **Activities per Week** report and click on it to get a BIRT report of the number of activities of each type per user on each week.
+  * A report requirement that can't be met inside vtiger CRM: [[http://forum.vtiger.com/viewtopic.php?t=34139|Monthly Customer Accounts Statements]]. This easy to accomplish inside Pentaho.<code>Does anyone know of a function within vTiger to generate monthly account statements for customers? The next step is to auto-email them statements at the EOM.</code>
+  * [[http://forum.vtiger.com/viewtopic.php?t=34470&highlight=|Forum Thread]] How can I export / print all contacts of an account? I have tried it with creating a report but then we would have to create a new report each time we want to print the contacts of a different organization.
+    * Answer: Although the basic idea behind a report created with an external tool is similar to the problematic of this report inside vtiger CRM, through an external tool we would get a prompt for the account each time the report is launched and would be able to select the account and obtain the contacts dynamically.
+  * [[http://forum.vtiger.com/viewtopic.php?t=33802|Forum Threasd. Dashboard]] Add dashboard graph with leads per user.
+  * [[http://crmevolutivo.com/forum/viewtopic.php?f=4&t=1832|Lead conversion]]. This can be achieved with external reporting but not within vtiger crm.
+  * Report that can't be done (AFAIK): VAT on invoices report can't be done without [[recargo_equivalencia|modifications]]
+  * Report that can't be done (AFAIK): I need a report which contains following data: product number, name, number of sold products, total amount. Number of sold products is the problem.  [[http://forum.vtiger.com/viewtopic.php?f=96&t=40413|Forum thread]]
+  * [[Next Recurring Invoice Date Report]]
+
+==== VAT Reporting ====
+vtiger crm does not permit VAT reporting. It is not an easy thing to solve due to the different taxing schemes available. We have various solutions:
+
+Use the Payments Module. What you can do is for each invoice manually associate two payments, one is the total without VAT and the other is the VAT. You add VAT to the related picklist (or create a custom field) and make the VAT payments of this type. This will permit you to report on VAT in determined dates, probably solving your problem.
+
+What we usually do if you exclusively use GROUP taxing is add an autocalculated readonly field on the invoice which fills in with the VAT each time you save. Since this is a normal vtiger CRM field you can do reporting on it as with any other also solving the problem. This does not work for individual taxings as we need as many fields as types of taxing which would not be practical.
+
+For individual taxing you can either use the payments approach and create as many payments as you need and then report on them or you would have to create an external report with a more powerful reporting tool.

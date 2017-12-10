@@ -1,0 +1,32 @@
+======Distribución coreBOSCRM Marketing ======
+
+=====Convirtiendo vtiger CRM en un CRM=====
+
+vtiger CRM es una herramienta increíble. Como he escrito en el pasado cubre un extenso segmento de mercado, muy superior al de marketing/CRM propiamente dicho, tiene muchas características que lo convierten en la herramienta ideal para muchas pequeñas y medianas empresas. Dicho eso, sorprendentemente esta muy falto en las funcionalidades propias del sector del marketing y comunicación con nuestros clientes. No dispone de una manera sencilla de segmentar nuestro mercado y actuar sobre el mismo de manera activa para producir oportunidades de negocio.
+
+Aquí es donde cobra sentido esta personalización. Hemos rellenado el hueco existente entre la campaña y el contacto. En este espacio es donde suceden las acciones de comunicación y marketing, enviamos mensajes a nuestros contactos en forma de cartas, emails, SMS y otros, planificamos visitas, llamadas y otros tipos de tareas y todo ello puede formar parte de una campaña o un conjunto de acciones puntuales pero todo ello debería acabar en oportunidades de negocio y, mejor aun si son ganadas :-) 
+
+Desde los primeros pasos de segmentación de nuestros contactos y asociándolos a una campaña o acción de marketing, a vtiger CRM le falta la funcionalidad de agrupar nuestros contactos en función de los valores de su cuenta asociada entre otras entidades relacionadas, después nos falta información completa sobre los resultados de los mensajes enviados a los contactos, no hay una manera sencilla de crear acciones masivas sobre los mensajes positivos o negativos, incluso ver el estado de las acciones de nuestro equipo de ventas es una tarea Herculiana. Unas cuantas herramientas útiles como la asignación masiva de registros y sus elementos relacionados que es algo con lo que no puedes vivir si tienes tu vtiger CRM configurado en modo de privilegios de acceso privado y necesitas asignar un contacto a otro usuario, o la creación masiva de contactos o copiar valores de campos entre entidades de manera global se hacen imprescindibles para sacar provecho de la aplicación.
+
+Hemos intentado crear soluciones para todos estos caso de uso, y más creando una combinación imbatible!
+
+Otra necesidad común en las acciones comerciales es lo que se denominan campaña de goteo (//drip campaign//). Con esta funcionalidad seremos capaces de definir acciones de larga duración para que nuestros clientes se acuerden de nosotros. Podremos definir con facilidad felicitaciones de cumpleaños,  festivos o políticas de comunicación de bienvenida como enviar a un contacto uno o dos correos después de confirmar una compra y después un conjunto de emails una semana, mes o año tras esa compra u otro eventos.
+
+Incluso la famosa campaña de un **email diferente al año todos los años de tu vida** se podría implementar con facilidad. 
+
+Además de toda esta funcionalidad, hemos añadido algunos de nuestros módulos y extensiones mas famosas como la [[es:mapenhancements|geolocalizacion en mapa]] de nuestros contactos que ayudara, no solo para ver la distribución espacial de nuestros clientes sino también para segmentar y montar campañas basadas en esa información. Nuestro modulo de [[es:vtigerforecast|control de objetivos]] te ayudará a seguir el estado de las ventas de tu equipo comercial, mientras que la extensión de vtiger para la **notificación diaria de actividad** que hemos actualizado te mantendrá informado de sus acciones. Nuestro [[es:vtgendoc|generador de documentación OpenOffice merge]] que permite crear documentos utilizando campos de la aplicación junto con **PDFMaker** te permitirán crear documentos y salidas perfectamente formateados para presentar a los clientes. También hemos añadido nuestro [[es:paymentmodule|modulo de cobros y pagos]] para que puedas controlar cosas como el **total de pagos** realizados por un cliente o los **pagos parciales** sobre una factura, con lo que saber el estado de pagos y facturas pendientes es una tarea sencilla. Este último módulo puede servir también para **controlar las comisiones** de tu equipo de ventas.
+
+No satisfechos con todo esto hemos añadido nuestra [[es:vtigerdtoproductline|extensión de descuentos por categoría]] para que puedas crear tarifas personalizadas para cada cliente basado en condiciones especiales o patrones de compra anteriores que quieres potenciar.
+
+Finalmente otra extensión de peso que hemos añadido es [[es:vtapps|vtApps]] que es un nuevo entorno de **cuadro de mando** que nos proporciona un conjunto de herramientas visualmente atractivas para ver las métricas y estado de nuestro trabajo.
+
+Algunos cambios y arreglos mas normales que hemos conseguido a raíz del uso constante de vtiger CRM y nuestra extensa experiencia con el producto han sido añadidas para mejorar el uso diario de esta personalización, especialmente notables son el **control de impuestos en la factura** para facilitar el **informe trimestral de IVA** y muchas de las preguntas mas frecuentes que aparecen en los foros.
+
+Por ultimo, pero de vital importancia, todo ello lo aderezamos con **nuestro soporte y constante desarrollo** de la plataforma. Tenemos una ruta de trabajo claramente definido con mejoras futuras, mientras seguimos aplicando arreglos y mejoras menores que encontramos gracias al uso diario de la aplicación. En resumen, estamos **aquí** para contestar tus preguntas y resolver tus problemas con un **equipo experimentado** de calidad.
+
+**No lo dudes, ven con nosotros y lleva tu empresa al siguiente nivel!**
+
+Puedes encontrar mas información [[es:vtmarketing|aquí]] y preguntar las dudas que tengas [[es:contact|aquí]]. 
+
+Esperamos trabajar contigo :-) 
+ 

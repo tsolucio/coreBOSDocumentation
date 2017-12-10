@@ -1,0 +1,23 @@
+====== coreBOS Geographic Map ======
+
+An extension that will permit us to geolocalize our clients, potentials, tickets or any module with an address using Google Maps or OpenStreetMaps integration.
+\\
+---- dataentry ----
+name : tsolucio/GEOMAP
+type : corebos-extension
+description_wiki: An extension that will permit us to geolocalize our clients, potentials, tickets or any module with an address using Google Maps or OpenStreetMaps integration.
+keywords_tags : geoencoding,map,googlemaps,openstreetmap,latitud,longitud
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbgeomap
+release_dt : 2010-02-27
+licenses : Vizsage
+price : on sale at http://coreboscrm.fr/
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+{{page>en:integrations:maps}}

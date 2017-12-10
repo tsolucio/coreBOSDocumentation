@@ -1,0 +1,17 @@
+====== Control de Deudas.======
+
+===== Consolidación y Negociación de Deudas =====
+
+{{ :temporaryhold:consolidaciondeudas.png |}}
+
+==== Proceso de control ====
+  *Añadiremos varios tipos de cobros y pagos
+  *Cada pago que nos hace el cliente será un cobro en el sistema. Se dividirá en varias partes:
+    *ahorro, relacionado con cliente solamente, se añade a su total de entradas
+    *tasa, relacionado con cliente y su factura
+    *retainer FIXME
+  *Cada pago que hace el cliente desde sus entradas a sus acreedores, será un pago en el sistema. Estará relacionado con el cliente y la deuda a la que se destina. Restará de su salidas y su deuda
+
+
+==== Otras  mejoras ====
+  *[[paymentmodule#partial_payment_mass_creation|Payment Module Mass Create]]

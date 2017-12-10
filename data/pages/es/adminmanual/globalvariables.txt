@@ -1,0 +1,94 @@
+====== Variables Globales ======
+
+El módulo de variables globales nos permite personalizar la funcionalidad de la aplicación de una manera muy sencilla. La idea básica es que cuando estamos programando algo y necesitamos establecer un valor o una decisión, creamos una variable global con un valor por defecto y usamos el resultado. Así que, ahora, cualquier usuario puede establecer la variable global a otro valor y modificar eficazmente la lógica del programa sin tener que modificar el código. Una extensión realmente potente y fácil.
+
+El orden que implementa el módulo de variables globales para obtener un valor es el siguiente:
+
+  * Primero busca un registro marcado como 'Obligatorio'.
+  * Si no encuentra ninguno, buscará un registro asignado al usuario actual.
+  * Si no encuentra ninguno, buscará un registro asignado al grupo del usuario actual.
+  * Finalmente, buscará un registro marcado como 'por defecto'.
+  * Si no se encuentra ningún registro para la variable global, se utilizará el valor interno de la aplicación.
+  * Además, en todas las búsquedas anteriores se tendrán en cuenta el módulo desde el que se solicita la variable si está marcada la casilla 'En Lista de Módulos' con lo que podemos tener distintos valores de la misma variable por módulo.
+
+
+===== Ejemplo =====
+
+Supongamos que necesitamos que la creación de una factura no modifique el estado de la orden de venta asociada. Para ello definiremos una variable global así:
+
+  * Elegimos la variable global "SalesOrder_StatusOnInvoiceSave" en la lista desplegable "nombre". Esa variable controla este caso concreto del ejemplo.
+  * Como valor introducimos "DoNotChange", que es un valor especial por el que se busca en el código.
+  * Marcamos la casilla de 'Obligatorio'.
+
+También puedes introducir como valor cualquier estado válido de la orden de venta si quieres que se establezca el estado a ese valor en vez de "Aprobada".
+
+Otro ejemplo podría ser el número de elementos por página en la vista de lista. La variable que controla esta cantidad es "Application_ListView_PageSize", cuyo valor por defecto es 40. Supongamos que queremos reducir ese cantidad a 20 pero solo para el módulo de cuentas.
+
+  * Elegimos la variable global "Application_ListView_PageSize" en la lista desplegable "nombre".
+  * Como valor introducimos "20"
+  * Marcamos la casilla de 'En Lista de Módulos' y seleccionamos el módulo de Cuentas en la lista de módulos
+  * Marcamos la casilla de 'Defecto' u 'Obligatorio' según queramos que sea para todos los usuarios o no.
+
+
+===== Campos =====
+  * **Nombre Variable Global**. Es una lista de todas las variables existentes.
+  * **Valor**. Es un campo que contiene el valor actual de esta variable. Cada variable tiene su propio conjunto de posibles valores que están documentadas en el propio módulo. Todas las variables globales aceptan el valor especial: **[Use Description]**. Si el valor de la variable global se establece a [Use Description] se devolverá el contenido del campo descripción como resultado de la variable. Esto es especialmente útil para valores muy largos como listas de Emails o IPs, haciendo la visualización y el mantenimiento del valor más sencillo
+  * **Usuario**. el usuario para el que se define esta variable
+  * **Defecto**. La funcionalidad de esta casilla es contraria a la Obligatorio. Permite al administrador establecer un valor predeterminado para todos los usuarios, pero puede ser anulado por cualquier usuario que desee tener un valor diferente. El registro marcado como predeterminado sólo se utilizará si no hay otro registro
+  * **Obligatorio**. Esta casilla de verificación fuerza el valor de la variable para todos los usuarios. Si está marcada, no se utilizará ningún otro registro para esta variable. Está diseñado para que el administrador pueda establecer una variable globalmente para todos los usuarios. Para lograrlo, debe establecer el módulo en compartición privada y asignar el registro al usuario administrador para que no pueda ser modificado por ningún usuario.
+  * **Bloqueada**: Este campo es simplemente para agrupar ciertas variables, no tiene lógica ni proceso asociado. El caso de uso para el que se creó este campo es para que el usuario administrador pudiera ocultarlo en todos los perfiles o no permitir la edición del campo o para poder usarlo para agrupar determinadas variables importantes. Una vez marcadas estas variables, podemos crear fácilmente un filtro o una búsqueda en el campo para que podamos encontrarlas rápidamente.
+  * **Módulo y En Lista de Módulos**. Los valores de las variables se pueden aplicar por módulo con estos dos campos. Si el campo "En Lista de Módulos" está marcado el valor de la variable solo tendrá efecto para los módulos seleccionados en la lista múltiple de Módulos
+  * **Mapa de Negocio**. Cuando buscamos mapas de negocios en el código lo hacemos a través del módulo de variables globales en lugar de ir directamente al módulo de mapas de negocios. De esta manera, permitimos a cualquier usuario anular la selección predeterminada y establecer una asignación específica para cualquier caso.
+  * **Categoría**. simplemente para ayudar con procesos organizativos, no tiene ningún efecto en las variables
+
+===== Documentacion =====
+
+La lista de variables está completamente documentada en el propio módulo. En la vista de lista, hay un botón para acceder a la tabla, en la vista de detalle y edición hay un bloque que contiene la tabla con todas las variables, sus posibles valores y una explicación de lo que hace cada variable.
+
+
+===== Test =====
+
+En la vista de lista y detalle, encontrarás una acción **Test** que te permitirá validar el resultado de cualquier variable en cualquier módulo para cualquier usuario. Esto es muy útil cuando tienes muchos registros para la misma variable y necesitas asegurarte de que el valor correcto se devolverá en cada caso.
+
+
+===== Web service =====
+
+Aplicaciones externas pueden acceder a los valores de variables globales utilizando la llamada **SearchGlobalVar**, que es un GET con tres parámetros:
+
+  - gvname: nombre de la variable global
+  - defaultvalue: valor por defecto a devolver si no hay ningún registro definido
+  - gvmodule: módulo en el que se buscará la variable
+
+Puedes ver [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/500_GetGlobalVariable.php|un ejemplo de esta llamada y probarla]] utilizando la [[https://github.com/tsolucio/coreBOSwsBrowser|herramienta de desarrollo webservice de coreBOS]].
+
+
+===== JavaScript =====
+En el navegador tenemos una **promesa JavaScript** que obtiene el valor devuelto por la aplicación así:
+
+<code>
+var calendar_call_default_duration = 5; // define the variable and set it's default value
+GlobalVariable_getVariable('Calendar_call_default_duration', 5, 'Calendar', gVTUserID).then(function(response) {
+	var obj = JSON.parse(response);
+	calendar_call_default_duration = obj.Calendar_call_default_duration;  // set value from application
+}, function(error) {
+	calendar_call_default_duration = 5; // set default value on error
+});
+// You MUST give this some time to execute, so do not use the value at this line, or
+// execute your code inside the promise
+</code>
+
+
+===== Creando una nueva variable =====
+
+Para crear una nueva variable hay que hacer tres pasos
+
+  - llamar al módulo de variables globales con la nueva variable en tu código
+  - añadir la nueva variable al fichero de cambios contínuo DefineGlobalVariables.php para que sea añadida a la lista de variables
+  - añadir la definición de la nueva variable a los ficheros de traducción
+
+Este [[https://github.com/tsolucio/corebos/commit/bffa964a4c3e8c658f3eb5a84900a8e0fc7c5865|commit es un buen ejemplo de este proceso]].
+
+
+===== Más Información =====
+
+[[http://blog.corebos.org:8080/en/blog/globalvariable|Hay una entrada en nuestro blog sobre las variables globales]]

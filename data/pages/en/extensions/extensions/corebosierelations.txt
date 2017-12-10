@@ -1,0 +1,27 @@
+~~NOTOC~~
+====== coreBOS Import/Export Relations ======
+
+This extension permits exporting information about **many to many relations between records** from one coreBOS install to another.
+
+[[https://github.com/tsolucio/coreBOSIERelations|Get more information on the projects repository]]
+
+\\
+---- dataentry ----
+name : tsolucio/coreBOSIERelations
+type : corebos-extension
+description_wiki: This extension permits exporting information about **many to many relations between records** from one coreBOS install to another.
+keywords_tags : import,export,relation,many to many,m:m,crmentityrel
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:corebosierelations
+release_dt : 2017-07-28
+licenses : VPL
+distribution : Free
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : https://github.com/tsolucio/coreBOSIERelations
+supportforum_url : http://discussions.corebos.org/
+supportsource_url : https://github.com/tsolucio/coreBOSIERelations
+----
+\\
+

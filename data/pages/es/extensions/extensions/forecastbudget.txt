@@ -1,0 +1,89 @@
+~~NOTOC~~
+====== Previsión y Control de Objetivos de Ventas y Presupuesto ======
+
+Planifica un rango completo de objetivos comerciales para cada comercial y/o producto por periodo basado en el estado de las oportunidades de negocio
+\\
+---- dataentry ----
+name : tsolucio/forecast
+type : corebos-module
+description_wiki: Planifica un rango completo de objetivos comerciales para cada comercial y/o producto por periodo basado en el estado de las oportunidades de negocio
+keywords_tags : forecast,budget,plan,control,followup,goal
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:forecastbudget
+release_dt : 2010-02-27
+licenses : Vizsage
+price : Subscription
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+**Demo Proyecto** : [[https://demo.coreboscrm.com|coreBOSCRM]] Busca Objetivos en el menú Comercial\\
+
+Planifica un rango completo de objetivos comerciales para cada comercial y/o producto por periodo basado en el estado de las oportunidades de negocio 
+
+{{  :en:extensions:extensions:forecastbudget::forecast_funnel.png?1024  |}}
+
+Este módulo proporciona información en tiempo real para el seguimiento de las ventas contra las oportunidades, lo que ayuda a la organización a afinar el proceso de venta. Para los gerentes de ventas, la función de previsión ofrece un panorama general del proceso de ventas de la compañía, así como los de desempeño individual de los comerciales. Los representantes de ventas pueden utilizar objetivos para satisfacer/superar las cuotas asignadas y a su vez aumentar los beneficios de las empresas.
+
+El módulo de objetivos ha sido creado para controlar automáticamente las ventas contra tres valores: cuotas (cantidad mínima de ventas permitidas), comprometido (cantidad de ventas negociado con el vendedor) y ventas en el mejor de los casos.
+
+Una vez configurado, estas cantidades serán **automáticamente** calculadas y se guardan en su campo correspondiente para informes futuros sin trabajo adicional por parte de los usuarios o administradores. Cada usuario simplemente tendrá que seguir adelante con sus oportunidades para conseguir su pronóstico calculado en cada período definido.
+
+Los campos disponibles para definir un objetivo hacen que sea muy flexible. **Año, frecuencia y periodo** son obligatorios. Estos tres campos definen la agrupación de los totales de oportunidades. Por ejemplo, si queremos controlar el primer semestre de 2012, vamos a crear un pronóstico con los valores de 2012, semestre 1 (primer período). Una vez que se ha creado, cada vez que se guarda una oportunidad en el estado "Cerrado-Ganado" con fecha de cierre dentro del primer semestre, su cantidad se acumula en este registro de objetivos.
+
+Podemos crear fácilmente otras previsiones para cualquier periodo, incluso con periodos que se solapan en el tiempo y todos ellos se calcularían, de modo que podríamos establecer dos proyecciones de objetivos trimestrales y una previsión global para el semestre y todos los valores se calculan y se asocia en al objetivo correcto.
+
+En el registro de objetivos tendremos acceso a las oportunidades asociadas separadas por meses para facilitar el acceso a la información relacionada.
+
+El módulo de pronóstico nos permite afinar los objetivos de nuestra empresa con mayor precisión. Podemos indicar que queremos controlar las ventas **en base a usuario. ** En este caso, no sólo vamos a sacar las ventas de oportunidad en el período indicado, sino que la aplicación acumulará sólo las ventas de ese usuario. Así podríamos tener un pronóstico para cada uno de nuestros comerciales en diferentes períodos.
+
+Además también podemos configurar un objetivo para que acumule **en base a las categorías de productos o sobre un producto/servicio específico.** Cada registro de objetivos comparte la lista de selección de categoría de productos para que podamos acumular ventas basadas en esa categoría. También tiene la opción de seleccionar un determinado producto o servicio, con lo que podemos seguir de cerca las ventas de productos especiales o promocionales.
+
+Todas estas diferentes opciones de acumulación son controlados por diferentes combinaciones de casillas de verificación como se detalla a continuación:
+
+  * **Sólo Relacionado**: esta casilla de verificación indica que esta previsión se acumulará **sólo**  en esos potenciales que tienen el mismo producto/servicio relacionado. **NOTA:** Si se selecciona esta opción junto con la opción "Utilizar Categoría", se pueden presentar algunas inconsistencias.
+  * **Utilizar Categoría**: esta casilla de verificación indica que esta previsión se acumulará en esos potenciales que están relacionados con un producto/servicio en la misma categoría que el seleccionado en la lista desplegable Categoría. **NOTA:** Si se selecciona esta opción junto con la opción "Sólo Relacionado", se pueden presentar algunas inconsistencias.
+  * **Sólo asignado a**: indica que esta previsión se acumulará sólo esos potenciales que cumplan con las opciones anteriores, y pertenecen al mismo usuario asociado a esta previsión. Esto nos permite controlar los objetivos individuales de los comerciales.
+
+Hemos modificado el sistema de informes para establecer las relaciones en el módulo de objetivos, lo que permite capacidades limitados de informes dentro de la aplicación de vtiger CRM
+
+**Las siguientes dos imágenes muestran la configuración de los campos y opciones en la versión basada en categorías de productos**:
+
+|{{:en:extensions:extensions:forecastbudget::forecasts_edit_113033.png?450|}}| |{{:en:extensions:extensions:forecastbudget::forecasts_period_113105.png?450|}}|
+
+
+**La siguiente imagen muestra la vista detalle del objetivo con sus oportunidades**:
+
+{{  :en:extensions:extensions:forecastbudget::forecasts_112829.png?880  |}}
+
+**Explicación de valores en la vista de detalle**:
+
+** En la siguiente imagen podemos ver una lista de los valores establecidos y dos oportunidades relacionadas **. Vamos a tratar de explicar los valores de Febrero. Como puedes ver hay 2 oportunidades relacionadas con este objetivo en Febrero. Suman un total de $85.000 y ambos se encuentran en estado **Cerrado-Ganado**, por lo que el total puede ser visto en la columna **Cerrada**. En este caso no hay otras oportunidades en otros estados así que la columna de Embudo muestra un total de $0, si hubiera alguna su total aparecería aquí. Cuando se creó esta previsión, se acordó que la cantidad mínima de ventas para febrero sería $150.000 (columna de cuota), el comercial se comprometió a hacer por lo menos $130.000 de ventas (esto no tiene mucho sentido ya que el valor comprometido debe ser superior a la cuota mínima), y ambos coincidieron en que la cantidad ideal sería $180.000. Todos estos tres valores se pueden ver en sus columnas correspondientes. Esto nos deja sólo con una columna más que explicar. El **porcentaje de la cuota** que es el cálculo de la distancia a la que está el vendedor de conseguir su objetivo. En este caso, su objetivo era vender $130.000, y vendió $85.000, por lo que el porcentaje es del 56,7%, que es más de la mitad del camino para alcanzar su objetivo para Febrero.
+
+{{  :en:extensions:extensions:forecastbudget::forecasts_controllingbudgets_113334.png?880  |}}
+
+**Aquí vemos la vista de lista**:
+
+{{  :en:extensions:extensions:forecastbudget::forecasts_105344.png?880  |}}
+
+
+Esta extensión es casi completamente compatible vtlib  salvo por una modificación en el sistema de informes.
+
+====== Preguntas Frecuentes ======
+
+??? Mirando la gráfica que aparece en la siguiente imagen, ¿No tendría que tener forma de embudo el gráfico o al menos no tener en forma de punta esas etapas?
+{{ :en:extensions:extensions:forecastbudget::forecast_strang_funnel.png?direct&800 |}}
+
+!!! El gráfico se calcula en función de los estados de las oportunidades asociadas, si tu proceso comercial no se parece a un embudo tradicional, la gráfica va a reflejar eso. Por ejemplo, en mi empresa, hacemos muy poca prospección, casi todos nuestros clientes son como tu que ya llegas en un estado muy avanzado del proceso comercial, por tanto nuestra gráfica está hinchada en el medio. En la captura de pantalla que adjuntas hay fases del proceso comercial que no tienen oportunidades asociadas por tanto la franja correspondiente sale vacío.
+
+En fin, que seguramente es normal.
+
+??? Es posible seleccionar más de un producto asociado a una previsión?
+
+!!! Solo se puede relacionar directamente un producto/servicio a una previsión, **PERO** se pueden crear previsiones basadas en categorías de producto, así que si añades una nueva categoría (editor de listas desplegables) y añades a esa categoría los productos que quieres controlar podrás conseguir hacer una previsión de objetivos de varios productos.
+
+

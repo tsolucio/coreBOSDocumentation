@@ -1,0 +1,72 @@
+====== vtiger CRM (or any other application) Implementation Concerns ======
+
+This article stems from a question made on the vtiger CRM [[http://linkedin.com|linkedin]] group a while back. The question was very short: "Three vtiger CRM concerns". It didn't even look like a question, it could have been perfectly well a statement with the three concerns of the person who posted it. Being so vague it could have given place to many deviations and conversation but it didn't go to far.
+
+Every time I read the title I couldn't avoid thinking of the three points I am going to talk about in this article, which really have nothing to do with vtiger CRM concerns or implementations (which is why I didn't participate in the thread) but of important steps that need to be taken even before you decide to use vtiger CRM.
+
+We use vtiger CRM to cover the software needs of our clients. We change it to adapt to the needs of each client. During this process we follow a set of steps that try to assure that each client will get an application that covers his requirements. I will try to explain some of the steps we take and how they should eliminate the concerns from your vtiger CRM (or any other application) implementation.
+
+===== Analysis and Consulting =====
+
+This is the most important of the three.
+
+vtiger CRM is an incredible application. It has a very rich set of features, that correctly used can cover many market segments. It is user friendly and easy to deploy as it is based on web technology which is almost ubiquitous now. It makes the server administrator, the application administrator and the user's life easy.
+
+As if that weren't enough for what it costs, it is extensible. It exports it's objects through a standard webservice interface, it implements a rich SOAP API and has a programming language interface to add and/or manipulate elements.
+
+So with this we can use vtiger CRM as a programming framework and customize it to adapt to the requirements of our clients, thus, extending the market segment it is usable in. Taking this idea to an extreme you could use vtiger CRM programming framework to create any application an adapt it to any market segment.
+
+But extremes aren't good and should be avoided. We should know vtiger CRM's limits and the benefits of other software that cover other market segments better. So we can convert vtiger CRM into an ERP, but there are already very good ERPs out there that would make the effort unnecessary. Just because we can, doesn't justify that we should.
+
+All this is to explain that vtiger CRM covers a specific market segment, it is ideal for that market and you need someone to tell you that you are in that market and if not, that you have to go somewhere else.
+
+So our first concern is. **"Am I choosing the right application?"**
+
+To eliminate this concern you need **analysis from a consultant**. Somebody that will listen to you, read your requirements and ask you questions. Somebody with knowledge of the applications that can cover your requirements and tell you what application to use AND what adaptions need to be done to get it working for you. If the consultant tells you that vtiger CRM is not the application you need and sends you to another application that is better suited to cover your needs, or if he tells you that vtiger CRM fits your needs but will require X programming hours to make it perfect, or any variation of these, then, all of a sudden there is no concern, you know you are on the right track.
+
+
+===== Follow through and Responsibility =====
+
+On the first read of the title of this point many may be thinking that I am going to talk about finding somebody who can take the requirements detected and the selected application and convert it into the desired software solution that the client has asked for.
+
+But, although that IS very important, it is more important to understand the concept of "shared responsibility". It is an irrefutable fact that no project will accomplish it's goal if there is not (at least) two people who make it happen: these are the project managers. Notice the plural, it is of utmost importance, it is what will make a project work or fail.
+
+The ideal and minimum number for this to work is two, there has to be a project manager in the development company and another in the company that will be using the product. Either of them alone do not have enough knowledge to accomplish the project. The project manager in the company has the knowledge of how the company works, it's requirements, it's priorities, it's legal limitations. The project manager in the development company knows the limits of the software being used, how to bend those limits to fulfill the requirements and how to reach (teach and learn) an economic, feasible and valid solution from the ideal solution.
+
+The combination of these two people working together is a condicio sine qua non for the accomplishment of the project. If either of the two does not assume his responsibilities in the development of the project for whatever reason, lack of time, insufficient motivation (professional and/or economical), you name it, there are many reasons and excuses, then the project will not accomplish it's goal.
+
+In our experience, the projects that have failed were almost always due to this factor, either our side or our client's side, and inevitably the ones that go well always have these two figures.
+
+There are a few comments I would like to add. In the extremely rare case where a software developer has acquired the company knowledge these two figures could converge into one unique person. This is very rare, specially nowadays where all fields seem to be reaching levels of specialization that make it almost impossible. But there is one possibility: teach somebody what he needs to know.
+
+In those projects that have failed and that, from my point of view, it was the client's lack of dedication to the project, many times I have been told that more was expected of me. I have learned to understand this statement as: "I don't have time or knowledge enough to do my part and that is why I contracted you to do it". Which really does sound like it was my fault, but, after a second lecture you can understand that this client is too busy and needs to have somebody work with him, in his business during whatever time is necessary to learn the ropes of the business and acquire all the knowledge that is necessary to construct the software project. Obviously you can imagine how much money and time this would require and you can understand that this definitely not what I quoted for the development of the project. (NOTE: we don't believe in analysis before development, a subject for a whole new article)
+
+So our second concern is. **"Can I get this application ready for my company?"**
+
+And the answer is that if you can find AND motivate the two project managers that I have been talking about then this concern is mute.
+===== Training. Usability =====
+
+Ok, so now we know that we have the right application and the right people to make it happen, it is just a question of time to have the perfect software adapted to our company. What else do we need?  Company and user buy in
+
+So our third concern is. **"Will my company benefit from this application we have created?"**
+
+The answer is basically very obvious, if we have an application that fits our company's market segment and we have enhanced it to adapt to our particular needs then the users should be very happy with it, it should help them do their work faster and more efficiently so it should be easy for them to "buy in" to the new software.
+
+That said, there are a few things that need to be mentioned. Training in the use of the application and the new enhancements is of utmost importance. The users MUST learn to use the application and the changes that have been created. The developers of the application will be needed and should be counted on during the months after the initial launch of the new program, not only to help the users with the features of the application, but also to fix and adapt any bugs or requirements that weren't completely correct, and also as guardians of the knowledge of the application.
+
+So this concern can easily be dismissed by dedicating the necessary resources to the users of the application, really helping the end user benefit from the application and cover their needs which is why we constructed the software in the first place.
+
+
+===== Last thoughts =====
+
+I would like to add one more comment. I have focused the article to my benefit. These things are what I do to make a living. I have been doing this for many years now and I have got a hang of how it works, but thanks to open source you don't need me, there is an alternative: **time**.
+
+If you don't want to contract a consultant to tell you if vtiger CRM is the right application for you then you can install it, test it, open it and learn to adapt it, find it's limits. Then go and do the same with other open source applications and once you get a clear image of the options you can decide and eliminate the concern by yourself. This same idea can be applied to the other points, in fact by learning the applications to find it's limits and ideal market segment you have probably already covered all three points :-)
+
+As a conclusion I would like to say that there are many concerns when starting a project like this, many things can go wrong for many reasons and, usually, most players have some part of responsibility in it, but, in general, all concerns can be dismissed by dedicating time and money to finding the right people to help you. Those people are out there, willing to help and we are one of them.
+
+A few days ago a found this very interesting post that I think is related to this article, specially in the shared responsibility concern. [[http://web2project.net/2011/05/why-you-shouldnt-use-web2project/|Why you shouldn't use web2project]]
+
+Thanks for reading.\\
+Joe\\
+TSolucio

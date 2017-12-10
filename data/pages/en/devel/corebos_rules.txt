@@ -12,30 +12,36 @@ This will return a result, whose value depends exclusively on the rule being lau
 
 Let's see some examples.
 
-Let's suppose we have this Condition Expression map:
+Let's suppose we have this Condition Expression map named "THISSTRING":
 
-<code>
+<code xml>
 <map>
   <expression>uppercase('this string')</expression>
 </map>
 </code>
 
-This expression does not depend on any context, it is a fixed value always (rather useless in real life), so we can call it in any context and always get the same result. Let's suppose that the map above is stored in the record 34031 and that we have a valid webservice ID for an account with 11x74, our call would look like this:
+This expression does not depend on any context, it is a fixed value always (rather useless in real life), so we can call it in any context and always get the same result. Let's suppose that we have a valid ID for an account with CRMID = 74, our call would look like this:
 
 <code php>
-$result = coreBOS_Rule::evaluate(34031, '11x74');
+$result = coreBOS_Rule::evaluate('THISSTRING', 74);
 // $result == 'THIS STRING'
 </code>
 
-The profile of the rule would be like this:
+The profile of the rule looks like this:
 
 <code php>
-$result = coreBOS_Rule::evaluate($conditionid, $contextid);
+$result = coreBOS_Rule::evaluate($conditionid, $context);
 </code>
+
+where:
+  * **$conditionid** is either the CRMID or the NAME of the business map. If it is a name, it will get passed through the global variable module following the "BusinessMap_" prefix convention
+  * **$context** can be either:
+    * the CRMID of the record that will be the context of the rule
+    * an array with context variables that will be merged before the evaluation ([[en:devel:corebos_rules#array_context|read more below]])
 
 Now let's suppose we change the expression map above to:
 
-<code>
+<code xml>
 <map>
   <expression>accountname</expression>
 </map>
@@ -45,7 +51,7 @@ When we evaluate this rule against different account contexts we will get differ
 
 A condition query could be:
 
-<code>
+<code xml>
 <map>
 <module>Accounts</module>
 <sql>select vtiger_account.accountid
@@ -62,17 +68,50 @@ where vtiger_crmentity.deleted=0 and crminv.deleted=0 and vtiger_account.account
 and the rule call would be:
 
 <code php>
-$result = coreBOS_Rule::evaluate($conditionid, '11x74');
+$result = coreBOS_Rule::evaluate($conditionid, 74);
 // $result == the number of invoice of account with crmid 74
 </code>
 
 In the end, the goal is to give the developer a tool to make decisions that are defined by the implementor. In this last example above we get the number of invoices any given account has. So we can apply a discount if this number is non-zero, or bigger than 10, for example. Now the implementor can decide to change the SQL and count only paid invoices or invoices in the last 6 months.
 
-Finally, since rules are based on business maps, and these on the existing workflow expression system all enhancements we make in either are directly inherited by the rule system. There is one special case in the condition expression business map that is worth mentioning: function execution.
+Finally, since rules are based on business maps, and these on the existing workflow expression system all enhancements we make in either are directly inherited by the rule system.
+
+There is one special case in the condition expression business map that is worth mentioning: **function execution**.
 
 The [[en:adminmanual:businessmappings:condition_expression|Condition Expression]] Business Map permits the execution of any function that is loaded in the application. So we could also define our own functions to make some complex decision that cannot be made using the workflow expression or an SQL statement and load that into a business map so the implementor would have control over the parameters or, even the actual function. Imagine that we implement 4 or 5 functions to make different decisiones, the implementor could pick which one to use at any given moment by simply editing the business map.
+
+===== Array context =====
+
+Setting the $context variable to an array of values permits the developer to instantiate the business rule with a set of additional values that are not accessible by the application entity context.
+
+The key values of the array will be directly subsituted in the rule before evaluating it in the context of the record.
+
+The **record CRMID MUST be one of the array values** and it must be in the key "record_id". This value will also be changed in the rule if it is present.
+
+The variables in the rule must be contained in brackets preceded by the dollar sign. For example, **$[record_id]**
+
+Let's suppose that we are incrementing a variable in a loop. In each iteration we need to pass the current value of the variable to the rule so it can indicate which is the next increment value. The rule would be something like:
+
+<WRAP center round box 80%>
+Increment by 1 until 10 and then stop incrementing
+</WRAP>
+
+<code xml>
+<map>
+<expression>if $[counter] < 10 then 1 else 0 end</expression>
+</map>
+</code>
+
+and the call looks like this:
+
+<code php>
+$result = coreBOS_Rule::evaluate('IncrementUnitForMyImportantBusinessProcess',
+ array('record_id' => 74, 'counter' => $count);
+</code>
+
+
+===== Credits =====
 
 <WRAP center round info 60%>
 Insipired by the exceptional work of [[https://hoa-project.net/En/Literature/Hack/Ruler.html|HOA\Ruler]]
 </WRAP>
-

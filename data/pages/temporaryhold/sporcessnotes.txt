@@ -1,0 +1,94 @@
+I will try to explain a concept that has been introduced to me not so long ago and that was a personal revelation, in the sense of understanding some of the problems that are presented to me. It is like I was sitting in a dark room with people asking me questions about things in the room and all of a sudden somebody turned on the light. Curious thing is that I didn't even know I was in the dark. This impacted me enough to want to share it with you in a hope that it will be something useful for you and to call your attention to the importance of questioning the world around you.
+
+The request I am receiving that I did not know how to answer was to optimize sales. My clients wanted to get more sales. They approach my company with this request because we specialize in CRM implementations. We have been taught that a CRM is associated to SP and it will help us control and increment our sales. I will try to expose here that this is not true, a CRM today is much more than a program to control the sales process and in itself it will not increment sales.
+
+Let's start by looking at the companies that approach us with the request of a CRM implementation. We have detected two types of companies.
+
+First group does not have software to support their BP. Excel sheets and a variety of access DB and home made intranets try to fill the gap. These companies reach a point where they can't continue without a software solution to support their business. Although a CRM is not the correct solution for all companies, it does cover a very big market segment because it focuses on clients which we all have. Specially if your CRM is open source you can adapt it to extend that market segment creating extremely useful tools to help each company control their business.
+
+No Business Process control
+  * typical things to detect this
+    * excel sheets
+    * home made intranet
+    * can't find telephone
+    * which of the three phone numbers I have found is the good one?
+
+They get **Business Process Control**
+
+** talked about this in previous speech. perfect software**
+
+Before they need to control sales process, the business process MUST be controlled.
+
+They have software for Business Process, most probably they have part of a CRM in it, but still there is no Sales Process control. Sales men are saying it isn't good or other excuses that justify the need for a change. So in this case we implement a CRM and get a SP Control SYSTEM, but no control. **This is because the SM are in control, not the company.**
+
+They are in contact with the clients, they have knowledge of the products, they have their system. So if they leave, they take all this with them.
+
+Let me expose an example. Imagine a computer technician, goes out to fix a computer, comes back and doesn't inform of the material used, nor the time spent nor the system or solution applied, he just gives us a document signed by the client with his confirmation. Imagine a programmer who is assigned a task and doesn't inform of the time spent or what they created, imagine a worker in a production chain not willing to leave the finished material in it's designated places for the next step,...
+
+In all these cases, if you were responsible, you would send them home.
+
+Now imagine a SM saying he couldn't inform of a visit because the sales process control software doesn't work offline, it doesn't work on his iphone, it is very bad software or it doesn't work in a time hole, but he gives you a signed quote. In this case, the normal position of the responsible is to agree that the software is a piece of junk and talk to the programming department.
+
+In the first cases you send the worker home and find another, in the latter you don't because you are afraid the SM will take his sales system and the clients home with him!!
+
+** Meet the experts **
+**To the despair of Management.**
+
+So know we know:
+  * **What a company expects when they approach a CRM implementation.**
+  * **What a company achieves from a CRM implementation.**
+  * **What a company does not achieve from a CRM implementation: more sales.**
+
+So you can stop thinking a CRM is for sales, it can be much more and it can be totally unrelated to sales. It is a tool and must be used as such.
+
+I would like to say that in both cases sales SHOULD increment with the implementation of the CRM, but not directly. When we organize the company and standardize the procedure, centralize the information the service quality goes up, it is easier to help your clients, specially on recurring sales. Since your clients are happier, word of mouth helps to increment your client base and other factors like employee satisfaction will make selling and retaining clients easier, but in itself it will not increment sales and will not make the management worries go away.
+
+Before we analyze the SP and see if we can do something to control it, let's start by defining what is the SP.
+  * lead generation above
+  * eliminate account management
+
+What does a typical SM do in this process? **Everything!!**
+
+(What’s wrong with the sales function?)
+
+If you were to survey managers from a number of disparate organizations and ask each to compile a list of the issues that bother them about their sales functions, you’d almost certainly discover that the resulting lists contained similar items, in a similar order:
+  *1. Salespeople spend only a small percentage of their time selling (see diagram below)
+  *2. Deal-flow (sales) is lumpy and unpredictable
+  *3. There always seems to be conflict between sales and other functions
+  *4. Salespeople are all but impossible to manage
+
+So they are doing many things that aren't exactly selling. Let's compare this with a shoe maker 200 years ago.
+  * go buy material or directly create them
+  * go buy tools or directly create them
+  * design the product
+  * produce the product with ALL the steps
+  * sell it
+
+What happened to these craftsmen when the industrial revolution and the production chain concept appeared? They became specialists in one exact point of the process, they became pieces or steps in the production chain. The main characteristic of this specialization is division of labor
+
+This has took us to a society with unprecedent production capacity. The world is full of things. We are capable of producing incredible amounts of any product in a minimum time span, in a consistent and quality controlled manner.
+
+So we see that the SP hasn't been affected by the division of labor concept. **Why is this?**
+
+There are two reasons why division-of labor has not been applied to the sales process:
+  *1. Quite simply, it has not been necessary. For most of the last two centuries the ability of businesses to make money has been constrained by production, not sales. For this reason, improvement initiatives have been focused, quite correctly, where they have produced the best return (production and, more recently, projects). However, in the last fifty years (or so) we’ve seen the constraint shift from production to sales. Today, many organizations have more production capacity than they can sell. It’s now time to apply what we have learned about process improvement in the production environment to the sales function.
+  *2. Those who currently work in and around the sales function are naturally resistant to the application of process-engineering principles — just as an artisan might have been resistant to division-of-labor and statistical-process-control two hundred years ago!
+
+So how would we go about applying the division of labor to the SP?
+
+First of all we must call our attention to the importance of **standardization and scheduling control**. These are two critical pre-requisites with which we cannot apply the division of labor philosophy. We must be able to execute the process consistently and in a timely manner.
+
+Pages 10+11
+
+  * ASC: Appointment Slot Consumed
+  * FBD: Forward Booked Days
+  * PAD: Pending Appointment Days
+  * ACT: Activity Cycle Time
+
+I could continue. There is a whole BOK to this but my goal in this speech is not to explain this process which I probably couldn't do anyway but to stimulate your imagination, to call your attention to the fact that the world around you is changing and you have to question all existing process, reinvent them to make them better or simply to validate them. Notice that I have given you only one example (and incomplete). I am telling you that a company will ask you to install a CRM when they need a total change in their structure and/or sales process to achieve what they really need. How do you sell that? What business opportunity does this represent? I will leave these questions for you, you can go out into the market and find your own way of doing that, but before you run out I would like to give you something else to think about and take with you: let's have a look at **what we can expect of the future of the sales process**
+
+First I must admit that I am not a futurologist nor anything like that. I have enough trouble knowing what I will be doing next week to worry about the future, but there are many people who are very good at this. Let's look first at one of the most important advertising companies in the world to see what they are thinking about 
+
+Agenting Technology
+
+this is a highly sophisticated component of your website that can quickly and correctly answer, say, the top 50 questions interested prospects may have about your new product. Your prospects are directed to the Sales Avatar for an easy way to find out more about the product and how if might fit into their business. They are also given the option of contacting a live sales rep instead of the Avatar,  after they have exhausted its knowledge

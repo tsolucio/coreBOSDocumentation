@@ -1,6 +1,7 @@
 ====== Development Tutorials ======
 
-  * [[en:devel:createvtlibmodule|Create coreBOS module or extension]]
+  * [[en:devel:createvtlibmodule|Create a coreBOS module]]
+  * [[en:devel:createvtlibextension|Create a coreBOS extension]]
   * [[en:devel:uitypes|List of coreBOS UITypes]]
   * [[en:devel:field_structure|Field Structure: Columns and definitions]]
   * [[en:devel:packagemodules|How to prepare modules for distribution]]
@@ -24,5 +25,6 @@
   * [[en:devel:corebos_mqtm|coreBOS Message Queue and Task Manager]]
   * [[en:devel:corebos_settings|coreBOS Settings]]
   * [[en:devel:corebos_rules|coreBOS Rules]]
+  * [[en:devel:standardoutputmessage|Application Standard Message Output]]
   * [[en:devel:confidentalinfoaddencryption|Add Encryption/Decryption methods to Confidential Information module]]
   * [[en:devel:executefunctions|Generic Javascript API Access to backend: Execute Function]]

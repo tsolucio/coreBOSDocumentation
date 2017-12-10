@@ -1,0 +1,184 @@
+====== Facturación Electrónica para coreBOS ======
+
+=====Introducción=====
+
+Ya es posible firmar facturas en vtiger, podremos realizar tres tipos de firma
+
+  * Documentos PDF: Nos permitirá firmar aquellas facturas que vtiger exporta a formato pdf. Dado su carácter menos restrictivo este tipo de facturas no son aptas para las administraciones públicas, aunque dada su sencillez y mejor legibilidad pueden ser útiles entre empresas.
+  * Documentos XML: A partir de una factura determinada, vtiger creará un nuevo documento en formato xml estructurando todos los datos de la forma adecuada para que, una vez firmado, cumpla con el standard de la normativa 3.1 de la facturación electrónica en España. Útil para formalizar facturas electrónicas en administraciones públicas. 
+  * Cualquier otro tipo de documentos: Todavía en fase de desarrollo.
+
+Para ello bastará con subir un certificado desde el nuevo módulo Certificados, e indicar en la propia factura con que certificado deseamos firmar. Además de configurar como veremos, una serie de campos.
+
+Estos campos sirven para completar la información necesaria en un proceso de firma electrónica en la que intervendrá:
+
+  * un emisor o __vendedor__: la propia compañía y que por tanto encontramos en **Información de la Empresa**.
+  * un receptor o __comprador__: la cuenta asociada a la cual va dirigida la factura.
+  * El certificado que contiene la clave privada, con la que el __vendedor__ realiza la firma. Son de tipo .pfx o **.p12** Vtiger está configurado para trabajar con este último. 
+  * El certificado que contiene la clave pública, con la que el __comprador__ podrá comprobar la identidad del firmante. Son de tipo .cer, Vtiger no necesita este tipo de certificados, es el __comprador__ quien lo obtiene fuera de todo este proceso, normalmente, mediante una autoridad certificadora, p.ej: CERES
+  
+Como hemos visto, antes de realizar la primera firma habrá que facilitar cierta información a Vtiger.
+
+
+=====Configuración Vendedor=====
+
+  * **Información de la Empresa**: __vendedor__, cuenta con algunos campos nuevos que deberemos introducir al menos una vez (pues el vendedor siempre será la propia compañía):
+{{es:integrations:vtefact:informacion_de_la_empresa.png|}}
+
+  * **Razón Social**: Representa el nombre oficial de la empresa, en caso de estar vacío, vtiger tomará el valor del __Nombre de la empresa__ como razón social.
+
+  * **Código Postal**: Será estrictamente necesario que contenga un total de 5 dígitos.
+
+  * **Dirección, Población, Provincia**
+
+  * **País**: País pasa a ser una lista desplegable, por defecto mantendrá España. Dando opción a dos paises más: Francia o Portugal 
+
+  * **Cif**: El cif de la empresa es claramente necesario para una factura electrónica.
+
+  * **Tipo de Residencia**: lista desplegable donde "E" - Extranjero; "R" - Residente; "U" - Residente en la Unión Europea.
+
+  * **Tipo de Persona**: lista desplegable donde: J jurídica o F física.
+
+
+
+=====Configuración Comprador=====
+
+  * **Información de la Cuenta**: __comprador__, la cuenta a quien va dirigida la factura, que deberemos configurar al menos una vez por cuenta.
+{{es:integrations:vtefact:accs.png|}}
+  * **Nombre de la compañía**
+  * **CIF**
+  * **Dirección**,**Población**,**Provincia**,**País**
+  * **Código Postal**: Será estrictamente necesario que contenga un total de 5 dígitos.
+  * **Razón Social** Nombre legal de la empresa, en caso de estar vacío, la razón social pasará a ser el __Nombre de la compañía__
+
+
+
+=====Configuración Certificado=====
+
+  * **Información del Certificado**, que podremos encontrar bajo el submenú de __Herramientas__.
+Éste módulo está desarrollado con la intención de permitir una gestión de varios certificados, pese a que bastará con al menos uno. Incluso podremos indicar alguno como certificado por defecto, de manera que será automáticamente seleccionado en cada factura nueva.
+
+{{es:integrations:vtefact:cert.png|}}
+
+  * **Alias**: Es el nombre que identifica al propio certificado, debe respetarse este nombre y no puede ser cualquiera.
+  * **Password**: Es la contraseña que acredita a quien la conoce.
+  * **Ruta**: Utilizaremos este campo para seleccionar nuestro certificado, para así subirlo a vtiger.
+  * **Por defecto**: Podremos indicar a un certificado que sea por defecto. De esta manera cuando creemos una factura nueva o firmemos un documento cualquiera, éste será el certificado firmante.
+  * **Asignado a**: Podemos también apoyarnos en este campo para asignar un certificado a un usuario o grupo en particular.
+
+=====¿Qué certificado necesito?=====
+
+Como hemos visto, necesitamos un certificado que contenga una clave privada para poder así realizar la firma electrónica. Es decir, nuestra compañía firma con un certificado en base a una clave privada que éste contiene. Mientras que nuestros clientes se aseguran nuestra identidad, y por tanto, la validez de la firma, mediante la clave pública correspondiente a nuestro certificado.
+
+Por tanto, vtiger necesita aquel certificado que contiene nuestra clave privada, es un certificado de tipo **.p12**. Se identifica por un alias, normalmente el NIF o CIF de la empresa, y requiere de una contraseña para asegurar que si nuestro certificado cae en manos ajenas, no puedan firmar por nosotros al no conocerla.
+
+Mientras que nuestros clientes necesitan el certificado correspondiente con la clave pública, tipo **.cer**, que podrán obtener de una autoridad certificadora.
+
+**Para asegurar que el certificado que subimos a VTiger tiene el formato adecuado recomendamos hacer una importación del certificado original, para posteriormente exportar una copia (.p12). 
+**Las instrucciones para ambos procesos están el el anexo final.
+
+Para saber más, ver anexo **CERES**
+
+=====Proceso de la firma=====
+
+Todo el proceso de la firma parte de la propia factura, como si tratáramos con una factura normal, teniendo en cuenta:
+  * si nunca antes habíamos realizado una firma deberemos configurar la __Información de la Empresa__ y crear al menos un certificado.
+  * si nunca antes habíamos emitido una factura electrónica a la cuenta a la que va dirigida la factura actual deberemos configurar esa cuenta.
+
+Por lo demás rellenaremos los datos de la factura como de costumbre presando especial atención al siguiente área de la factura
+
+{{es:integrations:vtefact:efact.png|}} 
+
+  * **Fecha Expedición** Fecha en la que se expide la factura
+  * **Fecha Entrega** Fecha en la que se entregarán los productos/servicios que se venden. Si la factura viene de un pedido, éste valor se automatizará.
+  * **Descripción de operaciones** Una descripción opcional de las operaciones que atañen a la factura.
+  * **Certificado** Seleccionaremos el certificado con que deseamos firmar.
+
+Una vez tenemos la factura creada, podremos optar por las siguientes acciones en la parte derecha:
+
+{{es:integrations:vtefact:facte.png|}}
+
+  *   **Crear PDF firmado**: Generará un pdf exáctamente como el actual __Exportar a PDF__, pero a diferencia, irá firmado.
+  *   **Crear XML firmado**: Generará un documento xml firmado según el standart de la facturación electrónica española 3.1.
+  *   **Enviar PDF firmado**: Permite enviar el pdf firmado generado. En fase de pruebas.
+  *   **Enviar XML firmado**: Permite enviar el xml firmado generado. En fase de pruebas
+
+=====Anexo: CERES=====
+
+  * **¿Qué es la Firma Digital?**
+
+Una firma digital es un conjunto de datos asociados a un mensaje que permite asegurar la identidad del firmante y la integridad del mensaje.
+La firma digital no implica que el mensaje está cifrado, esto es, un mensaje firmado será legible en función de que está o no cifrado.
+El firmante generará mediante una función, un 'resumen' o huella digital del mensaje. Este resumen o huella digital la cifrará con su clave privada y el resultado es lo que se denomina firma digital, que enviará adjunta al mensaje original.
+Cualquier receptor del mensaje podrá comprobar que el mensaje no fue modificado desde su creación porque podrá generar el mismo resumen o misma huella digital aplicando la misma función al mensaje. Además podrá comprobar su autoría, descifrando la firma digital con la clave pública del firmante, lo que dará como resultado de nuevo el resumen o huella digital del mensaje. 
+
+
+  * **¿Qué diferencia hay entre solicitar un certificado en tarjeta criptográfica y solicitarle en software?**
+
+La diferencia reside en el lugar en el que se generará la clave privada. Si el certificado se solicita en tarjeta, la clave privada no podrá exportarse por lo que se considera un medio más seguro pero con el inconveniente de que no se podrá crear una copia de seguridad. Si se solicita el certificado en el navegador, el certificado podrá exportarse junto con sus claves y por lo tanto se podrá realizar una copia de seguridad. 
+
+
+  * **Diferencias entre .pfx .p12 .cer y .crt.**
+
+Básicamente:
+
+- .pfx : es la copia de seguridad con clave privada de un certificado (exportado desde Internet Explorer).
+
+- .p12 :  es la copia de seguridad con clave privada de un certificado (exportado desde Firefox).
+
+- .cer y .crt : son formatos de exportación de clave pública de certificados.
+
+  * **¿Cómo puedo importar mi certificado con Mozilla firefox?**
+
+Acudir al almacén de certificados del navegador Mozilla Firefox:
+
+Herramientas/Opciones/Avanzado,pestaña Cifrado/Ver Certificados,pestaña de "Sus Certificados".
+
+- Pulse en el botón "Importar"
+
+- Busque la ubicación ( disquete, cd, memoria usb, unidad de red, etc ) de
+
+la copia de su certificado que quiere importar.
+
+- Inserte la contraseña maestra de su navegador (si estableció alguna). Si
+
+es la primera vez que usa este navegador con certificados, inserte una
+
+contraseña y la confirme, este contraseña será requerida cada vez que quiera
+
+usar su certificado en las webs que lo requieran.
+
+- Inserte la contraseña con la que protegió su copia de seguridad
+
+- Si todo el proceso es correcto, recibirá el siguiente mensaje:
+
+"Se han restaurado satisfactoriamente su(s) certificado(s) de seguridad y clave(s) privada(s)." 
+
+  * **¿Cómo puedo exportar mi certificado con Mozilla Firefox?**
+
+Acudir al almacén de certificados del navegador Mozilla Firefox:
+
+Herramientas/Opciones/Avanzado,pestaña de Cifrado/Ver Certificados,pestaña de "Sus Certificados".
+
+ 
+
+- Seleccione su certificado y pulse "Hacer copia".
+
+- Indique dónde quiere realizar su copia de seguridad (disquete, unidad de red, etc..)
+
+- Inserte la contraseña maestra de su navegador (si estableció alguna).
+
+- Inserte una contraseña y la confirme para proteger la copia de seguridad
+
+que va a realizar.
+
+- Si todo el proceso es correcto, recibirá el siguiente mensaje:
+
+"La copia de seguridad de su(s) certificado(s) de seguridad y clave(s) privada(s) se ha realizado con éxito." 
+
+
+
+[[http://www.cert.fnmt.es/index.php?cha=cit&o=faq&channel=1&id=121#faq-content|preguntas frecuentes]]
+
+
+

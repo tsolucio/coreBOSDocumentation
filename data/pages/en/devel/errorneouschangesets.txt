@@ -1,0 +1,9 @@
+====== Errorneous Changesets ======
+
+Here you will find a list of changesets we have added to the system and that introduced some irreversible change or some data loss.
+
+Obviously, we try hard to verify and double check the changesets but the diversity of installs and complexity of the system imposes that, from time to time, some error happens.
+
+Your best safeguard against these errors are database backups
+
+  * [[en:devel:errorneouschangesets:syncSeactivityRelWithAllRelIdOnCbCalendar|Changeset syncSeactivityRelWithAllRelIdOnCbCalendar]]

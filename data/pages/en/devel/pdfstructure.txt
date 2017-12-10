@@ -1,0 +1,11 @@
+===== PDF Structure =====
+
+{{ :en:devel:pdfstructure:pdf-breakdown.png |}}
+
+{{ :en:devel:pdfstructure:pdf-header.png |}}
+
+{{ :en:devel:pdfstructure:pdf-body.png |}}
+
+{{ :en:devel:pdfstructure:pdf-footer.png |}}
+
+{{ :en:devel:pdfstructure:pdf-filestructure.png |}}

@@ -1,0 +1,35 @@
+====== Aggregate Widget ======
+\\
+  * Why was it created?
+    * It is created as a solution to the need of having more statistical information in your system than just data you store in your database. This kind of widget is a dynamic version of "Key Metrics" widget, if there you have just the count of records in a filter, using this extension you can choose the module, filter, function and field you want to get calculated.  
+
+
+  * How to use it
+    * If you install this extension, when you click on the plus sign in your HomePage, in the dropdown menu you will see the "Custom Widget" menu item. By clicking that you will see a form similar with the addmodule form,
+    * You will notice two different components: 1) the plus sign next to "Filter By" label 2) a new combo that lets you select the aggregate function you would like to have.        
+        
+
+         *  If you want your widget to contain result of only one filter:
+          - Enter a window name
+          - Select the module name
+          - Select the filter name
+          - Select the aggregate function
+          - Select the field you want to have calculated with the selected aggregate function, eg: if you want the sum of amount you choose "sum" in the aggregate combo and "amount" in the fields combo.
+          - Press Save
+
+         * If you want your widget to contain results of more than one filter
+          - Enter a window name
+          - Select the module name
+          - Select the filter name
+          - Select the aggregate function
+          - Select the field you want to have calculated with the selected aggregate function, eg: if you want the sum of amount you choose "sum" in the aggregate combo and "amount" in the fields combo.
+          - Click the plus sign next to "Filter By" label
+          - Repeat the above steps as many times as many filters you want to add. Caution: When you add the last filter remember, you don't need to click the plus sign but the save button.
+
+  ***Agreement** : When you see the - sign under the "value" column, it means that it is a 0(zero) in the case of the sum or |_| (empty space) in the case that the expected result is a string.     
+
+  * Screenshots
+
+|{{temporaryhold:aggwidget:1.jpg|Selecting menu item}}|{{temporaryhold:aggwidget:2.jpg?380|Add Form}}|{{temporaryhold:aggwidget:3.jpg?400|The new added widget}}|
+
+

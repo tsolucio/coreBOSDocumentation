@@ -1,0 +1,148 @@
+====== TSDomains: vtiger CRM Domain/Hosting/Email Control ======
+
+[[http://forge.vtiger.com/projects/tsdomains/|Forge Link]]\\
+[[tsdomainsdesign|Design documentation]]\\
+
+**NOTE**: we have installation and customization services, for a small fee you can help us keep in business without any hassles.\\
+
+
+**NOTE**: This modules is **available for vtiger CRM versions 5.1.0, 5.2.0, 5.3.0, 5.4.0 and 6.0 as vtlib modules**. They are donationware, you must make a donation directly to vtiger or to my company tsolucio and send me the proof of purchase. I will send you the modules.
+
+
+===== Position =====
+==== Problem Specification. ====
+
+^Problem:|vtiger CRM doesn't have Domain Management module|
+^Affects:|All accounts and contacts who have domains and the vtiger CRM users who need to control those domains for their clients|
+^Solution:|Implement Domain Management module totally integrated in vtiger CRM|
+^Impacts:|Integrate Domain Management into the workflow of any company who uses vtiger CRM. Open vtiger CRM to bigger market base.|
+
+==== Specification of Product Position. ====
+^Who:|Internet Domain Manager. Websites Team, Clients and general stakeholders of domains. Applicable to any sector that needs domain management, control and close contact with their owners.|
+^Why:|Basically to have all information a company needs on their day to day business in one application|
+^How:|This will be a module developed directly into the vtiger CRM platform, in the same programming language and following vtiger CRM development directives.\\ We will try to cover all the needs of basic domain management basing most of our design decisions on the already working in-house application and on detected lacking necessities of this application\\ The module will be under the MPL 1.1 License|
+
+
+
+===== Usage =====
+
+This extension adds Domain Management functions for vtiger CRM. With it you will be able to manage all your domain information, associate them to your accounts or contacts, setup expire date notifications, register information of the domain hosting provider and list email details for the associated emails.
+
+This module controls information of where the domain is registered and hosted and all associated emails with their aliases and access information.
+
+This module is fully integrated into vtiger CRM so it's use is as any other module. Creation, searching and other processes are executed following the vtiger CRM philosophy.
+
+Normal vtiger CRM permissions and roles apply so users can see their own entries.
+
+The vtiger CRM reporting module has **NOT** been modified to be able to create reports based on domains/emails
+
+==== Screenshots ====
+**Screenshot of TSDomains Listview**:\\
+ {{:temporaryhold:tsdomainslistview.png?800|TSDomains Listview:}}\\
+**Screenshot of TSDomains Detailview**:\\
+ {{:temporaryhold:tsdomainsdetailview.png?800|TSDomains Detailview:}}\\
+**Screenshot of TSDomains More Information view**:\\
+ {{:temporaryhold:tsdomainsmoreinfo.png?800|TSDomains More Information:}}\\
+**Screenshot of TSEmails Listview**:\\
+ {{:temporaryhold:tsemailslistview.png?800|TSDomains Listview:}}\\
+**Screenshot of TSEmails Detailview**:\\
+ {{:temporaryhold:tsemailsdetailview.png?800|TSDomains Detailview:}}\\
+
+==== Notifications ====
+
+The TSDomains module has been around for a LONG time now. It was born way back in 2006 for vtiger CRM 5.0.0 (we had already been working slightly with 4.2!!). Back then we didn't have workflows nor centralized cron control, so we created a service cron that wakes up once a day and sends out an email about domains due to expire. This service cron has been superseded by the workflow module. Since version 5.1, you can configure a workflow to send you an email X days before the expire date of the domain. Although it is true that this email will always be sent, even if you have already renewed the domain it is a minor inconvenience.
+
+So, if you want notifications, create an email workflow to send with some offset in days in the task with respect to the expire date.
+
+{{youtube>vBuKLFtx2t0|I created a small video to show more or less how it goes}}
+
+If you are interested in the service cron, [[contact|contact us]]. The email message received can be adapted by changing the DomainExpiration* strings in the main vtiger CRM language file.
+
+
+
+
+==== WHOIS Button ====
+
+On the Detail View of a Domain, next to the domain name I have put a button that connects with WhoIS service and obtains the state of the domain.
+
+To accomplish this I use [[http://phpwhois.sourceforge.net|PHPWhoIS class]] (Thanks to the team of phpwhois for a very useful and complete tool)
+
+Since the GPL license which they use conflicts with the MPL that I use I cannot distribute the whole think together (if somebody more literate in licenses would like to correct me I am willing to learn). So for those of you who want the button to work you must download the class from sourceforge and unpack it in the vtiger/include directory under a directory of name phpwhois
+
+That should be enough to get it working.
+
+**NOTE:** this button has been converted into an action in the right panel of the detail view following vtlib standarization, so the image is obsolete, but serves to convey the idea.
+
+{{:temporaryhold:tsdomainswhois.png?600|TSDomains WhoIS}}
+
+===== Integration with Domain Registrars =====
+
+==== TransIP ====
+
+Thanks to the support of [[http://www.bon-ict.nl/|BON ICT]] we have created an integration between the TSDomain module and the Domain Registrar [[https://www.transip.eu/|TransIP]].
+
+This integration adds a configuration option in Settings of the Domain where we can upload our connection information to the TransIP:
+
+{{:temporaryhold:domainintconfig1.png?1024|}}
+
+
+Once TSDomains knows how to connect with TransIP you will find two new actions in the module:
+
+**1.- Compare action**
+
+A new action in the right panel called Compare with TransIP. This action will connect to TransIP and retrieve the information of the current Domain. In front of each field retrieved we will put a checkbox so you can easily mark any field and press the "update" button to have your TSDomain fields updated. So this action will permit us to synchronize the information in TransIP with the information in our vtiger CRM on a domain by domain basis.
+
+**2.- Global Action: Sync Domains**
+
+This is a new button in the Domains Listview. It launches a search for domains in the TransIP account, for each one it will:
+  * look for the domain in TSDomains
+  * if it finds the domain it compares the expire dates:
+    * if they are different, it updates the record in TSDomains and lists that on screen with an "updated" mark
+    * if they are the same, it lists the domain on screen with a "correct" mark
+  * if the domain is not found in TSDomains
+    * the new domain will be created and listed on screen as "created"
+
+If a set of domains have been selected on the list view when we launch the action, an update action for those domains will be executed.
+
+**Price:**  This integration is on sale for **65 euros**. As usual with our extension make payment on our paypal account: paypal at tsolucio dot com and send me the proof of purchase to info at tsolucio dot com
+
+**Further integrations**  We are open to take on similar integrations with other Domain Registrars, so if you are interested in having TSDomains working with your company don't hesitate to [[contact|contact us]].
+===== Installation =====
+
+These modules are vtlib compliant so you simply have to install them through the module manager in settings.
+
+Due to licenses restrictions I cannot distribute PHPWhoIS with the module so it has to be downloaded separatly and copied into you vtiger CRM
+
+For vtiger CRM version 5.x you have to copy it to the include directory
+
+For vtiger CRM version 6.x you have to copy it to the libraries directory
+
+
+
+===== Translation =====
+
+To translate the extension you must translate the files:
+
+vtiger CRM 5.x
+  * modules/TSDomain/language/en_us.lang.php
+  * modules/TSEmail/language/en_us.lang.php
+
+vtiger CRM 6.0
+  * languages/en_us/TSDomain.php
+  * languages/en_us/TSEmail.php
+
+Please contribute your effort and send me the translated files so I can upload them to the forge project.
+
+===== FAQ =====
+
+??? How do I get a "Select Domain" button from the Organization related list?
+
+!!! Due to the way "select" works it can only be supported on many to many relations. The related list on organizations is a one to many relation, so you can't select. The solution is to do it the other way around:
+  * go to the domains list view
+  * either directly or after applying a search/filter, select the domains that belong to the organization
+  * use the mass edit feature to establish the organization
+
+===== Acknowledgments =====
+Thanks go to:
+  * [[http://motionmill.com/|Motionmill]] for keeping this module alive.
+  * [[http://liquidoweb.com/|Liquido Web]] for funding the release.

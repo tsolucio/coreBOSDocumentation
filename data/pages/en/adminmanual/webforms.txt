@@ -1,0 +1,31 @@
+===== Webforms =====
+
+
+==== Webservice Webforms =====
+
+[[en:extensions:coreboswswebform|coreBOS Webservice Webform]]
+
+==== Relaying a Webform =====
+
+<WRAP center round info 60%>
+postby jtrombley80 » Thu Nov 01, 2012 10:37 pm THANK YOU
+</WRAP>
+
+Ran into a situation recently where I needed a Webform sitting out on the internet to hit a server in a DMZ and then be relayed from that server to a coreBOS server behind a firewall. The DMZ server was the only one allowed to talk to the coreBOS instance and it wasn't the server hosting the webform. Here's what I did in case anyone has a similar need.
+
+Set the form post on the internet webform to go to "themiddlemanserver/relay.php"
+
+Enabled cURL in PHP on the DMZ server. Contents of relay.php is:
+
+<code PHP>
+<?php
+    $postParams = file_get_contents("php://input");
+    $ch = curl_init('http://vtigerbehindfirewall/modules/Webforms/capture.php');
+    curl_setopt ($ch, CURLOPT_POST, 1);
+    curl_setopt ($ch, CURLOPT_POSTFIELDS, $postParams);
+    curl_exec ($ch);
+    curl_close ($ch);
+?>
+</code>
+
+Webform hits the DMZ relay and is sent on to the coreBOS instance behind the firewall. Passes all values correctly. 

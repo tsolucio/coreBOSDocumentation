@@ -1,0 +1,41 @@
+====== HelpMeNowDokuWiki. vtiger CRM Context Help Based on DokuWiki contents ======
+
+In version 5.4.0 of vtiger CRM, vtiger introduced a contextual help widget as can be seen in the next image:
+
+{{  en:integrations:helpwidget.png?600  |}}
+
+[[https://wiki.vtiger.com/index.php/Better_and_beautified_Contextual_page_help]]
+
+
+This widget opens a small screen within which specific help information for the current page is shown.
+
+This is a very nice and useful enhancement for the vtiger CRM users, but for companies like mine who customize and adapt vtiger CRM to fit the needs of our clients we would need this to be a bit more flexible:
+
+  * we should be able to add our own explanations
+  * we should be able to translate them (not count on google)
+  * we should be able to add explanations for our new modules and extensions
+
+From my investigations, this help widget seems to connect to a system where vtiger has some sort of FAQ module that holds the records to be shown. The format returned from the help call is straight forward and I would almost bet that they have enhanced the webservice interface to accept and return records stored in the FAQ module of a customized vtiger CRM.
+
+So my first approach was to simulate this setup and have the existing code work against our own help information server, but that didn't convince me.
+
+We create manuals for our clients using [[https://www.dokuwiki.org/|dokuwiki]]. This is a very popular wiki system with an almost standard syntax, easy to learn and to work with. This documentation site is created using dokuwiki. There are many advantages of working with wiki, the most important is how incredibly dynamic it is. I would recommend a wiki system for many situations. [[http://www.amazon.com/Wikipatterns-Stewart-Mader/dp/0470223626|Read this book, it will probably change the way you work with documentation]].
+
+{{en:integrations:wikipatterns.jpg?200|}}
+
+So, what I really wanted was a way to keep using our powerful wiki tool and documentation strategy while benefiting from vtigercrm's new integrated widget.
+
+I studied the dokuwiki integration options. Once again, and even after so many years working with this project I was amazed about how little I know about it and how powerful it really is.
+
+Dokuwiki has a very nice XMLRPC (similar to SOAP and REST) interface with which it is easy for one program to access all the information in the wiki. I tested and played around a bit to make sure I understood the possibilities. Then I created a vtiger CRM extension that gives direct access to the wiki inside vtiger CRM and used the code in this extension to modify the vtigerCRM contextual help system.
+
+Once the extension is activated the help widget will first look for a specific page in the wiki for each screen we are on. The syntax is:
+
+<code>helpmenow:{module}:{action}</code>
+
+So if we create this page in our wiki the popup screen in vtiger CRM will show the exact contents of this page. Thus we can personalize our customized applications with special contextual help very easily.
+
+If the page doesn't exist or it is empty, the change will send the query to vtiger CRM help server and show the same contents it normally does, so we have the best of both worlds.
+
+**What is really important** about this mini project is that I have learned how to integrate vtiger CRM and Dokuwiki. I have seen how powerful Dokuwiki is and how simple it should be to enhance this work and have both applications working seamlessly. In other words: I have laid down the path to integrate both applications
+

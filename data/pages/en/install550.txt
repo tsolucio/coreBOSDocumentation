@@ -1,8 +1,8 @@
 ====== Install coreBOS ======
 ===== Requirements =====
-  * Apache 2.0.40 or above.
-  * MySQL 5.1.x
-  * PHP from 5.3.x to 5.6.x
+  * Apache 2.x or above.
+  * MySQL 5.x
+  * PHP from 5.4.x to 7.0.x. PHP 7.x is recommended.
 <WRAP center round info 75%>
 This is a typical **WAMP/LAMP stack**. All linux distributions have this natively so we recommend you install the packages from your distribution (make sure you have the right versions). On windows download the XAMPP stack from apache friends. You can see the [[http://code.stephenmorley.org/articles/xampp-version-history-apache-mysql-php|list of application versions here]].
 </WRAP>
@@ -10,7 +10,6 @@ This is a typical **WAMP/LAMP stack**. All linux distributions have this nativel
 ==== MYSQL Requirements ====
 Please make sure to review MySQL configuration (my.cnf or server start parameters)
 
-|SQL_MODE|Should not have STRICT_TRANS_TABLE|
 |ENGINE=InnoDB|Should be available. (Turn off --skip-innodb)|
 
 ==== PHP Extensions  ====
@@ -35,9 +34,9 @@ Make sure to verify if your PHP configuration meets the recommended values.
 |display_errors|on|
 |file_uploads|on|
 |max_execution_time|600|
-|max_input_vars|2000|
+|max_input_vars|8000|
 |post_max_size|16M|
-|memory_limit|512M|
+|memory_limit|1024M|
 |log_errors|off|
 |output_buffering|on|
 |register_globals|off|
@@ -48,8 +47,8 @@ If you have the PHP Suhosin extension installed, this extension adds restriction
 
 To solve this problem you must change two variables in the suhosin config file: (normally: /etc/php5/conf/suhosin.ini)
 
-<code>suhosin.post.max_vars = 2000
-suhosin.request.max_vars = 2000</code>
+<code>suhosin.post.max_vars = 8000
+suhosin.request.max_vars = 8000</code>
 
 After this you must restart your apache server.
 </WRAP>
@@ -76,10 +75,7 @@ Read and Write permissions should be enabled for user/group who owns webserver p
   *config.inc.php 
   *tabdata.php 
   *install.php 
-  *parent_tabdata.php 
   *cache 
-  *cache/images/ 
-  *cache/import/ 
   *storage/ 
   *install/ 
   *user_privileges/ 
@@ -91,11 +87,7 @@ Read and Write permissions should be enabled for user/group who owns webserver p
   *test/vtlib/ 
   *backup/ 
   *Smarty/templates/modules/ 
-  *test/wordtemplatedownload/ 
-  *test/product/ 
-  *test/user/ 
-  *test/contact/ 
-  *test/logo/ 
+  *test/
   *logs/ 
   *modules/Webmails/tmp/
 
@@ -118,37 +110,33 @@ Please make sure you meet all these requirements
     * you will need a mysql user with access to a database that may exist or not, if it doesn't exist you will also need a mysql user with enough permission to create a database
 
 <WRAP center round important 60%>
-If the database exists it **MUST** be empty, the install procedure DOES NOT migrate, there is a migrate button on the first page of this process which launches the migration process of an existing database.
+If the database exists it **MUST** be empty, the install procedure DOES NOT migrate, there is a migration procedure available if necessary.
 </WRAP>
 
-    * you can chose to load a set of example information and the password for the only user that will be created.
+    * you can choose the password for the only user that will be created.
 
 {{ :en:corebosinstall02.png?800 |}}
 
   * now wait for all the installation work to be done
-
-== Firefox Timeout Marker ==
-
-<WRAP center round info 80%>
-Latest versions of Firefox have added a configuration option that limits the time a web page can take to execute. If this time is passed the browser will cancel the call. The install process easily passes this 5 minute limit on many machines producing a problem in the installation process and canceling it.
-
-**We will attend this issue in the next release because it causes us to redefine the install process.**
-
-In the mean time you can configure the browser increasing the timeout or use chrome for the installation process.
-
-To increment the time out type in "about:config" in the browser address, look for "**network.http.response.timeout**" or "**http.response.timeout**" and set it to 600 at least and restart the browser.
-
-[[https://support.mozilla.org/es/questions/998088|Stop connection timeouts from happening - want the page to wait]]
-
-{{ :en:firefoxtimeout.png?500 |}}
-</WRAP>
-
-
   * if all goes well you should receive a verification page welcoming you to the application
   * press the **Finish** button to reach the login page
   * **execute the database changes**, this is done using the **[[en:devel:corebosupdater|coreBOS Updater]]**, which is a module that will take care of managing all the updates from now on. It will read the set of changes that need to be done and will permit you to apply them and undo some of them.
     * login to the application as the admin user and go to the "**coreBOS Updater**" module.
     * click on the **Get Updates** button
     * go back to the list view and click on the **Apply All** button
-  * **Now comes all the fun**: first configure the application and then create users to start
+
+<WRAP center round important 80%>
+For additional security it is recommended that you take two more steps:
+  - Configure a [[https://wiki.apache.org/httpd/PasswordBasicAuth|Basic Authentication]] password protection on the application
+  - Delete all unused files. You can launch the bettersafe.sh script and also remember to eliminate the install and migration scripts and directory which have been renamed during the install process
+</WRAP>
+
+
+<WRAP center round box 60%>
+**Now comes all the fun**
+  * Configure the application
+  * Import your data
+  * Create users
+</WRAP>
+
 

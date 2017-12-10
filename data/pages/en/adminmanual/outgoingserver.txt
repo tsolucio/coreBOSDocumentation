@@ -62,6 +62,10 @@ Change "smtp" to "sendmail"
 
 Also [[es:adminmanual:outgoingservergmail|this page explains activating the service on Google side]].
 
+??? How can I check my spam score?
+
+!!! Send an email from the application to the email address indicated at [[https://www.mail-tester.com/|Mail Tester]] and after a few seconds click on the "Check Score" button. Review the recommendations and repeat.
+
 ====== Debugging errors ======
 
 {{page>en:devel:debuging#email}}

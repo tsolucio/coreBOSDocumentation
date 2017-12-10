@@ -1,0 +1,77 @@
+======Enhancing deduplication ======
+{{description>Description of a method for enhancing the comparison conditions supported when deduplicating records inside vtigerCRM}}
+{{keywords>vtiger, vtigercrm, crm, spain, español, castellano, deduplication, comparison, duplicate}}
+\\
+I was recently presented with the problem of having to import regularly CSV files into the vtiger CRM system. These CSV files are from different sources but contain many times information of accounts and contacts that are already inside the vtiger CRM application. As is expected the CSV is not clean, so we find changed names for many reasons, shortening, syntax errors, punctuation changes, etc...
+
+We can't use the vtiger CRM deduplication check on import because it looks for duplicates based on equality so we get a lot of duplicate records inserted for cases like "JPL TSolucio, S.L." being different from "JPL TSolucio SL". Then we have to manually deduplicate them which is very tedious.
+
+With this scenario I set myself to look for a solution.
+
+===== The Good =====
+
+My friend and colleague, Andrea Alberici, who is a member of the Evolutivo Initiative, pointed me to an incredible open source tool specifically dedicated to the purpose of deduplication a few years ago: [[http://fril.sourceforge.net|FRIL: Fine-grained record linkage software]]
+
+This tool is a specialized program entirely dedicated to solve all the problems that appear when trying to link together two sources or deduplicate one. It isn't hard to use but it isn't for the non-technical user either. You have to be comfortable with playing around with fields and characters.
+
+We have used this program joined with some special scripts to do advanced deduplication on vtiger CRM database in the past.
+
+So, for me, the correct way to solve the problem presented, would be to have the user who has to import the CSV use FRIL to clean up the CSV before importing. Connecting FRIL both to the vtiger CRM database and to the CSV and have FRIL tell us which CSV rows need to be changed so we can import it normally using vtiger CRM deduplication option.
+
+Sadly, I couldn't get away with this as there is nobody in the client's team with the time and knowledge to follow this path.
+
+===== The Bad =====
+
+I shared my thoughts about this with the project manager for this client, Omar Llorens, and he came up with the idea of creating an extension which would do the work that FRIL can do, but inside vtiger CRM and without so much advanced features.
+
+The idea would be to have a menu entrance called something like "PreImport Cleaning", where you would upload the CSV and we would run FRIL actions in the background to clean it up. Once cleaned we would give it back to the user for importing.
+
+This sounds like a lot of work and kind of hard to get working.
+
+I ran the idea through Andrea Alberici, who added some nice features to it. First he proposed to have a normal vtiger CRM module as the import cleaner. All of a sudden we can use all of vtiger CRM tools on the preimported data; deduplication, mass edit, delete rows, you could create custom fields and fill them in using field formulas or workflow updates, ...
+
+All of a sudden FRIL wasn't needed and we could add some functionality to this special PreImport module to do operations on the fields or rows to make mass cleaning a little easier. Specially we would need a way to compare certain columns to other vtiger CRM entities, so if we are importing Accounts, we need a way to select a column in the PreImport module and launch an action to have the values in that column compared to the accounts (accountname) and then permit you to update the selected column with the values in the Account module.
+
+Then we had a wonderful benefit: you can now export the module using vtiger CRM and will get it in correct vtiger CRM format with no additional effort.
+
+Sounds perfect, but...
+
+The catch, besides the considerable amount of work, is the different sizes of each import. This PreImport module would need to adapt its columns every time a new import arrived. So if we get a CSV with 12 columns we need to have 12 columns in the PreImport, while, the next time when a 20 column CSV comes in we need 20 columns. This makes it hard to maintain. Now the work has to be done by an admin user who will need to create columns (we could eliminate and create all that is needed in the import, but, again, a lot of work).
+
+Also, on the user side this is all a lot of work, going over the PreImport records, adding columns, cleaning, comparing, ...   too much for a normal user, and if we are talking about advanced users, we are better off giving them a few hours of training in FRIL.
+
+So, although these ideas are good and could be pursued it is just too complicated.
+
+NOTE: These ideas could be taken further, we could create some sort of dynamic column module as we really only need a small amount of columns to do the comparing, so we could save the rest together in one field (for example). We could use FRIL in the background to do some of the dirty work, ....
+
+
+===== The Ugly =====
+
+Ok, so I landed on the most obvious solution, the one I first thought of: enhance vtiger CRM deduplication so it does more than search for exact matches.
+
+I expected this to be complicated and create a lot of modifications to base vtiger CRM code. It ended up not being that hard, kind of tricky but not that hard. I ended up modifying 43 lines of code and adding 155 lines of code in 7 base code files.
+
+But the bad news is that the options are very limited, so I really didn't enhance the possibilities much and I created a dependency on the database.
+
+I started looking at the deduplication code. The way it is done all the important work happens in the database using a straight comparison to find the duplicates. That means that we can't use nice and advanced PHP functions like Levenshtein, similar_text or regular expressions. We are limited, not only to functions we can use in the database but also, due to the way the SQL is prepared (which is really good for straight comparison) there is no easy way to use comparison functions which would require having the two values being compared (like Levenshtein or Soundex).
+
+So, basically all I could do was add a new method to compare the fields, which I called "**Only Letters and Numbers**"
+
+{{ :temporaryhold:enhancededup01.png?900 |}}
+
+This new method strips all special characters, including spaces and compares the fields like that
+
+I could only get this working for Accounts, Contacts and Leads. It could be added to other modules but it requires modifying more base code. In the case of custom modules, each module needs to have their main module modified. So this isn't a clean patch.
+
+Other methods could be easily added as long as they use only one parameter: the field name being compared. If the method needs more than one field to decide if the records are the same, a major rewrite of the internal SQL commands would be required.
+
+Ok, now I knew what I was into and the limitations, so I moved onto the import. Here the SQL commands that do the comparing are executed for each row being imported so, besides the method above I was able to introduce methods based on comparing two fields, like Levenshtein.
+
+{{ :temporaryhold:enhancededup02.png?900 |}}
+
+Finally a comment on speed issues. Obviously now, the deduplication is MUCH slower as there is a lot of work going on stripping and calculating when before it was just a straight comparison. Import and deduplication time have doubled or trippled, but if we compare this with the work and time spent cleaning the CSV file for a clean comparison import you probably are still saving time, and it is much easier to explain to the user.
+
+
+===== Related Information =====
+  * vtiger CRM Deduplication on custom field: {{youtube>a5YV9S0BJ8M|vtiger CRM Deduplication on custom field}}
+  * forum thread for [[https://forums.vtiger.com/viewtopic.php?f=139&t=56589|vtiger CRM Deduplication on custom field]]

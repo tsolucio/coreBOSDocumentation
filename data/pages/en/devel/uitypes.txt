@@ -52,6 +52,7 @@
 |101|User capture widget. Must be named reports_to|
 |117|Currency picklist. field must be named currency_id|
 |255|In leads and contacts module, last name is mandatory but first name is not. So when first name is disabled for the profile, the salutation gets handled and added for the last name using this uitype.|
+|1025|[[en:adminmanual:businessmappings:fieldinfo:autocomplete#multiselect_autocomplete_fields|MultiSelect autocomplete]]|
 
 ===== Steps to add a new uitype =====
   * add the uitype to data/CRMEntity.php: this is for formatting the input value to be saved in the database, if no formatting is needed you will not need to modify this file

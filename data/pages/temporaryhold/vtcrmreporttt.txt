@@ -1,0 +1,14 @@
+====== A trouble ticket report in vtiger CRM ======
+
+**Trouble Tickets within a week**\\
+
+This report should detail a list of all clients who have trouble tickets in an OPEN status with a category of Big Problem and have been open for over 7 days. The 7 days period should be counted back from the date the report is run.\\
+{{ :temporaryhold:ttreport06.png |}}
+|Create Trouble Ticket report|Select name and folder|
+|{{:temporaryhold:ttreport01.png?480|}}|{{:temporaryhold:ttreport02.png?480|}}|
+|Summary so we can order it|Select columns we want to see|
+|{{:temporaryhold:ttreport03.png?480|}}|{{:temporaryhold:ttreport04.png?480|}}|
+|Sort report|Parameters|
+|{{:temporaryhold:ttreport05.png?480|}}|{{:temporaryhold:ttreport06.png?480|}}|
+|Final result||
+|{{:temporaryhold:ttreport07.png?980|}}||

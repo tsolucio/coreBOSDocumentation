@@ -13,3 +13,6 @@
   * [[cambio_moneda_qsoi|Obtención del precio de producto al cambiar de moneda en los módulos de inventario]]
   * [[coreboscyp|Módulo de control de pagos y contabilidad]]
   * [[using_filters|Utilizando Filtros]]
+  * [[abono_factura|Abono Factura]]
+  * [[emailimgtpl|Imagenes en Plantillas de Correo]]
+  * [[remesabancaria|Remesa Bancaria SEPA, Normas 19 y 58]]

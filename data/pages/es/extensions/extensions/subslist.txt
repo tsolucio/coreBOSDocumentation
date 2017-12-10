@@ -1,0 +1,51 @@
+=====Listas de Segmentación=====
+
+Módulo para registrar las diferentes agrupaciones de nuestros clientes por distintos criterios con la finalidad de poder trabajar con ellos de manera segmentada.
+
+\\
+---- dataentry ----
+name : tsolucio/subslist
+type : corebos-module
+description_wiki: Módulo para registrar las diferentes agrupaciones de nuestros clientes por distintos criterios con la finalidad de poder trabajar con ellos de manera segmentada.
+keywords_tags : lista,segmentación,agrupar
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:subslist
+release_dt : 2010-02-27
+licenses : Vizsage
+price : Subscription
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Subscription
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+====Que son y para que sirven====
+
+TBD
+
+====Como relacionar entidades con una segmentación ====
+
+Disponemos de 3 maneras de añadir o quitar cuentas, contactos y precontactos a una lista de segmentación.
+
+===Manual===
+
+Es la manera tradicional, en la que accedemos a las listas relacionadas de la segmentación y seleccionamos o añadimos cuentas, contactos y/o precontactos.
+
+Con esta opción cada vez que añadimos o eliminamos una entidad en el sistema deberemos acordarnos de acudir a la segmentación correspondiente y hacer las operaciones pertinentes.
+
+===Filtro Sincronizado===
+
+Para evitar el tener que acordarnos de sincronizar las segmentaciones hemos añadido la opción de poder ligar un filtro a la segmentación. De esta manera podremos crear un filtro en cuentas (por ejemplo), y tener todas la cuentas contenidas en el filtro directamente disponibles en la segmentación sin hacer ninguna tarea adicional.
+
+
+===Flujos de Trabajo===
+
+Mediante la tarea de flujo de trabajo **Poner/Quitar Lista Segmentación** podremos añadir y quitar cuentas, contactos y precontactos de manera individual al ocurrir ciertas acciones en el sistema.
+
+La venta más grande respecto a la opción de filtro sincronizado es que podremos mezclar registros con condiciones muy dispares en vez de tener solo los que pertenecen a un filtro.
+
+
+===Marketing Dashboard===
+
+Seleccionando masivamente diferentes entidades basadas en diferentes combinaciones de filtros podemos rellenar fácilmente listas de segmentación.

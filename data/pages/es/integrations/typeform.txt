@@ -1,0 +1,19 @@
+==== Configuración Typeform ====
+
+Configurar la aplicación para leer encuestas de Typeform consiste en varios pasos que detallamos a continuación.
+
+  * Crear la encuesta en Typeform
+  * Crear una notificación por email de la encuesta. El email debe tener este asunto:<code>Typeform::<surveyid>::<surveyurl></code>
+    * //surveyid// es el identificador interno asignado por Typeform
+    * //surveyurl// es la url de la encuesta
+
+{{ :en:integrations:typeform:cbcrm_survey_typeform_config.png?730 |}}
+
+  * Configurar Conversor de EMail en la aplicación para que lea las notificaciones de Typeform
+
+{{ :en:integrations:typeform:cbcrm_typeform_scanner_config.png?730 |}}
+
+  * Configura la clave de acceso al API de Typeform en **Configuración > Editor Configuración**
+  * Ya está todo, con esos dos cambios coreBOSCRM recibirá un correo cada vez que se complete una encuesta y la registrará en el programa.
+  * Ahora puedes crear flujos de trabajo asociados a los eventos de creación de los registros de la encuesta.
+

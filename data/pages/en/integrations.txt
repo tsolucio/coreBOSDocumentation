@@ -1,0 +1,39 @@
+=====Integrations with other projects=====
+  *[[en:extensions:extensions:gendoc|OpenOffice]]
+  *HubSpot
+  *[[:calendar4you_google_integration|Google calendar]]
+  *[[en:contacts|Google contacts]]
+  *Google apps
+  *[[en:integrations:surveys|Survey]] -> Google forms
+  *Google sheets programming
+  *[[en:extensions:extensions:googlemeasurementprotocol|Google Measurement Protocol: Google Analytics]]
+  *Asterisk
+  *SMS
+  *Sendgrid
+  *ActON
+  *Thunderbird
+  *[[en:integrations:surveys|Survey]] -> [[en:integrations:typeform|Typeform]]
+  *[[en:integrations:elasticsearch|Elastic Search]]
+  *[[en:integrations:maps|GoogleMaps and Openstreetmap. Geodistance]]
+  *Dropbox
+  *Samba
+  *Webcam photos
+  *Email converter: Nagios, pandorafms
+  *RSS
+  *Pentaho
+  *[[en:integrations:oocommerce|WordPress oocommerce]]
+  *Prestashop
+  *[[en:extensions:coreboswswebform|Webforms]]
+  *AEPD 
+  *SEPA
+  *Pasarela pago: Omnipay, Redsys
+  *[[https://github.com/tsolucio/coreBOSOpenKM|OpenKM]]
+  *LogicalDoc
+  *[[https://github.com/tsolucio/coreBOSReportico|Reportico]]
+  *[[es:integrations:facturae|Facturae]]
+  *CFDi Facturación electrónica México
+  *[[en:integrations:corebosmail|Roundcube: coreBOSMail]]
+  *Metabase
+  *Mibew
+  *[[https://github.com/Luke1982/coreBOS-ExactOnline|Exact Online]]
+  *[[en:integrations:dokuwiki|Dokuwiki. HelpMeNow]]

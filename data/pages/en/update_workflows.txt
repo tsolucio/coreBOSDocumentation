@@ -34,6 +34,10 @@ We have tried several different syntaxes but none of them are working.  Can you 
 
 !!! There are two issues here that are based on the same principle: we are very limited in the possibility of embedding operations. With that I mean that workflow update formulas do not accept having an expression inside an expression. So
 
+<WRAP center round alert 60%>
+This is comment is not true anymore in coreBOS. We can now embed expressions inside expressions with no limitation. Althought the solution proposed here using intermediate fields is valid, you should be able to launch the original "if" expression now.
+</WRAP>
+
 <code>if time_diffdays(cf_855,get_date('today')) > 60 then...</code>
 
 is incorrect because the condition must be basic operations. Also,

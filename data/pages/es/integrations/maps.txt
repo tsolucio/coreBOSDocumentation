@@ -1,0 +1,124 @@
+====== Extensión GeoLocalización de Clientes. Mapas para coreBOSCRM ======
+{{description>This page details the features and functionality of the vtiger CRM GeoLocalization Map extension created by TSolucio}}
+{{keywords>vtiger, vtigercrm, crm, spain, español, castellano, map geolocalization, googlemap}}
+\\
+
+La extensión de **GeoLocalización de Clientes en Mapa para vtiger CRM** te permitirá localizar tus clientes en un mapa, buscando por diferentes criterios, convirtiendo tareas como programar una ruta de visitas, localizar un técnico para enviarlo a una emergencia, o simplemente encontrar un conjunto de clientes potenciales para una campaña, en una tarea fácil.
+
+Esta es una lista de algunas de las características de esta extensión:
+  * El mapa se **centra automáticamente** en la ubicación actual del usuario basado en la información que podemos obtener del navegador (no siempre disponible ni exacta), si esta información no se puede encontrar se centrará en la dirección del usuario que se encuentra en su página de "Preferencias". Esto es útil para un equipo disperso de comerciales que trabajan principalmente en su área de influencia. Por último, si ninguna de la información anterior está disponible el mapa se centra en la información de la dirección de la empresa se encuentra en Configuración. Este punto en el mapa se marcará con un icono especial.
+  * Una **vista de pestañas** con **diferentes opciones de búsqueda** nos permitirá ejecutar búsquedas basadas en filtros existentes, sobre cuentas, contactos, precontactos, incidencias y eventos.
+  * Permite **Búsquedas Radiales**, mediante el cual podemos definir un punto en el mapa y un radio alrededor del cual queremos ver todos los registros incluidos dentro
+  * Diferentes iconos marcan los diferentes filtros aplicados, ya que los filtros se pueden acumular
+  * **Comprobación de Superposición**. Cuando un registro se solapa, ya que tienen la misma Georeferenciación (por ejemplo, dos cuentas en el mismo edificio), la aplicación presenta una desviación pequeña, así que los marcadores en el mapa no se superponen totalmente
+  * El conjunto de resultados **se muestra en una tabla** (utilizando [[https://github.com/mleibman/SlickGrid|slickgrid]]) en el que se pueden agrupar por tipo de entidad, de forma rápida ubicar cada registro en el mapa haciendo clic en el icono de objetivo o acceder a la ficha completa haciendo clic en el nombre del registro
+  *   * Al hacer clic en un marcador se presentará **una ventana de información** indicando los detalles del registro en esa posición que, además, permite una serie de acciones:
+    ***Cargar Coordenadas**, en caso de que la información de dirección haya cambiado y el sistema de cache todavía no ha visto el cambio
+    ***Cómo llegar** desde tu ubicación actual a la entidad
+    * Se puede ejecutar una búsqueda radial alrededor del registro que, no sólo nos mostrará un círculo con el alcance del radio, sino también una **lista de todos los registros e incidencias abiertas** que se encuentra dentro del círculo
+  * **Opciones por defecto** para la búsqueda radial y pestaña predeterminado, entre otros se pueden configurar por usuario.
+  * **Información de geolocalización en proceso batch**. Un servicio especial de cron que se ejecuta una vez al día recuperará automáticamente la información de Georeferenciación de nuevas cuentas, contactos y clientes potenciales, así como actualizar los datos cuya dirección haya cambiado y eliminar la información de las personas que se han eliminado.
+
+Veamos algunas de estas caracterísitcas con mas detalle.
+
+=====Pestaña de Filtro=====
+
+Las opciones de esta pestaña de búsqueda nos permitirán seleccionar cualquier combinación de filtros existentes para cada uno de los tres módulos soportados para obtener sus posiciones marcadas en el mapa.
+
+Si se selecciona más de un filtro, cada filtro tendrá un marcador de color diferente en el mapa y las entidades que aparecen en más de un filtro tendrán su propio marcador de color especial. En el panel superior derecho de la hoja de la sección se encuentra una leyenda con los diferentes colores asignados.
+
+{{ en:integrations:evvtmap:evvtmap01.png?650 |}}
+
+A modo de **ayuda adicional** para realizar búsquedas en los módulos, cada filtro está seguido por una lista desplegable de usuarios subordinados al usuario actual. Si se selecciona un usuario de esta lista se **añadirá** al filtro seleccionado la condición del usuario de tal manera que aparecerán aquellos registros que cumplan el filtro **Y** estén asignados al usuario elegido. Esto facilita la obtención de registros asignados a uno mismo o a otro usuario sin necesidad de crear filtros adicionales.
+=====Pestaña Incidencias =====
+
+La pestaña de incidencias permitirá que busquemos cuentas y contactos asociados a incidencias. Al igual que con la [[es:mapenhancements#pestana_de_filtro|Pestaña de Filtro]] se nos presenta con un conjunto de filtros que existen en la entidad de incidencias y podemos seleccionar uno o más para obtener las cuentas y los contactos relacionados marcados en el mapa. Además, nos encontramos con un cuadro de captura de usuario donde podemos restringir las incidencias, no sólo a las condiciones del filtro seleccionado sino también al usuario elegido.
+
+Con esta configuración, por ejemplo, se podría crear fácilmente un filtro con entradas abiertas para visitar "hoy" (que sería un campo personalizado) y luego buscar las cuentas y contactos que cualquier usuario tiene que atender en un día. Este es el caso de uso que motivó esta pestaña, saber los técnicos cercanos a una emergencia.
+
+{{ en:integrations:evvtmap:evvtmap02.png?650 |}}
+
+En este escenario, el mismo técnico podría entrar en la aplicación. La extensión del mapa automáticamente se centrará en su posición y podrá seleccionar la nueva incidencia en el mapa y pedir direcciones para llegar a su destino con sólo unos pocos clics:
+
+{{ en:integrations:evvtmap:evvtmap03.png?650 |}}
+
+
+=====Pestaña de Eventos y Visitas=====
+
+Esta pestaña es para buscar sobre los eventos del calendario. Con las diferentes opciones disponibles, podremos seleccionar un rango de fechas y un usuario para tener todas las cuentas, contactos y precontactos asociados a ese usuario con un evento en el intervalo de fechas seleccionado marcado en el mapa.
+
+También podemos indicar las entidades que queremos que se muestren haciendo clic en las casillas de verificación.
+
+Esta es una forma fácil y eficaz de buscar clientes adicionales para visitar en ciertos días en los que hay que programar visitas adicionales para llenar la agenda. Una vez que hayas localizado algunos de los clientes se puede ejecutar una búsqueda radial adhoc para ver si hay alguien más que podría ir a visitar.
+=====Pestaña Radial=====
+
+La búsqueda directa radial nos permitirá encontrar un conjunto de cuentas, contactos y precontactos en un determinado círculo centrado en cualquier latitud y longitud dada. Así, los parámetros para la búsqueda son exactamente esos: latitud, longitud y el radio del círculo. Dado que la situación normal será el centro del círculo en una entidad determinada, hemos añadido funcionalidad para capturar un registro. Si se selecciona cualquier entidad y los campos de latitud y longitud están vacíos, el sistema utilizará las coordenadas de la entidad seleccionada. También hemos añadido un botón de captura rápida con la que el usuario podrá rellenar los campos de latitud y longitud usando la entidad y luego ajustar si fuera necesario.
+
+{{ en:integrations:evvtmap:evvtmapradiusgroupby.png?650 |}}
+=====Búsqueda adhoc Radial y Más Información=====
+
+Se puede hacer clic sobre cada marcador para obtener un conjunto de información sobre la entidad posicionado allí. Esta ventana emergente contendrá el nombre, dirección e información de contacto además de unos enlaces de acción para:
+
+  * Dirección: esta acción nos dará indicaciones de cómo llegar por carretera desde nuestra posición actual a la entidad. Estas direcciones se muestran en la pestaña direcciones situada en el panel de la derecha y el área afectada en el mapa se centra.
+  * Actualizar Coordenadas: esto obligará a la aplicación a eliminar la información almacenada en caché sobre esta entidad y recuperar el posicionamiento actualizado de la información de dirección actual en el registro
+  * Dibujar Círculo: esto nos permitirá ejecutar una búsqueda radial adhoc alrededor del registro seleccionado. Una ventana emergente aparecerá automáticamente con la información de todas las entidades que figuran en el interior del círculo y una lista de incidencias abiertas también se muestra. Se puede hacer clic en cualquiera de ellos para acceder a la vista de detalle completo del registro
+  * Limpiar/Olvidar búsqueda: deshará la búsqueda actual de radio
+
+{{ en:integrations:evvtmap:evvtmapadhocradiusinfo.png?650 |}}
+
+=====Pestaña de Resultados=====
+
+El conjunto de **resultados se muestra en una tabla** en el panel de la derecha, dentro de la sección de resultados. En la parte superior de la sección vemos el recuento total de los resultados seguida de la opción de agrupación y, finalmente, la lista de todos los registros encontrados.
+
+La ficha de resultados se basa en [[https://github.com/mleibman/SlickGrid|slickgrid]]. Esta poderosa librería javascript nos permite fácilmente paginar a través de los resultados y ver su nombre y tipo de entidad. Esto nos permitirá agrupar los registros por tipo de entidad y rápidamente encontrar un cliente en el mapa haciendo clic en el icono del mismo o acceder a la ficha completa haciendo clic en el nombre del registro encontrado. Hay una captura de pantalla con una agrupación en el [[en:integrations:maps#radius_tab|Pestaña Radial]].
+
+Por último, al hacer clic en el nombre de la entidad que nos llevará a su vista de detalle dentro de vtiger CRM.
+=====Pestaña de Configuración=====
+
+Esta pestaña nos permite establecer los valores por defecto de algunas de las opciones de la extensión para cada usuario de la misma. Las variables accesibles son:
+
+  * Radio por Defecto: será el radio utilizado en las búsquedas radiales y adhoc
+  * Tamaño de Zoom: la precisión por defecto del mapa al entrar en la aplicación. El valor recomendado es 7
+  * Tipo de Mapa: permite elegir entre vista de satélite o mapa
+  * Pestaña por Defecto: la pestaña por defecto al entrar en la extensión, para que cada usuario establezca la que más utiliza
+
+
+=====Cache y Actualización de Información de GeoLocalización=====
+
+Este proceso buscará la posición geográfica de cualquier registro que tiene que marcar en el mapa y almacenará en caché esta información para siempre. Todas las búsquedas posteriores para este registro se leerán de la caché y nunca se mirará de nuevo los datos de dirección del registro ya que se supone que, en general las empresas no cambian de dirección con mucha frecuencia. Esto es bastante drástico, pero aceptable, en general, ya que es raro que una compañía cambie su dirección.
+
+Para atender a las situaciones en las que una empresa cambia su dirección y la situación de las nuevas entidades que se han creado, hemos creado un servicio de cron que se ejecutará una vez al día y que va a hacer tres tareas:
+
+  * actualizar toda la información de posición de los registros que se han modificado desde la última ejecución. Con esto, garantizamos el uso de posicionamiento válida y actualizada para las entidades modificadas
+  * añade información de posicionamiento para los nuevos registros
+  * borra la información de los registros eliminados, para ahorrar espacio
+
+En otras palabras, gracias al servicio de cron podemos, básicamente, olvidarnos del estado de la información, ya que diariamente estará actualizada siempre.
+
+Este servicio se instala y configura automáticamente durante la instalación normal del módulo, así que lo único que tienes que hacer para que funcione es tener el servicio cron de vtiger CRM base en ejecución cada 15 minutos.
+
+Me gustaría agradecer a [[http://www.libertus.co.uk/|Alan Lord de Libertus]] que compartiera su versión código abierto de esta extensión ya que nos sirvió de guía cuando llegamos a este punto de nuestro desarrollo.
+
+
+
+=====Roadmap =====
+
+  * Limitar la información de las ventanas emergentes a las condiciones activas en los filtros
+  * Añadir más opciones de configuración (centrar por defecto en, ...)
+  * Buscar sobre otras entidades. Por ejemplo, facturas para ver facturas pendientes por zona o radio
+  * Sincronizar los resultados y el mapa en ambas direcciones, ahora solo funciona desde la tabla, al seleccionar el icono en la tabla se centra el registro en el mapa pero no pasa al revés
+  * Añadir la funcionalidad de buscar en la tabla
+  * Enlazar los registros encontrados a una campaña
+
+=====Precios=====
+
+Esta extensión está a la venta en SIMPLE & LIBRE - VTIGER CRM, [[http://www.simple-et-libre.com/geolocalisation-des-prospects-avec-filtrage-et-selection-autour-de-xxx-kms/|Géolocalisation des prospects avec filtrage et sélection autour de "xxx" kms]]
+
+y directamente en [[http://evoshops.com/products-page/components-plugins-software/vtigercrm-spainmaps-extension-enhancements/|nuestra tienda  online EVOSHOPS]]
+
+===== Desarrollo Futuro =====
+
+Esta extensión se encuentra en continuo desarrollo con cambios para adaptarse a las diferentes necesidades de nuestros clientes y nos sentimos muy cómodos con la tecnología por lo que puedes contarnos tus necesidades y haremos todo lo posible para ayudarle.
+
+Actualmente estamos desarrollando una nueva pestaña para una empresa de inmobiliaria, donde se podrá lanzar una búsqueda radial centrada en un lugar determinado en busca de apartamentos con ciertas condiciones que está buscando el potencial cliente. Estos apartamentos son los productos, una vez que los encontramos los localizamos en el mapa.
+

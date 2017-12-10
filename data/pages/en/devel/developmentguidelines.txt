@@ -1,0 +1,157 @@
+====== Development Guidelines we try to adhere to ======
+
+On this page you will find a set of code rules and general development workflow we try to impose in the coreBOS project. I strongly recommend that all developers who want to contribute to the project read these guidelines and try to apply them as much as possible. I will take them into consideration at the moment of accepting code contributions.
+
+In general I am paraphrasing the [[https://github.com/php-fig-rectified/fig-rectified-standards|PHP FIG - RECTIFIED]], [[http://www.php-fig.org/psr/|PHP-FIG Standards Recommendations]], and [[http://producingoss.com/|Produccing Open Source Software]], but with some minor adjustments to the reality of our code base. So anything you read there is useful.
+
+<WRAP center round info 60%>
+I am open to suggestions and comments and I know this is a living document that may change as we go forward, so don't hesitate to contact me.
+</WRAP>
+
+===== Where developers dwell =====
+
+The best place to contact the developer community is [[https://gitter.im/corebos/discuss|on our gitter chat group]].
+
+The [[http://blog.corebos.org:8080|blog]] is mostly developer oriented and there is a lot of information here on the documentation site.
+
+You can [[http://discussions.corebos.org/|ask in the forum]] also, but don't hesitate to get in touch, we are a really **friendly and helpful community**.
+
+
+===== How to Contribute =====
+
+The project lives on github and we recommend following the typical fork and pull request procedure. [[:en:devel:contribute|Read here for the exact steps.]]
+
+===== Bug Reports =====
+
+Use [[https://github.com/tsolucio/corebos/issues| the github issues section]] (prefered) or the Mantis bug tracker. [[:en:devel:bugreport|Read here for some additional ideas.]]
+
+
+===== Code Formatting and Structure =====
+
+In general the next sections apply both to PHP and Javascript code. Each has their own particularities, but we should try to be as consistent as possible.
+
+==== PSR-0/PSR-4: Autoloading Standard ====
+
+We are currently not following this recommendation. We load the files we need using require or include from wherever they have been added in the project.
+
+We will probably get to this in the future but it is not a high priority right now.
+
+==== Basic Coding Standard ====
+
+[[http://www.php-fig.org/psr/psr-1/|PSR-2: Basic Coding Standard]]
+
+  * Files MUST use only <?php tags, no short tags nor any others
+  * Files MUST use only UTF-8 without BOM.
+  * Files SHOULD either declare symbols (classes, functions, constants, etc.) or cause side-effects (e.g. generate output, change .ini settings, etc.) but SHOULD NOT do both. This is a good recommendation but it is not present at all in our code base, so if you follow it fine, if not it's ok.
+  * <del>Namespaces and classes MUST follow an “autoloading” PSR: [PSR-0, PSR-4].</del>
+  * Class names MUST be declared in //StudlyCaps//.
+  * Class constants MUST be declared in all upper case with underscore separators.
+  * Method names MUST be declared in //camelCase//.
+
+==== Coding Style Guide ====
+
+[[http://www.php-fig.org/psr/psr-2/|PSR-2: Coding Style Guide]]
+
+  * Code MUST use 1 tab for indenting, not spaces. [[https://github.com/php-fig-rectified/fig-rectified-standards/blob/master/Reasoning.md|Reasoning behind it and a Spaces-vs-Tabs and Brace-Styles evaluation]]
+  * There is a recommended hard limit on line length set to 180; the soft limit MUST be 170 characters; lines SHOULD be 80 characters or less.
+  * There MUST NOT be trailing whitespace at the end of non-blank lines.
+  * There MUST be one blank line after the namespace declaration, and there MUST be one blank line after the block of use declarations.
+  * Visibility MUST be declared on all properties and methods; abstract and final MUST be declared before the visibility; static MUST be declared after the visibility.
+  * Control structure keywords MUST have one space after them; method and function calls MUST NOT.
+  * Opening braces for classes, methods, functions, and control structures MUST go on the same line, and closing braces MUST go on the next line after the body.
+  * Opening parentheses for control structures MUST NOT have a space after them, and closing parentheses for control structures MUST NOT have a space before.
+  * Strings should be enclosed in SINGLE QUOTES where possible.
+
+
+
+
+===== Error Reporting =====
+
+All development MUST be done using **error_reporting set to E_ALL** and we should not leave any warning nor notice in the code. They must all be eliminated.
+
+If you run into a part of the code that emits a lot of warnings, either dedicate some time to eliminating them or send me the details and I will take care of it.
+===== MySQL Strict =====
+
+All development MUST be done using **MySQL Strict Mode** and we should fix any SQL commands that we create.
+
+If you run into a part of the code that has some SQL Strict error, either dedicate some time to eliminating it or send me the details and I will take care of it.
+===== Security =====
+
+Security is a very complex **and important** issue which requires a lot of dedication and time. In other words, **dedicate time to studying and understanding security issues**.
+
+  * use vtlib_purify on all incoming and outgoing information
+  * user Vtiger_Request to construct URLs
+===== Commit Guidelines =====
+
+==== BEFORE Committing ====
+
+This is a list of things that you MUST do before executing a commit:
+
+  * Check if you must separate the code changes in various commits. When I program I usually make some cosmetic changes or modifications that are not related to the requirement I am implementing. You can use the "-p" directive to split unrelated changes creating concise and cohesive commit changes.
+  * Check for debug messages you may have left behind. Before I launch a commit I usually execute these commands: <code>git diff {files} | grep dump
+git diff {files} | grep fatal
+git diff {files} | grep log
+</code>
+  * Check for php errors <code>for f in {diff file list}; do php -l $f; done;</code>
+  * Ideally you should run a lint process on both php and javascript. Please look below for the tools we use and how to execute them. I will add it to the Pull Request acceptance process at some point.
+
+
+{{page>en:devel:commitguidelines&nofooter&nouser&nodate&noeditbtn}}
+
+
+==== Special Committs ====
+
+=== Service Worker Commit ===
+
+These are the steps to update the service worker:
+
+<code>
+fold service-worker.js > sold
+include/sw-precache/regen_swprecache
+fold service-worker.js > snew
+meld sold snew
+# make sure the update is about the files you know have changed
+# the typical error here is for the update to include some javascript or css code you have not committed yet
+rm sold snew
+</code>
+
+**Always** commit the service worker update in it's own commit. Do not mix it with any other changes. This way we can safely ignore all those commits when searching, or easily locate changes when needed.
+
+===== Code Formatting and Validation tools =====
+
+We recommend and use two tools to help validating the formatting issues in PHP and Javascript files.
+
+  * [[https://github.com/squizlabs/PHP_CodeSniffer|PHP Code Sniffer]] for PHP
+  * [[https://eslint.org|ESLint]] for Javascript
+
+You can find rulesets for the above guidelines in the build/cbSR directory.
+
+For example, to validate a PHP file you can execute:
+
+<code>
+./phpcs.phar --standard=build/cbSR file_to_validate
+</code>
+
+You could also execute this command on javascript files, but eslint is better:
+
+<code>
+eslint -c build/cbSR/eslintrc.js file_to_validate
+</code>
+
+<WRAP center round info 60%>
+You can use phpcbf and the eslint --fix to get changes applied automatically
+</WRAP>
+
+===== References and further reading =====
+  * [[:en:devel:debuging|Debugging]]
+  * [[:en:devel:commitguidelines|Commit Guidelines we try to adhere to]]
+  * [[:en:devel:contribute|How to Contribute]]
+  * [[:en:devel:bugreport|Bug Reports]]
+  * [[http://www.php-fig.org/|PHP Framework Interop Group]]
+  * [[https://github.com/php-fig-rectified/fig-rectified-standards|PHP Framework Interoperability Group - RECTIFIED]]
+  * [[http://producingoss.com/|Produccing Open Source Software]]
+  * [[https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/mobilebasic?pli=1|AngularJS Git Commit Message Conventions]]
+  * [[https://github.com/squizlabs/PHP_CodeSniffer|PHP Code Sniffer]]
+  * [[https://eslint.org/|ESLint]]
+  * [[https://github.com/rwaldron/idiomatic.js|Writing Consistent, Idiomatic JavaScript]]
+  * [[http://jstherightway.org/|JavaScript, The Right Way]]

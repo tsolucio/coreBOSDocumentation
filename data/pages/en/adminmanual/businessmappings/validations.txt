@@ -122,7 +122,7 @@ You can use the values of other fields on the form by putting the field name ins
 </code>
 
 <WRAP center round important 85%>
-There is an important limitation when using the values of other fields. These values will only be available when editing the whole record. If the user is doing inline individual field edit on the detail view, the value of the other fields will not be available. To overcome this limitation if you need to create a custom validation rule and access the values you need from the database.
+There is an important limitation when using the values of other fields. These values will only be available when editing the whole record. If the user is doing inline individual field edit on the detail view, the value of the other fields will not be available. To overcome this limitation, you need to create a custom validation rule and access the values you need from the database.
 </WRAP>
 
 

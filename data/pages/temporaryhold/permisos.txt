@@ -1,0 +1,38 @@
+====== Configuración de permisos en sistema con segmentación vertical y horizontal ======
+
+===== Objetivos =====
+
+Crear una configuración de permisos con una segmentación vertical y horizontal como la que se puede dar en una empresa que tiene diferentes familias de productos con comercialización independiente por zonas.
+
+En en el caso que vamos a resolver tenemos un responsable por cada familia de producto, éste tiene a su cargo a responsables de zona, y cada uno de estos tiene a su vez comerciales a su cargo.
+
+Todos son usuarios del sistema y solo deben tener acceso a los elementos asignados al personal que trabaja en la misma familia de productos (segmentación vertical), y en el caso de los responsables de área y comerciales sólo han de ver lo asignado al personal de su zona (segmentación horizontal).
+
+Puede haber usuarios de dirección (CEO) que tienen acceso a todo.
+
+===== Implementación =====
+
+Haremos la implementación del sistema de permisos mediante roles. El esquema de roles que seguiremos es el siguiente:
+
+  * CEO
+    * Resp. Fam. 1
+      * Resp. Zona A1
+        * Comercial A1
+       * Resp. Zona B1
+        * Comercial B1
+      * ...
+    * Resp. Fam. 2
+      * Resp. Zona A2
+        * Comercial A2
+      * Resp. Zona B2
+        * Comercial B2
+      * ...
+    * ...
+
+Para que las restricciones de acceso sean efectivas debemos configurar los módulos como privados en "Configuración->Privilegios de acceso". :!: El módulo de productos necesita unos cambios para poder usarlo de esta manera.
+
+Por último, si queremos que los comerciales puedan ver lo asignado a los comerciales de su misma zona debemos ir a "Configuración->Privilegios de acceso" y añadir una regla de acceso por cada rol comercial. Las reglas serán del tipo "los usuarios del rol Comercial A1 pueden ver lo asignado al rol Comercial A1".
+
+Podemos seguir haciendo ajustes a los privilegios de acceso basados en los roles si por ejemplo queremos que los comerciales vean lo que está asignado a los roles superiores, etc.
+
+Una vez hechos estos cambios y siempre que se modifiquen los privilegios de acceso se deben recalcular los permisos en "Configuración->Privilegios de acceso".

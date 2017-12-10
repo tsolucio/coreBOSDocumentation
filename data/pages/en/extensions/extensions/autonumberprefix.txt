@@ -3,22 +3,24 @@
 
 This configuration module permits you to define different increment counters with a prefix for fields in modules and then apply them with conditions using workflows. It will permit you to have various counter/increment fields on any module or increment differently the same field depending on values in the record being saved.
 \\
----- dataentry ----
-name : tsolucio/AutoNumberPrefix
-type : corebos-module
-description_wiki: This configuration module permits you to define different increment counters with a prefix for fields in modules and then apply them with conditions using workflows. It will permit you to have various counter/increment fields on any module or increment differently the same field depending on values in the record being saved.
-keywords_tags : claims,quality,ISO,standards
-version : 1.0
-homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:autonumberprefix
-release_dt : 2015-11-02
-licenses : Vizsage
-price : 120eur
-buyemail_mail : paypal(at)tsolucio(dot)com
-distribution : Sale
-authorname : JPL TSolucio, S.L.
-authoremail_mail : info(at)tsolucio(dot)com
+---- dataentry  ----
+name              : tsolucio/AutoNumberPrefix
+type              : corebos-module
+description_wiki  : This configuration module permits you to define different increment counters with a prefix for fields in modules and then apply them with conditions using workflows. It will permit you to have various counter/increment fields on any module or increment differently the same field depending on values in the record being saved.
+keywords_tags     : autoincrement, identifier, field, settings, customnumber,counter
+version           : 1.0
+homepage_url      : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:autonumberprefix
+release_dt        : 2015-11-02
+licenses          : Vizsage
+price             : 120eur
+buyemail_mail     : paypal(at)tsolucio(dot)com
+distribution      : Sale
+authorname        : JPL TSolucio, S.L.
+authoremail_mail  : info(at)tsolucio(dot)com
 supportemail_mail : info(at)tsolucio(dot)com
 ----
+
+
 \\
 
 ====== Configuration ======
@@ -35,15 +37,17 @@ You can create as many "counter" records as you need. They are created in the mo
 
 ===== Install =====
 
-Once installed the module normally you have to apply the patch autonumwf.diff which you will find inside the module's main directory (modules/AutoNumberPrefix). This patch adds a new function to the workflow system:
+Once you have installed the module normally using module manager, you will see that it adds a new function to the workflow system:
 
 **AutoNumberInc(ANPid)**
 
 You can now use this function in an Update Field workflow task to assign the next counter value to any field based on any condition in the module.
 
-The **ANPid** number is the internal CRMID of the record you want to use for the sequence. This number can be found by looking in the URL of the Detail View of the record.
+{{ :en:extensions:extensions:autoincmodule:anpwf.png |}}
 
+The **ANPid** number is the internal CRMID of the record or the value of the Increment field you want to use for the sequence. This number can be found by looking in the URL of the Detail View of the record.
 
+{{ :en:extensions:extensions:autoincmodule:anpid.png |}}
 ===== Number formatting=====
 
 The format field accepts two forms:

@@ -1,0 +1,69 @@
+======vtiger CRM Marketing ======
+ 
+===== Qué es =====
+
+Es un vtiger CRM ampliado con una serie de mejoras para optimizar el control de la gestión comercial, pensado para dotar al departamento comercial de todo lo que debería tener un CRM para gestionar la comunicación con los clientes y controlar la carga de trabajo comercial.
+
+**Un herramienta sin la que no puedes pasar!**
+
+[[es:vtmktmarketing|Aquí encontrarás una explicación más detallada]]
+===== Qué contiene =====
+
+  * [[es:vtmarketingdashboard|Cuadro de Mando vtMarketing]]
+  * [[es:extensions:extensions:programmedemails|coreBOS Emails Programados ]]
+  * [[es:extensions:extensions:forecastbudget|Previsión y Control de Ventas y Presupuesto]]
+  * [[es:extensions:extensions:dtoproductline|Descuento en productos y servicios por categoría/cuenta]]
+  * [[es:coreboscyp|Módulo de control de pagos]]
+  * [[es:extensions:extensions:gendoc|GenDoc. Generación Documentación Avanzada OpenOffice Merge]]
+  * [[es:corebosapps|coreBOSApps]]
+  * [[es:extensions:extensions:cbgeomap|Extensión GeoLocalización de Clientes. Mapas]]
+  * {{:en:vtmkt:dart-1.1.pdf|Daily Activity Reporting Tool}}
+  * Soporte para envíos masivos de emails (coste adicional)
+  * Muchas mejoras y correcciones de errores que optimizan el vtiger CRM de base en velocidad, estabilidad y funcionalidad
+
+
+===== Cómo puedo obtenerlo =====
+
+Se trata de una herramienta en constante desarrollo en la que estamos trabajando y mejorando. No sólo aplicamos correcciones de fallos habituales que obtenemos de vtiger sino también los que encontramos y arreglamos fruto de un uso diario de la aplicación en un sinfín de escenarios de trabajo, sino también añadimos funciones y proyectos que desarrollamos para resolver otras necesidades de negocio o los que surgen de la utilización de la propia herramienta vtMakrketing.
+
+Por lo tanto, no es algo que se puede descargar, ya que perdería el soporte o lo haría complicado para nosotros darlo y garantizar que la aplicación vaya a funcionar sin problemas.
+
+Es por ello que sólo ofrecemos esta herramienta como SAAS. El precios es de **9.5 euros/mes/usuario**, si utilizas tu propio servidor de correo para los envíos. Si quieres utilizar nuestro servicio tiene un coste mínimo de **31 euros/mes**. Dependiendo del volumen de emails a enviar y las necesidades del servicio puede subir un poco más.
+
+Debido a restricciones de licencia incluir PDFMaker tiene un coste adicional de **40 euros.**
+
+
+===== Capturas de Pantalla =====
+[[en:vtmarketing:screenshots]]
+
+======coreBOSCRM Marketing :: Casos de Uso ======
+
+??? Cada mes a los contactos que se han introducido en los últimos dos meses que no están en status “qualified”, enviar un email ofreciendo un descuento
+
+En realidad, no es "cada mes", es "cada día", cada día tienes algún cliente que cumple los dos meses de estar en el sistema no cualificado (obviamente habrá algunos días que no haya ninguno). O sea, el sistema cada día mira a ver los contactos que hace dos meses están en el sistema y siguen sin cualificar y les manda un email.
+Conseguir esto es bastante sencillo:
+  * creas tu email, y una programación de envío para el mismo basado en la fecha de asignación del contacto a la programación del envío
+  * creas un flujo de trabajo que incluya el contacto en la programación al crear el mismo y el estado sea no "qualified", de esta manera al crear el contacto y asignarlo al envío, empezarán a contar sus dos meses a partir de ese instante
+  * creas otro flujo de trabajo que detecte que el status cambia a qualified y en ese caso elimine este contacto de la programación de envío de correo
+Todo automático
+
+
+??? Enviar un email cada mes de octubre a todos los contactos que tengan en el campo “departamento” la opción “compras” para proponer reunirnos para negociar condiciones de cara al año siguiente
+
+!!! Este es similar al caso de uso anterior:
+  * crea el email a enviar
+  * crea una programación para enviar ese email en octubre (fecha fija)
+  * crea un flujo de trabajo que asigna los contactos con departamento = "compras" a la programación anterior
+  * crea un flujo de trabajo que detecte que un contacto ya no es de "compras" y lo saque de la programación
+
+???  Cada 3 meses, a todos los contactos que estén en status “hot” enviar un email de seguimiento
+
+!!! Este tiene un problema en el sentido de que no me indicas "hasta cuando". O sea, si lo que quieres es mandar 4 correos separados por 3 meses cada uno, no hay problema, justo para eso tienes el módulo de **Planes de Marketing**; defines los 4 correos, haces la programación de cada uno separados por 90 días y creas los flujos de trabajo necesarios para asignar/quitar los precontactos del plan según las condiciones que necesites.
+
+Ahora bien, si no hay un límite de correos predefinido, tienes que hacer un poco de magia. Antes de que llegue el tiempo de enviar el siguiente email, has de crear una programación con la diferencia de días que quedan hasta los 90 días, asignarlo al Plan de Marketing con lo que todos los contactos ya asignados al plan se les programará el siguiente correo en la fecha correcta, y después editas la programación y pones el desplazamiento de días correcto para todos los nuevos contactos que se les asigna el plan de marketing.
+
+En resumen, se puede hacer de manera automática o semi-automática.
+
+??? Estas opciones nos gustaría a ser posible que se ejecutasen automáticamente, es decir, que no haya que asignarlos manualmente a una campaña sino que una veza que cumplan la condición requerida (por ejemplo en el caso anterior, que el status sea “hot” y hayan pasado 3 meses desde el último envío)
+
+!!!  Como ya indico en los tres casos anteriores se puede hacer de manera automática. Añado este último caso porque en el ejemplo añades la condición "desde el último envío", en el caso anterior simplemente dices cada 3 meses, independientemente de los emails que se le haya mandado al contacto, pero ahora pones la condición que sea desde el último correo enviado. Para este caso solo tienes que añadir uno flujos de trabajo adicionales que detectan el estado de "entregado" del correo y quite/añada el precontacto a los planes correspondientes.

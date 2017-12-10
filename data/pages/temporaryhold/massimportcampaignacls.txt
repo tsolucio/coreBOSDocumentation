@@ -1,0 +1,118 @@
+====== Introducción ======
+
+Este manual nos servirá para poder ver el procedimiento de trabajo a la hora de crear una campaña importando cuentas y contactos, mediante csv, para que queden relacionadas con la campaña que acabamos de crear y para que cree tantas oportunidades como cuentas haya.
+Empiezo explicando paso a paso los distintos componentes y lo que hay que hacer.
+
+====== Procedimiento de trabajo ======
+
+Lo primero que hay que saber es que en el sistema vamos a tener dos tipos de cuentas: **Clientes Directos** y **Cuentas**
+
+  * **Cliente Directo**  Son nuestros propios clientes, aquellos que nos contratan para hacerles una campaña
+  * **Cuentas**  Son aquellas empresas sobre las que trabajaremos en la campaña, las empresas de las que esta interesado nuestro **Cliente Directo**
+
+==== Crear Clientes Directos ====
+
+El primero paso en nuestro sistema virgen es introducir nuestros **Clientes Directos**, para ello debemos ir al menú Comercial->Cuentas. Aquí si ya tuviéramos cuentas creadas nos saldría un listado de ellas.
+Para crear una cuenta nueva debemos hacer click en el botón. {{temporaryhold:importaccampaign:btnl3add.gif|}} y nos encontraremos una pantalla como la siguiente, en la que tenemos que ir rellenando sus datos y **MUY IMPORTANTE**  marcar la casilla de **Cliente Directo**. Ya que es la manera de poder distinguir unas cuentas de otras para distintos procesos internos, para poder hacer filtros, etc ....
+
+\\
+
+|Crear un Cliente Directo|
+|{{temporaryhold:importaccampaign:crear_cliente_directo.png?900|Cliente Directo}}|
+
+\\
+
+Una vez creados vuestros Clientes Directos veréis que si vais a Comercial->Cuentas tendréis un listado de todos ellos, pero para cuando también tengáis Cuentas normales os hemos creado en el desplegable de filtros, que hay a la izquierda del listado {{temporaryhold:importaccampaign:filtros.png|}}  , dos filtros para distinguir las cuentas. "Clientes Directos" y "NO Directos".
+
+==== Crear Campaña ====
+
+Ahora lo que debemos hacer es ir al menú Comercial->Campañas y crear una nueva campaña haciendo clic en {{temporaryhold:importaccampaign:btnl3add.gif|}} , por lo que obtendremos una pantalla parecida a la de crear una Cuenta (Cliente Directo).
+
+En esta pantalla le damos el nombre que queramos y lo más importante, la relacionamos con el Cliente Directo que hemos creado antes, ya que en este caso vamos a hacer un ejemplo con el cliente directo "JPL TSolucio".
+Si nos fijamos el campo Cliente Directo, a su derecha tiene otro botón que es una cruz verde, al hacer clic nos abre una ventana donde nos mostrará un listado con las cuentas que son clientes directo. Hacemos clic en su nombre y nos la relacionará con la campaña.
+\\
+|Ventana selección Clientes Directos|Crear Campaña|
+|{{temporaryhold:importaccampaign:popup_cliente_directo.png?450|Clientes Directos}}|{{temporaryhold:importaccampaign:crear_campanya.png?450|Crear Campaña}}|
+\\
+
+Una vez le demos a guardar nos mostrará la pantalla de detalle y deberemos quedarnos con el número de campaña que se ha generado, en este caso **CAM1**  ya que este número es el que usaremos para introducir en nuestros csv para cuando importemos cuentas y contactos y así poder relacionarlo con la campaña.
+
+
+==== Importar Cuentas y Contactos ====
+
+Para esto debemos tener dos hojas de excell, una para cada uno, que exportaremos o guardaremos como .csv
+Adjunto dos csv tipo para cada uno, y así poder partir de ellos para futuras importaciones.
+
+{{temporaryhold:importaccampaign:csv.zip|}}
+
+Si descomprimimos este csv.zip veremos que tenemos un Cuentas.csv y Contactos.csv. Estos dos se pueden abrir con el Excell de Microsoft Office, pero nosotros recomendamos usar otra distribución llamada [[http://es.libreoffice.org/|LibreOffice]] ya que esta trata muy bien los .xls a la hora de pasarlos a .csv y en Excel suelen dar muchos problemas.
+
+Al abrir por ejemplo el csv de Cuentas con el LibreOffice nos preguntará en que formato está y como están separados los campos y columnas. Nosotros debemos elegir UTF-8, separado por coma, y el separador de texto son las comillas dobles **"**
+\\
+|Formato al abrir con LibreOffice u OpenOffice|
+|{{temporaryhold:importaccampaign:formato_openoffice.png?450|Elegir formato}}|
+\\
+
+Al abrir veremos unas cuentas que vamos a usar como ejemplo para la importación y proceso de trabajo con la campaña **CAM1**
+
+\\
+|Ejemplo de Cuentas|
+|{{temporaryhold:importaccampaign:ejemplo_cuentas.png?900|}}|
+\\
+
+Las columnas llamadas Última Campaña, Nombre de la Cuenta, Teléfono, ... son campos que corresponden con la ficha de una cuenta, por lo que nosotros en cada una de estas columnas hemos ido metiendo los datos que podamos tener de las cuentas con las que vamos a trabajar.
+Un campo muy importante es el de **Última Campaña** aquí debemos decirle a que campaña vamos a relacionar esta cuenta, en este caso debemos escribir **CAM1**
+Si queremos importar cuentas que ya tenemos en nuestro sistema para así fácilmente poder relacionarlas con una nueva campaña, podemos hacerlo. Ya que vtiger buscará el **Nombre de la Cuenta** que se ha escrito en esta columna y si ya existe, solo actualizará el campo Última Campaña y por lo tanto la relacionará con la campaña.
+
+
+
+** Ejemplo Importar Cuentas **
+
+Para ello debemos ir a Comercial->Cuentas y en la barra de herramientas debemos hacer clic al botón de importar {{temporaryhold:importaccampaign:tbarimport.gif|}}
+
+
+  * **PASO 1** Cuando hagamos clic nos llevará a la pantalla de importación paso 1 de 4, que es donde debemos seleccionar nuestro Cuentas.csv para importar. Acordándonos de poner los parámetros con el la imagen del Paso 1.
+  * **PASO 2** Al darle a siguiente nos lleva al Paso 2, aquí veremos a la izquierda todos los campos que existen en Cuentas para que los relacionemos con los campos que tenemos en nuestro Cuentas.csv. La primera vez es un poco largo de hacer, pero si nos fijamos abajo del todo a la izquierda tenemos una casilla llamada "Salvar con asignación personaliza". Esta casilla debemos marcarla y darle el nombre Cuentas, para que así la próxima vez que importemos cuentas podamos hacer clic en la casilla que hay arriba del todo "Usar asignación guardada" y poder seleccionar la de Cuentas.
+  * **PASO 3** Antes de darle a siguiente debemos marcar la casilla "Paso 3 de 4 : Combinación de Duplicados" que está justo al final del paso 2. Este paso nos permite actualizar cuentas ya existentes, es decir, para relacionarlas con una nueva campaña. Para ello debemos marcar las casillas que se muestran en la imagen del paso 3. Y para que Vtiger sepa si una cuenta de nuestro csv ya existe en nuestro sistema, debemos que campos son para nosotros notorios de cumplir esa condición. Nosotros normalmente elegimos el "Nombre de la Cuenta" y el "Email", pero si para vosotros hay algún otro campo más determinante para ello lo podéis utilizar.
+  * **PASO 4** Aquí se nos muestra el resultado final, indicándonos si todo ha ido bien, si queremos importar más,....
+
+\\
+|Paso 1,seleccionar csv|Paso 2, relacionar campos|
+|{{temporaryhold:importaccampaign:import_step1.png?450|Paso 1}}|{{temporaryhold:importaccampaign:import_step2.png?450|Paso 2}}|
+|Paso 3, combinación de duplicados|Paso 4,resultado del a importación|
+|{{temporaryhold:importaccampaign:import_step3.png?450|Paso 3}}|{{temporaryhold:importaccampaign:import_step4.png?450|Paso 4}}|
+\\
+
+Una vez importados podemos ver como se ha relacionado cada cuenta con la campaña CAM1 creada anteriormente. Para ello vamos a Comercial->Campañas y pinchamos sobre nuestra campaña. Una vez aquí debemos hacer clic sobre la pestaña **Más Información** y aquí se nos mostrará unos bloques con las listas relacionadas posibles con campañas.
+En nuestro caso si desplegamos el bloque de Cuentas y Oportunidades veremos lo siguiente:
+\\
+|Listas Relacionadas con Campaña|
+|{{temporaryhold:importaccampaign:lista_relacionada_campanyas.png?900|Cuentas y Oportunidades}}|
+\\
+
+Ahora podríamos hacer clic sobre POT4 que es una oportunidad que se ha generado y nos mostrará la ficha de la oportunidad donde podemos ver que está relacionada con la cuenta IBM y con la campaña Campaña Tsolucio.
+
+|Oportinidad Generada al importar Cuentas|
+|{{temporaryhold:importaccampaign:oportunidad.png?900|Oportunidad}}|
+
+
+** Ejemplo Importar Contactos **
+
+Para importar los Contactos hemos de seguir el mismo proceso que para las Cuentas.
+
+|Ejemplo datos de Contacto|
+|{{temporaryhold:importaccampaign:csv_contactos.png?900|Contactos}}|
+
+Y si los importamos y vamos otra vez a la Campaña->Más Información veremos que ahora también está relacionada con los contactos.
+
+|Contactos relacionados con la campaña|
+|{{temporaryhold:importaccampaign:lista_relacionada_camp_contact.png?900|contactos relacionados}}|
+
+
+==== Trabajar con las Oportunidades ====
+
+Una vez ya tenemos creada la campaña con sus cuentas y contactos importados, nuestro día a día con la campaña se basará en las oportunidades.
+
+Por lo que deberemos ir a Comercial->Oportunidades.
+
+Y ya desde aquí crear todos los eventos llamadas, eventos reuniones, tareas y timecontrols, ya que todo esto se irá contabilizando y guardando en campos de la oportunidad y en la campaña relacionada para luego poder hacer informes con estos números.

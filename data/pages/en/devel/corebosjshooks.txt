@@ -45,8 +45,8 @@ Now after
 function massdeleteBeforeHelloWorld(module) {  // use the same signature as the function we override
   alert('BEFORE: Hello world from ' + module);
 }
-function massdeleteAfterHelloWorld(module) {  // use the same signature as the function we override
-  alert('AFTER: Hello world from ' + module);
+function massdeleteAfterHelloWorld(result) {  // receives result of the massdelete function
+  alert('AFTER: Hello world from AFTER massDelete');
 }
 var beforemassdelete = corebosjshook.before(window,'massDelete',massdeleteBeforeHelloWorld);
 var aftermassdelete = corebosjshook.after(window,'massDelete',massdeleteAfterHelloWorld);
@@ -58,8 +58,8 @@ Finally, we completely override the whole function and call it from our own func
 function massdeleteBeforeHelloWorld(module) {  // use the same signature as the function we override
   alert('BEFORE: Hello world from ' + module);
 }
-function massdeleteAfterHelloWorld(module) {  // use the same signature as the function we override
-  alert('AFTER: Hello world from ' + module);
+function massdeleteAfterHelloWorld(result) {  // receives result of the massdelete function
+  alert('AFTER: Hello world from AFTER massDelete');
 }
 function massdeleteAroundHelloWorld(jpoint) {
   console.log(jpoint);

@@ -1,0 +1,31 @@
+~~NOTOC~~
+====== GenDoc: Generación Documentación Avanzada con OpenOffice. ======
+
+Esta extensión permite crear plantillas avanzadas utilizando [[https://www.openoffice.org/|OpenOffice]] o [[https://www.libreoffice.org/|Libre Office]] que se pueden mezclar con campos de la aplicación y después convertidos a PDF o utilizados como documento en el procesador de textos.
+\\
+---- dataentry  ----
+name              : tsolucio/gendoc # 
+type              : corebos-extension # 
+description_wiki  : Esta extensión permite crear plantillas avanzadas utilizando [[https://www.openoffice.org/|OpenOffice]] o [[https://www.libreoffice.org/|Libre Office]] que se pueden mezclar con campos de la aplicación y después convertidos a PDF o utilizados como documento en el procesador de textos. # 
+keywords_tags     : documentation, pdf, template, merge, combine, labels # 
+version           : 3.0 # 
+homepage_url      : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:gendoc # 
+release_dt        : 2010-03-03 # 
+licenses          : Vizsage # 
+price             : Subscription # 
+buyemail_mail     : paypal(at)tsolucio(dot)com # 
+distribution      : Subscription # 
+authorname        : JPL TSolucio, S.L. # 
+authoremail_mail  : info(at)tsolucio(dot)com # 
+supportemail_mail : info(at)tsolucio(dot)com # 
+----
+
+\\
+
+
+====== Documentación. ======
+
+  * [[:es:gendoc:gramatica|Gramática plantillas]]
+  * [[:es:gendoc:elemnosoportados|Elementos no soportados]]
+  * [[:es:gendoc:gendocejemplos|Ejemplos]]
+  * [[:es:gendoc:genxml|Generador XML]]

@@ -21,13 +21,13 @@ The column list in the order by clause can have at most two column names.
   * value list: a comma separated list of values
   * m, n: integer values to specify the offset and limit respectively
 
-There are three different syntaxes supported.
+There are **three different syntaxes** supported.
 
-One is the original query language inherited from vtiger CRM. This is rather limited as it doesn't support related entities nor parenthesis in the conditions.
+One is **the original query language** inherited from vtiger CRM. This is rather limited as it doesn't support related entities nor parenthesis in the conditions.
 
-So we made a first enhancement based on the [[en:devel:corebosws:getrelatedrecords|getRelatedRecords]] work. This second syntax was created before we started the coreBOS project and was added as a base feature when it was born. You can read about this second syntax below and see it in use in our [[en:extensions:coreboscp|Customer Portal Extension]].
+So we made a first enhancement based on **the [[en:devel:corebosws:getrelatedrecords|getRelatedRecords]] work**. This second syntax was created before we started the coreBOS project and was added as a base feature when it was born. You can read about this second syntax below and see it in use in our [[en:extensions:coreboscp|Customer Portal Extension]].
 
-Finally, we enhanced the syntax a third time based on the work done in the QueryGenerator class which gives us a rich and flexible syntax with support for related modules and advanced conditions.
+Finally, we enhanced the syntax a third time based on the work done in **the QueryGenerator class** which gives us a rich and flexible syntax with support for related modules and advanced conditions.
 
 The problem is that in order to maintain backward compatibility we have kept all the syntaxes together and detect dynamically which one to use for each query. This is a bit misleading sometimes.
 
@@ -36,6 +36,63 @@ When a query is sent to the webservice query API it looks for the string "relate
 <WRAP center round important 60%>
 So, be careful when sending a query as it can easily be sent to the syntax parser you don't expect.
 </WRAP>
+
+Let's go over that again.
+
+  * All queries use the list type module name in the FROM and WHERE sections
+  * [[en:devel:corebosws:querylanguage#related_entity_query_syntax|Related Entity Query Syntax ]] is based on the getRelatedRecords web service endpoint, so anything you can do with the query language can be done with this end point. The reverse is not true as the getRelatedRecords method has some functionality that cannot be accessed through the query language. This query language functionality is deprecated and not recommended, it works, and will continue to do so, but the QueryGenerator syntax is more powerful and the recommended way to get information from the query language.
+  * Given a web service query, the detection of what parser to use follows these steps:
+
+=== 1.- Related modules ===
+
+When a query is sent to the webservice query API it looks for the string "related."
+
+If this string is found we apply the Related Entity Query Syntax.
+
+<code SQL>
+select * from projecttask where related.project=30x144
+select * from projecttask where related.project=30x144 and projecttaskname='dsf'
+select * from documents where related.accounts=3x12
+select * from documents where filelocationtype='E' and related.contacts=4x22
+select * from Documents where (related.Contacts='4x22') AND (filelocationtype LIKE '%I%') LIMIT 5;
+select * from modcomments where related.helpdesk=9x114
+select * from modcomments where related.helpdesk=9x114 and commentcontent like 'hdcc%'
+select * from products where related.products=6x58 // only product children are accessible with this syntax
+select * from products where related.contacts=4x22 // only directly related products
+select * from products where related.contacts=4x22 and productcategory='Software' // only directly related products
+select * from Products where related.Contacts='4x22' LIMIT 5;
+select * from Products where related.Contacts='4x22' order by productname LIMIT 5;
+</code>
+
+=== 2.- Extended syntax - not related ===
+
+If the string 'related' is not found we look for "not in", "not null", "." or "(".
+
+None of these strings are supported by the query syntax inherited from vtiger CRM so we apply the Extended QueryGenerator syntax.
+
+<code SQL>
+SELECT projectname,modifiedtime
+FROM project
+where projectname like '%cap%' and (modifiedtime>'2016-06-30 19:11:59' or modifiedtime<'2016-07-30 19:11:59')
+
+SELECT *
+FROM project
+where projectname like '%cap%' and (modifiedtime>'2016-06-30 19:11:59' or modifiedtime<'2016-07-30 19:11:59')
+</code>
+
+=== 3.- Original VQL syntax (no 'related') ===
+
+<code SQL>
+select * | <column_list> | <count(*)>
+from 
+[where ]
+[order by <column_list>] [limit [, ]];
+
+SELECT * FROM Products
+where productname='sample' LIMIT 10
+</code>
+
+=== Examples ===
 
 For example, we can launch a query like this:
 

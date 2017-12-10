@@ -1,0 +1,25 @@
+====== Imagenes en Plantillas de Correo ======
+
+Hay dos maneras de incluir imágenes en un correo:
+  * Embebidas: como parte del protocolo de envío de correo se permite codificar la imagen junto con el resto del mensaje y después los programas lectores se encargan de decodificar la imagen y mostrarla
+  * Enlaces: se incluye una URL a la imagen en el correo. Obviamente para que se pueda ver la imagen debe estar disponible en internet de manera abierta. En este caso el programa lector de correo debe descargar la imagen para mostrarla. Normalmente pedirá permiso al usuario para ello.
+
+coreBOS soporta solo una imagen embebida que es la del logotipo de la empresa mediante la directiva $logo$. Todas las demás imágenes que queremos incluir en nuestros emails deberán estar como enlaces.
+
+Para facilitar esto el editor CKEditor dispone de una utilidad que nos lo pone muy fácil.
+
+|Editor Email con botón vinculo|Ventana de vínculo|
+|{{:es:user:imgemail01.png?480|}}|{{:es:user:imgemail02.png?480|}}|
+|Imágenes incorporadas|Correo en thunderbird sin cargar imágenes|
+|{{:es:user:imgemail03.png?480|}}|{{:es:user:imgemail04.png?480|}}|
+|Correo en thunderbird con imágenes| |
+|{{:es:user:imgemail05.png?480|}}| |
+
+
+Con FCKEditor es un poco más complicado porque el botón de vínculo no está configurado y se tiene que hacer directamente en el editor de HTML.
+
+|Editor email con fckeditor|Vista de código introducido|
+|{{:es:user:imgemail06.png?480|}}|{{:es:user:imgemail07.png?480|}}|
+
+===== Imagenes Embebidas =====
+Podemos modificar el código para incluir imágenes embebidas, pero no es un trabajo trivial, de hecho es bastante complejo, sobretodo por el interface que permita gestionar el almacén de imágenes.

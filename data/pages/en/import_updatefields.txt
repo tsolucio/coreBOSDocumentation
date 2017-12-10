@@ -1,0 +1,39 @@
+====== Update individual fields when importing.======
+===== Example of how to use =====
+
+  * First I need a CSV file prepared to import into coreBOS. I will do the example with contacts (any other importable coreBOS module works the same). To obtain the file I export information from coreBOS demo site. This is the image:
+  * {{:en:import:upsert_export.png?500|}}
+  * This gives me a {{:en:import:contacts_raw.csv|file with a lot of columns and rows}} of contact information
+  * I eliminate most of them for the sake of the example. I am supposing that I need to update ONLY the department field of the contact without modifying the others. I am going to eliminate most columns to make the import file smaller but I am still going to leave some columns I do not want to import, just ignore them. So I end up with {{:en:import:contacts_update.csv|this file}}, which has this inside:
+
+^First Name^Contact Id^Last Name^Mobile^Lead Source^Department^
+|Mary|CON1|Smith| |Trade Show|woanders01|
+|Patricia|CON2|Johnson|(092) 223-5945|Public Relations|woanders02|
+|Linda|CON3|Williams|(105) 252-3316|Employee|woanders03|
+|Barbara|CON4|Jones|(882) 828-0165|Other|woanders04|
+|Elizabeth|CON5|Brown|(633) 076-5365|Trade Show|woanders05|
+|Jennifer|CON6|Davis|(690) 300-7311|Existing Customer|woanders06|
+|Maria|CON7|Miller|(903) 226-7361|Other|woanders07|
+|Susan|CON8|Wilson|(738) 571-9515|Word of mouth|woanders08|
+|Margaret|CON9|Moore|(201) 799-4322|Employee|woanders09|
+|Dorothy|CON10|Taylor|(348) 842-2559|Direct Mail|woanders10|
+| |CON11|sd| |--None--|woanders11|
+|marco|CON12|deluca| |--None--|woanders12|
+| |CON13|iLabs Demos| | |woanders13|
+
+  * Note that I have eliminated most columns except the ones I need to do the matching for update and the ones I want to ignore for the sake of the example. I have modified all the departments.
+  * Now I import as you normally would in coreBOS. I map ONLY the fields I want to be updated **and the mandatory fields** of the import (usually the ones you are going to be merging on), all the others are directly ignored. I select automerging, update and indicate the criteria for matching.
+  * {{:en:import:upsert_import.png?600|upsert import}}
+  * Before and After images:
+
+**Before update List View**\\
+{{ :en:import:before_upsertlv.png |Before update List View}}\\
+\\
+**Before update Detail View**\\
+{{ :en:import:before_upsertdv.png |Before update Detail View}}\\
+\\
+**After update List View**\\
+{{ :en:import:after_upsertlv.png |After update List View}}\\
+\\
+**After update Detail View**\\
+{{ :en:import:after_upsertdv.png |After update Detail View}}\\

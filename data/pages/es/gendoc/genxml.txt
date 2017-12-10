@@ -1,0 +1,114 @@
+===== Generación XML::Gramática plantillas y campos para GENXML =====
+
+Los campos disponibles se encuentran en el menu 'Herramientas' -> 'Etiquetas OpenOffice'
+
+==== Gramática plantillas ====
+  * **{entidad.campo}**
+    * será sustituido por el valor del campo en la entidad indicada
+    * si no se puede traducir, se deja como esta. Por ejemplo, {entidad_inexistente.campo}, {entidad.campo_inexistente}, {sihubiera} o {sinexiste}
+    * ejemplos: {cuenta.nombre}, {contacto.direccion}, {producto.nombre}
+  * **<genxmlifexist entity="entidad"> ... </genxmlifexist>**
+    * todo el texto entre <genxmlifexist> y </genxmlifexist> se pasará al documento final si existe al menos una entidad relacionada con el registro siendo tratado
+    * si no existe la entidad (<genxmlifexist entidad_inexistente>) se elimina toda la sección
+    * dentro del bloque estarán disponibles para combinación los valores de la primera entidad encontrada
+    * ejemplos: <genxmlifexist entity="activo">,  <genxmlifexist contact>, <genxmlifexist campaign>, <genxmlifexist product>, <genxmlifexist servicio>
+  * **<genxmlifexist entity="entidad" conditions="campo=valor"> ... </genxmlifexist>**
+    * todo el texto entre <genxmlifexist> y </genxmlifexist> se pasará al documento final si existe al menos una entidad relacionada con la cuenta siendo tratada cuyo campo indicado en la condición tenga el valor indicado. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), se empleará la cadena |##| como separador entre valores, en este caso TODOS los valores en el campo y TODOS los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no existe la entidad y/o el campo se elimina toda la sección
+    * dentro del bloque estarán disponibles para combinación los valores de la primera entidad encontrada cuyo campo sea igual a valor
+    * ejemplos: <genxmlifexist entity="activo" condition="tipo=Fichero">,  <genxmlifexist entity="contact" condition="tipo=Responsable Seguridad">, <genxmlifexist entity="campaign" condition="campaignname=GAdwords Noviembre08">
+  * **<genxmlifexist entity="entidad" condition="campo en (valor1,valor2,valor3)"> ... </genxmlifexist>**
+    * todo el texto entre <genxmlifexist> y </genxmlifexist> se pasará al documento final si existe al menos una entidad relacionada con la cuenta siendo tratada cuyo campo indicado tenga uno de los valores indicados. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), al menos uno de los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no existe la entidad y/o el campo se elimina toda la sección
+    * dentro del bloque estarán disponibles para combinación los valores de la primera entidad encontrada cuyo campo sea igual a valor
+    * ejemplos: <genxmlifexist entity="activo" condition="tipo en (Fichero,Contacto,Aplicación)">,  <genxmlifexist entity="contact" condition="tipo en (Responsable Seguridad,Responsable Ficheros)">
+  * **<genxmlifnotexist entity="entidad"> ... </genxmlifnotexist>**
+    * caso negado de <genxmlifexist...>
+  * **<genxmlifnotexist entity="entidad" condition="campo=valor"> ... </genxmlifnotexist>**
+    * caso negado de <genxmlifexist...>
+  * **<genxmlifnotexist entity="entidad" condition="campo en (valor1,valor2,valor2)"> ... </genxmlifnotexist>**
+    * caso negado de <genxmlifnotexist...>
+  * **<genxmlforeach entity="entidad"> ... </genxmlforeach>**
+    * para cada una de los registros de la entidad indicada relacionada con el registro principal se combinará el texto entre las 2 directivas y se añadirá al documento
+    * si no hay registros desaparecerá el bloque entero
+    * esta directiva es OBLIGATORIA para recorrer entidades relacionadas (aunque la relación sea unitaria). Esto permite poder recorrer diferentes niveles en la relaciones, por ejemplo desde una Cuenta acceder a los empleados de los terceros relacionados con la cuenta.
+  * **<genxmlforeach entity="entidad" condition="campo=valor"> ... </genxmlforeach>**
+    * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo contenga el valor, se combinará el texto entre las 2 directivas y se añadirá al documento. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), se empleará la cadena |##| como separador entre valores, en este caso TODOS los valores en el campo y TODOS los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no hay registros desaparecerá el bloque entero
+  * **<genxmlforeach entity="entidad" condition="campo en (valor1,valor2,valor3)"> ... </genxmlforeach>**
+    * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo contenga uno de los valores indicados, se combinará el texto entre las 2 directivas y se añadirá al documento. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), al menos uno de los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no hay registros desaparecerá el bloque entero
+  * **<genxmlforeach entity="entidad" condition="campo!=valor"> ... </genxmlforeach>**
+    * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo NO contenga el valor, se combinará el texto entre las 2 directivas y se añadirá al documento.  Para campos con múltiples valores (por ejemplo en campos con selección múltiple), se empleará la cadena |##| como separador entre valores, en este caso TODOS los valores en el campo y TODOS los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no hay registros desaparecerá el bloque entero
+  * **<genxmlforeach entity="entidad" condition="campo !en (valor1,valor2,valor3)"> ... </genxmlforeach>**
+    * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo NO contenga ninguno de los valores indicados, se combinará el texto entre las 2 directivas y se añadirá al documento. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), ninguno de los valores con los que comparamos deben ser iguales para que sea verdadero.
+    * si no hay registros desaparecerá el bloque entero
+  * **{repeticion}**: Existe una variable especial disponible dentro de los bloques genxmlforeach denominada "repeticion" a la que podemos acceder para obtener la iteración en la que estamos. Esto puede ser útil para enumerar los elementos o para imprimir cosas según la iteración. Ver [[:gendoc:gendocejemplos|Ejemplos]].
+  * **{fecha}**: Con esta etiqueta podemos introducir en el documento la fecha en la que se ha generado. Se substituye por la fecha actual (en la que se genera el documento), en formato dd-mm-aaaa.
+  * **{entidad.campo.enletras}**: Con esta etiqueta podemos traducir un campo **NUMÉRICO** en letras. Por ejemplo, si le pesamos el total de un presupuesto: "{Quotes.hdnGrandTotal.enletras}" siendo este **160,00** se traducirá por **ciento sesenta**.
+  * **Reglas**
+    * Los bloques <genxmlforeach> se pueden anidar.
+    * Los bloques <genxmlifexist> se pueden anidar. Con la única excepción de los bloques <genxmlifexist> en los que comprobamos un valor de una lista de elementos. Por ejemplo:<code><genxmlforeach entity="Soportes">
+  <genxmlifexist entity="Soportes" condition="soporte_movil=1">
+     XXXXXXX
+  </genxmlifexist>
+</genxmlforeach></code>En este caso, el <genxmlifexist> volverá a hacer una comprobación igual que un genxmlforeach, con lo que el proceso fallará. En general podremos poner un <genxmlifexist> dentro de un genxmlforeach si estamos comprobando una entidad diferente a la del genxmlforeach, por ejemplo, esto ES CORRECTO:<code><genxmlforeach entity="Soportes">
+  <genxmlsifexist entity="Accounts" condition="bill_provincia=Alicante">
+       XXXXXXXXX
+  </genxmlifexist>
+</genxmlforeach></code> En este ejemplo listará todos los soportes y si la cuenta asociada es de la provincia de Alicante incorporará el bloque XXXXXXXXXXX.
+
+==== Gramática Campos Especiales: Agregados ====
+
+Para la generación de documentos XML disponemos de dos directivas adicionales que nos permiten hacer agregaciones de valores, en concreto contar registros y sumar valores.
+
+Ambas directivas se han de inicializar antes de un bloque <genxmlforeach> y consumir después del mismo y antes de iniciar una nueva agregación del mismo tipo sobre la misma entidad.
+
+===Contar registros===
+
+  ***<genxmlcount entity="entidad">**
+por ejemplo, para contar los contactos dentro de una directiva <genxmlforeach> haríamos:
+<code>
+...
+<genxmlcount entity='Contacts' nodename='countcontacts'></genxmlcount>
+<genxmlforeach entity="Contacts" conditions="">
+...
+</code>
+
+y para obtener el valor e introducirlo en el documento XML resultante haríamos:
+<code>
+...
+<countcontacts attr='attr'>{genxmlcount.Contacts}</countcontacts>
+...
+</code>
+
+En general, se puede utilizar la etiqueta **{genxmlcount.Contacts}** donde sea necesario
+
+<note>El atributo nodename no es necesario ni tiene porque coincidir con el nombre del nodo real, solo es para documentar y facilitar la comprensión del XML</note>
+
+===Sumar Valores===
+
+  ***<genxmlsum entity="entidad" field='campo a sumar' >**
+por ejemplo, para sumar los totales dentro de una directiva <genxmlforeach> de facturas haríamos:
+<code>
+...
+<genxmlsum entity='Invoice' field='hdnGrandTotal' nodename='totalsuminvoices'></genxmlsum>
+<genxmlforeach entity="Invoice">
+...
+</code>
+
+y para obtener el valor e introducirlo en el documento XML resultante haríamos:
+<code>
+...
+<totalsuminvoices attr='total sum of invoice totals'>{genxmlsum.Invoice.hdnGrandTotal}</totalsuminvoices>
+...
+</code>
+
+En general, se puede utilizar la etiqueta **{genxmlcount.Invoice.hdnGrandTotal}** donde sea necesario
+
+<note>El atributo nodename no es necesario ni tiene porque coincidir con el nombre del nodo real, solo es para documentar y facilitar la comprensión del XML</note>
+
+==== XML Ejemplo ====
+
+  * {{:gendoc:genxml_example.zip|Plantilla y Resultado compilación dentro de un vtiger CRM 5.4.0 con datos de demo}}

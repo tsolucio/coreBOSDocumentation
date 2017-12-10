@@ -431,3 +431,49 @@ Index: trunk/include/Webservices/AuthToken.php
  		$adb->pquery($sql,array($userid));
  		
 </code>
+
+??? Suppress header and footers in module action calls
+!!! The following URL format will suppress the header and footer information.
+
+<code>index.php?module=MyModule&action=MyModuleAjax&file=MyAction&ajax=true&...</code>
+
+??? I would like to be able to return to the newly created entity after creation, instead of returning to the previous one. For instance, when an invoice is created from an account, I would like to return to the newly created invoice instead of the account.
+!!! Add this code to Save.php of the Invoice
+
+<code php>
+$source_id = $_REQUEST['return_id'];
+unset($_REQUEST['return_id']);
+$source_module = $_REQUEST['return_module'];
+$_REQUEST['return_module'] = 'Invoice';
+$_REQUEST['return_action'] = 'DetailView';
+</code>
+
+so it ends up looking like this:
+
+<code php>
+<?php
+$source_id = $_REQUEST['return_id'];
+unset($_REQUEST['return_id']);
+$source_module = $_REQUEST['return_module'];
+$_REQUEST['return_module'] = 'Invoice';
+$_REQUEST['return_action'] = 'DetailView';
+require_once('modules/Vtiger/Save.php');
+?>
+</code>
+<WRAP center round info 60%>
+Thanks Luke :-)
+</WRAP>
+
+??? Suppose I want to create a bunch of new modules with a set of data fields, but each module will also need some specific fields unique to it. I can think of two ways of doing this:
+  * Use different basetables for each module's specific data and have a common related table to store the common data.
+  * Use a common basetable and have different related tables for the specifics.
+
+!!! As long as the field is mapped with target-table or column through meta-data and follows the Entity module convention system would continue to work. 
+
+Shared table pose challenge when different module records enables edits of fields.
+
+It would also come in the way of performance (specifically query cache invalidation).
+
+If modules are from different publishers then sharing table is not a good idea, as the control or convention can be too tedious to maintain / manage.
+
+

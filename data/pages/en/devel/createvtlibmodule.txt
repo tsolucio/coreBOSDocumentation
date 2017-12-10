@@ -1,0 +1,181 @@
+====== Create a coreBOS module ======
+
+The most important part of creating a new module is defining the module completely. Once you have clearly defined all the fields and the relation of the module with the other modules in the system the implementation is just copy paste and fill in.
+
+This is the process I follow.
+
+**Module Name**: this name will serve as the start for translation files and also as the internal name of the module. As with any name it should be significant and identify what the module represents but it also must be unique in your coreBOS install. I recommend prefixing a company identifier. The internal name must be a valid PHP identifier. For example
+
+^Name: | Just Log It |
+^Internal Name: | cbJustLogIt |
+
+**Repository**: create a repository to manage your module. For example,  https://GitHub.com/tsolucio/cbJustLogIt
+
+Now we have to **define the fields**, their validations and their layout. I use a template that defines the block name followed by each field definition in the order I want them to appear on the screen. In this layout, I also indicate which field will be the record link identifier and any special functionality I need the fields to have. This looks like this
+
+
+^ Block: JustLogIt ^^^^^^^
+^ columnname ^ uitype ^ fieldname ^ fieldlabel ^ displaytype ^ type_of_data ^ Comments ^
+| doneon | 5 | doneon | Date | 1 | D~O | |
+| justlogitno | 4 | justlogitno | Log No | 1 | V~M | MODULE REFERENCE FIELD |
+| | | | | | | |
+| hora | 14 | hora | Time | 1 | T~M | |
+| smownerid | 53 | assigned_user_id | Assigned To | |
+| | | | | | | |
+| operation | 1 | operation | Event | 1 | V~O | |
+| createdtime | 70 | createdtime | Created Time | |
+| | | | | | | |
+| moreinfo | 1 | moreinfo | Value | 1 | V~O | |
+| modifiedtime | 70 | modifiedtime | Modified Time | |
+| | | | | | | |
+| rel_id | 10 | rel_id | Related To | 1 | V~O | Accounts, Contacts |
+| rel_module | 1 | rel_module | Related Module | 2 | V~O | save the setype of the module rel_id if set in save_module |
+| | | | | | | |
+| donefrom | 1 | donefrom' | Done From | 2 | V~O | save $_SERVER['REMOTE_ADDR'] in save_module |
+| | | | | | | |
+^ Block: Custom information ^^^^^^^
+| | | | | | | |
+^ Block: Description ^^^^^^^
+|description | 19 | description | Description | 1 | V~O | |
+
+Note:
+
+  * how I mark the justlogitno field as the link field for the module, 
+  * how I group the fields two by two to indicate each row
+  * how I add a comment on how and where to fill in the two displaytype 2 fields
+  * how I accommodate space for the default fields
+  * how I specify the modules supported by the uitype 10 capture field
+
+Next up are the **list view fields**. We have to choose from the fields above which ones will appear on the "All" filter, which ones appear in the popup when we try to select a record from this module and also which fields appear on any related list this module may be related to. I simply indicate them like this
+
+^ List View Fields: | justlogitno, fecha, hora, operation, moreinfo, Assigned To |
+^ Related List Fields: | justlogitno, fecha, hora, operation, moreinfo, Assigned To |
+^ Popup Search Fields: | justlogitno, fecha, hora, operation, moreinfo, Assigned To |
+
+Now we must **define the relations** this module has with other modules in the system. These will be indicated by the uitype 10 fields above and any many to many relations the module may have
+
+^ Related Lists: ^^
+| Accounts | get_dependents_list |
+| Contacts | get_dependents_list |
+| Documents | get_attachments |
+
+Next, we must **define the initial sharing privileges** and the distribution license of the module.
+
+^ Module: | public |
+^ License: | Visage |
+
+
+Finally, we must **specify any additional functionality**. This is where we will explain cron jobs, event handlers and any special widgets or operations the module must have.
+
+Reached this point we have a clear idea of everything we need to create our module and we can start coding.
+
+The steps are
+
+**1.-** copy the [[https://github.com/tsolucio/corebos/tree/master/vtlib/ModuleDir|vtlib/ModuleDir directory]] to the "modules" directory renaming it to the internal name of your module
+
+<code>cp -a vtlib/ModuleDir modules/cbJustLogIt</code>
+
+**2.-** rename the three ModuleFile files to the name of your module
+
+
+<code>
+cd modules/cbJustLogIt
+rename 's/ModuleFile/cbJustLogIt/g' ModuleFile*
+</code>
+
+**3.-** edit manifest.xml and fill in the definitions you created
+
+**3.1.-** Change the name and label
+
+**3.2.-** Change the parent which is the name of the menu you want the module to be in
+
+**3.3.-** Change the description and the license
+
+**3.4.-** Add the SQL to create the main table.
+
+**3.4.1.-** This table must be the name of your module in lower case prefixed with "vtiger_".
+
+**3.4.2.-** It must contain the internal primary key which is the name of your module in lowercase followed by "id"
+
+**3.4.3.-** Add a field for all the fields in your module except the common _crmentity fields
+
+**3.4.4.-** Add any index your users may need. In other words, stop to think about how your module is going to be used, on which fields will your user be searching and sorting. Add a database index on those fields.
+
+**3.5.-** Change the name of the custom field table
+
+**3.6.-** Now for each block and field fill in the fields XML accordingly. There are a lot of existing manifest.xml files in the application for you to study.
+
+**3.7.-** Fill in the All filter fields
+
+**3.8.-** Fill in the sharing access, default actions, related  lists and other special settings
+
+**4.-** Each module has a main file which defines it's class. This file was copied in step 1 and renamed in step 2. So we now have a file called:
+
+<code>
+modules/cbJustLogIt/cbJustLogIt.php
+</code>
+
+edit this main module file and change
+
+**4.1.-** the module class name
+
+**4.2.-** replace **MODULE_NAME_LOWERCASE** with the lowercase internal name of your module
+
+**4.3.-** replace **MODULE_REFERENCE_FIELD** with the name of your modules' reference field
+
+**4.4.-** now fix the related list and popup fields array
+
+**4.5.-** set the module record autoincrement prefix 
+
+<code PHP>$this->setModuleSeqNumber('configure', $modulename, $modulename.'-', '0000001');</code>
+
+**5.-** Translate
+
+**5.1.-** Get the set of labels used and copy them to the en_us.lang.php file
+
+<code>grep -i label manifest.xml</code>
+
+Once he en_us.lang.php is translated copy it to any other language file and translate accordingly.
+
+
+Finally create any additional logic that is needed: save module, eventhandlers, cron,...
+
+Now you are ready to install and test. Use the build/HelperScripts/installmodule.php script.
+
+Before installing I like to make a dump of the database so I can easily recover if i made a mistake and try again. Normally the errors appear in the manifest field definitions, typical copy paste errors.
+
+In order to be able to send this module to any coreBOS, you have to set up a specific structure.
+
+<WRAP center round info 70%>
+If the module is just for your install you can copy the files into place and use the install module script
+</WRAP>
+
+
+The structure looks like this:
+
+<code>
+manifest.xml
+modules/
+  ModuleName/
+   <Module Related Files>
+   language/
+    en_us.lang.php
+    <Other language Files>
+templates/
+  <Smarty templates of the Module>
+</code>
+
+The manifest in the top level is a copy of the one inside the modules directory.
+
+You can now compress this structure into a .zip and send it to any coreBOS in the world.
+
+<WRAP center round info 70%>
+If your repository is publically available on GitHub you can have your users install it directly from the GitHub URL
+</WRAP>
+
+A very good {{ :devel:vtlib-2.1.pdf |reference for creating modules can be found here}}. This is a VERY interesting read as it will give you knowledge on how to create a module using the vtlib API which will be useful for you to be able to change modules once installed.
+
+
+<WRAP center round info 60%>
+This is just the basic skeleton and functionality of a module. There are a lot of things that you can customize, so look for help on [[https://gitter.im/corebos/discuss|Gitter]] or the [[http://discussions.corebos.org/|forum]]
+</WRAP>

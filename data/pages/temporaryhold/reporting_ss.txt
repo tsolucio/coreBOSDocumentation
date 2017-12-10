@@ -1,0 +1,76 @@
+====== vtigerCRM-Spain::Reporting Screen shots ======
+
+===== Pentaho - vtiger CRM Integration =====
+
+The first screen shot is the Pentaho Welcome screen. Notice the elements we have added in the left menu.\\
+{{vtbi:pentaho01.png|Pentaho welcome screen}}\\
+\\
+\\
+The next two screen shots show a simple Audit report and how nicely Pentaho Report Designer permits parameter introduction\\
+{{vtbi:audit01.png|}}\\
+\\
+{{vtbi:audit02.png|}}\\
+\\
+This is the first OLAP cube of the payments cube\\
+{{vtbi:analysis01.png|}}\\
+\\
+These are the dimensions we can navigate and study on\\
+{{vtbi:analysis02.png|}}\\
+\\
+In the next screen I have changed the initial cube to contact city by year\\
+{{vtbi:analysis03.png|}}\\
+\\
+This is how that last configuration looks\\
+{{vtbi:analysis04.png|}}\\
+\\
+This is the same cube but with yearly payment opened up. Anybody who has played with OLAP before knows how easy and stimulating navigating through your data is!!\\
+{{vtbi:analysis05.png|}}\\
+\\
+The same cube with cities opened up\\
+{{vtbi:analysis06.png|}}\\
+\\
+This can just as easily be taken to quartely payments by years with a graph. Impressive!!\\
+{{vtbi:analysis07.png|}}\\
+\\
+In the next two screen shots you can see some of the dimensions and measures that can be used while studying invoices\\
+{{vtbi:analysisfact01.png|}}\\
+{{vtbi:analysisfact02.png|}}\\
+\\
+Here we can see HelpDesk measures that can be used\\
+{{vtbi:analysishd.png|}}\\
+\\
+and finally a state of the Potentials cube\\
+{{vtbi:analysispotentialwon.png|}}\\
+\\
+
+=====  Spin-offs =====
+
+vtiger CRM Report folder with BIRT reports. They are not distinguishable from the normal vtiger CRM Reports.\\
+{{vtbi:vtreportfolder.png|Report patch}}\\
+\\
+Once you click on the link you get your report in a new window.\\
+{{vtbi:vtreportoutput.png|Report launched}}\\ 
+\\
+This is the Trouble Ticket screen of one of our clients. It is a customized version of vtiger CRM.\\
+{{vtbi:hdepisodio.png|Customized HelpDesk}}\\
+\\
+These are two screen shots of the generated report. BIRT will automatically take care of PDF and other output formats\\
+{{vtbi:episodio01.png|}}\\
+\\
+Notice the cross tab grid between dates and products. BIRT is an exceptional product!!!\\
+{{vtbi:episodio02.png|}}\\
+\\
+
+=====  ETL. Pentaho Data Integration =====
+
+**HelpDesk transformation**, where the step that calculates the additional time attributes can be seen.\\
+{{vtbi:etlhd.png|HelpDesk transformation}}\\
+\\
+**FAQ transformation**\\
+{{vtbi:etlfaq.png|FAQ transformation}}\\
+\\
+**Event and Calendar transformation**\\
+{{vtbi:etlevent.png|Event and calendar transformation}}\\
+\\
+**Datawarehouse. vtigerBI Dimensional model**\\
+{{vtbi:ercube.png|Datawarehouse. vtigerBI Dimensional model}}

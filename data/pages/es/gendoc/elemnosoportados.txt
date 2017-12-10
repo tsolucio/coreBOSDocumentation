@@ -1,0 +1,11 @@
+===== Generación Documentación::Elementos no soportados =====
+
+  * Elementos de formulario (checkbox y similares). Estos no se van a hacer, demasiado complejo para lo poco que aportan.
+  * Secciones. Encolumnado
+  * Encabezados: Algunos encabezados se guardan como párrafos en el .xml. Estos no funcionan. Segun manual opendocument: If you use non-numbered Heading style from the stylist, OpenOffice.org will insert a <text:p>, not a <text:h> element. No se como distingue despues la cabecera. 
+  * Algunos Campos calculados
+
+
+===== Generación Documentación::Elementos descartados =====
+  * <code><office:text text:use-soft-page-breaks="true">  <text:soft-page-break /></code>
+    * Los eliminamos durante la conversión ya que no sirven para nada donde están. Estos elementos marcan el final de una página movible, como estamos añadiendo/eliminando texto, casi todos se mueven y openoffice los reubicará en cuanto abramos el documento. Para tener que hacerlo de todos modos los eliminamos y punto.

@@ -1,0 +1,205 @@
+====== vtiger CRM Speed Optimizations ======
+
+In this article I will try to summarize the set of actions that can be taken to optimize vtiger CRM's performance. Many of these recommendations and modifications can be easily applied to any php application of this type. I will cover from the lowest element to the most in deep vtiger CRM modifications without getting too boring while trying to transmit the importance of each of the optimizations. I will speak about some of the tricks that my companies (TSolucio and Opencubed) apply to make the overall sensation a bit more responsive.
+
+===== Possible Optimizations =====
+
+In order of appearance we have:
+  * Hardware
+  * LAMP/WAMP stack
+  * vtiger CRM Code
+  * vtiger CRM Database
+  * Usage
+
+==== Hardware ====
+
+{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}  This is **VERY** important.
+
+Although you can get away with executing vtiger CRM on a machine with low resources, as it doesn't really need much to run, you will not be able to get acceptable performance on this type of hardware unless you really have a small amount of users, information and permission requirements.
+
+Of the three influent parts of hardware: CPU, RAM and Harddisk, RAM and Harddisk are the important ones.
+  * vitger CRM doesn't require much **CPU** as it isn't a number crunching intensive application, and although processing PHP files does require CPU, any modern CPU with threading should be more than enough to not have to pay much attention to this variable.
+  * **RAM** is important if we configure the underlying elements to use as much of it as we can. If you don't optimize the web stack applications to use it then having a lot of RAM won't help because it probably won't be used. From 8 to 16 is the recommendable amount.
+  * **Harddisk** is the most important. Note that vtiger CRM spends most of it's time waiting on disk input/output. The database and all files are saved on disk, apache doesn't do any type of caching so even small images are retrieved over and over again from disk to be sent to the browser. If you could only spend your money on one of these elements I would say spend it on fast harddisks.
+
+Obviously the more the better, if you could execute vtiger CRM on a cluster of dedicated servers with the whole database and files in an enormous pool of RAM you probably wouldn't need to do any of the other optimizations I am going to be talking about.
+
+I will make a small comment on **server bandwidth**. Your connection with the vtiger CRM server is usually not the bottle neck of the application but it is obviously an important part of the performance equation. On a slow internet connection where you will be waiting for the information to arrive the user sensation will not be good. That said, on any DSL connection or direct LAN this variable will not be influent.
+==== LAMP/WAMP stack ====
+
+As we know vtiger CRM is a php application that needs a complete LAMP/WAMP stack to work, so each of these parts gives room for optimizations. Let's look at each one independently.
+
+=== Linux/Windows ===
+
+{{:important1.gif|}}
+
+The operating system isn't of much importance. It is much more important how dedicated this operating system is to the vtiger CRM application. If the operating system is attending many other tasks then the resources that vtiger CRM can use will be less and you will end up waiting.
+
+As to the religious war of Linux versus Windows I will prefer not to enter there and just say that if the operating system is correctly installed so it can make correct use of the hardware and doesn't have strange applications eating up the resources you should be ok. And besides **EVERYBODY** knows that Linux is **MUCH** better than Windows :-)
+
+=== Apache and PHP ===
+
+{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}
+
+There is a rich abundance of information about optimizing apache and php, both individually and to work together on all operating systems and environments a quick search on Google will give you enough information only on the first page to spend hours tuning your server, so I'm not going to add to the noise. Obviously the [[http://httpd.apache.org/docs/2.2/misc/perf-tuning.html|Apache Performance Tuning]] is a must read and some other interesting pages are:
+  * [[http://phplens.com/lens/php-book/optimizing-debugging-php.php|A HOWTO on Optimizing PHP]]
+  * [[http://phplens.com/phpeverywhere/tuning-apache-php|Tuning Apache and PHP for Speed on Unix]]
+  * [[http://www.cyberciti.biz/tips/howto-tuning-optimizing-apache-php.html|Howto optimize Apache and PHP for performance]]
+
+What we usually do on our servers is:
+  * follow Apache performance recommendations, tune max_connections, max_clients, memory, max_childs and other variables to use as much of the server they can.
+  * install **xcache for PHP**, although any other php caching system will do, what is important is to have one in place
+  * eliminate any apache and php module you don't need
+
+**NOTE:**  [[http://forums.vtiger.com/viewtopic.php?f=15&t=52741|smartcard on the vtiger CRM forum]] comments that using [[http://www.litespeedtech.com/|Litespeed]] in place of Apache gives very good results also. Although I haven't tried it myself, knowing Apache httpd as I do I beleive it can make a difference. If anybody has any type of additional feedback please let me know.
+
+== Forum Discussion ==
+
+A [[https://forums.vtiger.com/viewtopic.php?f=15&t=32530&p=171995#p171995|very interesting forum discussion]] has appeared with some good recomendations. I copy one here that affects Apache configuration and that is inline with the Google Gears or HTML5 Storage optimizations.
+
+Thank you Rick :-)
+<code>
+We added Expires headers as follows:
+In the /etc/apache2/sites-available/vtiger file add some directives:
+
+ExpiresActive On
+ExpiresByType image/gif "access plus 4 weeks"
+ExpiresByType image/png "access plus 4 weeks"
+ExpiresByType text/javascript "access plus 4 weeks"
+
+Enable expires headers:
+
+ln -s /etc/apache2/mods-available/expires.load /etc/apache2/mods-enabled/
+/etc/init.d/apache2 reload
+
+It feels snappier :mrgreen: and the server access log shows less activity, so good.</code>
+
+
+=== MySQL ===
+
+{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}
+
+Again there is a wealth of information on the internet about MySQL optimizations. Most are very oriented towards the SQL part. Optimizing mysql is basically a two part job, on one hand we can tune the mysql server parameters to get the best of the hardware it is running on and on the other hand we can optimize the SQL commands we send to the server so it can retrieve information more efficiently. This second optimization is usually much more spectacular than the hardware but, in this case, it really is not in our hands as we are not going to be changing the SQL of our PHP application (vtiger CRM).
+
+So, on the mysql server variable optimizations what we usually do is the same as for apache. We tune the database server to use as much of the hardware it can and set some of the variables that influence vtiger CRM's way of using MySQL.
+
+A small orientation could be:
+  * Make sure cache is activated, execute <code>show variables like 'query%';</code> if query_cache_size = 0 your cache is NOT active
+  * Adapt these variables to the best you can get from your server hardware: <code>query_cache_size=100M
+innodb_buffer_pool_size=200M
+innodb_additional_mem_pool = 20M
+join_buffer_size = 8M
+tmp_table_size = 64M
+sort_buffer_size = 8M
+query_cache_limit =2M</code>
+==== vtiger CRM Code ====
+
+=== vtiger CRM code optimizations ===
+
+{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}  This is **VERY** important.
+
+These are changes in the code itself which should only bring speed benefits without changing the functionality. Code optimizations are extremely important. A change in a procedure or the way something is done can represent incredible speed optimizations, much more than can be achieved in any other ways. This is not always possible and definitely not an area where one can do many optimizations, himself. These optimizations are in the hands of vtiger itself. They are conscious of this and invest time on this area, as can be seen in the many optimizations which were introduced in 5.1.0 and also with the new queryGenerator class of 5.2 which has represented a big gain in speed of the queries generated by the application (it has brought also some new bugs, but all in all it is a VERY good step in the right direction).
+
+=== Cache code optimizations ===
+
+{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}
+
+One of the techniques that has been used for ages to optimize speed is the use of **caching systems**. PHP has it's own library for implementing cache which is based in turn on the open source project called memcache. The general idea is that you save a calculated value in some temporal memory and when you need it again you first look in the cache to see if it is there. Obviously you should save things that are relatively persistent and that take more time to calculate or retrieve again than to get from the cache. vtiger CRM uses it's own internal cache system. For some reason they decided that it would be better to create their own than to count on the existing library. In any case, the cache system was introduced in vtiger CRM 5.1.0 and is being used in many parts of the application in 5.2.x
+
+vtiger CRM uses many open source libraries and some of them have their own caching system. vtiger CRM already has these active and correctly configured so there is nothing we have or can do here. Among the more important caches is the Smarty templating system that gets it's templates precompiled in order to serve them quicker.
+
+These optimizations are already at the best we can get.
+
+=== Code changes and extensions ===
+
+{{:important1.gif|}}{{:important1.gif|}}
+
+== Code changes ==
+
+There are a few changes we frequently apply to give the application better response.
+  * Change the default page to go directly to the important entity. Many users don't use nor need the home page so we direct them to their main module. They can always go to the home page if they need it (it is still in the menu) but it isn't the first screen you have to go over when you get in to work as it usually is a bit time consuming to load.
+  * Reduce the number of elements on the home page
+  * Empty the popup capture boxes on modules with many records. If you have many products, for example, the initial load of the popup product capture takes a long time. Then, once you have the first screen with 20 records you start looking for the one you want because it will rarely be among the first 20 that have appeared. So what we do is leave the popup empty on first load, so it appears very quickly and you can start searching for the record you want immediately.
+  * On a variation of the above we unlock the product field in the quotes, salesorders and invoices so you can type in directly the product code and the rest of the line gets filled in automatically without even having to open the product popup screen. This is also very useful for bar code readers.
+  * An optimization of this type was introduced in vtiger CRM 5.2.0, whereas you can open one related list on the more information tab of an entity. ONLY open the one you want and not waste time loading a whole bunch more that you don't need at this moment.
+
+
+== Google Gears/HTML5 extension ==
+
+This is an extension we have created for vtiger CRM which uses the Google Gears program to load on to the client browser a set of static files that vtiger CRM has. This extension will send to the browser of each client all the images and css files so that they don't get asked for anymore. Since each end user has downloaded these files on their computer, the next time they are needed they are read from the local harddisk and the central web server doesn't even receive a file request. Not only do we reduce the amount of information downloaded and thus time waiting for it to arrive but also we reduce the amount of work the central web server must do which will represent more time for it to do other things.
+
+**Download stats for GGears extension**  {{  :usage:vtggearsextension.png?450|}}
+
+| |  **BEFORE **  ||   |  **AFTER**  ||  |**Difference**||
+^Page^Time^Size^  ^Time^Size^  ^Time^Size^
+|Home|16.39|657|  |6.43|47|  |9.96|610|
+|Home|15.29|659|  |6.14|49|  |9.15|610|
+|Contacts ListVIew|12.81|556|  |4.41|44|  |8.4|512|
+|Contacts ListVIew|12.71|555|  |5.99|43|  |6.72|512|
+|Contacts ListVIew|12.51|556|  |4.53|44|  |7.98|512|
+|Compose Email|14.41|821|  |5.11|186|  |9.3|635|
+|Compose Email|14.29|821|  |5.45|186|  |8.84|635|
+
+This is NOT scientific testing, just a quick validation of more or less the gain that the Google Gears extension can give us. From the testing I have done, these numbers are insignificant on LAN access to vtiger CRM as the speed at which the files are downloaded is almost the same as reading them from the local disk, but even in this case we must take into consideration the important optimization we have done to the apache webserver and to the vtiger CRM server in general. Since we have reduced considerably the amount of petitions for files on the server, it has less work to do, or, better said, more time to do other things and attend more important requests. So even on a LAN what may seem an insignificant optimization can be a considerable amount of traffic reduction in the LAN and on the central web server if the number of users is high enough. 
+
+
+== HTML5 application cache extension ==
+
+This is the same as the previous Google Gears cache extension. Just as we created the GGears cache extension many browsers started to support HTML5 and, specially the application cache specification of HTML5 making GGears unnecessary.
+
+We have created a patch for vtiger CRM that benefits from HTML5 appcache and loads onto the user's browser those files that can be cached. As explained before, although the user does get a direct benefit it is small, in the range of seconds so they quickly get used to it and take it for granted. The real benefit of this extension is on the main server. The request load is reduced significantly, and the more users you have the bigger is the amount of request and bandwidth that is reduced. All this gives the main server more resources (time and cpu) to attend real requests, which again results in an overall benefit for the whole company.
+
+This extension is very easy to install both in the server and the users's browser as now HTML5 enabled browser basically "just do it".
+
+Here are some very un-scientific statsitics I did to make sure that my findings were true. Notice the amount of information cached on these two pages. Obviously not all pages will have that much.
+
+| |  Requests  |  Size  |  Cached  |  Time  |  Onload Time  |  Stats  | |
+|  **Accounts ListView**| | | | | | | |
+|  Normal (Initial load)|  72|  670|  0|  14,7|  14,74|  **7,27**|  **Initial load difference**|
+|  Normal (Reload)|  72|  670|  0|  13,81|  13,81|  13,82|  reload average|
+|  Normal (Reload)|  72|  670|  0|  13,47|  13,48|  **9,33**|  **reload difference**|
+|  Normal (Reload)|  72|  670|  0|  13,89|  13,9| | |
+|  Normal (Reload)|  72|  670|  0|  14,1|  14,1| | |
+|  Cached (Initial load)|  72|  670|  624,4|  7,43|  7,58| | |
+|  Cached (Reload)|  72|  670|  624,4|  4,6|  4,76|  4,49|  reload average|
+|  Cached (Reload)|  72|  670|  624,4|  4,22|  4,4| | |
+|  Cached (Reload)|  72|  670|  624,4|  4,39|  4,51| | |
+|  Cached (Reload)|  72|  670|  624,4|  4,74|  4,89| | |
+|  **Compose email**| | | | | | | |
+|  Normal (Initial load)|  31|  821,6|  0|  13,75|  10,46|  **9,63**|  **Initial load difference**|
+|  Normal (Reload)|  31|  821,6|  0|  14,12|  11,77|  13,83|  reload average|
+|  Normal (Reload)|  31|  821,6|  0|  13,69|  10,73|  **10,45**|  **reload difference**|
+|  Normal (Reload)|  31|  821,6|  0|  13,59|  11,37| | |
+|  Normal (Reload)|  31|  821,6|  0|  13,92|  11,72| | |
+|  Cached (Initial load)|  31|  821,6|  796,2|  4,12|  2,57| | |
+|  Cached (Reload)|  31|  821,6|  796,2|  3,2|  2,26|  3,38|  reload average|
+|  Cached (Reload)|  31|  821,6|  796,2|  3,54|  2,55| | |
+|  Cached (Reload)|  31|  821,6|  796,2|  3,14|  2,16| | |
+|  Cached (Reload)|  31|  821,6|  796,2|  3,05|  2,15| | |
+==== vtiger CRM Database ====
+
+{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}
+
+These optimizations are, in general very easy to apply and have a significant impact in functionality. There is a very important project on the forge [[http://forge.vtiger.com/projects/vtsql-opt/|vtiger sql optimization]] that shares with the community a set of changes that can be done.
+
+The steps to take for this type of optimization is to create and eliminate indexes. The database uses special index tables to order and find information, if an index does not exist for a certain field then the only way the database management system has to retrieve the information it has been asked for is to dynamically and temporarily order the information, so adding an index can have a tremendous impact.
+
+The main ideas to look for are:
+  * make sure that all primary keys and fields used in establishing relations between tables have an index.
+  * any field you will normally be ordering by or searching on frequently should also have an index. This requires studying your usage patterns and optimizing the database to these needs.
+  * there should be no redundant indexes (this doesn't really reduce speed, but it helps on the inserts and deletes and you don't need to be occupying harddisk with something that won't be used)
+==== Usage ====
+
+{{:important1.gif|}}{{:important1.gif|}}{{:important1.gif|}}
+
+Learn how to use the application efficiently.
+
+  * The global search is for when you really don't know what you are looking for. If you are looking for a phone number, look for it on the contact module or, at least deactivate the modules that have no phone from the list of searchable modules.
+  * Use simple filters as the default views
+  * Deactivate modules you don't use
+  * Configure your sharing permissions correctly. Adding unnecessary groups, sharing privileges and exceptions contribute to making more complex code execution to generation bigger SQL which takes longer to retrieve the information needed
+  * Investing in books and training is usually money well spent.
+
+==== vtiger CRM Capacity ====
+  *[[http://forum.vtiger.com/viewtopic.php?f=15&t=43342|vtiger CRM Capacity]]
+  *We have clients with almost a million accounts and a thousand users working very well

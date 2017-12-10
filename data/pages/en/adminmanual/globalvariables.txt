@@ -15,7 +15,7 @@ The order Global Variables use to return a value is:
 ===== Example =====
 Let's suppose I needed the invoice creation to leave the status of the related sales order alone. So I set my Global Variable up like this:
 
-  * I chose "SalesOrderStatusOnInvoiceChange" from the "name" dropdown. That handles this specific case.
+  * I select "SalesOrder_StatusOnInvoiceSave" from the "name" dropdown. That handles this specific case.
   * As a value I entered "DoNotChange", which is a special value the system checks for.
   * I checked the 'mandatory' box.
   * I chose "Module Functionality" from the 'Category' dropdown.
@@ -46,9 +46,10 @@ On the list and detail view, you will find a **Test** action which will permit y
 ===== Web service =====
 
 External applications can get the values of global variables in the application using the **web service call: SearchGlobalVar**, which is a GET request with three parameters:
- - gvname: name of the global variable
- - defaultvalue: default value to be returned if not found
- - gvmodule: module to be searched on
+
+  - gvname: name of the global variable
+  - defaultvalue: default value to be returned if not found
+  - gvmodule: module to be searched on
 
 You can see an [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/500_GetGlobalVariable.php|example of this call and try it out]] using the [[https://github.com/tsolucio/coreBOSwsBrowser|coreBOS web service developers' tool]].
 

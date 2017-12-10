@@ -1,0 +1,30 @@
+===== Hold until I find the right place for them =====
+
+  * [[:temporaryhold:enhancingdedup|Enhancing deduplication]]
+  * [[:temporaryhold:informes|Informes]]
+  * [[:temporaryhold:speed|Speed Optimizations]]
+  * [[:temporaryhold:permisos|Configuración de permisos en sistema con segmentación vertical y horizontal]]
+  * [[:temporaryhold:decidir|Decidir que utilizar]]
+  * [[:temporaryhold:concerns|Implementation Concerns]]
+  * [[:temporaryhold:nosales|I have setup a CRM in my company but Sales haven't gone up]]
+  * Recargo de Equivalencia
+  * [[:temporaryhold:crmdef|CRM (Customer Relationship Management "Gestión de relaciones con clientes")]]
+  * [[:temporaryhold:tsdomains|Domain/Hosting/Email Control]]
+  * [[:temporaryhold:pdocapture|Product Capture Enhancements]]
+  * [[:temporaryhold:multiwarehouse|Multiwarehouse]]
+  * [[:temporaryhold:sla|Service Level Agreement (SLA) Control on Trouble Tickets]]
+  * [[:temporaryhold:aggwidget|Aggregate Widget]]
+  * [[:temporaryhold:consolidaciondeuda|Control de Deudas.]]
+  * [[:temporaryhold:assetcontrol|Asset Control]]
+  * [[:temporaryhold:ttinlineimages|Trouble Ticket Inline Images and Attachments]]
+  * Grouping and Converting
+  * POS
+  * coreBOS TCMobile
+  * [[temporaryhold:massimportcampaignacls|Importación masiva de cuentas y contactos hacia campañas]]
+  * [[:temporaryhold:prjcontrol|Project Management and Control]]
+  * [[en:temporaryhold:cbcrm|coreBOS Marketing: coreBOSCRM]]
+
+
+
+
+{{ :images:vtspain_dentro_120.png |}}

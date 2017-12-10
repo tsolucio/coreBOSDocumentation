@@ -173,6 +173,6 @@ or like this for a multioptional autocomplete field:
 </code>
 
 
-===== Configuring Autocomplete Fields =====
+===== Configuring Autocomplete and MultiSelect Autocomplete Fields =====
 
 [[en:adminmanual:businessmappings:fieldinfo:autocomplete|Continue reading here for more information on how to configure an autocomplete functionality on a field in coreBOS]]

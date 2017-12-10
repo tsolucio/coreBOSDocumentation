@@ -1,0 +1,20 @@
+====== Utilización:: Abono Factura ======
+
+Esta solución fue propuesta por MotionMill [[http://forums.vtiger.com/viewtopic.php?t=20132|en el foro general de vtigerCRM.]]\\
+
+  -Añadir un producto ficticio denominado "Abono factura" con precio 0
+  -Acceder a la factura que hay que abonar
+  -Pulsar el botón de Duplicar
+  -Añadir a la referencia " - Abono"
+  -Cambiar el estado a "Abonada"
+  -Al pie de la factura seleccionar Ajuste y establecer a "Deducir" con el valor total del abono\\ {{:es:user:clip221.png|Deducción}}
+  -Editar la primera linea de producto:
+    -Seleccionar el producto "Abono factura"
+    -Cantidad 1
+    -Precio 0
+  -Eliminar todas las demás líneas\\ {{:es:user:clip225.png|Lineas}}
+  -Guardar e imprimir
+
+<WRAP center round info 80%>
+Alternativamente, en coreBOS, podemos poner unidades y precios en negativo, así que en vez de eliminar todas las líneas y añadir una deducción, también se puede poner todas las unidades en negativo consiguiendo lo mismo.
+</WRAP>

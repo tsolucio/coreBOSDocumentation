@@ -1,0 +1,122 @@
+====== Asset Control ======
+
+
+===== Goals of the extension =====
+
+  *IT capital asset management inside vtiger CRM
+  *Support of vtiger CRM standard features: filters, search, custom fields, reports, ...
+  *Support of vtiger CRM importing/exporting feature.
+
+
+===== Design =====
+
+
+
+
+==== Fields ====
+  * General
+    *Name
+    *Assigned to: responsible of the asset, who we should call if there are problems
+    *Serial Number
+    *Part Number
+    *Type/Category. vtiger CRM Picklist. Initial values: Base machine, Component, Peripheral, Operating system, Licensed Software, Open source Software, Phone, PBX
+    *Phase. vtiger CRM Picklist. Initial values: Procurement, Deployment, Use, Upgrade, Decommission, Salvage
+    *Support start/end date. This is flexible and you can use as best fits your needs:
+      - Since an asset is one unique physical element these dates could be the start and end of the asset's life support, independent of who has it. If you have another relation established with your client it should be controlled by a contract with that client indicating all the necessary details.
+      - Since an asset has an account associated you could use these fields as the start and end of support of this asset for that client.
+    *Website
+    *Image
+    *Description
+  * Procurement
+    *Date
+    *Cost
+    *Vendor
+    *Warranty
+  * Last Deployment
+    *Date
+    *Location Physical or Link to other Asset
+    *By Who
+    *To Whom
+    *Configuration
+    *Warranty
+  * Last Upgrade
+    * Date
+    * By Who
+    * Configuration
+  * Salvage
+    *Date
+    *By Who
+    *Value
+
+
+
+
+==== History. Lifecycle ====
+Each time a change occurs on the record we will create a history of change:
+    *Procurement date, who & comment
+    *Deploy date, who & comment
+    *Upgrade date, who & comment
+    *Decommission date, who & comment
+    *Salvage date, who & comment
+
+
+==== Relate to ====
+The cardinality of the relation is always asset:entity
+  *Contact (who is using it)  1:1
+  *Account (who owns it)  1:1
+  *Tickets (incidents with it)  1:m
+  *Attachments (configuration and the like)  1:m
+  *Vendor (who sold it to us)  m:1
+  *PO (how they sold it to us)  m:1 
+  *Quote, SO, Invoice (how we sell it)  m:m
+  *Asset. 1:m An asset can contain many assets (computer = RAM, CPU, motherboard, ...), one asset can be in one other asset (RAM is only in 1 computer)
+
+
+
+===== Solution =====
+
+There are 2 (at least) ways of solving this problem using vtiger CRM.
+
+The first solution will be harder to upgrade when changing vtiger CRM version.
+
+==== 1.- Mix Assets and Products ====
+
+With this solution we save the assets in the same table that we now have our products. We add a new checkbox field that will indicate if the record is a product or an asset. We add the needed fields, basically as custom fields and blocks.
+
+With the new checkbox we can easily create filters to search for one type or the other of elements in the product table and add these filters in the product capture popup screen to make searching for products or assets easy.
+
+We will have to change the product module code for:
+  *user captures. more than one user on the form
+  *relate products with products (assets with assets)
+
+The real strong point of this path is that all the relations with other entities already exists and we don't have to touch anything. At most if we would like to see the assets and products separately we can modify the selects on each entity to show them separate. No real big change.
+
+
+==== 2.- Create new Assets Module====
+This is a clean and logical path which I recommend for anybody who doesn't need to relate their assets with other modules in the vtiger CRM system, or at least that don't need to relate them with PO, Quotes, SO and Invoices.
+
+Developing a new module based on products with all the necessary fields will have the difficulty of modifying the create/edit process to have various user selection boxes and configuration files upload attachments (exact same problem as in the first solution). But the real hard part here is relating the new module with the existing ones. This is even worse on PO, Q, SO and Invoice, where we would have to modify the "product lines" code to accept assets and modify the calculations to not consider these lines in the final price and then internally to save the relation differently. It sounds difficult.
+
+If you can live with relations to Accounts, Contacts and Vendor, then you can use this solution. Relation to Tickets is harder to setup than the other three but not as difficult as the PO, Q, SO and Invoice relations.
+
+In any case we must relate assets to it's self.
+
+
+
+
+===== Questions and Answers =====
+???Where are the IP, Username and Password fields?
+!!!IP, Username and Password are configuration information and not all assets will have them. If your use will, then you can add these as custom fields (or we can add them for you wherever you like) but they are not general use fields.
+
+???Where are the Memory, CPU and HDD fields?
+!!!Memory, CPU and HDD could be seen as configuration elements and apply the above answer or they can be seen as components of a bigger asset. You would create a "computer" asset and link it to all it's components. You would specify exactly which harddisk (another asset with all it's features), which DIMMS of RAM, etc...
+
+???We use SNMP on our managed assets to record this information. It may be handy to filter and report based on physical condition / standard of the Asset.
+!!!This sounds more like a task for nagios, zenoss or similar software. Our intent is not to reinvent the wheel or create something others have already done better. We just want to have asset inventory control inside vtiger CRM. Obviously we can make integrations with other software packages, for example create a "status" field on the asset which gets updated regularly from a nagios plugin but this type of integration is out of scope of this extension. We are creating a good starting point though ;-)
+
+???How can I control the software related to Asset, version, upgrade until...?
+!!!This can be done in various ways depending on how much detail you want to control. You can simply attach a list of software installed as a text file or you can create new assets for each piece of software and add all the installed software as components of the "parent" asset. This last approach is very interesting when managing licensed software as you could create an asset for each software license you have (Microsoft windows operating system with license xxx)
+
+
+===== References =====
+  *[[http://www.windley.com/docs/Asset%20Management.pdf|Phillip J. Windley utah.gov Asset Management]]

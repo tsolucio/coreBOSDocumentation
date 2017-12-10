@@ -1,0 +1,60 @@
+====== vtigerCRM-Spain::Decidir que utilizar ======
+
+Esta pregunta surge a menudo, tanto en el foro como por potenciales usuarios de la aplicación que no saben como elegir entre las distintas opciones de código abierto disponibles. Sinceramente no es una decisión fácil, la mayoría de las aplicaciones tiene mucha calidad y muchas características interesantes por la que las dudas son totalmente comprensibles.
+
+La pregunta en sí tiene muchas formas:
+  *¿Qué es mejor Sugar CRM o vtiger CRM?
+  *¿Debo utilizar un CRM o un ERP?
+  *¿Qué ventajas tiene {pon aquí tu programa preferido} frente a {pon aquí tu alternativa}?
+  * {añade aquí la tuya}
+
+
+Nosotros decidimos utilizar vtiger CRM hace varios años. Fue una decisión adaptada a cubrir nuestras necesidades, otras empresas con otras necesidades deberán tomar la decisión mejor para su negocio. Nosotros somos una empresa de desarrollo de software, los clientes que llegaban a nuestra empresa buscando soluciones necesitaban que nosotros pudiésemos adaptar las aplicaciones a sus particularidades específicas, como lo necesitan todas. En un principio desarrollábamos soluciones "partiendo de cero", construimos nuestras propias librerías para ayudarnos, invertíamos mucho tiempo en conseguir resultados mediocres y hacíamos mucho trabajo para adaptarnos a las necesidades cambiantes de los clientes.
+
+Como esto era insostenible decidimos iniciar la búsqueda de un entorno de desarrollo que nos permitiera ser rápidos y ágiles a la hora de implantar soluciones a las empresas que nos pedían ayuda. Estuvimos varios años, evaluando, probando y aprendiendo alternativas, incluso hicimos varios cursos sobre implantación de las alternativas (openXpertya entre ellos). Al final redujimos las alternativas a dos:
+  * soluciones basadas en Compiere: openXpertya, openbravo, compiere
+  * soluciones basadas en sugar CRM: Sugar CRM y vtiger CRM
+
+Estudiamos el mercado al que estabamos dirigidos, empresas de un tamaño pequeño, que necesitaban llevar un control de sus clientes, trabajos y facturas. Clientes que necesitan trabajar con un presupuesto ajustado pero que tienen las mismas necesidades que las empresas más grandes.
+
+La extensa y compleja (y completa) base de código de Compiere y la misma forma de trabajar de JAVA nos impedía ser ágiles. Cualquier cambio requería un conocimiento elevado de la aplicación y de las distintas librerías de JAVA, y además JAVA es mucho más pesado que PHP por lo que obligaba a nuestros clientes a invertir en hardware que posiblemente fuera innecesario utilizando la filosofía LAMP. Esto nos dejaba claro que ibamos a apostar por PHP y su facilidad de programación.
+
+La decisión entre sugar CRM y vtiger CRM era mucho más compleja. En el momento de la decisión sugarCRM ya disponía de una librería de desarrollo y decente (que ha ido mejorando con el tiempo). vtiger CRM no disponía de nada por el estilo y había que modificar código para conseguir cualquier cosa. Esto era importante para nosotros ya que no pretendíamos utilizar la aplicación tal cual estaba sino utilizarlo como un punto de partida para informatizar empresas.
+
+Empezamos a estudiar ambas alternativas y vimos que vtiger CRM era mucho más que un CRM aunque sea el 50% de su nombre. No lleva solamente la parte comercial de la gestión de los clientes, sino que tenemos todo el proceso de presupuestos, albaranes, pedidos y facturas. La mayoría de estas cosas había que comprarlas en sugar CRM, lo que incrementaba el coste a nuestro cliente final y dificultaba las adaptaciones que todos y cada unos de nuestros clientes nos estaba pidiendo.
+
+Vimos inmediatamente la ventaja que nos aportaban ambas aplicaciones frente a la filosofía de "hazlo tu mismo". Ya no tanto las muchas cosas que te encuentras hechas como gestión de empresa, contactos, productos, facturas, etcétera. Sino algo que yo creo que es lo fundamental: una manera de hacer las cosas, esa manera será mejor o peor, más fácil o difícil, pero es una manera. De repente sabes como tienes que interactuar con el cliente, sabes como has de hacer mantenimientos para que todos aparezcan iguales y el cliente se siente cómodo. La manera de hacer todo esto en vtiger CRM nos gustó mucho más que la de sugar CRM.
+
+Pero lo realmente importante que vtiger CRM tenía (y tiene), que sugar CRM no tiene, es libertad. Es código libre. La licencia y la transparencia con la que la empresa vtiger distribuye su producto nos cautivó, nos permitió ver el potencial que tenía la aplicación y apostar por ella a pesar de lo difícil que resultaba programar en aquel momento (e interactuar con la empresa en sí).
+
+Desde esa decisión hasta ahora hemos utilizado vtiger CRM con éxito en muchísimas empresas en todo el mundo, hemos hecho todo tipo de personalizaciones, desde adaptaciones pequeñas a extensiones y procesos complejos que ayudan a clientes a optimizar su trabajo diario. En el transcurso de este tiempo nos hemos formado como un equipo con gran conocimiento de vtiger CRM tanto a nivel de usuario como a nivel de desarrollador.
+
+Ahora tenemos la próxima aparición de la nueva versión 5.1. En esta versión vtiger se ha superado, ha incorporado cambios estéticos y funcionales que hacen la aplicación inigualable como herramienta de gestión empresarial pero además como herramienta para informatizar empresas y solucionar los problemas de gestión informática de los mismos. Con todo lo que hemos aprendido (y ayudado, espero) hasta llegar aquí, y de momento, he de confesar que estamos muy satisfechos con nuestra elección.
+
+No obstante, todo lo anterior, que puede servir a algunos para tomar una decisión (o no), no he respondido a la pregunta planteada. Y es por que no sé la respuesta hasta que no hable contigo y vea exactamente cual es el problema que estas intentando resolver. vtiger CRM se puede adaptar a muchos escenarios y resolver con solvencia muchos problemas pero no lo puede hacer todo. Hay muchos sectores en los que no se debe utilizar o en los que sería muy costoso y complejo hacerlo. Ese es el trabajo de TSolució, nosotros te podemos asesorar, orientar y ayudar a implementar una solución para tu empresa. Desde lo más simple como es decidir si debes seguir o no e instalarlo, hasta las más complejas personalizaciones que puedas necesitar.
+
+
+
+===== Respuesta a clientes =====
+
+**CLIENTE:**
+>Tal y como estuvimos comentando ayer las posibilidades de vTiger y como bien sabes, debemos escoger una herramienta open source CRM para realizar un producto CRM integrable con nuestro Call Center, necesitaría para poder proponer la solución vTiger como firme candidata respecto Sugar, Open bravo... tener claras las posibilidades comerciales de realizar nuestro producto con Vtiger.
+
+>Ejemplo:
+> - Tema de licencias
+> - Si debe aparecer referencia del CRM base utilizado
+> - Si podríamos sacar el producto personalizado y poder venderlo sin mas preocupaciones.
+> - En sugar por ejemplo deberíamos ser partner y una serie de condiciones que me han ido explicando.
+> - etc...
+
+**TSOLUCIO:**
+
+vtiger CRM está sujeta a la VPL, es una modificación de la MPL de Mozilla y que, a grandes rasgos viene a decir que podéis hacer lo que necesitáis con el código. Llegando al extremo de, si necesitáis eliminar cualquier referencia a vtiger CRM del interface y distribuirlo, podéis hacerlo. Otra cosa son las implicaciones morales y de negocio que esto pueda implicar.
+
+Lo normal es no esconder el origen. Es una garantía de continuidad y de respaldo que ofrecéis a vuestros clientes.
+
+No obstante, hemos tenido dos empresas que nos han pedido llegar a este extremo y se puede hacer con vtiger CRM. No lo podréis hacer con sugar CRM, aparentemente si lo podrías hacer con OpenBravo/Compiere.
+
+NOTA: Una de las dos empresas comentadas nunca llegó a arrancar, ¿tendrá algo que ver? :-)
+
+No obstante todo lo anterior, no soy abogado y habría que leer la letra pequeña antes de hacer cualquier cosa de este tipo independientemente con la plataforma que decidáis arrancar.

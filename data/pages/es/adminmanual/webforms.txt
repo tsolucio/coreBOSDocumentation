@@ -1,0 +1,64 @@
+=====Captura de Información desde la Web=====
+
+Lo primero es tener claro qué valores necesitamos en la lista desplegable de origen del precontacto para saber de que formulario viene.
+
+Esta lista ya tiene algunos valores por defecto que podrías usar, pero también puedes añadir nuevos.
+
+Para ello debes ir a Configuración -> Editor de listas desplegables.
+
+{{ :es:adminmanual:webforms:acceso_editor_listas.png?600 |}}
+
+Una vez dentro debes elegir en el primer desplegable el módulo de pre-contactos.
+
+{{ :es:adminmanual:webforms:panel_editor_listas.png?600 |}}
+
+Aquí ya puedes esconder o mover valores con el botón de asignar, o añadir nuevos con el botón de añadir. Recuerda que cualquier cambio que hagas debes asignarlo a todos los roles que existan para que vean los cambios y también es aconsejable que no introduzcas valores con caracteres especiales ya que puede fallar.
+Te recomiendo que te mires esto antes en el manual.
+
+Una vez tengas tu desplegable preparado para identificar el origen de cada pre-contacto según el tipo de formulario que use, ya podrás crear el nuevo formulario.
+
+Yo he creado uno de ejemplo para mostrarte como lo modifico antes de meterlo en la web.
+
+En webforms he creado uno seleccionando el campo Origen del precontacto:
+
+{{ :es:adminmanual:webforms:formulario_con_origen_del_precontacto.png?600 |}}
+
+Una vez guardado y obtengo el html me devuelve esto en la parte del campo origen del precontaco:
+
+{{ :es:adminmanual:webforms:select_origen_antes.png?600 |}}
+
+Aquí lo hay que hacer es transformar este select en un input del tipo hidden para ponerle ya un valor por defecto y que no aparezca en la web, así conseguimos que se nos envíe un formulario con el origen que necesitamos para capturarlo en los flujos de trabajo cuando se cree.
+
+Este código se quedaría así.
+
+{{ :es:adminmanual:webforms:select_origen_despues_hidden.png?600 |}}
+
+Aquí yo he elegido el valor Web Site, si tu hubieras creados otros valores deberías poner exactamente ese valor.
+
+Una vez hecho esto ya solo falta crear los flujos de trabajo para capturar este evento.
+
+Para ello vamos a Configuración -> Flujos de trabajo.
+
+{{ :es:adminmanual:webforms:acceso_flujos_de_trabajo.png?600 |}}
+
+Una vez dentro vemos todos los flujos que hay:
+
+{{ :es:adminmanual:webforms:lista_flujos_de_trabajo.png?600 |}}
+
+Vemos que para Pre-contactos aún no tenéis ninguno, así que lo primero es crear uno nuevo y añadir las condiciones.
+
+{{ :es:adminmanual:webforms:crear_nuevo_flujo.png?600 |}}
+
+Seleccionamos Pre-contactos y ya podemos darle un nombre y descripción al flujo y luego indicar cuando queremos que se ejecute y con que condiciones.
+
+{{ :es:adminmanual:webforms:ejemplo_flujo_y_condiciones.png?600 |}}
+
+Aquí se ha elegido que solo se ejecute al crear un pre-contacto nuevo y que el valor del campo Lead Source , que es Origen del Pre-contacto sea igual a Web Site.
+
+Guardamos esto y ahora nos dará la opción de asignarle una nueva tarea cuando se cumplan estas condiciones.
+
+{{ :es:adminmanual:webforms:crear_tarea_al_flujo.png?600 |}}
+
+Esto ya sería el último paso, aquí ya podemos elegir la opción de Enviar un correo. Haciendo esto nos mostrará una pantalla nueva donde podemos definir nuestra plantilla y donde podemos seleccionar las variables de los campos del módulo de pre-contactos para que se rellenen automáticamente según al precontacto que se le envíe. También se puede poner varios destinatarios en copia para que podáis comprobar si se envían bien.
+
+Lo de usar la tarea de Enviar un pre-contacto es una forma, pero también podéis usar lo que os comentó Joe en el vídeo de asignar este pre-contacto a un plan de marketing. Podéis dejaros un plan de marketing con una plantilla hecha y programar en el tiempo cuando se tiene que enviar el email. Si tuvierais esto solo tendríais que elegir en la creación de la tarea del flujo de trabajo la opción de "Poner/Quitar a una Acción Programada" o "Poner/Quitar a un Plan de Marketing"

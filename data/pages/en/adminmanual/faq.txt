@@ -140,3 +140,19 @@ In case you have already checked it, Log out of the application, close the brows
 !!! Directly in the database:
 
 <code SQL>UPDATE `vtiger_homestuff` SET `visible`=1 WHERE `stufftype`='Tag Cloud'</code>
+
+??? Is there a way to make a shortcut (web based) that takes a user directly to a trouble ticket that is associated with a specific asset? In other words, simply clicking on a link it would add a new trouble ticket to the asset.
+
+!!! Yes. The trick here is to emulate the action of clicking on the "Add Ticket" button on the Tickets related list in Assets. This would look like this:
+
+<code>
+https://your_server/your_corebos/index.php?module=HelpDesk&return_module=Assets&return_action=CallRelatedList&return_id=YOUR_ASSET_CRMID&cbfromid=YOUR_ASSET_CRMID&action=EditView&createmode=link
+</code>
+
+Obviously the dynamic part of the URL is the asset CRMID you want to relate the ticket with, YOUR_ASSET_CRMID, in the example. Using the coreBOS Tests example data, there is an asset with CRMID 4062, so I constructed this URL:
+
+<code>
+http://localhost/coreBOSwork/index.php?module=HelpDesk&return_module=Assets&return_action=CallRelatedList&return_id=4062&cbfromid=4062&action=EditView&createmode=link
+</code>
+
+and it worked as expected.

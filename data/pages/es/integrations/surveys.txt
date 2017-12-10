@@ -1,0 +1,30 @@
+=====Encuestas=====
+
+La integración con sistemas de encuestas en **coreBOSCRM** esta basado en la idea de aunar fuerzas. No se trata de tener un sistema completo de gestión de encuestas dentro de la aplicación y competir con herramientas dedicadas a este fin, ya que nunca podremos llegar al nivel de profesionalidad que llega un empresa que orienta sus esfuerzos a crear una gestión de encuestas. Lo que pretendemos hacer es potenciar lo que ya hacemos bien: **gestionar tu información**.
+
+Con esto en mente hemos creado cuatro módulos que nos permitirán saber el conjunto de encuestas que realizamos y la respuesta de nuestros clientes a las mismas. Así conseguimos que puedas cruzar los datos de tus encuestas y sus respuestas con los datos de tus cuentas y contactos, pero, incluso más importante, tenemos a nuestra disposición todos los demás elementos de automatización que incorpora coreBOSCRM, haciendo que sea sencillo incluir automáticamente a un cliente en una **campaña de marketing** o en una **lista de segmentación** para acciones futuras o simplemente mandarle un correo de agradecimiento.
+
+El sistema consta de cuatro módulos que se pueden encontrar en un submenú del menú principal **Análisis**:
+
+{{ :en:integrations:surveys:cbcrm_survey_menu.png?730 |}}
+
+Por un lado tenemos, **encuestas y preguntas**, que representan la propia encuesta y las preguntas que la componen. Estos módulos solo son una copia de la información creada en el sistema elegido, no sirve para crear la encuesta, solo registra la encuesta y sus preguntas para una referencia futura. Estos módulos se auto generan a medida que las encuestas son procesadas.
+
+Por otro lado tenemos los módulos de **encuesta realizada y respuestas**, estos dos módulos registran la realización de una encuesta por parte de un cliente y detalla cada una de sus respuestas a la encuesta. Al igual que los primeros dos módulos, estos se auto generan cuando un cliente realiza la encuesta.
+
+Al crearse en el sistema se lanzan los flujos de trabajo que puedan estar asociados de tal manera que podemos enlazar con todos los automatismos de la aplicación.
+
+Solo por poner unos ejemplos, podríamos asociar un flujo de trabajo a la creación de un registro de encuesta realizada y mandar un correo de agradecimiento al cliente y al mismo tiempo ponerlo en una lista de segmentación, podríamos monitorizar la respuesta a ciertas preguntas de tal manera que si se responde con un valor concreto podemos poner el cliente en una campaña o asociarle una etiqueta concreta, mandarle un regalo de fidelización,... las posibilidades y combinaciones son inmensas.
+
+Obviamente con toda esa información siendo introducida directamente en nuestro sistema productivo la realización de informes para saber cuantas personas han respondido en general o en particular a una pregunta es sencillo.
+
+Si quieres más información puedes ver el siguiente vídeo tutorial FIXME donde enseñamos como se hace con [[http://www.typeform.com/|Typeform]] o [[http://coreboscrm.tsolucio.com/page/contacto|pregúntanos]].
+
+=====Servicios Integrados=====
+
+Actualmente tenemos soporte parar estos servicios:
+  *[[es:integrations:typeform|Typeform]]
+
+<WRAP center round tip 70%>
+Estamos interesados en otras integraciones, especialmente Google Forms y Survey Monkey, así que ponte en contacto con nosotros para debatir la viabilidad de tus necesidades.
+</WRAP>

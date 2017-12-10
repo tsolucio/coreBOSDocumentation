@@ -156,7 +156,7 @@ This is a future development which I personally want to implement.
 
 Mass editing can be a very long running process. Sending a request to modify a couple of fields on 1000 records can take a long time. Currently, coreBOS sends this request and waits for the process to end. This can produce timeouts in the browser or, worse, on the webserver.
 
-So,the idea is to modify mass edit to send a message with the work to be done. Then the task manager will do the work in background so there is no timeout issues and no blocking in the browser. The background task will report its progress as messages on the queue which will be consumed by a browser process that reads the messages and informs of the progress on screen. This will probably be implemented using server side events and service workers.
+So,the idea is to modify mass edit to send a message with the work to be done. Then the task manager will do the work in background so there is no timeout issues and no blocking in the browser. The background task will report its progress as messages on the queue which will be consumed by a browser process that reads the messages and informs of the progress on screen. This will probably be implemented using [[en:devel:corebos_sse|server side events]] and service workers.
 
 ====Logging====
 

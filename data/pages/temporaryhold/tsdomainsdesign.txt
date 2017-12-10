@@ -1,0 +1,44 @@
+====== TSDomains: Design documentation ======
+
+===== Introduction =====
+The purpose of this document is to gather the high level requirements of the TSolucio:TSDomains module for vtiger CRM. It's centered on the necessities of sponsors and users and the why of these requirements. The details of how TSolucio:TSDomains covers the requirements are detailed in the analysis documentation and finally in the generated code.
+
+===== Position =====
+==== Problem Specification. ====
+
+^Problem:|vtiger CRM doesn't have Domain Management module|
+^Affects:|All accounts and contacts who have domains and the vtiger CRM users who need to control those domains for their clients|
+^Solution:|Implement Domain Management module totally integrated in vtiger CRM|
+^Impacts:|Integrate Domain Management into the workflow of any company who uses vtiger CRM. Open vtiger CRM to bigger market base.|
+
+==== Specification of Product Position. ====
+^Who:|Internet Domain Manager. Websites Team, Clients and general stakeholders of domains. Applicable to any sector that needs domain management, control and close contact with their owners.|
+^Why:|Basically to have all information a company needs on their day to day business in one application|
+^How:|This will be a module developed directly into the vtiger CRM platform, in the same programming language and following vtiger CRM development directives.\\ We will try to cover all the needs of basic domain management basing most of our design decisions on the already working in-house application and on detected lacking necessities of this application\\ The module will be under the MPL 1.1 License|
+
+
+===== Module Description =====
+Domain Management functions for vtiger CRM. Manage Domains, associate them to accounts or contacts, control features of the domain space provider and list email details, setup expire date notifications.
+
+==== Perspective ====
+We will strive to make a module that will permit any company easily control all the domain information they are responsible of.
+
+==== Assumptions and Dependencies ====
+Basically all those that derive from the PHP programming language, MySQL database and vtiger CRM software in which the module will be developed.
+
+===== Module Features =====
+  *Basic Domain Registrar data
+  *Basic Domain Hosting data
+  *Basic Email data
+  *Expiration notifications
+  *Report capabilities **(not to be implemented)**
+  *Domain list accessible from related account/contact/vendor
+  *vtiger CRM permission control
+  *vtiger CRM custom field and language support
+
+===== Requirements. =====
+  *Those derived from vtiger CRM
+
+==== Database Design ====
+{{:temporaryhold:tsdomainser.png|E-R Diagram}}\\
+

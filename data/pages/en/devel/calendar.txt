@@ -20,3 +20,39 @@ You can give search conditions for three status:
   * **Not Held**
 
 The table is //its4you_calendar_modulestatus// and you can see an example looking at the code we use to fill in this table for the default modules (build/changeSets/ModulesOnCalendar.php).
+
+
+===== Timezone tests =====
+
+In order to verify timezone on the calendar with DST changes I did this test. With the computer unconnected to the internet and set to mid-October, I create 18 calendar events, 6 for each of 3 users. The 6 events are 3 before DST change and 3 after the change. The 3 users are on UTC-3, UTC+1 (DST) and UTC. The database is set to UTC which is how it should be always.
+
+This looks like this:
+
+| |  testtz-3  |  testtz |  testymd  |
+| |  UTC-3  |  UTC+1  |  UTC  |
+|15/10/17 10:00| | |
+|15/10/17 23:30| | |
+|16/10/17 00:30| | |
+|04/11/17 10:00| | |
+|04/11/17 23:30| | |
+|05/11/17 00:30| | |
+
+
+I visually verify that all users see the events where they should appear. I enter as an admin user and see all events of all 3 users correctly situated by the timezone of the admin user.
+
+Now I reboot the computer and set the date to the second of November in the BIOS.
+
+I access coreBOS and visually verify that all users see the events where they should appear. I enter as an admin user and see all events of all 3 users correctly situated by the timezone of the admin user.
+
+I create a Report on the events and verify that all three users see the events correctly and that the admin user also sees them all correctly.
+
+I verify that the detail view is also correct.
+
+I create an event with repeat over the DST weekend and verify that all events are created correctly.
+
+I also verify that all the date information saved in the database is correct.
+
+
+
+
+

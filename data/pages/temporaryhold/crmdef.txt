@@ -1,0 +1,123 @@
+======CRM (Customer Relationship Management "Gestión de relaciones con clientes") ====== 
+//FUENTE: tsolucio.com / vtiger-spain.com / vtigercrm.es//
+
+
+**COMO GESTIONAR LAS RELACIONES CON LOS CLIENTES**
+
+INTRODUCCION
+ CRM es básicamente la respuesta de la tecnología a la creciente necesidad de las empresas de fortalecer las relaciones con sus clientes. Las herramientas de gestión de relaciones con los clientes (Customer Relationship Management CRM) son las soluciones tecnológicas para conseguir desarrollar la "teoría" del marketing relacional. El marketing relacional se puede definir como "la estrategia de negocio centrada en anticipar, conocer y satisfacer las necesidades y los deseos presentes y previsibles de los clientes".	
+
+ **DESCRIPCION**
+
+El marketing relacional (que es lo que intenta implantar el CRM) es algo que se ha venido haciendo toda la vida. Si no, piense en el tendero de la esquina: Cuando va a comprar siempre le reconoce, le saluda por su nombre y le aconseja (le hace ofertas personalizadas) en función de sus últimas consultas y compras.
+
+En el proceso de remodelación de las empresas para adaptarse a las necesidades del cliente, es cuando se detecta la necesidad de replantear los conceptos "tradicionales" del marketing y emplear los conceptos del marketing relacional:
+
+    * Enfoque al cliente
+    * Interactividad
+    * Fidelización de cliente
+    * Personalización
+
+El reto actual que nos posibilita un sistema de estas características es: conseguir conocer a los clientes y actuar en consonancia cuando en lugar de tener 50 clientes como tiene el tendero, se tienen 1.000, 5.000, 50.000 o 500.000.000. Esta posibilidad la ofrece la tecnología. Hasta que no han existido las soluciones de CRM y las bases de datos, era inviable conocer y personalizar mensajes a 50.000 clientes. Ahora es posible.
+
+ **DIRIGIDO A** 
+
+Necesita su empresa una solución CRM?
+
+Factores que aconsejan la adopción de una solución CRM:
+
+    * Sus clientes principales presentan características muy diversas
+    * Ofrece un amplio surtido de productos y servicios
+    * Los clientes reemplazan o compran con regularidad los productos o servicios que usted vende
+    * Interacciona con los clientes de distintas maneras: a través de su establecimiento, en línea o por teléfono
+    * Dispone de varias oficinas o hay trabajadores que se desplazan y necesita un medio fácil de compartir y administrar información de distintos orígenes sobre los clientes
+
+Quizá lo que indique más claramente la necesidad de una solución de CRM ya se haya mencionado al principio de este artículo. Para las pequeñas empresas siempre ha sido esencial la relación con el cliente: conocer su nombre, sus preferencias y procurar que vuelva.
+
+Con la tecnología de CRM, puede mantener esa ventaja clásica de la pequeña empresa sin sacrificar la expansión de su negocio.
+**VENTAJAS**
+
+
+Cada vez más empresas que se están dando cuenta de la conveniencia de la administración de las relaciones con los clientes. Proporciona una amplia gama de características relacionadas con las ventas y la atención al cliente que no sólo libera a los empleados de las tareas rutinarias, sino que además brinda información muy útil para centrarse en los clientes que pueden reportar mayores beneficios.
+
+A continuación se detallan algunas de las ventajas desde el punto de vista del servicio al cliente:
+
+    * Los empleados pueden asignar, administrar y resolver incidentes con rapidez gracias a los flujos de trabajo que se pueden definir.
+    * Los informes permiten identificar problemas, evaluar las necesidades de los clientes, realizar un seguimiento y estimar el rendimiento del servicio.
+    * Los empleados pueden compartir fácilmente información sobre ventas y pedidos, datos de soporte, y utilizarla para identificar a los principales clientes y establecer prioridades entre las necesidades de servicio.
+
+Desde la perspectiva de ventas:
+
+    * Acceso a una vista centralizada personalizable de la actividad de ventas y soporte, junto con un completo historial de los clientes, ya sea con o sin conexión y desde cualquier ubicación mediante un explorador Web.
+    * Ciclos de ventas más cortos y mejores tasas de cierre de ventas gracias a herramientas que posibilitan la administración de clientes y oportunidades, la personalización de reglas de flujo de trabajo para procesos de ventas automatizados, la elaboración de presupuestos y la administración de pedidos.
+    * Informes completos de previsiones de ventas, indicación de actividad comercial y rendimiento, seguimiento de logros en ventas y servicios, así como identificación de tendencias, problemas y oportunidades.
+    * Posibilidad de realizar "minería de datos", que permite poner de relieve oportunidades de ventas cruzadas o adicionales, tienen un atractivo indiscutible para cualquier negocio.
+
+Sin embargo, eso no significa que la tecnología de administración de relaciones con los clientes resulte indicada para todas las organizaciones.
+
+**DESCRIPCION AMPLIADA**
+
+VtigerCRM proporciona una integración completa entre preventas, posventa, suministro servicio, soporte y otros procesos dentro de la empresa.
+
+    * Automatización fuerza de ventas.
+    * Soporte de cliente
+    * Automatización de campañas de marketing
+    * Gestión de oportunidades
+    * Base de conocimiento
+    * Listas de correo
+    * Gestión de contactos y cuentas
+    * Plantillas para correos electrónicos
+    * Detección de tendencias.
+    * Estadísticas
+    * Envio masivo de emails
+    * Gestión de objetivos de ventas
+    * Herramientas de productividad
+    * Catálogo de productos
+    * Tareas, citas y llamadas
+    * Bandejas de correo de entrada y salida.
+    * Eventos recurrentes
+    * Integración con Thunderbird/ Outlook
+    * Integración con Office
+    * Calendario compartido
+    * Gestión de pedidos
+    * Portal para cliente
+    * Gestión de ventas
+    * Notas
+    * RSS
+    * Informes y gráficos de indicadores
+    * Personalización del sistema
+    * Gestión de la seguridad
+    * Sistema de medición integrado.
+    * Campos personalizables (10 tipos de datos distintos)
+    * Informes predefinidos (20 tipos)
+    * Lista de vistas personalizables
+    * Indicadores especiales para automatización de la fuerza de ventas
+    * Sistema básico de gestión de documentos 
+
+
+**SISTEMA DE TRABAJO**
+
+En el proceso de implementación de un sistema CRM debe estar involucrada toda la empresa.
+
+10 factores de éxito:
+
+1. Determinar las funciones que se desean automatizar
+
+2. Automatizar sólo lo que necesita ser automatizado
+
+3. Obtener el soporte y compromiso de los niveles altos de la compañía
+
+4. Emplear inteligentemente la tecnología
+
+5. Involucrar a los usuarios en la construcción del sistema
+
+6. Realizar un prototipo del sistema
+
+7. Formar a los usuarios
+
+8. Motivar al personal que lo utilizará
+
+9. Administrar el sistema desde dentro
+
+10. Mantener el sistema vivo.
+

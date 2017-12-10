@@ -1,0 +1,178 @@
+~~NOTOC~~
+====== Emails Programados ======
+
+Conjunto de varios módulos que permiten crear plantillas de correo y el envío regular de emails.
+\\
+---- dataentry ----
+name : tsolucio/AP
+type : corebos-module
+description_wiki: Conjunto de varios módulos que permiten crear plantillas de correo y el envío regular de emails.
+keywords_tags : emails,mass,campaign,drip
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:programmedemails
+release_dt : 2010-02-27
+licenses : Vizsage
+price : Subscription
+buyemail_mail : paypal(at)tsolucio(dot)com
+distribution : Sale
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+=====Objetivo del proyecto=====
+
+El objetivo del proyecto es permitir la programación de envíos de email a contactos dentro de coreBOS. Se ha de permitir desde el envío puntual de un email hasta la asignación de un conjunto de acciones masivamente.
+
+  *Los emails en si permitirán un sistema de plantillas similar al que ya soporta el sistema.
+  *Deberemos permitir consultar el estado de envíos pasado y futuros desde el contacto.
+  *Deberemos permitir alguna manera de asignar secuencias de acciones a contactos filtrando sobre cuentas.
+  *Idealmente se debería poder controlar la apertura y los rechazos de los correos.
+
+=====Diseño=====
+
+Esta extensión a coreBOS CRM consta de 3 nuevos módulos y algunos cambios en el comportamiento básico de la aplicación. Los nuevos módulos dotan a la aplicación de capacidad para programar el envío sistemático de emails a intervalos definidos, mientras que los cambios en el propio sistema permiten la agrupación, segmentación y selección de contactos para su inclusión en distintas acciones de marketing.
+
+{{:accionesdigitales:accionesdigitalesdiseno.png|}}
+
+
+====Acciones====
+
+La idea general es que tenemos un módulo que representa un conjunto de acciones que se pueden tomar. En la versión actual solo hay un tipo de acción que es el envío de emails pero este módulo sirve de base para futuras ampliaciones a otros tipos de acciones.
+
+Una acción no tiene definición en el el tiempo, tan solo es la definición de la acción o email en si mismo. El siguiente módulo es el que nos permitirá ubicar el envío del email (ejecución de la acción) en una fecha determinada. Así, las acciones son un especie de almacén de plantillas que podemos utilizar una y otra vez para distintos contactos en diferentes momentos según el objetivo a conseguir. Incluso podemos aplicar las reglas de privacidad de coreBOS para que cada usuario solo vea aquellas plantillas que debe utilizar y/o segmentar las acciones por sectores, países o lo que se estime oportuno.
+
+Dado que es un módulo normal de coreBOS, tenemos acceso a una vista de lista donde poder definir filtros, realizar búsquedas y añadir campos personalizados.
+
+En la vista de detalle y edición se ha ampliado la funcionalidad para permitir la visualización y edición de las plantillas de email:
+
+{{:accionesdigitales:editaction.png|}}
+
+{{:accionesdigitales:viewaction.png?550|}}
+
+
+====Acciones Programadas====
+
+El siguiente módulo denominado Acciones Programadas es el que nos permitirá ejecutar la acción del envío del email en un determinado momento.
+
+Este módulo se compone de los siguientes campos:
+  * **Referencia**: una cadena indentificativa de la programación
+  * **Acción**: una captura a la plantilla de email (acción) a ejecutar
+  * **Asignado a**
+  * **Status**: si el estado de la programación es "**Inactivo**" el día de la ejecución, no se realizará la acción
+  * **Email From**: establece el email del remitente del email a mandar. Las posibles opciones son:
+    * __Asignado a__: el email del usuario asignado a la acción programada
+    * __Creado por__: el email del usuario que ha creado la acción programada
+    * __Asignado a Contacto__: el email del usuario asignado al contacto destinatario del email
+    * __Email directo__: se utilizará el email introducido en el campo Email directo
+  * **Email directo**: email a utilizar como remitente del correo si **Email From** vale __Email directo__
+  * **Fecha Ejecución**: fecha en la que se mandará el email si el campo **Fecha Variable** no está marcado
+  * **Fecha Variable**: si está marcado se utilizará el valor del campo de tipo fecha seleccionado en al campo **Fecha de Referencia**, si no se ejecutará la acción seleccionada en la fecha indicada por el campo **Fecha Ejecución**
+  * **Fecha de Referencia**: este desplegable contendrá todos aquellos campos de tipo fecha presentes en el contacto para que podamos seleccionar la que queremos utilizar como base para ejecutar la acción. Además habrá un valor especial denominado **Fecha asignación**, esta fecha es dinámica y se establece en el momento en el que se asocia el contacto a la acción. Este campo especial nos permitirá reutilizar la acción de manera muy potente al poder ejecutar acciones dependiendo del momento en el que decidimos incluir un contacto en la acción
+  * **Desplazamiento**: este campo nos permitirá modificar la fecha de ejecución en un rango de días antes o después si la fecha de referencia es variable
+
+{{:accionesdigitales:accprog_email.png|}}
+
+{{:accionesdigitales:accprog_date.png|}}
+
+Algunos **ejemplos** del uso de este módulo:
+  * Programar un email de seguimiento para la semana que viene, que se hace seleccionando directamente el día del envío
+  * Enviar una email de felicitación de cumpleaños, seleccionando la fecha variable y la fecha de cumpleaños
+  * Enviar un email de bienvenida 7 días después de el alta del contacto en el sistema, seleccionando la fecha variable, la fecha de creación y el desplazamiento de 7 días
+  * Enviar un email a los 3 días de haber asignado el contacto a la acción programada, seleccionando la fecha variable, la fecha de asignación y el desplazamiento de 3 días
+
+Los contactos se pueden asociar a la programación mediante el uso normal de las listas relacionadas en la pestaña de //más información// o mediante algunas de las mejoras de asignación que se describen más adelante.
+
+====Secuencias de Acciones====
+
+Este módulo lleva la idea de acción programada un poco más lejos al permitir definir grupos de las mismas que facilitarán la asignación de contactos a planes de marketing o contacto digital. O sea, este módulo básicamente permite agrupar para su ejecución conjunta en las fechas programadas.
+
+Este módulo se compone de los siguientes campos:
+  * **Referencia**: una cadena indentificativa de la secuencia
+  * **Status**: si el estado de la secuencia es "Inactivo" u "Obsoleto" el día de la ejecución, no se realizará la acción. Si el valor de este campo es "Entre fechas", se considerará que la secuencia está activa si la ejecución de la acción cae dentro del intervalo definido por los campos **Fecha Inicio** y **Fecha Final**
+  * **Fecha Inicio** y **Fecha Final**: ver **Status**
+
+{{:accionesdigitales:accprog_seq.png|}}
+
+Los contactos se pueden asociar a la secuencia mediante el uso normal de las listas relacionadas en la pestaña de //más información// o mediante algunas de las mejoras de asignación que se describen más adelante.
+
+Las acciones programadas se pueden asociar a la secuencia mediante el uso normal de las listas relacionadas en la pestaña de //más información//. La orden de ejecución de las acciones programadas vendrá definida por las mismas. No se establece el orden en la secuencia sino en la misma programación. La secuencia en si misma es meramente un ayudante, un sistema que permite agrupar acciones programadas y asignarlas en lote a contactos. Se podría conseguir lo mismo asignando acción programada a acción programada a cada contacto.
+
+Algunos **ejemplos** del uso de este módulo:
+  * Felicitación de Festivos:
+    * crear una acción programada por cada fiesta que se desea mandar un correo, por ejemplo, año nuevo, reyes, san valentin, día del padre, etcétera. Cada una de estas acciones tendrá una fecha fija y se lanzará el email en ese día.
+    * crear una secuencia y asociar todas aquellas acciones de tipo felicitación festivo
+    * asociar los contactos a los que se les desea enviar el email en la secuencia
+    * como se observa, al final lo que hemos conseguido es asignar muchos contactos a muchas acciones programadas de manera sencilla además de definir un plan de marketing de contacto consistente para nuestros clientes
+  * Pack de Bienvenida:
+    * vamos a suponer que el pack consiste en un primer correo de bienvenida a los 2 días de haber sido creado en el sistema, otro correo a los 14 días y uno último a los 30 días.
+    * crear las tres acciones programadas, tendrán fecha variable sobre el campo **Fecha de asignación**, el primero tendrá un desplazamiento de 3 días, el siguiente de 14 días y el último de 30 días.
+    * crear una secuencia y asociar las tres acciones anteriores
+    * asociar los contactos
+    * cuando el comercial da de alta un nuevo contacto en el sistema tendrá que ir a su pestaña de //más información// y asociar las secuencias en las que quiere incluir el contacto, en ese momento se establecerá la **fecha de asignación** para ese contacto y el orden de ejecución de las acciones programadas vendrá definido por el desplazamiento introducido en cada una de ellas
+    * de nuevo se observa que hemos conseguido asignar con facilidad tres emails a un contacto en fechas diferentes
+
+[[:es:extensions:extensions:programmedemails:moredetails|Explicación ampliada]]
+=====Mejoras para la asignación y uso=====
+
+Para facilitar la asignación de contactos a acciones programadas y secuencias hemos implementado algunas mejoras.
+
+Desde la vista de lista de contactos dispondremos de un botón para asignar masivamente contactos a acciones y secuencias. De esta manera utilizando el sistema de filtros disponible podremos segmentar y asignar acciones rápidamente a muchos contactos.
+
+{{:accionesdigitales:accprog_selseq.png|}}
+
+En la pestaña de //Más Información// del Contacto hemos añadido listas relacionadas a Acciones Programadas y Secuencias para asignar éstas a un contacto rápidamente.
+
+Hemos añadido la capacidad de asignar acciones a contactos en los informes donde se pueden realizar filtros mucho más avanzados. Tiene el inconveniente de tener que realizar informes para conseguir la segmentación pero es la forma más rápida y efectiva de conseguir este objetivo.
+
+Es OBLIGATORIO que el informe contenga la columna "Contact ID", el número identificador interno de la aplicación, ya que al final, este es el único campo importante del informe al utilizarse este para establecer la relación interna.
+
+{{:accionesdigitales:accprog_report.png|}}
+
+Se ha ampliado las funcionalidades del sistema de informes para soportar la realización de informes sobre acciones realizadas.
+
+Cada vez que se manda un email, este se integra en el sistema de emails de vtiger CRM de manera automática, de esta forma es sencillo ver los mismos en la pestaña //Más Información// del contacto.
+
+Se ha ampliado la pantalla de envío de emails con la selección de plantillas desde el módulo de acciones.
+
+{{:accionesdigitales:accprog_selemail.png?800|}}
+
+Si las acciones y secuencias están desactivadas, desaparecen de todas las opciones de asignación
+===== Ejecución de Acciones Programadas (PALaunch) =====
+
+Hemos creado un módulo para registrar el histórico de acciones realizadas y pendientes de realizar.
+
+En cuanto se establece la relación de una acción programada con un contacto y, por tanto, toda la secuencia de emails que se mandarán, se crean en el módulo PALaunch un registro para cada uno de estos envíos. A medida que pasa el tiempo y se van ejecutando las acciones, cada registro queda marcado como realizado.
+
+De esta manera, este módulo nos permite tener un histórico de todas las acciones realizadas y su estado y, también, una visión de lo que hay pendiente de realizar. Incluso se pueden desactivar acciones futuras simplemente modificando el registro de PALaunch correspondiente.
+
+
+===== Proceso de ejecución de acciones=====
+
+Se ha implementado un proceso periódico que es capaz de evaluar la lista de acciones pendientes de ejecutar y realizarlas secuencialmente.
+
+Este proceso dispone de variables globales para controlar el número de mensajes enviados por hora o un número máximo de tiempo en el que se ha de ejecutar. De esta manera intentamos ser respetuoso con los recursos del servidor y no inundar el servicio de envíos de email.
+
+  * MAILQUEUE_BATCH_SIZE
+  * MAILQUEUE_BATCH_PERIOD
+  * MAILQUEUE_THROTTLE
+
+
+===== Preguntas y Respuestas=====
+
+??? En cuanto a la asignación de contactos, si la acción se programa mediante "Execution Date" y asigno contactos a lo largo del tiempo ¿qué sucede?
+
+!!! Se ejecutan en la fecha indicada o si ya ha pasado se ejecutan de manera inmediata.
+
+??? ¿Qué pasa si un usuario decide cambiar la opción de programación estando contactos asignados?
+
+!!! Se aplicará a los contactos que se asignen a partir de ese momento.
+
+??? Veo que las Secuencias van con fechas de inicio y fin. ¿Qué pasa si se asignan acciones programadas mediante "Execution date" que está fuera de las fechas de la secuencia? y ¿qué sucede si las acciones son con delay y la fecha elegida dentro del campo Delay after field" está también fuera?
+
+!!! Las asociaciones realizadas a través de secuencias no se ejecutarán. Si se ha asociado un contacto directamente a la acción programada sí se ejecutará independientemente de la asociación a través de la secuencia. Puedes asignar un contacto a una acción programada sin que haya una secuencia por en medio, o bien puedes ir a una secuencia y asociarle un contacto, de manera que estás asociando el contacto a las acciones de la secuencia. En este segundo caso se tendrían en cuenta las fechas de inicio y fin de la secuencia.
+
+??? ¿Por qué no utilizar flujos de trabajo?
+
+!!! Porque necesitamos eventos basados en tiempo y los flujos de trabajo se basan en eventos de guardar. Porque los flujos de trabajo solo los pueden definir usuarios administradores mientras que la solución implementada aquí se basa en el sistema de privilegios de vtiger CRM. Porque los flujos de trabajo no disponen de un pool de acciones desde la que ir construyendo programas y secuencias.

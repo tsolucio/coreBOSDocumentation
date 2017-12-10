@@ -1,0 +1,93 @@
+====== vtigerCRM-Spain::Informes. Próxima Fecha de Facturación ======
+
+Next Recurring Invoice Date Report
+
+Este informe tiene mucha miga y es para usuarios avanzados de mysql :-)
+
+Intento detallarte un poco el proceso que he seguido para obtener el SQL porque lo demás es lo de menos.
+
+Lo primero, hacer el bulto:
+
+<code>SELECT account_no,accountname, subject, total,last_recurring_date,start_period
+FROM vtiger_account
+INNER JOIN vtiger_crmentity on vtiger_crmentity.crmid=vtiger_account.accountid
+INNER JOIN vtiger_salesorder on vtiger_account.accountid=vtiger_salesorder.accountid
+INNER JOIN vtiger_crmentity socrm on socrm.crmid=vtiger_salesorder.salesorderid
+INNER JOIN vtiger_invoice_recurring_info on vtiger_invoice_recurring_info.salesorderid=vtiger_salesorder.salesorderid
+WHERE vtiger_crmentity.deleted=0 and socrm.deleted=0
+and end_period>NOW() and enable_recurring=1</code>
+
+
+Con este SQL tengo toda la información que necesito, las tablas enlazadas y la mayoría de condiciones. Ten en cuenta que ya he hecho varias aproximaciones para conseguir esta.
+
+
+<code>SELECT account_no,accountname, subject, total,last_recurring_date,start_period, coalesce(last_recurring_date,start_period) as lastdate
+FROM vtiger_account
+INNER JOIN vtiger_crmentity on vtiger_crmentity.crmid=vtiger_account.accountid
+INNER JOIN vtiger_salesorder on vtiger_account.accountid=vtiger_salesorder.accountid
+INNER JOIN vtiger_crmentity socrm on socrm.crmid=vtiger_salesorder.salesorderid
+INNER JOIN vtiger_invoice_recurring_info on vtiger_invoice_recurring_info.salesorderid=vtiger_salesorder.salesorderid
+WHERE vtiger_crmentity.deleted=0 and socrm.deleted=0
+and end_period>NOW() and enable_recurring=1</code>
+
+
+Ahora obtengo la fecha de la ultima factura generada. Para ello cuento con que vtiger guarda esta fecha en el campo last_recurring_date si la ha hecho y si no es la fecha inicial. La función coalesce() me permite obtener el primer valor no nulo de los dos.
+
+Ahora tengo que sumar a esta fecha el intervalo, para lo cual primero tendré que obtener el intervalo. Hago una primera prueba:
+
+<code>SELECT account_no,accountname, subject, total,recurring_frequency, coalesce(last_recurring_date,start_period) as lastdate,
+case recurring_frequency
+when 'Daily' then 'Day'
+when 'Weekly' then 'Week'
+when 'Monthly' then 'Month'
+when 'Quarterly' then 'Quarter'
+else 'Year'
+end as mysqlinterval
+FROM vtiger_account
+INNER JOIN vtiger_crmentity on vtiger_crmentity.crmid=vtiger_account.accountid
+INNER JOIN vtiger_salesorder on vtiger_account.accountid=vtiger_salesorder.accountid
+INNER JOIN vtiger_crmentity socrm on socrm.crmid=vtiger_salesorder.salesorderid
+INNER JOIN vtiger_invoice_recurring_info on vtiger_invoice_recurring_info.salesorderid=vtiger_salesorder.salesorderid
+WHERE vtiger_crmentity.deleted=0 and socrm.deleted=0
+and end_period>NOW() and enable_recurring=1</code>
+
+
+Con esto he convertido los intervalos de vtigercrm en intervalos de mysql
+
+
+Finalmente hago la suma de la fecha
+
+<code>SELECT account_no,accountname, subject, total,recurring_frequency, coalesce(last_recurring_date,start_period) as lastdate,
+case recurring_frequency
+when 'Daily' then date_add(coalesce(last_recurring_date,start_period),interval 1 Day)
+when 'Weekly' then date_add(coalesce(last_recurring_date,start_period),interval 1 Week)
+when 'Monthly' then date_add(coalesce(last_recurring_date,start_period),interval 1 Month)
+when 'Quarterly' then date_add(coalesce(last_recurring_date,start_period),interval 1 Quarter)
+else date_add(coalesce(last_recurring_date,start_period),interval 1 Year)
+end as nextrev
+FROM vtiger_account
+INNER JOIN vtiger_crmentity on vtiger_crmentity.crmid=vtiger_account.accountid
+INNER JOIN vtiger_salesorder on vtiger_account.accountid=vtiger_salesorder.accountid
+INNER JOIN vtiger_crmentity socrm on socrm.crmid=vtiger_salesorder.salesorderid
+INNER JOIN vtiger_invoice_recurring_info on vtiger_invoice_recurring_info.salesorderid=vtiger_salesorder.salesorderid
+WHERE vtiger_crmentity.deleted=0 and socrm.deleted=0
+and end_period>NOW() and enable_recurring=1</code>
+
+SQL utilizado en el informe
+
+<code>SELECT account_no,accountname, subject, total,date_format(case recurring_frequency
+when 'Daily' then date_add(coalesce(last_recurring_date,start_period),interval 1 Day)
+when 'Weekly' then date_add(coalesce(last_recurring_date,start_period),interval 1 Week)
+when 'Monthly' then date_add(coalesce(last_recurring_date,start_period),interval 1 Month)
+when 'Quarterly' then date_add(coalesce(last_recurring_date,start_period),interval 1 Quarter)
+else date_add(coalesce(last_recurring_date,start_period),interval 1 Year)
+end,'%Y-%m-%d') as proximarev
+FROM vtiger_account
+INNER JOIN vtiger_crmentity on vtiger_crmentity.crmid=vtiger_account.accountid
+INNER JOIN vtiger_salesorder on vtiger_account.accountid=vtiger_salesorder.accountid
+INNER JOIN vtiger_crmentity socrm on socrm.crmid=vtiger_salesorder.salesorderid
+INNER JOIN vtiger_invoice_recurring_info on vtiger_invoice_recurring_info.salesorderid=vtiger_salesorder.salesorderid
+WHERE vtiger_crmentity.deleted=0 and socrm.deleted=0
+and end_period>NOW() and enable_recurring=1</code>
+
+{{reporting:proximarevision.rptdesign|Puedes obtener el informe aquí.}}

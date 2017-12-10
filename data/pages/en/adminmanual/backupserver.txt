@@ -27,3 +27,13 @@ There are two different types:
   * Backup with external tools. mysqldump and zip must be available on the server. Fast and good for big sets of information.
 
 You can find some more information on our youtube channel and in the coreBOS Manual.
+
+====== Recovering from a Backup ======
+
+  * Once you have made a backup you will have a .zip file with the information
+  * Download a copy of your code as it is being used into a webserver directory and give it the correct permissions
+  * Unzip the backup file into the downloaded code from the top directory of the application overwriting any existing files.
+  * You will see a new .sql file which contains the backup database
+  * Create a new empty database <code>mysqladmin -u dbuser -ppassword CREATE DBname</code>
+  * Import the information (database.sql) <code>mysql -u dbuser -ppassword DBname < database.sql</code>
+  * Configure config.inc.php (database name, user, password, application path, etc.)

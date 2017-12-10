@@ -1,0 +1,39 @@
+====== Copia de Seguridad de la Aplicación ======
+
+La aplicación tiene una extensión que puede utilizarse para configurar copias de seguridad periódicas y crear copias de seguridad en el momento.
+
+Puedes utilizar el Editor de Menú para crear un acceso a esta URL:
+
+<code>index.php?module=VtigerBackup&action=index</code>
+
+o directamente utilizar el nombre del Módulol, así:
+
+{{ :en:adminmanual:backups:backup.png |}}
+
+Cuando accedamos a la extensión, podremos activar las copias de seguridad locales y las copias de seguridad fuera del sitio (FTP).
+
+{{ :en:adminmanual:backups:backupconfig.png |}}
+
+<WRAP center round info 60%>
+El directorio por defecto "backup" existe y está protegido contra acceso desde la web.
+</WRAP>
+
+Una vez configuradas las copias de seguridad, puedes realizar copias de seguridad manualmente haciendo clic en el botón **Copia de seguridad ahora** y/o activar las **tareas programadas** para hacerlas periódicamente en Configuración > Tareas Programadas
+
+{{ :en:adminmanual:backups:backupschedule.png |}}
+
+Hay dos tipos de copias distintas:
+  * Backup with no external tools. Can easily run into memory limitations and really slow down the server. Good for smaller sets of information.
+  * Backup with external tools. mysqldump and zip must be available on the server. Fast and good for big sets of information.
+
+Puedes encontrar más información en nuestro canal de youtube y en el manual de coreBOS.
+
+====== Recuperando una copia de seguridad ======
+
+  * Una vez realizada la copia, dispondremos de un archivo .zip
+  * Hay que hacer una copia de todo el código que utilizamos. O sea, una descarga limpia de la versión de coreBOS en la que estamos, sea esta personalizada o no. Lo descomprimes donde irá la instalación con los permisos correspondientes.
+  * Vas a la carpeta raiz de la instalación y descomprimes el archivo .zip, sobrescriben sin ningún problema las carpetas con el mismo nombre.
+  * Luego aparecerá también un archivo .sql llamado database (muy importante)
+  * Por medio de consola escribimos <code>mysqladmin -u usuariodebase -pcontraseña CREATE nombreBD</code>
+  * Creada la base vamos a importar la información de nuestro respaldo (database.sql) <code>mysql -u usuario -pcontraseña nombreBD<database.sql</code>
+  * Configurar el config.inc.php de la raíz de la nueva instalación con la información necesaria (base de datos, usuario, contraseña, nombre, path, etc.)

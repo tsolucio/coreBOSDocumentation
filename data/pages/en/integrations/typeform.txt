@@ -1,0 +1,38 @@
+==== Typeform Configuration ====
+
+Configuring the application to read Typeform surveys consists of various steps detailed next:
+
+  * Create the survey in Typeform
+  * Create a notification by email for the survey. The email must have this subject:<code>Typeform::<surveyid>::<surveyurl></code>
+    * //surveyid// is the internal identifier assigned by Typeform
+    * //surveyurl// is the url of the survey
+
+{{ :en:integrations:typeform:cbcrm_survey_typeform_config.png?730 |}}
+
+  * Configure Email Converter in the application so it can read the Typeform notifications
+
+{{ :en:integrations:typeform:cbcrm_typeform_scanner_config.png?730 |}}
+
+  * Configure the Typeform API access key in **Settings > Configuration Editor**
+  * That's it, with those two changes, coreBOSCRM will receive an email each time a survey is completed and it will be registered in the application.
+  * Now you can create workflows associated to the creation event of the different records to have the system act upon them.
+
+==== Typeform Implementation ====
+
+  * Read surveyid from mail subject
+  * Read typeform json
+  * If survey doesn't exist > create it with stats and info
+  * If it exists > update stats
+  * Foreach questions > upsert
+  * Foreach responses
+    * Get ACL and email
+    * Attach email to ACL
+    * Check if done
+    * If exists > ignore
+    * If not > create with meta data 
+    * Foreach answer > create answer
+    * Update lastsync datetime
+
+TBD  FIXME  Check all this, document it!
+
+  * Limitation. Only works with existing ACL. **??? Really, no anonymous surveys ??? ######**

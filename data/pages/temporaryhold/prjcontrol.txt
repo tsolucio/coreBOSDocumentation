@@ -1,0 +1,99 @@
+====== vtigerCRM-Spain::Project Management and Control ======
+
+The goal of this vtiger CRM customization is twofold. The main goal is to control all time and money spent in the development of the project, so we can control it's economic and temporal profitability, but we also intend to be able to handhold the client through the execution of the project by adding some business process guidance and the ability to instantiate project templates to easily start recurrent projects.
+
+The global structure of the idea is depicted in the next image:
+
+{{temporaryhold:projectcontrol.png|vtiger CRM Project Control}}\\
+
+As can be seen all the organization happens at the Operation level while all the work and money registration happens below the operations.
+
+
+===== Economic and Temporal Control =====
+
+  * **Project**
+    * Economic
+      * Total Paid  (read only)
+      * Total Received  (read only)
+      * Estimated Revenue  (read only). Auto calculate field as: Target Budget - (Total Received - Total Paid)
+    * Temporal
+      * Total Time  (read only)
+      * Estimated Time
+      * Time Difference (read only). Auto calculate field as: Estimated Time - Total Time
+    * Status
+      * Current Level. Represents the current execution order of the operations.
+    * Templates
+      * Template checkbox that marks a project as a template
+      * New filter to show only project templates.
+  * **Operation**
+    * Economic
+      * Total Paid  (read only)
+      * Total Received  (read only)
+      * Step Revenue  (read only). Auto calculate field as: Target Budget - (Total Received - Total Paid)
+    * Temporal
+      * Total Time  (Worked Hours converted to read only)
+      * Estimated Time
+      * Time Difference (read only). Auto calculate field as: Estimated Time - Total Time
+    * Sequence
+      * Order/Level. Order in which the step must be executed
+  * **Control**
+    * Economic:
+      * each time a Purchase Order is made against an Operation, the total amount of the PO is added to the Total Paid field in the Operation and the related Project
+      * each time an Invoice is made against an Operation, the total amount of the Invoice is added to the Total Received field in the Operation and the related Project
+      * then the Revenue fields are calculated to keep everything synchronized
+    * Temporal:
+      * each time a TimeControl record is made against the Operation, the Total Time and Time Difference are updated and then the changes are applied accordingly to the project
+      * each time a TimeControl record is made against a Ticket related to an Operation, the total amount of hours is updated on the ticket, then Total Time and Time Difference are updated on the operation and then the changes are applied accordingly to the project
+  * **Relations**
+    * Operation with Purchase Order, Invoice and Ticket
+    * Operation +info show related Purchase Order, Invoice and Ticket
+    * Timecontrol on +info of Operation and Ticket
+    * Special functions on +info Project to show Purchase Order, Invoice and Tickets related through the related Operations. No add nor select, just show.
+    * Normal many to many relation between Projects and Products and Services
+
+
+
+===== Helpers =====
+
+  * When selecting Product/Service on a TimeControl record, if it is related to a Project, by default we will show only the list of products/services related directly to the project without losing the option to search for all products/services
+  * TCInvoicing will support Projects to makes easy invoicing on work done
+  * Add a default product/service to the user and have this appear as the default product/service each time a user creates a new timecontrol record
+  * Partial payments are not supported directly, you must create as many PO/Invoice as necessary. Something could be studied with the TSolucio Payment control module
+  * To get the exact costs, you should create a PO for you own resources, as if you paid for them (which you do). Could be interesting to enhance TCInvoicing to support PO
+  * State on TimeControl record. If saved with state "Finish Operation", then if the timecontrol is related to a ticket, the ticket is closed, if the ticket or the timecontrol are related to an operation the, operation is closed and the project "Current Level" field is incremented. If there is no operation at that level number, the project is closed.
+  * New START button. Similar to duplicate, opens the project as new record with all fields filled in so user can adapt. When saved a special process will be executed that will copy all operations adapting the dates based on initial date of project and duration. It will also establish the relation between all related products and services of initial project and finally will set the estimated end date of the project.
+
+
+
+
+
+
+===== Special Project Template Selection Screen =====
+
+Now that we have project templates, it would be very probable that these templates be parametrized based on a series of variables. For example, each Project can have a Brand, Model (type), Warranty, Pickup, ... fields that define the exact steps that need to be taken. To help in the decision of which project template to choose we could create an extension that would handhold us through the process.
+
+In the form of a more or less elaborated sequence of questions:
+  * Ask for the Brand. This could be a picklist or a capture to a Brand module
+  * Model/Type
+  * Warranty. Yes/No field
+  * more fields/questions as required
+  * the last step would be a list of project templates that fulfill the selected parameters so that we could open the template as if the START button had been pressed.
+
+
+===== Process Workflow Control =====
+
+On each Operation and Project we will add a new action: "View Process". This action will open a new window with a simple graphical schema of the current project, with each step at the level of order it belongs on. Similar to the next image:
+
+{{temporaryhold:projectcontrolgraph.png|vtiger CRM Project Control Process workflow}}\\
+
+  * Clicking on a step box will take us to that operation
+  * Clicking on the project box will take us to the project
+  * IDEA: We could add different links in each box to go to different actions: PO | INV | TCK | TC
+\\
+The colors mean:
+  * Grey: step has been passed but not executed, nor in finished state nor has related time control records
+  * Blue: step has been passed, it is not in finished state but has related time control records
+  * Green: finished, step is in finished state
+  * Red: working, step has timecontrol records, is not finished and project is at this level
+  * Black: steps pending, to be worked on
+

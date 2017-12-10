@@ -2,7 +2,7 @@
 
 =====PHP=====
 
-  * Turn on log4php.debug library usage, in file config.inc.php <code>'LOG4PHP_DEBUG' => true,</code>
+  * Turn on log4php.debug library usage, in file config.inc.php <code>$LOG4PHP_DEBUG = true;</code>
   * Set the log level, in file log4php.properties <code>log4php.rootLogger = DEBUG, A1</code>
   * The log files will be written in the **logs** directory. For the rootLogger it will be logs/vtigercrm.log
 <WRAP center round important 70%>
@@ -31,6 +31,11 @@ Make sure logs/ folder has write access to apache server process owner.
 =====AJAX and Javascript=====
   * Chrome and Firefox have webdevelopers tools and firebug.
   * [[http://codex.wordpress.org/Using_Your_Browser_to_Diagnose_JavaScript_Errors#Step_3:_Diagnosis|Interesting explanation on how to see javascript errors]]
+
+=====Global Variables=====
+
+There are various debug global variables that can help you diagnose problems with your coreBOS installation.
+
 
 =====Webservice=====
   * What I usually do is edit the curl call and dump the raw result coming from coreBOS. Obviously the log4php system is also very useful in this case.
@@ -66,6 +71,13 @@ Additionally, one of our former team members {{:devel:patches:debug_webservices.
 =====Email=====
 
 [[en:adminmanual:outgoingserver|Have a read here about how coreBOS outgoing email server works and how to configure it]].
+
+Activate the debug log at level **FATAL** and set the **Debug_Email_Sending** global variable to 1. This will send the whole conversation between coreBOS and the email server to the log file so you can diagnose the problem.
+
+
+<WRAP center round info 60%>
+In previous versions we used to need the changes below which I leave here as a reference only. The global variable method is better.
+</WRAP>
 
 To debug the outgoing email server the best is to activate PHPMailer debugging with the changes below and look in the debug log file (logs/vtigercrm.log)
 
@@ -105,67 +117,6 @@ index a8cac72..7674172 100755
  
 </code>
 
-<WRAP center round info 60%>
-In previous versions we used to need the changes below which I leave here as a reference only. The above method is better.
-</WRAP>
-
-Once applied the change below, look in the //errmail.log// file that will be created in the root of your install.
-
-{{:devel:patches:debugemail_corebos.diff|debugemail_corebos}}\\
-<code>diff --git a/modules/Emails/class.phpmailer.php b/modules/Emails/class.phpmailer.php
-index bc53eb2..9bb4d90 100755
---- a/modules/Emails/class.phpmailer.php
-+++ b/modules/Emails/class.phpmailer.php
-@@ -323,7 +323,7 @@ class PHPMailer
-      * @var integer
-      * @see SMTP::$do_debug
-      */
--    public $SMTPDebug = 0;
-+    public $SMTPDebug = 2;
- 
-     /**
-      * How to handle debug output.
-@@ -339,7 +339,7 @@ class PHPMailer
-      * @var string|callable
-      * @see SMTP::$Debugoutput
-      */
--    public $Debugoutput = 'echo';
-+    public $Debugoutput = 'error_log';
- 
-     /**
-      * Whether to keep SMTP connection open after each message.
-@@ -711,7 +711,7 @@ class PHPMailer
-         switch ($this->Debugoutput) {
-             case 'error_log':
-                 //Don't output, just log
--                error_log($str);
-+                error_log($str,3,'errmail.log');
-                 break;
-             case 'html':
-                 //Cleans up output a bit for a better looking, HTML-safe output
-diff --git a/modules/Emails/class.smtp.php b/modules/Emails/class.smtp.php
-index f259df6..ff5f60a 100755
---- a/modules/Emails/class.smtp.php
-+++ b/modules/Emails/class.smtp.php
-@@ -109,7 +109,7 @@ class SMTP
-      * * self::DEBUG_LOWLEVEL (`4`) Low-level data output, all messages
-      * @var integer
-      */
--    public $do_debug = self::DEBUG_OFF;
-+    public $do_debug = self::DEBUG_CLIENT;
- 
-     /**
-      * How to handle debug output.
-@@ -212,7 +212,7 @@ class SMTP
-         switch ($this->Debugoutput) {
-             case 'error_log':
-                 //Don't output, just log
--                error_log($str);
-+                error_log($str,3,'errmail.log');
-                 break;
-             case 'html':
-                 //Cleans up output a bit for a better looking, HTML-safe output
-</code>
 
 =====Frequent problems=====
 

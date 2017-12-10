@@ -1,0 +1,39 @@
+====== syncSeactivityRelWithAllRelIdOnCbCalendar Changeset ======
+
+^Name^syncSeactivityRelWithAllRelIdOnCbCalendar^
+|Published|Thu Aug 3 19:41:22 2017 +0200|
+|Severity|Data Loss|
+|Corrected|Tue Sep 19 23:53:02 2017 +0200|
+|Purpose|Update new events created with the new module cbCalendar with vtiger_seactivityrel|
+|Error|As far as we have been able to diagnose, the problem occurs only with emails. The update and delete commands are designed to work with events that have only one relation, but emails have more than one, so we effectively eliminate all the relations for emails.|
+
+===== Fix =====
+
+In general you will not have to do anything to fix this issue. The related entities of an email are also saved directly on the email. So we have introduced the **checkAndRestoreEmailsRelations** changeset that recovers the deleted information from the email itself.
+
+Additionally, if you have a backup of your database you can follow the instructions below to manually recover the information from your backup.
+
+First check if your coreBOS install is affected:
+
+  * go to coreBOS Updater and search for syncSeactivityRelWithAllRelIdOnCbCalendar in the file name column
+  * see if the execution date is INSIDE the date range 2017-08-03 and 2017-09-19
+
+<WRAP center round important 80%>
+If the changeset was executed before Sep 20 2017 your install is affected. If not, you can ignore this error.
+</WRAP>
+
+You must get a copy of your database **BEFORE** the changeset was applied. You have the execution date and even an approximate time if you look at the createdtime field.
+
+Recover the database copy in some development machine. **NOT** in production. Your users can continue to work normally, there will be no disruption for them.
+
+Launch this command against the database you have just recovered:
+
+<code>
+mysqldump --extended-insert=FALSE --insert-ignore --no-create-info -u root -p YOUR_BACKUP_DATABASE vtiger_seactivityrel > actrel_backup.sql
+</code>
+
+Now copy the actrel_backup.sql file to your production server and import the changes with:
+
+<code>
+mysql -u root -p YOUR_PRODUCTION_DATABASE < actrel_backup.sql
+</code>

@@ -1,0 +1,27 @@
+====== Trouble Ticket Inline Images and Attachments ======
+\\
+=====Why was it created?=====
+
+When mail converter is used to create trouble tickets from and email, the body of the email is established as the description of the ticket, but if any image or attachment was sent in the email they do not appear in the detail view. You have to go to the documents related tab to see them and there you can't distinguish which are from the email body and which have been attached directly. Furthermore, if your client responds to your comments with more images/attachments these are not visible in the comments section of the ticket and the attachments get mixed in with the other related documents.
+
+This patch permits us to view images and access attachments sent in the body of the emails directly in the detail view of the ticket, making it easier to get the full context of the problem to be solved.
+
+=====How to use it=====
+
+Once you have applied the changes to the base code there is nothing to do, just enjoy the view :-)
+        
+=====Screenshots=====
+
+{{ :temporaryhold:ttii01.png?direct&700 |}}
+
+{{ :temporaryhold:ttii02.png?direct&700 |}}
+
+
+===== Comments =====
+
+<WRAP center round alert 60%>
+This is a full set of modifications to base files, so it creates a dependency on your code and complicates upgrades.
+</WRAP>
+
+
+<wrap em>Thanks to [[http://vissim.no|VISSIM]] for supporting the creation of this patch.</wrap>

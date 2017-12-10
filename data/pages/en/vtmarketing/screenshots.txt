@@ -1,0 +1,27 @@
+====== coreBOS CRM screenshots ======
+
+**Normal email with event control**
+
+{{ :en:vtmkt:coreboscrm_normalemailcontrol.png?direct&800 |}}
+
+
+
+**New Message module with event control**
+
+
+{{ :en:vtmkt:coreboscrm_messagecontrol.png?direct&800 |}}
+
+
+** Email and SMS template editor **
+
+{{ :en:vtmkt:coreboscrm_templatemodule.png?direct&800 |}}
+
+
+
+{{ :en:vtmkt:coreboscrm_edittemplate.png?direct&800 |}}
+
+
+** List of workflows supported in the system **
+
+
+{{ :en:vtmkt:coreboscrm_workflows.png?direct&800 |}}

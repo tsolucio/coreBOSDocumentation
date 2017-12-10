@@ -1,4 +1,4 @@
-===== Configuring Autocomplete Fields: Business Mappings =====
+===== Configuring Autocomplete and MultiSelect Autocomplete Fields: Business Mappings =====
 
 An autocomplete field has three configurable options:
 
@@ -114,4 +114,82 @@ This next map will activate the functionality on the Potentials Name and Related
         </field>
     </fields>
 </map>
+</code>
+
+==== MultiSelect Autocomplete Fields ====
+
+MultiSelect Autocomplete Fields work exactly the same. The uitype is 1025 and the extended field information is exactly the same as a normal select autocomplete field.
+
+This is what my test field definition for a uitype 1025 in the potentials module looks like:
+
+<code XML>
+<field>
+  <fieldname>ui1025</fieldname>
+  <features>
+<feature>
+  <name>searchmodule</name>
+  <value>Contacts</value>
+</feature>
+<feature>
+  <name>searchfields</name>
+  <values>
+<value>
+  <module>Accounts</module>
+  <value>accountname</value>
+</value>
+<value>
+  <module>Contacts</module>
+  <value>firstname,lastname</value>
+</value>
+  </values>
+</feature>
+<feature>
+  <name>searchcondition</name>
+  <value>startswith</value>
+</feature>
+<feature>
+  <name>entityfield</name>
+  <values>
+<value>
+  <module>Accounts</module>
+  <value>accountname</value>
+</value>
+<value>
+  <module>Contacts</module>
+  <value>firstname</value>
+</value>
+  </values>
+</feature>
+<feature>
+  <name>showfields</name>
+  <values>
+<value>
+  <module>Accounts</module>
+  <value>accountname,phone,email1</value>
+</value>
+<value>
+  <module>Contacts</module>
+  <value>firstname,email,mailingstreet</value>
+</value>
+  </values>
+</feature>
+<feature>
+  <name>fillfields</name>
+  <values>
+<value>
+  <module>Accounts</module>
+  <value>forecast_amount=annual_revenue</value>
+</value>
+<value>
+  <module>Contacts</module>
+  <value>leadsource=leadsource,assigned_user_id=assigned_user_id,closingdate=support_end_date</value>
+</value>
+  </values>
+</feature>
+<feature>
+  <name>multiselect</name>
+  <value>true</value>
+</feature>
+  </features>
+</field>
 </code>

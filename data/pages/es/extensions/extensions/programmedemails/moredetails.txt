@@ -1,0 +1,91 @@
+===== Acciones Programadas: Webinar =====
+
+==== Autorespuesta. ====
+
+Los mensajes de autorespuesta en coreBOS están basados en flujos de trabajo y básicamente ya los vimos en el webinar anterior. La idea general es que tenemos un canal de comunicación abierto con nuestros cliente como puede ser un formulario web, un portal de cliente o similar. Incluso podría ser un mensaje de facebook o twitter. En cualquier caso todos estos eventos acabarán con una creación o edición de algún registro dentro de coreBOS. Ese es el evento que hay que detectar y asociar un flujo de trabajo. En el webinar anterior ya vimos como detectar la creación de un contacto desde un formulario web y cómo lanzar un flujo de trabajo para asignarlo directamente a un segmento de mercado, pues siguiendo el mismo procedimiento podemos enviar emails de autorespuesta.
+
+En un futuro próximo esperamos poder reaccionar ante eventos de redes sociales y responder ahí también.
+
+==== Campañas de Goteo (Drip Campaigns) ====
+
+Las campañas de goteo son diferentes a reaccionar ante un evento externo ya que su lanzamiento se basa en el paso del tiempo. Programaremos una serie de tareas que se deberán lanzar en unas fechas determinadas o transcurrido un lapso de tiempo definido. A medida que pasa el tiempo las campañas de goteo irán ejecutando las tareas definidas.
+
+Estas tareas irán asociadas siempre a un contacto (cuenta o precontacto) y el hecho de que un contacto esté asociado es suficiente para que la acción se ejecute sobre el mismo. O sea, tenemos que hacer tres cosas para realizar un envío:
+
+  - Crear la acción (el //que//), normalmente un email (Acción de Marketing)
+  - Crear una programación que define //cuando// se ejecuta la acción (Acción de Marketing Programada)
+  - Asignar la programación a un contacto que será //quién// reciba la acción.
+
+Del //como// se encarga coreBOS y el //donde// será en tu servidor.
+
+Veamos unos ejemplos.
+
+=== Felicitar el cumpleaños a tus clientes. ===
+
+Este requerimiento se puede plantear de dos maneras.
+
+Una es enviar el mismo email todos los años en la fecha indicada. Para hacer esto nos basta un flujo de trabajo programado. La segunda manera es más interesante.
+
+Imaginemos que queremos enviarle un correo DISTINTO cada año durante toda su vida. Para realizar este tipo de trabajo tenemos el módulo de "Acciones de Marketing Programadas".
+
+La acción en si es un correo que podemos crear utilizando el módulo de "Acciones de Marketing". Para programar la acción creamos un nuevo registro como el siguiente:
+
+{{ :es:extensions:extensions:programmedemails:moredetails:ap001.png |}}
+
+La fecha de ejecución queda vacía porque este registro se lanza en una fecha variable, se calculará dinámicamente desde la fecha de nacimiento del contacto con un desplazamiento de 365 días y se mandará el correo desde el usuario asignado al contacto.
+
+En el segundo email se ve que hemos puesto un desplazamiento de 730 días y así crearíamos todos los emails programados que necesitamos.
+
+
+{{ :es:extensions:extensions:programmedemails:moredetails:ap002.png |}}
+
+
+=== Enviar un correo en los días festivos ===
+
+El siguiente ejemplo es cuando queremos enviar un email en fechas señaladas. Por ejemplo, año nuevo, el día del padre o navidad.
+
+En este caso basta crear una acción programada y establecer la fecha en la que se ha de ejecutar la acción. La siguiente imagen muestra la acción para felicitar el año nuevo.
+
+{{ :es:extensions:extensions:programmedemails:moredetails:ap003.png |}}
+
+=== Una campaña de bienvenida ===
+
+En la cual enviamos un correo nada más se registra un cliente, al cabo de 10 días y después al cabo de 40 días
+
+Para hacer esto crearemos tres registros de acción programada. Los tres tendrán la fecha variable y el campo de referencia será el valor especial "Fecha de Asignación" que es el momento exacto en el que se asigna el contacto a la acción.
+
+{{ :es:extensions:extensions:programmedemails:moredetails:ap004.png |}}
+
+{{ :es:extensions:extensions:programmedemails:moredetails:ap005.png |}}
+
+{{ :es:extensions:extensions:programmedemails:moredetails:ap006.png |}}
+
+
+Para poner en marcha el proceso necesitamos un flujo de trabajo que detecte el evento de llegada del contacto. Supongamos que el contacto rellena un formulario web. En ese caso al crear el contacto añadiremos un flujo de trabajo con la tarea "Asignar a Acción de Marketing" que asociará el contacto con cada uno de las acciones. A partir de ese momento quedará definida la "Fecha de Asignación" de ese contacto y las tres acciones se lanzarán en sus fechas correspondientes.
+
+Fijaros que aunque la acción sea la misma el momento de lanzamiento para cada contacto será distinto dependiendo del momento de llegada a nuestra aplicación del mismo.
+
+
+=== Una campaña de seguimiento de cobro ===
+
+Cobro de facturas en la que enviamos una serie de cartas de pago hasta el último evento que creará un tarea en el calendario para iniciar los pasos finales de gestión del cobro.
+
+Este es igual que el de la campaña de bienvenida salvo por dos cosas importantes.
+
+1.- Los eventos de asignación y des-asignación del contacto:
+
+1.1- Tendremos un flujo de trabajo programado que cada día buscará todas las facturas vencidas y asociará el contacto correspondiente a las acciones de seguimiento de cobro.
+
+1.2.- Tendremos otro flujo de trabajo que detecte cuando se marca una factura como pagada y des-asociará el contacto de las acciones de seguimiento de cobro
+
+2.- El otro tema distinto es que la ultima acción no es un email sino la creación de un evento
+
+{{ :es:extensions:extensions:programmedemails:moredetails:ap007.png |}}
+
+==== Planes de Marketing ====
+
+Las Acciones de Marketing Programadas en si mismas son el motor de las campañas de goteo, pero lo más común es tener varias acciones conceptualmente relacionadas. En los ejemplos anteriores las tres acciones de la campaña de bienvenida o todas las acciones de contacto en festivos están relacionadas.
+
+En estos casos lo útil sería poder asignar contactos al conjunto de acciones de manera global y es justo eso para lo que sirven los planes de marketing. Son, simplemente, una agrupación de acciones de marketing para que podamos trabajar con ellas de manera agrupada.
+
+El sistema de flujos de trabajo tiene tareas para asignar y des-asignar contactos tanto a acciones individuales como a planes de marketing.

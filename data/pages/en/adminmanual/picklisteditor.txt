@@ -92,6 +92,25 @@ You can re-arrange the existing picklist values for each role.
 
 To transfer the changes to other roles, click on the link //Add to Other Roles//, Select the desired role(s) and click the //Save// button to update changes.
 
+==== Role based Picklist Values ====
+
+The values available in a picklist for any given user are defined by that user's role AND those values available for users under this user's role in the hierarchy. Since a user is able to see and edit all information available to those roles below his, it is normal that this user will automatically see all the values available to the users in sub-roles.
+
+So, if you need to make a value not available for a user, remember to eliminate that value from all of that user's sub-roles.
+
+This restriction affects ONLY the possibility for these users to assign that value to newly created records and records that currently do not have that value. In other words, if a user does not have access to a value X in a picklist, they will not be able to set that value to a new record nor a record that has some other value, but if the record currently has value X assigned they will be able to leave it with that value.
+
+All users will always see the values assigned to a record, even if they do not have permission to use that value as a valid assignment.
+
+In other words:
+
+^Create|Users only see values they have permission to access.|
+^Retrieve Picklist|Users see value assigned in the record, even if they don't have access to the value.|
+^Retrieve Multi-Picklist|Users only see values they have permission to access. Any other values assigned will be perserved.|
+^Retrieve|Retrieving infromation works as explained above for List View, Detail View and Reports. Exporting is special and will always give you the real value saved in the field.|
+^Update Picklist|Users see value assigned in the record, even if they don't have access to the value.|
+^Update Multi-Picklist|Users only see values they have permission to access. Any other values assigned will be perserved.|
+
 ==== Video Tutorial ====
 
 {{youtube>p3VXYMP-wjY}}

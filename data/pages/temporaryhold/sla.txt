@@ -1,0 +1,17 @@
+====== Service Level Agreement (SLA) Control on Trouble Tickets ======
+{{description>A vtiger CRM extension to control the time spent resolving tickets in almost real time. Ideal for Service Level Agreements (SLA)}}
+{{keywords>vtiger, vtigercrm, crm, spain, español, castellano, sla, ticket, time, spent, status}}
+\\
+An extension that will permit you to define your working hours and days, along with a service cron that is executed every 5 minutes that updates the time of life of each open trouble ticket. With this extension your can quickly list your tickets and see in almost real time the status of your SLA trouble tickets.
+
+This change adds a new module where you can define the working hours of your company, so you can say that Monday to Thursday you work from 9-17 and Friday only from 9-14.
+
+This is a screen capture of the new module:
+
+{{:temporaryhold:workschedule.png|}}
+
+We also add a few fields on the trouble ticket, like elapsed time and a SLA breach checkbox, which the service cron will update for all open trouble tickets so it is very easy to see which tickets have breached the SLA, which ones are about to or simply order the tickets by elapsed time.
+
+This is a workflow diagram of the logic implemented to control working hours and days, so when a 4 hour SLA ticket is created half an hour before a holiday it will only count half an hour first thing in the morning of the next day you get back to your work.
+
+{{:temporaryhold:sla.png|}}
