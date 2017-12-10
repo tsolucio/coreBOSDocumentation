@@ -6,7 +6,7 @@
  * @author Davor Turkalj <turki.bsc@gmail.com>
  */
 $lang['menu']                  = 'Konfiguracijske postavke';
-$lang['error']                 = 'Postavke nisu ažurirane zbog neispravnih vrijednosti, molim provjerite vaše promjene i ponovo ih snimite.
+$lang['error']                 = 'Postavke nisu ažurirane zbog neispravnih vrijednosti, molim provjerite vaše promjene i ponovo ih pohranite.
                   <br />Neispravne vrijednosti biti će označene crvenim rubom.';
 $lang['updated']               = 'Postavke uspješno izmijenjene.';
 $lang['nochoice']              = '(ne postoje druge mogućnosti odabira)';
@@ -91,7 +91,7 @@ $lang['relnofollow']           = 'Koristi rel="nofollow" na vanjskim poveznicama
 $lang['indexdelay']            = 'Čekanje prije indeksiranja (sek.)';
 $lang['mailguard']             = 'Prikrivanje e-mail adresa';
 $lang['iexssprotect']          = 'Provjeri učitane datoteke za potencijalno maliciozni JavaScript ili HTML kod';
-$lang['usedraft']              = 'Automatski snimi nacrte promjena tijekom uređivanja';
+$lang['usedraft']              = 'Automatski pohrani nacrte promjena tijekom uređivanja';
 $lang['htmlok']                = 'Omogući ugrađeni HTML';
 $lang['phpok']                 = 'Omogući ugrađeni PHP';
 $lang['locktime']              = 'Maksimalna trajanje zaključavanja (sek.)';
@@ -139,6 +139,10 @@ $lang['renderer_xhtml']        = 'Mehanizam koji se koristi za slaganje osnovnog
 $lang['renderer__core']        = '%s (dokuwiki jezgra)';
 $lang['renderer__plugin']      = '%s (dodatak)';
 $lang['dnslookups']            = 'Da li da DokuWiki potraži ime računala za udaljenu IP adresu korisnik koji je izmijenio stranicu. Ako imate spor ili neispravan DNS server, nemojte koristiti ovu funkcionalnost, onemogućite ovu opciju';
+$lang['jquerycdn']             = 'Da li da se jQuery i jQuery UI script datoteke učitavaju sa CDN? To proizvodi dodatne HTTP zahtjeve, ali datoteke se mogu brže učitati i korisnici ih već mogu imati učitane u od ranije.';
+$lang['jquerycdn_o_0']         = 'Bez CDN, samo lokalna dostava';
+$lang['jquerycdn_o_jquery']    = 'CDN na code.jquery.com';
+$lang['jquerycdn_o_cdnjs']     = 'CDN na cdnjs.com';
 $lang['proxy____host']         = 'Proxy poslužitelj - adresa';
 $lang['proxy____port']         = 'Proxy poslužitelj - port';
 $lang['proxy____user']         = 'Proxy poslužitelj - korisničko ime';

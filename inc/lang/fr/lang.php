@@ -3,6 +3,7 @@
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
  *
+ * @author Schplurtz le Déboulonné <schplurtz@laposte.net>
  * @author Sébastien Bauer <sebastien.bauer@advalvas.be>
  * @author Antoine Fixary <antoine.fixary@freesbee.fr>
  * @author cumulus <pta-n56@myamail.com>
@@ -21,8 +22,6 @@
  * @author Florian Gaub <floriang@floriang.net>
  * @author Samuel Dorsaz <samuel.dorsaz@novelion.net>
  * @author Johan Guilbaud <guilbaud.johan@gmail.com>
- * @author schplurtz@laposte.net
- * @author skimpax@gmail.com
  * @author Yannick Aure <yannick.aure@gmail.com>
  * @author Olivier DUVAL <zorky00@gmail.com>
  * @author Anael Mobilia <contrib@anael.eu>
@@ -33,11 +32,12 @@
  * @author ggallon <gwenael.gallon@mac.com>
  * @author David VANTYGHEM <david.vantyghem@free.fr>
  * @author Caillot <remicaillot5@gmail.com>
- * @author Schplurtz le Déboulonné <schplurtz@laposte.net>
  * @author YoBoY <yoboy@ubuntu-fr.org>
  * @author james <j.mccann@celcat.com>
  * @author Pietroni <pietroni@informatique.univ-paris-diderot.fr>
  * @author Floriang <antispam@floriang.eu>
+ * @author Eric <ericstevenart@netc.fr>
+ * @author Olivier Humbert <trebmuh@tuxfamily.org>
  */
 $lang['encoding']              = 'utf-8';
 $lang['direction']             = 'ltr';
@@ -98,7 +98,7 @@ $lang['badpassconfirm']        = 'Désolé, le mot de passe est erroné';
 $lang['minoredit']             = 'Modification mineure';
 $lang['draftdate']             = 'Brouillon enregistré automatiquement le';
 $lang['nosecedit']             = 'La page a changé entre temps, les informations de la section sont obsolètes ; la page complète a été chargée à la place.';
-$lang['searchcreatepage']      = 'Si vous n\'avez pas trouvé ce que vous cherchiez, vous pouvez créer ou modifier la page correspondante à votre requête en cliquant sur le bouton approprié.';
+$lang['searchcreatepage']      = 'Si vous n\'avez pas trouvé ce que vous cherchiez, vous pouvez créer ou modifier la page correspondant à votre requête en cliquant sur le bouton approprié.';
 $lang['regmissing']            = 'Désolé, vous devez remplir tous les champs.';
 $lang['reguexists']            = 'Désolé, ce nom d\'utilisateur est déjà pris.';
 $lang['regsuccess']            = 'L\'utilisateur a été créé. Le mot de passe a été expédié par courriel.';
@@ -200,7 +200,7 @@ $lang['mediaview']             = 'Afficher le fichier original';
 $lang['mediaroot']             = 'racine';
 $lang['mediaupload']           = 'Envoyez un fichier dans la catégorie actuelle. Pour créer des sous-catégories, préfixez en le nom du fichier séparées par un double-point, après avoir choisis le(s) fichier(s). Le(s) fichier(s) peuvent également être envoyé(s) par glisser-déposer (drag &amp; drop)';
 $lang['mediaextchange']        = 'Extension du fichier modifiée de .%s en .%s !';
-$lang['reference']             = 'Références pour';
+$lang['reference']             = 'Utilisé par';
 $lang['ref_inuse']             = 'Le fichier ne peut être effacé car il est toujours utilisé par les pages suivantes :';
 $lang['ref_hidden']            = 'Des références sont présentes dans des pages que vous ne pouvez pas voir (autorisations insuffisantes)';
 $lang['hits']                  = 'Occurrences trouvées';
@@ -369,5 +369,5 @@ $lang['plainhtml']             = 'HTML brut';
 $lang['wikimarkup']            = 'Wiki balise';
 $lang['page_nonexist_rev']     = 'La page n\'existait pas le %s. Elle a été créée le <a href="%s">%s</a>.';
 $lang['unable_to_parse_date']  = 'Ne peut analyser le paramètre date "%s".';
-$lang['email_signature_text'] = 'Ce courriel a été généré par DokuWiki depuis
+$lang['email_signature_text']  = 'Ce courriel a été généré par DokuWiki depuis
 @DOKUWIKIURL@';

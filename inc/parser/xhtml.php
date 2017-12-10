@@ -66,8 +66,8 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
      *
      * @author Adrian Lang <lang@cosmocode.de>
      */
-    public function startSectionEdit($start, $type, $title = null) {
-        $this->sectionedits[] = array(++$this->lastsecid, $start, $type, $title);
+    public function startSectionEdit($start, $type, $title = null, $hid = null) {
+        $this->sectionedits[] = array(++$this->lastsecid, $start, $type, $title, $hid);
         return 'sectionedit'.$this->lastsecid;
     }
 
@@ -78,14 +78,17 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
      *
      * @author Adrian Lang <lang@cosmocode.de>
      */
-    public function finishSectionEdit($end = null) {
-        list($id, $start, $type, $title) = array_pop($this->sectionedits);
+    public function finishSectionEdit($end = null, $hid = null) {
+        list($id, $start, $type, $title, $hid) = array_pop($this->sectionedits);
         if(!is_null($end) && $end <= $start) {
             return;
         }
         $this->doc .= "<!-- EDIT$id ".strtoupper($type).' ';
         if(!is_null($title)) {
             $this->doc .= '"'.str_replace('"', '', $title).'" ';
+        }
+        if(!is_null($hid)) {
+            $this->doc .= '"'.$hid.'" ';
         }
         $this->doc .= "[$start-".(is_null($end) ? '' : $end).'] -->';
     }
@@ -147,7 +150,7 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
                     }
 
                     // add footnote markup and close this footnote
-                    $this->doc .= $footnote;
+                    $this->doc .= '<div class="content">'.$footnote.'</div>';
                     $this->doc .= '</div>'.DOKU_LF;
                 }
             }
@@ -191,7 +194,7 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
     function header($text, $level, $pos) {
         global $conf;
 
-        if(!$text) return; //skip empty headlines
+        if(blank($text)) return; //skip empty headlines
 
         $hid = $this->_headerToLink($text, true);
 
@@ -217,7 +220,7 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
         // write the header
         $this->doc .= DOKU_LF.'<h'.$level;
         if($level <= $conf['maxseclevel']) {
-            $this->doc .= ' class="'.$this->startSectionEdit($pos, 'section', $text).'"';
+            $this->doc .= ' class="'.$this->startSectionEdit($pos, 'section', $text, $hid).'"';
         }
         $this->doc .= ' id="'.$hid.'">';
         $this->doc .= $this->_xmlEntities($text);
@@ -630,6 +633,8 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
         global $ID;
         global $lang;
 
+        $language = preg_replace(PREG_PATTERN_VALID_LANGUAGE, '', $language);
+
         if($filename) {
             // add icon
             list($ext) = mimetype($filename, false);
@@ -649,7 +654,7 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
             $text = substr($text, 0, -1);
         }
 
-        if(is_null($language)) {
+        if(empty($language)) { // empty is faster than is_null and can prevent '' string
             $this->doc .= '<pre class="'.$type.'">'.$this->_xmlEntities($text).'</pre>'.DOKU_LF;
         } else {
             $class = 'code'; //we always need the code class to make the syntax highlighting apply
@@ -1133,7 +1138,9 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
     function internalmedia($src, $title = null, $align = null, $width = null,
                            $height = null, $cache = null, $linking = null, $return = false) {
         global $ID;
-        list($src, $hash) = explode('#', $src, 2);
+        if (strpos($src, '#') !== false) {
+            list($src, $hash) = explode('#', $src, 2);
+        }
         resolve_mediaid(getNS($ID), $src, $exists, $this->date_at, true);
 
         $noLink = false;
@@ -1154,7 +1161,7 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
             if($exists) $link['title'] .= ' ('.filesize_h(filesize(mediaFN($src))).')';
         }
 
-        if($hash) $link['url'] .= '#'.$hash;
+        if (!empty($hash)) $link['url'] .= '#'.$hash;
 
         //markup non existing files
         if(!$exists) {
@@ -1186,6 +1193,11 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
      */
     function externalmedia($src, $title = null, $align = null, $width = null,
                            $height = null, $cache = null, $linking = null, $return = false) {
+        if(link_isinterwiki($src)){
+            list($shortcut, $reference) = explode('>', $src, 2);
+            $exists = null;
+            $src = $this->_resolveInterWiki($shortcut, $reference, $exists);
+        }
         list($src, $hash) = explode('#', $src, 2);
         $noLink = false;
         $render = ($linking == 'linkonly') ? false : true;
@@ -1280,7 +1292,7 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
                     if($author) {
                         $name = $author->get_name();
                         if(!$name) $name = $author->get_email();
-                        if($name) $this->doc .= ' '.$lang['by'].' '.$name;
+                        if($name) $this->doc .= ' '.$lang['by'].' '.hsc($name);
                     }
                 }
                 if($params['date']) {
@@ -1327,7 +1339,8 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
             $class .= ' ' . $classes;
         }
         if($pos !== null) {
-            $class .= ' '.$this->startSectionEdit($pos, 'table');
+            $hid = $this->_headerToLink($class, true);
+            $class .= ' '.$this->startSectionEdit($pos, 'table', '', $hid);
         }
         $this->doc .= '<div class="'.$class.'"><table class="inline">'.
             DOKU_LF;
@@ -1371,6 +1384,20 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
      */
     function tabletbody_close() {
         $this->doc .= DOKU_TAB.'</tbody>'.DOKU_LF;
+    }
+
+    /**
+     * Open a table footer
+     */
+    function tabletfoot_open() {
+        $this->doc .= DOKU_TAB.'<tfoot>'.DOKU_LF;
+    }
+
+    /**
+     * Close a table footer
+     */
+    function tabletfoot_close() {
+        $this->doc .= DOKU_TAB.'</tfoot>'.DOKU_LF;
     }
 
     /**
@@ -1683,7 +1710,7 @@ class Doku_Renderer_xhtml extends Doku_Renderer {
         } elseif(is_null($title) || trim($title) == '') {
             if(useHeading($linktype) && $id) {
                 $heading = p_get_first_heading($id);
-                if($heading) {
+                if(!blank($heading)) {
                     return $this->_xmlEntities($heading);
                 }
             }

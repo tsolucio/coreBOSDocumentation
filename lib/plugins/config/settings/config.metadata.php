@@ -189,6 +189,7 @@ $meta['subscribe_time'] = array('numeric');
 $meta['notify']         = array('email', '_multiple' => true);
 $meta['registernotify'] = array('email', '_multiple' => true);
 $meta['mailfrom']       = array('email', '_placeholders' => true);
+$meta['mailreturnpath']       = array('email', '_placeholders' => true);
 $meta['mailprefix']     = array('string');
 $meta['htmlmail']       = array('onoff');
 
@@ -221,6 +222,7 @@ $meta['readdircache'] = array('numeric');
 
 $meta['_network']    = array('fieldset');
 $meta['dnslookups']  = array('onoff');
+$meta['jquerycdn']   = array('multichoice', '_choices' => array(0,'jquery', 'cdnjs'));
 $meta['proxy____host'] = array('string','_pattern' => '#^(|[a-z0-9\-\.+]+)$#i');
 $meta['proxy____port'] = array('numericopt');
 $meta['proxy____user'] = array('string');

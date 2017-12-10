@@ -1,4 +1,26 @@
 <?php
+
+
+if(!class_exists('PHPUnit_Framework_TestCase')) {
+    /**
+     * phpunit 5/6 compatibility
+     */
+    class PHPUnit_Framework_TestCase extends PHPUnit\Framework\TestCase {
+        /**
+         * @param string $class
+         * @param null|string $message
+         */
+        public function setExpectedException($class, $message=null) {
+            $this->expectException($class);
+            if(!is_null($message)) {
+                $this->expectExceptionMessage($message);
+            }
+        }
+    }
+}
+
+
+
 /**
  * Helper class to provide basic functionality for tests
  */
@@ -155,5 +177,27 @@ abstract class DokuWikiTest extends PHPUnit_Framework_TestCase {
         } else {
             return $this->getMock($originalClassName, $methods);
         }
+    }
+
+    /**
+     * Waits until a new second has passed
+     *
+     * The very first call will return immeadiately, proceeding calls will return
+     * only after at least 1 second after the last call has passed.
+     *
+     * When passing $init=true it will not return immeadiately but use the current
+     * second as initialization. It might still return faster than a second.
+     *
+     * @param bool $init wait from now on, not from last time
+     * @return int new timestamp
+     */
+    protected function waitForTick($init = false) {
+        static $last = 0;
+        if($init) $last = time();
+        while($last === $now = time()) {
+            usleep(100000); //recheck in a 10th of a second
+        }
+        $last = $now;
+        return $now;
     }
 }

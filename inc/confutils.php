@@ -120,6 +120,52 @@ function getInterwiki() {
 }
 
 /**
+ * Returns the jquery script URLs for the versions defined in lib/scripts/jquery/versions
+ *
+ * @trigger CONFUTIL_CDN_SELECT
+ * @return array
+ */
+function getCdnUrls() {
+    global $conf;
+
+    // load version info
+    $versions = array();
+    $lines = file(DOKU_INC . 'lib/scripts/jquery/versions');
+    foreach($lines as $line) {
+        $line = trim(preg_replace('/#.*$/', '', $line));
+        if($line === '') continue;
+        list($key, $val) = explode('=', $line, 2);
+        $key = trim($key);
+        $val = trim($val);
+        $versions[$key] = $val;
+    }
+
+    $src = array();
+    $data = array(
+        'versions' => $versions,
+        'src' => &$src
+    );
+    $event = new Doku_Event('CONFUTIL_CDN_SELECT', $data);
+    if($event->advise_before()) {
+        if(!$conf['jquerycdn']) {
+            $jqmod = md5(join('-', $versions));
+            $src[] = DOKU_BASE . 'lib/exe/jquery.php' . '?tseed=' . $jqmod;
+        } elseif($conf['jquerycdn'] == 'jquery') {
+            $src[] = sprintf('https://code.jquery.com/jquery-%s.min.js', $versions['JQ_VERSION']);
+            $src[] = sprintf('https://code.jquery.com/jquery-migrate-%s.min.js', $versions['JQM_VERSION']);
+            $src[] = sprintf('https://code.jquery.com/ui/%s/jquery-ui.min.js', $versions['JQUI_VERSION']);
+        } elseif($conf['jquerycdn'] == 'cdnjs') {
+            $src[] = sprintf('https://cdnjs.cloudflare.com/ajax/libs/jquery/%s/jquery.min.js', $versions['JQ_VERSION']);
+            $src[] = sprintf('https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/%s/jquery-migrate.min.js', $versions['JQM_VERSION']);
+            $src[] = sprintf('https://cdnjs.cloudflare.com/ajax/libs/jqueryui/%s/jquery-ui.min.js', $versions['JQUI_VERSION']);
+        }
+    }
+    $event->advise_after();
+
+    return $src;
+}
+
+/**
  * returns array of wordblock patterns
  *
  */
@@ -156,23 +202,29 @@ function getSchemes() {
  * @author Harry Fuecks <hfuecks@gmail.com>
  * @author Andreas Gohr <andi@splitbrain.org>
  * @author Gina Haeussge <gina@foosel.net>
+ *
+ * @param array $lines
+ * @param bool $lower
+ *
+ * @return array
  */
-function linesToHash($lines, $lower=false) {
+function linesToHash($lines, $lower = false) {
     $conf = array();
     // remove BOM
-    if (isset($lines[0]) && substr($lines[0],0,3) == pack('CCC',0xef,0xbb,0xbf))
-        $lines[0] = substr($lines[0],3);
-    foreach ( $lines as $line ) {
+    if(isset($lines[0]) && substr($lines[0], 0, 3) == pack('CCC', 0xef, 0xbb, 0xbf))
+        $lines[0] = substr($lines[0], 3);
+    foreach($lines as $line) {
         //ignore comments (except escaped ones)
-        $line = preg_replace('/(?<![&\\\\])#.*$/','',$line);
-        $line = str_replace('\\#','#',$line);
+        $line = preg_replace('/(?<![&\\\\])#.*$/', '', $line);
+        $line = str_replace('\\#', '#', $line);
         $line = trim($line);
-        if(empty($line)) continue;
-        $line = preg_split('/\s+/',$line,2);
+        if($line === '') continue;
+        $line = preg_split('/\s+/', $line, 2);
+        $line = array_pad($line, 2, '');
         // Build the associative array
-        if($lower){
+        if($lower) {
             $conf[strtolower($line[0])] = $line[1];
-        }else{
+        } else {
             $conf[$line[0]] = $line[1];
         }
     }
@@ -189,6 +241,11 @@ function linesToHash($lines, $lower=false) {
  * @author Harry Fuecks <hfuecks@gmail.com>
  * @author Andreas Gohr <andi@splitbrain.org>
  * @author Gina Haeussge <gina@foosel.net>
+ *
+ * @param string $file
+ * @param bool $lower
+ *
+ * @return array
  */
 function confToHash($file,$lower=false) {
     $conf = array();
@@ -309,6 +366,7 @@ function actionOK($action){
  */
 function useHeading($linktype) {
     static $useHeading = null;
+    if(defined('DOKU_UNITTEST')) $useHeading = null; // don't cache during unit tests
 
     if (is_null($useHeading)) {
         global $conf;

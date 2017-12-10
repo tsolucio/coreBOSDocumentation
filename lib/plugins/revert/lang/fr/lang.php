@@ -2,7 +2,7 @@
 
 /**
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * 
+ *
  * @author Delassaux Julien <julien@delassaux.fr>
  * @author Maurice A. LeBlanc <leblancma@cooptel.qc.ca>
  * @author Guy Brand <gb@unistra.fr>
@@ -13,10 +13,7 @@
  * @author Vincent Feltz <psycho@feltzv.fr>
  * @author Philippe Bajoit <philippe.bajoit@gmail.com>
  * @author Florian Gaub <floriang@floriang.net>
- * @author Samuel Dorsaz samuel.dorsaz@novelion.net
  * @author Johan Guilbaud <guilbaud.johan@gmail.com>
- * @author schplurtz@laposte.net
- * @author skimpax@gmail.com
  * @author Yannick Aure <yannick.aure@gmail.com>
  * @author Olivier DUVAL <zorky00@gmail.com>
  * @author Anael Mobilia <contrib@anael.eu>
