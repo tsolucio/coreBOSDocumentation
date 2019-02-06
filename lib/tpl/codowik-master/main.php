@@ -32,8 +32,8 @@ $showSidebar = $hasSidebar && ($ACT=='show');
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
 
-<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-<link href="<?php print DOKU_TPL; ?>css/ui.layout.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<link href="<?php print DOKU_TPL; ?>css/ui.layout.css?v=2.1" rel="stylesheet">
 
 <?php echo tpl_js('layout.js'); ?>
 
@@ -69,6 +69,12 @@ jQuery(function ()
 
         });
 
+        //2017/09/20 Dirk Schnitzler: Apply spaces to the currently active page, too
+        jQuery(elem).find(">li>div>span>a").each(function()
+        {
+            jQuery(this).html(times + jQuery(this).html())
+        });
+
         jQuery(elem).find(">li>ul").each(function()
         {
             apply_space(jQuery(this), times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
@@ -86,7 +92,7 @@ jQuery(function ()
 
 <body>
     
-     <div id="container">
+     <div id="container" style="height:100vh">
             <div class="ui-layout-center">
     
     <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
@@ -178,8 +184,8 @@ jQuery(function ()
             // display logo and wiki title in a link to the home page
             tpl_link(
                 wl(),
-                '<img src="'.$logo.'" '.$logoSize[3].' alt="" /> ',
-                'accesskey="h" title="['.$conf['title'].']"'
+                '<img src="'.$logo.'" '.$logoSize[3].' alt="" /> <span>'.$conf['title'].'</span>',
+                'accesskey="h" title="[H]"'
             );
         ?></h1>
         <?php if ($conf['tagline']): ?>
