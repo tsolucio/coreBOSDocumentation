@@ -1,12 +1,12 @@
-a:2:{s:7:"current";a:10:{s:4:"date";a:2:{s:7:"created";i:1398604666;s:8:"modified";i:1398607229;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";b:0;s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}s:5:"title";s:60:"127: Enhance REST query language to support related entities";s:11:"description";a:2:{s:15:"tableofcontents";a:3:{i:0;a:4:{s:3:"hid";s:55:"enhance_rest_query_language_to_support_related_entities";s:5:"title";s:60:"127: Enhance REST query language to support related entities";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:20:"detailed_explanation";s:5:"title";s:20:"Detailed Explanation";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:27:"related_entity_query_syntax";s:5:"title";s:27:"Related Entity Query Syntax";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:353:"127: Enhance REST query language to support related entities
+a:2:{s:7:"current";a:10:{s:4:"date";a:2:{s:7:"created";i:1398604666;s:8:"modified";i:1398607229;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";b:0;s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}s:5:"title";s:60:"127: Enhance REST query language to support related entities";s:11:"description";a:2:{s:15:"tableofcontents";a:3:{i:0;a:4:{s:3:"hid";s:55:"enhance_rest_query_language_to_support_related_entities";s:5:"title";s:60:"127: Enhance REST query language to support related entities";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:20:"detailed_explanation";s:5:"title";s:20:"Detailed Explanation";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:27:"related_entity_query_syntax";s:5:"title";s:27:"Related Entity Query Syntax";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:379:"127: Enhance REST query language to support related entities
 
-Issue Reference in Tracker: 
+Issue Reference in Tracker: ~~issue:127~~
 
 Detailed Explanation
 
 Related Entity Query Syntax
 
-Implemented in 
+Implemented in ~~issue:127~~
 
 
 

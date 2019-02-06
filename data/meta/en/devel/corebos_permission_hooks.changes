@@ -29,3 +29,5 @@
 1496261427	95.60.145.18	E	en:devel:corebos_permission_hooks	joebordes	[What is it for?] 		0
 1496261523	95.60.145.18	E	en:devel:corebos_permission_hooks	joebordes	[Why not use Record Access Control] 		6
 1496261649	95.60.145.18	E	en:devel:corebos_permission_hooks	joebordes	[Why not use Record Access Control?] 		0
+1513192275	81.34.225.243	E	en:devel:corebos_permission_hooks	joebordes			160
+1513192385	81.34.225.243	E	en:devel:corebos_permission_hooks	joebordes	[$typeOfPermissionOverride = SubstractFromUserPermission] 		142

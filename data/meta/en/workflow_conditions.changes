@@ -2,3 +2,8 @@
 1407364401	95.60.145.18	E	en:workflow_conditions	joebordes	[Comparing Last Modified By User and the current Assigned User] 	
 1407364419	95.60.145.18	E	en:workflow_conditions	joebordes	[Comparing Last Modified By User and the current Assigned User] 	
 1426582633	80.35.20.79	E	en:workflow_conditions	joebordes		
+1445705385	127.0.0.1	E	en:workflow_conditions		external edit		0
+1535214076	159.147.47.75	E	en:workflow_conditions	joebordes			635
+1535214134	159.147.47.75	E	en:workflow_conditions	joebordes	[How to launch a workflow only when a record is related to an entity.] 		1
+1535214922	159.147.47.75	E	en:workflow_conditions	joebordes			8
+1535215419	159.147.47.75	E	en:workflow_conditions	joebordes	[How to launch a workflow only when a record is related to an entity.] 		60

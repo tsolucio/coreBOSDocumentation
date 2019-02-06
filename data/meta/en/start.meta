@@ -1,12 +1,3 @@
-a:2:{s:7:"current";a:11:{s:4:"date";a:2:{s:7:"created";i:1395526508;s:8:"modified";i:1500844853;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1500844853;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"E";s:2:"id";s:8:"en:start";s:4:"user";s:9:"joebordes";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:107;}s:11:"contributor";a:2:{s:9:"joebordes";s:10:"Joe Bordes";s:4:"omar";s:12:"Omar Llorens";}s:18:"plugin_description";a:1:{s:8:"keywords";s:59:"coreBOS - The one stop software solution for your business.";}s:8:"keywords";s:51:",marketing,,email,,invoice,,support,,tickets,,sales";s:5:"title";s:19:"Demonstration Sites";s:11:"description";a:2:{s:15:"tableofcontents";a:1:{i:0;a:4:{s:3:"hid";s:19:"demonstration_sites";s:5:"title";s:19:"Demonstration Sites";s:4:"type";s:2:"ul";s:5:"level";i:2;}}s:8:"abstract";s:309:"Welcome to the coreBOS Documentation Site
+a:2:{s:7:"current";a:10:{s:4:"date";a:2:{s:7:"created";i:1395526508;s:8:"modified";i:1542230825;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";b:0;s:11:"contributor";a:3:{s:9:"joebordes";s:10:"Joe Bordes";s:4:"omar";s:12:"Omar Llorens";s:16:"georgefortinatus";s:17:"George Fortinatus";}s:18:"plugin_description";a:1:{s:8:"keywords";s:59:"coreBOS - The one stop software solution for your business.";}s:8:"keywords";s:51:",marketing,,email,,invoice,,support,,tickets,,sales";s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:134:"Welcome to the coreBOS Documentation Site
 Proud member of the coreBOS family!
-Visit our Website and Follow us on Google+ and the forum
-
-Demonstration Sites
-
-You can test the application in our demonstration sites:
-
-	*  coreBOS
-	*  coreBOS Customer Portal (yii)
-	*  coreBOS Customer Portal (myc)
-	*  coreBOSCRM";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1395526508;s:8:"modified";i:1500844853;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1500844853;s:2:"ip";s:12:"95.60.145.18";s:4:"type";s:1:"E";s:2:"id";s:8:"en:start";s:4:"user";s:9:"joebordes";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:107;}s:11:"contributor";a:2:{s:9:"joebordes";s:10:"Joe Bordes";s:4:"omar";s:12:"Omar Llorens";}}}
+Visit our Website and Follow us on Google+ and the forum";}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1395526508;s:8:"modified";i:1542230825;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";b:0;s:11:"contributor";a:3:{s:9:"joebordes";s:10:"Joe Bordes";s:4:"omar";s:12:"Omar Llorens";s:16:"georgefortinatus";s:17:"George Fortinatus";}}}

@@ -1,0 +1,12 @@
+a:2:{s:7:"current";a:8:{s:4:"date";a:2:{s:7:"created";i:1542278311;s:8:"modified";i:1542278312;}s:7:"creator";s:17:"George Fortinatus";s:4:"user";s:16:"georgefortinatus";s:11:"last_change";a:8:{s:4:"date";i:1542278311;s:2:"ip";s:13:"41.222.180.59";s:4:"type";s:1:"C";s:2:"id";s:42:"en:adminmanual:securityguide:res-resources";s:4:"user";s:16:"georgefortinatus";s:3:"sum";s:7:"created";s:5:"extra";s:0:"";s:10:"sizechange";i:968;}s:5:"title";s:23:"Resources for Resources";s:11:"description";a:2:{s:15:"tableofcontents";a:1:{i:0;a:4:{s:3:"hid";s:24:"resources_for_resources1";s:5:"title";s:23:"Resources for Resources";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:257:"Resources for Resources
+
+Appendix B. Resources
+
+----------
+
+Resources for Resources
+
+Here's where to find pointers to the subjects you want to find.
+
+The Most Recent Version of the vtiger CRM Manual
+The most recent online version of a manual can be found at";}s:8:"relation";a:2:{s:10:"references";a:1:{s:38:"en:adminmanual:securityguide:res-intro";b:1;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:4:{s:4:"date";a:1:{s:7:"created";i:1542278311;}s:7:"creator";s:17:"George Fortinatus";s:4:"user";s:16:"georgefortinatus";s:11:"last_change";a:8:{s:4:"date";i:1542278311;s:2:"ip";s:13:"41.222.180.59";s:4:"type";s:1:"C";s:2:"id";s:42:"en:adminmanual:securityguide:res-resources";s:4:"user";s:16:"georgefortinatus";s:3:"sum";s:7:"created";s:5:"extra";s:0:"";s:10:"sizechange";i:968;}}}

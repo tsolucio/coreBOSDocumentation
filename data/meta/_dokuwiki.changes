@@ -1,20 +1,20 @@
-1509905955	95.60.145.18	E	en:extensions:extensions:gendoc	joebordes	[Documentation.] 		0
-1510008789	95.60.145.18	E	en:devel:develtutorials	joebordes			50
-1510008820	95.60.145.18	E	en:devel:develtutorials	joebordes			4
-1510009445	95.60.145.18	C	en:devel:createvtlibmodule	joebordes	created		4877
-1510009485	95.60.145.18	E	en:devel:createvtlibmodule	joebordes			42
-1510009690	95.60.145.18	E	en:devel:createvtlibmodule	joebordes			131
-1510009848	95.60.145.18	E	en:devel:createvtlibmodule	joebordes			154
-1510011041	95.60.145.18	E	en:devel:createvtlibmodule	joebordes			1964
-1510011242	95.60.145.18	E	en:devel:createvtlibmodule	joebordes			420
-1510011411	95.60.145.18	E	en:devel:createvtlibmodule	joebordes			262
-1510011844	95.60.145.18	E	en:devel:createvtlibmodule	joebordes			25
-1510179388	95.60.145.18	E	en:adminmanual:businessmappings:masterdetailmapping	joebordes			5096
-1510181447	95.60.145.18	E	en:adminmanual:businessmappings:masterdetailmapping	joebordes	[Master Detail Mapping] 		315
-1510231480	95.60.145.18	E	en:adminmanual:outgoingserver	joebordes	[FAQ] 		253
-1510441674	95.60.145.18	E	en:devel:createvtlibmodule	joebordes			68
-1511285246	95.60.145.18	E	en:devel:createvtlibmodule	joebordes			184
-1511285276	95.60.145.18	E	en:devel:createvtlibmodule	joebordes			7
-1511706668	95.60.145.18	E	en:adminmanual:picklisteditor	joebordes	[Re-arrange Picklist Values] 		1083
-1511712670	95.60.145.18	E	en:adminmanual:picklisteditor	joebordes	[Role based Picklist Values] 		720
-1511994236	95.60.145.18	E	en:install550	joebordes	[Requirements] 		-73
+1544811167	88.22.191.166	E	en:email_workflows	joebordes			7
+1545035112	88.14.19.16	E	en:calendar	joebordes	[Module manager settings] 		-556
+1545036015	88.14.19.16	E	en:devel:corebos_hooks	joebordes	[Supported events] 		441
+1545036074	88.14.19.16	E	en:devel:corebos_hooks	joebordes	[Supported events] 		2
+1545473078	88.14.18.51	E	en:devel:contribute	joebordes	[All installs under git control] 		3341
+1545473259	88.14.18.51	E	en:devel:contribute	joebordes	[config.inc.php and tabdata control: config-dev.inc.php] 		7
+1545909810	88.14.18.51	E	en:devel:cbtranslation	joebordes	[cbtranslation::get()] 		-1
+1546384648	88.14.18.51	E	en:adminmanual:businessmappings:validations	joebordes	[Expression Map] 		-11
+1546525527	88.14.18.51	C	en:extensions:extensions:enhancecalendarassignfollowup	joebordes	created		1613
+1546617329	81.32.253.216	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Field Dependency Business Mapping] 		0
+1546618682	81.32.253.216	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Examples] 		25
+1546618727	81.32.253.216	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Field Dependency Business Mapping] 		28
+1546619437	81.32.253.216	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Examples] 		12
+1546644723	81.32.253.216	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Examples] 		10
+1548089627	81.32.253.216	E	en:devel:corebosws	joebordes	[Web service documentation] 		87
+1548089983	81.32.253.216	C	en:devel:corebosws:reservedparameter	joebordes	created		822
+1548355507	83.63.129.96	E	en:adminmanual:businessmappings:validations	joebordes			471
+1548355889	83.63.129.96	E	en:adminmanual:businessmappings:validations	joebordes	[Expression Map] 		903
+1548368228	81.32.253.216	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		70
+1549219225	83.44.218.205	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Field Dependency Business Mapping] 		31
