@@ -180,6 +180,10 @@ body {
 div.ui-layout-mask {}		/* standard mask for iframes */
 iframe.ui-layout-mask {}	/* extra mask for objects/applets */
 
+.codo_side_content a {
+  color:  #ffb018;
+}
+
 /*
  *	Default printing styles
  */

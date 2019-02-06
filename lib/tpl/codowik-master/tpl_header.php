@@ -39,6 +39,10 @@ if (!defined('DOKU_INC')) die();
         <?php if ($conf['useacl']): ?>
             <div id="dokuwiki__usertools">
                 <h3 class="a11y"><?php echo $lang['user_tools']; ?></h3>
+<?php
+$translation = plugin_load('helper','translation');
+if ($translation) echo $translation->showTranslations();
+?>
                 <ul>
                     <?php
                         if (!empty($_SERVER['REMOTE_USER'])) {

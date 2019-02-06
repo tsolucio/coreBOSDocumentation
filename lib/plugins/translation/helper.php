@@ -265,6 +265,7 @@ class helper_plugin_translation extends DokuWiki_Plugin {
 
         // insert items
         foreach($this->translations as $t) {
+          if (!empty($t))
             $out .= $this->getTransItem($t, $idpart);
         }
 
