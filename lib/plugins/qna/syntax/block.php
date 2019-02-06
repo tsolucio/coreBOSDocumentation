@@ -4,7 +4,7 @@
  * Plugin QnA: Block syntax
  *
  * @license    GPL 2 (http://www.gnu.org/licenses/gpl.html)
- * @author     Mykola Ostrovskyy <spambox03@mail.ru>
+ * @author     Mykola Ostrovskyy <dwpforge@gmail.com>
  */
 
 /* Must be run within Dokuwiki */
@@ -127,8 +127,8 @@ class syntax_plugin_qna_block extends DokuWiki_Syntax_Plugin {
         $identifier = str_replace(':', '', cleanID($title));
         $identifier = ltrim($identifier, '0123456789._-');
 
-        if (strlen($identifier) > $this->maxIdLength) {
-            $identifier = substr($identifier, 0, $this->maxIdLength);
+        if (utf8_strlen($identifier) > $this->maxIdLength) {
+            $identifier = utf8_substr($identifier, 0, $this->maxIdLength);
         }
 
         $identifier = rtrim($identifier, '_');
