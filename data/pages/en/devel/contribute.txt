@@ -106,11 +106,48 @@ which gives me a nice graphical interface to resolve conflicts.
 
 ==== All installs under git control====
 
-I would recommend you put all your installs under git control, that way moving changes around and keeping them all up to date is extremely easy. For example, let's suppose that I get a new project, a client that wants to make some changes to coreBOS for their particular needs. I Will create a new git repository for them, I will merge in the latest version of coreBOS, at that point my local clone of their repository has two remote repository, their private repository and the GitHub upstream open source project. I start developing and find an error in coreBOS or I see a feature that should be available for everybody, I can cherry-pick the relevant commits or simply develop the changes directly in the open source project and then pull them in to the private repository, this is all just as simple as the work flow I explained above about branching and pull request.
+I would recommend you put all your installs under git control, that way moving changes around and keeping them all up to date is extremely easy. For example, let's suppose that I get a new project, a client that wants to make some changes to coreBOS for their particular needs. I Will create a new git repository for them, I will merge in the latest version of coreBOS, at that point my local clone of their repository has two remote repositories, their private repository, and the GitHub upstream open source project. I start developing and find an error in coreBOS or I see a feature that should be available for everybody, I can cherry-pick the relevant commits or simply develop the changes directly in the open source project and then pull them in to the private repository, this is all just as simple as the workflow I explained above about branching and pull request.
 
-But even more, when this clients starts working with coreBOS, after a few weeks he runs in to an error that we have already fixed in the main stream, it is just as easy to upgrade their private repository with a pull as we did above to update the master branch. Incredibly powerful!
+But even more, when this client starts working with coreBOS, after a few weeks he runs into an error that we have already fixed in the mainstream, it is just as easy to upgrade their private repository with a pull as we did above to update the master branch. Incredibly powerful!
 
+==== config.inc.php and tabdata control: config-dev.inc.php ====
 
+<WRAP center round alert 80%>
+These two files must NEVER be in any commit you make on the main project. I will not accept any pull request that contains any modifications to these files.
+</WRAP>
+
+These two files are different on almost all coreBOS installs. They start (mostly) empty on the main repository and get modified when you install the application and when you install or deactivate modules. These changes are specific to each install, so if we make any modification to them we will be causing git merge conflicts for everyone and those conflicts will mostly be resolved by keeping their particular version. Ideally, we could have not included them in the distribution but it is too late for that now.
+
+The recommended procedure to manage these files is to version them in the main repository of the install. As recommended above, each coreBOS install should have its own repository and pull in changes from the main coreBOS repository. So you will version the config.inc.php and tabdata.php files in the repository of the install. This way you have these important files controlled for each install and coreBOS main repository will not modify them. If you install a new module, your tabdata will change and you can commit it to the local repository. Obviously, this repository should not be publically accessible.
+
+Now this brings us to one problem. When a developer who needs to work on the project clones the install locally they need to modify config.inc.php to adapt it to their development environment, this requires modifying config.inc.php and could lead to a mistake where you commit the file and break the production installation. To avoid this, config.inc.php includes the file **config-dev.inc.php** at the end of the script. This file is ignored by the .gitignore file so it will never be committed and will only be on each local development machine that needs it. This file will permit us to override any settings in config.inc.php without having to modify that file.
+
+The **config-dev.inc.php** template I use is this one:
+
+<code PHP>
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+$site_URL = 'http://localhost/coreBOSwork';
+
+// root directory path
+$root_directory = __DIR__.'/';
+
+$dbconfig['db_name'] = 'database name';
+$dbconfig['db_username'] = 'database user';
+$dbconfig['db_password'] = 'database password';
+
+$dbconfig['db_server'] = 'localhost';
+$dbconfig['db_hostname'] = $dbconfig['db_server'].$dbconfig['db_port'];
+$hostname=$dbconfig['db_hostname'];
+$LOG4PHP_DEBUG = true;
+//$default_language = 'en_us';
+?>
+</code>
+
+Another situation that appears from time to time is when you don't have a private repository for your install, you just clone the main repository from GitHub, install it, and work there. In this case, both config.inc.php and tabdata.php appear in the "git status" commands and are always there as you can't commit them. You have two alternatives:
+  * one is just ignoring them, it really isn't that much noise and you get used to seeing them there
+  * the other is to [[https://stackoverflow.com/questions/13630849/git-difference-between-assume-unchanged-and-skip-worktree/13631525#13631525|tell git to not show them to you]] with the command: <code>git update-index --skip-worktree config.inc.php tabdata.php</code>
 ====Study git====
 
 Git is much more complex and flexible than what I explain here, but in the end you usually use the same commands over and over. I still recommend dedicating time to studying git but take your time one step at a time, let the concepts sink in it is really a very powerful tool.
@@ -139,4 +176,7 @@ We aren't doing this due to the small amount of contributors we have. We SHOULD 
   * You'll then appear as a approved contributor, and be upgraded to a Developer on the Ticket Tracking System: allowing you to modify and transition ticket status.
 
 
+=====Additional Reading=====
 
+  * [[https://hackernoon.com/i-thought-i-understood-open-source-i-was-wrong-cf54999c097b|I thought I understood Open Source. I was wrong]]
+  * [[https://www.snoyman.com/blog/2017/10/effective-ways-help-from-maintainers|Effective Ways to Get Help from Maintainers]]

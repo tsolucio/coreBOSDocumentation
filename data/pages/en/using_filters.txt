@@ -58,7 +58,9 @@ If this option is enabled, then this filter will be the default view loaded when
 
 =====Set as public=====
 
-If this option is enabled, every user of the application, irrespective of role/position can view it. When a user marks a custom filter as public, it should be first approved by the admin user. It remains in pending state until admin approves it. Admin can see the request under the //Pending// section.
+If this option is enabled, every user of the application, irrespective of role/position can view it. When a user marks a custom filter as public, it should be first approved by the admin user. It remains in pending state until an administrator approves it. Administrators can see the request in the //Pending// section.
+
+The rule is: when a user makes a filter, only he and administrator users can select/edit it. If the filter is marked as Public AND approved, all users can select it, but only he, administrator users and users in a superior role can edit it.
 
 
 ===== Meta variables for special fields =====

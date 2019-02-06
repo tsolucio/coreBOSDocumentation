@@ -1,0 +1,22 @@
+===== GenDoc Template:: Documentation Template =====
+
+Documentation template that shows the majority of functionality of the GenDoc extension.
+
+---- dataentry ----
+name : gendocdoctpl
+type : gendoctemplate
+template_img : :gendoc:gendocdocumentation.odt
+pdfexample_img: :gendoc:gendocdocumentation.pdf
+description_wiki: Documentation template that shows the majority of functionality of the GenDoc extension.
+keywords_tags : documentation,examples,functionality,syntax
+language: en
+module: Invoice
+version : 1.0
+release_dt : 2017-12-10
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes joe(at)tsolucio(dot)com
+----
+\\
+

@@ -1,0 +1,45 @@
+===== GenDoc Template:: Motor Vehicle Bill of Sale =====
+
+Motor Vehicle Bill of Sale transaction template.
+
+---- dataentry ----
+name : motorvehiclebillofsale
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:motorvehiclebillofsale.odt
+pdfexample_img: :en:gendoc:templatestore:motorvehiclebillofsale.pdf
+description_wiki: Motor Vehicle Bill of Sale transaction template.
+keywords_tags : sell,sale,bill,invoice,contract,transaction,vehicle,car
+language: en
+module: Invoice
+version : 1.0
+release_dt : 2018-01-13
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes joe(at)tsolucio(dot)com
+----
+\\
+
+This template requires adding custom fields on the Invoice and Product.
+
+The goal of the template is to document the transaction of selling a car. We need some specific information of the vehicle and about the transaction.
+
+The vehicle information will be on products and the transaction will be an invoice. On the **Invoice** we add:
+
+|Down Payment:|{Invoice.cf_1227}|
+|Transfer days:|{Invoice.cf_1228}|
+|Inspection Days:|{Invoice.cf_1229}|
+|Retain Amount:|{Invoice.cf_1230}|
+
+and on the **Products** we add:
+
+|VIN:|{Products.cf_1219}|
+|Make:|{Products.cf_1220}|
+|Model:|{Products.cf_1221}|
+|Color:|{Products.cf_1222}|
+|Style:|{Products.cf_1223}|
+|Year:|{Products.cf_1224}|
+|Odometer:|{Products.cf_1225}|
+|TitleN:|{Products.cf_1226}|
+
+Obviously the numbers assigned to your fields will be different and you will have to edit the template accordingly

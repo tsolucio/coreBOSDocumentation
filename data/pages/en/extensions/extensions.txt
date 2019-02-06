@@ -21,6 +21,7 @@ max     : 50
 dynfilters : 1
 sort    : %title%
 filter  : type!=businessmapping
+filter  : type=!gendoctemplate
 ----
 
 

@@ -1,0 +1,21 @@
+===== GenDoc Template:: Patient Appointment =====
+
+Patient Appointment template
+
+---- dataentry ----
+name : patientappointment
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:patientappointment.odt
+pdfexample_img: :en:gendoc:templatestore:patientappointment.pdf
+description_wiki:Patient Appointment template
+keywords_tags : appointment,patient,event,visit,calendar
+language: EN
+module: cbCalendar with Contacts
+version : 1
+release_dt : 2018-01-18
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes
+----
+\\

@@ -16,6 +16,7 @@ Los campos disponibles se encuentran en el menu 'Herramientas' -> 'Etiquetas Ope
     * todo el texto entre {siexiste} y {/siexiste} se pasará al documento final si existe al menos una entidad relacionada con la cuenta siendo tratada cuyo campo indicado tenga el valor indicado. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), se empleará la cadena |##| como separador entre valores, en este caso TODOS los valores en el campo y TODOS los valores con los que comparamos deben ser iguales para que sea verdadero.
     * si no existe la entidad y/o el campo se elimina toda la sección
     * dentro del bloque estarán disponibles para combinación los valores de la primera entidad encontrada cuyo campo sea igual a valor
+    * otros operadores soportados: > < >= <= = !=
     * ejemplos: {siexiste activo.tipo=Fichero},  {siexiste contacto.tipo=Responsable Seguridad}, {siexiste campaña=GAdwords Noviembre08}
   * **{siexiste entidad.campo en (valor1,valor2,valor3)} ... {/siexiste}**
     * todo el texto entre {siexiste} y {/siexiste} se pasará al documento final si existe al menos una entidad relacionada con la cuenta siendo tratada cuyo campo indicado tenga uno de los valores indicados. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), al menos uno de los valores con los que comparamos deben ser iguales para que sea verdadero.
@@ -35,6 +36,7 @@ Los campos disponibles se encuentran en el menu 'Herramientas' -> 'Etiquetas Ope
   * **{paracada entidad.campo=valor} ... {/paracada}**
     * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo contenga el valor, se combinará el texto entre las 2 directivas y se añadirá al documento. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), se empleará la cadena |##| como separador entre valores, en este caso TODOS los valores en el campo y TODOS los valores con los que comparamos deben ser iguales para que sea verdadero.
     * si no hay registros desaparecerá el bloque entero
+    * otros operadores soportados: > < >= <= = !=
   * **{paracada entidad.campo en (valor1,valor2,valor3)} ... {/paracada}**
     * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo contenga uno de los valores indicados, se combinará el texto entre las 2 directivas y se añadirá al documento. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), al menos uno de los valores con los que comparamos deben ser iguales para que sea verdadero.
     * si no hay registros desaparecerá el bloque entero
@@ -44,7 +46,7 @@ Los campos disponibles se encuentran en el menu 'Herramientas' -> 'Etiquetas Ope
   * **{paracada entidad.campo !en (valor1,valor2,valor3)} ... {/paracada}**
     * para cada una de los registros de la entidad indicada relacionada con la cuenta cuyo campo NO contenga ninguno de los valores indicados, se combinará el texto entre las 2 directivas y se añadirá al documento. Para campos con múltiples valores (por ejemplo en campos con selección múltiple), ninguno de los valores con los que comparamos deben ser iguales para que sea verdadero.
     * si no hay registros desaparecerá el bloque entero
-  * **repeticion**: Existe una variable especial disponible dentro de los bloques paracada denominada "repeticion" a la que podemos acceder para obtener la iteración en la que estamos. Esto puede ser util para enumerar los elementos o para imprimir cosas según la iteración. Ver [[:gendoc:gendocejemplos|Ejemplos]].
+  * **repeticion**: Existe una variable especial disponible dentro de los bloques paracada denominada "repeticion" a la que podemos acceder para obtener la iteración en la que estamos. Esto puede ser util para enumerar los elementos o para imprimir cosas según la iteración. Ver [[en:gendoc:gendocejemplos|Ejemplos]].
   * **{fecha}**: Con esta etiqueta podemos introducir en el documento la fecha en la que se ha generado. Se substituye por la fecha actual (en la que se genera el documento), en formato dd-mm-aaaa.
   * **{entidad.campo.enletras}**: Con esta etiqueta podemos traducir un campo **NUMÉRICO** en letras. Por ejemplo, si le pesamos el total de un presupuesto: "{Quotes.hdnGrandTotal.enletras}" siendo este **160,00** se traducirá por **ciento sesenta**.
   * **{incluir Num_Documento}**
@@ -117,12 +119,53 @@ Aqui el texto con directivas de compilación.<code><b>EVIDENCIA</b>: El Responsa
 {{:gendoc:formatocaracteres.odt|Otro ejemplo de formato de caracteres.}}\\
 
 {{youtube>RHZvIKqMWsg}}
-==== Gramática campos especiales ====
-  * En general toda combinación parte de una cuenta y pone a disposición de la generación todos los campos de todas las entidades relacionadas.
-  * Se podrá utilizar la infraestructura creada para otros tipos de combinaciones como facturas o contratos si se estima conveniente y en esos casos es posible que la generación parta de otra entidad
-  * Las combinaciones que se inicien en la cuenta tendrán a su disposición una serie de campo constantes que se obtienen del sistema como son:
-    * {empresa.campo}: los datos de la empresa
-    * {empresa.gerente_campo}: los datos del gerente de la empresa
-    * {empresa.responsable_campo}: los datos del responsable de la empresa
-    * {cuenta.responsable_campo}: los datos del responsable del cumplimiento de la LOPD en la empresa cliente
 
+==== Información Empresa ====
+
+También podemos acceder a la información de la empresa configurada en la sección Configuración de la aplicación utilizando la metaetiqueta Organization como puede ver en la extensión Etiquetas OpenOffice.
+
+Como la información disponible en la sección de configuración de la empresa es bastante limitada y podrías necesitar más, el proceso de instalación creó la variable global **GenDoc_Company_Account** donde puedes configurar el accountid de cualquier registro de Cuentas desde el que deseas acceder a la información de tu empresa. La idea es crear un registro de cuenta para tu empresa y usar todos los campos que hay ahí.
+
+
+==== FAQ ====
+
+~~QNA~~
+
+??? ¿Cómo puedo obtener una fecha con el formato "26 de Mayo de 2018"?
+
+!!! Así:
+
+<code>
+{fecha:d} de {fecha:F} de {fecha:Y}
+y este sería el día de la semana: {fecha:l}
+</code>
+
+??? Si tengo un campo "origen registro público" con valor Sí o NO en el módulo de Ficheros, ¿cómo hago una lista con solo los que tienen el campo a sí?
+
+!!! La directiva siexiste cuando se aplica a listas de elementos relacionados (como los ficheros en una cuenta) indica si existe alguno con esa caracteristica. Por ejemplo
+
+<code>
+{paracada Fichero}
+
+{siexiste Fichero.origen_registropublico=si}
+
+    ORIGEN REGISTRO PUBLICO
+
+{/siexiste}
+
+{/paracada}
+</code>
+
+Si hay algun Fichero con el campo origen_registropublico a si, SIEMPRE sacara la cadena "ORIGEN REGISTRO PUBLICO" ya que es lo que revisa el //siexiste// en este caso
+
+Depende de lo que quieras conseguir se podría hacer filtrando el paracada:
+
+<code>
+{paracada Fichero.origen_registropublico=si}
+    Texto acortado sin los campos que no quieres que salgan
+{/paracada}
+
+{paracada Fichero.origen_registropublico=no}
+    Texto entero con todos los campos
+{/paracada} 
+</code>

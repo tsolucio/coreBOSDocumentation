@@ -17,7 +17,7 @@ Note that, in this example, the application has overridden the preSave method in
 
 Filter launched before starting the Edit process. Will receive, the $_REQUEST variable, the Smarty object and the current object trying to be edited.
 
-You can find [[https://github.com/tsolucio/corebos/blob/master/modules/CobroPago/CobroPago.php#L423|an example of this filter in the Payment module]], where it checks if the record can be edited or not.
+You can find [[https://github.com/tsolucio/corebos/blob/master/modules/CobroPago/CobroPago.php#L506|an example of this filter in the Payment module]], where it checks if the record can be edited or not.
 
 <WRAP center round info 75%>
 Note that, in this example, the application has overridden the preEdit method instead of registering an event. In the end, the result is the same.

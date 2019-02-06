@@ -34,8 +34,8 @@ Make sure to verify if your PHP configuration meets the recommended values.
 |display_errors|on|
 |file_uploads|on|
 |max_execution_time|600|
-|max_input_vars|8000|
-|post_max_size|16M|
+|max_input_vars|6000|
+|post_max_size|36M|
 |memory_limit|1024M|
 |log_errors|off|
 |output_buffering|on|
@@ -138,5 +138,26 @@ For additional security it is recommended that you take two more steps:
   * Import your data
   * Create users
 </WRAP>
+
+
+=====FAQ=====
+
+~~QNA~~
+
+??? I installed in windows but the Popup screen is empty.
+
+!!! XAMMP configures your PHP to load files only from a couple of directories. By default it does not look for files in the current directory which is something that coreBOS depends upon. You must edit your php.ini file, look for the include_path directive and add the current directory. Something like this;
+
+<code>
+include_path = ".;C:\php\pear;C:\wamp\www"
+</code>
+
+What I usually do when I have to install on windows is edit config.inc.php and add this line towards the end:
+
+<code>
+echo get_include_path();
+</code>
+
+then I edit the php.ini directive putting the same value and adding the current directory (.)
 
 

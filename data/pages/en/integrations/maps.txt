@@ -21,6 +21,8 @@ This is a list of some of the features of the extension:
   * **GeoLocalization information fetched with cron**. A special cron service executed once a day will automatically retrieve geoposition information of new accounts, contacts and leads, and also update those whose address information has changed and eliminate the information of those that have been deleted.
   * Simple migration process from previous version.
 
+[[https://www.youtube.com/watch?v=4MB8K-dkpOo&list=PL0oN2FI_W55zX7MCNFVW1mF1HBtNPUCbo| Youtube video presentation]]
+
 Let's look into some of these features in detail.
 
 =====Filter Tab=====

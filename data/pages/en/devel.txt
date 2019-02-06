@@ -9,6 +9,7 @@
 
 ====== Technical Articles ======
   * [[:en:devel:debuging|Debugging]]
+  * [[:en:devel:jsdebuging|Javascript Debugging]]
   * [[en:devel:developmentguidelines|Development Guidelines we try to adhere to]]
   * [[en:devel:commitguidelines|Commit Guidelines we try to adhere to]]
   * [[en:devel:contribute|How to Contribute]]

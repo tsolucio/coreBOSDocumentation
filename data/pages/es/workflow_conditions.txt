@@ -1,0 +1,36 @@
+====== Condiciones de Flujos de Trabajo ======
+
+TBD FIXME: explica cómo funcionan las diferentes condiciones.
+
+===== Condiciones Avanzadas =====
+
+==== Comparando el Usuario de la Ultima Modificación con el Usuario Asignado ====
+
+Al definir las condiciones, tenemos acceso a todos los campos del módulo principal del flujo de trabajo y todas sus entidades relacionadas en el lado izquierdo de la condición, pero en el lado derecho, solo podemos acceder a los campos directamente relacionados con el módulo principal, no los campos de las entidades relacionadas.
+
+De hecho, los casos de uso para este tipo de condiciones son muy limitados. En todos los años que hemos estado trabajando con coreBOS, esto rara vez se presenta y generalmente lo resolvemos con algún código adicional para el caso específico.
+
+Basado en esta pregunta de un miembro del foro:
+
+??? Nos gustaría establecer el flujo de trabajo "Flujo de trabajo para el cambio de ticket, no desde el Portal" para NO enviar correos electrónicos cuando el último usuario modificado sea el mismo que el asignado a. Si una persona que trabaja en el ticket pone algunas notas allí, no queremos un correo electrónico inmediato para ellos. Pero, si alguien más agrega notas, queremos que el asignado al usuario reciba un correo electrónico.
+
+Para resolver este caso de uso, que es común, hemos mejorado coreBOS (comenzando en  [[https://github.com/tsolucio/corebos/commit/9a5307e1c28f87d42def73aaea606db9929349b6#diff-d41d8cd98f00b204e9800998ecf8427e|commit 9a5307]]) para permitir el acceso a los campos de el usuario "asignado a" del módulo principal.
+
+<WRAP center round important 80%>SÓLO es para los campos del "usuario asignado" porque estos ya están presentes cuando se evalúa la condición, no se necesita esfuerzo adicional, excepto para recogerlos.</WRAP>
+
+La sintaxis es un poco diferente para hacer que el código sea más fácil. Actualmente, la sintaxis tiene que ser:
+
+<code>assigned_user_id : (Users) {field name}</code>
+
+donde {field name} tiene que ser el nombre de campo interno del módulo de usuario. Por ejemplo, para acceder al nombre de usuario, usaríamos //user_name// y para acceder al primer nombre que usaríamos //first_name//.
+
+Una vez aplicado el [[https://github.com/tsolucio/corebos/commit/9a5307e1c28f87d42def73aaea606db9929349b6#diff-d41d8cd98f00b204e9800998ecf8427e|cambio indicado aquí]], podemos responder a la pregunta anterior como se ve en la siguiente imagen:
+
+{{ :es:adminmanual:assignedtoworkflowconditions.png?850 |}}
+
+
+==== Cómo iniciar un flujo de trabajo solo cuando un registro está relacionado con una entidad. ====
+
+Para lograr esto, simplemente necesitamos hacer una comprobación **está vacío** o **no está vacío** en cualquier campo no vacío en el módulo relacionado. O sea, por ejemplo, si tenemos que iniciar un flujo de trabajo en el módulo Detalles de Inventario solo cuando el registro está relacionado con una Orden de Venta, entonces comprobaremos que el campo //Asunto// de la Orden de Venta seleccionado através del campo //Relacionado con// del módulo Detalle de Inventario no esté vacío. Si el registro de detalles del inventario está relacionado con una orden de venta, este campo tendrá un valor; si el registro está relacionado con algún otro módulo, el campo //Asunto// estará vacío.
+
+{{ :en:adminmanual:workflow:workflowcheckrelatedtoes.png |}}

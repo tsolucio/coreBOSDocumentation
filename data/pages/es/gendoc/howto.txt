@@ -1,0 +1,44 @@
+===== Generación de documentación :: Cómo usar =====
+
+==== Instalar ====
+
+La extensión GenDoc consta de dos elementos instalables; una es la extensión GenDoc misma y la otra es una extensión de utilidad que te ayudará a listar y obtener las etiquetas disponibles en tu sistema.
+
+Ambos se instalan como cualquier otro módulo utilizando Module Manager.
+
+==== Activar ====
+
+Una vez instalado, encontrarás ambas extensiones accesibles desde el menú Herramientas, pero el uso normal será a través del widget de vista detallada que aparecerá en todos los módulos para los que actives la extensión. Haz clic en el icono Configuración para el generador de documentos e ingresa a la sección Activar módulos para activar la extensión en los módulos que necesites.
+
+
+==== Cargar plantillas ====
+
+Las plantillas se cargan como documentos en el módulo Documentos. La única diferencia es que debes marcar la casilla de verificación "Plantilla" y debes seleccionar el módulo principal para el que se creó la plantilla en la lista de selección "Módulo".
+
+Recomiendo crear una carpeta para guardar todas las plantillas o varias carpetas con nombres que faciliten la agrupación de las plantillas y distinguirlas de otros documentos.
+
+==== Combinar ====
+
+El proceso de fusión se puede hacer de varias maneras. La forma más común será ir a la entidad que queremos combinar, seleccionar la plantilla que aparece en el panel de acciones y hacer clic en una de las opciones disponibles:
+
+  * **Exportar documento**: fusionará la plantilla comenzando desde el registro en pantalla y enviará el resultado al usuario
+  * **Enviar Email**: fusionará la plantilla a partir del registro en pantalla y abrirá la pantalla de envío de correo electrónico con el resultado adjunto y listo para enviar
+  * **Guardar documento**: fusionará la plantilla a partir del registro en pantalla y la guardará como un documento en la aplicación. La aplicación guardará el documento dentro de la primera carpeta encontrada pero puedes definir dónde quieres que se guarde usando la variable global **GenDoc_Save_Document_Folder**
+
+
+También puedes ejecutar una fusión masiva desde la vista de lista, donde podrás seleccionar varios registros y una plantilla y combinar la plantilla para cada registro seleccionado. Podrás definir si quieres la salida en PDFs individuales o como un solo PDF.
+
+Finalmente, la forma más flexible de fusionar una plantilla es accediendo directamente a la extensión de GenDoc. En este caso, se nos presentarán dos campos de captura en los que podremos seleccionar cualquier plantilla y cualquier registro de cualquier entidad y fusionaremos la plantilla con ese registro. También podremos especificar el idioma que queremos que use la combinación y si queremos una depuración que es bastante útil cuando estamos creando plantillas.
+
+Ten en cuenta que cada plantilla se crea en un idioma y ese es el idioma que debe usar el proceso. De forma predeterminada, el proceso se ejecuta utilizando el idioma del usuario que inicia la combinación.
+
+Puedes traducir las directivas a tu idioma utilizando el archivo commands_en.php dentro de la carpeta evvtgendoc.
+
+
+==== PDF de salida ====
+
+Para obtener un PDF del archivo OpenOffice generado, debemos tener un servidor conversor de OpenOffice especial instalado y configurado.
+
+TSolucio tiene uno preparado que puedes usar ya sea al tener un contrato de soporte con nosotros o al comprar nuestro [[http://blog.corebos.org:8080/en/blog/corebossubscription|Servicio de suscripción a coreBOS]]. Ponte en contacto con nosotros para obtener más detalles.
+
+Obviamente, puedes abrir el documento de OpenOffice y hacer clic en el botón "PDF" también.

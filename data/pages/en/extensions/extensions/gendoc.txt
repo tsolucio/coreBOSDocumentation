@@ -1,7 +1,7 @@
 ~~NOTOC~~
 ====== GenDoc: Advanced OpenOffice Merge. ======
 
-This extension permits creating advanced templates using [[https://www.openoffice.org/|OpenOffice]] or [[https://www.libreoffice.org/Libre Office]] which can easily be merged with fields in the coreBOS application and then converted to PDF or used as working documents in the word processor.
+This extension permits creating advanced templates using [[https://www.openoffice.org/|OpenOffice]] or [[https://www.libreoffice.org|Libre Office]] which can easily be merged with fields in the coreBOS application and then converted to PDF or used as working documents in the word processor.
 \\
 ---- dataentry  ----
 name              : tsolucio/gendoc
@@ -26,6 +26,14 @@ supportemail_mail : info(at)tsolucio(dot)com
 
 ====== Documentation. ======
 
+{{ :gendoc:gendocdocumentation.odt |Have a look at the Documentation Template}} and compare it with {{ :gendoc:gendocdocumentation.pdf |this validation merge}}.
+
+  * [[:en:gendoc:howto|How To Use]]
   * [[:en:gendoc:gramatica|Template Grammar]]
   * [[:en:gendoc:elemnosoportados|Non Supported Elements]]
   * [[:en:gendoc:gendocejemplos|Examples]]
+
+====== Template Store. ======
+
+[[en:gendoc:templatestore|Browse the template store]] for examples and useful templates that will give you a head start.
+

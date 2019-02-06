@@ -1,55 +1,521 @@
 ====== Field Dependency Business Mapping ======
-The accepted format is
+
+This type of map permits you to define dependencies between fields in edit mode. For example, it will permit you to make a field mandatory or not depending on the value selected in a given field or to change the available values in a picklist depending on the value.
+
+The goal of this mapping is to define a set of rules/conditions and actions to be applied while editing a field in a coreBOS form.
+
+The trigger event will be the onChange HTML event. Whenever a field changes its’ value in a form we will evaluate a given set of conditions and if they are true we will apply a set of actions.
+
+Since we will be evaluating the field on a per-module basis and to avoid additional time looking for related values via AJAX, the conditions will be evaluated using only information located on the form.
+
+The supported condition operators are the same ones we support in the custom view filter system (see [[en:devel:conditional_popup|Conditional Popup]] and [[en:devel:corebos_hooks:popup_open_hook#exampleadvanced_search|Popup Open Hook]]:
+
+  * e: igual | equal | “=”
+  * n: distinto | not equal | “<>”
+  * s: empieza con | begins with | “LIKE” (“$value%”)
+  * Ns: | does not begin with | “LIKE” !(“$value%”) 
+  * ew: termina con | ends with | “LIKE” (“%$value”)
+  * New: | does not end with | “LIKE” !(“$value%”)
+  * c: contiene | like | “LIKE” (“%$value%”)
+  * k: no contiene | not like | “NOT LIKE” (“%$value”)
+  * l: menor que | less than | “<”
+  * b: menor que | less than | “<”
+  * g: mayor que | greater than | “>”
+  * a: mayor que | greater than | “>”
+  * m: menor o igual | less or equal | “<=”
+  * h: mayor o igual | greater or equal | “>=”
+
+Group conditions can be created concatenating with the typical AND/OR operators. We will be using a similar concept to the one used for filters:
+
+<code>
+{
+ "groupid":"number that identifies the group of conditions",
+ "columnname":"coreBOS column identifier or simply the column/field name"
+ "comparator":"comparison operator"
+ "value":"text to look"
+ "columncondition":"and|or" (logical operator to join with the next condition)
+}
+</code>
+
+The actions supported are:
+
+  * change : will assign a value or set of values to another field
+  * setoptions : will add selectable options in a picklist
+  * deloptions : will eliminate selectable options from a picklist
+  * hide : hide a field and its’ label
+  * show : show a field and its’ label
+  * collapse : will collapse a block
+  * open : will open a block
+  * disappear : will hide a block
+  * appear : will show a block
+  * readonly : will make a field readonly
+  * editable : will make a field not readonly
+  * enable : will enable a field
+  * disable : will disable a field
+  * function : will call the given function with the parameters:
+    * change_field, action_field, new_value, old_value, any additional parameters in XML
+
+“Function” leaves the door open to all sorts of options, giving total control to the programmer. We will provide a set of common functions to be used:
+
+  * fieldDep_AssignNewValue : return new value in the action_field
+  * fieldDep_AddDays : add the given number of days to new_value and return the result
+  * fieldDep_SubDays : subtract the given number of days from new_value and return the result
+  * fieldDep_OnlyNumbers : return all numbers in new_value
+  * fieldDep_OnlyLetters : return all letters in new_value
+  * fieldDep_GetField : use getFieldValuesFromRecord to retrieve the value of the given field
+  * **NOT IMPLEMENTED YET**
+  * fieldDep_ChangeLabel: will permit changing the label of a field
+  * fieldDep_Format : return sprintf formatting of new_value (use sprintf javascript library: https://github.com/alexei/sprintf.js)
+
+
+===== XML Format =====
+
+The accepted format is:
 <code XML>
-<map> 
-  <name>mymap</name> 
-  <targetmodule> 
-   <targetid>6</targetid> 
-   <targetname>Accounts</targetname> 
-  </targetmodule> 
-  <originmodule> 
-   <originid>6</originid> 
-   <originname>Accounts</originname> 
-  </originmodule> 
-  <fields>
-   <field>
-    <Orgfields> 
-     <Responsiblefield> 
-      <fieldname>obbietivochiamata</fieldname> 
-      <fieldvalue>Welcome Call</fieldvalue> 
-      <comparison>equal</comparison>
-     </Responsiblefield> 
-     .............
-     <Orgfield> 
-      <fieldname>metodopagamento</fieldname> 
-      <fieldaction>show/hide/readonly</fieldaction> 
-      <fieldvalue></fieldvalue> 
-      <mandatory>mandatory</mandatory>
-     </Orgfield> 
-     <ResponsibleMode> 
-      <values>DetailView</values>
-     .............
-     </ResponsibleMode>
-     <ResponsibleRole> 
-      <values>H16</values> 
-     .............
-     </ResponsibleRole>
-     .............
-     <Picklist> 
-      <fieldname>status</fieldname> 
-      <values>OK</values>
-      <values>KO</values>
-     .............
-     </Picklist>
-     .............
-    </Orgfields> 
-   </field>
-  </fields> 
+ <map>
+  <originmodule>
+    <originname>SalesOrder</originname>
+  </originmodule>
+<dependencies>
+<dependency>
+    <field>campaignname</field>
+    <condition>[{...}]</condition>
+    <actions>
+        <change>
+            <field>sponsor</field>
+            <value>Sponzori</value>
+        </change>
+        <change>
+            <field>campaignname</field>
+            <value>2323232</value>
+        </change>
+        <hide>
+            <field>targetaudience</field>
+        </hide>
+        <readonly>
+            <field>campaignname</field>
+        </readonly>
+        <collapse>
+        </collapse>
+    </actions>
+</dependency>
+<dependency>
+…
+</dependency>
+</dependencies>
 </map>
 </code>
 
-this type of map permits you to define dependencies between fields in edit mode. In other words ti will permit you to make a field mandatory or not depending on the value selected in a given field, or to change the available values in a picklist depending on the value.
+**Notes**
 
-<WRAP center round alert 60%>
-This has not been implemented in the application yet
+  * This functionality totally overlaps with the native Picklist dependency, so we have moved that functionality to the map and eliminated the code that manages picklist dependency in javascript. The graphical editor in settings is still valid.
+  * When we manually assign a value to a field we have to launch the change event against that field so the dependencies get calculated again, but we have to make sure that we don’t enter an infinite loop by not launching the event against the same field we just modified.
+  * The mappings will be named **[modulename]_FieldDependency** (to follow the logic of all the others)
+  * In EditView script we will search and load a mapping called $current_module.’_FieldDependency’. This will be done using GlobalVariable (like the others)
+  * If more than one is found we will load the first one found with no special preference. There should be only one.
+  * The mapping interface will have a method called getJSON (or similar). This method will return the conditions, fields and any other information the browser needs to implement the dependencies. We will load one or more variables into Smarty and modify the templates to load those values in javascript variables
+  * We will add a javascript library to process the mapping on the onChange events
+  * In MassEdit we have to do the same as in EditView
+  * In DetailView we will load the mapping and use another method called getFieldsWithDependency (or similar) to modify those fields in the detail view so they are not editable (as we do now with picklist fields that have dependencies). This is because we can’t guarantee their dependencies when editing one field individually. Note: it is very possible that this can be done directly in the getBlocks function.
+  * It is very possible that we have to modify the fields edit templates to add the onchange events. I would like that to be generic. I mean, we call a generic onChange event and add some hooks so anyone can add their own functionality. We use this hook to add the Field Dependency functionality.
+
+
+=====Examples=====
+
+<WRAP center round box 80%>
+If payment is negative then set category to Infrastructure
 </WRAP>
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>CobroPago</originname>
+  </originmodule>
+<dependencies>
+<dependency>
+    <field>amount</field>
+    <condition>[{"groupid":"",
+	 "columnname":"vtiger_cobropago:amount:amount:CobroPago_Amount:N",
+	 "comparator":"m",
+	 "value":"0",
+	 "columncondition":""}]
+    </condition>
+    <actions>
+        <change>
+            <field>paymentcategory</field>
+            <value>Infrastructure</value>
+        </change>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>
+
+
+<WRAP center round box 80%>
+If payment is negative then category must be Infrastructure
+</WRAP>
+
+<code XML>
+<map>
+  <originmodule>  <originname>CobroPago</originname> </originmodule>
+<dependencies>
+<dependency>
+    <field>amount</field>
+    <condition>[{"groupid":"",
+	 "columnname":"vtiger_cobropago:amount:amount:CobroPago_Amount:N",
+	 "comparator":"m",
+	 "value":"0",
+	 "columncondition":""}]
+    </condition>
+    <actions>
+        <change>
+            <field>paymentcategory</field>
+            <value>Infrastructure</value>
+        </change>
+        <readonly>
+            <field>paymentcategory</field>
+        </readonly>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>
+
+<WRAP center round box 80%>
+Or this one can also be done like this:
+</WRAP>
+
+<code XML>
+<map>
+  <originmodule>   <originname>CobroPago</originname> </originmodule>
+<dependencies>
+<dependency>
+    <field>amount</field>
+    <condition>[{"groupid":"",
+	 "columnname":"vtiger_cobropago:amount:amount:CobroPago_Amount:N",
+	 "comparator":"m",
+	 "value":"0",
+	 "columncondition":""}]
+    </condition>
+    <actions>
+        <setoptions>
+            <field>paymentcategory</field>
+            <option>Infrastructure</option>
+        </setoptions>
+
+        <deloptions>
+            <field>paymentcategory</field>
+            <option>Taxes</option>
+            <option>Travel</option>
+            <option>Stock</option>
+            <option>Sale</option>
+        </deloptions>
+        <change>
+            <field>paymentcategory</field>
+            <value>Infrastructure</value>
+        </change>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>
+
+<WRAP center round box 80%>
+If (employees < 100 and bill_country is Spain) or (employees > 100 and bill_country is Albania)
+Then 
+hide ownership
+collapse address block
+</WRAP>
+
+<code XML>
+<map>
+  <originmodule>  <originname>Accounts</originname> </originmodule>
+<dependencies>
+<dependency>
+    <field>employees</field>
+    <condition>[{"groupid":"1",
+	 "columnname":"vtiger_accounts:employees:employess:Accounts_Employees:N",
+	 "comparator":"l",
+	 "value":"100",
+	 "columncondition":"and"},
+       {"groupid":"1",
+	 "columnname":"vtiger_accountbillads:bill_country:bill_country:Accounts_Bill_County:V",
+	 "comparator":"e",
+	 "value":"Spain",
+	 "columncondition":"or"},
+{"groupid":"2",
+	 "columnname":"vtiger_accounts:employees:employess:Accounts_Employees:N",
+	 "comparator":"g",
+	 "value":"100",
+	 "columncondition":"and"},
+       {"groupid":"2",
+	 "columnname":"vtiger_accountbillads:bill_country:bill_country:Accounts_Bill_County:V",
+	 "comparator":"e",
+	 "value":"Albania",
+	 "columncondition":""}]
+    </condition>
+    <actions>
+        <hide>
+            <field>ownership</field>
+        </hide>
+        <collapse>
+            <field>LBL_ADDRESS_INFORMATION</field>
+        </collapse>
+    </actions>
+</dependency>
+<dependency>
+    <field>bill_country</field>
+    <condition>[{"groupid":"1",
+	 "columnname":"vtiger_accounts:employees:employess:Accounts_Employees:N",
+	 "comparator":"l",
+	 "value":"100",
+	 "columncondition":"and"},
+       {"groupid":"1",
+	 "columnname":"vtiger_accountbillads:bill_country:bill_country:Accounts_Bill_County:V",
+	 "comparator":"e",
+	 "value":"Spain",
+	 "columncondition":"or"},
+{"groupid":"2",
+	 "columnname":"vtiger_accounts:employees:employess:Accounts_Employees:N",
+	 "comparator":"g",
+	 "value":"100",
+	 "columncondition":"and"},
+       {"groupid":"2",
+	 "columnname":"vtiger_accountbillads:bill_country:bill_country:Accounts_Bill_County:V",
+	 "comparator":"e",
+	 "value":"Albania",
+	 "columncondition":""}]
+    </condition>
+    <actions>
+        <hide>
+            <field>ownership</field>
+        </hide>
+        <collapse>
+            <field>LBL_ADDRESS_INFORMATION</field>
+        </collapse>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>
+
+<WRAP center round box 80%>
+On the invoice, set due date to 30 days more than invoice date
+</WRAP>
+
+<code XML>
+<map>
+  <originmodule>  <originname>Invoice</originname> </originmodule>
+<dependencies>
+<dependency>
+    <field>invoicedate</field>
+    <actions>
+        <function>
+            <field>duedate</field>
+            <name>fieldDep_AddDays</name>
+            <parameters>
+              <parameter>30</parameter>
+            </parameters>
+        </function>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>
+
+<WRAP center round box 80%>
+On Contact change phone to contain only numbers
+</WRAP>
+
+<code XML>
+<map>
+  <originmodule>  <originname>Contacts</originname> </originmodule>
+<dependencies>
+<dependency>
+    <field>phone</field>
+    <actions>
+        <function>
+            <field>phone</field>
+            <name>fieldDep_OnlyNumbers</name>
+        </function>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>
+
+<WRAP center round box 80%>
+On Contact set description to description of the selected account
+</WRAP>
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Potentials</originname>
+  </originmodule>
+<dependencies>
+<dependency>
+    <field>related_to</field>
+    <actions>
+        <function>
+            <field>title</field>
+            <name>fieldDep_GetField</name>
+            <parameters>
+              <parameter>Accounts.industry,Accounts.email1</parameter>
+              <parameter>potentialname,nextstep</parameter>
+            </parameters>
+        </function>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>
+
+<WRAP center round box 80%>
+IF (bill country starts with “A”) SET paymentcategory to infrastructure and make it readonly
+ELSE make paymentcategory editable
+</WRAP>
+
+<code XML>
+<map>
+  <originmodule>  <originname>Accounts</originname> </originmodule>
+<dependencies>
+<dependency>
+    <field>bill_country</field>
+    <conditions>
+	<condition>
+           <groupid>1</groupid>
+           <field>bill_country</field>
+           <comparator>s</comparator>
+           <value>A</value>
+           <columncondition>or</columncondition>
+        </condition>
+    <conditions>
+    <actions>
+        <change>
+            <field>paymentcategory</field>
+            <value>Infrastructure</value>
+        </change>
+        <readonly>
+            <field>paymentcategory</field>
+        </readonly>
+    </actions>
+</dependency>
+
+<dependency>
+    <field>bill_country</field>
+    <conditions>
+	<condition>
+           <groupid>1</groupid>
+           <field>bill_country</field>
+           <comparator>ns</comparator>
+           <value>A</value>
+           <columncondition>or</columncondition>
+        </condition>
+    <conditions>
+    <actions>
+        <editable>
+            <field>paymentcategory</field>
+        </editable>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>
+
+<WRAP center round box 80%>
+Another Example
+</WRAP>
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+<dependencies>
+<dependency>
+    <field>accountname</field>
+        <condition>
+          [
+        {"groupid":"1",
+	 "columnname":"vtiger_contacts:lastname:lastname:Contacts_Contact_Lastname:V",
+	 "comparator":"c",
+	 "value":"sel",
+	 "columncondition":"AND"},
+ {"groupid":"1",
+	 "columnname":"vtiger_contacts:email:email:Contacts_Contact_Email:V",
+	 "comparator":"c",
+	 "value":"gmail",
+	 "columncondition":"OR"},
+ {"groupid":"2",
+	 "columnname":"vtiger_contacts:firstname:firstname:Contacts_Contact_Firstname:V",
+	 "comparator":"e",
+	 "value":"albana",
+	 "columncondition":""}
+]
+
+        </condition>
+    <actions>
+        <change>
+            <field>phone</field>
+            <value>12345</value>
+        </change>
+        <change>
+            <field>email1</field>
+            <value>a@gmail.com</value>
+        </change>
+        <hide>
+            <field>otherphone</field>
+        </hide>
+        <hide>
+            <field>assigned_user_id</field>
+        </hide>
+        <readonly>
+            <field>fax</field>
+        </readonly>
+        <readonly>
+            <field>notify_owner</field>
+        </readonly>
+<deloptions>
+            <field>rating</field>
+<option>Acquired</option>
+            <option>Active</option>
+            <option>Shutdown</option>
+ </deloptions>
+        <collapse>
+            <block>CustomerPortalInformation</block>
+        </collapse>
+    </actions>
+</dependency>
+<dependency>
+    <field>accountname</field>
+        <condition>
+          [
+	{"groupid":"1",
+	 "columnname":"vtiger_account:accountname:accountname:Accounts_Account_Name:V",
+	 "comparator":"c",
+	 "value":"corebos",
+	 "columncondition":""}
+]
+        </condition>
+    <actions>
+        <change>
+            <field>phone</field>
+            <value>54321</value>
+        </change>
+       <show>
+            <field>assigned_user_id</field>
+        </show>
+        <setoptions>
+            <field>rating</field>
+            <option>Market Failed</option>
+        </setoptions>
+        <disappear>
+            <block>AddressInformation</block>
+        </disappear>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>

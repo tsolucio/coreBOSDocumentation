@@ -86,6 +86,10 @@ For each module you want to create you can define:
 
 The [[https://github.com/tsolucio/coreBOSwsWebform|GitHub repository]] has a [[https://github.com/tsolucio/coreBOSwsWebform/blob/master/test.php|test file]] which you can use as a starting point for your project.
 
+===== Videos =====
+
+{{youtube>gv0NV95iOPo}}
+
 ===== Questions and Answers =====
 
 ~~QNA~~

@@ -16,6 +16,7 @@ The accepted format is
           <restrictions>
           <restriction>{values depend on the rule}</restriction>
           </restrictions>
+          <message>This is my custom msg for field: {field}</message>  {optional}
         </validation>
         .....
       </validations>
@@ -41,10 +42,10 @@ where {rule_name} can be:
     *restrictions: none
   *array - Must be array
     *restrictions: none
-  *length - String must be certain length
+  *length - String must be a certain length
     *restrictions: number
   *lengthBetween - String must be between given lengths
-    *restrictions: two restriction of type number
+    *restrictions: two restrictions of type number
   *lengthMin - String must be greater than given length
     *restrictions: number
   *lengthMax - String must be less than given length
@@ -71,7 +72,7 @@ where {rule_name} can be:
     *restrictions: none
   *slug - URL slug characters (a-z, 0-9, -, _)
     *restrictions: none
-  *regex - Field matches given regex pattern
+  *regex - Field matches a given regex pattern
     *restrictions: regular expression. be careful you may have to put this inside a CDATA
   *date - Field is a valid date
     *restrictions: none
@@ -92,14 +93,23 @@ where {rule_name} can be:
     *restrictions: none
   *notDuplicate - checks that no other record with the same value exists on the given fieldname
     *restrictions: none
+  *expression - accept a workflow expression map and evaluate it in the context of the new screen values
+    *restrictions: map name or id
   *custom - launch custom function that can be found in the indicated file
     * restrictions: file name, validation test name, function name and label to show on error (will be translated)
+
+<WRAP center round info 100%>
+All of the rules above accept an optional directive named __message__ where you can set the error message you want the user to see when an error on that field happens. If this is not established a standard error message will be returned. Inside this message you can use the curly brace __field__ tag to indicate where you want the field name to appear:
+  <message>This is my custom msg for field: {field}</message>
+</WRAP>
 
 <WRAP center round info 100%>
 The trigger for these maps is that they must be of type "Validations" and the "Target Module" must be set correctly. If more than one record is found, they will ALL be applied.
 </WRAP>
 
-You can use the values of other fields on the form by putting the field name inside two curly brackets. For example, the next map will validate that the field dtstart is before the value in field dtend.
+===== Accessing other fields in the form =====
+
+You can **use the values of other fields on the form** by putting the field name inside two curly brackets. For example, the next map will validate that the field dtstart is before the value in field dtend.
 
 <code XML>
 <map>
@@ -118,6 +128,7 @@ You can use the values of other fields on the form by putting the field name ins
         </validation>
       </validations>
     </field>
+  </fields>
 </map>
 </code>
 
@@ -125,6 +136,59 @@ You can use the values of other fields on the form by putting the field name ins
 There is an important limitation when using the values of other fields. These values will only be available when editing the whole record. If the user is doing inline individual field edit on the detail view, the value of the other fields will not be available. To overcome this limitation, you need to create a custom validation rule and access the values you need from the database.
 </WRAP>
 
+===== Other information available during validation =====
+
+In order to enhance the set of possible validations that can be done, the validation system automatically adds some values that you can use freely.
+
+====Current values====
+
+When editing a record it is possible to want to compare the value introduced by the user with the value that is currently saved in that same field or some other field with which it may have some dependency. In this case you can access these values prefixing the string "current_" to the variable name. For example, let's suppose that we are editing an Account, the user has changed the Industry picklist value and we want to check what the currently saved value is before accepting the change. Let's imagine a rule that says:
+
+<WRAP center round box 60%>
+Any account who's industry is set to Banking, cannot be changed
+</WRAP>
+
+
+In this case, we can easily access the value that the user has selected by putting the industry field and to access the value saved in the application we would use: current_industry, something like this:
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>current_industry</fieldname>
+      <validations>
+        <validation>
+          <rule>notIn</rule>
+          <restrictions>
+          <restriction>Banking</restriction>
+          </restrictions>
+        </validation>
+      </validations>
+    </field>
+  </fields>
+</map></code>
+
+
+==== Product lines====
+
+In inventory modules, the system will load all the information of the lines into the **pdoInformation** array which will look something like this:
+
+<code PHP>
+pdoInformation => array(
+ array(
+  'crmid' = {first line product/service ID},
+  'qty' = {first line quantity (units)},
+  'name' = {first line product/service name},
+  'type' = {first line product/service type},
+ ),
+ ... all product/service lines ..
+</code>
+
+
+===== Some other examples =====
 
 Another example of how to limit the accepted values in a picklist, even making it mandatory if needed.
 
@@ -148,6 +212,56 @@ Another example of how to limit the accepted values in a picklist, even making i
     </field>
   </fields>
 </map></code>
+
+==== Forum Post with a very advanced example of a custom validation ====
+
+https://discussions.corebos.org/showthread.php?tid=1017&pid=5472#pid5472
+
+<WRAP center round info 60%>
+[[https://github.com/Luke1982|Thanks Luke]]
+</WRAP>
+
+===== Custom Validations =====
+
+coreBOS has some custom validations that are not loaded by default but can be used if necessary:
+
+  * Brazilian ID Number: file include/validation/validateCPFCNPJ.php
+    * validaCPF
+    * validaCNPJ
+    * validaCNPJ2
+  * Spanish ID Number: file include/validation/validatorESIDNumber.php
+    * isValidDNI
+    * isValidNIE
+    * isValidNIF
+    * isValidCIF
+    * isValidPersonalESID = isValidDNI or isValidNIE or isValidNIF
+    * isValidESID = isValidPersonalESID or isValidCIF
+
+For example, a validation for a valid CIF on account siccode field looks like this:
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>siccode</fieldname>
+      <validations>
+        <validation>
+          <rule>custom</rule>
+          <restrictions>
+          <restriction>include/validation/validatorESIDNumber.php</restriction>
+          <restriction>isValidCIF</restriction>
+          <restriction>isValidCIF</restriction>
+          </restrictions>
+        </validation>
+      </validations>
+    </field>
+  </fields>
+</map>
+</code>
+
 
 ===== Test Validation Business Mapping =====
 
@@ -217,4 +331,70 @@ function validate_testacccemail($field) {
 	global $log;$log->fatal('validation for'.$field);
 	return true;
 }
+</code>
+
+====Expression Map====
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>employees</fieldname>
+      <validations>
+        <validation>
+          <rule>expression</rule>
+          <restrictions>
+          <restriction>AccountsEmployees_ConditionExpression</restriction>
+          </restrictions>
+        </validation>
+      </validations>
+    </field>
+  </fields>
+</map>
+</code>
+
+<code XML>
+<map>
+  <expression>if employees > 10 then 1 else 0 end</expression>
+</map>
+</code>
+
+====Custom Message Test Map====
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>industry</fieldname>
+      <validations>
+        <validation>
+          <rule>notIn</rule>
+          <restrictions>
+          <restriction>Banking</restriction>
+          </restrictions>
+          <message>This is my custom msg for field: {field}</message>
+        </validation>
+        <validation>
+          <rule>notIn</rule>
+          <restrictions>
+          <restriction>Energy</restriction>
+          </restrictions>
+          <message>Energy not supportted for: {field}</message>
+        </validation>
+        <validation>
+          <rule>notIn</rule>
+          <restrictions>
+          <restriction>Apparel</restriction>
+          </restrictions>
+        </validation>
+      </validations>
+    </field>
+  </fields>
+</map>
 </code>

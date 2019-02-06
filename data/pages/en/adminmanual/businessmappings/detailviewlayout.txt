@@ -1,0 +1,45 @@
+====== Detail View Layout Mapping ======
+
+The purpose of this mapping is to define **a block layout for a module**. It holds equivalent information to the layout editor in the application settings. The difference is that blocks can be defined to contain different options and that we can have many maps/configurations for the same module, whereas in settings you can have only one layout for all users of the application.
+
+This map is currently not being used in the application. Its goal is to export different layouts to portal/external applications.
+
+There are 6 types of blocks:
+
+  * **ApplicationFields**: this tells us to use the same layout that exists in the application for this block. This type uses the "blockid" directive to know which block to render
+  * **FieldList**: a list of rows and fields with the distribution we want. This type uses the "layout" directive
+  * **RelatedList**: a related list of records with actions
+  * **Widget**: this is a block that must be constructed following the [[en:devel:add_special_block|DetailViewWidget specification]]. You have full control of the space designated to this block
+  * **CodeWithoutHeader**: this will open a "div" and directly include your code inside
+  * **CodeWithHeader**: this will add a header following the look and feel of the default related list blocks and the open a "div" and directly include your code inside
+
+The accepted format is:
+<code xml>
+<map>
+  <originmodule>
+    <originname></originname>
+  </originmodule>
+  <blocks>
+    <block>
+      <label></label>
+      <sequence></sequence>
+      <type></type> ApplicationFields | FieldList | RelatedList | Widget | CodeWithHeader | CodeWithoutHeader
+      <blockid></blockid>
+      <layout>
+        <row>
+          <column>fieldname</column>
+        </row>
+      </layout>
+      <loadfrom></loadfrom> related list label or id | file to load | widget reference
+      <loadcode></loadcode>
+      <handler_path></handler_path>
+      <handler_class></handler_class>
+      <handler></handler>
+    </block>
+  </blocks>
+</map>
+</code>
+
+If //loadfrom// is **Widget** then the directives //handler_path//, //handler_class// and //handler//, if given, will be used to construct the Detail View Widget reference object.
+
+If //loadcode// is given the file indicated as the value will be executed inside the context of the record being loaded.

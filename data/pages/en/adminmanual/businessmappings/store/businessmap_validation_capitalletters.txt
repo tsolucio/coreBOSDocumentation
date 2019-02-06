@@ -1,0 +1,40 @@
+~~NOTOC~~
+====== Business Mapping:: Validation Brazilian name ======
+
+Test with first letter is uppercase, and all words is a valid Brazilian name (with length, number of words and characters)
+
+---- dataentry ----
+name : Mandatory Brazilian name
+type : businessmapping
+bmtype : Validation
+description_wiki: Force field to be written in Brazilian name
+keywords_tags : validation,capital,mayusculas,letters
+version : 1.0
+release_dt : 2018-02-20
+licenses : MPL
+price : Free
+distribution : Free
+authorname : Ranieri Slemer
+----
+\\
+
+<code XML>
+<map>
+<originmodule>
+<originname>contacs</originname>
+</originmodule>
+<fields>
+<field>
+<fieldname>firstname</fieldname>
+<validations>
+<validation>
+<rule>regex</rule>
+<restrictions>
+<restriction>''(?=^.{2,60}$)^[A-ZÀÁÂĖÈÉÊÌÍÒÓÔÕÙÚÛÇ][a-zàáâãèéêìíóôõùúç]+(?:[ ](?:das?|dos?|de|e|[A-Z][a-z]+))*$'</restriction>
+</restrictions>
+</validation>
+</validations>
+</field>
+</fields>
+</map>
+</code>

@@ -7,9 +7,10 @@ Each field has to be displayed in two different ways for the Detail view and Edi
 The following are some of the display types that are used:
 
   * **1** - Displayed both in Detail view and Edit view
-  * **2** - Displayed only in the Detail view (Ex. Created time, Modified time) Read only field. Must be given a value through the code
-  * **3** - It is not displayed neither in DetailView nor EditView, but can be shown in ListView. For example: Total, subtotal in Invoice Module. These Fields are not tied to any block.
-  * **4** - ReadOnly field which can be modified with workflows
+  * **2** - Displayed only in the Detail view (Ex. Created time, Modified time) Read-only field. Must be given a value through the code
+  * **3** - It is not displayed either in DetailView nor EditView, but can be shown in ListView. For example Total, subtotal in Invoice Module. These Fields are not tied to any block.
+  * **4** - a Read-Only field which can be modified with workflows
+  * **5** - Only in create mode. Cannot be used in workflows
 
 ===== typeofdata for Fields in Modules  =====
 
@@ -87,6 +88,12 @@ Accepted comparators are: L,LE,E,NE,G,GE
   * 0 is blocked non editable, it cannot be activated in layout editor
   * 1 is mass editable
   * 2 is disabled mass editable but can be enabled in layout editor
+
+===== Quick Create =====
+  * 0 is always shown and cannot be deactivated in layout editor
+  * 1 is not shown but can be set in the layout editor
+  * 2 is shown but can be unset in the layout editor
+  * 3 is never shown and cannot be activated in layout editor
 
 ===== Presence =====
   * 0 always active, cannot be modified in layout editor

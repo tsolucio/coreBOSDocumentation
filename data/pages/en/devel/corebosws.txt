@@ -16,5 +16,7 @@
   * [[:en:devel:corebosws:getrelatedrecords|get Related Records method]]
   * [[:en:devel:corebosws:faq|Frequently Asked Questions]]
   * [[:en:devel:corebosws:convertleadwebservice|Convert Lead Webservice]]
+  * [[:en:devel:corebosws:skipconvertfields|How to specify the format of your fields when sending in through webservice]]
+  * [[:en:devel:corebosws:reservedparameter|Webservice format and reserved parameter]]
 
 

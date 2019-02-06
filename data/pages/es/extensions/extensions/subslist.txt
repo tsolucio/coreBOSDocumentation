@@ -22,8 +22,18 @@ supportemail_mail : info(at)tsolucio(dot)com
 \\
 ====Que son y para que sirven====
 
-TBD
+{{ :es:extensions:extensions:segmentacion.jpg|Segmentación}}
+Es posible hablar de la segmentación de mercado, por ejemplo, para nombrar a la división de éste en conjuntos más pequeños cuyos integrantes comparten determinadas características y requerimientos. Estos subgrupos, dicen los expertos, se determinan tras analizar el mercado.
 
+La segmentación exige la creación de grupos homogéneos, al menos respecto a ciertas variables. Dado que los miembros de cada segmento mantienen comportamientos o conductas similares, es posible anticipar una respuesta parecida ante las estrategias de marketing.
+
+Entre los requisitos para segmentar el mercado de manera correcta aparecen la homogeneidad dentro del segmento, la heterogeneidad entre los segmentos y la posibilidad de identificar, medir y manejar cada segmento.
+
+Este módulo te permitirá agrupar Cuentas, Contactos y PreContactos en diferentes listas con las que podremos realizar acciones de marketing conjuntas.
+
+Se pueden rellenar las listas de diversas maneras, desde flujos de trabajo, mediante filtros, informes o desde la integración con OpenStreeMap.
+
+Por ejemplo, nosotros tenemos una lista de segmentación de todas las personas que se han dado de alta en el BLOG de coreBOS. En cuanto se registran se crea el contacto en nuestro coreBOS y se añade a la lista de segmentación del BLOG. Cuando publicamos algo nuevo enviamos masivamente un correo a todos los de la lista.
 ====Como relacionar entidades con una segmentación ====
 
 Disponemos de 3 maneras de añadir o quitar cuentas, contactos y precontactos a una lista de segmentación.
@@ -43,9 +53,13 @@ Para evitar el tener que acordarnos de sincronizar las segmentaciones hemos aña
 
 Mediante la tarea de flujo de trabajo **Poner/Quitar Lista Segmentación** podremos añadir y quitar cuentas, contactos y precontactos de manera individual al ocurrir ciertas acciones en el sistema.
 
-La venta más grande respecto a la opción de filtro sincronizado es que podremos mezclar registros con condiciones muy dispares en vez de tener solo los que pertenecen a un filtro.
+La ventaja más grande respecto a la opción de filtro sincronizado es que podremos mezclar registros con condiciones muy dispares en vez de tener solo los que pertenecen a un filtro.
 
 
 ===Marketing Dashboard===
 
 Seleccionando masivamente diferentes entidades basadas en diferentes combinaciones de filtros podemos rellenar fácilmente listas de segmentación.
+
+=== Integración OpenStreetMap ===
+
+Al crear una búsqueda de radio en el mapa, podemos encontrar una opción para enviar todos los registros dentro del círculo a una lista de segmentación.

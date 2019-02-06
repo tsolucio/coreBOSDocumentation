@@ -8,7 +8,7 @@
 |5|Date field. Contains a link to "jsCalendar" which can be used to fill it in. Also displays he current users date format below it. Takes input date based on the current users date format. Does not allow to enter invalid date like 30th February. Does not change color on selection.|
 |6|This is a time and date field. It allows to enter time using dropdowns and date using a link to "jscalendar". The validity of date and time is checked before entry. It is mandatory that the entered date is greater than or equal to the current date. Does not change color on selection. **This is ONLY for specific calendar forms, it cannot be used anywhere else in the application* See uitype 50**|
 |7|A single line text field which is used to take numeric input primarily. Changes color on selection.|
-|8|Json array is stored and the value when consumed will be comma separated strings.|
+|8|Internal field that holds a list of emails for the TO, FROM and CC email fields on the Emails module.|
 |9|A single line text field which is used to accept percentage inputs from users. Checks if the input is less than 100 or not and gives and error otherwise. Changes color on selection.|
 |10|To create an input type of 'Linked Entity' wherein a field can be linked to one of the entity from multiple modules (e.g.: Member of field)|
 |11|Phone and fax|
@@ -26,7 +26,6 @@
 |20|Same as uitype 19, but a mandatory field, i.e. it has to be filled and there is a star present before the field label. Changes color on selection.|
 |21|textarea sized around five lines. Used to take small details like "Street Address" from user as input. Changes color on selection.|
 |22|A textarea which is used to accept the "Title" field in some modules. It is a mandatory field. A star is present before the field label. Changes color on selection.|
-|23|Date field. Same as uitype 5, but mostly used to take end date inputs.|
 |24|Textarea sized around five lines. Primarily used to take small details like "Billing Address" from user as input. When a contact is selected, then if the user consents, the billing address is filled automatically using the contact address as billing address. Is a mandatory field. A star is present before the text label. Changes color on selection.|
 |25|Email Status Tracking (Used to count the number of times an email is opened). This is a special uitype, value for which is computed based on the values of the other table.|
 |26|Documents folder|
@@ -40,19 +39,22 @@
 |3314|Multipicklist of the entity and non-entity (extensions) modules available in the application|
 |50|Datetime field. Contains a link to "jsCalendar" which can be used to fill it in. Also displays he current users date format below it. Takes input date based on the current users date format. Does not allow to enter invalid date like 30th February. Does not change color on selection.|
 |51|Used to select an account from a popup window.|
-|52,77|A dropdown with a list of current active users. 77 must be named inventorymanager|
-|53|Combination of a dropdown combo and a radiobutton that accepts input from the value selected in the combo. The value of the radiobutton, in turn, decides the values in the combo. The input is the name of the user or group to which an activity is assigned to.|
 |55|This uitype provides a combination of Salutation and Firstname. The Salutation field is a dropdown while the Firstname field is a single line text field which changes its color on selection.|
 |56|A checkbox which takes input in the form of yes or no.|
 |57|A single line uneditable text field. Takes its input from the link provided with it. Used to select a contact from a popup window. Contains a link which can be used to clear previous value. Also it contains a link to a popup which adds a new contact. Does not change color on selection.|
 |66|Calendar related entity picklist|
-|71|Currency for application usage|
-|72|Currency special for inventory module lines and totals|
+|69|Image field. In products 69m which is special as it can hold multiple images|
+|71|Currency for application usage. [[en:devel:multicurrency|Read more here]]|
+|72|Currency special for inventory module lines and totals. [[en:devel:multicurrency|Read more here]]|
 |85|Skype|
-|101|User capture widget. Must be named reports_to|
 |117|Currency picklist. field must be named currency_id|
 |255|In leads and contacts module, last name is mandatory but first name is not. So when first name is disabled for the profile, the salutation gets handled and added for the last name using this uitype.|
 |1025|[[en:adminmanual:businessmappings:fieldinfo:autocomplete#multiselect_autocomplete_fields|MultiSelect autocomplete]]|
+|User Fields||
+|52|CreatedBy and ModifiedBy user read-only fields. Note that this uitype is prepared to be editable. By default they are set to displaytype 2 which makes them non-editable, but if they are changed to displaytype 1 they will be editable.|
+|53|Combination of a dropdown combo and a radiobutton that accepts input from the value selected in the combo. The value of the radiobutton, in turn, decides the values in the combo. The input is the name of the user or group to which an activity is assigned to.|
+|77|A dropdown with a list of current active users. It is a second assigned user field with no permissions attached to it. The column name must be named inventorymanager and the fieldname assigned_user_id1|
+|101|User capture widget. Must be named reports_to|
 
 ===== Steps to add a new uitype =====
   * add the uitype to data/CRMEntity.php: this is for formatting the input value to be saved in the database, if no formatting is needed you will not need to modify this file

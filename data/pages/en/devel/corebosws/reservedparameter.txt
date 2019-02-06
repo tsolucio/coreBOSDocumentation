@@ -1,0 +1,7 @@
+===== Webservice format and reserved parameter =====
+
+The web service API returns responses in JSON format. This format can be changed on a per-call basis. To accomplish this we would need to implement the code to support the desired format [[https://github.com/tsolucio/corebos/blob/master/include/Webservices/OperationManagerEnDecode.php|like this code which implements the JSON format]], add the new format to [[https://github.com/tsolucio/corebos/blob/master/include/Webservices/OperationManager.php#L13|the array of supported formats]] and then indicate the format using the special reserved parameter **format** in the GET/POST call.
+
+<WRAP center round important 80%>
+Note that this implies that NO web service end point may use a parameter named **format** as this parameter is used for this sole purpose.
+</WRAP>

@@ -1,0 +1,19 @@
+<WRAP center 50%>
+===Acknowledgements===
+==Preface==
+</WRAP>
+----
+=====Acknowledgements=====
+<WRAP>
+This book has been in the works for a long time. It could not have been completed without the help and encouragement of a lot of people.\\
+
+The vtiger team, its user community, and a number of people contributed technical feedback as this book was being written.\\
+
+We thank the countless people who contributed to this manual with informal reviews, suggestions, and fixes. While this is undoubtedly not a complete list, this manual would be incomplete and incorrect without the help of Emilio Paolini, Walter Schönenbröcher, Dirk Gorny, Alexander Rothenberg.
+</WRAP>
+----
+<WRAP right>
+[[en:adminmanual:securityguide:ch001|Next]] | Chapter 1.Introduction to Role-Based Security
+</WRAP>
+----
+© 2006 crm-now

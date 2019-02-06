@@ -2,6 +2,50 @@
 
 TBD
 
+===== Aggregations =====
+
+When you want to update a field from a workflow (even on a related module), you have the option to use a function expression. There are many options here, two of which are the 'aggregation' and 'aggregation_fields_operation' functions. The default output, once you select one of these is:
+
+<code>
+aggregation(operation,relatedmodules,relatedFieldToAggregate,conditions)
+</code>
+
+or
+
+<code>
+aggregation_fields_operation(operation,RelatedModule,relatedFieldsToAggregateWithOperation,conditions)
+</code>
+
+Use this small guide to get you going:
+
+  * For the 'operation' parameter, you have the following choices (I think they speak for themselves):
+    * sum
+    * min
+    * max
+    * avg
+    * count
+    * std
+    * variance
+
+The related module is the module you want to aggregate from. This can be the same module as you're creating the workflow on. You would use this if you want to update a field on a related record by summing up (for instance) all the 'siblings' of the record you are editing. For instance, you could update a field in Accounts with the sum of all payments made to that account, whenever you edit or save one of those payments, without having to save the Account in question first.
+
+The related field(s) should be field names of the module you specified in the previous parameter. Again, this can be one the same module you're creating the workflow on.
+
+The conditions should be an array-like formatted string with 4 parameters (example: [relatedto2,e,$(relatedto2 : (LitigationMatter) matter_name),or])
+
+The first parameter tells the workflow which field to look for on the 'sibling' records.
+
+The second is the operator. In the example, there is an 'e', which stands for 'equals'.
+
+The third parameter tells you what the fields in the 'relatedto2' field on the sibling should match. In this case, a nested expression is used to get the name of the related LitigationMatter, so basically you want all 'siblings' that have the same name in that field
+
+The last parameter tells the workflow how to 'glue' conditions together if you have multiple (yes, you can have multiple condition arrays).
+
+<WRAP center round important 75%>
+IMPORTANT NOTE: Do not use spaces in the condition array-string between the arguments.
+</WRAP>
+
+
 ===== Examples =====
 
 ??? **jgrossman** on discussion forum :: Hopefully someone can help me figure this out.

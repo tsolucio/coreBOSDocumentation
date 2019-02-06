@@ -18,8 +18,8 @@ The accepted format is:
      <field>
       <label></label>
       <name></name>
-      <table></table>
-      <columnname></columnname>
+      <table></table>  {optional}
+      <columnname></columnname>  {optional}
      </field>
      ...
     </columns>
@@ -32,8 +32,8 @@ The accepted format is:
      <field>
       <label></label>
       <name></name>
-      <table></table>
-      <columnname></columnname>
+      <table></table>  {optional}
+      <columnname></columnname>  {optional}
      </field>
      ...
     </columns>
@@ -43,4 +43,14 @@ The accepted format is:
 
 where we can define a different set of columns per related lists and one for the popup screen.
 
-The name of the mapping must be **{ModuleName}_ListColumns** and the name of the global variable if you need it to be per user would be: **BusinessMapping_{ModuleName}_ListColumns**
+The name of the mapping must be **{ModuleName}_ListColumns** and the name of the global variable, if you need it to be per user, would be: **BusinessMapping_{ModuleName}_ListColumns**
+
+The way to understand this map is like this:
+
+<WRAP center round box 80%>
+this Potentials_ListColumns map is for Potentials lists, when you show a list of potential records, in the Contacts module I want you to show these columns, when you show that list in Accounts I want you to show these others,... when you open a popup to select a potential record I want you to show these
+
+so, all the field references must be fields that are on the Potentials
+
+if you want to change how contacts appear in their lists then you have to create a Contacts_ListColumns and open a relatedlist section for Potentials
+</WRAP>

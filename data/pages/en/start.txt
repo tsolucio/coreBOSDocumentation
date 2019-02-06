@@ -15,12 +15,3 @@
   <item>HelpMeNow|Application inline help|helpmenow|{{menu:faq_32.png?direct|}}</item>
   <item>Documentation Information|Goals and guidelines of the documentation|docguide|{{menu:info_32.png?direct|}}</item>
 </menu>
-
-===== Demonstration Sites =====
-
-You can test the application in our demonstration sites:
-
-  * [[http://corebos.org/demos/corebos/|coreBOS]]
-  * [[http://corebos.org/demos/coreboscp/|coreBOS Customer Portal (yii)]]
-  * [[http://corebos.org/demos/corebosmyc/|coreBOS Customer Portal (myc)]]
-  * [[http://demo.coreboscrm.com/|coreBOSCRM]]

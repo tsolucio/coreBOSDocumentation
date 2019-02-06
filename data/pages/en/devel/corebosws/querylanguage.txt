@@ -233,6 +233,20 @@ The Webservice extended query language functionality, based on Query GeneratorQu
 </WRAP>
 
 
+===== Searching for empty relations =====
+
+When you have a webservice query, and you want to select records from a module where a certain UI10 field is empty use:
+
+<code>
+select * from purchaseorder where po_related_soid = 15x0 
+</code>
+
+Where 15 is the webservice ID for the module of the UI10 field (in this case salesorders). Then use the 'x', and add a 0.
+
+'po_related_soid' is a placeholder for the fieldname you want to check on, replace that with your own. Of course also replace the module name with your own. 
+
+[[https://discussions.corebos.org/showthread.php?tid=912|Thanks Luke!]]
+
 ===== Errors that can be returned =====
 
 Besides errors that may be returned by the underlying code this function uses, it can return directly these errors:

@@ -176,3 +176,28 @@ or like this for a multioptional autocomplete field:
 ===== Configuring Autocomplete and MultiSelect Autocomplete Fields =====
 
 [[en:adminmanual:businessmappings:fieldinfo:autocomplete|Continue reading here for more information on how to configure an autocomplete functionality on a field in coreBOS]]
+
+===== Configuring Multipicklists =====
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>cf_732</fieldname>
+      <features>
+        <feature>
+          <name>columns</name>
+          <value>10</value>
+        </feature>
+        <feature>
+          <name>width</name>
+          <value>350</value>
+        </feature>
+      </features>
+    </field>
+  </fields>
+</map>
+</code>

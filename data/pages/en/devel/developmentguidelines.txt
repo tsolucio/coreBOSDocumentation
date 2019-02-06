@@ -123,6 +123,7 @@ We recommend and use two tools to help validating the formatting issues in PHP a
 
   * [[https://github.com/squizlabs/PHP_CodeSniffer|PHP Code Sniffer]] for PHP
   * [[https://eslint.org|ESLint]] for Javascript
+  * [[https://phpmd.org/|PHP Mess Detector]]
 
 You can find rulesets for the above guidelines in the build/cbSR directory.
 
@@ -142,6 +143,16 @@ eslint -c build/cbSR/eslintrc.js file_to_validate
 You can use phpcbf and the eslint --fix to get changes applied automatically
 </WRAP>
 
+I actually bundle phpcs and phpmd in one file (checkfile) that I use to validate my php files:
+
+<code>
+echo ======
+echo $1
+echo ======
+phpcs.phar --standard=/var/www/coreBOSwork/build/cbSR $1
+phpmd.phar $1 text unusedcode
+php -l $1
+</code>
 ===== References and further reading =====
   * [[:en:devel:debuging|Debugging]]
   * [[:en:devel:commitguidelines|Commit Guidelines we try to adhere to]]

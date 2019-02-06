@@ -1,0 +1,19 @@
+====== Menu Editor ======
+
+The design of the menu editor is like this:
+
+  * The panel on the right is an action panel, anything you do there will take effect immediately and reflect on the left panel tree.
+
+  * The tree on the left is so you can see all the elements, even the non-visible ones and order them by drag and drop. Once you have ordered the entries as you need you must click the save button to make those changes permanent.
+
+  * If you want to add an element but not have it seen by anyone until you have it in place, create it with the "visible" property unchecked and then check it when you are finished placing it.
+
+====== FAQ ======
+
+~~QNA~~
+
+??? The left menu tree doesn't load. There is a message that says loading but nothing happens and I can see a javascript error in the console.
+
+!!! This is a known error that we have not been able to catch. From time to time someone runs into this error which is due to some menu entry not having a parent menu. We have not been able to reproduce the error, we just know that, somehow, it is possible to create or move an entry and leave it orphaned. If you can help us reproduce the error we could fix it. In the mean time, we have created a utility function to set all orphaned entries to the top level so you can enter and organize as required. If you have this issue execute the next URL:
+
+<code>http://your_server/your_corebos/index.php?action=Save&module=evvtMenu&evvtmenudo=fixOrphaned</code>

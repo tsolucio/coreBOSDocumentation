@@ -1,0 +1,21 @@
+<WRAP center 50%>
+===Appendix A. ChangeLog===
+</WRAP>
+----
+=====Appendix A. ChangeLog=====
+<WRAP>
+This appendix details the changes made between versions.\\
+**Version 0.9: Draft Release (2006-03-30)**
+Changes to engl/*
+
+  | 2006-04-06  Frank Piepiorra <fp@crm-now.com>
+  | 
+  | * draft release, all chapters
+  | 
+</WRAP>
+----
+<WRAP right>
+[[en:adminmanual:securityguide:appb|Next]] |  Appendix B. Resources
+</WRAP>
+----
+© 2006 crm-now

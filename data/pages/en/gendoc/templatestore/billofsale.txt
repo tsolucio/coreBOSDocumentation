@@ -1,0 +1,21 @@
+===== GenDoc Template:: Bill of Sale =====
+
+Basic Bill of Sale transaction template.
+
+---- dataentry ----
+name : billofsale
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:billofsale.odt
+pdfexample_img: :en:gendoc:templatestore:billofsale.pdf
+description_wiki: Basic Bill of Sale transaction template.
+keywords_tags : sell,sale,bill,invoice,contract,transaction
+language: en
+module: Invoice
+version : 1.0
+release_dt : 2018-01-13
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes joe(at)tsolucio(dot)com
+----
+\\

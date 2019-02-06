@@ -1,0 +1,22 @@
+===== GenDoc Template:: Company Profile Printout =====
+
+Good starting point for a company profile printout
+
+---- dataentry ----
+name : company_profile
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:company_profile.odt
+pdfexample_img: :en:gendoc:templatestore:company_profile.pdf
+description_wiki: Good starting point for a company profile printout
+keywords_tags : profile,printout
+language: EN
+module: Accounts
+version : 1
+release_dt : 2017-12-23
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes
+----
+\\
+

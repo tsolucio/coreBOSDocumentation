@@ -50,5 +50,8 @@ Once these two steps have been taken we can continue by calling any of the webse
 
 
 
+====More Information====
+
+  * This method of authentication is called Challenge-Handshake Authentication Protocol and it is more secure than a username/password authentication. [[https://tools.ietf.org/html/rfc1994|Read here for more information]]
 
 

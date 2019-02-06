@@ -1,0 +1,35 @@
+====== Inventory Modules ======
+
+
+===== Financial Block and Fields =====
+
+In order to give full access to all the calculations possible in inventory modules, we have added a set of auto-calculated fields with all the values. These fields will permit easier advanced reporting both inside and outside of the application.
+
+Additionally, we have added support for special tax types which are summed up separately in order to simplify or make possible some common tributation configurations present in many countries.
+
+The fields have all been added to a new block called "Financial Information" and they are:
+
+  * **Gross total**: the sum of all line totals with no discounts nor individual taxes
+  * **Line discount**: the sum of all individual line discounts
+  * **Global discount**: the value of the global discount applied in the footer of the record
+  * **Total discount**: the sum of line and global discount
+  * **Net before global discount**: gross total minus individual line discounts
+  * **Net total (after global discount)**: gross total minus total discounts
+  * **Tax totals**: a field with the sum of all taxes applied for each tax active
+  * **Tax retention**: the sum of all taxes marked as type retention
+  * **Total tax**: the sum of all taxes applied
+  * **Shipping and handling total**: copy of the value in the footer
+  * **Shipping and handling tax**: the sum of taxes applied to shipping and handling
+  * **Adjustment**: copy of the value in the footer
+  * **Grand total**: copy of the value in the footer
+
+In a more mathematical notation it would be
+
+  * gross =  ∑linetotals
+  * line_discount =∑line_discounts
+  * total_discount = lined_discount + global_discount
+  * net = gross - total_discount
+  * total_tax = ∑line_taxes + group_tax
+  * grand_total = net + total_tax + s&h + s&h_tax + adjustment
+
+The **retention tax** type can be established in the **tax settings** page and is simply to sum them separately.

@@ -5,11 +5,15 @@
   * {{:gendoc:tablacabecerafilas.odt|Tabla con Cabecera y Filas}}
 
 === Repetición ===
+
 == Enumeración ==
+
 <code>{paracada Fichero}
 {repeticion} {Fichero.filename}
 {/paracada}</code>
+
 == Bloque en primera iteración ==
+
 <code>{paracada Fichero.nivel=ALTO}
 {siexiste repeticion=1}
 así como las medidas de nivel alto para los ficheros:
@@ -33,19 +37,5 @@ En el caso concreto de los Soportes sería:
 Eso obtendrá todos los registros con el campo "Método Destrucción" NO vacío.
 
 === Paracada anidados ===
-  * A partir de ahora se pueden poner etiquetas de Entidades relacionadas a cualquier nivel, esto quiere decir que a partir de un Tercero, se puede llegar a uno o varios contactos de la cuenta relacionada. O por ejemplo a los Empleados relacionados con los Ficheros de Una cuenta (NO todo los empleados de la cuenta).
-  * Este cambio requiere cambiar un poco la manera de "llegar" a los datos, por eso quitamos la compilación con la Cuenta siempre (como se hacía para poder llegar a campos de la cuenta desde  un fichero o tercero, etc ...). Esto hace que si antes se llegaba directamente al Gerente (Contacto) de una cuenta, ahora ya no es posible y hay que "seguir" el camino desde un Tercero al Cliente. Esto se hace con uno o varios {paracada} anidados.
-  * Siguiendo con este ejemplo el camino sería:
-    * Empezamos con un Tercero en Concreto (en la documentación, aunque la obtención se hace en la Cuenta, realmente se genera cada documento desde la plantilla relacionada con cada entidad)
-    * El tercero tiene relación con una Cuenta.
-    * La cuenta tiene relación con un Gerente
 
-Por eso para poder llegar al campo nombre del gerente debemos ir poniendo varios {paracada} para ir bajando de nivel, de esta forma:
-<code>
-    {paracada Accounts} (accedemos a la cuenta del Tercero)
-    {paracada Gerente}   (accedemos al Gerente de la cuenta)
-       {Gerente.firstname} (escribimos el nombre del Gerente)
-    {/paracada} (cerramos el paracada Gerente)
-    {/paracada} (cerramos el paracada Accounts)
-</code>
-De esta forma podemos ir bajando indefinidamente hasta conseguir el dato que necesitamos.
+Puedes poner etiquetas foreach de entidades relacionadas a cualquier nivel, esto significa que desde una cuenta, puede llegar a uno o varios contactos, y desde allí alcanzar su potencial y desde allí, recorrer las cotizaciones relacionadas.

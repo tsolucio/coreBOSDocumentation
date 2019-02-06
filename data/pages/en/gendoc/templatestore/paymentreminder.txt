@@ -1,0 +1,23 @@
+===== GenDoc Template:: Payment Reminder =====
+
+Payment Reminder Letter.
+
+---- dataentry ----
+name : paymentreminder
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:paymentreminder.odt
+pdfexample_img: :en:gendoc:templatestore:paymentreminder.pdf
+description_wiki: Payment Reminder Letter.
+keywords_tags : overdue,payment,reminder
+language: EN
+module: CobroPago
+version : 1
+release_dt : 2017-12-23
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes
+----
+\\
+
+

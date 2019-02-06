@@ -1,0 +1,3 @@
+====== coreBOS Mobile Interface ======
+
+  * [[:en:mobileui:introduction|Mobile Introduction]]

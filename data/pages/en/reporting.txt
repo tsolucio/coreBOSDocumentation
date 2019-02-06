@@ -1,5 +1,8 @@
 ====== User Manual::Reporting ======
 
+  * [[en:reporting:report_charts|Report Charts]]
+
+
 ??? But how to make a dynamic filter for a date range?
 
 !!! You can establish time based filters in step 7 (Filters) of the report configuration.

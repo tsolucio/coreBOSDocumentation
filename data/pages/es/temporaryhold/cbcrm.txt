@@ -15,7 +15,7 @@ Es un vtiger CRM ampliado con una serie de mejoras para optimizar el control de 
   * [[es:extensions:extensions:dtoproductline|Descuento en productos y servicios por categoría/cuenta]]
   * [[es:coreboscyp|Módulo de control de pagos]]
   * [[es:extensions:extensions:gendoc|GenDoc. Generación Documentación Avanzada OpenOffice Merge]]
-  * [[es:corebosapps|coreBOSApps]]
+  * <del>[[es:corebosapps|coreBOSApps]]</del>
   * [[es:extensions:extensions:cbgeomap|Extensión GeoLocalización de Clientes. Mapas]]
   * {{:en:vtmkt:dart-1.1.pdf|Daily Activity Reporting Tool}}
   * Soporte para envíos masivos de emails (coste adicional)

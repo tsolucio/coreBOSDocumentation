@@ -5,6 +5,10 @@
 
 !!! You have to force the state in DetailView and CallRelatedList {{:devel:patches:singlepaneforcedonmodule.diff|Single Pane forced on module patch}}
 
+<WRAP center round alert 60%>
+This is obsolete, you do this now with global variables.
+</WRAP>
+
 <code>--- a/CallRelatedList.php
 +++ b/CallRelatedList.php
 @@ -16,7 +16,7 @@
@@ -35,6 +39,10 @@
 ??? How to create custom formula function for field expressions in workflows
 
 !!! [[https://discussions.vtiger.com/index.php?p=/discussion/168584/created-custom-formula-function-for-field-expressions-sub-string]]
+
+<WRAP center round alert 60%>
+This is obsolete, you do this inserting information in the database and creating the function in a separate file. Ask on gitter.
+</WRAP>with global variables.
 
 The next code adds a substring function and should suffice to show how to add more funtions. Please share if you create any.
 
@@ -111,39 +119,6 @@ Note that you may have to make a similar change in some other parts of the code,
 ??? PDF Formatting
 
 !!! See this page for tips on playing with PDF output: [[en:devel:pdfformatting|PDF Formatting]]
-
-??? List View maxTextLength variable is limited to 100 in Settings > Configuration Editor
-
-!!! This is hard coded for usability reasons. It can be changed in the code as shown in the next example which changes the limit to 200:
-
-<code>
-diff --git a/Smarty/templates/modules/ConfigEditor/index.tpl b/Smarty/templates/modules/ConfigEditor/index.tpl
-index cd99871..5ce8ef1 100644
---- a/Smarty/templates/modules/ConfigEditor/index.tpl
-+++ b/Smarty/templates/modules/ConfigEditor/index.tpl
-@@ -95,7 +95,7 @@
- 				document.getElementById('msg_history_max_viewed').innerHTML=maxHistory;
- 				history1.focus();
- 				return false;
--			}else if((reg1.test(maxtext.value) == false) || (maxtext.value < 0) || (maxtext.value > 100) || (maxtext.value === "")){
-+			}else if((reg1.test(maxtext.value) == false) || (maxtext.value < 0) || (maxtext.value > 200) || (maxtext.value === "")){
- 				document.getElementById('msg_listview_max_textlength').innerHTML=maxTextLength;
- 				maxtext.focus();
- 				return false;
-diff --git a/modules/ConfigEditor/language/en_us.lang.php b/modules/ConfigEditor/language/en_us.lang.php
-index 3088962..88f3c70 100644
---- a/modules/ConfigEditor/language/en_us.lang.php
-+++ b/modules/ConfigEditor/language/en_us.lang.php
-@@ -21,7 +21,7 @@ $mod_strings = Array (
- 	'LBL_EMPTY_NAME_MSG'=> 'Support Name cannot be empty',
- 	'LBL_MAX_LISTVIEW_ENTRIES_MSG'=>'Maximum entries in the ListView is 100',
- 	'LBL_MAX_HISTORY_VIEWED_MSG'=>'Please enter a number in the range 1-5',
--	'LBL_MAX_TEXTLENGTH_LISTVIEW_MSG'=>'Maximum text length is 100',
-+	'LBL_MAX_TEXTLENGTH_LISTVIEW_MSG'=>'Maximum text length is 200',
- 	'LBL_MB'=>'MB',
- 	'LBL_MINI_CALENDAR_DISPLAY' => 'Mini Calendar Display',
- 	'LBL_WORLD_CLOCK_DISPLAY'=>'World Clock Display',
-</code>
 
 ??? How to eliminate currency sign in report exports
 
@@ -239,12 +214,6 @@ index d0feb0a..72db333 100755
  function selectQuote()</code>
 
 
-??? How can I make the related to field in Calendar mandatory?
-
-!!! With a quick and dirty code hack :-)
-
-{{:devel:patches:calendarrelatedtomandatory.diff|make the related to field in Calendar mandatory}}
-
 ??? How can I get a blank currency field instead of 0?
 
 !!! More or less like this:
@@ -276,57 +245,24 @@ if($module) {
 
 ?></code>
 
+??? How can I change the order of modules that appear in the picklist of a multi-module capture field. For example, the "Related To" field on the calendar.
+
+!!! You have to do this from database.
+
+  * First you have to know the fieldname, in this case it is "rel_id"
+  * Go to vtiger_field table and search this field to get the fieldid, for example: 1994
+  * After that you have to got to vtiger_fieldmodulerel, search this fieldid and you will see something like the next image, where you have to change the sequence to order the values:
+
+{{ :en:devel:sortmodulemultimodulecapture.png |}}
+
+
 ??? How can I get the SQL constructed for a Report?
 
-!!! Applying this patch:
-<code php>diff --git a/modules/Reports/ReportRun.php b/modules/Reports/ReportRun.php
-index 6f22783..2b6810c 100644
---- a/modules/Reports/ReportRun.php
-+++ b/modules/Reports/ReportRun.php
-@@ -1905,6 +1905,7 @@ class ReportRun extends CRMEntity
-             $reportquery = $this->replaceSpecialChar($report);
-         }
- 		$log->info("ReportRun :: Successfully returned sGetSQLforReport".$reportid);
-+		echo $reportquery;
- 		return $reportquery;
- 
- 	}
-</code>
+!!! Use the Debug_Report_Query Global variable
 
 ??? How can I get the SQL constructed for a List View?
 
-!!! Applying this patch:
-<code php>diff --git a/modules/Vtiger/ListView.php b/modules/Vtiger/ListView.php
-index 937edcd..ed5bc42 100644
---- a/modules/Vtiger/ListView.php
-+++ b/modules/Vtiger/ListView.php
-@@ -149,7 +149,7 @@ if(!empty($order_by)) {
- 		$list_query .= ' ORDER BY ' . $tablename . $order_by . ' ' . $sorder;
- 	}
- }
--
-+echo $list_query;
- //Postgres 8 fixes
- if( $adb->dbType == "pgsql")
- 	$list_query = fixPostgresQuery( $list_query, $log, 0);
-</code>
-
-??? How can I get the SQL constructed for a Report?
-
-!!! Applying this patch:
-<code php>diff --git a/modules/Reports/ReportRun.php b/modules/Reports/ReportRun.php
-index 6f22783..2b6810c 100644
---- a/modules/Reports/ReportRun.php
-+++ b/modules/Reports/ReportRun.php
-@@ -1905,6 +1905,7 @@ class ReportRun extends CRMEntity
-             $reportquery = $this->replaceSpecialChar($report);
-         }
- 		$log->info("ReportRun :: Successfully returned sGetSQLforReport".$reportid);
-+		echo $reportquery;
- 		return $reportquery;
- 
- 	}
-</code>
+!!! Use the Debug_ListView_Query Global variable
 
 ??? How can I activate workflows when importing records?
 

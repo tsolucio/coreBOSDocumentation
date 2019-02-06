@@ -5,6 +5,7 @@ El módulo de variables globales nos permite personalizar la funcionalidad de la
 El orden que implementa el módulo de variables globales para obtener un valor es el siguiente:
 
   * Primero busca un registro marcado como 'Obligatorio'.
+  * Si no encuentra ninguno, buscará un registro asignado al rol del usuario actual.
   * Si no encuentra ninguno, buscará un registro asignado al usuario actual.
   * Si no encuentra ninguno, buscará un registro asignado al grupo del usuario actual.
   * Finalmente, buscará un registro marcado como 'por defecto'.
@@ -38,6 +39,7 @@ Otro ejemplo podría ser el número de elementos por página en la vista de list
   * **Obligatorio**. Esta casilla de verificación fuerza el valor de la variable para todos los usuarios. Si está marcada, no se utilizará ningún otro registro para esta variable. Está diseñado para que el administrador pueda establecer una variable globalmente para todos los usuarios. Para lograrlo, debe establecer el módulo en compartición privada y asignar el registro al usuario administrador para que no pueda ser modificado por ningún usuario.
   * **Bloqueada**: Este campo es simplemente para agrupar ciertas variables, no tiene lógica ni proceso asociado. El caso de uso para el que se creó este campo es para que el usuario administrador pudiera ocultarlo en todos los perfiles o no permitir la edición del campo o para poder usarlo para agrupar determinadas variables importantes. Una vez marcadas estas variables, podemos crear fácilmente un filtro o una búsqueda en el campo para que podamos encontrarlas rápidamente.
   * **Módulo y En Lista de Módulos**. Los valores de las variables se pueden aplicar por módulo con estos dos campos. Si el campo "En Lista de Módulos" está marcado el valor de la variable solo tendrá efecto para los módulos seleccionados en la lista múltiple de Módulos
+  * **Rol**. Selecciona los roles a los que quieres aplicar esta variable. Si seleccionas una o más roles el registro **DEBE** estar asignado a un usuario en alguno de esos roles. coreBOS automaticamente asignará el registro si no lo has hecho.
   * **Mapa de Negocio**. Cuando buscamos mapas de negocios en el código lo hacemos a través del módulo de variables globales en lugar de ir directamente al módulo de mapas de negocios. De esta manera, permitimos a cualquier usuario anular la selección predeterminada y establecer una asignación específica para cualquier caso.
   * **Categoría**. simplemente para ayudar con procesos organizativos, no tiene ningún efecto en las variables
 

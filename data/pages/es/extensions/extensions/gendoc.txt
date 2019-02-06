@@ -25,7 +25,16 @@ supportemail_mail : info(at)tsolucio(dot)com #
 
 ====== Documentación. ======
 
+{{ :gendoc:gendocdocumentation.odt |Have a look at the Documentation Template}} and compare it with {{ :gendoc:gendocdocumentation.pdf |this validation merge}}.
+
+  * [[:es:gendoc:howto|Cómo utilizar]]
   * [[:es:gendoc:gramatica|Gramática plantillas]]
   * [[:es:gendoc:elemnosoportados|Elementos no soportados]]
   * [[:es:gendoc:gendocejemplos|Ejemplos]]
   * [[:es:gendoc:genxml|Generador XML]]
+
+
+====== Tienda de Plantillas. ======
+
+[[en:gendoc:templatestore|Consulta nuestra tienda de plantillas]] para ver ejemplos y plantillas útiles que te ayudarán a crear tus propias plantilalas.
+

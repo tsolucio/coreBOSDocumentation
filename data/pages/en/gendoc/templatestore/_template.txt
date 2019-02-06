@@ -1,0 +1,22 @@
+===== GenDoc Template:: TEMPLATE_NAME =====
+
+TEMPLATE_DESCRIPTION
+
+---- dataentry ----
+name : TEMPLATE_NAME
+type : gendoctemplate
+template_img : TEMPLATE_ODT
+pdfexample_img: TEMPLATE_PDFEXAMPLE
+description_wiki: TEMPLATE_DESCRIPTION
+keywords_tags : TEMPLATE_KEYWORDS_CSV
+language: TEMPLATE_LANGUAGE
+module: TEMPLATE_MODULE
+version : TEMPLATE_VERSION
+release_dt : TODAY
+licenses : TEMPLATE_LICENSE
+price : Free
+distribution : Free
+authorname : TEMPLATE_AUTHOR
+----
+\\
+

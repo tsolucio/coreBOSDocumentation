@@ -1,0 +1,21 @@
+===== GenDoc Template:: Inventory Transfer =====
+
+Packing or Shipping note type template.
+
+---- dataentry ----
+name : inventorytransfer
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:inventorytransfer.odt
+pdfexample_img: :en:gendoc:templatestore:inventorytransfer.pdf
+description_wiki: Packing or Shipping note type template.
+keywords_tags : Packing,Shipping,albaran
+language: en
+module: SalesOrder
+version : 1.0
+release_dt : 2017-12-30
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes joe(at)tsolucio(dot)com
+----
+\\

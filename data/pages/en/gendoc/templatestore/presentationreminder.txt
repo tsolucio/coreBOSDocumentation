@@ -1,0 +1,21 @@
+===== GenDoc Template:: Presentation Reminder =====
+
+Letter/Email for presentation reminder
+
+---- dataentry ----
+name : presentation-reminder
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:presentationreminder.odt
+pdfexample_img: :en:gendoc:templatestore:presentationreminder.pdf
+description_wiki:Letter/Email for presentation reminder
+keywords_tags : presentation,event,reminder,calendar,todo
+language: EN
+module: Calendar/ToDo
+version : 1
+release_dt : 2018-01-03
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes
+----
+\\

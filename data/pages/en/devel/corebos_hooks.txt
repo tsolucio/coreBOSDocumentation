@@ -89,6 +89,10 @@ The **dependent column** is a JSON encoded array of event handlers that must be 
 
 ====Supported events====
 
+<WRAP center round info 60%>
+Note that inside each event type the set of active events will be executed in order of creation (sorted by their eventid) as [[https://discussions.corebos.org/showthread.php?tid=1351|can be read here]].
+</WRAP>
+
 ===vtiger.entity.beforesave.modifiable===
 This event is an internal event that is launched before any other event when an entity is saved. It should not be used.
 
@@ -97,6 +101,9 @@ This event is fired before an entity is saved. You will be passed a **[[en:devel
 
 ===vtiger.entity.beforesave.final===
 This event is an internal event that is launched after all other BEFORESAVE events when an entity is saved. It should not be used.
+
+===vtiger.entity.aftersave.first===
+This event is fired after an entity is saved, but before workflows and standard aftersave events but the local save_module() method of the object has been executed.
 
 ===vtiger.entity.aftersave===
 This event is fired after an entity is saved, even the local save_module() method of the object has been executed. This also provides a **[[en:devel:VTEntityData|VTEntityData]]** object.

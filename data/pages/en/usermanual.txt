@@ -18,3 +18,7 @@
   * [[reporting|Reporting]]
   * [[productstockcontrol|Product Stock Control]]
   * [[smsnotifier|SMSNotifier]]
+  * [[mobileui|Mobile Interface]]
+  * [[inventorymodules|Inventory Modules]]
+  * [[deduplication|Deduplication]]
+

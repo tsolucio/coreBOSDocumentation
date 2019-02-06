@@ -1,0 +1,22 @@
+<WRAP center 30%>
+===This Guide's Audience===
+</WRAP>
+<WRAP center 20%>
+===Preface===
+</WRAP>
+----
+
+======This Guide's Audience======
+This guide has been written mainly for vtiger CRM administrators. We expect that readers will have some familiarity with security management. This guide assumes a basic knowledge of security-related concepts and terms, including authentication, authorization and roles. Although we provide a description of all features as they are implemented at the release date, this guide may not suffice as your only reference about vtiger CRM. This depends, on your needs and experience but also on the progress vtiger CRM makes. For a list of some other good resources, consult [[en:adminmanual:securityguide:appb|Appendix: Ressources.]] 
+
+----
+<WRAP right>
+[[en:adminmanual:securityguide:pref-organization|Next]]
+ Organization of This Manual
+</WRAP>
+
+
+----
+
+
+© 2006 crm-now

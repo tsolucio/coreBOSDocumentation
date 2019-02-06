@@ -3,6 +3,7 @@
   * [[en:devel:createvtlibmodule|Create a coreBOS module]]
   * [[en:devel:createvtlibextension|Create a coreBOS extension]]
   * [[en:devel:uitypes|List of coreBOS UITypes]]
+  * [[en:devel:multicurrency|coreBOS Multi-Currency Fields]]
   * [[en:devel:field_structure|Field Structure: Columns and definitions]]
   * [[en:devel:packagemodules|How to prepare modules for distribution]]
   * [[en:devel:relatedlists|How to add related lists to a module]]
@@ -28,3 +29,4 @@
   * [[en:devel:standardoutputmessage|Application Standard Message Output]]
   * [[en:devel:confidentalinfoaddencryption|Add Encryption/Decryption methods to Confidential Information module]]
   * [[en:devel:executefunctions|Generic Javascript API Access to backend: Execute Function]]
+  * [[en:devel:designloginpage|Design your login page]]

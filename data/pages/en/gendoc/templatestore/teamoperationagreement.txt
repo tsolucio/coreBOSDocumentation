@@ -1,0 +1,22 @@
+TeamOperationAgreement
+===== GenDoc Template:: Team Operation Agreement =====
+
+Project Team Operation Agreement template.
+
+---- dataentry ----
+name : TeamOperationAgreement
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:teamoperationagreement.odt
+pdfexample_img: 
+description_wiki: Project Team Operation Agreement template.
+keywords_tags : project,management,team,aggreement
+language: en
+module: Project
+version : 1.0
+release_dt : 2018-01-13
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes joe(at)tsolucio(dot)com
+----
+\\

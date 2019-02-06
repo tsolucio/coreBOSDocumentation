@@ -1,8 +1,8 @@
 ====== Business Mappings and Conditions ======
 
-The Business Mappings and Conditions module permits **implementors** to define high level configuration options for the execution of the application.
+The Business Mappings and Conditions module permits **implementors** to define high-level configuration options for the execution of the application.
 
-Using different types of structured XML, JSON or direct SQL, this module will define conditions, field mappings and other advanced logic to modify the functionality of the application without the need to get into programming details.
+Using different types of structured XML, JSON or direct SQL, this module will define conditions, field mappings, and other advanced logic to modify the functionality of the application without the need to get into programming details.
 
 This module also serves another purpose: separating the programmers from the implementors. In other words, it permits the programmers to create functionality in the application while giving to the implementor total control on **how** that functionality should act in different cases for different installations.
 
@@ -36,6 +36,7 @@ There are currently these different types of mappings:
   * [[en:adminmanual:businessmappings:list_columns|List Columns]]
   * [[en:adminmanual:businessmappings:record_set|Record Set Mapping]]
   * [[en:adminmanual:businessmappings:module_set|Module Set Mapping]]
+  * [[en:adminmanual:businessmappings:field_set|Field Set Mapping]]
   * [[en:adminmanual:businessmappings:masterdetailmapping|Master Detail Mapping]]
   * [[en:adminmanual:businessmappings:iomap|IOMap]]
   * [[en:adminmanual:businessmappings:field_dependency|Field Dependency]]
@@ -49,7 +50,11 @@ There are currently these different types of mappings:
 Depending on the type of the business mapping the contents of the record changes as explained next.
 
 
-
+<WRAP center round important 75%>
+The two most typical business map errors are:
+  * giving the record the wrong name: most business maps are launched depending on their name, so you must set it correctly
+  * invalid XML: https://www.xmlvalidation.com
+</WRAP>
 
 
 

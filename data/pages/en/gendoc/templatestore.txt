@@ -1,0 +1,16 @@
+===== Documentation Generation::Template Store =====
+
+Here you can find a whole set of different templates which can be used in your application directly or with easy modifications to adapt them to your needs.
+
+<WRAP center round box 80%>
+Please share your templates with us!
+</WRAP>
+
+---- datatable ----
+cols    : %title%, description_wiki, template_img, pdfexample_img, language, module
+headers : Page, Description, Template, PDF Example, Language, Module
+max     : 50
+dynfilters : 1
+sort    : %title%
+filter  : type=gendoctemplate
+----

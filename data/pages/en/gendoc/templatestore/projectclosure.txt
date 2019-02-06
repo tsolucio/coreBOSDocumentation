@@ -1,0 +1,21 @@
+===== GenDoc Template:: Project Closure =====
+
+Project Closure template
+
+---- dataentry ----
+name : projectclosure
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:projectclosure.odt
+pdfexample_img: :en:gendoc:templatestore:projectclosure.pdf
+description_wiki:Project Closure template
+keywords_tags : project,task,milestone
+language: EN
+module: Projects
+version : 1
+release_dt : 2018-01-18
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes
+----
+\\

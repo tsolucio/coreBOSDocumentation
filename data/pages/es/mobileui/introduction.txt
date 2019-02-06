@@ -1,0 +1,133 @@
+====== Introducción Interfaz Móvil ======
+
+==== 1.- Qué es coreBOS Mobile? ====
+
+Es un **módulo** creado por **[[http://www.crm-now.de/|CRM-NOW]]**, el cual ha sido integrado en coreBOS por defecto, para darle soporte y nuevas funcionalidades.
+
+Este módulo nos permite tener un interfaz móvil para acceder a gran parte de los datos de coreBOS.
+
+
+==== 2.- Para qué sirve? ====
+
+Sirve para poder acceder a coreBOS con un interfaz móvil y así poder consultar nuestros datos de una manera más sencilla. Sobre todo para poder consultar la agenda y datos del cliente cuando estamos fuera de la oficina.
+
+
+==== 3.- Qué hace? ====
+
+Podremos consultar de forma rápida nuestra agenda, crear eventos, consultar y crear clientes, contactos, oportunidades. 
+
+También es una buena herramienta para los técnicos, ya que pueden consultar las incidencias abiertas, añadir el tiempo y material que le dedican a esta, si tienen el módulo de **Control Tiempo Material** activo, y poder cerrar la incidencia con la firma del cliente sobre esta.
+
+==== 4.- Quién puede usarlo? ====
+
+Cualquier usuario de coreBOS que necesite consultar o gestionar su agenda, consultar datos de clientes, contactos u oportunidades. 
+
+Un perfil ideal podría ser el de los técnicos y comerciales que tengan que hacer visitas a clientes.
+
+==== 5.- Desde cuando está disponible? ====
+
+
+La primera versión que integramos de CRM-NOW, fue el 10 de Mayo del 2016.
+
+
+==== 6.- Cuál es su historia? ====
+
+Este módulo ya existía antes de la versión de CRM-NOW, se utilizaba el que venía de VtigerCRM, pero no era cómodo ni práctico de utilizar. 
+
+
+Por eso al avisarnos **Frank Piepiorra**, de CRM-NOW, que tenían una nueva versión de este módulo compartido con la comunidad y ver que tenía un aspecto mucho más agradable y práctico, nos decidimos a integrarlo.
+
+Le dedicamos un tiempo a esta primera versión para que funcionara bien en coreBOS, más algunos arreglos y pequeñas funcionalidades que añadimos, pero al cabo de unos meses sacaron otra versión, que es de la que partimos actualmente, que tenía mejor aspecto, ya no sólo el exterior, sino que el interior estaba mejor estructurado para poder mantenerlo y mejorarlo poco a poco.
+
+Esta segunda versión la incorporamos el 2 de Diciembre del 2016 con nuestros cambios ya incluidos y desde entonces no hemos parado de darle soporte y añadir cosas nuevas, según nuestros clientes han ido probándola y demando arreglos y funcionalidades.
+
+==== 7.- Cómo puede usarse coreBOS Mobile? ====
+
+Muy fácil. Si la url de nuestro coreBOS es: http://mi.coreboscrm.com solo debemos añadirle al final **/Mobile.php** por lo que quedaría así: **http://mi.coreboscrm.com/Mobile.php**
+
+Nos aparecerá una pantalla de login donde podemos introducir nuestro usuario  y contraseña de coreBOS y a funcionar!!
+
+==== 8.- Cómo se configura? ====
+
+En si para poder utilizar coreBOS Mobile, no hace falta hacer nada, pero si podemos configurar ciertas partes.
+
+=== Variables Globales ===
+
+Tenemos en el módulo de **Variables Globales**, dos variables para el coreBOS Mobile.
+
+
+  * **Mobile_Module_by_default:** Establecer el módulo por defecto a mostrar al entrar al módulo de Mobile.
+  * **Mobile_Related_Modules:** Activar aquellos módulos que queramos que tengan listas relacionadas o que aparezcan en estas. Se debe indicar el nombre de cada módulo separado por comas. El valor **por defecto** que hay es: **Contacts,Potentials,HelpDesk,Documents,Timecontrol**. Por lo que se recomienda pegar estos valores y añadir los módulos nuevos después. **Por ejemplo:** Contacts,Potentials,HelpDesk,Documents,Timecontrol**,Assets**
+
+
+=== Perfil Móvil ===
+
+Otra cosa que podemos hacer desde coreBOS, es crear un perfil específico para cuando se entra a coreBOS Mobile.
+
+
+El usuario de corebos pertenece a un rol en concreto y este rol tiene un perfil. Si no tiene ningún perfil de Mobile, el usuario verá los mismos módulos y campos tanto en coreBOS como en coreBOS Mobile, pero si queremos diferenciar esto debemos añadir un perfil a este rol de la siguiente manera:
+
+
+Creamos un perfil como siempre, pero la manera de diferenciarlo es en el nombre de este. Simplemente poniendo delante **Mobile::** y a continuación el nombre del perfil, el sistema ya sabe que ese perfil solo se utiliza cuando se entra a coreBOS Mobile.
+
+{{ :mobileui:images:mui_profile.png |Perfil Movil}}
+
+
+
+==== 8.- Cómo se usa? ====
+
+=== Usuario y contraseña ===
+
+Al igual que en la aplicación debemos autentificarnos con nuestro usuario y contraseña.
+
+{{ :mobileui:images:mui_login.png |Login}}
+
+
+=== Página Inicial ===
+
+Por defecto nos muestra el calendario y los eventos que tenemos para hoy, si es que los hay.
+
+{{ :mobileui:images:mui_calendar.png |Pagina Inicial}}
+
+
+=== Vista de Lista ===
+
+Si no queremos ver el calendario, sino mostrar el listado de todos los eventos y utilizar los filtros como en cualquier módulo, solo tenemos que desplacer el widget de arriba a la derecha a **Off**
+
+{{ :mobileui:images:mui_calendarlist.png |Vista de Lista}}
+
+
+=== Crear Nuevo Registro ===
+
+Para crear un registro nuevo, debemos pulsar la cruz, que siempre veremos en la vista de lista.
+
+{{ :mobileui:images:mui_logincreate.png |Crear}}
+
+
+=== Vista Detalle === 
+
+En la vista de detalle tenemos 3 iconos que sirven para lo siguiente:
+
+{{ :mobileui:images:mui_detailview.png |Vista Detalle}}
+
+
+=== Vista Edición ===
+
+En la vista de edición, introducimos los datos que necesitemos y para guardar debemos pulsar el siguiente icono.
+
+{{ :mobileui:images:mui_editview.png |Vista Edición}}
+
+
+=== Búsqueda Registros Relacionados ===
+
+Una diferencia que tenemos con coreBOS es en los campos de tipo relación, en vez de abrirse una ventana nueva, tenemos la funcionalidad de autocompletar. Conforme vamos escribiendo nos va sugiriendo opciones para seleccionar.
+
+{{ :mobileui:images:mui_search.png |Buscar Registros}}
+
+
+=== Menú ===
+
+Si desplegamos el menú podemos navegar por los distintos módulos, creación rápida, búsqueda global, cerrar sesión.
+
+{{ :mobileui:images:mui_menu.png |Menu}}
+

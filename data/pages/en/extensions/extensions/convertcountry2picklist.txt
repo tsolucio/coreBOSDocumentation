@@ -1,0 +1,31 @@
+====== Convert Country field to picklist ======
+
+This change will convert country fields on Accounts, Contacts, Vendors, Leads and Inventory modules into shared picklists.
+
+{{ :en:extensions:extensions:convertcountry2picklist.zip |Convert Country field to picklist}}
+
+The changeset contains a hard-coded list of country values in English. If you want that in another way or find some country missing you can edit that array to your needs.
+
+You must import this change using the import button that you will find on the coreBOS Updater list view.
+
+<WRAP center round alert 80%>
+There is no support for undoing this change yet. It wouldn't be difficult to undo so reach out if you need that.
+</WRAP>
+
+---- dataentry ----
+name : convertCountry2Picklist
+type : change
+description_wiki: This change will convert country fields on Accounts, Contacts, Vendors, Leads and Inventory modules into shared picklists.
+keywords_tags : inventory, country, picklist, Account, Contact, Vendor, Lead
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:convertcountry2picklist
+release_dt : 2018-01-26
+license : VPL
+price: 0
+buyemail_mail: paypal(at)tsolucio(dot)com
+distribution: Free
+authorname : JPL TSolucio, S.L.
+authoremail_mail :info(at)tsolucio(dot)com
+authorhomepage_url : http://tsolucio.com
+supportemail_mail :info(at)tsolucio(dot)com
+----

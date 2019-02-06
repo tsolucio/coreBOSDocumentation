@@ -1,0 +1,29 @@
+<WRAP center 30%>
+== Resources for Resources==
+
+</WRAP>
+<WRAP center 30%>
+===Appendix B. Resources===
+</WRAP>
+----
+====  Resources for Resources ==== 
+
+Here's where to find pointers to the subjects you want to find.
+
+The Most Recent Version of the vtiger CRM Manual
+The most recent online version of a manual can be found at [[http://blog.vtiger-handbuch.de/]].
+
+The Most Recent Version of the German vtiger CRM Manual
+The most recent online version of a German manual can be found at [[http://www.vtiger-deutschland.de/]].
+
+The Most Recent Version of This Guide in DocBook format
+The most recent version of this guide in DocBook format can be found at the the author's home page: [[http://blog.vtiger-handbuch.de/]].
+
+vtiger Web page
+Easily the largest and most up-to-date list of other vtiger CRM resources; can be found at [[http://www.vtiger.com.
+]]
+----
+<WRAP right>
+[[en:adminmanual:securityguide:res-intro|Next]]
+Other Material on vtiger CRM components.
+</WRAP>

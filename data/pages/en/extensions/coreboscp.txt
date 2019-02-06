@@ -7,6 +7,7 @@
   * [[en:extensions:coreboscp:ruleguidelines|Development guidelines]]
   * [[en:extensions:coreboscp:vtcpng_utilities|Development Utilities]]
   * [[en:extensions:coreboscp:changelayout|How to change form and view layout]]
+  * [[en:extensions:coreboscp:changeloginlanguage|How to change Login page language]]
   * [[en:extensions:coreboscp:changedefaultmodule|How to change the default functionality of a module]]
   * [[en:extensions:coreboscp:addbutton2module|How to add an action button to a module::payment gateway]]
   * [[:en:extensions:cyppasarela&#pasarela_de_pago_en_el_portal_del_cliente_coreboscp|Payment Gateway in Customer Portal]]

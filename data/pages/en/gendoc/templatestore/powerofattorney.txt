@@ -1,0 +1,22 @@
+===== GenDoc Template:: Power of Attorney =====
+
+Authorize power of attorney.
+
+---- dataentry ----
+name : powerofattorney
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:powerattorney.odt
+pdfexample_img: :en:gendoc:templatestore:powerattorney.pdf
+description_wiki: Authorize power of attorney.
+keywords_tags : legal,power,attorney
+language: EN
+module: Accounts
+version : 1
+release_dt : 2018-01-03
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes
+----
+\\
+

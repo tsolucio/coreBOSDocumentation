@@ -126,7 +126,14 @@ I will describe how this works for the database implementation natively included
 
 The default task manager in coreBOS is incredibly simple, consisting of an infinite loop that looks for messages on the queue for all subscribers​ and launches the defined task when one arrives.
 
-On every iteration of the loop it checks and expires messages accordingly.
+The task manager is an independent process that must be launched or initiated manually with the "run" command like this:
+
+<code>
+cd your_corebos_install_top_directory
+php include/cbmqtm/run.php
+</code>
+
+This will run forever in an infinite loop that, on every iteration of the loop will check and expires messages accordingly. If a message must be delivered it will launch the indicated tasks for all subscribers so they can consume the messages.
 
 This is implemented using the OSS [[https://github.com/shaneharter/PHP-Daemon|PHP-Daemon]] project (thanks!!)
 

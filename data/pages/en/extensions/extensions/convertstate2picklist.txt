@@ -1,0 +1,35 @@
+====== Convert State field to picklist ======
+
+This change will convert state fields on Accounts, Contacts, Vendors, Leads and Inventory modules into shared picklists.
+
+{{ :en:extensions:extensions:convertstate2picklist.zip |Convert State field to picklist}}
+
+The changeset contains two state CSV files, one for US and one for Spain. You must define which one to apply editing the changeset BEFORE applying it. You will find the code in the
+
+<code>build/changeSets/imported/convertState2Picklist.php</code>
+
+file and you must set the $importLang variable accordingly. You will also find the two state files in the same directory and you can add your own state files for your country by simply adding a new file and setting the language extension accordingly.
+
+You must import this change using the import button that you will find on the coreBOS Updater list view.
+
+<WRAP center round alert 80%>
+There is no support for undoing this change yet. It wouldn't be difficult to undo so reach out if you need that.
+</WRAP>
+
+---- dataentry ----
+name : convertState2Picklist
+type : change
+description_wiki: This change will convert state fields on Accounts, Contacts, Vendors, Leads and Inventory modules into shared picklists.
+keywords_tags : inventory, state, picklist, Account, Contact, Vendor, Lead
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:convertstate2picklist
+release_dt : 2018-01-26
+license : VPL
+price: 0
+buyemail_mail: paypal(at)tsolucio(dot)com
+distribution: Free
+authorname : JPL TSolucio, S.L.
+authoremail_mail :info(at)tsolucio(dot)com
+authorhomepage_url : http://tsolucio.com
+supportemail_mail :info(at)tsolucio(dot)com
+----

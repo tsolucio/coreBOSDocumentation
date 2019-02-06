@@ -7,53 +7,55 @@ We have a special helper extension which can be found under the Tools menu calle
   * **{entity.field}**
     * will be substituted by the named field of the named entity, these fields can be consulted in the OOMerge Fields extension if the field cannot be found it will be left unmodified, for example, {nonexistent_entity.fieldname}, {entity.nonexistent_field}, {sihubiera} or {sinexiste}
     * examples: {account.accountname}, {contact.bill_address}, {product.productcode}
-  * **{siexiste entity}...{/siexiste}**
-    * all text contained inside the {siexiste} and {/siexiste} will be added to the final document if there exists at least one entity related to the main entity of the merge if none exist or entity is not defined the whole block will be eliminated inside the block fields of the first entity found may be used
-    * examples: {siexiste asset},  {siexiste contact}, {siexiste campaign}, {siexiste product}, {siexiste invoice}
-  * **{siexiste entity.field=value}...{/siexiste}**
-    * all text contained inside the {siexiste} and {/siexiste} will be added to the final document if there exists at least one entity related to the main entity of the merge whose indicated field has the indicated value. For fields with multiple values (multiple select picklist), the string |##| must be used to separate the values and ALL values in the field must be the same as the value for the entity to qualify as equal.
+  * **{ifexists entity}...{/ifexists}**
+    * all text contained inside the {ifexists} and {/ifexists} will be added to the final document if there exists at least one entity related to the main entity of the merge if none exist or entity is not defined the whole block will be eliminated inside the block fields of the first entity found may be used
+    * examples: {ifexists asset},  {ifexists contact}, {ifexists campaign}, {ifexists product}, {ifexists invoice}
+  * **{ifexists entity.field=value}...{/ifexists}**
+    * all text contained inside the {ifexists} and {/ifexists} will be added to the final document if there exists at least one entity related to the main entity of the merge whose indicated field has the indicated value. For fields with multiple values (multiple select picklist), the string |##| must be used to separate the values and ALL values in the field must be the same as the value for the entity to qualify as equal.
     * if the entity or field do not exist the whole block will be ignored.
     * inside the block fields of the first entity found may be used
-    * examples: {siexiste asset.type=Fichero},  {siexiste contact.type=Responsable Seguridad}, {siexiste campaign=GAdwords Noviembre08}
-  * **{siexiste entity.field en (value1,value2,value3)}...{/siexiste}**
-    * all text contained inside the {siexiste} and {/siexiste} will be added to the final document if there exists at least one entity related to the main entity of the merge whose indicated field has at least one of the indicated values. Fields with multiple values (multiple select picklist) are directly supported, no special syntax is needed.
+    * other operators are supported: >  <  >=  <=  =  !=
+    * examples: {ifexists asset.type=Fichero},  {ifexists contact.type=Responsable Seguridad}, {ifexists campaign=GAdwords Noviembre08}
+  * **{ifexists entity.field in (value1,value2,value3)}...{/ifexists}**
+    * all text contained inside the {ifexists} and {/ifexists} will be added to the final document if there exists at least one entity related to the main entity of the merge whose indicated field has at least one of the indicated values. Fields with multiple values (multiple select picklist) are directly supported, no special syntax is needed.
     * if the entity or field do not exist the whole block will be ignored.
     * inside the block fields of the first entity found may be used
-    * examples: {siexiste asset.type en (Fichero,Contacto,Aplicación)},  {siexiste contacto.tipo en (Responsable Seguridad,Responsable Ficheros)}
-  * **{sinoexiste entity}...{/sinoexiste}**
-    * negative case of **{siexiste...}**
-  * **{sinoexiste entity.field=value}...{/sinoexiste}**
-    * negative case of **{siexiste...}**
-  * **{sinoexiste entity.field en (value1,value2,value2)}...{/sinoexiste}**
-    * negative case of **{siexiste...}**
-  * **{paracada entity}...{/paracada}**
+    * examples: {ifexists asset.type in (Fichero,Contacto,Aplicación)},  {ifexists Contact.tipo en (Responsable Seguridad,Responsable Ficheros)}
+  * **{ifnotexists entity}...{/ifnotexists}**
+    * negative case of **{ifexists...}**
+  * **{ifnotexists entity.field=value}...{/ifnotexists}**
+    * negative case of **{ifexists...}**
+  * **{ifnotexists entity.field in (value1,value2,value2)}...{/ifnotexists}**
+    * negative case of **{ifnotexists...}**
+  * **{foreach entity}...{/foreach}**
     * for each related entity of the main merge entity we will merge the whole text contained between the two commands and add the result to the final document
     * if no related entity is found the whole block will be ignored
-  * **{paracada entity.field=value}...{/paracada}**
+  * **{foreach entity.field=value}...{/foreach}**
     * for each related entity of the main merge entity whose indicated field has the indicated value we will merge the whole text contained between the two commands and add the result to the final document. For fields with multiple values (multiple select picklist), the string |##| must be used to separate the values and ALL values in the field must be the same as the value for the entity to qualify as equal.
     * if no related entity is found the whole block will be ignored
-  * **{paracada entity.field en (value1,value2,value3)}...{/paracada}**
+    * other operators are supported: >  <  >=  <=  =  !=
+  * **{foreach entity.field in (value1,value2,value3)}...{/foreach}**
     * for each related entity of the main merge entity whose indicated field has at least one of the indicated value we will merge the whole text contained between the two commands and add the result to the final document. Fields with multiple values (multiple select picklist) are directly supported, no special syntax is needed.
     * if no related entity is found the whole block will be ignored
-  * **{paracada entity.field!=value}...{/paracada}**
-    * negative case of **{paracada...}**
-  * **{paracada entity.field !en (value1,value2,value3)}...{/paracada}**
-    * negative case of **{paracada...}**
-  * **repeticion**: inside the {paracada} blocks you can reference a special variable called {repetición} whose value will be that of the current loop iteration. This can be userful to enumerate the elements or to print conditional text based on the iteration. See [[:en:gendoc:gendocejemplos|Examples]].
-  * **{incluir Document_Num}**
-    *With this instruction we can include any document saved in the vtiger CRM document module inside the main document. For example, if we have a document with reference number DOC699, we can put at the beginning of a new paragraph {incluir DOC699} in the position where we wish to insert the document. During the merging process all the contents in DOC699 will be inserted in the position where the {incluir} directive is and the directive will be eliminated.
+  * **{foreach entity.field!=value}...{/foreach}**
+    * negative case of **{foreach...}**
+  * **{foreach entity.field !in (value1,value2,value3)}...{/foreach}**
+    * negative case of **{foreach...}**
+  * **iteration**: inside the {foreach} blocks you can reference a special variable called {iteration} whose value will be that of the current loop iteration. This can be userful to enumerate the elements or to print conditional text based on the iteration. See [[:en:gendoc:gendocejemplos|Examples]].
+  * **{include Document_Num}**
+    *With this instruction we can include any document saved in the coreBOS document module inside the main document. For example, if we have a document with reference number DOC699, we can put at the beginning of a new paragraph {include DOC699} in the position where we wish to insert the document. During the merging process all the contents in DOC699 will be inserted in the position where the {include} directive is and the directive will be eliminated.
     *You can use any other directive within the included document, following the same rules as any other document
-    *Nesting of {incluir} directives is not supported (truth is that we haven't tried it)
+    *Nesting of {include} directives is not supported (truth is that we haven't tried it)
     *At the beginning of the page that includes the document, check the Format>> Paragraph>> Text Flow>> Breaks, that the page number is set to 0 to keep the page counter from starting to count again.
-  * **{incluir entity}**
-    *With this command we can include, in the template, any document in the vtiger CRM document module that is associated to an entity directly related to the main entity of the merge. For example, if we have an entity //Backups// related to the main entity on which you compile the document, we can put at the beginning of a new paragraph {incluir Backups} (in this case it would seem logical to be inside a {paracada} loop because an account probably has more than one backup) in the position where we want to insert the document. When compiling all the documents related to the Backups will be inserted in substitution of the {include} directive.
+  * **{include entity}**
+    *With this command we can include, in the template, any document in the coroeBOS document module that is associated to an entity directly related to the main entity of the merge. For example, if we have an entity //Backups// related to the main entity on which you compile the document, we can put at the beginning of a new paragraph {include Backups} (in this case it would seem logical to be inside a {foreach} loop because an account probably has more than one backup) in the position where we want to insert the document. When compiling all the documents related to the Backups will be inserted in substitution of the {include} directive.
     *You can use any other directive within the included document, following the same rules as any other document
-    *Nesting of {incluir} directives is not supported (truth is that we haven't tried it)
+    *Nesting of {include} directives is not supported (truth is that we haven't tried it)
     *At the beginning of the page that includes the document, check the Format>> Paragraph>> Text Flow>> Breaks, that the page number is set to 0 to keep the page counter from starting to count again.
-  * **{insertarindice}**
+  * **{insertindex}**
     * A table of contents will be created from the outline of the document.
     * It can be used more than once in the same document but the TOC will be the same.
-  * **{imagen entity}**
+  * **{image entity}**
     *This directive must be at the start of a paragraph.
     *The paragraph with the directive will be completely eliminated
     *The next paragraph must contain an image which will be the one substituted by the actual entity image
@@ -63,24 +65,24 @@ We have a special helper extension which can be found under the Tools menu calle
   * **Rules**
     * Directives must be on the same paragraph. There can not be a new paragraph in the middle of a directive. For example,<code>Dear {Contact.
 firstname},</code> is incorrect.
-    * The directives {siexiste}, {sinoexiste}, {paracada} and their closings must appear at the very beginning of the line in their own paragraph. The whole line will be eliminated. For example,<code>this is the end of the previous paragraph.
-{siexiste activo.tipo=fichero}
-This "si existe" works correctly while this one {siexiste activo.tipo=fichero} is ignored completely
+    * The directives {ifexists}, {ifnotexists}, {foreach} and their closings must appear at the very beginning of the line in their own paragraph. The whole line will be eliminated. For example,<code>this is the end of the previous paragraph.
+{ifexists Activo.tipo=fichero}
+This "if exists" works correctly while this one {ifexists Activo.tipo=fichero} is ignored completely
 and will be passed into the final document exactly as it is.
 This is another paragraph that may contain labels like: {Account.accountname}.
-{/siexiste}</code>
-    * If directives {siexiste}, {sinoexiste}, {paracada} are used at the start of a paragraph (which is mandatory) but the paragraph is inside a list, then the corresponding closings must also be added as a paragraph inside the list. This can be accomplished with the ALT-INTRO key combination.
-    * Additional text after the special directives cannot be used. For example,<code>{siexiste activo.tipo=fichero} and more text here on the same paragraph</code> is incorrect.
-    * {paracada} directives can be nested.
-    * {siexiste} directives can be nested with the exception of those in which a value coming from a {paracada} directive is being evaluated. For example:<code>{paracada Soportes}
-  {siexiste Soportes.soporte_movil=1}
+{/ifexists}</code>
+    * If directives {ifexists}, {ifnotexists}, {foreach} are used at the start of a paragraph (which is mandatory) but the paragraph is inside a list, then the corresponding closings must also be added as a paragraph inside the list. This can be accomplished with the ALT-INTRO key combination.
+    * Additional text after the special directives cannot be used. For example,<code>{ifexists Activo.tipo=fichero} and more text here on the same paragraph</code> is incorrect.
+    * {foreach} directives can be nested.
+    * {ifexists} directives can be nested with the exception of those in which a value coming from a {foreach} directive is being evaluated. For example:<code>{foreach Soportes}
+  {ifexists Soportes.soporte_movil=1}
      XXXXXXX
-  {/siexiste}
-{/paracada}</code>In this case, the {siexiste} will evaluate the same entity as the {paracada}, and will fail. In general we can put {siexiste} inside a {paracada} if we are testing against a diferent entity, for example, this IS CORRECT:<code>{paracada Soportes}
-  {siexiste Accounts.bill_provincia=Alicante}
+  {/ifexists}
+{/foreach}</code>In this case, the {ifexists} will evaluate the same entity as the {foreach}, and will fail. In general we can put {ifexists} inside a {foreach} if we are testing against a diferent entity, for example, this IS CORRECT:<code>{foreach Soportes}
+  {ifexists Accounts.bill_provincia=Alicante}
        XXXXXXXXX
-  {/siexiste}
-{/paracada}</code> In this example all related Soportes will be listed and if the account belongs to Alicante it will also incorporate the block XXXXXXXXXXX.
+  {/ifexists}
+{/foreach}</code> In this example all related Soportes will be listed and if the account belongs to Alicante it will also incorporate the block XXXXXXXXXXX.
 
 
 ==== Special Text Formatting in Labels ====
@@ -107,12 +109,22 @@ This is an example of how the text looks inside the field of vtiger CRM.<code><b
 {{:gendoc:revision_50620.odt|This is the finished, merged document.}}\\
 {{:gendoc:formatocaracteres.odt|Another example of character formatting.}}\\
 
-==== Special fields ====
-  * In general all merging starts from an account and gives access to all the fields of all the related entities.
-  * In certain situations other entities may be used as the starting point of a merge.
-  * SIGPAC has a series of constant fields obtained from the system:
-    * {empresa.campo}: information obtained from the organization details in settings
-    * {empresa.gerente_campo}: information of the head manager of the company
-    * {empresa.responsable_campo}: information of the legal responsible of the company
-    * {cuenta.responsable_campo}: information of the LOPD responsible of the company
+==== Company Information ====
+
+We can also access the company information configured in the Settings section of the application using the meta label Organization as you can see in the OOmerge Lables extension.
+
+Since the information available on the company settings section is rather limited and you could need more, the install process created the global variable **GenDoc_Company_Account** where you can set the accountid of any Accounts record from which you wish to access your company's information. The idea is that you create an account record for your company and use all the fields there.
+
+==== FAQ ====
+
+~~QNA~~
+
+??? How can I output a formatted date like "26 of May of 2018"?
+
+!!! Like this:
+
+<code>
+{date:d} of {date:F} of {date:Y}
+and this would be the correct day of the week: {date:l}
+</code>
 

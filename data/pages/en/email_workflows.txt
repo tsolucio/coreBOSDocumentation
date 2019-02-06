@@ -16,13 +16,14 @@ Note that the generic ModComments module is supported separately in the workflow
 
 The syntax of this meta variable is:
 
-<code>$(general : (__VtigerMeta__) comments[_num[sort][_format[_field]]])</code>
+<code>$(general : (__VtigerMeta__) [dateformat_]comments[_num[sort][_format[_field]]])</code>
 
 where:
 
+^dateformat|Optional PHP standard date formatting syntax that will be applied to all dates. If not given the date format of the user executing the command will be used|
 ^num|Indicates the number of comments you want, 0 will retrieve all comments|
 ^sort|a one letter indicator to sort created time ascending (a) or descending (d)|
-^format|text or html|
+^format|text, html or table|
 ^field|creator, comment, date, all: indicates the field to retrieve|
 
 === Examples ===
@@ -35,6 +36,7 @@ where:
 ^comments_4|returns first 4 comments in HTML format|
 ^comments_0d|returns all comments sorted descending in HTML format|
 ^comments_0d_text|returns all comments sorted descending in text format|
+^d.M.Y - H:i_comments|returns all comments sorted ascending in HTML format, with specific date format|
 
 === Styles and Formats ===
 
@@ -43,6 +45,12 @@ In **text format mode** the value of the field will be returned with no addition
 The **creator field** will be returned as the first and last name of the user or contact.
 
 The **date field** will be formatted to the settings of the user assigned to the ticket launching the workflow.
+<WRAP center round info 70%>
+If you want to completely set the date format you can use the standard PHP date formatting right after the date field. This only works when retrieving the date field individually:
+
+<nowiki>$(general : (__VtigerMeta__) comments_1d_text_dated.m.Y - H:i)</nowiki>
+</WRAP>
+
 
 The **comment field** will be stripped of any inline style or scripts to avoid potential hacks or compromises of clients computers.
 

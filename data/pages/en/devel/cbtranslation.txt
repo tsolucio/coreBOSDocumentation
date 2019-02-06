@@ -48,7 +48,7 @@ The [[https://github.com/tsolucio/corebos/blob/master/modules/cbtranslation/cbtr
 
 The basic usage is <wrap hi>cbtranslation::get('friend')</wrap> that will return the value of 'friend' taken from the module cbtranslation values (equivalent to the previous main translation file in include/language).
 
-Next we can pass in the module as we did before with getTranslatedString, <wrap hi>cbtranslation::get('friend','Users')</wrap>), which will return the value of 'friend' taken from the Users module translations entries in the database.
+Next we can pass in the module as we did before with getTranslatedString, <wrap hi>cbtranslation::get('friend','Users')</wrap>, which will return the value of 'friend' taken from the Users module translations entries in the database.
 
 The third parameter is an array with a set of options for the translation.
 

@@ -122,13 +122,6 @@ For the Calendar sharing, you just need to select from the available users.
 [[en:calendar_google_integration#configuring_your_connection_with_google_calendar|Google account settings]]
 
 
-====Module manager settings====
-The Calendar settings can be initiated using button from the Calendar screen if you are an administrator or from CRM Settings > Module Manager > Custom modules. In the module manager settings you can find a //Profiles// section to manage user-specific Calendar access for different roles.
-
-You may define specific Calendar privileges for all profiles on the actions Create/Edit, View and Delete. Just use checkboxes and click on [Save] button to apply the changes.
-
-{{ :en:corebos:calendar:4_10_manage_profiles.png?700 |}}
-
 
 =====Documents assigned to activities=====
 

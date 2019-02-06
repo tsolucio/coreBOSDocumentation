@@ -1,0 +1,5 @@
+====== Guides ======
+
+<menu col=1,align=left>
+  <item>Security Guide|Detailed guides about security|en:adminmanual:securityguide|{{menu:integration.png?direct|}}</item>
+</menu>

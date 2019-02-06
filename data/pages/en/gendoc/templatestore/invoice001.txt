@@ -1,0 +1,22 @@
+===== GenDoc Template:: Invoice =====
+
+Invoice template
+
+---- dataentry ----
+name : invoice001
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:invoice001.odt
+pdfexample_img: :en:gendoc:templatestore:invoice001.pdf
+description_wiki: Invoice template
+keywords_tags : invoice,factura
+language: EN
+module: Invoice
+version : 1.0
+release_dt : 2017/12/27
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes
+----
+\\
+

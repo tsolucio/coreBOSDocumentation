@@ -11,7 +11,7 @@ The main functionality it was created for is to manage the Help Desk workflow wi
 <WRAP center round important 85%>
 The Regular expression to process tickets correctly is:
 <code>Re: TT[0-9]+ \[ Ticket Id : [0-9]+ \] (.+)</code>
-What we put in the last block of parenthesis is what he application uses to match the ticket, if it is a number it will look for the CRMID if not it will look for the subject of the ticket.
+What we put in the last block of parenthesis is what the application uses to match the ticket, if it is a number it will look for the CRMID if not it will look for the subject of the ticket.
 </WRAP>
 
 ==== Configure Mailbox  ====

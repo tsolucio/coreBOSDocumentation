@@ -1,6 +1,6 @@
 =====Integrations with other projects=====
   *[[en:extensions:extensions:gendoc|OpenOffice]]
-  *HubSpot
+  *[[https://www.youtube.com/watch?v=4pRhhD4ehec&list=PL0oN2FI_W55wuDJo2bxmPW6rTLx0Y-I6N|HubSpot]]
   *[[:calendar4you_google_integration|Google calendar]]
   *[[en:contacts|Google contacts]]
   *Google apps

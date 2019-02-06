@@ -1,0 +1,25 @@
+<WRAP center 30%>
+===Appendix B. Resources===
+</WRAP>
+----
+=====Appendix B. Resources====
+=====Table of Contents=====
+  * [[en:adminmanual:securityguide:appb#|Latest Versions of User Manual]]
+  * [[en:adminmanual:securityguide:res-resources|Resources for Resources]]
+  * [[en:adminmanual:securityguide:res-intro|Other Material on vtiger CRM components]]
+
+The quantity of information about vtiger CRM is growing on a daily basis. This appendix strives to provide both a complete bibliography of the references mentioned explicitly in this book, and a sampling of resources for additional information about vtiger CRM and about CRM in general. Although not all of these resources are focused specifically on vtiger CRM, they still provide helpful information for vtiger CRM users.
+
+=====Latest Versions of User Manual=====
+The latest releases of the User Manual can be obtained from the author's home page at [[http://blog.vtiger-handbuch.de/]]
+----
+<WRAP right>
+[[en:adminmanual:securityguide:res-resources|Next]]
+ Resources for Resources
+</WRAP>
+
+
+----
+
+
+© 2006 crm-now

@@ -1,0 +1,45 @@
+<WRAP center 30%>
+===Preface===
+</WRAP>
+
+----
+
+======Preface======
+===Table of Contents===
+  * [[en:adminmanual:securityguide:ch000|Why Read This Guide?]]
+  * [[en:adminmanual:securityguide:pref-manaud|This Guide's Audience]]
+  * [[en:adminmanual:securityguide:pref-organization|Organization of This Manual]]
+  * [[en:adminmanual:securityguide:pref-getbook|Getting This Manual]]
+  * [[en:adminmanual:securityguide:pref-req-comments|Request for Comments]]
+  * [[en:adminmanual:securityguide:pref-acknorm|Acknowledgements]]
+This book describes the concept of role-based security and other security features as it has been implemented by the vtiger CRM v5.0.
+
+This book is based on the official Open Source release. You individual configuration might be slightly different if your CRM service provider has made changes to the system.
+======Why Read This Guide?======
+  * This guide is designed to be a clear and supportive reference to the vtiger CRM security concept. However, this guide is not an official documentation.
+
+  * We hope to answer most of the questions you might have about the user access management at the CRM system. In particular, we cover the following subjects:
+
+  * The general approach to the security settings. With all the different settings and their relationship to each other, access right management can be a bit overwhelming at first. We quickly get you up to speed on how the pieces fit together.
+
+  * What are the used terms mean?
+
+  * How to start using security settings. What should you do first?
+
+  * Customizing vtiger CRM. Each company is different. We explain how you can tailor the security settings to fit your company needs on real live examples.
+
+  * Understanding all of the relationships. Most security settings are somehow related to other settings. These relationships are extensively documented, including the intended purpose. If suitable examples of proper usage are given.
+
+  * Additional resources. Finally, we direct you to other places you can go for all the latest info, and offer a complete set of online references.
+
+----
+<WRAP right>
+[[en:adminmanual:securityguide:pref-manaud|Next]]
+This Guide's Audience
+</WRAP>
+
+
+----
+
+
+© 2006 crm-now
