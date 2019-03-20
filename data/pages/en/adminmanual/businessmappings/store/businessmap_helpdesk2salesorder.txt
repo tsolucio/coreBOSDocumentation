@@ -64,6 +64,7 @@ authorname : Luke majorlabel.nl
       <Orgfields>
         <Orgfield>
           <OrgfieldName>description</OrgfieldName>
+          <OrgfieldID>FIELD</OrgfieldID>
         </Orgfield>
       </Orgfields>
     </field>

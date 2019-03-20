@@ -62,7 +62,15 @@ External applications can get the values of global variables in the application 
 
 You can see an [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/500_GetGlobalVariable.php|example of this call and try it out]] using the [[https://github.com/tsolucio/coreBOSwsBrowser|coreBOS web service developers' tool]].
 
+This web service endpoint has a special use case to **retrieve business maps**. Since [[en:adminmanual:businessmappings:|business maps]] are such a powerful configuration feature and the exact map to use for each user/module depends on the global variable module escalation rules, this web service method will recognize the prefix "**BusinessMapping_**" in the first gvname parameter. If the name has this prefix it understands that you are searching for a Business Map and will return the ID of the map along with the map itself in JSON format.
 
+<code>
+SearchGlobalVar('BusinessMapping_Accounts_FieldDependency', '', 'Accounts');
+array(
+  'id' => business map WSID,
+  'map' => JSON string of the map,
+);
+</code>
 ===== JavaScript =====
 In the browser we have a **JavaScript promise** that sets the value obtained from the application like this:
 

@@ -87,6 +87,10 @@ where {rule_name} can be:
   *creditCard - Field is a valid credit card number
     *restrictions: list of accepted credit cards, if none given all supported cards will be checked
     *supported cards: Visa visa, Mastercard mastercard, Dinersclub dinersclub, American Express amex or Discover discover
+  *requiredWith -  Field is required if any other fields are present
+    *restrictions: list of fields
+  *requiredWithout - Field is required if any other fields are NOT present
+    *restrictions: list of fields
   *IBAN_BankAccount - validate IBAN Bank Account number
     *restrictions: none
   *EU_VAT - validate EU VAT number
@@ -213,6 +217,34 @@ Another example of how to limit the accepted values in a picklist, even making i
   </fields>
 </map></code>
 
+
+This next example contains a REGEX expression that will not accept any alphabetical letter in the accountname field and there must be at least one character. Important things to notice in the REGEX expression are:
+
+  - you must set the initial and end of line markers as the value is compared as a complete string
+  - you may or may not need the CDATA depending on the regex (the one below does not need CDATA)
+  - modifiers are not supported in the expression
+
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>accountname</fieldname>
+      <validations>
+        <validation>
+          <rule>regex</rule>
+          <restrictions>
+          <restriction><![CDATA[/^[^A-Za-z]+$/]]></restriction>
+          </restrictions>
+        </validation>
+      </validations>
+    </field>
+  </fields>
+</map>
+</code>
 ==== Forum Post with a very advanced example of a custom validation ====
 
 https://discussions.corebos.org/showthread.php?tid=1017&pid=5472#pid5472
@@ -236,6 +268,8 @@ coreBOS has some custom validations that are not loaded by default but can be us
     * isValidCIF
     * isValidPersonalESID = isValidDNI or isValidNIE or isValidNIF
     * isValidESID = isValidPersonalESID or isValidCIF
+  * Italian ID Number: file include/validation/validatePIVA.php
+    * checkAccountPIVA
 
 For example, a validation for a valid CIF on account siccode field looks like this:
 

@@ -1,0 +1,12 @@
+====== Decision Table Mapping ======
+
+This map defines a set of rules that must be evaluated to make a decision.
+
+The general idea comes from the Decision Model and Notation (DMN) structure used in BPM but very adapted to the specific coreBOS environment and infrastructure.
+
+You can find a few useful links about DMN here:
+  * [[https://camunda.com/dmn/|DMN Tutorial]]
+  * {{ :en:adminmanual:businessmappings:dmn_tutorial_-_dmn_1.1_tutorial_for_beginners_-_learn_dmn_camunda_bpm.pdf |DMN Tutorial (PDF)}}
+  * [[https://docs.camunda.org/manual/latest/reference/dmn11/decision-table/|Decision Table Reference]]
+  * {{ :en:adminmanual:businessmappings:dmndecisiontablereference.pdf |Decision Table Reference (PDF)}}
+  * [[https://github.com/steffenbrand/dmn-decision-tables|Decision Table Constructor]]

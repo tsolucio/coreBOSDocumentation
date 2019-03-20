@@ -1,6 +1,6 @@
 ====== Field Dependency Business Mapping ======
 
-This type of map permits you to define dependencies between fields in edit mode. For example, it will permit you to make a field mandatory or not depending on the value selected in a given field or to change the available values in a picklist depending on the value.
+This type of map permits you to define dependencies between fields in edit mode. For example, it will permit you to make a field readonly (not editable) or not depending on the value selected in a given field or to change the available values in a picklist depending on the value.
 
 The goal of this mapping is to define a set of rules/conditions and actions to be applied while editing a field in a coreBOS form.
 
@@ -96,6 +96,7 @@ The accepted format is:
             <field>campaignname</field>
         </readonly>
         <collapse>
+        <block>sponsor</block>
         </collapse>
     </actions>
 </dependency>
@@ -260,7 +261,7 @@ collapse address block
             <field>ownership</field>
         </hide>
         <collapse>
-            <field>LBL_ADDRESS_INFORMATION</field>
+            <block>LBL_ADDRESS_INFORMATION</block>
         </collapse>
     </actions>
 </dependency>
@@ -292,7 +293,7 @@ collapse address block
             <field>ownership</field>
         </hide>
         <collapse>
-            <field>LBL_ADDRESS_INFORMATION</field>
+            <block>LBL_ADDRESS_INFORMATION</block>
         </collapse>
     </actions>
 </dependency>
@@ -383,15 +384,15 @@ ELSE make paymentcategory editable
 <dependencies>
 <dependency>
     <field>bill_country</field>
-    <conditions>
-	<condition>
-           <groupid>1</groupid>
-           <field>bill_country</field>
-           <comparator>s</comparator>
-           <value>A</value>
-           <columncondition>or</columncondition>
-        </condition>
-    <conditions>
+    <condition>
+[
+    {"groupid":"1",
+	 "columnname":"bill_country",
+	 "comparator":"s",
+	 "value":"A",
+	 "columncondition":""}
+]
+    </condition>
     <actions>
         <change>
             <field>paymentcategory</field>
@@ -405,15 +406,15 @@ ELSE make paymentcategory editable
 
 <dependency>
     <field>bill_country</field>
-    <conditions>
-	<condition>
-           <groupid>1</groupid>
-           <field>bill_country</field>
-           <comparator>ns</comparator>
-           <value>A</value>
-           <columncondition>or</columncondition>
-        </condition>
-    <conditions>
+    <condition>
+[
+    {"groupid":"1",
+	 "columnname":"bill_country",
+	 "comparator":"ns",
+	 "value":"A",
+	 "columncondition":""}
+]
+    </condition>
     <actions>
         <editable>
             <field>paymentcategory</field>
@@ -505,7 +506,7 @@ Another Example
             <value>54321</value>
         </change>
        <show>
-            <field>assigned_user_id</field>
+            <block>assigned_user_id</block>
         </show>
         <setoptions>
             <field>rating</field>

@@ -2,19 +2,23 @@
 
 The goal of this tutorial is to show how we could add a new block in the detail view of a module where we could add some special functionality that we may need.
 
-This is basically a two step process; first we have to add the information into the database so the application knows that it has to load a new block and what code it has to launch to fill it in, then we have to implement that class to generate the output.
+This is basically a two-step process; first, we have to add the information into the database so the application knows that it has to load a new block and what code it has to launch to fill it in, then we have to implement that class to generate the output.
 
-For this tutorial I am simply going to sum the number of Purchase Orders related to a contact and show that in a block on the contacts detail view.
+For this tutorial, I am simply going to sum the number of Purchase Orders related to a contact and show that in a block on the contacts detail view.
 
 To change the database we use vtlib and add a DetailViewWidget Link using vtlib:
 
-<code>$module->addLink('DETAILVIEWWIDGET', 'DetailViewPOINFOBlockWidget', "block://ContactPOInfoWidget:modules/Contacts/ContactPOInfoWidget.php");</code>
+<code>$module->addLink(
+  'DETAILVIEWWIDGET',
+  'DetailViewPOINFOBlockWidget',
+  "block://ContactPOInfoWidget:modules/Contacts/ContactPOInfoWidget.php"
+);</code>
 
-As can be seen we are adding a DETAILVIEWWIDGET with the label DetailViewPOINFOBlockWidget and with the link 
+As can be seen, we are adding a DETAILVIEWWIDGET with the label DetailViewPOINFOBlockWidget and with the link 
 
 <code>block://ContactPOInfoWidget:modules/Contacts/ContactPOInfoWidget.php</code>
 
-this last part is the really important one. It is saying that to generate the widget, the application must load a class named //ContactPOInfoWidget// which can be found in the file //modules/Contacts/ContactPOInfoWidget.php//. Obviously we can call the class as we like (as long as it doesn't conflict with existing classes) and put the file wherever we want (as long as it is accessible inside coreBOS).
+this last part is the really important one. It is saying that to generate the widget, the application must load a class named //ContactPOInfoWidget// which can be found in the file //modules/Contacts/ContactPOInfoWidget.php//. Obviously, we can call the class as we like (as long as it doesn't conflict with existing classes) and put the file wherever we want (as long as it is accessible inside coreBOS).
 
 This class must implement only one method: //getWidget()// which will return the name of another class which will implement our functionality.
 
@@ -24,16 +28,66 @@ The full script can be accessed in the download link at the end.
 
 Now we have to implement the logic. This happens in a class that we must create and that can do anything we need it to. The class runs inside coreBOS so it has access to all the functionality of the application and we can use Smarty to generate output.
 
-This class must implement one method called //process()// which will be called to generate the output on screen.
+This class must implement one method called //process()// which will be called to generate the output on the screen.
 
 In the case of this tutorial, that method executes a query against the database to obtain the purchase order information and then loads a Smarty template to generate a similar output to the existing blocks.
 
-Have a look at the code which can be downloaded below and here is a screen shot of how it looks on screen:
+Have a look at the code which can be downloaded below and here is a screenshot of how it looks on screen:
 
 {{ :devel:contactpostatswidget.png?800 |}}
 <WRAP center round info 80%>We could also add an additional HeaderScript link to load some external javascript library we may need to implement our functionality or load the information we need via ajax/javascript which is how ModComments works. You can see an example by studying that code.</WRAP>
 
 <WRAP center round download 60%>{{:devel:adddvw.zip|Contact Purchase Order Statistics Widget}}</WRAP>
+
+======Developer Blocks======
+
+From the example above you see that it is rather complex to add a new block with some custom code inside. So we have extended the possibilities in two ways. [[en:devel:add_editdetail_block|One is using templates]] and the other is using what we call developer blocks.
+
+Developer blocks construct upon the idea above but make it easier to create the content giving us more boilerplate code done for us.
+
+The initial idea is the same as above, you need a class that you reference in the DETAILVIEWWIDGET, this class returns another class that must implement a //process()// method. What we do is that this second class extends the [[https://github.com/tsolucio/corebos/blob/master/modules/Vtiger/DeveloperWidget.php#L17|class DeveloperBlock]] which gives you a set of predefined functions to help you concentrate only on the actual logic of your requirement.
+
+Additionally, we have modified the DEAILVIEWWIDGET code to permit you to send more parameters into your class which is done using the URL parameter syntax.
+
+The coreBOS Question analytical module has [[https://github.com/tsolucio/corebos/blob/master/modules/cbQuestion/cbQuestionWidget.php|an example of the usage of the Developer Block]] which makes it easy to get the execution of the question into a block. Try these steps to see the result:
+
+==== Create a Business Question ====
+
+Like this:
+
+{{ :en:adminmanual:bquestion01.png |Business Question}}
+
+|Columns:|[{"fieldname":"countres","operation":"is","value":"count(ticket_title)","valuetype":"expression","joincondition":"and","groupid":"0"},{"fieldname":"ticketstatus","operation":"is","value":"ticketstatus","valuetype":"fieldname","joincondition":"and","groupid":"0"}]|
+|Condition:|[{"fieldname":"$(parent_id : (Accounts) account_no) ","operation":"is","value":"$account_no$","valuetype":"raw","joincondition":"and","groupid":"0"}]|
+|Type properties:|{"key_label":"ticketstatus","key_value":"countres"}|
+
+==== Create a Business Action ====
+
+This one will appear in the body of the detail view.
+
+|Type:|DETAILVIEWWIDGET|
+|Action:|<code>block://bqanswer:modules/cbQuestion/cbQuestionWidget.php:QID=43177&RECORDID=$RECORD$</code>|
+|Module:|Accounts|
+
+==== Create another Business Action ====
+
+This one will appear in the right panel.
+
+|Type:|DETAILVIEWWIDGET|
+|Action:|module=cbQuestion&action=cbQuestionAjax&file=cbQuestionWidget&QID=43177&RECORDID=$RECORD$|
+|Module:|Accounts|
+
+<WRAP center round important 60%>
+NOTE that the QID value is actually the CRMID of the Business Question you created in the first step, so you MUST change the **43177** above to the one assigned to your record
+</WRAP>
+
+==== Appearence ====
+
+Now go to any account with tickets and you should see something like this:
+
+{{ :en:adminmanual:bquestion02.png |}}
+
+======How to add a special block to a module using templates======
 
 <WRAP center round info 70%>
 You can find a much easier way to add this type of block which also supports Edit View in [[en:devel:add_editdetail_block|this tutorial]].

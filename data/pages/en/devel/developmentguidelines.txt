@@ -153,6 +153,16 @@ phpcs.phar --standard=/var/www/coreBOSwork/build/cbSR $1
 phpmd.phar $1 text unusedcode
 php -l $1
 </code>
+===== Some important management recommendations =====
+  * Custom modules: 
+    * Each module must have it's own repository
+    * You must try to keep the modules' repository in sync with the installs where it is in production
+    * Since that is a bit difficult what I do is update them when I need to install them somewhere
+    * [[en:extensions:extensions|Register your module in the extensions section]] so it can be found in the future. You can [[en:devel:helperscripts#composer2readme_and_module2wiki|use the helper scripts]].
+  * There **MUST NOT** be any unversioned changes in production. This is MANDATORY
+  * For EVERY change or customization that you have to do in coreBOS, challenge yourself to find a way to make that change without modifying one line of base code that you can find in the github repository. You will be surprised how much can be done, you will learn a lot and have much more fun :-)
+
+
 ===== References and further reading =====
   * [[:en:devel:debuging|Debugging]]
   * [[:en:devel:commitguidelines|Commit Guidelines we try to adhere to]]

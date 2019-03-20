@@ -37,3 +37,4 @@
   *Mibew
   *[[https://github.com/Luke1982/coreBOS-ExactOnline|Exact Online]]
   *[[en:integrations:dokuwiki|Dokuwiki. HelpMeNow]]
+  *[[en:integrations:whatsapp|Twilio Whatsapp]]

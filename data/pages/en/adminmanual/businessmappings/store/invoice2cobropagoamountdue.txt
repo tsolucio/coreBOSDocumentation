@@ -35,6 +35,7 @@ supportemail_mail : info(at)tsolucio(dot)com
       <Orgfields>
         <Orgfield>
           <OrgfieldName>amount_due</OrgfieldName>
+          <OrgfieldID>778</OrgfieldID>
         </Orgfield>
       </Orgfields>
     </field>

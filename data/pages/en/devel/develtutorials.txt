@@ -6,6 +6,7 @@
   * [[en:devel:multicurrency|coreBOS Multi-Currency Fields]]
   * [[en:devel:field_structure|Field Structure: Columns and definitions]]
   * [[en:devel:packagemodules|How to prepare modules for distribution]]
+  * [[en:devel:changedatabase|Steps to take when changing your database]]
   * [[en:devel:relatedlists|How to add related lists to a module]]
   * [[en:devel:corebosupdater|How to prepare and distribute system changes using coreBOS Updater]]
   * [[en:devel:entityidentifier|How to change entity identifier]]
