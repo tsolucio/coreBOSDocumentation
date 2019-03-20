@@ -11,3 +11,6 @@
 1478617957	95.60.145.18	E	en:devel:helperscripts	joebordes	[addModComments.php] 		160
 1478650954	95.60.145.18	E	en:devel:helperscripts	joebordes	[stressTest.php] 		531
 1478796181	80.35.20.79	E	en:devel:helperscripts	joebordes	[dumpdatabase.php and addAuditModtracker.sql] 		89
+1478796182	127.0.0.1	E	en:devel:helperscripts		external edit		0
+1552380489	79.106.14.140	E	en:devel:helperscripts	joebordes			442
+1552380583	79.106.14.140	E	en:devel:helperscripts	joebordes	[composer2readme and module2wiki] 		111

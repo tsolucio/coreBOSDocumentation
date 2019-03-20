@@ -1,20 +1,24 @@
-1544811167	88.22.191.166	E	en:email_workflows	joebordes			7
-1545035112	88.14.19.16	E	en:calendar	joebordes	[Module manager settings] 		-556
-1545036015	88.14.19.16	E	en:devel:corebos_hooks	joebordes	[Supported events] 		441
-1545036074	88.14.19.16	E	en:devel:corebos_hooks	joebordes	[Supported events] 		2
-1545473078	88.14.18.51	E	en:devel:contribute	joebordes	[All installs under git control] 		3341
-1545473259	88.14.18.51	E	en:devel:contribute	joebordes	[config.inc.php and tabdata control: config-dev.inc.php] 		7
-1545909810	88.14.18.51	E	en:devel:cbtranslation	joebordes	[cbtranslation::get()] 		-1
-1546384648	88.14.18.51	E	en:adminmanual:businessmappings:validations	joebordes	[Expression Map] 		-11
-1546525527	88.14.18.51	C	en:extensions:extensions:enhancecalendarassignfollowup	joebordes	created		1613
-1546617329	81.32.253.216	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Field Dependency Business Mapping] 		0
-1546618682	81.32.253.216	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Examples] 		25
-1546618727	81.32.253.216	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Field Dependency Business Mapping] 		28
-1546619437	81.32.253.216	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Examples] 		12
-1546644723	81.32.253.216	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Examples] 		10
-1548089627	81.32.253.216	E	en:devel:corebosws	joebordes	[Web service documentation] 		87
-1548089983	81.32.253.216	C	en:devel:corebosws:reservedparameter	joebordes	created		822
-1548355507	83.63.129.96	E	en:adminmanual:businessmappings:validations	joebordes			471
-1548355889	83.63.129.96	E	en:adminmanual:businessmappings:validations	joebordes	[Expression Map] 		903
-1548368228	81.32.253.216	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		70
-1549219225	83.44.218.205	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Field Dependency Business Mapping] 		31
+1552491499	79.106.14.140	E	en:devel:add_special_block	joebordes			8
+1552491534	79.106.14.140	E	en:devel:add_special_block	joebordes			5
+1552492836	79.106.14.140	E	en:devel:add_special_block	joebordes			68
+1552492876	79.106.14.140	E	en:devel:add_special_block	joebordes	[How to add a special block to a module using templates] 		30
+1552493151	79.106.14.140	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		404
+1552494292	79.106.14.140	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		338
+1552494578	79.106.14.140	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		16
+1552496368	79.106.14.140	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		213
+1552497254	79.106.14.140	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		312
+1552518354	141.8.205.182	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		594
+1552518658	141.8.205.182	E	en:devel:add_special_block	joebordes	[Create a Business Question] 		596
+1552518731	141.8.205.182	E	en:devel:add_special_block	joebordes	[Create a Business Action] 		13
+1552518831	141.8.205.182	E	en:devel:add_special_block	joebordes			2
+1552518925	141.8.205.182	E	en:devel:add_special_block	joebordes	[Create another Business Action] 		219
+1552518996	141.8.205.182	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		45
+1552657712	197.250.229.24	E	en:adminmanual:businessmappings:validations	timothy			305
+1552659765	197.250.229.24	E	en:adminmanual:businessmappings:validations	timothy			-93
+1552983828	41.222.181.70	E	en:adminmanual:businessmappings:validations	timothy			87
+1552995330	185.191.88.212	E	en:adminmanual:globalvariables	joebordes	[Web service] 		712
+1552995637	185.191.88.212	E	en:devel:develtutorials	joebordes			74
+1552996056	185.191.88.212	C	en:devel:changedatabase	joebordes	created		1128
+1553035478	185.191.88.212	E	en:adminmanual:businessmappings	joebordes	[Types of Business Mappings] 		145
+1553036033	185.191.88.212	C	en:adminmanual:businessmappings:decisiontable	joebordes	created		800
+1553041141	185.191.88.212	E	en:adminmanual:businessmappings:decisiontable	joebordes			0
