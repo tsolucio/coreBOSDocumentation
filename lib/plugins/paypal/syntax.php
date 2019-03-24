@@ -193,6 +193,7 @@ EOT;
     <tr><td><input type="hidden" name="on0" value="coreBOS Subscription Options"><b>Opciones de Subscripción a coreBOS</b></td></tr><tr><td><select name="os0">
 	<option value="coreBOS Code Subscription">Subscripción al Código de coreBOS : €110,00 EUR - anualmente</option>
 	<option value="coreBOS Support Subscription">Subscripción Soporte coreBOS : €150,00 EUR - mensualmente</option>
+	<option value="coreBOS Support Advanced">Soporte Avanzado coreBOS : €205,00 EUR - mensualmente</option>
     </select> </td></tr>
     </table>
     <input type="hidden" name="currency_code" value="EUR">
@@ -211,6 +212,7 @@ EOT;
     <tr><td><input type="hidden" name="on0" value="coreBOS Subscription Options"><b>coreBOS Subscription Options</b></td></tr><tr><td><select name="os0">
 	<option value="coreBOS Code Subscription">coreBOS Code Subscription : €110,00 EUR - anual</option>
 	<option value="coreBOS Support Subscription">coreBOS Support Subscription : €150,00 EUR - monthly</option>
+	<option value="coreBOS Support Advanced">coreBOS Support Advanced : €205,00 EUR - monthly</option>
     </select> </td></tr>
     </table>
     <input type="hidden" name="currency_code" value="EUR">
