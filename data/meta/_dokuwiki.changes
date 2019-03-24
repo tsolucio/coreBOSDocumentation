@@ -1,13 +1,3 @@
-1552491499	79.106.14.140	E	en:devel:add_special_block	joebordes			8
-1552491534	79.106.14.140	E	en:devel:add_special_block	joebordes			5
-1552492836	79.106.14.140	E	en:devel:add_special_block	joebordes			68
-1552492876	79.106.14.140	E	en:devel:add_special_block	joebordes	[How to add a special block to a module using templates] 		30
-1552493151	79.106.14.140	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		404
-1552494292	79.106.14.140	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		338
-1552494578	79.106.14.140	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		16
-1552496368	79.106.14.140	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		213
-1552497254	79.106.14.140	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		312
-1552518354	141.8.205.182	E	en:devel:add_special_block	joebordes	[Developer Blocks] 		594
 1552518658	141.8.205.182	E	en:devel:add_special_block	joebordes	[Create a Business Question] 		596
 1552518731	141.8.205.182	E	en:devel:add_special_block	joebordes	[Create a Business Action] 		13
 1552518831	141.8.205.182	E	en:devel:add_special_block	joebordes			2
@@ -22,3 +12,9 @@
 1553035478	185.191.88.212	E	en:adminmanual:businessmappings	joebordes	[Types of Business Mappings] 		145
 1553036033	185.191.88.212	C	en:adminmanual:businessmappings:decisiontable	joebordes	created		800
 1553041141	185.191.88.212	E	en:adminmanual:businessmappings:decisiontable	joebordes			0
+1553180733	185.191.88.212	E	en:devel:develtutorials	joebordes			73
+1553180757	185.191.88.212	C	en:devel:updateimagefield	joebordes	created		55
+1553206192	185.191.88.212	E	en:devel:updateimagefield	joebordes			746
+1553206829	185.191.88.212	E	en:devel:updateimagefield	joebordes			1018
+1553207034	185.191.88.212	E	en:devel:updateimagefield	joebordes			14
+1553208821	185.191.88.212	E	en:devel:updateimagefield	joebordes			140
