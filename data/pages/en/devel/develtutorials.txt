@@ -31,3 +31,4 @@
   * [[en:devel:confidentalinfoaddencryption|Add Encryption/Decryption methods to Confidential Information module]]
   * [[en:devel:executefunctions|Generic Javascript API Access to backend: Execute Function]]
   * [[en:devel:designloginpage|Design your login page]]
+  * [[en:devel:updateimagefield|How to update an image field from code]]
