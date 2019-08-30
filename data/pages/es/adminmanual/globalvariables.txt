@@ -93,4 +93,4 @@ Este [[https://github.com/tsolucio/corebos/commit/bffa964a4c3e8c658f3eb5a84900a8
 
 ===== Más Información =====
 
-[[http://blog.corebos.org:8080/en/blog/globalvariable|Hay una entrada en nuestro blog sobre las variables globales]]
+[[https://blog.corebos.org/blog/globalvariable|Hay una entrada en nuestro blog sobre las variables globales]]

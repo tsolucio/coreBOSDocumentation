@@ -1,0 +1,46 @@
+===== Summarized Rules =====
+
+You should configure your system in the following order:
+  - **Settings > Users > Admin: On/Off** With marking the Admin checkbox any user will be assigned administration privileges and become an administrator user. Administrator users have unlimited privileges for the CRM. <wrap em>**Never use a user login with administrator privileges for your daily work with CRM system.**</wrap>
+  - Except for the case of "Admin: On": <wrap em>revoked privileges always override granted privileges.</wrap>
+  - **Settings > Fields Access**: the default organization-wide (or global) field access. It is used to control the visibility of fields in various modules for the entire organization and it <wrap em>overrides the profile level field access</wrap> (see later).
+  - Regardless of the organization-wide defaults, users can always view and edit all data (<wrap em>except</wrap> the fields globally disabled in global Fields Access):
+    * owned by or
+    * shared with users below them in the role hierarchy
+    * <wrap em>if not prohibited by the profile.</wrap>
+  - By default, **a specific user can view, edit and delete <wrap em>only</wrap> the data sets that are:**
+    * owned by the user
+    * owned by a group where the user is a member
+    * owned by subordinate users
+    * or shared to the user
+  - **Settings > Sharing Access**
+    * **Sharing Access Rules** define default privileges that are valid organization-wide, we have: **Global Sharing Access Rules** and **Custom Sharing Access Rules**.
+    * Sharing access rules define the default user access levels to entity records (private or public), but only <wrap em>if they are not limited by profiles</wrap>. This means <wrap em>privileges revoked by profiles always override</wrap> the organization-wide sharing access rules!
+    * Sharing rules apply to all existing data and the data which will be added in the future.
+    * If you make changes, you must hit the <wrap em>[Recalculate]</wrap> button!
+    * Sharing Access Rules can be created for the modules we can see on the settings page. There is one special case: Rules created for the Organizations will apply to the Contacts module.
+    - **Private:** <wrap em>Only</wrap> the record <wrap em>owner and</wrap> users <wrap em>with a role which is above</wrap> that of the record owner's role in the hierarchy can <wrap em>browse, edit, delete and report</wrap> on those records. If an **organization's access has been set to Private, the access to related** opportunities, tickets, quotes, sales orders, purchase orders, and invoices <wrap em>is also set to private</wrap>. You must have at least read access to a record to be able to add activities or other associated records to it.
+    - **Public Read Only:** All users can <wrap em>view and report on records</wrap> but not edit them.
+    - **Public Read/Create:** All users can <wrap em>view, edit</wrap> all records, but they <wrap em>can not delete</wrap> them. Only those given special rights can delete records.
+    - **Public Read/Create and Delete:** All users can <wrap em>view, edit and delete</wrap> all records.
+  - **Custom Sharing Access Rules (User defined Sharing Rules):** can be used to selectively grant data access to a set of users (Roles or Groups, but not directly users). This means sharing module related data between Roles and Groups.
+    * Custom Sharing Rules can only extend the visibility, but they cannot hide it.
+    * Custom Sharing Rules cannot be specified to share data between two users directly.
+    * The number of rules defined for a single Role, Role Subordinates or Group is not limited.
+  - **Settings > Profile Privileges > "given profile" > Global Privileges: View All and Edit All** Global Privileges are checked next. <wrap em>If they are enabled, no other security check will be done.</wrap> Depending on the settings, any user may view and edit all the data of the CRM System, <wrap em>except the Settings module</wrap>.
+  - **Settings > Profile Privileges > "given profile" > Set Privileges for each Module** Revoked Module Privileges in Profiles <wrap em>override the sharing rules</wrap> because the CRM system will not take any sharing rules into consideration.
+  - **Settings > Profile Privileges > "given profile" > Set Privileges for each Module** <wrap em>If</wrap> a module privilege <wrap em>is disabled</wrap>, a user cannot view or edit that particular module or cannot delete records of that module.
+  - **Roles:** Roles are based on profiles and linked with the hierarchical order of the company. They define the overall privileges for each individual user. Users in any given role can always view, edit and delete all data owned by users below in the hierarchy.
+  - **The group system is not a tool for defining security settings.** Rather, user groups are <wrap em>used to manage the data access, that is, to share records</wrap>.
+  - **Assigning a Group** to a given entity record **NEVER** <wrap em>overrides access defined by the profile settings</wrap>. If you assign a group to a given CRM data entry all users defined by the group will become the owners of this entry <wrap em>with all privileges that are defined by the appropriate profile</wrap>.
+  - Group privileges <wrap em>may become</wrap> restricted by custom (<wrap em>default</wrap>) organization sharing privileges.
+  - **Calendar Sharing:** By default, every user's calendar is set to **private**. Other users may see that you have an event scheduled but do not get access to detailed information. You may <wrap em>share your calendar or specific event entries</wrap> with other CRM system users by inviting them.
+  - Other users in the role-based hierarchy can also view specific events at another user's calendar if these events have been made public. To make a particular event public, mark the [Public] checkbox when you create a new event. A user with a role above in the hierarchy can always see the calendar of subordinates.
+  - In addition, you may set up your calendar settings so that your calendar is shared with other users in the hierarchy
+
+
+----
+<WRAP right>
+[[en:adminmanual:securityguide:pref-acknorm|Next]] |  License and Usage
+</WRAP>
+----

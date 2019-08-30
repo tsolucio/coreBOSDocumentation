@@ -1,25 +1,19 @@
-<WRAP center 50%>
-===Chapter 1. Introduction to Role-Based Security===
-</WRAP>
-----
 =====Chapter 1. Introduction to Role-Based Security=====
-<WRAP>
-This chapter explains how to start working with vtiger CRM's security settings. It's an overview of all types of considerations an administrator should go through before starting to setup the CRM system.\\
+
+This chapter explains how to start working with coreBOS's security settings. It's an overview of all types of considerations an administrator should go through before starting to set up the CRM system.\\
 
 ==== Preface ====
-With version 5.0 role based security has been provided to control who is allowed to browse, delete or update which information stored at the CRM. This is a significant improvement, making the CRM system more scalable, flexible, and easier to implement for larger corporations.\\
 
-The following sections explain the role-based security concept as it is implemented by vtiger CRM and considers the dependency to other security settings.\\
+Role-based security has been provided to control who is allowed to browse, delete or update which information stored in the CRM. This is a significant improvement, making the CRM system more scalable, flexible, and easier to implement for larger corporations.\\
 
-With the help of this manual you will get familiar with the security concept quickly. We will show you how you can configure the system to fit to your needs and how to use it effectively. Please keep in mind that the security settings have been implemented to control users privileges. It is especially suited for companies:\\
+The following sections explain the role-based security concept as it is implemented by coreBOS and considers the dependency to other security settings.\\
+
+With the help of this manual, you will get familiar with the security concept quickly. We will show you how you can configure the system to fit your needs and how to use it effectively. Please keep in mind that the security settings have been implemented to control users privileges. It is especially suited for companies:\\
   * who would like to have a larger number of people to work with the CRM simultaneously
   * who would like to have restricted browse, delete or update capabilities for individual users
-  * who would like to have an hierarchical order implemented \\
-All samples for organisations or contacts used in this manual are imaginary. Any resemblances to existing companies or persons are coincidental. \\
-=== Manual instructions ===
-You can identify the manual version by its ID number located at the second page of this manual. The first 3 digits of this number identify the document type. The next three digits are the version number. The last two digits identify the edition within a version.\\
-Note: Each manual version has an unique identification number.
-</WRAP>
+  * who would like to have a hierarchical order implemented \\
+All samples for organizations or contacts used in this manual are imaginary. Any resemblances to existing companies or persons are coincidental. \\
+
 ----
 <WRAP right>
 [[en:adminmanual:securityguide:RBSbasics-ch001|Next]] | Role Based Security Basics

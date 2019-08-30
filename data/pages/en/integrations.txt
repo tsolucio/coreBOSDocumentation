@@ -9,7 +9,7 @@
   *[[en:extensions:extensions:googlemeasurementprotocol|Google Measurement Protocol: Google Analytics]]
   *Asterisk
   *SMS
-  *Sendgrid
+  *[[en:integrations:sendgrid|Sendgrid]]
   *ActON
   *Thunderbird
   *[[en:integrations:surveys|Survey]] -> [[en:integrations:typeform|Typeform]]

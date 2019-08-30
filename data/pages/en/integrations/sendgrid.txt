@@ -1,0 +1,4 @@
+====== Sendgrid-coreBOS Integration ======
+
+
+https://your_server/your_corebos/notifications.php?type=sendgrid

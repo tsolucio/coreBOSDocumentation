@@ -9,6 +9,12 @@
 Make sure logs/ folder has write access to apache server process owner.
 </WRAP>
 
+<WRAP center round info 70%>
+When you activate the DEBUG level a lot of information gets written into the log file, among this data is the regular Activity Reminder call which is rather bothersome. You can do two things to reduce this noise.
+  * go to user preferences and set the reminder to none
+  * in the javascript console type <code>ActivityReminder_Deactivated = true;</code> This variable is defined in include/js/general.js around line 3100 if you want to make it permanent during your debugging session.
+</WRAP>
+
 =====Database=====
 
   * Turn on debuging for ADODB instanced in include/database/PearDatabase.php (at end of file) <code>if(empty($adb)) {

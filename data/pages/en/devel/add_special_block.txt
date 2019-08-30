@@ -49,6 +49,11 @@ The initial idea is the same as above, you need a class that you reference in th
 
 Additionally, we have modified the DEAILVIEWWIDGET code to permit you to send more parameters into your class which is done using the URL parameter syntax.
 
+<WRAP center round info 60%>
+[[http://blog.corebos.org/blog/developerblock|You can find a blog post]] with a step by step example and {{ :en:devel:asktoproceeddevblock.zip |download the related code clicking here.}}
+</WRAP>
+
+
 The coreBOS Question analytical module has [[https://github.com/tsolucio/corebos/blob/master/modules/cbQuestion/cbQuestionWidget.php|an example of the usage of the Developer Block]] which makes it easy to get the execution of the question into a block. Try these steps to see the result:
 
 ==== Create a Business Question ====
@@ -57,9 +62,9 @@ Like this:
 
 {{ :en:adminmanual:bquestion01.png |Business Question}}
 
-|Columns:|[{"fieldname":"countres","operation":"is","value":"count(ticket_title)","valuetype":"expression","joincondition":"and","groupid":"0"},{"fieldname":"ticketstatus","operation":"is","value":"ticketstatus","valuetype":"fieldname","joincondition":"and","groupid":"0"}]|
-|Condition:|[{"fieldname":"$(parent_id : (Accounts) account_no) ","operation":"is","value":"$account_no$","valuetype":"raw","joincondition":"and","groupid":"0"}]|
-|Type properties:|{"key_label":"ticketstatus","key_value":"countres"}|
+|Columns:|<code>[{"fieldname":"countres","operation":"is","value":"count(ticket_title)","valuetype":"expression","joincondition":"and","groupid":"0"},{"fieldname":"ticketstatus","operation":"is","value":"ticketstatus","valuetype":"fieldname","joincondition":"and","groupid":"0"}]</code>|
+|Condition:|<code>[{"fieldname":"$(parent_id : (Accounts) account_no) ","operation":"is","value":"$account_no$","valuetype":"raw","joincondition":"and","groupid":"0"}]</code>|
+|Type properties:|<code>{"key_label":"ticketstatus","key_value":"countres"}</code>|
 
 ==== Create a Business Action ====
 
@@ -86,6 +91,60 @@ NOTE that the QID value is actually the CRMID of the Business Question you creat
 Now go to any account with tickets and you should see something like this:
 
 {{ :en:adminmanual:bquestion02.png |}}
+
+==== Another example: Show Message ====
+
+The application has another native developer block that permits you to show a message. Watch the next video to see how that works and learn a little more about how this development resource works.
+
+{{youtube>aAs2FVJ0veE}}
+
+==== Another example: Mass Upload Documents ====
+
+The application has another native developer block that permits you to mass upload documents. Watch the next video to see how that works and [[https://github.com/tsolucio/corebos/commit/889884362b82ff24a8c1b5499f22e7705e55d519|look at the commit to see the code]].
+
+{{youtube>lW3RrQQQb-4}}
+
+==== Developer Block Template ====
+
+This is the starting point of any developer block (the boilerplate).
+
+<code PHP>
+<?php
+/*************************************************************************************************
+** PUT YOUR LICENSE HERE **
+ *************************************************************************************************/
+require_once 'modules/Vtiger/DeveloperWidget.php';
+global $currentModule;
+
+class YOURWIDGETNAMEHERE {
+	// Get class name of the object that will implement the widget functionality
+	public static function getWidget($name) {
+		return (new YOURWIDGETNAMEHERE_DetailViewBlock());
+	}
+}
+
+class YOURWIDGETNAMEHERE_DetailViewBlock extends DeveloperBlock {
+	// Implement widget functionality
+	private $widgetName = 'YOURWIDGETNAMEHERE';
+
+	// This one is called to get the contents to show on screen
+	public function process($context = false) {
+		global $adb;
+		$this->context = $context;
+		$smarty = $this->getViewer();
+		*************
+		ALL YOU LOGIC GOES HERE
+		*************
+		return THE_HTML_YOU_WANT_TO_SHOW_INSIDE_THE_BLOCK;
+	}
+}
+
+if (isset($_REQUEST['action']) && $_REQUEST['action']==$currentModule.'Ajax') {
+	$smq = new YOURWIDGETNAMEHERE_DetailViewBlock();
+	echo $smq->process($_REQUEST);
+}
+</code>
+
 
 ======How to add a special block to a module using templates======
 

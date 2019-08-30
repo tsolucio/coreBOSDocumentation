@@ -1,51 +1,46 @@
-<WRAP center 50%>
-===Examples===
-==Chapter 2. Examples==
-</WRAP>
-----
 =====Examples=====
-<WRAP>
-This chapter discusses the security setup for example organizations and explain what individual users are allowed to do on the CRM system. By far these examples do not include all possibilities to configure the CRM system based on a company needs. However, we believe that the principal functions of the security features are covered so that any user might become capable to create the own setup \\
+
+This chapter discusses the security setup for example organizations and explains what individual users are allowed to do on the CRM system. By far these examples do not include all possibilities to configure the CRM system based on a company needs. However, we believe that the principal functions of the security features are covered so that any user might become capable to create the own setup \\
 
 **Example 1**   \\
 
-This simple example shows how the access to certain data can be controlled by a group and sharing rules.
+This simple example shows how access to certain data can be controlled by a group and sharing rules.
 
-Let us assume we have a sales team as shown in Figure: Example Sales Team 1. The Salesmanager is the supervisor for Person 1 and 2 which are member of the group "Team A". \\
+Let us assume we have a sales team as shown in <wrap em>Figure: Example Sales Team 1</wrap>. The Sales Manager is the supervisor for Person 1 and 2 which are members of the group "Team A". \\
 
+{{ :en:adminmanual:securityguide:sampleteam1.png |}}
 **Figure 2.1. Example Sales Team 1**
-
-Example Sales Team 1 \\
 
 Let us also assume we would like to have the following rules for Leads implemented:
   * Person 1 and Person 2 have the permission to create Leads that are owned by Person 1 or Person 2 or both
   * If a Lead is owned by a single Person the other Person will have no access privileges to this Lead
-  * The Sales manager has all access priviledges to all Leads \\
-In order to implement these rules we have to implement the following setup: \\
+  * The Sales manager has all access privileges to all Leads \\
+In order to implement these rules, we have to implement the following setup: \\
 //At Default Organization Sharing Access we set the Global Access Privileges for "Leads" to Private://  \\
 This will cause that users cannot access other users Leads.
 
-//Create one common profile for Person 1 and 2 and the Salesmanager://
+//Create one common profile for Person 1 and 2 and the Sales manager://
 We need only one profile, called "Sales" that should include all CRUD privileges for Leads. \\
 
 //Create two roles://    \\
-We need one role for the Salesmanager and one subordinated role for Person 1 and 2. Both roles are based on the "Sales" profile. Since role of the Salesmanager is superior to the role of Person 1 and 2 the Salesmanager has all CRUD privileges.\\
+We need one role for the Sales manager and one subordinated role for Person 1 and 2. Both roles are based on the "Sales" profile. Since the role of the Sales manager is superior to the role of Person 1 and 2 the Sales manager has all CRUD privileges.\\
 
 //Create one group of users://   \\
 This group is called "Team A" with the members Person 1 and Person 2.
-Now, if Person 1 or Person 2 create a Lead they can assign the owner of this Lead. If "Team A" is assigned as owner of the Lead, Person 1, Person 2 and the Salesmanager can access the Lead. When the ownership is changed to any one member in the group (Person 1 or Person 2) then only that member and the Salesmanager can access the Lead. \\
+Now, if Person 1 or Person 2 create a Lead they can assign the owner of this Lead. If "Team A" is assigned as the owner of the Lead, Person 1, Person 2 and the Sales manager can access the Lead. When the ownership is changed to any one member in the group (Person 1 or Person 2) then only that member and the Sales manager can access the Lead. \\
 
-**Note**
-When creating a Lead the CRM system sets the default ownership to the user who creates the data entry automatically. If a common access by Person 1 and Person 2 is desired the ownership must be set to "Team A" before saving. \\
+<WRAP center round info 60%>
+When creating a Lead the CRM system sets the default ownership to the user who creates the data entry automatically. If common access by Person 1 and Person 2 is desired the ownership must be set to "Team A" before saving.
+</WRAP>
+
 
 **Example 2**   \\
-This example shows how the access to certain data can be controlled by groups with sharing rules. \\
+This example shows how access to certain data can be controlled by groups with sharing rules. \\
 
-Let us assume we have a sales team as shown in Figure: Example Sales Team 2. The Salesmanager is the supervisor for Person 1, 2 and 3, 4 all organized in Team A and B. We also have an sales assistant who supports the sales teams. \\
+Let us assume we have a sales team as shown in <wrap em>Figure: Example Sales Team 2</wrap>. The Sales Manager is the supervisor for Person 1, 2 and 3, 4 all organized in Team A and B. We also have a sales assistant who supports the sales teams. \\
 
+{{ :en:adminmanual:securityguide:sampleteam2.png |}}
 **Figure 2.2. Example Sales Team 2**  \\
-
-Example Sales Team 2 \\
 
 Let us also assume we would like to have the following rules for Leads implemented:\\
 
@@ -57,34 +52,36 @@ Let us also assume we would like to have the following rules for Leads implement
 
   * Members of the "Team A" have no CRUD privileges to Accounts and Contacts owned by "Team B" and vice versa.
 
-  * The Sales manager has all access privileges to all Leads, Accounts and Contacts\\
+  * The Sales manager has all access privileges to all Leads, Accounts, and Contacts\\
 
-In order to implement these rules we set the following priviledges:\\
+In order to implement these rules we set the following privileges:\\
 
 //At Default Organization Sharing Access we set the Global Access Privileges for "Accounts & Contacts" and "Leads" to Private://   \\
 
 This will cause that users cannot access other users Accounts, Contacts or Leads. The access to related potentials, tickets, quotes, sales orders, purchase orders, and invoices is also set to private.\\
 
-//Create one common profile for all Persons and the Salesmanager://   \\
+//Create one common profile for all Persons and the Sales manager://   \\
 
 We need only one profile, called "Sales" that should include all CRUD privileges.\\
 
 //Create three roles://  \\
 
-We need one role for the Salesmanager, one for the Salesassistant and one subordinated role for all Persons. All roles are based on the "Sales" profile.\\
+We need one role for the Sales manager, one for the Sales assistant and one subordinated role for all Persons. All roles are based on the "Sales" profile.\\
 
 //Create three group of users:// \\
 
-We create a group called "Team A" with the members Person 1 and Person 2 and a group called "Team B" with the members Person 3 and Person 4. We create a group called "Assistant" with the user Salesassistant as the only member. \\
+We create a group called "Team A" with the members Person 1 and Person 2 and a group called "Team B" with the members Person 3 and Person 4. We create a group called "Assistant" with the user Sales assistant as the only member. \\
 
-**Note** \\
-As described in Section: Custom Access Privileges sharing rules cannot be specified to share data between users. Since we would like to use sharing rules for the Salesassistant we have to create an additional group with only one member.\\
+<WRAP center round info 60%>
+As described in Section: Custom Access Privileges sharing rules cannot be specified to share data between users. Since we would like to use sharing rules for the Sales assistant we have to create an additional group with only one member.
+</WRAP>
+
 
 //Set Custom Access Privileges for Leads://  \\
 
 From Group "Team A" to Group "Team B" we set the access privilege with Read/Write permission. From Group "Team B" to Group "Team A" we set the access privilege with Read/Write permission. From Group "Assistant" to Group "Team A" we set the access privilege with Read permission.\\
 
-Now, if any person creates a Lead they can assign the owner of this Lead. Regardless of the owner, all Persons and the Salesmanger have Read/Write permissions to a Lead. The Salesassistant has Read permissions to the Leads from "Team A". However, there are no shared Accounts or Contacts between the two groups or between members of groups.\\
+Now, if any person creates a Lead they can assign the owner of this Lead. Regardless of the owner, all Persons and the Sales manager have Read/Write permissions to a Lead. The Sales assistant has Read permissions to the Leads from "Team A". However, there are no shared Accounts or Contacts between the two groups or between members of groups.\\
 
 **Example 3**  \\
 
@@ -92,18 +89,18 @@ This example explains a simple company setup where individual users have limited
 
 **Assumptions and requirements**\\
 
-Consider a very small organisation with almost no hierarchical order as shown in Figure: Small Sample Organization.\\
+Consider a very small organization with almost no hierarchical order as shown in Figure: Small Sample Organization.\\
 
 **Figure 2.3. Small Sample Organization**
 
 {{ :en:adminmanual:securityguide:smallsampleorg.png?nolink |}} \\
 
-For this company we would be perfect probably with two roles, one for the administrator and one for the company staff. However, we will introduce 6 roles such as corp_manager, admin. assistant, sales, service, and accounting in order to be prepared for a further company expansion. We assume a very flat hierarchical order where the sales and service staff operates on the same information level.\\
+For this company, we would be perfect probably with two roles, one for the administrator and one for the company staff. However, we will introduce 6 roles such as corp_manager, admin. assistant, sales, service, and accounting in order to be prepared for further company expansion. We assume a very flat hierarchical order where the sales and service staff operates on the same information level.\\
 
 Let us define the following security requirements:\\
 
   * The head of the company as well as the assistant and the administrator have all privileges.
-  * The sales team is responsible for all contact information, the service maintains the helpdek. Both are allowed to browse, to create, to modify or to delete the data.
+  * The sales team is responsible for all contact information, the service maintains the helpdesk. Both are allowed to browse, to create, to modify or to delete the data.
   * Accounting has is done by a third party and has only access to the invoice, purchase order and sales order data.\\
 
 **CRM System Configuration** \\
@@ -117,13 +114,13 @@ Let us define the following security requirements:\\
 
 We set the privileges so that all users have access to all data as shown in Figure: Organisation Sharing Acess for Small Company.\\
 
-**Figure 2.4. Organisation Sharing Access for Small Company**\\
+**Figure 2.4. Organization Sharing Access for Small Company**\\
 
 {{ :en:adminmanual:securityguide:orgsharingprivglobalsmall.png?nolink |}} \\
 
 === Default Organisation Fields Access ===
 
-For the purpose of this example we do change the field access.\\
+For the purpose of this example, we do change the field access.\\
 
 === Profiles ===
 
@@ -133,14 +130,14 @@ The privileges for each role are based on profiles. We need only 4 profiles:\\
 
 Global Privileges:\\
 
-All privileges for edit and view any data should be given as shown in Figure: Global Priviledges for Sales.\\
+All privileges for edit and view any data should be given as shown in Figure: Global Privileges for Sales.\\
 
 **Figure 2.5. Global Privileges for Sales**
 {{ :en:adminmanual:securityguide:globalprivteama.png?nolink |}}  \\
 
 Tab Privileges: \\
 
-We do not restrict the access to the CRM modules for the sales representatives as shown in Figure: Tab Priviledges Sales Team.\\
+We do not restrict the access to the CRM modules for the sales representatives as shown in Figure: Tab Privileges Sales Team.\\
 
 **Figure 2.6. Tab Privileges Sales Team**
 
@@ -148,7 +145,7 @@ We do not restrict the access to the CRM modules for the sales representatives a
 
 Standard Privileges:\\
 
-We limit some privileges to some modules as shown in Figure: Standard Priviledges Sales Team. The Create/Edit as well as the Delete privileges for the modules HelpDesk and PurchaseOrder are revoked.\\
+We limit some privileges to some modules as shown in Figure: Standard Privileges Sales Team. The Create/Edit, as well as the Delete privileges for the modules HelpDesk and PurchaseOrder, are revoked.\\
 
 **Figure 2.7. Standard Privileges Sales Team**
 {{ :en:adminmanual:securityguide:standardprivsales.png?nolink |}}  \\
@@ -167,7 +164,7 @@ The Service Profile is almost identical to the Sales Profile with the following 
 
 Standard Privileges:\\
 
-We do not want the service to delete sales related data. Therefore some privileges are revoked as shown in Figure: Standard Priviledges Service.\\
+We do not want the service to delete sales related data. Therefore some privileges are revoked as shown in Figure: Standard Privileges Service.\\
 
 **Figure 2.8. Standard Privileges Service**
 
@@ -175,11 +172,11 @@ We do not want the service to delete sales related data. Therefore some privileg
 
 //Accounting Profile//  \\
 
-We would like the external accountant to see the accounting data only. The Accounting Profile is we need to setup the following privileges:\\
+We would like the external accountant to see the accounting data only. The Accounting Profile is we need to set up the following privileges:\\
 
 Global Privileges:\\
 
-The accountant may see any data as allowed by the settings shown in Figure: Global Priviledges Accounting.\\
+The accountant may see any data as allowed by the settings shown in Figure: Global Privileges Accounting.\\
 
 **Figure 2.9. Global Privileges Accounting**
 
@@ -187,7 +184,7 @@ The accountant may see any data as allowed by the settings shown in Figure: Glob
 
 Tab Privileges:\\
 
-We would like to restrict the access to sales related data as shown on Figure: Tab Priviledges Accounting.\\
+We would like to restrict the access to sales related data as shown in Figure: Tab Privileges Accounting.\\
 
 **Figure 2.10. Tab Privileges Accounting**
 
@@ -196,7 +193,7 @@ Tab Privileges Accounting\\
 
 Standard Privileges:\\
 
-We do not want the service to delete sales related data. Therefore some privileges are revoked as shown in Figure: Standard Priviledges Accounting.\\
+We do not want the service to delete sales related data. Therefore some privileges are revoked as shown in Figure: Standard Privileges Accounting.\\
 
 **Figure 2.11. Standard Privileges Accounting**
 
@@ -208,7 +205,7 @@ The Corp Head Profile has all privileges.\\
 
 //Administrator Profile// \\
 
-The administrator profile should have all privileges. A restriction does not makes any sense since the administrator has the permission to change the configuration anyway.\\
+The administrator profile should have all privileges. A restriction does not make any sense since the administrator has the permission to change the configuration anyway.\\
 
 === Groups ===
 
@@ -228,7 +225,7 @@ Each individual user of the CRM system must be assigned to an appropriate role.\
 
 === Assign Privileges to Users ===
 
-At the last step the privileges defined will be assigned to the users as shown in the following table:\\
+At the last step, the privileges defined will be assigned to the users as shown in the following table:\\
 
 **Table 2.1. Privilege Assignment**
 
@@ -244,7 +241,7 @@ At the last step the privileges defined will be assigned to the users as shown i
 
 **Example 4** \\
 
-This example illustrates a more complex settings, where users have limited access to information owned by others.\\
+This example illustrates a more complex setting, where users have limited access to information owned by others.\\
 
 === Assumptions and requirements ===
 
@@ -254,17 +251,17 @@ Consider a small organization with 14 CRM users as shown in Figure: Sample Organ
 
 {{ :en:adminmanual:securityguide:sampleorg.png?nolink |}}
 
-In this environment, there are 11 roles such as corp_manager, admin, m_assistant, sm_manager, s_manager, m_manager, s_assistant, s_team_a, s_team_b, head_service, and service. Accounting, Production and R&D do not use the CRM system.\\
+In this environment, there are 11 roles such as corp_manager, admin, m_assistant, sm_manager, s_manager, m_manager, s_assistant, s_team_a, s_team_b, head_service, and service. Accounting, Production, and R&D do not use the CRM system.\\
 
 The graph structure shows also the role hierarchy based on the tasks within the company.\\
 
 Let us assume the following:\\
 
-  * An superior inherits the roles of the subordinates
+  * A superior inherits the roles of the subordinates
 
-  * An individuals with the same tasks have the same role
+  * An individual with the same tasks have the same role
 
-Therefore, as an example, the user with the role head_service (Person 3) inherits the service role. An individual authorized for the role head_service is permitted to perform all of the operations permitted to the individuals Person 3-1 and 3-2 authorized for the role of service. Or, as another example, the head of the sales department with the role s_manager inherits the roles s_assistant, s_team_a and s_team_b.\\
+Therefore, as an example, the user with the role head_service (Person 3) inherits the service role. An individual authorized for the role head_service is permitted to perform all of the operations permitted to the individuals Person 3-1 and 3-2 authorized for the role of service. Or, as another example, the head of the sales department with the role s_manager inherits the roles s_assistant, s_team_a, and s_team_b.\\
 
 In addition, let us define the following security requirements:\\
 
@@ -299,14 +296,14 @@ The default organization sharing access privileges define the global privileges 
 {{ :en:adminmanual:securityguide:orgsharingprivglobal.png?nolink |}}
 
 **Note** 
-As a consequence each individual user is only capable to browse, create, modify or delete the data that has been assigned to:\\
+As a consequence, each individual user is only capable to browse, create, modify or delete the data that has been assigned to:\\
 
   * this user, or
   * to a group where this user is a member
 
 ==Default Organisation Fields Access==
 
-For the purpose of this example there is no restrictions at default organization field access. All fields are available company wide.\\
+For the purpose of this example, there are no restrictions at default organization field access. All fields are available company-wide.\\
 
 ==Profiles==
 
@@ -318,16 +315,16 @@ Profiles define the privileges related to a role. Therefore appropriate profiles
   * one profile for the service staff (Service Profile)
   * one profile for the head of Service (Head Service Profile)
   * one profile for the company management (Corp Head Profile)
-  * one profile for the CRM Administator (Administrator Profile)
+  * one profile for the CRM Administrator (Administrator Profile)
 
 **Note** 
-Due to the requirements in this example there are less profiles than roles.\\
+Due to the requirements in this example, there are fewer profiles than roles.\\
 
 //Sales Team Profile://
 
 Global Privileges:\\
 
-All privileges for edit and view any data should be given as shown in Figure: Global Priviledges for Sales Team. We will restrict the privileges further with the following settings.\\
+All privileges for edit and view any data should be given as shown in Figure: Global Privileges for Sales Team. We will restrict the privileges further with the following settings.\\
 
 **Figure 2.15. Global Privileges for Sales Team**  \\
 
@@ -335,7 +332,7 @@ All privileges for edit and view any data should be given as shown in Figure: Gl
 
 Tab Privileges:\\
 
-We restrict the access of the sales representatives to the tabs that are necessary to do the sales job as shown in Figure: Tab Priviledges Sales Team. The access to reports and purchase orders is revoked since the access to these tabs is a privilege of the superior.\\
+We restrict the access of the sales representatives to the tabs that are necessary to do the sales job as shown in Figure: Tab Privileges Sales Team. The access to reports and purchase orders is revoked since the access to these tabs is a privilege of the superior.\\
 
 **Figure 2.16. Tab Privileges Sales Team**  \\
 
@@ -343,7 +340,7 @@ We restrict the access of the sales representatives to the tabs that are necessa
 
 Standard Privileges:\\
 
-We also limit some privileges to some modules as shown in Figure: Standard Priviledges Sales Team. The Create/Edit as well as the Delete privileges for the modules HelpDesk, Products, Vendors, PriceBooks and PurchaseOrder are revoked.\\
+We also limit some privileges to some modules as shown in Figure: Standard Privileges Sales Team. The Create/Edit as well as the Delete privileges for the modules HelpDesk, Products, Vendors, PriceBooks and PurchaseOrder are revoked.\\
 
 **Figure 2.17. Standard Privileges Sales Team** \\
 
@@ -363,7 +360,7 @@ The Marketing Profile is identical with the Sales Team Profile with one exceptio
 
 Standard Privileges:\\
 
-Only the privilege for view any sales related data should be given as shown in Figure: Standard Priviledges Marketing.\\
+Only the privilege to view any sales related data should be given as shown in Figure: Standard Privileges Marketing.\\
 
 **Figure 2.18. Standard Privileges Marketing** \\
 
@@ -387,7 +384,7 @@ In addition, we grand all export privileges at the Utility Privilege configurati
 
 //Service Profile// \\
 
-The service privileges are focused on the helpdesk and related contact information.\\
+The service privileges are focused on helpdesk and related contact information.\\
 
 Global Privileges:\\
 
@@ -395,7 +392,7 @@ All privileges are granted\\
 
 Tab Privileges:\\
 
-All tabs related to the service are allowed as shown in Figure: Tab Priviledges Service.\\
+All tabs related to the service are allowed as shown in Figure: Tab Privileges Service.\\
 
 **Figure 2.20. Tab Privileges Service**  \\
 
@@ -403,7 +400,7 @@ All tabs related to the service are allowed as shown in Figure: Tab Priviledges 
 
 Standard Privileges:\\
 
-We do not want the service to create, edit or delete sales related data. Therefore some privileges are revoked as shown in Figure: Standard Priviledges Service.\\
+We do not want the service to create, edit or delete sales related data. Therefore some privileges are revoked as shown in Figure: Standard Privileges Service.\\
 
 **Figure 2.21. Standard Privileges Service**
 
@@ -423,7 +420,7 @@ The profile for the head of the department is almost identical to the Service Pr
 
 Tab Privileges:\\
 
-In addition to the Service Profile we allow report functions as shown in Figure: Tab Priviledges Head Service.\\
+In addition to the Service Profile, we allow report functions as shown in Figure: Tab Privileges Head Service.\\
 
 **Figure 2.22. Tab Privileges Head Service**
 
@@ -439,11 +436,11 @@ The Corp Head Profile has all privileges.\\
 
 //Administrator Profile//  \\
 
-The administrator profile should have all privileges. A restriction does not makes any sense since the administrator has the permission to change any configuration.\\
+The administrator profile should have all privileges. A restriction does not make any sense since the administrator has permission to change any configuration.\\
 
 ==Groups==
 
-Since we have set the default organization sharing privileges to private we must create groups to give others access to information which have to be shared. To meet the assumptions and requirements the following groups must be created:\\
+Since we have set the default organization sharing privileges to private we must create groups to give others access to information which has to be shared. To meet the assumptions and requirements the following groups must be created:\\
 
 Sales Team A:\\
 
@@ -458,11 +455,11 @@ Head of Sales:\\
 To give the sales department manager and the assistant access to the data of the sales teams A and B we will create a new group, called "Head Sales" with the member groups "Team A" and "Team B".\\
 
 **Tip**
-You may consider to build the "Head Sales" group by selecting the individual sales team persons as members of this group. We recommend not o do this. While it functioning well it is much harder to maintain when the members of the sales teams change in the future.\\
+You may consider building the "Head Sales" group by selecting the individual sales team persons as members of this group. We recommend not o do this. While it functioning well it is much harder to maintain when the members of the sales teams change in the future.\\
 
 Sales and Marketing:\\
 
-In order to give the head of the marketing and sales department the privilege to browse the data of the sales and marketing teams we will create a new group, called "Sales and Marketing" with the member roles "Head Sales" and "Marketing".\\
+In order to give the head of the marketing and sales department the privilege to browse the data of the sales and marketing teams, we will create a new group, called "Sales and Marketing" with the member roles "Head Sales" and "Marketing".\\
 
 **Note**   
 We chose to introduce a group of roles for this example.\\
@@ -483,11 +480,11 @@ Each individual user of the CRM system must be assigned to an appropriate role.\
 
 ==Assign Privileges to Users==
 
-At the last step the privileges defined will be assigned to the users as shown in the following table:\\
+At the last step, the privileges defined will be assigned to the users as shown in the following table:\\
 
 **Table 2.2. Privilege Assignment** \\
 
-|Name	|Role	|Profile	|Group Membership|
+^Name^Role^Profile^Group Membership^
 |Person 1|corp-manager|Corp Head Profile|none|
 |Person 1-1	|admin	|Administrator	|none|
 |Person 1-2	|m-assistant	|Corp Head Profile	|none|
@@ -503,10 +500,9 @@ At the last step the privileges defined will be assigned to the users as shown i
 |Person 3-1	|service	|Service Profile	|Service|
 |Person 3-2	|service	|Service Profile	|Service|
 
-</WRAP>
 ----
 <WRAP right>
-[[en:adminmanual:securityguide:appa|Next]] |  Appendix A. ChangeLog
+[[en:adminmanual:securityguide:ch003|Next]] |  Summarized Rules
 </WRAP>
 ----
 © 2006 crm-now

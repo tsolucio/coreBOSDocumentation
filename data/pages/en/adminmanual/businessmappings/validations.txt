@@ -91,6 +91,8 @@ where {rule_name} can be:
     *restrictions: list of fields
   *requiredWithout - Field is required if any other fields are NOT present
     *restrictions: list of fields
+  *listcontains - Validate a field is contained within a list of values
+  *arrayhaskeys
   *IBAN_BankAccount - validate IBAN Bank Account number
     *restrictions: none
   *EU_VAT - validate EU VAT number

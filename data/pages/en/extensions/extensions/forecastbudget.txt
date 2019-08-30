@@ -12,12 +12,15 @@ version           : 1.0 #
 homepage_url      : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:forecastbudget # 
 release_dt        : 2010-02-27 # 
 licenses          : Vizsage # 
-price             : Subscription # 
-buyemail_mail     : paypal(at)tsolucio(dot)com # 
-distribution      : Sale # 
+price             : Free # 
+buyemail_mail     : info(at)tsolucio(dot)com # 
+distribution      : Free # 
 authorname        : JPL TSolucio, S.L. # 
 authoremail_mail  : info(at)tsolucio(dot)com # 
 supportemail_mail : info(at)tsolucio(dot)com # 
+supportissues_url : https://github.com/tsolucio/salesforecast
+supportforum_url : http://discussions.corebos.org/
+supportsource_url : https://github.com/tsolucio/salesforecast
 ----
 
 \\

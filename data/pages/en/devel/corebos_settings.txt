@@ -36,6 +36,6 @@ Checks if a value exists for the given key. Will return true if the key is found
 =====Notes=====
 
   * You can use the coreBOS_Settings object from anywhere in the application
-  * Values are limited to 1000 characters
+  * Values are limited to 64K characters (text field)
   * Values are always strings
   * You can see some examples of usage in the [[https://github.com/tsolucio/coreBOSTests/blob/master/include/utils/cbSettingsTest.php|coreBOS Test Project]]

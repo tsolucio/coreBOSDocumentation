@@ -3,7 +3,13 @@
 In the **build/HelperScripts** directory you can find a series of small scripts and tools that are useful to achieve some of those special tasks that help adapt the system to your specific needs. Some of these should be done directly inside the application, and hopefully, someday they will be, but in the meantime, these are the steps to get it working.
 
 ===== addActionLink.php =====
-This is an example script to show how you can add an action link in the right panel of the detailview of an existing module. In this case it is adding an **Add Ticket** action link to the Accounts module.
+
+This is an example script to show how you can add an action link in the right panel of the detail view of an existing module. In this case, it is adding an **Add Ticket** action link to the Accounts module.
+
+<WRAP center round info 60%>
+This script is no longer necessary. The Business Actions module permits us to create links of all types directly inside the application with a much more flexible permission system. That said, the script still works but is not the recommended way to create links anymore.
+</WRAP>
+
 
 
 ===== addEntityMethod.php =====
@@ -66,9 +72,23 @@ The addAuditModtracker.sql script will create the tables so you can use the data
 
 ===== composer2readme and module2wiki =====
 
-These php scripts will connect to a standard coreBOS module or extension directory structure and output a dokuwiki syntax page with a summary of the module or extension which you can use as a starting point to document it in [[en:extensions:extensions|our extensions section]].
+These PHP scripts will connect to a standard coreBOS module or extension directory structure and output a DokuWiki syntax page with a summary of the module or extension which you can use as a starting point to document it in [[en:extensions:extensions|our extensions section]].
 
 <code>
 php build/HelperScripts/composer2readme.php https://raw.githubusercontent.com/tsolucio/coreBOSEmployee/master
 php build/HelperScripts/module2wiki.php https://raw.githubusercontent.com/tsolucio/coreBOSEmployee/master
 </code>
+
+===== setEmailOptOut =====
+
+This script permits you to easily set the emailoptout field on or off by calling a simple link. This is an easy, yet insecure way of being able to add an "unsubscribe" link to the body of your emails.
+
+As with most of the HelperScripts, copy the script to the root of your install and set the URL to
+
+<code>
+https://your_server/your_corebos/setEmailOptOut.php?email={email}&optout={0|1}&appkey={appkey}
+</code>
+
+this script triggers workflows accordingly.
+
+**The correct and secure way to do this is using Web Services**

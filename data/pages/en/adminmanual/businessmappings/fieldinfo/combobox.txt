@@ -1,0 +1,24 @@
+===== Configuring Combobox with static values Fields: Business Mappings =====
+
+This type of functionality applies to normal input fields where the user can type in any text they want but you want to suggest a preferred set of standard/accepted values.
+
+The definition can be [[https://www.lightningdesignsystem.com/components/combobox/#Autocomplete-Combobox|found here]].
+
+The map looks like this:
+
+<code XML>
+<field>
+  <fieldname>potentialname</fieldname>
+  <features>
+   <feature>
+    <name>combobox</name>
+    <values>
+      <value>value1</value>
+      <value>value2</value>
+      <value>...</value>
+      <value>valueN</value>
+    </values>
+   </feature>
+  </features>
+</field>
+</code>

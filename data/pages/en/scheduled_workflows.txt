@@ -133,3 +133,54 @@ today = '2015-03-18' 01:15\\
 today = '2015-03-18' 01:15\\
 (fecha = > '2015-03-19') and (tiempo > '2015-03-18 03:15:00')
 </WRAP>
+
+**Escalate a case if it is opened for more than 4 hours**
+
+In this example, we will configure a workflow to escalate a case, if it’s not responded for more than four hours. You can have the workflow either escalate the case to the support manager, or trigger an email alert, or do both. This workflow is executed once in every hour.
+
+  - Hover over  icon  and click CRM Settings
+  - Click Workflows 
+  - In the ‘Creating Workflow’ page, under the ‘Module’ tab, Select Projects from the Target Module dropdown
+  - Provide description for future reference
+  - Under ‘When to run the workflow’ options, select the Schedule radio-button and select Hourly from the ‘Run Workflow’ dropdown {{ :en:corebos:workflow:firstpictureex1.png?600 |}}
+  - Under the ‘Conditions’ tab, provide the filter conditions.Two conditions need to be configured: Status is initiated, and Created Time more than 4 hours before. {{ :en:corebos:workflow:secondpictureex1.png?600 |}}
+  - After configuring the conditions, finally, you need to escalate the case to the Support Manager. To escalate, under the ‘Tasks’ Click New Task drop down tab and Click Update Fields.
+  - Fill Action Title field.
+  - Click Add Field Tab. Two new fields are displayed. From the first field, select Assigned to. From the second drop-down field, select desired user to whom the case should be assigned. 
+  - Once you’re done, click Save. {{ :en:corebos:workflow:thirdpictureex1.png?600 |}}
+
+
+
+**Send an email to the customer, 2 days before the invoice due date, if the invoice hasn’t been paid until that date**
+
+
+Scheduled workflows help you to streamline your follow-up process by sending them regular email alerts to get paid punctually. We are going to create a scheduled workflow that automatically triggers an email 2 days before the invoice due date, if the invoice hasn’t been paid until that date. You can have this workflow send an email alert to the sales manager, or customer, or even both. This workflow is executed once in a day on the specified time. 
+
+  - Click  icon and click CRM Settings.
+  - Click Workflows
+  - In the ‘Creating Workflow’ page, under the ‘Module’ tab, Select Invoice from the Target Module dropdown
+  - Provide description for future reference
+  - Under ‘When to run the workflow’ options, select the Schedule radio-button, and select Daily from the ‘Run Workflow’ dropdown {{ :en:corebos:workflow:firstpictureex2.png?600 |}}
+  - Under the ‘Conditions’ tab, provide the filter conditions. Two conditions need to be configured: Due Date is 2 days later, and Status is not Paid. {{ :en:corebos:workflow:secondpictureex2.png?600 |}}
+  - After configuring the conditions, you need to send email alerts to your Customer and Sales Manager. To compose an email alert, under the ‘Tasks’ Click New Task and Click Send Mail.
+  - Provide Task Title — Just for your reference. 
+  - In the To field, select email recipients. Provide the catchy subject and compose your email body. {{ :en:corebos:workflow:thirdpictureex2.png?600 |}}
+  - Once you’re done, click Save.
+
+
+
+**Set automatic follow-ups with the Contacts before an Opportunity is closed**
+
+
+In this example, we will configure a workflow to send an email to Assigned to user when the Opportunity is about to Closed Won. This workflow is executed daily. 
+
+  - Click  icon and click CRM Settings.
+  - Click Workflows
+  - In the ‘Creating Workflow’ page, under the ‘Module’ tab, Select Opportunities from the Target Module dropdown
+  - Provide description for future reference
+  - Under ‘When to run the workflow’ options, select the Time Interval radio-button, and select Daily from the ‘Run Workflow’ dropdown {{ :en:corebos:workflow:firstpictureex3.png?600 |}}
+  - Under the ‘Conditions’ tab, provide the filter conditions. Two conditions need to be configured: Expected Close Date in more than 10 days, and Sales Stage is not Closed Won. {{ :en:corebos:workflow:secondpictureex3.png?600 |}}
+  - After configuring the conditions, you need to send email alerts to “Assigned To” user to follow up with the Client. To compose an email notification, under the ‘Tasks’ Click New Task and then Click Send Mail.
+  - Provide Task Title — Just for your reference. In the To field, select “Assigned To’ user’s email address. Provide catchy subject and compose your email body. {{ :en:corebos:workflow:thirdpicture_ex3.png?600 |}}
+  - Once you’re done, click Save.
+

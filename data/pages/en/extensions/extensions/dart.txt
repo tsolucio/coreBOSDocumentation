@@ -1,0 +1,24 @@
+~~NOTOC~~
+====== Daily Activity Report Extension ======
+
+This extension permits you to see what changes happened in the application and by who each day.
+
+\\
+---- dataentry ----
+name : tsolucio/DART
+type : corebos-module
+description_wiki: This extension permits you to see what changes happened in the application and by who each day.
+keywords_tags : Activity,Report,users,changes
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:dart
+release_dt : 2019-08-27
+licenses : VPL
+price : Free
+supportissues_url : https://github.com/tsolucio/DART/issues
+supportsource_url : https://github.com/tsolucio/DART
+----
+\\
+
+====== Information =====
+
+{{ :en:vtmkt:dart-1.1.pdf |Daily Activity Reporting Tool}}

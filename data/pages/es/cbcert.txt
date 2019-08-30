@@ -1,0 +1,76 @@
+====== Programa de Certificación coreBOS ======
+
+The **coreBOS Certification Program** is divided into three parts:
+
+  * **User Level:** which teaches you to fully understand and use all parts of the application as a user.
+  * **Administrator/Implementor Level:** which teaches you to configure and adapt the application to the needs of the users.
+  * **Developer Level:** which teaches you how to use coreBOS as a development platform oriented towards business processes.
+
+Let's see what each level contains.
+
+===== User Level coreBOS Certification Program =====
+
+  * Introducción a CRM
+  * Introducción a coreBOS. Para qué sirve la aplicación. Mucho más que un CRM.
+    * Proceso de Captación
+    * Proceso de Ventas
+    * Soporte Post-Ventas
+    * Producción
+  * Presentación de la aplicación
+  * Funcionamiento basico de todos los módulos
+  * Proceso de Negocio: Concepto de trabajo de la aplicación
+  * Búsquedas y Filtros
+  * Actividades y Calendario
+  * Email
+  * Operaciones masivas y acciones
+  * Informes
+  * Importación/Exportacion información
+  * Otras funcionalidades
+  * Herramientas Externas. Integraciones con otras aplicaciones
+  * Cómo empezar
+
+  * [[es:cbcert:user:index|Details]]
+
+===== Administrator/Implementor Level coreBOS Certification Program =====
+
+  * Instalacion en Windows y Linux
+  * Administración usuarios y permisos
+  * Herramientas Administración del Sistema
+  * Personalizacion de módulos, campos y listas
+  * Traducciones
+  * Importación/Exportacion información
+  * Configuration tools
+    * Ayudas en línea
+    * Global Variables
+    * Business Actions
+    * Business Maps
+  * Flujos de Trabajo. Notificaciones
+  * Plantillas EMail y Documentos (GenDoc)
+  * Administración de Inventario
+  * Modulos y Extensiones
+  * Best Practices
+    * Step by Step instructions to set up a coreBOS
+    * Teaching your users
+
+  * [[es:cbcert:admin:index|Details]]
+===== Developer Level coreBOS Certification Program =====
+
+  * Basic programming guidelines
+  * Instalación. Programas involucrados. Herramientas
+  * Estructura física: donde esta el código
+  * Estrucutra lógica: desde index.php a la plantilla. estructura de un módulo. MVC
+    * Ejecución acciones. Como se llaman los scripts.
+    * Scripts y Templates importantes
+    * Como modificar una plantilla
+    * Estructura de un modulo
+  * Estructura módulo: donde están los datos. Base de datos
+  * Programando: vtlib
+  * Desarrollando un modulo
+  * Depurando problemas
+  * Extendiendo: workflow, event handler y service crons/crons
+  * coreBOS Updater how to keep your coreBOS up to date
+  * Introduccion a Webservice
+  * Security
+  * Recomendaciones y consejos
+
+  * [[es:cbcert:devel:index|Details]]

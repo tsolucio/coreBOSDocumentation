@@ -16,6 +16,7 @@
   * [[http://www.tomhull.com/ocston/docs/mozgpl.html|MPL / GPL Incompatibility]]
   * [[http://opensource.org|OSI]]
   * [[en:devel:vizsage|Vizsage License]]
+  * [[en:adminmanual:securityguide:pref-acknorm#gnu_free_documentation_license|GNU free documentation license]]
 
 {{:devel:vpl1.1_definitions.png?450|VPL 1.1 Definitions}}
 

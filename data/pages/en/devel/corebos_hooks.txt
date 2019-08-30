@@ -144,12 +144,16 @@ Will be triggered in the footer of coreBOS, right before calling the code to out
 This event does not receive any parameters.
 
 ===corebos.footer===
-Will be triggered in the footer of coreBOS, when the whole execution has ended. If the logged in user is an admin user this event will be used to print out a time execution summary of the events.
+Will be triggered in the footer of coreBOS, when the whole execution has ended. If the logged-in user is an admin user this event will be used to print out a time execution summary of the events.
 
 This event does not receive any parameters.
 
 {{ :en:devel:corebos_hooks:corebosheaderfooterhooks.png?700 |}}
 
+===corebos.popup.footer===
+Will be triggered in the footer of the coreBOS popup window when capturing a record in a uitype 10 field, when the whole execution has ended.
+
+This event does not receive any parameters.
 
 ===corebos.filter.listview.querygenerator.before===
 Will be triggered before QueryGenerator will be used to create the Query for the List View Entries. It can be used to manipulate the QueryGenerator, adding or eliminating fields to be used by the List View.
@@ -182,11 +186,11 @@ Will be triggered at the end of the creation of the List View table header (head
 This event will be called for each filter to be shown in the list view filters picklist. It will receive an array with the full details of the filter to be loaded and expects a boolean (True/False) response that will indicate if the filter is to be added to the picklist or not.
 
 ===corebos.filter.editview.setObjectValues===
-This event will be called when a new record is being created. It will receive the new CRMEntity object so you can add default values to any field using the column_field property. Obviously you could do other verification or functionality tasks.
+This event will be called when a new record is being created. It will receive the new CRMEntity object so you can add default values to any field using the column_field property. Obviously, you could do other verification or functionality tasks.
 
 You must return the object given.
 
-<WRAP center round info 75%>The [[https://github.com/tsolucio/coreBOSAddress|coreBOSAddress]] module has an exceptional example of how this works by filling in the address fields when creating a new record from it's related list.</WRAP>
+<WRAP center round info 75%>The [[https://github.com/tsolucio/coreBOSAddress|coreBOSAddress]] module has an exceptional example of how this works by filling in the address fields when creating a new record from its related list.</WRAP>
 
 ===corebos.filter.link.show===
 This event will be called for each Link to be loaded in the application. It will receive an array with the full details of the link to be loaded and expects a boolean (True/False) response that will indicate if the link is to be added or not.
@@ -198,19 +202,19 @@ This event must return a true or false value and will be called in three parts o
   * when saving a comment in the module. If false is returned an error message will be shown on screen and the comment will not be created
 
 ===corebos.filter.ModComments.queryCriteria===
-This event will be called when constructing the SQL query to retrieve the comments associated to a record. We must return a part of the //WHERE// condition that modifies the final query.
+This event will be called when constructing the SQL query to retrieve the comments associated with a record. We must return a part of the //WHERE// condition that modifies the final query.
 
 ===corebos.entity.link.before===
-Action launched BEFORE two entities are about to be related. Action receives the names and IDs of the records being related.
+Action launched BEFORE two entities are about to be related. The action receives the names and IDs of the records being related.
 
 ===corebos.entity.link.after===
-Action launched AFTER two entities have been related. Action receives the names and IDs of the records being related.
+Action launched AFTER two entities have been related. The action receives the names and IDs of the records being related.
 
 ===corebos.entity.link.delete===
-Action launched when two entities are about to be UNrelated (BEFORE). Action receives the names and IDs of the records being UNrelated.
+Action launched when two entities are about to be UNrelated (BEFORE). The action receives the names and IDs of the records being UNrelated.
 
 ===corebos.entity.link.delete.final===
-Action launched when two entities have just been UNrelated (AFTER). Action receives the names and IDs of the records being UNrelated.
+Action launched when two entities have just been UNrelated (AFTER). The action receives the names and IDs of the records being UNrelated.
 
 ===corebos.filter.preSaveCheck===
 Filter launched before starting the Save process. Will receive, the $_REQUEST variable and the current object trying to be saved. It must return, besides these two input parameters, an error status, an error message, an error action and an array of variables to return to the edit screen the process was initiated from.
@@ -234,6 +238,22 @@ Filter launched before deleting a record. Will receive, the current object tryin
 
 ===corebos.audit.[authenticate|login|login.attempt|logout|action]===
 Actions called on the indicated events
+
+===corebos.filter.inventory.getprice===
+
+When the application requires a product/service price, it will get the unit price field from the database and the call this filter with some information so we can calculate some other price to be returned.
+
+This filter receives these parameters:
+  * the unit price
+  * the discount (always 0 as the application does not natively calculate this)
+  * an array with these values:
+    * inventory module we are on
+    * module id if we are editing
+    * accountid (maybe 0 if not selected)
+    * contactid (maybe 0 if not selected)
+    * productid/serviceid
+
+
 
 ====Custom Permission Hooks====
 **corebos.permission.[accessquery|ispermitted]**: [[en:devel:corebos_permission_hooks|Custom Permission Hooks]]
@@ -305,11 +325,12 @@ You can find a real example in the [[en:devel:helperscripts#addactionlinkphp|add
 |DETAILVIEWWIDGET|A block of code contained in a box on the view of a record. It can either be a small box on the action panel or a [[en:devel:add_special_block|full fledged block inserted into the existing field blocks]]|
 |LISTVIEWBASIC|Button on the top of the list view of a module|
 |LISTVIEW|Hover menu on the top of the list view of a module that contains the link|
-|HEADERLINK|Hover menu on the top of the browser screen that contains the link. It appears next to the Prefrences icon and is a global action link|
+|HEADERLINK|Hover menu on the top of the browser screen that contains the link. It appears next to the Preferences icon and is a global action link|
 |HEADERSCRIPT|Permits the inclusion of a javascript file located in the application|
 |HEADERCSS|Permits the inclusion of a CSS style file located in the application|
 |HEADERSCRIPT_POPUP|Permits the inclusion of a javascript file located in the popup screen of the application|
 |HEADERCSS_POPUP|Permits the inclusion of a CSS style file located in the popup screen of the application|
+|PRESAVE|Permits us to launch code when the user clicks on the SAVE button BEFORE the operation is done. We will be able to execute code in the PHP application and force the execution of a javascript function. The javascript function takes full control of the save process which means that it must submit the form if it decides to. In order to do that it will receive the parameters: edit_type, formName, action, callback, any parameters sent by the php code|
 
 <WRAP center round info 90%>Get more details in the [[en:devel:add_actions|How to add action links to a module]] development tutorial.</WRAP>
 

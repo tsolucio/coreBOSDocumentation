@@ -7,7 +7,7 @@ The situation is that we have a completely functional coreBOS connected to some 
 Once deleted and recovered the new database we must:
 
   * set the config.inc.php or the config-dev.inc.php database access variables if their values have changed
-  * execute updatetabdata.php
-  * execute createuserfiles.php
-  * execute resetadminpw (if necessary)
+  * execute build/HelperScripts/updatetabdata.php
+  * execute build/HelperScripts/createuserfiles.php
+  * execute build/HelperScripts/resetadminpw (if necessary)
   * login, go to the coreBOS updater module: load and apply all changesets

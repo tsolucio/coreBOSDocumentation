@@ -1,6 +1,6 @@
 ====== Field Set Mapping ======
 
-The purpose of this mapping is to define an heterogeneous set of fields that belong to some modules. Simply a bunch of fields. This could be used to define a set of fields to launch a mass operation upon or a set of fields which must be excluded/included from some global process.
+The purpose of this mapping is to define a heterogeneous set of fields that belong to some modules. Simply a bunch of fields. This could be used to define a set of fields to launch a mass operation upon or a set of fields which must be excluded/included from some global process.
 
 The accepted format is:
 <code xml>

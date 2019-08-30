@@ -1,4 +1,4 @@
-{{description>coreBOS - The one stop software solution for your business.}}
+{{description>coreBOS - The one-stop software solution for your business.}}
 {{keywords>marketing, email, invoice, support, tickets, sales}}
 
 <WRAP center round box hi 80%><wrap center 90%>**__Welcome to the coreBOS Documentation Site__**</wrap>
@@ -12,6 +12,7 @@
   <item>Extensions|Modules, extensions and plugins|extensions|{{menu:software-icon_32.png?direct|}}</item>
   <item>Integrations|Integrations with other projects|integrations|{{menu:integration.png?direct|}}</item>
   <item>Development|Development and Contributions Guidelines|devel|{{menu:developer_32.png?direct|}}</item>
+  <item>Certification|Certification Program|cbcert|{{menu:cbcert.png?direct|}}</item>
   <item>HelpMeNow|Application inline help|helpmenow|{{menu:faq_32.png?direct|}}</item>
   <item>Documentation Information|Goals and guidelines of the documentation|docguide|{{menu:info_32.png?direct|}}</item>
 </menu>

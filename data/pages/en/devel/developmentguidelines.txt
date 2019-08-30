@@ -12,7 +12,7 @@ I am open to suggestions and comments and I know this is a living document that 
 
 The best place to contact the developer community is [[https://gitter.im/corebos/discuss|on our gitter chat group]].
 
-The [[http://blog.corebos.org:8080|blog]] is mostly developer oriented and there is a lot of information here on the documentation site.
+The [[https://blog.corebos.org|blog]] is mostly developer oriented and there is a lot of information here on the documentation site.
 
 You can [[http://discussions.corebos.org/|ask in the forum]] also, but don't hesitate to get in touch, we are a really **friendly and helpful community**.
 
@@ -94,6 +94,7 @@ git diff {files} | grep log
 </code>
   * Check for php errors <code>for f in {diff file list}; do php -l $f; done;</code>
   * Ideally you should run a lint process on both php and javascript. Please look below for the tools we use and how to execute them. I will add it to the Pull Request acceptance process at some point.
+  * see the checkfile executable below
 
 
 {{page>en:devel:commitguidelines&nofooter&nouser&nodate&noeditbtn}}

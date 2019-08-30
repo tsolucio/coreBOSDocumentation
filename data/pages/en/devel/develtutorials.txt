@@ -32,3 +32,5 @@
   * [[en:devel:executefunctions|Generic Javascript API Access to backend: Execute Function]]
   * [[en:devel:designloginpage|Design your login page]]
   * [[en:devel:updateimagefield|How to update an image field from code]]
+  * [[en:devel:reschedulecrontask|How to dynamically reschedule a cron task]]
+  * [[en:devel:sendemailservice|How to implement a send email service]]

@@ -6,28 +6,7 @@ This makes installing and configuring the application rather easy and mostly a c
 
 ===== coreBOS Webservice Enhancements =====
 
-If you are trying to get this working on a vtiger CRM 5.4 (6.x), we have had to extend the default vtiger CRM webservice considerably. Basically you can find all the code changes on the bug tracker for 5.4. For 6.x we currently have no support but you can try updating the available code.
-
-  * ~~issue:123~~
-  * ~~issue:124~~
-  * ~~issue:125~~
-  * ~~issue:126~~
-  * ~~issue:127~~
-  * ~~issue:150~~
-  * ~~issue:151~~
-  * ~~issue:152~~
-  * ~~issue:153~~
-  * ~~issue:154~~
-  * ~~issue:155~~
-  * ~~issue:156~~
-  * ~~issue:157~~
-  * ~~issue:158~~
-  * ~~issue:159~~
-  * ~~issue:160~~
-  * ~~issue:161~~
-  * ~~issue:162~~
-  * ~~issue:163~~
-  * ~~issue:164~~
+If you are trying to get this working on a vtiger CRM 5.4 (6.x), we have had to extend the default vtiger CRM web service considerably.
 
 {{:en:coreboscp:coreboscp_vt54.zip|This patch and file set}} should do the trick but it is obsolete, the tickets above describe much better the necessary code changes. Copy the files into the root of your install, apply the patch to the code and execute the SQL in your database.
 <WRAP center round alert 70%>
@@ -54,13 +33,15 @@ On the new user's detail or preferences view we will find a field call **access 
 ===== coreBOSCP Install and Configuration =====
 
   - copy the code to a directory accessible from the web user on the server where you want to have the customer portal. It is recommendable that you version that code using git:<code>git clone https://github.com/tsolucio/coreBOSCP.git coreboscp</code>
-  - give read/write permission to the web user to all directories in the structure. Specially important are: assets and protected/runtime
+  - give read/write permission to the web user to all directories in the structure. Especially important are: assets and protected/runtime
   - edit protected/config/PortalConfig.php and set the variables
-    - $evocp_Server_Path: must be the full URL to the associated coreBOS install. Obviously this implies that the server you are doing the install on MUST have continuous access to the coreBOS application
-    - $evocp_Login_User and $coreBOSCP_Access_Key define the user with which we will access coreBOS as defined in the previous section.
-    - $evocp_AttachmentFolderName is the name of the folder within which you want any trouble ticket attachments to be uploaded
+    - **$evocp_Server_Path** must be the full URL to the associated coreBOS install. Obviously, this implies that the server you are doing the install on MUST have continuous access to the coreBOS application
+    - **$evocp_Login_User** and **$coreBOSCP_Access_Key** define the user with which we will access coreBOS as defined in the previous section.
+    - **$evocp_AttachmentFolderName** is the name of the folder within which you want any trouble ticket attachments to be uploaded
 
+This screencast shows a live session of installing and configuring access.
 
+{{youtube>03kOfVyDDH0}}
 ===== Contacts Access =====
 
 We must now explicitly give access to each contact we want by means of the fields designated for this on the contact's record in coreBOS.

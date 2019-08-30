@@ -2,11 +2,11 @@
 
 coreBOS Rules are a step towards [[https://en.wikipedia.org/wiki/Business_process_management|BPM]] automation using the workflow infrastructure.
 
-A **rule** is a [[en:adminmanual:businessmappings:condition_query|Condition Query]] or a [[en:adminmanual:businessmappings:condition_expression|Condition Expression]] Business Map that is launched in the context of a CRM record.
+A **rule** is a [[en:adminmanual:businessmappings:condition_query|Condition Query]], a [[en:adminmanual:businessmappings:condition_expression|Condition Expression]] or [[en:adminmanual:businessmappings:decisiontable|Decision Table]] Business Map that is launched in the context of a CRM record.
 
 In BPM, a rule is defined as a string expression, written in some grammar, that is evaluated using a given context.
 
-Using this definition, in coreBOS, we use either an SQL query or a workflow expression and evaluate it in the context of any record in the application.
+Using this definition, in coreBOS, we use either an SQL query, a workflow expression or a Decision Table and evaluate it in the context of any record in the application.
 
 This will return a result, whose value depends exclusively on the rule being launched.
 
@@ -78,19 +78,19 @@ Finally, since rules are based on business maps, and these on the existing workf
 
 There is one special case in the condition expression business map that is worth mentioning: **function execution**.
 
-The [[en:adminmanual:businessmappings:condition_expression|Condition Expression]] Business Map permits the execution of any function that is loaded in the application. So we could also define our own functions to make some complex decision that cannot be made using the workflow expression or an SQL statement and load that into a business map so the implementor would have control over the parameters or, even the actual function. Imagine that we implement 4 or 5 functions to make different decisiones, the implementor could pick which one to use at any given moment by simply editing the business map.
+The [[en:adminmanual:businessmappings:condition_expression|Condition Expression]] Business Map permits the execution of any function that is loaded in the application. So we could also define our own functions to make some complex decision that cannot be made using the workflow expression or an SQL statement and load that into a business map so the implementor would have control over the parameters or, even the actual function. Imagine that we implement 4 or 5 functions to make different decisions, the implementor could pick which one to use at any given moment by simply editing the business map.
 
 ===== Array context =====
 
 Setting the $context variable to an array of values permits the developer to instantiate the business rule with a set of additional values that are not accessible by the application entity context.
 
-The key values of the array will be directly subsituted in the rule before evaluating it in the context of the record.
+The key values of the array will be directly substituted in the rule before evaluating it in the context of the record.
 
 The **record CRMID MUST be one of the array values** and it must be in the key "record_id". This value will also be changed in the rule if it is present.
 
 The variables in the rule must be contained in brackets preceded by the dollar sign. For example, **$[record_id]**
 
-Let's suppose that we are incrementing a variable in a loop. In each iteration we need to pass the current value of the variable to the rule so it can indicate which is the next increment value. The rule would be something like:
+Let's suppose that we are incrementing a variable in a loop. In each iteration, we need to pass the current value of the variable to the rule so it can indicate which is the next increment value. The rule would be something like:
 
 <WRAP center round box 80%>
 Increment by 1 until 10 and then stop incrementing
@@ -110,8 +110,15 @@ $result = coreBOS_Rule::evaluate('IncrementUnitForMyImportantBusinessProcess',
 </code>
 
 
+===== Decision Tables =====
+
+Continue reading these resources to understand how Decision Tables work.
+
+  * [[:en:adminmanual:businessmappings:decisiontable#decision_table_mapping|Decision Table Business Map]]
+  * [[http://blog.corebos.org/blog/decisiontable| Decision Table Blog Post]]
+
 ===== Credits =====
 
 <WRAP center round info 60%>
-Insipired by the exceptional work of [[https://hoa-project.net/En/Literature/Hack/Ruler.html|HOA\Ruler]]
+Inspired by the exceptional work of [[https://hoa-project.net/En/Literature/Hack/Ruler.html|HOA\Ruler]]
 </WRAP>

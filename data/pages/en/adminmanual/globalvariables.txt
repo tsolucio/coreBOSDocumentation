@@ -99,4 +99,4 @@ This [[https://github.com/tsolucio/corebos/commit/bffa964a4c3e8c658f3eb5a84900a8
 
 ===== More Information =====
 
-[[http://blog.corebos.org:8080/en/blog/globalvariable|You can find some more information here]]
+[[http://blog.corebos.org/blog/globalvariable|You can find some more information here]]

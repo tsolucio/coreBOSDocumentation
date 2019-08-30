@@ -1,7 +1,7 @@
 ====== How to properly save a record from within the application ======
 
 <WRAP center round info 60%>
-Please [[http://blog.corebos.org/en/blog/feedingdatatosave|read this very well explained article]] from Luke.
+Please [[http://blog.corebos.org/blog/feedingdatatosave|read this very well explained article]] from Luke.
 </WRAP>
 
 ===== Background =====

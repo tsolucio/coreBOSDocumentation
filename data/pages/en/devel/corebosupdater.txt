@@ -84,13 +84,13 @@ You can find a whole bunch of **real examples** of different types in the //buil
 
 ====== coreBOS Updater :: Class and helper functions explained ======
 
-coreBOS Updater changes are implemented by extending the **cbupdaterWorker** class. This class, gives us all the functionality to plug into the coreBOS system and do any type of action that may be required.
+coreBOS Updater changes are implemented by extending the **cbupdaterWorker** class. This class gives us all the functionality to plug into the coreBOS system and do any type of action that may be required.
 
-Basically the only method we need to override is the **applyChange()** method. This method implements the changes that represent the changeset. If your change can be undone then you must also override the **undoChange()** method and add the necessary code to undo the change.
+Basically, the only method we need to override is the **applyChange()** method. This method implements the changes that represent the changeset. If your change can be undone then you must also override the **undoChange()** method and add the necessary code to undo the change.
 
-The rest of methods that the **cbupdaterWorker** class implements are helper methods and some auxiliar methods for functionality:
+The rest of the methods that the **cbupdaterWorker** class implements are helper methods and some auxiliar methods for functionality:
 
-^__construct|will load the changeset definition from the database, if it isn't found there an error will be shown and the process will stop. If all goes will this method starts the output formatting on screen|
+^__construct|will load the changeset definition from the database, if it isn't found there an error will be shown and the process will stop. If all goes well this method starts the output formatting on screen|
 ^isApplied|boolean method which tells us the applied state as recorded in the database|
 ^isBlocked|boolean method which tells us if the change set is blocked. If a changeset is blocked it cannot be applied nor undone. It will automatically be ignored|
 ^isContinuous|boolean method which tells us if the changeset is of type Continuous. Continuous changesets can be applied many times without breaking the system and will be picked up when launching an "Apply All"|
@@ -98,13 +98,24 @@ The rest of methods that the **cbupdaterWorker** class implements are helper met
 ^hasError|boolean method which indicates if there has been an error executing the changeset|
 ^markApplied($stoponerror=true)|helper method which does the work of cleaning up after the changeset has been applied. This must be executed at the end of a correct execution of **applyChange()**|
 ^markUndone($stoponerror=true)|helper method which does the work of cleaning up after the changeset has been undone. This must be executed at the end of a correct execution of **undoChange()**|
-^ExecuteQuery($query,$params=array())|helper method that permits us to send SQL commands to the database. This method shows the result on screen and counts updates the SQL command succees/failure counters. With this method it is not necessary to execute direct SQL commands against the global $adb object, although you can if you need/want to|
+^sendMsg($msg)|put the given successful message on screen following the coreBOS Updater on-screen formatting|
+^sendMsgError($msg)|put the given error message on screen following the coreBOS Updater on-screen formatting|
+^finishExecution|closes the on screen formatting and outputs the results of the execution|
+^ExecuteQuery($query,$params=array())|helper method that permits us to send SQL commands to the database. This method shows the result on-screen and counts updates the SQL command succees/failure counters. With this method, it is not necessary to execute direct SQL commands against the global $adb object, although you can if you need/want to|
 ^deleteWorkflow($wfid)|helper method that permits us to delete workflows|
 ^installManifestModule($module)|helper method that simplifies the task of installing a new module|
 ^isModuleInstalled($module)|helper method that looks in the vtiger_tab table to see if a given module is installed, be it active or not|
-^sendMsg($msg)|put the given successful message on screen following the coreBOS Updater on screen formatting|
-^sendMsgError($msg)|put the given error message on screen following the coreBOS Updater on screen formatting|
-^finishExecution|closes the on screen formatting and outputs the results of the execution|
+^deleteAllPicklistValues($tableName, $moduleName)|will eliminate all the values in the given picklist|
+^deletePicklistValues($values, $tableName, $moduleName)|will eliminate the given values from the given picklist|
+^setQuickCreateFields($moduleName, $qcfields)|will set the given fields to appear in the quick create form|
+^massCreateFields($fieldLayout)|an easy structure to mass create blocks and fields in modules|
+^massHideFields($fieldLayout)|an array of fields to hide|
+^massDeleteFields($fieldLayout)|an array of fields to delete|
+^massMoveFieldsToBlock($fieldLayout, $newblock)|move fields around|
+^orderFieldsInBlocks($fieldLayout)|order fields|
+^convertTextFieldToPicklist($fieldname, $module, $multiple = false)|convert the given text field into a picklist. it will deduplicate and set the existing values|
+^setTooltip($tooltips)|set the tooltip for the given fields|
+^removeAllMenuEntries($module)|remove the given module name from all menu entries it appears in|
 
 ===== applyChange() =====
 
@@ -202,4 +213,4 @@ The other big step upon which the perspective concept stands is the [[en:devel:p
 
 The patch will add the changes that the code needs while the coreBOS updater .xml changeset file and the composer.json file will define the set of database changes and new modules that are needed to convert the raw application into the verticalization we need.
 
-[[http://blog.corebos.org:8080/en/blog/cbperspective|Read this blog post for more information]]
+[[https://blog.corebos.org/blog/cbperspective|Read this blog post for more information]]

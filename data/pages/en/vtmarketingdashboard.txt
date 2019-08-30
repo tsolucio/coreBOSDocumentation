@@ -30,9 +30,9 @@ The third module introduced is an email templating module which permits the user
 
 ===== Campaign Management =====
 
-In this tab we will be able to **search-select-process** our campaigns.
+In this tab, we will be able to **search-select-process** our campaigns.
 
-In the first section of the extension we find a set of different options to segment our clients and prospects. We can **search** for Leads, Contacts, Accounts, Messages, Tasks and Potentials. In each of these we have different options to search upon. For example, the contact section can be seen in the image below and it permits us to search on a large combination of options like:
+In the first section of the extension, we find a set of different options to segment our clients and prospects. We can **search** for Leads, Contacts, Accounts, Messages, Tasks, and Potentials. In each of these, we have different options to search upon. For example, the contact section can be seen in the image below and it permits us to search on a large combination of options like:
   * contacts related to a given account and/or campaign
   * contacts related to accounts contained in a filter
   * contacts contained in a filter and related to accounts contained in a filter
@@ -41,11 +41,11 @@ In the first section of the extension we find a set of different options to segm
 
 {{ :en:vtmkt:vtmkt_searchctos.png?direct&800 |}}
 
-In a similar manner we can search on all the other entities.
+In a similar manner, we can search in all the other entities.
 
-Also searches are accumulative, in the sense that for every search tab which is left open, values will be looked up and mixed in the result grid below, permitting advanced combination of operations.
+Also, searches are accumulative, in the sense that for every search tab which is left open, values will be looked up and mixed in the result grid below, permitting an advanced combination of operations.
 
-Once we have found the set of records we want to work with, we move on to the next section where we are greeted with a grid containing all the information we have found in our search. In this grid we will be able to filter further and **select** all the records which we really want to work with.
+Once we have found the set of records we want to work with, we move on to the next section where we are greeted with a grid containing all the information we have found in our search. In this grid, we will be able to filter further and **select** all the records which we really want to work with.
 
 {{ :en:vtmkt:vtmkt_selectctos.png?direct&800 |}}
 
@@ -53,7 +53,7 @@ After selecting, we reach the **process** section of the extension. Here we find
 
 {{ :en:vtmkt:vtmkt_processctos.png?direct&800 |}}
 
-The general parameters define the reference text, date, campaign and user assigned to the new entities we will be creating in each process section. For example, in the first **Message** section we will be able to select an email template and massively send emails to all the selected contacts. In the **Tasks** section we would be able to program calls or visits for the contacts and assign them a date and sales person as well as there initial status. We can also create business **opportunities** to do the follow up of the campaigns and link back in to standard vtiger CRM features through the Opportunity module. Finally the last section will permit us to accomplish one of the most demanded features in vtiger CRM forums: **massively link** many contacts who have been filtered based on conditions from the account to a campaign.
+The general parameters define the reference text, date, campaign and user assigned to the new entities we will be creating in each process section. For example, in the first **Message** section we will be able to select an email template and massively send emails to all the selected contacts. In the **Tasks** section, we would be able to program calls or visits for the contacts and assign them a date and salesperson as well as there initial status. We can also create business **opportunities** to do the follow up of the campaigns and link back into standard vtiger CRM features through the Opportunity module. Finally, the last section will permit us to accomplish one of the most demanded features in vtiger CRM forums: **massively link** many contacts who have been filtered based on conditions from the account to a campaign.
 
 ==== Use Cases ====
 
@@ -61,12 +61,15 @@ Some typical use cases are:
 
   * **Campaign management**:
     * segment market: create filters to segment our contacts, search for the contacts applying the filters and other restrictions, select all the contacts on the grid
-    * link to campaign: open the Campaigns process tab and select the previously created campaign, link all the contacts to the campaign
-    * send emails: fill in the general parameters, specially the campaign so it gets related, open the message process tab and select a previously created email template, press the send button to create a message record for each contact and have an email sent for each message. As the user opens and reads the emails the status will be updated.
+    * link to the campaign: open the Campaigns process tab and select the previously created campaign, link all the contacts to the campaign
+    * send emails: fill in the general parameters, especially the campaign so it gets related, open the message process tab and select a previously created email template, press the send button to create a message record for each contact and have an email sent for each message. As the user opens and reads the emails the status will be updated.
 
-<note important>For all those records that are not even sent an email, because the email is empty or somehow wrong, it will create a message record marked as **"Not Sent"**, so that we can monitor the quality of our information easily using filters and/or reports.</note>
+<WRAP center round important 60%>
+For all those records that are not even sent an email, because the email is empty or somehow wrong, it will create a message record marked as **"Not Sent"**, so that we can monitor the quality of our information easily using filters and/or reports.
+</WRAP>
 
-    * create follow up tasks: after some time search for opened messages, select them and in the task process tab create tasks for the sales people to call or visit the contact
+
+    * create follow up tasks: after some time search for opened messages, select them and in the task process tab create tasks for the salespeople to call or visit the contact
     * for all those tasks with a positive response, create potentials which can be processed accordingly
 
 

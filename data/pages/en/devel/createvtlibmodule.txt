@@ -65,9 +65,11 @@ Next, we must **define the initial sharing privileges** and the distribution lic
 ^ License: | Visage |
 
 
-Finally, we must **specify any additional functionality**. This is where we will explain cron jobs, event handlers and any special widgets or operations the module must have.
+Finally, we must **specify any additional functionality**. This is where we will explain cron jobs, event handlers and any special widgets or operations the module will have.
 
 Reached this point we have a clear idea of everything we need to create our module and we can start coding.
+
+{{ :en:devel:moduletemplate.zip |You can download a text template here}}
 
 The steps are
 
@@ -107,9 +109,9 @@ rename 's/ModuleFile/cbJustLogIt/g' ModuleFile*
 
 **3.7.-** Fill in the All filter fields
 
-**3.8.-** Fill in the sharing access, default actions, related  lists and other special settings
+**3.8.-** Fill in the sharing access, default actions, related lists, and other special settings
 
-**4.-** Each module has a main file which defines it's class. This file was copied in step 1 and renamed in step 2. So we now have a file called:
+**4.-** Each module has a main file which defines its class. This file was copied in step 1 and renamed in step 2. So we now have a file called:
 
 <code>
 modules/cbJustLogIt/cbJustLogIt.php
@@ -142,7 +144,7 @@ Finally create any additional logic that is needed: save module, eventhandlers, 
 
 Now you are ready to install and test. Use the build/HelperScripts/installmodule.php script.
 
-Before installing I like to make a dump of the database so I can easily recover if i made a mistake and try again. Normally the errors appear in the manifest field definitions, typical copy paste errors.
+Before installing I like to make a dump of the database so I can easily recover if I made a mistake and try again. Normally the errors appear in the manifest field definitions, typical copy-paste errors.
 
 In order to be able to send this module to any coreBOS, you have to set up a specific structure.
 

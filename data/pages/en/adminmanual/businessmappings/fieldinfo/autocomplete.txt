@@ -2,7 +2,7 @@
 
 An autocomplete field has three configurable options:
 
-  - **where and how to search**: we must be able to define the module/table where we will look for values and if we want to use startswith or contains. This must include the possibility to use Sql inside cbMap  that can overwrite the query to search on specific situations.Ex: search and show all the fields of one module,or show the options of one picklist. Also, it is normal to be able to configure the number of characters that launch the search
+  - **where and how to search**: we must be able to define the module/table where we will look for values and if we want to use startswith or contains. This must include the possibility to use SQL inside cbMap that can overwrite the query to search on specific situations. Ex: search and show all the fields of one module, or show the options of one picklist. Also, it is normal to be able to configure the number of characters that launch the search
   - **what information we should return**: there will be one main entity identifier and possibly some additional fields to support the decision of what record to select
   - **what fields to fill in and with what information**. automatically copy related fields of the source module into the destinations fields of the current module (ex: address fields of Accounts into address fields of Contacts)
 
@@ -123,6 +123,12 @@ Each of the two types have a **different** extended information structure as can
 <WRAP center round important 60%>
 Please apply the correct XML structure (as explained above) for your type of field or this functionality will not work correctly.
 </WRAP>
+
+==== Product/Service Fields on Inventory Modules ====
+
+Luke from MajorLabel has done an incredible job of applying the autocomplete search functionality to the product/service capture in the inventory modules. Not only adding the functionality there but extending it to all the specific requirements of those lines and taking it further with some additional features.
+
+As if that wasn't enough he went and [[https://gist.github.com/Luke1982/d886a67eb661db777d93e7e645076ecc|wrote extensively about it]] ({{ :en:adminmanual:businessmappings:fieldinfo:fine-tuning_the_products_services_autocomplete.pdf |PDF}}).  **Thanks!!**
 
 ==== MultiSelect Autocomplete Fields ====
 

@@ -39,7 +39,7 @@ En la primera sección de la extensión encontramos una serie de diferentes opci
   * contactos con mensajes o acciones relacionadas con una campaña o no
   * ...
 
-{{ :en:vtmkt:vtmkt_buscarctos.png?direct&800 |}}
+{{ :en:vtmkt:vtmkt_searchctos.png?direct&800 |}}
 
 De manera similar podemos realizar búsquedas sobre las otras entidades.
 
@@ -47,11 +47,11 @@ Además las búsquedas son acumulativas, de tal manera que cualquier sección qu
 
 Una vez hemos encontrado el conjunto de registros con los que queremos trabajar, pasamos a la sección de selección de registros que consiste en una tabla que contiene toda la información que hemos encontrado en la búsqueda anterior. La funcionalidad de la tabla nos permitirá realizar filtrados adicionales sobre el conjunto de resultados  y **seleccionar** todos los registros con los que realmente queremos realizar procesos.
 
-{{ :en:vtmkt:vtmkt_seleccionarctos.png?direct&800 |}}
+{{ :en:vtmkt:vtmkt_selectctos.png?direct&800 |}}
 
 Después de la selección llegamos a la sección de **proceso** de la extensión. Aquí encontramos cuatro opciones de procesamiento precedidos por una sección de **parámetros generales** que afecta a todos los procesos.
 
-{{ :en:vtmkt:vtmkt_procesarctos.png?direct&800 |}}
+{{ :en:vtmkt:vtmkt_processctos.png?direct&800 |}}
 
 Los parámetros generales definen el texto de referencia, la fecha, la campaña y el usuario asignado a las nuevas entidades que vamos a crear en cada sección de proceso. Por ejemplo, en la primera sección de **Mensaje** podremos seleccionar una plantilla de email y enviar mensajes de correo electrónico masivo a todos los contactos seleccionados. En la sección de **Acciones** seremos capaces de programar llamadas o visitas a los contactos y asignarles una fecha y un comercial, así como un estado inicial de la acción. También podemos crear **oportunidades de negocios** para hacer el seguimiento de las campañas y enlazar de nuevo con las características estándar del CRM  a través del módulo de Oportunidades. Finalmente, la última sección permitirá que logremos una de las características más demandadas en foros de vtiger CRM: **enlazar masivamente** muchos contactos que se han filtrado sobre la base de las condiciones de la cuenta a una campaña.
 
@@ -64,7 +64,8 @@ Algunos casos de uso frecuentes son:
     * enlazar con campaña: abrir la pestaña de Campañas en la sección de proceso y seleccionar una campaña creada previamente, enlazar todos los contactos seleccionados con la campaña
     * enviar emails: rellenar los parámetros generales, concretamente la campaña para que quede relacionado, abrir la pestaña de Mensajes en la sección de proceso y seleccionar una plantilla de email existente, pulsar el botón de enviar para crear un registro de mensaje para cada contacto y realizar el envío de un email por cada registro de mensaje. A medida que los contactos van abriendo los emails el estado de los mensajes se irán actualizando.
 
-<note important>Para todos aquellos registros a los que no se les puede enviar el email siquiera, porque el email está vacío o de alguna manera mal, se creará un registro de mensaje marcado como **"No Enviado"** para que podamos hacer seguimiento de la calidad de nuestra información de manera sencilla mediante filtros y/o informes.</note>
+<WRAP center round important 60%>
+Para todos aquellos registros a los que no se les puede enviar el email siquiera, porque el email está vacío o de alguna manera mal, se creará un registro de mensaje marcado como **"No Enviado"** para que podamos hacer seguimiento de la calidad de nuestra información de manera sencilla mediante filtros y/o informes.</WRAP>
 
     * crear acciones de seguimiento: después de algún tiempo se realiza una búsqueda de mensajes abiertos, se seleccionan y se crean acciones correspondientes mediante la pestaña de Acciones en la sección de proceso para que los comerciales hagan visitas, llamadas o el seguimiento correspondiente.
     * para todas aquellas acciones con un resultado positivo se pueden crear oportunidades que se procesan normalmente

@@ -1,0 +1,18 @@
+====== Business Actions ======
+
+Business Actions are things that can happen inside the application. They enhance the vtiger crm link system and they can affect any part of the application.
+
+They are shown/applied depending on the field permission values set on each record which may include conditional business maps.
+
+By default, each action will be applied to all modules. We can make an action apply only on certain module using the **Only On My Module** checkbox combined with the desired modules being selected in the **Modules** select box.
+
+The permission system will permit us to:
+
+  * mark an action as Active or not
+  * make the action available for all users
+  * if not marked as available for all users, first we will search if the action is assigned to the current user and then if the current user belongs to a role selected on the action
+  * finally, for all actions that apply we check if the action has a business rule. If it does we evaluate the rule which must return "true" for the action to be accepted. This permits us to show actions only when some conditions are met.
+
+They can be retrieved via the **getBusinessActions** web service method.
+
+

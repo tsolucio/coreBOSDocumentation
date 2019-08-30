@@ -39,6 +39,6 @@ Puedes traducir las directivas a tu idioma utilizando el archivo commands_en.php
 
 Para obtener un PDF del archivo OpenOffice generado, debemos tener un servidor conversor de OpenOffice especial instalado y configurado.
 
-TSolucio tiene uno preparado que puedes usar ya sea al tener un contrato de soporte con nosotros o al comprar nuestro [[http://blog.corebos.org:8080/en/blog/corebossubscription|Servicio de suscripción a coreBOS]]. Ponte en contacto con nosotros para obtener más detalles.
+TSolucio tiene uno preparado que puedes usar ya sea al tener un contrato de soporte con nosotros o al comprar nuestro [[https://blog.corebos.org/blog/corebossubscription|Servicio de suscripción a coreBOS]]. Ponte en contacto con nosotros para obtener más detalles.
 
 Obviamente, puedes abrir el documento de OpenOffice y hacer clic en el botón "PDF" también.

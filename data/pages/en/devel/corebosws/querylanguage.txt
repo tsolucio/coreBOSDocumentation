@@ -17,7 +17,7 @@ The column list in the order by clause can have at most two column names.
   * conditionals: condition operations, in clauses, or like clauses separated by 'and' or 'or' operands these are processed from left to right
   * conditional operators: <, >, <=, >=, =, !=
   * in clauses: <column name> in (<value list>)
-  * like clauses: <column name> in (<value pattern>)
+  * like clauses: <column name> like '<value pattern>'
   * value list: a comma separated list of values
   * m, n: integer values to specify the offset and limit respectively
 

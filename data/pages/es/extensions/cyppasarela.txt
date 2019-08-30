@@ -2,34 +2,11 @@
 
 El módulo CyP de coreBOS incluye una pasarela de pago que podemos configurar para que use cualquiera de los servicios de pago online soportados. Una vez configurada sólo tenemos que incluir el código HTML necesario para enviar al usuario a la pasarela y el resto del proceso es automático.
 
-===== Instalación =====
-
-Antes de poder usarlo es necesario instalar algunas dependencias. Sigue los pasos siguientes para preparar coreBOS. Todos los comandos se deben ejecutar en el directorio principal de coreBOS.
-
-  - <WRAP>Instala Composer:
-
-<code>
-curl -sS https://getcomposer.org/installer | php
-</code>
-
-[[https://getcomposer.org/doc/00-intro.md#installation-windows|Instrucciones de instalación para Windows]]
-</WRAP>
-  - <WRAP>Instalar dependencias con Composer:
-
-<code>
-php composer.phar install
-</code>
-</WRAP>
-  - <WRAP>Instalar coreboswslibrary:
-
-<code>
-git clone https://github.com/tsolucio/coreboswslibrary
-</code>
-</WRAP>
-
 ===== Configuración =====
 
-Para poder usar la pasarela es necesario crear el fichero de configuración Pay.config.php. Hay un fichero de ejemplo con el nombre Pay.config.php.default que puede servir de base para crear nuestra propia configuración.
+Antes de poder usarlo, es necesario configurar la pasarela de pago. Accede a la página de integraciones:
+
+index.php?action=index&module=Utilities
 
 La configuración contiene un bloque con la clave //corebos// para configurar el acceso a coreBOS y una clave //omnipay// para configurar el acceso a la pasarela por Omnipay. Lo que sigue es un ejemplo para usar Redsys, otras pasarelas usarán diferentes parámetros.
 
@@ -53,7 +30,7 @@ El cliente tiene ya registrada una deuda en el módulo CyP de coreBOS, lo podemo
 Incluiremos el siguiente formulario en el correo o página web que deba redirigir a nuestra pasarela.
 
 <code html>
-<form action="https://url/Pay.php" method="POST">
+<form action="https://url/notificationdriver.php?type=Pay" method="POST">
   <input type="hidden" name="cpid" value="...">
   <input type="submit" value="Pagar">
 </form>
@@ -95,7 +72,7 @@ Los datos que necesita esta operación son:
 Incluiremos estos datos en un formulario como el siguiente:
 
 <code html>
-<form action="https://url/Buy.php" method="POST">
+<form action="https://url/notificationdriver.php?type=Pay" method="POST">
   <input type="hidden" name="..." value="...">
   ...
   <input type="submit" value="Pagar">

@@ -1,27 +1,13 @@
-========vtiger CRM 5.0========
+========Security Guide========
 
-=====Security Guide=====
-**Frank Piepiorra**
-Copyright © 2006 crm-now and Frank Piepiorra
+This book describes the concept of role-based security and other security features as it has been implemented by coreBOS
 
-crm-now c/o im-netz Neue Medien GmbH, www.crm-now.com
-
-Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.1 or any later version published by the Free Software Foundation; with the Back-Cover Texts being Back Cover Text. A copy of the license is included in Appendix C, GNU Free Documentation License. The vtiger CRM logo is a trademark of vtiger.com. crm-now and all crm-now based trademarks and logos are trademarks or registered trademarks of im-netz Neue Medien GmbH in Germany and other countries. crm-now is not affiliated with nor endorsed by vtiger.
-
-Many of the designations used by manufacturers and sellers to distinguish their products are claimed as trademarks. Where those designations appear in this book, and crm-now was aware of a trademark claim, the designations have been printed in caps or initial caps. While every precaution has been taken in the preparation of this book, the publisher assumes no responsibility for errors or omissions, or for damages resulting from the use of the information contained herein.
-
-crm-now makes no warranty for the use of vtiger CRM and assumes no responsibility for any errors which may appear in this document nor does it make a commitment to update the information contained herein.
-
-//Manual ID: 513-002-01//
-
+This book is based on the official Open Source release. Your individual configuration might be slightly different if your CRM service provider has made changes to the system.
 
 ----
 <WRAP right>
-[[en:adminmanual:securityguide:ch000|Next]] | Preface
+[[en:adminmanual:securityguide:ch000|Next]] | Table of Contents
 </WRAP>
-
-
 ----
-
 
 © 2006 crm-now

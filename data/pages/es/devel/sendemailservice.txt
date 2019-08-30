@@ -1,0 +1,62 @@
+====== Cómo implementar un servicio de envío de email ======
+
+coreBOS tiene una capa de abstracción para el envío de emails, en vez de enviar siempre con phpmailer, ahora podemos definir una clase para realizar el envío como queramos. Esto nos permite hacer integraciones con otros sistemas de envío como sendgrid o mailchimp sin tener que modificar el código de la aplicación.
+
+En [[http://blog.corebos.org/blog/emailapisendgrid|este blog post]] puedes obtener una idea general de las implicaciones y a continuación vamos a ver cómo implementar una clase de envío de emails estudiando el código de sendgrid
+
+Los pasos para implementar un sistema de envío de emails son
+
+  * implementar una clase con al menos 3 métodos estáticos
+  * implementar un event handler que devuelve el camino y el nombre de la clase
+  * registrar el handler
+
+la clase debe implementar estos tres métodos
+
+  * public static function useEmailHook()
+  * public static function emailServerCheck()
+  * public static function sendEMail( $to_email,$from_name,$from_email,$subject,$contents,$cc,$bcc,$attachment,$emailid,$logo,$replyto,$qrScan)
+
+El método **useEmailHook** devuelve un valor verdadero o falso según este activo o no el servicio. Esto nos permite implementar una manera sencilla de activar y desactivar el servicio. Si devuelve falso utilizaremos el sistema de envío por defecto 
+
+El método **emailServerCheck** devuelve un valor verdadero o falso según este configurado o no el servicio. Si devuelve falso utilizaremos el sistema de envío por defecto
+
+El método **sendEMail** es el que realmente realiza el trabajo de enviar el email. Recibe toda la información que necesita para hacerlo. Puedes obtener más información de los parámetros y su uso [[http://blog.corebos.org/blog/SendEmail|en este blog post]]. Este método debe devolver 1 si se envía el correo o cualquier otro valor si hay un error.
+
+Vamos a comentar un poco estos métodos en nuestra implementación de sendgrid
+
+Estos son los métodos: [[https://github.com/tsolucio/corebos/blob/master/include/integrations/sendgrid/sendgrid.php#L306|useEmailHook]] y [[https://github.com/tsolucio/corebos/blob/master/include/integrations/sendgrid/sendgrid.php#L128|emailServerCheck]]
+
+podemos ver que la funcionalidad de ambos es la misma y se basa simplemente en si el cliente ha activado el servicio o no. No hacemos ninguna comprobación sobre la configuración de la cuenta en SendGrid.
+
+[[https://github.com/tsolucio/corebos/blob/master/include/integrations/sendgrid/sendgrid.php#L132|aquí puedes ver el método sendEMail]]
+
+Ahora implementamos el event handler que devuelve el nombre y ubicación de la clase
+
+<code PHP>
+public function handleFilter($handlerType, $parameter) {
+  global $currentModule;
+  if ($handlerType == 'corebos.filter.systemEmailClass.getname' && corebos_sendgrid::useEmailHook()) {
+    return array('corebos_sendgrid', 'include/integrations/sendgrid/sendgrid.php');
+  } else {
+    return $parameter;
+  }
+}
+</code>
+
+y finalmente registramos el event handler
+
+<code PHP>
+global $adb;
+$em = new VTEventsManager($adb);
+if (self::useEmailHook()) {
+  $em->registerHandler('corebos.filter.systemEmailClass.getname', 'include/integrations/sendgrid/sendgrid.php', 'corebos_sendgrid');
+} else {
+  $em->unregisterHandler('corebos_sendgrid');
+}
+</code>
+
+Con esto hecho, solo nos queda implementar una manera sencilla para que el administrador pueda dar de alta sus datos. Nosotros lo hemos hecho en <code>module=Utilities&action=index</code>
+
+{{:en:devel:emailapi:sendgridconfiguration.png|sendgrid configuration}}
+
+En el caso particular de sendgrid, además implementamos una captura de eventos para marcar los distintos estados del mensaje así como lanzar los flujos de trabajo. Esto lo construimos utilizando el servicio de notificaciones de coreBOS (notifications.php)

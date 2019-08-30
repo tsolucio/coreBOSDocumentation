@@ -16,8 +16,8 @@ re-branding, adapting, code cleanup and structure, bug fixes, more user-friendly
 
 ====PHP 5.4 and 5.5 Support. Upgrade libraries====
 
-  *Improve compatibility with PHP5.4/5.5, fixes ~~issue:109~~
-  *~~issue:118~~: update phpmailer library to 5.2.7 and centralize mail sending and some additional library updates and study
+  *Improve compatibility with PHP5.4/5.5
+  * update phpmailer library to 5.2.7 and centralize mail sending and some additional library updates and study
 
 ====Document module enhancements====
 

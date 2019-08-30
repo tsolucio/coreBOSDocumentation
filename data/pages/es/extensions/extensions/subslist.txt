@@ -12,12 +12,12 @@ version : 1.0
 homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:subslist
 release_dt : 2010-02-27
 licenses : Vizsage
-price : Subscription
-buyemail_mail : paypal(at)tsolucio(dot)com
-distribution : Subscription
+distribution : Free
 authorname : JPL TSolucio, S.L.
 authoremail_mail : info(at)tsolucio(dot)com
 supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : https://github.com/tsolucio/SegmentationLists/issues
+supportsource_url : https://github.com/tsolucio/SegmentationLists
 ----
 \\
 ====Que son y para que sirven====
@@ -34,6 +34,15 @@ Este módulo te permitirá agrupar Cuentas, Contactos y PreContactos en diferent
 Se pueden rellenar las listas de diversas maneras, desde flujos de trabajo, mediante filtros, informes o desde la integración con OpenStreeMap.
 
 Por ejemplo, nosotros tenemos una lista de segmentación de todas las personas que se han dado de alta en el BLOG de coreBOS. En cuanto se registran se crea el contacto en nuestro coreBOS y se añade a la lista de segmentación del BLOG. Cuando publicamos algo nuevo enviamos masivamente un correo a todos los de la lista.
+
+Otro ejemplo, nosotros tenemos varios servidores y en cada uno de ellos tenemos aplicaciones de nuestros clientes. Puede ser que alguna vez tengamos que hacer alguna tarea de mantenimiento en el servidor o que haya algún problema y necesitemos avisar a la gente que tiene algo ahí.
+
+Lo que hemos hecho ha sido crear una lista de segmentación por cada servidor que tenemos, llama a estas listas con el nombre que le ponemos a nuestros servidores.
+
+Una vez creada la lista, relacionamos a las cuentas y contactos que tenemos para ese segmento. Con todo el conjunto agrupado, el día que nos haga falta notificar a los clientes de ese servidor, nos vamos al Marketing Dashboard, desplegamos el bloque de Listas de Segmentación, seleccionamos la lista que nos interesa, hacemos clic en Buscar y nos cargará a toda esta gente. Ya podemos hacer con ellos lo que queramos, en este caso enviar un mensaje utilizando una plantilla típica de tenemos que hacer mantenimiento de tal hora a tal hora, perdonen las molestias.
+
+Otra acción que podrías aplicarle a esa gente cargada, es asignarla a una campaña, asignarla a un plan de marketing, crearles oportunidades, ... todas las acciones de abajo que te permite el Marketing Dashboard.
+
 ====Como relacionar entidades con una segmentación ====
 
 Disponemos de 3 maneras de añadir o quitar cuentas, contactos y precontactos a una lista de segmentación.
@@ -51,7 +60,7 @@ Para evitar el tener que acordarnos de sincronizar las segmentaciones hemos aña
 
 ===Flujos de Trabajo===
 
-Mediante la tarea de flujo de trabajo **Poner/Quitar Lista Segmentación** podremos añadir y quitar cuentas, contactos y precontactos de manera individual al ocurrir ciertas acciones en el sistema.
+Mediante la tarea de flujo de trabajo **Relaciones Muchos a Muchos** podremos añadir y quitar cuentas, contactos y precontactos de manera individual al ocurrir ciertas acciones en el sistema.
 
 La ventaja más grande respecto a la opción de filtro sincronizado es que podremos mezclar registros con condiciones muy dispares en vez de tener solo los que pertenecen a un filtro.
 

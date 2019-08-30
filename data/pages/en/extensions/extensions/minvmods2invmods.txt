@@ -20,3 +20,5 @@ authoremail_mail : info(at)tsolucio(dot)com
 supportemail_mail : info(at)tsolucio(dot)com
 ----
 \\
+
+{{ :en:extensions:extensions:mim2im.png |}}

@@ -12,12 +12,12 @@ version: 1.0
 homepage_url: http://corebos.org/documentation/doku.php?id=en:extensions:extensions:subslist
 release_dt: 2010-02-27
 licenses: Vizsage
-price: Subscription
-buyemail_mail: paypal (at) tsolucio (dot) com
-distribution: Subscription
-authorname: JPL TSolucio, S.L.
-authoremail_mail: info (at) tsolucio (dot) com
-supportemail_mail: info (at) tsolucio (dot) com
+distribution : Free
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+supportissues_url : https://github.com/tsolucio/SegmentationLists/issues
+supportsource_url : https://github.com/tsolucio/SegmentationLists
 ----
 \\
 
@@ -53,7 +53,7 @@ To avoid having to remember to synchronize the segmentation we have added the op
 
 === Workflows ===
 
-Through the workflow task **Add/Remove Segmentation List** we can add and remove accounts, contacts and leads individually when certain actions occur in the system.
+Through the workflow task **Many to Many Relation Task** we can add and remove accounts, contacts and leads individually when certain actions occur in the system.
 
 The biggest advantage with respect to the synchronized filter option is that we can mix records with very different conditions instead of having only those that belong to a filter.
 

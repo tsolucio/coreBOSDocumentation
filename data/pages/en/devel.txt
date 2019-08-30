@@ -8,6 +8,7 @@
   * [[:en:devel:prototype2jquery|Migrate from prototype/scriptaculous to jQuery]]
 
 ====== Technical Articles ======
+  * [[:en:devel:setupdevel|How to setup a coreBOS development environment]]
   * [[:en:devel:debuging|Debugging]]
   * [[:en:devel:jsdebuging|Javascript Debugging]]
   * [[en:devel:developmentguidelines|Development Guidelines we try to adhere to]]
@@ -27,11 +28,12 @@
   * [[:en:devel:calendar|Calendar]]
   * [[:en:devel:asterisk|Asterisk]]
   * [[:en:devel:menuselection|Menu Selection]]
+  * [[:en:devel:installprocess|coreBOS Installation Process]]
 
 
   * [[:en:devel:coreboscp|coreBOS Customer Portal Development]]
   * [[:en:devel:corebosws|Webservice Development]]
-  * [[:en:devel:installprocess|coreBOS Installation Process]]
+  * [[:en:devel:cbproductprice|Product/Price Enhancements]]
 
 ====== Vulnerabilities and Errorneous Changesets ======
   * [[en:devel:vulnerabilities|Vulnerabilities]]

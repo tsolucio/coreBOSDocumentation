@@ -6,9 +6,9 @@ Using different types of structured XML, JSON or direct SQL, this module will de
 
 This module also serves another purpose: separating the programmers from the implementors. In other words, it permits the programmers to create functionality in the application while giving to the implementor total control on **how** that functionality should act in different cases for different installations.
 
-With this module we achieve a much more configurable application without the need to depend on specific programming knowledge.
+With this module, we achieve a much more configurable application without the need to depend on specific programming knowledge.
 
-Note that in the end, many of these mappings or conditions are actually a washed down configuration screen. Many times, from a programmers point of view, creating certain functionality is easy, the problem is creating a GUI for the user to be able to configure the different options that are present in the code. Usually we spend more time programming the interface than the actual solution. With Business Mappings and Conditions we create a spartan, manual but generic interface to many features without getting to complicated nor repeating work over and over.
+Note that in the end, many of these mappings or conditions are actually a washed down configuration screen. Many times, from a programmers point of view, creating certain functionality is easy, the problem is creating a GUI for the user to be able to configure the different options that are present in the code. Usually, we spend more time programming the interface than the actual solution. With Business Mappings and Conditions we create a spartan, manual but generic interface to many features without getting to complicated nor repeating work over and over.
 
 ====== Business Mappings Store ======
 

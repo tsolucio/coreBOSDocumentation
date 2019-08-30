@@ -10,3 +10,440 @@ You can find a few useful links about DMN here:
   * [[https://docs.camunda.org/manual/latest/reference/dmn11/decision-table/|Decision Table Reference]]
   * {{ :en:adminmanual:businessmappings:dmndecisiontablereference.pdf |Decision Table Reference (PDF)}}
   * [[https://github.com/steffenbrand/dmn-decision-tables|Decision Table Constructor]]
+  * [[https://www.omg.org/spec/DMN/|https://www.omg.org/spec/DMN/]]
+
+====== Decision Table Map Format ======
+
+The accepted format for this map is basically a set of rules which can be of three types:
+  * Expressions
+  * [[en:adminmanual:businessmappings:condition_expression|Condition Expression]] or [[en:adminmanual:businessmappings:condition_query|Condition Query]] business map names/IDs
+  * Decision Tables
+
+===== Expressions =====
+
+Expressions contain any workflow expression that can be evaluated in the context of the Decision Map. These are exactly like [[en:adminmanual:businessmappings:condition_expression|Condition Expression]] maps but written directly inside this business map.
+
+<WRAP center round info 80%>
+Since an expression can return any type of value, in order to know if an expression has failed it must return the reserved string **"%%__DoesNotPass__%%"**
+</WRAP>
+
+===== Business Map Name/ID =====
+
+This type is simply the name or CRMID of any existing [[en:adminmanual:businessmappings:condition_expression|Condition Expression]] or [[en:adminmanual:businessmappings:condition_query|Condition Query]] business map, they will be loaded and evaluated in the context of the Decision Map
+
+<WRAP center round info 80%>
+Since an expression can return any type of value, in order to know if an expression has failed it must return the reserved string **"%%__DoesNotPass__%%"**
+</WRAP>
+
+===== Decision Tables =====
+
+This type expects to have the values to search on inside a coreBOS module.
+
+We will be able to define the conditions to filter the records in the module and then a set of search conditions to look for records.
+
+
+===== Full Map Structure =====
+
+<code XML>
+<decision>
+<hitPolicy></hitPolicy>  <!-- U F C A R G -->
+<aggregate></aggregate>  <!-- only available if hitPolicy=G: sum,min,max,count -->
+<rules>
+<rule>
+  <sequence></sequence>
+  <expression></expression>
+  <output></output>  <!-- ExpressionResult, FieldValue, crmObject -->
+</rule>
+<rule>
+  <sequence></sequence>
+  <mapid></mapid>
+  <output></output>  <!-- ExpressionResult, FieldValue, crmObject -->
+</rule>
+<rule>
+  <sequence></sequence>
+  <decisionTable>
+    <module></module>
+    <conditions>  <!-- QueryGenerator conditions -->
+        <condition>
+          <input></input>  <!-- context variable name -->
+          <operation></operation>  <!-- QueryGenerator operators -->
+          <field></field>  <!-- fieldname of module -->
+        </condition>
+    </conditions>
+    <orderby></orderby>  <!-- column to order the records by -->
+    <searches>
+      <search>
+        <condition>
+          <input></input>  <!-- context variable name -->
+          <operation></operation>  <!-- QueryGenerator operators -->
+          <field></field>  <!-- fieldname of module -->
+        </condition>
+      </search>
+    </searches>
+    <output></output>  <!-- fieldname -->
+  </decisionTable>
+  <output></output>  <!-- ExpressionResult, FieldValue, crmObject -->
+</rule>
+</rules>
+</decision>
+</code>
+===== Hit Policy =====
+
+  * **U**nique: Only a single rule can be satisfied. The decision table result contains the output entries of the satisfied rule. If more than one rule is satisfied, the Unique hit policy is violated.
+  * **F**irst: Multiple rules can be satisfied. The decision table result contains only the output of the first satisfied rule.
+  * **C**ollect: Multiple rules can be satisfied. The decision table result contains the output of all satisfied rules in an arbitrary order as a list.
+  * **A**ny: Multiple rules can be satisfied. However, all satisfied rules must generate the same output. The decision table result contains only the output of one of the satisfied rules. If multiple rules are satisfied which generate different outputs, the hit policy is violated.
+  * **R**uleOrder: Multiple rules can be satisfied. The decision table result contains the output of all satisfied rules in the order of the rules in the decision table.
+  * a**G**gregate:
+    * The SUM aggregator sums up all outputs from the satisfied rules.
+    * The MIN aggregator can be used to return the smallest output value of all satisfied rules.
+    * The MAX aggregator can be used to return the largest output value of all satisfied rules.
+    * The COUNT aggregator can be used to return the count of satisfied rules.
+
+[[https://docs.camunda.org/manual/latest/reference/dmn11/decision-table/hit-policy/|Read the DMN Hit Policy reference]]
+
+===== Output Options =====
+
+  * **ExpressionResult:** whatever the expression returns will be returned
+  * **FieldValue:** we understand that the expression returns a field name which we will evaluate in the given context
+  * **crmObject:** we understand that the expression returns a CRM ID so we instantiate the module and return the fully loaded object
+====== Execution ======
+
+To execute a decision map and get the result we use the [[en:devel:corebos_rules|coreBOS Rules service]]. coreBOS Rule will see that the given map is actually a decision table and will evaluate the map with the given context.
+
+<code php>
+$result = coreBOS_Rule::evaluate(put your decision map ID or name here, $context);
+</code>
+
+
+====== Examples ======
+
+===== Select Dish with Expressions =====
+
+{{ :en:adminmanual:businessmappings:dish-feel.png |}}
+
+<code XML>
+<decision>
+<hitPolicy>U</hitPolicy>
+<rules>
+<rule>
+  <sequence>1</sequence>
+  <expression><![CDATA[if AND('$[season]'=='Fall', $[guestcount]<=8) then 'Spareribs' else '__DoesNotPass__' end]]></expression>
+  <output>ExpressionResult</output>
+</rule>
+<rule>
+  <sequence>2</sequence>
+  <expression><![CDATA[if AND('$[season]'=='Winter', $[guestcount]<=8) then 'Roastbeef' else '__DoesNotPass__' end]]></expression>
+  <output>ExpressionResult</output>
+</rule>
+<rule>
+  <sequence>3</sequence>
+  <expression><![CDATA[if AND('$[season]'=='Spring', $[guestcount]<=4) then 'Dry Aged Gourmet Steak' else '__DoesNotPass__' end]]></expression>
+  <output>ExpressionResult</output>
+</rule>
+<rule>
+  <sequence>4</sequence>
+  <expression><![CDATA[if AND('$[season]'=='Spring', AND($[guestcount]>=5, $[guestCount]<=8)) then 'Steak' else '__DoesNotPass__' end]]></expression>
+  <output>ExpressionResult</output>
+</rule>
+<rule>
+  <sequence>5</sequence>
+  <expression><![CDATA[if AND(OR('$[season]'=='Fall', OR('$[season]'=='Winter', '$[season]'=='Spring')), $[guestcount]>8) then 'Stew' else '__DoesNotPass__' end]]></expression>
+  <output>ExpressionResult</output>
+</rule>
+<rule>
+  <sequence>6</sequence>
+  <expression><![CDATA[if '$[season]'=='Summer' then 'Light Salad and a nice Steak' else '__DoesNotPass__' end]]></expression>
+  <output>ExpressionResult</output>
+</rule>
+</rules>
+</decision>
+</code>
+===== Select Dish with Module =====
+
+{{ :en:adminmanual:businessmappings:dish-feel.png |}}
+
+Let's suppose we have a module called DecisionConditions with these fields:
+
+  * sequence
+  * season
+  * guestcountmin
+  * guestcountmax
+  * desireddish
+
+and these records
+
+^ sequence ^ season ^ guestcountmin ^ guestcountmax ^ desireddish ^
+| 1 | Fall | 0 | 8 | Spareribs |
+| 2 | Winter | 0 | 8 | Roastbeef |
+| 3 | Spring | 0 | 4 | Dry Aged Gourmet Steak |
+| 4 | Spring | 5 | 8 | Steak |
+| 5 | Fall | 9 | 10000 | Stew |
+| 6 | Winter | 9 | 10000 | Stew |
+| 7 | Spring | 9 | 10000 | Stew |
+| 8 | Summer | 0 | 10000 | Light Salad and a nice Steak |
+
+
+<code XML>
+<decision>
+<hitPolicy>U</hitPolicy>
+<rules>
+<rule>
+  <sequence>1</sequence>
+  <decisionTable>
+    <module>DecisionConditions</module>
+    <orderby>sequence</orderby>  <!-- column to order the records by -->
+    <searches>
+      <search>
+        <condition>
+          <input>season</input>  <!-- context variable name -->
+          <operation>e</operation>  <!-- QueryGenerator operators -->
+          <field>season</field>  <!-- fieldname of module -->
+        </condition>
+        <condition>
+          <input>guestcount</input>  <!-- context variable name -->
+          <operation>ge</operation>  <!-- QueryGenerator operators -->
+          <field>guestcountmin</field>  <!-- fieldname of module -->
+        </condition>
+        <condition>
+          <input>guestcount</input>  <!-- context variable name -->
+          <operation>le</operation>  <!-- QueryGenerator operators -->
+          <field>guestcountmax</field>  <!-- fieldname of module -->
+        </condition>
+      </search>
+    </searches>
+    <output>desireddish</output>  <!-- fieldname -->
+  </decisionTable>
+  <output>FieldValue</output>
+</rule>
+</rules>
+</decision>
+</code>
+
+In the example above I decided to add two columns for the Guest Count, in order to convert the range [5..8] into two records. In this mindset, I also use the value 10000 as an "infinite" value.
+
+But the truth is that as the implementor of both the decision table map and module I have full control of how I want my users to define the conditions. Let's suppose that I want the users of the module to be able to define the condition with only one column for guest count like is reflected in the image. In this case, I would have implemented a module with these fields:
+
+  * sequence
+  * season
+  * guestcount
+  * desireddish
+
+these records
+
+^ sequence ^ season ^ guestcount ^ desireddish ^
+| 1 | Fall | 8 | Spareribs |
+| 2 | Fall | 10000 | Stew |
+| 3 | Spring | 4 | Dry Aged Gourmet Steak |
+| 4 | Spring | 8 | Steak |
+| 5 | Spring | 10000 | Stew |
+| 5 | Winter | 8 | Roastbeef |
+| 6 | Winter | 10000 | Stew |
+| 7 | Summer | 10000 | Light Salad and a nice Steak |
+
+and this map
+
+<code XML>
+<decision>
+<hitPolicy>F</hitPolicy>
+<rules>
+<rule>
+  <sequence>1</sequence>
+  <decisionTable>
+    <module>DecisionConditions</module>
+    <orderby>sequence</orderby>  <!-- column to order the records by -->
+    <searches>
+      <search>
+        <condition>
+          <input>season</input>  <!-- context variable name -->
+          <operation>e</operation>  <!-- QueryGenerator operators -->
+          <field>season</field>  <!-- fieldname of module -->
+        </condition>
+        <condition>
+          <input>guestcount</input>  <!-- context variable name -->
+          <operation>le</operation>  <!-- QueryGenerator operators -->
+          <field>guestcount</field>  <!-- fieldname of module -->
+        </condition>
+      </search>
+    </searches>
+    <output>desireddish</output>  <!-- fieldname -->
+  </decisionTable>
+  <output>FieldValue</output>
+</rule>
+</rules>
+</decision>
+</code>
+
+In this case, I am playing with the **Hit Policy** which has changed to **F**irst, so now my users must understand that the ranges are defined from the previous value to the one defined in each record and that sequence is VERY important.
+
+Since, in the end, the supported operations are those of the Query Generator, which even supports ranges:
+
+<code>
+QueryGenerator->addConditions(column, operator, values) 
+
+where operator can be '[]', '[[', ']]', '][' among many others
+</code>
+
+the possibilities that the implementor has are very big.
+===== Select Global Variable Escalation =====
+
+A decision map that would return the value of a global variable would look something like the map below. The context would have to send in all the role and group of the current user and I'm not totally sure if the "module list" would work as it is below, but it will be VERY close and enough for you to get an idea of how this map works.
+
+<code XML>
+<decision>
+<hitPolicy>F</hitPolicy>
+<rules>
+<rule>
+  <sequence>1</sequence>
+  <decisionTable>
+    <module>GlobalVariable</module>
+    <searches>
+      <search> <!-- Mandatory GV -->
+        <condition>
+          <input>gvname</input>
+          <operation>e</operation>
+          <field>gvname</field>
+        </condition>
+        <condition>
+          <input>checkboxtrue</input>  <!-- checkboxtrue == 1 in context -->
+          <operation>e</operation>
+          <field>mandatory</field>
+        </condition>
+      </search>
+      <search> <!-- In module for user -->
+        <condition>
+          <input>gvname</input>
+          <operation>e</operation>
+          <field>gvname</field>
+        </condition>
+        <condition>
+          <input>userid</input>
+          <operation>e</operation>
+          <field>assigned_user_id</field>
+        </condition>
+        <condition>
+          <input>checkboxtrue</input>  <!-- checkboxtrue == 1 in context -->
+          <operation>e</operation>
+          <field>inmodulelist</field>
+        </condition>
+        <condition>
+          <input>gvmodule</input>
+          <operation>c</operation>
+          <field>gvmodule</field>
+        </condition>
+      </search>
+      <search> <!-- In module for group -->
+        <condition>
+          <input>gvname</input>
+          <operation>e</operation>
+          <field>gvname</field>
+        </condition>
+        <condition>
+          <input>groupid</input>
+          <operation>e</operation>
+          <field>assigned_user_id</field>
+        </condition>
+        <condition>
+          <input>checkboxtrue</input>  <!-- checkboxtrue == 1 in context -->
+          <operation>e</operation>
+          <field>inmodulelist</field>
+        </condition>
+        <condition>
+          <input>gvmodule</input>
+          <operation>c</operation>
+          <field>gvmodule</field>
+        </condition>
+      </search>
+      <search> <!-- In module for role -->
+        <condition>
+          <input>gvname</input>
+          <operation>e</operation>
+          <field>gvname</field>
+        </condition>
+        <condition>
+          <input>userrole</input>
+          <operation>c</operation>
+          <field>gvrole</field>
+        </condition>
+        <condition>
+          <input>checkboxtrue</input>  <!-- checkboxtrue == 1 in context -->
+          <operation>e</operation>
+          <field>inmodulelist</field>
+        </condition>
+        <condition>
+          <input>gvmodule</input>
+          <operation>c</operation>
+          <field>gvmodule</field>
+        </condition>
+      </search>
+      <search> <!-- without module for user -->
+        <condition>
+          <input>gvname</input>
+          <operation>e</operation>
+          <field>gvname</field>
+        </condition>
+        <condition>
+          <input>userid</input>
+          <operation>e</operation>
+          <field>assigned_user_id</field>
+        </condition>
+        <condition>
+          <input>checkboxfalse</input>  <!-- checkboxfalse == 0 in context -->
+          <operation>e</operation>
+          <field>inmodulelist</field>
+        </condition>
+      </search>
+      <search> <!-- without module for group -->
+        <condition>
+          <input>gvname</input>
+          <operation>e</operation>
+          <field>gvname</field>
+        </condition>
+        <condition>
+          <input>groupid</input>
+          <operation>e</operation>
+          <field>assigned_user_id</field>
+        </condition>
+        <condition>
+          <input>checkboxfalse</input>  <!-- checkboxfalse == 1 in context -->
+          <operation>e</operation>
+          <field>inmodulelist</field>
+        </condition>
+      </search>
+      <search> <!-- without module for role -->
+        <condition>
+          <input>gvname</input>
+          <operation>e</operation>
+          <field>gvname</field>
+        </condition>
+        <condition>
+          <input>userrole</input>
+          <operation>c</operation>
+          <field>gvrole</field>
+        </condition>
+        <condition>
+          <input>checkboxfalse</input>  <!-- checkboxfalse == 1 in context -->
+          <operation>e</operation>
+          <field>inmodulelist</field>
+        </condition>
+      </search>
+      <search> <!-- Default GV -->
+        <condition>
+          <input>gvname</input>
+          <operation>e</operation>
+          <field>gvname</field>
+        </condition>
+        <condition>
+          <input>checkboxtrue</input>  <!-- checkboxtrue == 1 in context -->
+          <operation>e</operation>
+          <field>default</field>
+        </condition>
+      </search>
+    </searches>
+    <output>value</output>  <!-- fieldname -->
+  </decisionTable>
+  <output>FieldValue</output>
+</rule>
+</rules>
+</decision>
+</code>

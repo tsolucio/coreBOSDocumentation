@@ -277,11 +277,11 @@ If I understand you correctly, you are looking to modify the "Timecontrol Groupi
 ====== Pending ======
 
   * <del>support both individual and group taxing</del>  Thank you [[http://dusshome.com/|Duss Home Support]]
-  * make timeresource entries visible on calendar, so you can control missing hours
+  * <del>make timeresource entries visible on calendar, so you can control missing hours</del>
   * Currency of the new invoice
   * <del>Reference. All invoices are created with the text "Batch Timecontrol", I would like to make this text available to the user through this configuration screen.</del>
-  * Relate time/material records with salesorders exactly the same as with invoices for those companies that base their business on SO
-  * Relate time/material records with purchaseorders exactly the same as with invoices, to be able to "buy" the time used by our workers.
+  * <del>Relate time/material records with sales orders exactly the same as with invoices for those companies that base their business on SO</del>
+  * <del>Relate time/material records with purchase orders exactly the same as with invoices, to be able to "buy" the time used by our workers.</del>
   * add the current view timecards related list report: this probably won't be done, we are currently evaluating extending PDFMaker to support this feature.
   * <del>support project (operation?) invoicing</del>
 

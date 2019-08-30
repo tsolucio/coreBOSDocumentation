@@ -264,6 +264,10 @@ if($module) {
 
 !!! Use the Debug_ListView_Query Global variable
 
+??? API control to turn-off Eventing triggers could be helpful when doing bulk operations like import/export.
+
+!!! For bulk operation script setting $VTIGER_BULK_SAVE_MODE to true - turns off the Evening API.
+
 ??? How can I activate workflows when importing records?
 
 !!! The import module set variable $VTIGER_BULK_SAVE_MODE = true , to not load the events to execute workflows.
@@ -401,15 +405,20 @@ Thanks Luke :-)
 </WRAP>
 
 ??? Suppose I want to create a bunch of new modules with a set of data fields, but each module will also need some specific fields unique to it. I can think of two ways of doing this:
-  * Use different basetables for each module's specific data and have a common related table to store the common data.
-  * Use a common basetable and have different related tables for the specifics.
+  * Use different base tables for each module's specific data and have a common related table to store the common data.
+  * Use a common base table and have different related tables for the specifics.
 
 !!! As long as the field is mapped with target-table or column through meta-data and follows the Entity module convention system would continue to work. 
 
-Shared table pose challenge when different module records enables edits of fields.
+Shared table poses a challenge when different module records enable edits of fields.
 
 It would also come in the way of performance (specifically query cache invalidation).
 
-If modules are from different publishers then sharing table is not a good idea, as the control or convention can be too tedious to maintain / manage.
+If modules are from different publishers then sharing table is not a good idea, as the control or convention can be too tedious to maintain/manage.
 
+??? How would I be able to mass print a set of invoices or sales orders?
+
+!!! Go to the Business Actions module and add a LISTVIEWBASIC button with this action:
+
+<code JS>massPrint(gVTModule)</code>
 

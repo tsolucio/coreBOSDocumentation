@@ -156,3 +156,10 @@ http://localhost/coreBOSwork/index.php?module=HelpDesk&return_module=Assets&retu
 </code>
 
 and it worked as expected.
+
+??? My user has blocked access to his account due to too many login attempts. How can I reset his access?
+
+!!! If you have access as an admin user, you can go to Settings > Users and edit the profile of the user who has blocked access. Search for the "Login Attempts" field and set it to 0.
+
+If you have blocked all the admin users you will have to go directly to the database, find the admin users' row in the vtiger_users table and set the "loginattempts" column to 0
+

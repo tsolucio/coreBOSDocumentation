@@ -1,0 +1,28 @@
+====== Business Questions ======
+
+Adds the functionality of creating materialized views, which are based on coreBOS database tables.
+
+Business Question module stores the configurations for each materialized view.
+
+<WRAP center round info 60%>
+Note that in MySQL 5.x, which is the version used by CoreBOS, materialized views are not supported yet. Subsequently, we are going to create physical tables in order to mimic the functionality of a materialized view.
+</WRAP>
+
+
+A Business Question configuration would be composed of the following attributes:
+
+  * Name of the materialized view
+  * SQL Query flag, which indicates that the materialized view should be created based on a SQL query.
+  * Module - this is the primary module of the materialized view
+  * Unique ID Field - this serves as a unique identifier of the records of the materialized view
+  * SQL Query - contains the SQL SELECT query which determines the data that should be copied into the materialized view.
+  * Columns - list of materialized view's columns
+  * Condition - contains the conditions of the SQL query
+
+There should be inserted some useful actions in the DetailView of each Business Question:
+
+  * Test SQL - runs the SQL query against the database and returns a success / no success message.
+  * Create Materialized View - creates the physical database table, populated with data from the SQL Query defined in the Business Question
+  * Add Materialized View Workflow - creates two workflows in the Module specified in cbQuestion: one workflow on each save and the other on delete.
+  * Remove Materialized View - drops the materialized view
+  * Delete Materialized View Workflow - drops the workflows at the Module specified in Business Question.

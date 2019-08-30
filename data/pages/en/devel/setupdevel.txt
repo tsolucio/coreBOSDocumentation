@@ -1,0 +1,39 @@
+====== How to set up a coreBOS development environment ======
+
+{{youtube>579A0MjOeIE}}
+
+
+To set up a development install for coreBOS you will need to take these steps
+
+  * fork the project on GitHub
+  * clone your fork on your local development computer
+  * set the permissions on the files so your user is the owner of all files (so you can edit them normally with your user) and the web server user is the group (so it can write the files it needs to write to work)
+  * install the project as you would normally
+  * once you can log in, drop to the command line (I am assuming Linux here)
+  * move the renamed install directory and file back to their original place:
+    * the directory "install" and the file "install.php" will be renamed after the installation is complete to something like 8432658395801x3fab13af3.42704102intall for security reasons. Rename them back to their original name
+    * now rename Migration directory back into the modules directory 
+  * launch git status you should get only three changes tabdata.php, config.inc.php and build/coreBOSTests. I usually leave it at that, those are always there and I just ignore them but you can hide them using the steps here
+  * now change to build directory and delete the coreBOSTests directory.
+  * git clone https://github.com/tsolucio/coreBOSTests coreBOSTests
+  * now drop the database and load the one you will find in build/coreBOSTests/database/coreBOSTests.sql
+  * now, from the root directory of your install run the commands
+    * build/HelperScripts/createuserfiles
+    * build/HelperScripts/update_tabdata
+  * finally, go to the root of your web server and install the coreBOS Webservice Development tool with git clone https://github.com/tsolucio/coreBOSwsDevelopment
+  * Import the project code into your IDE and you are ready to start developing.
+
+=====Continue Learning=====
+
+  * [[en:devel:contribute|How to Contribute]]
+  * [[en:devel:developmentguidelines|Development Guidelines we try to adhere to]]
+
+=====Hide untracked git files=====
+
+<code>git update-index --skip-worktree config.inc.php tabdata.php</code>
+
+  * update-index --assume-unchanged
+  * --skip-worktree
+
+[[https://stackoverflow.com/questions/1274057/how-to-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitignore|how to make git forget about a file that was tracked but is now in gitignore]]
+
