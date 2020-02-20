@@ -1,20 +1,27 @@
-1565105928	80.90.84.138	E	en:scheduled_workflows	hena	[Scheduled Workflow Conditions Examples] 		99
-1565396586	185.191.88.212	C	en:extensions:extensions:projectteam	joebordes	created		1519
-1565396613	185.191.88.212	E	en:extensions:extensions:projectteam	joebordes	[Custom Information] 		-280
-1565563453	185.191.88.212	E	es:extensions:extensions:subslist	joebordes	[Que son y para que sirven] 		1236
-1565616998	185.191.88.212	E	en:adminmanual:businessmappings:mapping	joebordes			177
-1565617609	185.191.88.212	E	en:adminmanual:businessmappings:mapping	joebordes			1022
-1566159514	185.191.88.212	E	en:devel:corebos_hooks	joebordes	[Supported events] 		607
-1566159536	185.191.88.212	E	en:devel:corebos_hooks	joebordes	[Supported events] 		1
-1566159594	185.191.88.212	E	en:devel:corebos_hooks	joebordes	[Supported events] 		0
-1566159620	185.191.88.212	E	en:devel:corebos_hooks	joebordes	[Supported events] 		8
-1566159642	185.191.88.212	E	en:devel:corebos_hooks	joebordes	[Supported events] 		0
-1566378665	185.191.88.212	C	en:extensions:extensions:dart	joebordes	created		629
-1566378744	185.191.88.212	E	en:extensions:extensions:dart	joebordes	[Daily Activity Report Extension] 		113
-1566408880	185.191.88.212	E	en:devel:createvtlibmodule	joebordes			73
-1566925220	185.191.88.212	E	en:devel:addworkflowfunction	joebordes			-52
-1566925233	185.191.88.212	E	en:devel:addworkflowfunction	joebordes			-13
-1566982298	185.191.88.212	E	en:devel:add_editdetail_block	joebordes			-20
-1567083541	185.191.88.212	E	en:adminmanual	joebordes			60
-1567083727	185.191.88.212	C	en:adminmanual:businessquestions	joebordes	created		1725
-1567124233	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		88
+1579284608	80.90.89.222	E	en:adminmanual:businessmappings:validations	joebordes			82
+1579790060	80.90.89.222	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		106
+1580661452	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		354
+1580661689	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		69
+1580946600	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		0
+1580946988	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		834
+1580947066	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Activating the validation maps] 		4
+1580947458	185.191.88.212	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Examples] 		1082
+1580975166	185.191.88.212	E	en:integrations	joebordes			-13
+1581446971	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[wsconfig] 		34
+1581706977	185.191.88.212	E	en:devel:develtutorials	joebordes			48
+1581707001	185.191.88.212	C	en:devel:querygenerator	joebordes	created		31
+1581707973	185.191.88.212	E	en:devel:querygenerator	joebordes			2532
+1581793622	185.191.88.212	C	en:devel:coreboswswebform	joebordes	created		39
+1581801651	185.191.88.212	E	en:adminmanual:businessquestions	joebordes			872
+1581801661	185.191.88.212	E	en:adminmanual:businessquestions	joebordes	[SQL Query. Filter Conditions] 		2
+1581801925	185.191.88.212	E	en:adminmanual:businessquestions	joebordes	[SQL Query. Filter Conditions] 		93
+1581801948	185.191.88.212	E	en:adminmanual:businessquestions	joebordes	[SQL Query. Filter Conditions] 		-16
+1581801965	185.191.88.212	E	en:adminmanual:businessquestions	joebordes	[Materialized Views] 		0
+1581801976	185.191.88.212	E	en:adminmanual:businessquestions	joebordes	[Materialized Views] 		0
+1582239277	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[REST/SOAP call and retrieval Mapping] 		0
+1582239489	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[wsconfig] 		277
+1582239511	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[Response] 		0
+1582239538	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[response] 		0
+1582239548	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[REST/SOAP call and retrieval Mapping] 		0
+1582239752	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[Examples] 		1981
+1582239860	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[An example of two tasks passing context] 		12
