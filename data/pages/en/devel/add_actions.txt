@@ -95,3 +95,7 @@ Three other types of links exist that will permit us to insert CSS (**HEADERCSS*
 |HEADERSCRIPT|The link will be treated as a javascript type and will be imported in the head section of the HTML output page as <script type='text/javascript' src='linkurl'></script>|
 |HEADERCSS|The link will be treated as a CSS type and will be imported in the head section of the HTML output page as <link rel='stylesheet' type='text/css' href='linkurl>|
 |HEADERLINK|You can see these link grouped under More on the top header panel. Useful if you want to provide utility tools like Bookmarklet etc.|
+
+===== Business Actions =====
+
+[[en:adminmanual:businessactions|Read about the Business Actions module for an easy way to add links without coding]]

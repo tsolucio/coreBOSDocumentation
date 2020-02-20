@@ -18,7 +18,7 @@ We have a special helper extension which can be found under the Tools menu calle
     * examples: {ifexists asset.type=Fichero},  {ifexists contact.type=Responsable Seguridad}, {ifexists campaign=GAdwords Noviembre08}
   * **{ifexists entity.field in (value1,value2,value3)}...{/ifexists}**
     * all text contained inside the {ifexists} and {/ifexists} will be added to the final document if there exists at least one entity related to the main entity of the merge whose indicated field has at least one of the indicated values. Fields with multiple values (multiple select picklist) are directly supported, no special syntax is needed.
-    * if the entity or field do not exist the whole block will be ignored.
+    * if the entity or field does not exist the whole block will be ignored.
     * inside the block fields of the first entity found may be used
     * examples: {ifexists asset.type in (Fichero,Contacto,Aplicación)},  {ifexists Contact.tipo en (Responsable Seguridad,Responsable Ficheros)}
   * **{ifnotexists entity}...{/ifnotexists}**
@@ -41,14 +41,16 @@ We have a special helper extension which can be found under the Tools menu calle
     * negative case of **{foreach...}**
   * **{foreach entity.field !in (value1,value2,value3)}...{/foreach}**
     * negative case of **{foreach...}**
-  * **iteration**: inside the {foreach} blocks you can reference a special variable called {iteration} whose value will be that of the current loop iteration. This can be userful to enumerate the elements or to print conditional text based on the iteration. See [[:en:gendoc:gendocejemplos|Examples]].
+  * **{foreach entity [field1 op value1 && field2 op value2 || field3 op value3)}...{/foreach}**
+    * advanced conditions on fields with fields and operations %%(=,>,<,>=,<=,!=)%% and limited logical connectors || (or) and && (and)
+  * **iteration**: inside the {foreach} blocks you can reference a special variable called {iteration} whose value will be that of the current loop iteration. This can be useful to enumerate the elements or to print conditional text based on the iteration. See [[:en:gendoc:gendocejemplos|Examples]].
   * **{include Document_Num}**
-    *With this instruction we can include any document saved in the coreBOS document module inside the main document. For example, if we have a document with reference number DOC699, we can put at the beginning of a new paragraph {include DOC699} in the position where we wish to insert the document. During the merging process all the contents in DOC699 will be inserted in the position where the {include} directive is and the directive will be eliminated.
+    *With this instruction, we can include any document saved in the coreBOS document module inside the main document. For example, if we have a document with reference number DOC699, we can put at the beginning of a new paragraph {include DOC699} in the position where we wish to insert the document. During the merging process, all the contents in DOC699 will be inserted in the position where the {include} directive is and the directive will be eliminated.
     *You can use any other directive within the included document, following the same rules as any other document
     *Nesting of {include} directives is not supported (truth is that we haven't tried it)
     *At the beginning of the page that includes the document, check the Format>> Paragraph>> Text Flow>> Breaks, that the page number is set to 0 to keep the page counter from starting to count again.
   * **{include entity}**
-    *With this command we can include, in the template, any document in the coroeBOS document module that is associated to an entity directly related to the main entity of the merge. For example, if we have an entity //Backups// related to the main entity on which you compile the document, we can put at the beginning of a new paragraph {include Backups} (in this case it would seem logical to be inside a {foreach} loop because an account probably has more than one backup) in the position where we want to insert the document. When compiling all the documents related to the Backups will be inserted in substitution of the {include} directive.
+    *With this command, we can include, in the template, any document in the coroeBOS document module that is associated with an entity directly related to the main entity of the merge. For example, if we have an entity //Backups// related to the main entity on which you compile the document, we can put at the beginning of a new paragraph {include Backups} (in this case it would seem logical to be inside a {foreach} loop because an account probably has more than one backup) in the position where we want to insert the document. When compiling all the documents related to the Backups will be inserted in substitution of the {include} directive.
     *You can use any other directive within the included document, following the same rules as any other document
     *Nesting of {include} directives is not supported (truth is that we haven't tried it)
     *At the beginning of the page that includes the document, check the Format>> Paragraph>> Text Flow>> Breaks, that the page number is set to 0 to keep the page counter from starting to count again.
@@ -62,6 +64,8 @@ We have a special helper extension which can be found under the Tools menu calle
     *In the case of needing various images, each image to be substituted must be different
     *All the configurations made on the image will be respected, only the image will be substituted
     *We treat the image directives in a special way. The idea is that there are so many possible configuration options for an image (width, height, alignment, ...) that it would be complicated to include them in the image directive to indicate how the image should be rendered. So we decided that you include any image, format it as you need using the options that OpenOffice gives you for this and then we will substitute only the image leaving all the formating as you defined it.
+    *In case there is more than one image field on the module you can specify which one you want using the dot notation: Contacts.myimage.
+    *There is a special case in the Project module to retrieve the GanttChart: **Project.GanttChart**
   * **Rules**
     * Directives must be on the same paragraph. There can not be a new paragraph in the middle of a directive. For example,<code>Dear {Contact.
 firstname},</code> is incorrect.
@@ -87,7 +91,7 @@ This is another paragraph that may contain labels like: {Account.accountname}.
 
 ==== Special Text Formatting in Labels ====
 
-This is to allow formatting of text that is coming from the application. This feature allows you to format the text within a label, inside vtiger CRM. In other words, the format is introduced when creating the text in the appropriate field of the application, then the document generator will convert these formats directly into comprehensible elements in OpenOffice. Only 4 types of formatting items are allowed, with which it is possible to apply any OpenOffice format to the text.
+This is to allow the formatting of text that is coming from the application. This feature allows you to format the text within a label, inside vtiger CRM. In other words, the format is introduced when creating the text in the appropriate field of the application, then the document generator will convert these formats directly into comprehensible elements in OpenOffice. Only 4 types of formatting items are allowed, with which it is possible to apply any OpenOffice format to the text.
 
   * **<b>text</b>**, OpenOffice SIGPAC_BOLD style will be applied
   * **<i>text</i>**, OpenOffice SIGPAC_ITALIC style will be applied
@@ -100,7 +104,7 @@ Nesting of <b> and <i> is not supported, use <style> to create this effect.
 
 The character styles SIGPAC_BOLD, SIGAC_ITALIC or any other defined by the user must be created in the template by the user, the document generator only applies the style, it does not create it, if it is not defined the text will appear normal.
 
-There is abundant information of character styles in the online documentation of OpenOffice. Here we can see the styles definition screen:
+There is abundant information about character styles in the online documentation of OpenOffice. Here we can see the styles definition screen:
 {{:gendoc:estilocaracter.png|}}
 
 {{:gendoc:audit-sigpac-01.odt|This is the template used for testing the functionality where the styles definitions can be seen.}}\\
@@ -111,7 +115,7 @@ This is an example of how the text looks inside the field of vtiger CRM.<code><b
 
 ==== Company Information ====
 
-We can also access the company information configured in the Settings section of the application using the meta label Organization as you can see in the OOmerge Lables extension.
+We can also access the company information configured in the Settings section of the application using the meta label Organization as you can see in the OOmerge Labels extension.
 
 Since the information available on the company settings section is rather limited and you could need more, the install process created the global variable **GenDoc_Company_Account** where you can set the accountid of any Accounts record from which you wish to access your company's information. The idea is that you create an account record for your company and use all the fields there.
 

@@ -40,7 +40,7 @@ where {rule_name} can be:
     *restrictions: none
   *integer - Must be integer number
     *restrictions: none
-  *array - Must be array
+  *array - Must be an array
     *restrictions: none
   *length - String must be a certain length
     *restrictions: number
@@ -51,12 +51,16 @@ where {rule_name} can be:
   *lengthMax - String must be less than given length
     *restrictions: number
   *min - Minimum
+  *greater - Minimum
+  *bigger - Minimum
     *restrictions: number
   *max - Maximum
+  *smaller - Minimum
+  *lesser - Minimum
     *restrictions: number
   *in - Performs in_array check on given array values
     *restrictions: list of values of the array
-  *notIn - Negation of in rule (not in array of values)
+  *notIn - Negation of in rule (not in the array of values)
     *restrictions: list of values of the array
   *ip - Valid IP address
     *restrictions: IP number
@@ -97,12 +101,15 @@ where {rule_name} can be:
     *restrictions: none
   *EU_VAT - validate EU VAT number
     *restrictions: none
-  *notDuplicate - checks that no other record with the same value exists on the given fieldname
+  *notDuplicate - checks that no other record with the same value exists on the given field name
     *restrictions: none
   *expression - accept a workflow expression map and evaluate it in the context of the new screen values
     *restrictions: map name or id
+  *validateRelatedModuleExists
+    * retriction: related module name
   *custom - launch custom function that can be found in the indicated file
-    * restrictions: file name, validation test name, function name and label to show on error (will be translated)
+    * restrictions: filename, validation test name, function name and label to show on error (will be translated)
+    * parameters: parameters can be passed to custom functions using the parameters-parameter directives 
 
 <WRAP center round info 100%>
 All of the rules above accept an optional directive named __message__ where you can set the error message you want the user to see when an error on that field happens. If this is not established a standard error message will be returned. Inside this message you can use the curly brace __field__ tag to indicate where you want the field name to appear:
@@ -110,8 +117,35 @@ All of the rules above accept an optional directive named __message__ where you 
 </WRAP>
 
 <WRAP center round info 100%>
-The trigger for these maps is that they must be of type "Validations" and the "Target Module" must be set correctly. If more than one record is found, they will ALL be applied.
+The parameters directive permits us to send values to our custom validation method with a structure like this:
+<code XML>
+<parameters>
+<parameter>
+<name>name of variable</name>
+<value>value of variable</value>
+</parameter>
+</parameters>
+</code>
+these parameters will be sent as a name indexed array to the function
 </WRAP>
+
+===== Activating the validation maps =====
+
+The trigger for these maps is:
+  * they must be of type "Validations"
+  * the "Target Module" must be set correctly
+  * the name MUST end with "_Validations"
+
+If more than one record is found, they will ALL be applied.
+
+So, as with most business maps, what activates the map is the name, but as a difference with other maps this type of map can have more than one and they will all be merged and applied.
+
+This type of map also supports the Global Variable configuration as all the other business maps. In this case, the global variables will all be obtained and evaluated, so you can have more than one global variable and they will ALL be added to the Business Maps that are found by name.
+
+The idea is that we can have global validations for all users using the business map trigger name (ending with "_Validations") and then define other business maps with any other name and activate these per-user or role using the global variable "**BusinessMappings_Validations**". This global variable MUST have the correct module selected (only one).
+
+
+
 
 ===== Accessing other fields in the form =====
 

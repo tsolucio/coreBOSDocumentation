@@ -1,0 +1,43 @@
+~~NOTOC~~
+====== Business Mapping:: PurchaseOrder_FieldDependency ======
+This map fills in the Purchase Order Billing address when a vendor is selected
+
+---- dataentry ----
+name : PurchaseOrder_FieldDependency
+type : businessmapping
+bmtype : Field Dependency
+description_wiki: This map fills in the Purchase Order Billing address when a vendor is selected
+keywords_tags : vendor,purchaseorder
+version : 1.0
+release_dt : 2019-09-09
+licenses : MPL
+price : Free
+distribution : Free
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>PurchaseOrder</originname>
+  </originmodule>
+<dependencies>
+<dependency>
+    <field>vendor_id</field>
+    <actions>
+        <function>
+            <name>fieldDep_GetField</name>
+            <parameters>
+              <parameter>street,city,state,code,country,postalcode</parameter>
+              <parameter>bill_street,bill_city,bill_state,bill_code,bill_country,bill_pobox</parameter>
+            </parameters>
+        </function>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>
+

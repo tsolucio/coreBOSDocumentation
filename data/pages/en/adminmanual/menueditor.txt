@@ -8,12 +8,8 @@ The design of the menu editor is like this:
 
   * If you want to add an element but not have it seen by anyone until you have it in place, create it with the "visible" property unchecked and then check it when you are finished placing it.
 
-====== FAQ ======
+There are a few **hidden features** for debugging and fixing:
 
-~~QNA~~
-
-??? The left menu tree doesn't load. There is a message that says loading but nothing happens and I can see a javascript error in the console.
-
-!!! This is a known error that we have not been able to catch. From time to time someone runs into this error which is due to some menu entry not having a parent menu. We have not been able to reproduce the error, we just know that, somehow, it is possible to create or move an entry and leave it orphaned. If you can help us reproduce the error we could fix it. In the mean time, we have created a utility function to set all orphaned entries to the top level so you can enter and organize as required. If you have this issue execute the next URL:
-
-<code>http://your_server/your_corebos/index.php?action=Save&module=evvtMenu&evvtmenudo=fixOrphaned</code>
+  * debug mode will show menu entry order. It can be activated by adding this to the URL: **&menudebug=1**
+  * reorder menu action: **action=Save&module=evvtMenu&evvtmenudo=fixOrder** will set the an incremental consecutive numbering to all menu entries
+  * Sometimes the left menu tree doesn't load. There is a message that says loading but nothing happens and there is a javascript error in the console. This is a known error that happens rarely but, from time to time, someone runs into this error which is due to some menu entry not having a parent menu. We have not been able to reproduce the error, we just know that, somehow, it is possible to create or move an entry and leave it orphaned, so we have created a utility function to set all orphaned entries to the top level so you can enter and organize as required. If you have this issue execute the next URL: <code>http://your_server/your_corebos/index.php?action=Save&module=evvtMenu&evvtmenudo=fixOrphaned</code>

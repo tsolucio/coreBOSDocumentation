@@ -69,6 +69,8 @@ Los campos disponibles se encuentran en el menu 'Herramientas' -> 'Etiquetas Ope
     *En caso de contener varias etiquetas imagen, cada imagen a sustituir deberá ser diferente
     *Se respetará toda la configuración de la imagen que se haya hecho al poner la imagen, solo se sustituirá la imagen
     *Las imagenes las tratamos de manera especial. El tema es que hay tantas opciones de configuración de una imagen (ancho, alto, alineación, anclaje, ....) que nos sería muy complicado incluirlas todas en la etiqueta para saber exactamente como quieres mostrar la imagen. Así que hemos decidido que incluyas una imagen cualquiera donde va a aparecer el logo y le das el formato que quieres utilizando las opciones que ya tienes disponible en openoffice. Después, cuando compilamos, respetamos todas las opciones que has elegido y solo cambiamos la imagen.
+    *Si hay más de una imagen en el módulo puedes especificar que imagen quieres utilizando la notación Modulo.Campo: Contacts.myimage.
+    *Hay un caso especial en el módulo de Proyectos para obtener el GanttChart: **Project.GanttChart**
   * **Reglas**
     * Las etiquetas han de estar en el mismo párrafo. No puede haber un nuevo párrafo en medio de un etiqueta. Por ejemplo,<code>Estimado {contacto.
 nombre},</code> es incorrecto.

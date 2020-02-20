@@ -520,3 +520,43 @@ Another Example
 </dependencies>
 </map>
 </code>
+
+<WRAP center round box 80%>
+Change tax percentage when picklist with tax type changes
+</WRAP>
+
+<code XML>
+<map>
+  <originmodule>  <originname>Invoice</originname> </originmodule>
+<dependencies>
+<dependency>
+    <field>cf_879</field>
+    <actions>
+        <function>
+            <field>cf_879</field>
+            <name>changeTaxDetails</name>
+            <parameters>
+            </parameters>
+        </function>
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>
+
+<code JS>
+function changeTaxDetails(change_field, action_field, new_value, old_value) {
+    if (action_field == 'cf_879') {
+        if (new_value != 'Guardias') {
+            document.getElementsByName('tax2_group_percentage')[0].value = 0.00;
+        } else {
+            document.getElementsByName('tax2_group_percentage')[0].value = -6.00;
+        }
+        calcTotal();
+    }
+}
+</code>
+
+you can load the JS from a file in the footer with:
+
+<code>BusinessActions::addLink(getTabid("Invoice"), 'FOOTERSCRIPT', 'corebosjshookinvoice', 'modules/Invoice/corebosjshookinvoice.js', '', 0, null, false);</code>

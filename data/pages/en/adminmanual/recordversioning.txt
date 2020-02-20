@@ -1,10 +1,10 @@
 ====== Record Versioning ======
 
 
-There is a new feature in CorebosCRM that permits users to save different versions of one record. Each version it's a new record by itself but it is not shown as such. You can't see it in the ListView or search for it, because of all the versions of a record, only the Active Version is shown.
+There is a new feature in coreBOS that permits users to save different versions of one record. Each version is a new record by itself but it is not shown as such. You can't see it in the ListView nor search for it, because of all the versions of a record, only the Active Version is shown.
 //But how can this new feature be enabled?// 
 
-It's easy. You have to go the Integrations panel (CRM URL/index.php?action=integration&module=Utilities) and enable Record Versioning for one or more modules.
+It's easy. You have to go to the Integrations panel (CRM URL/index.php?action=integration&module=Utilities) and enable Record Versioning for one or more modules.
 
 {{:en:adminmanual:screenshot_from_2019-06-19_11-42-23.png?500|}} 
 
@@ -14,7 +14,7 @@ From a technical point of view enabling Record Versioning for a module, let's sa
 
 {{:en:adminmanual:screenshot_from_2019-06-19_11-48-11.png?500|}}
 
-  * the creation of a Business Action record (if it does not already exist). If the record is already present, it edits the module list field adding the Potentials module. This Business Actions creates the Developers block in the DetailView of the module.
+  * the creation of a Business Action record (if it does not already exist). If the record is already present, it edits the module list field adding the Potentials module. This Business Action creates the Developers block in the DetailView of the module.
 
 {{:en:adminmanual:screenshot_from_2019-06-19_11-50-57.png?500|}}
 
@@ -37,12 +37,15 @@ From a technical point of view enabling Record Versioning for a module, let's sa
 
 //Disable Record Versioning//
 
-If you want to disable the Record Versioning feature for a module you can go into the Integrations panel and just do it. 
-The module will be removed from the module list fields in the Global Variable and Business Actions modules. The workflow will be deleted and the handler won't be used anymore for that module because it is based on the Global Variable module list.
+If you want to disable the Record Versioning feature for a module you can go into the Integrations panel and just do it.
+
+The module will be removed from the module list fields in the Global Variable and Business Actions modules.
+
+The workflow will be deleted and the handler won't be used anymore for that module because it is based on the Global Variable module list.
 
 //How to use the Record Versioning?//
 
-That's even easier. Now you have the developers block in the DetailView of the module and you have two links: Create Version and Recover Version. The first is used to create a new version of the record and save it while the second recovers an older version. It means that it sets an older version of the record as the active one. 
+That's even easier. Now you have the developers block in the DetailView of the module and you have two links: Create Version and Recover Version. The first is used to create a new version of the record and save it while the second recovers an older version. It means that it sets an older version of the record as the active one. You can double click on the version you want to recover too.
 
 == Recover ==
 
@@ -54,5 +57,7 @@ That's even easier. Now you have the developers block in the DetailView of the m
 {{:en:adminmanual:screenshot_from_2019-06-19_12-25-07.png?500|}}
 
 
-The duplication of the record can also be done by using a Duplication Map. You can find more information about this on the page below:
-[[http://corebos.com/documentation/doku.php?id=en:adminmanual:businessmappings:duplicaterecords]]
+Record Versioning uses the [[en:adminmanual:businessmappings:duplicaterecords|duplication business map]] which permits us to fine-tune the related records that need to be versioned also.
+
+Record versions will be respected also when using the Duplicate Records workflow task of the record can also be done by using a Duplication Map. You can find more information about this on the page below:
+

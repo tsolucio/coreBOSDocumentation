@@ -1,10 +1,10 @@
 ====== Business Actions ======
 
-Business Actions are things that can happen inside the application. They enhance the vtiger crm link system and they can affect any part of the application.
+Business Actions are things that can happen inside the application. They enhance the vtiger CRM link system and they can affect any part of the application.
 
 They are shown/applied depending on the field permission values set on each record which may include conditional business maps.
 
-By default, each action will be applied to all modules. We can make an action apply only on certain module using the **Only On My Module** checkbox combined with the desired modules being selected in the **Modules** select box.
+By default, each action will be applied to all modules. We can make an action apply only on certain modules using the **Only On My Module** checkbox combined with the desired modules being selected in the **Modules** select box.
 
 The permission system will permit us to:
 
@@ -15,4 +15,60 @@ The permission system will permit us to:
 
 They can be retrieved via the **getBusinessActions** web service method.
 
+====== Business Action::Launch script ======
 
+[[en:devel:add_special_block|Developer Blocks]] are a very powerful way of adding custom functionality into coreBOS. With them, we can easily create all sorts of scripts with any functionality we need, but sometimes we just want to launch a script or method and get a result message back on screen. To accomplish this we can create a business action that calls **runBAScript**. This function accepts a URI to call and expects one of three responses:
+
+  * **%%%MSG%%%** followed by a message that will be shown in the inline message box of the application.
+  * **%%%FUNCTION%%%funcname%%%PARAMS%%%onefunctionparameter** which will execute the named function if it exists
+  * anything else will be shown as an alert message box
+
+For example, if we create a script named **write2log.php** inside the Accounts module we could create this Business Action:
+
+<code>
+javascript:runBAScript('index.php?module=Accounts&action=AccountsAjax&file=write2log')
+</code>
+
+and write2log.php could be:
+
+<code php>
+<?php
+require_once 'vtlib/Vtiger/Module.php';
+require_once 'Smarty_setup.php';
+global $log;
+$log->fatal('write '.$_REQUEST['__module'].' - '.$_REQUEST['__crmid']);
+$smarty = new vtigerCRM_Smarty();
+$smarty->assign('ERROR_MESSAGE', 'write '.$_REQUEST['__module'].' - '.$_REQUEST['__crmid']);
+echo '%%%MSG%%%'.$smarty->fetch('applicationmessage.tpl');
+</code>
+
+As can be seen in the previous script the URI called will always receive two additional parameters:
+
+  * **%%__module%%** the current module
+  * **%%__crmid%%** the current crmid if it exists (detail view)
+
+
+====== Business Action::Launch workflow ======
+
+In order to make it even easier to add functionality inside coreBOS with business actions, you can also launch a workflow from one. This opens the possibilities enormously as almost anything that can be done from a workflow can be done from a business action link.
+
+<WRAP center round important 80%>
+Note that this will only work correctly when we can pass in a unique CRMID (or list of CRMIDs), as the workflow system requires a record to be able to get its context of execution.
+</WRAP>
+
+<code>
+javascript:runBAWorkflow(workflowid, crmid)
+</code>
+
+
+The crmid parameter can be:
+
+  * a unique CRMID
+  * a string with the word "RECORD" which will load the current record if available
+  * a string with a list of CRMIDs separated by semi-colon ';'
+
+Note that if either the workflowid or the crmid are empty nothing will be done.
+
+====== Business Action::Developers Blocks ======
+
+[[en:devel:add_special_block#developer_blocks|See the Developers Blocks section]] for more examples.

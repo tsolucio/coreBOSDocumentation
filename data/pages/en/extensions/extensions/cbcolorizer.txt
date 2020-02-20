@@ -12,7 +12,7 @@ version : 1.0
 homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:cbcolorizer
 release_dt : 2016-01-14
 licenses : Vizsage
-price : 310eur
+price : 45eur
 buyemail_mail : paypal(at)tsolucio(dot)com
 distribution : Sale
 authorname : JPL TSolucio, S.L.

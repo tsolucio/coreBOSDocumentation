@@ -1,11 +1,32 @@
 ====== Business Questions ======
 
+===== SQL Query. Filter Conditions =====
+
+When "SQL Query" is marked:
+
+  * the Columns are meant to be a comma-separated list of columns
+  * the Conditions field is meant to be a correct list of joins and a where conditions
+  * the sort and group by also must be a correct column specification
+
+When "Conditions in Filter Format" is marked, the Conditions are supposed to be a JSON array specification of fields and conditions grouped as per the syntax followed in the filter system. For example:
+
+<code JSON>
+[[{"field":"subject","op":"c","value":"an","glue":"or"},{"field":"pl_gross_total","op":"g","value":"20","glue":""}]]
+</code>
+
+<code JSON>
+[[{"field":"subject","op":"c","value":"an","glue":"or"},{"field":"pl_gross_total","op":"g","value":"20","glue":"and"}],[{"field":"pl_gross_total","op":"l","value":"20","glue":""}]]
+</code>
+
+with these columns should work: <code>subject,quote_no,pl_gross_total</code>
+===== Materialized Views =====
+
 Adds the functionality of creating materialized views, which are based on coreBOS database tables.
 
-Business Question module stores the configurations for each materialized view.
+The Business Question module stores the configurations for each materialized view.
 
-<WRAP center round info 60%>
-Note that in MySQL 5.x, which is the version used by CoreBOS, materialized views are not supported yet. Subsequently, we are going to create physical tables in order to mimic the functionality of a materialized view.
+<WRAP center round info 82%>
+Note that in MySQL 5.x, which is the version used by coreBOS, materialized views are not supported yet. Subsequently, we are going to create physical tables in order to mimic the functionality of a materialized view.
 </WRAP>
 
 

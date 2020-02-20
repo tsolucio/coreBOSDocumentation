@@ -34,7 +34,7 @@ To help us prepare the database changes coreBOS updater is going to take care of
 
 ===== Step 1: Define the change and the file that contains the work to be done =====
 
-Edit the file //modules/cbupdater/cbupdater.xml// and add your definition to the list of changes.
+Create a new file in //modules/cbupdater/cbupdates/yourproject.xml// and add your definition to the list of changes.
 
 <WRAP center round info 80%>
 The file //modules/cbupdater/cbupdater.xml// is the main change file of the coreBOS application. Although you can use this file to register your changes the correct way to distribute them is by creating your own changeset XML file inside the //modules/cbupdater/cbupdates// directory. When coreBOS Updater looks for changes it reads them from the base //modules/cbupdater/cbupdater.xml// file and then looks for any .xml file inside //modules/cbupdater/cbupdates// to pickup those changes also. That way each programmer can easily distribute changes without overwriting the base application changesets.

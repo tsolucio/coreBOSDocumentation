@@ -36,3 +36,19 @@ This is the image that appears in the browser tab next to the title. The recomme
   * height: 32px;
 
 {{ :images:iconcorebos.png |}}
+
+===== coreBOS Logos =====
+
+{{:images:corebos80.png|}}
+
+{{:images:corebos100.png|}}
+
+{{:images:corebos400.png|}}
+
+{{:images:corebos.png|}}
+
+{{ :images:corebos.svg |}}
+
+{{:images:corebos400washed.png|}}
+
+{{:images:corebosicon.png|}}

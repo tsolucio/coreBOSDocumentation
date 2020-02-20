@@ -32,6 +32,7 @@ supportemail_mail : info(at)tsolucio(dot)com
   * [[:en:gendoc:gramatica|Template Grammar]]
   * [[:en:gendoc:elemnosoportados|Non Supported Elements]]
   * [[:en:gendoc:gendocejemplos|Examples]]
+  * [[:en:gendoc:gendoctips|Tips and Tricks]]
 
 ====== Template Store. ======
 

@@ -56,4 +56,5 @@
   * [[en:adminmanual:email_tracking|Email tracking: Access count]]
   * [[en:adminmanual:monitorstatus|Monitor Health of you coreBOS]]
   * [[en:adminmanual:recordversioning|Record Versioning]]
+  * [[http://blog.corebos.org/blog/timezone|Timezone]]
 

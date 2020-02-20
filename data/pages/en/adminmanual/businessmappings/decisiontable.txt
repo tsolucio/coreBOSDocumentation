@@ -52,12 +52,12 @@ We will be able to define the conditions to filter the records in the module and
 <rule>
   <sequence></sequence>
   <expression></expression>
-  <output></output>  <!-- ExpressionResult, FieldValue, crmObject -->
+  <output></output>  <!-- ExpressionResult, FieldValue, crmObject, Row -->
 </rule>
 <rule>
   <sequence></sequence>
   <mapid></mapid>
-  <output></output>  <!-- ExpressionResult, FieldValue, crmObject -->
+  <output></output>  <!-- ExpressionResult, FieldValue, crmObject, Row -->
 </rule>
 <rule>
   <sequence></sequence>
@@ -80,9 +80,9 @@ We will be able to define the conditions to filter the records in the module and
         </condition>
       </search>
     </searches>
-    <output></output>  <!-- fieldname -->
+    <output></output>  <!-- fieldname or fieldnames separated by commas or star (*) for all fields -->
   </decisionTable>
-  <output></output>  <!-- ExpressionResult, FieldValue, crmObject -->
+  <output></output>  <!-- ExpressionResult, FieldValue, crmObject, Row -->
 </rule>
 </rules>
 </decision>
@@ -106,7 +106,8 @@ We will be able to define the conditions to filter the records in the module and
 
   * **ExpressionResult:** whatever the expression returns will be returned
   * **FieldValue:** we understand that the expression returns a field name which we will evaluate in the given context
-  * **crmObject:** we understand that the expression returns a CRM ID so we instantiate the module and return the fully loaded object
+  * **crmObject:** we understand that the expression returns a CRM ID so we instantiate the module and return the fully-loaded object
+  * **Row:** will return the full row of fields indicated in the "output" directive
 ====== Execution ======
 
 To execute a decision map and get the result we use the [[en:devel:corebos_rules|coreBOS Rules service]]. coreBOS Rule will see that the given map is actually a decision table and will evaluate the map with the given context.
@@ -285,6 +286,9 @@ where operator can be '[]', '[[', ']]', '][' among many others
 </code>
 
 the possibilities that the implementor has are very big.
+
+Finally, comment on a very important option where you can set the value of any variable in the context to **%%__IGNORE__%%** to have that variable eliminated from the decision. This permits us to create complex rules with many variables where we search on only a few of them at a time.
+
 ===== Select Global Variable Escalation =====
 
 A decision map that would return the value of a global variable would look something like the map below. The context would have to send in all the role and group of the current user and I'm not totally sure if the "module list" would work as it is below, but it will be VERY close and enough for you to get an idea of how this map works.

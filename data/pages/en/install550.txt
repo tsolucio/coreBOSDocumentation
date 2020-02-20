@@ -2,7 +2,7 @@
 ===== Requirements =====
   * Apache 2.x or above.
   * MySQL 5.x
-  * PHP from 5.6.x to 7.0.x. PHP 7.x is recommended.
+  * PHP from 5.6.x to 7.4.x. PHP 7.3 is recommended.
 <WRAP center round info 75%>
 This is a typical **WAMP/LAMP stack**. All linux distributions have this natively so we recommend you install the packages from your distribution (make sure you have the right versions). On windows download the XAMPP stack from apache friends. You can see the [[http://code.stephenmorley.org/articles/xampp-version-history-apache-mysql-php|list of application versions here]].
 </WRAP>
@@ -22,6 +22,7 @@ Following extensions should be enabled for your PHP setup
 |**DOM (php-xml)**|Mandatory|**New dependency** For coreBOS Updater|
 |OpenSSL|Optional|Imap with OpenSSL should be enabled in case Mail server needs to be connected via SSL|
 |Curl|Optional|This one is optional but really important for any external communications, like SMS, Google Sync or RSS|
+|MBString|Optional|This one is optional but mandatory if you want to use GenDoc|
 
 ==== PHP Configuration  ====
 
@@ -161,3 +162,7 @@ echo get_include_path();
 then I edit the php.ini directive putting the same value and adding the current directory (.)
 
 
+??? I have problems installing/recovering the database
+
+!!! apply this change in my.cnf <code>max_allowed_packet = 16M</code>
+https://discussions.corebos.org/showthread.php?tid=1550

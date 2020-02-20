@@ -104,6 +104,22 @@ The application has another native developer block that permits you to mass uplo
 
 {{youtube>lW3RrQQQb-4}}
 
+==== Show IFRAME ====
+
+You can show an IFRAME in a block with the **showHTMLBlock**, something like this:
+
+<code>
+block://showHTMLBlock:modules/Utilities/showHTMLBlock.php:op=iframe&height=400px&ex=http%3A%2F%2Fcorebos.org%3Fifcrmid%3D%24RECORD%24%26ifmodule%3D%24MODULE%24
+</code>
+
+where you are passing to the Develop Block these parameters:
+
+  * **op**  =iframe (there are curently no other options)
+  * **height** string of iframe height, optional
+  * **ex** URL Encoded string with the URL to load in iframe. you can use the meta variables
+    * $RECORD$ which will be changed to CRMID of the current record if it exists
+    * $MODULE$ which will be changed to the MODULE NAME
+
 ==== Developer Block Template ====
 
 This is the starting point of any developer block (the boilerplate).
