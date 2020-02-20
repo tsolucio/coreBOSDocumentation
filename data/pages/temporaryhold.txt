@@ -11,7 +11,6 @@
   * [[:temporaryhold:crmdef|CRM (Customer Relationship Management "Gestión de relaciones con clientes")]]
   * [[:temporaryhold:tsdomains|Domain/Hosting/Email Control]]
   * [[:temporaryhold:pdocapture|Product Capture Enhancements]]
-  * [[:temporaryhold:multiwarehouse|Multiwarehouse]]
   * [[:temporaryhold:sla|Service Level Agreement (SLA) Control on Trouble Tickets]]
   * [[:temporaryhold:aggwidget|Aggregate Widget]]
   * [[:temporaryhold:consolidaciondeuda|Control de Deudas.]]

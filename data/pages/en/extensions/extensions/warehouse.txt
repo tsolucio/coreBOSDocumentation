@@ -1,4 +1,21 @@
-====== vtigerCRM-Spain::Multi Warehouse Enhancements ======
+====== Multi Warehouse Enhancements ======
+
+Perspective of three modules to manage multiwarehouse stock and movements of material between warehouses.\\
+---- dataentry ----
+name : coreBOS/WarehousePerspective
+type : corebos-perspective
+description_wiki: Perspective of three modules to manage multiwarehouse stock and movements of material between warehouses.
+keywords_tags : warehouse,stock,product
+version : 1.0
+homepage_url : http://corebos.org/documentation/doku.php?id=en:extensions:extensions:warehouse
+release_dt : 2012-02-27
+licenses : Vizsage
+distribution : Free
+authorname : JPL TSolucio, S.L.
+authoremail_mail : info(at)tsolucio(dot)com
+supportemail_mail : info(at)tsolucio(dot)com
+----
+\\
 
 {{temporaryhold:mwh:multialmacen.png|multi warehouse design}}\\
 
@@ -12,7 +29,7 @@
       * the warehouse information must be captured and saved on each product line
       * adapt current increase and decrease stock functions to new structure, by creating the corresponding movement records
       * convert the current stock field in products to readonly and update it consistently through stock module
-    * One warehouse on each invoice (Q/SO/PO)  ** THIS ONE HAS BEEN IMPLEMENTED **  [[vtigermultiwarehouse#how_to_use|see below]]
+    * One warehouse on each invoice (Q/SO/PO)  ** THIS ONE HAS BEEN IMPLEMENTED **  [[temporaryhold:vtigermultiwarehouse#how_to_use|see below]]
       * add one warehouse capture field on Q/SO/PO/I, this will be the warehouse the whole invoice will work with, all the products on the invoice will be from this warehouse
       * modify the Q > SO > I conversion to pass along the warehouse field
       * modify product line popup to automatically show only products from the selected warehouse
