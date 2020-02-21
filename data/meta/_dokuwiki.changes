@@ -25,3 +25,11 @@
 1582239548	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[REST/SOAP call and retrieval Mapping] 		0
 1582239752	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[Examples] 		1981
 1582239860	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[An example of two tasks passing context] 		12
+1582241035	185.191.88.212	D	en:adminmanual:businessmappings:flowcontrol	joebordes	removed		-6214
+1582241259	185.191.88.212	C	en:extensions:extensions:warehouse	joebordes	↷ Page moved and renamed from temporaryhold:multiwarehouse to en:extensions:extensions:warehouse		8208
+1500835810	127.0.0.1	E	temporaryhold:multiwarehouse		external edit		8208
+1582241259	185.191.88.212	D	temporaryhold:multiwarehouse	joebordes	↷ Page moved and renamed from temporaryhold:multiwarehouse to en:extensions:extensions:warehouse		-8208
+1582241259	185.191.88.212	e	temporaryhold	joebordes	↷ Links adapted because of a move operation		5
+1582241267	167.86.74.24	E	en:extensions:extensions:warehouse		↷ Links adapted because of a move operation		14
+1582241929	185.191.88.212	E	en:extensions:extensions:warehouse	joebordes			640
+1582241984	185.191.88.212	E	temporaryhold	joebordes			-58
