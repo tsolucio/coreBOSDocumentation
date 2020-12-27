@@ -41,3 +41,39 @@
 1565049395	185.191.88.212	E	en:devel:corebosupdater	joebordes	[coreBOS Updater :: Class and helper functions explained] 		0
 1567163512	127.0.0.1	E	en:devel:corebosupdater		external edit		-6
 1569169374	185.191.88.212	E	en:devel:corebosupdater	joebordes	[Step 1: Define the change and the file that contains the work to be done] 		19
+1583107573	185.191.88.212	E	en:devel:corebosupdater	joebordes	[coreBOS Updater :: coreBOS Perspectives] 		68
+1583108457	185.191.88.212	E	en:devel:corebosupdater	joebordes	[coreBOS Updater :: Custom Changesets without coding] 		4765
+1583108547	185.191.88.212	E	en:devel:corebosupdater	joebordes	[coreBOS Updater :: Custom Changesets without coding] 		1
+1583108598	185.191.88.212	E	en:devel:corebosupdater	joebordes	[coreBOS Updater :: Custom Changesets without coding] 		59
+1583108623	185.191.88.212	E	en:devel:corebosupdater	joebordes	[coreBOS Updater :: Custom Changesets without coding] 		16
+1583108967	185.191.88.212	E	en:devel:corebosupdater	joebordes	[deleteAllPicklistValues] 		230
+1583108996	185.191.88.212	E	en:devel:corebosupdater	joebordes	[deleteAllPicklistValues] 		-3
+1583109164	185.191.88.212	E	en:devel:corebosupdater	joebordes	[deleteAllPicklistValues] 		46
+1583109319	185.191.88.212	E	en:devel:corebosupdater	joebordes	[deletePicklistValues] 		307
+1583109527	185.191.88.212	E	en:devel:corebosupdater	joebordes	[setQuickCreateFields] 		262
+1583109608	185.191.88.212	E	en:devel:corebosupdater	joebordes	[removeAllMenuEntries] 		207
+1583109857	185.191.88.212	E	en:devel:corebosupdater	joebordes	[setQuickCreateFields] 		-17
+1583109945	185.191.88.212	E	en:devel:corebosupdater	joebordes	[massHideFields] 		-70
+1583109986	185.191.88.212	E	en:devel:corebosupdater	joebordes	[massDeleteFields] 		-70
+1583110077	185.191.88.212	E	en:devel:corebosupdater	joebordes	[massMoveFieldsToBlock] 		-24
+1583137728	185.191.88.212	E	en:devel:corebosupdater	joebordes	[massCreateFields] 		79
+1583137926	185.191.88.212	E	en:devel:corebosupdater	joebordes	[orderFieldsInBlocks] 		-45
+1583137982	185.191.88.212	E	en:devel:corebosupdater	joebordes	[setTooltip] 		244
+1583138116	185.191.88.212	E	en:devel:corebosupdater	joebordes	[convertTextFieldToPicklist] 		22
+1583138496	185.191.88.212	E	en:devel:corebosupdater	joebordes	[setTooltip] 		-306
+1584316451	185.191.88.212	E	en:devel:corebosupdater	joebordes	[coreBOS Updater :: Custom Changesets without coding] 		3
+1586280122	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[orderFieldsInBlocks] 		133
+1586280407	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[massCreateFields] 		-47
+1586325977	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[massCreateFields] 		1865
+1586329572	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[orderFieldsInBlocks] 		259
+1586330982	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[convertTextFieldToPicklist] 		166
+1586332126	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[setTooltip] 		173
+1586332354	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[removeAllMenuEntries] 		209
+1586332587	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[massHideFields] 		159
+1586332768	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[massDeleteFields] 		153
+1586333596	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[massMoveFieldsToBlock] 		177
+1586334176	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[deleteAllPicklistValues] 		250
+1586334404	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[deletePicklistValues] 		277
+1586334632	197.250.224.2	E	en:devel:corebosupdater	gmoshi	[setQuickCreateFields] 		156
+1587767195	185.191.88.212	E	en:devel:corebosupdater	joebordes	[massCreateFields] 		22
+1591576332	185.191.88.212	E	en:devel:corebosupdater	joebordes	[massCreateFields] 		367

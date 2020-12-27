@@ -1,35 +1,26 @@
-1579284608	80.90.89.222	E	en:adminmanual:businessmappings:validations	joebordes			82
-1579790060	80.90.89.222	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		106
-1580661452	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		354
-1580661689	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		69
-1580946600	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		0
-1580946988	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Validation Business Mapping] 		834
-1580947066	185.191.88.212	E	en:adminmanual:businessmappings:validations	joebordes	[Activating the validation maps] 		4
-1580947458	185.191.88.212	E	en:adminmanual:businessmappings:field_dependency	joebordes	[Examples] 		1082
-1580975166	185.191.88.212	E	en:integrations	joebordes			-13
-1581446971	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[wsconfig] 		34
-1581706977	185.191.88.212	E	en:devel:develtutorials	joebordes			48
-1581707001	185.191.88.212	C	en:devel:querygenerator	joebordes	created		31
-1581707973	185.191.88.212	E	en:devel:querygenerator	joebordes			2532
-1581793622	185.191.88.212	C	en:devel:coreboswswebform	joebordes	created		39
-1581801651	185.191.88.212	E	en:adminmanual:businessquestions	joebordes			872
-1581801661	185.191.88.212	E	en:adminmanual:businessquestions	joebordes	[SQL Query. Filter Conditions] 		2
-1581801925	185.191.88.212	E	en:adminmanual:businessquestions	joebordes	[SQL Query. Filter Conditions] 		93
-1581801948	185.191.88.212	E	en:adminmanual:businessquestions	joebordes	[SQL Query. Filter Conditions] 		-16
-1581801965	185.191.88.212	E	en:adminmanual:businessquestions	joebordes	[Materialized Views] 		0
-1581801976	185.191.88.212	E	en:adminmanual:businessquestions	joebordes	[Materialized Views] 		0
-1582239277	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[REST/SOAP call and retrieval Mapping] 		0
-1582239489	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[wsconfig] 		277
-1582239511	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[Response] 		0
-1582239538	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[response] 		0
-1582239548	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[REST/SOAP call and retrieval Mapping] 		0
-1582239752	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[Examples] 		1981
-1582239860	185.191.88.212	E	en:adminmanual:businessmappings:webservicecall	joebordes	[An example of two tasks passing context] 		12
-1582241035	185.191.88.212	D	en:adminmanual:businessmappings:flowcontrol	joebordes	removed		-6214
-1582241259	185.191.88.212	C	en:extensions:extensions:warehouse	joebordes	↷ Page moved and renamed from temporaryhold:multiwarehouse to en:extensions:extensions:warehouse		8208
-1500835810	127.0.0.1	E	temporaryhold:multiwarehouse		external edit		8208
-1582241259	185.191.88.212	D	temporaryhold:multiwarehouse	joebordes	↷ Page moved and renamed from temporaryhold:multiwarehouse to en:extensions:extensions:warehouse		-8208
-1582241259	185.191.88.212	e	temporaryhold	joebordes	↷ Links adapted because of a move operation		5
-1582241267	167.86.74.24	E	en:extensions:extensions:warehouse		↷ Links adapted because of a move operation		14
-1582241929	185.191.88.212	E	en:extensions:extensions:warehouse	joebordes			640
-1582241984	185.191.88.212	E	temporaryhold	joebordes			-58
+1607125235	185.191.88.212	E	en:integrations:woocommerce	joebordes	[WordPress Woocommerce Integration] 		0
+1607129386	185.191.88.212	E	en:integrations:woocommerce	joebordes	[WordPress Woocommerce Integration] 		1319
+1607129409	185.191.88.212	E	en:integrations:woocommerce	joebordes	[WordPress Woocommerce Integration] 		0
+1607421346	185.191.88.212	E	en:devel:corebosws	joebordes	[Web service documentation] 		-4
+1607531531	185.191.88.212	E	en:adminmanual:businessmappings:list_columns	joebordes			9
+1607640653	185.191.88.212	E	en:devel:updateimagefield	joebordes			-1
+1607864892	185.191.88.212	E	en:devel:corebos_mqtm	joebordes	[Task Manager] 		3
+1608073751	185.191.88.212	E	en:calendar	joebordes	[Google Integration] 		911
+1608078962	185.191.88.212	C	en:gendoc:templatestore:checkboxexpressionconditions	joebordes	created		982
+1608079418	185.191.88.212	E	en:gendoc:templatestore:checkboxexpressionconditions	joebordes			-9
+1608247058	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Web Service Query Language] 		511
+1608247114	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Errors that can be returned] 		61
+1608247870	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Connecting to the web service API with Postman] 		654
+1608247941	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Connecting to the web service API with Postman] 		74
+1608558891	185.191.88.212	E	en:integrations:woocommerce	joebordes	[Links] 		120
+1608558926	185.191.88.212	E	en:integrations:woocommerce	joebordes	[Frequently Asked Questions] 		0
+1608564384	212.103.50.246	E	en:integrations:woocommerce	timothy	[Frequently Asked Questions] 		811
+1608564781	212.103.50.246	E	en:integrations:woocommerce	timothy	[Frequently Asked Questions] 		27
+1608565185	212.103.50.246	E	en:integrations:woocommerce	timothy	[Frequently Asked Questions] 		4
+1608565210	212.103.50.246	E	en:integrations:woocommerce	timothy	[Frequently Asked Questions] 		1
+1609025305	185.191.88.212	E	en:extensions:extensions:autonumberprefix	joebordes	[Configuration] 		114
+1609025328	185.191.88.212	E	en:extensions:extensions:autonumberprefix	joebordes	[Configuration] 		6
+1609025395	185.191.88.212	E	en:extensions:extensions:autonumberprefix	joebordes	[Auto Number Prefix Information] 		33
+1609025521	185.191.88.212	E	en:extensions:extensions:autonumberprefix	joebordes	[Number formatting] 		188
+1609025570	185.191.88.212	E	en:extensions:extensions:autonumberprefix	joebordes	[Number formatting] 		-32
+1609070270	185.191.88.212	C	en:gendoc:templatestore:productlabels	joebordes	created		486

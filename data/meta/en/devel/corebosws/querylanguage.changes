@@ -20,3 +20,48 @@
 1507301340	95.60.145.18	E	en:devel:corebosws:querylanguage	joebordes			30
 1519389570	95.60.145.18	E	en:devel:corebosws:querylanguage	joebordes	[Errors that can be returned] 		593
 1556816002	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes			2
+1592387397	197.250.224.1	E	en:devel:corebosws:querylanguage	gmoshi			1267
+1592387643	197.250.224.1	E	en:devel:corebosws:querylanguage	gmoshi			-4
+1592387710	197.250.224.1	E	en:devel:corebosws:querylanguage	gmoshi			-4
+1592387773	197.250.224.1	E	en:devel:corebosws:querylanguage	gmoshi			-2
+1592387850	197.250.224.1	E	en:devel:corebosws:querylanguage	gmoshi			7
+1592387948	197.250.224.1	E	en:devel:corebosws:querylanguage	gmoshi			-2
+1592387993	197.250.224.1	E	en:devel:corebosws:querylanguage	gmoshi			-4
+1592388109	197.250.224.1	E	en:devel:corebosws:querylanguage	gmoshi			-2
+1592388421	197.250.224.1	E	en:devel:corebosws:querylanguage	gmoshi			562
+1592388520	197.250.224.1	E	en:devel:corebosws:querylanguage	gmoshi			1
+1592407934	197.250.102.196	E	en:devel:corebosws:querylanguage	gmoshi			17
+1592408023	197.250.102.196	E	en:devel:corebosws:querylanguage	gmoshi			-17
+1592482449	197.250.97.115	E	en:devel:corebosws:querylanguage	gmoshi			48
+1592484327	197.250.97.115	E	en:devel:corebosws:querylanguage	gmoshi			4
+1592484785	197.250.97.115	E	en:devel:corebosws:querylanguage	gmoshi			0
+1592485876	197.250.97.115	E	en:devel:corebosws:querylanguage	gmoshi			-4
+1592492981	197.250.101.222	E	en:devel:corebosws:querylanguage	gmoshi			706
+1592493058	197.250.101.222	E	en:devel:corebosws:querylanguage	gmoshi			14
+1592495336	197.250.101.222	E	en:devel:corebosws:querylanguage	gmoshi			1325
+1592495440	197.250.101.222	E	en:devel:corebosws:querylanguage	gmoshi			1367
+1592495527	197.250.101.222	E	en:devel:corebosws:querylanguage	gmoshi			1349
+1592497278	197.250.101.222	E	en:devel:corebosws:querylanguage	gmoshi	[Query return limit] 		264
+1592497841	197.250.101.222	E	en:devel:corebosws:querylanguage	gmoshi	[Query return limit] 		4
+1592498693	197.250.101.222	E	en:devel:corebosws:querylanguage	gmoshi			-1
+1592511007	197.250.226.40	E	en:devel:corebosws:querylanguage	gmoshi			-4037
+1592513575	197.250.226.40	E	en:devel:corebosws:querylanguage	gmoshi			5
+1592513666	197.250.226.40	E	en:devel:corebosws:querylanguage	gmoshi			6
+1593093927	197.250.98.118	E	en:devel:corebosws:querylanguage	gmoshi			-31
+1593095804	197.250.98.118	E	en:devel:corebosws:querylanguage	gmoshi			535
+1593099896	197.250.98.118	E	en:devel:corebosws:querylanguage	gmoshi			2
+1593105446	197.250.98.118	E	en:devel:corebosws:querylanguage	gmoshi			-616
+1593105563	197.250.98.118	E	en:devel:corebosws:querylanguage	gmoshi			12
+1593105653	197.250.98.118	E	en:devel:corebosws:querylanguage	gmoshi			-17
+1593105738	197.250.98.118	E	en:devel:corebosws:querylanguage	gmoshi			-6
+1593105780	197.250.98.118	E	en:devel:corebosws:querylanguage	gmoshi			1
+1604261828	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes			20
+1604267842	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes			376
+1604268760	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes			276
+1604268807	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Query return limit] 		2
+1604268825	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Query to more than one module (joins)] 		2
+1604268989	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Errors that can be returned] 		150
+1608247058	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Web Service Query Language] 		511
+1608247114	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Errors that can be returned] 		61
+1608247870	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Connecting to the web service API with Postman] 		654
+1608247941	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Connecting to the web service API with Postman] 		74

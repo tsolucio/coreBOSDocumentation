@@ -1,20 +1,22 @@
-1565101293	80.90.84.138	C	en:corebos:workflow:thirdpictureex1.png	hena	created		31305
-1565102078	80.90.84.138	C	en:corebos:workflow:firstpictureex2.png	hena	created		52066
-1565102095	80.90.84.138	C	en:corebos:workflow:secondpictureex2.png	hena	created		9648
-1565102195	80.90.84.138	C	en:corebos:workflow:thirdpictureex2.png	hena	created		39266
-1565105124	80.90.84.138	C	en:corebos:workflow:firstpictureex3.png	hena	created		44961
-1565105808	80.90.84.138	C	en:corebos:workflow:secondpictureex3.png	hena	created		10161
-1565105876	80.90.84.138	C	en:corebos:workflow:thirdpicture_ex3.png	hena	created		39868
-1566408786	185.191.88.212	C	en:devel:moduletemplate.zip	joebordes	created		750
-1567250363	185.191.88.212	E	en:devel:asktoproceeddevblock.zip	joebordes			435
-1572277152	80.90.84.138	C	en:adminmanual:businessmappings:1.png	gledisabaci	created		35942
-1572277468	80.90.84.138	C	en:adminmanual:businessmappings:2.png	gledisabaci	created		15669
-1572277469	80.90.84.138	C	en:adminmanual:businessmappings:3.png	gledisabaci	created		18687
-1577705341	185.191.88.212	C	images:corebos.png	joebordes	created		6883
-1577705341	185.191.88.212	C	images:corebos80.png	joebordes	created		4479
-1577705341	185.191.88.212	C	images:corebos100.png	joebordes	created		5554
-1577705341	185.191.88.212	C	images:corebos.svg	joebordes	created		26082
-1577705342	185.191.88.212	C	images:corebos400.png	joebordes	created		30958
-1577705342	185.191.88.212	C	images:corebos400washed.png	joebordes	created		27592
-1577705342	185.191.88.212	C	images:corebosicon.png	joebordes	created		1174
-1578001625	185.191.88.212	E	gendoc:gendocdocumentation.odt	joebordes			-92
+1605293693	185.191.88.212	C	en:integrations:onesignaladvanced.png	joebordes	created		50474
+1605295049	185.191.88.212	C	en:integrations:onesignalauth.png	joebordes	created		84949
+1605392600	185.191.88.212	C	en:integrations:onesignalsw.png	joebordes	created		41025
+1605400017	185.191.88.212	C	en:integrations:testnotification.png	joebordes	created		83246
+1605400092	185.191.88.212	C	en:integrations:asteriskincomingnotification.png	joebordes	created		113562
+1606044809	185.191.88.212	E	en:adminmanual:businessmappings:fieldinfo:fine-tuning_the_products_services_autocomplete.pdf	joebordes			151858
+1607121339	185.191.88.212	C	en:integrations:cbwoocommerceconfig.png	joebordes	created		79552
+1607122727	185.191.88.212	C	en:integrations:woocommercerestapi1.png	joebordes	created		98822
+1607122897	185.191.88.212	C	en:integrations:woocommercenot.png	joebordes	created		100920
+1608073648	185.191.88.212	C	en:calendartzutcm3.png	joebordes	created		31583
+1608073648	185.191.88.212	C	en:calendartzutcp1.png	joebordes	created		31942
+1608073648	185.191.88.212	C	en:calendartzutc.png	joebordes	created		31428
+1608073654	185.191.88.212	C	en:calendartz1.png	joebordes	created		88086
+1608078087	185.191.88.212	C	en:gendoc:templatestore:checkbox_expression_conditions.odt	joebordes	created		13632
+1608078695	185.191.88.212	C	en:gendoc:templatestore:organization_chemex_labs_ltd.odt	joebordes	created		6577
+1608078847	185.191.88.212	C	en:gendoc:templatestore:checkboxesonmodules.png	joebordes	created		76244
+1608078847	185.191.88.212	C	en:gendoc:templatestore:gendoccheckboxesexampe.png	joebordes	created		233031
+1608247850	185.191.88.212	C	en:devel:corebosws:postmanchallenge.png	joebordes	created		99811
+1608247850	185.191.88.212	C	en:devel:corebosws:postmanquery.png	joebordes	created		115087
+1608247850	185.191.88.212	C	en:devel:corebosws:postmanlogin.png	joebordes	created		105662
+1609070266	185.191.88.212	C	en:gendoc:templatestore:30mmx40mm.odt	joebordes	created		10427
+1609070266	185.191.88.212	C	en:gendoc:templatestore:30mmx40mm.pdf	joebordes	created		21844

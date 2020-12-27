@@ -1,3 +1,88 @@
 1400426053	95.60.145.18	C	en:devel:corebosws:methodreference	joebordes	created	
 1400426089	95.60.145.18	E	en:devel:corebosws:methodreference	joebordes	[Retrieve Attachment] 	
 1429775665	80.35.20.79	E	en:devel:corebosws:methodreference	joebordes	[Retrieve Attachment] 	
+1445705386	127.0.0.1	E	en:devel:corebosws:methodreference		external edit		0
+1583107463	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Revise] 		1108
+1590601116	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Users] 		-7
+1590601189	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Revise] 		25
+1590601915	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Filters/Views] 		1526
+1591111184	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Filters/Views] 		1901
+1593128654	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes			477
+1595188920	197.250.97.7	E	en:devel:corebosws:methodreference	gmoshi			-527
+1595190137	197.250.97.7	E	en:devel:corebosws:methodreference	gmoshi	[Users] 		913
+1595190229	197.250.97.7	E	en:devel:corebosws:methodreference	gmoshi	[Users] 		40
+1595190326	197.250.97.7	E	en:devel:corebosws:methodreference	gmoshi	[Create] 		-2
+1595190341	197.250.97.7	E	en:devel:corebosws:methodreference	gmoshi	[Create] 		1
+1595190369	197.250.97.7	E	en:devel:corebosws:methodreference	gmoshi	[Retrieve] 		-2
+1595190399	197.250.97.7	E	en:devel:corebosws:methodreference	gmoshi	[Update] 		-1
+1595190456	197.250.97.7	E	en:devel:corebosws:methodreference	gmoshi	[Delete] 		-2
+1595190497	197.250.97.7	E	en:devel:corebosws:methodreference	gmoshi	[Retrieve] 		1
+1595190514	197.250.97.7	E	en:devel:corebosws:methodreference	gmoshi	[Delete] 		1
+1595340196	197.250.132.140	E	en:devel:corebosws:methodreference	gmoshi	[Revise] 		-509
+1595340230	197.250.132.140	E	en:devel:corebosws:methodreference	gmoshi	[Delete] 		509
+1595340267	197.250.132.140	E	en:devel:corebosws:methodreference	gmoshi	[Filters/Views] 		-3929
+1595434395	197.250.132.140	E	en:devel:corebosws:methodreference	gmoshi	[Retrieve Attachment] 		1794
+1599506921	197.250.224.73	E	en:devel:corebosws:methodreference	gmoshi	[Users] 		-16
+1599507097	197.250.224.73	E	en:devel:corebosws:methodreference	gmoshi	[Restricted List Types] 		832
+1599507256	197.250.224.73	E	en:devel:corebosws:methodreference	gmoshi	[Restricted List Types] 		-871
+1599507290	197.250.224.73	E	en:devel:corebosws:methodreference	gmoshi	[Describe] 		1
+1599507353	197.250.224.73	E	en:devel:corebosws:methodreference	gmoshi	[Describe] 		1
+1604271072	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes			7873
+1604271131	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes			-50
+1604271173	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Update] 		-10
+1604271189	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Update] 		0
+1604271253	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Update] 		-15
+1604271290	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Retrieve] 		-23
+1604271307	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Retrieve] 		13
+1604271334	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Create] 		-13
+1604271346	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Create] 		2
+1604271362	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Create] 		-2
+1604271373	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Create] 		-7
+1604272424	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes			642
+1604272606	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Retrieve Attachment] 		26
+1604272620	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Retrieve Attachment] 		-2
+1604272847	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Filters/Views] 		3
+1604272880	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[List Types] 		90
+1604274421	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes			1154
+1604274447	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Metadata information] 		2
+1604274572	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes			-92
+1604274750	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Users] 		-209
+1604275262	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Users] 		722
+1604275273	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Users] 		0
+1604275288	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Users] 		3
+1604275674	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Retrieve Attachment] 		1587
+1604275690	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Sync] 		0
+1604276442	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Describe] 		395
+1604276851	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Retrieve Attachment] 		70
+1604276888	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Users] 		96
+1604278146	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Documents] 		217
+1604278247	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Sync] 		165
+1604279060	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Documents] 		45
+1604279564	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Upsert] 		108
+1604280041	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[User Information] 		183
+1604280142	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Retrieve Attachment] 		11
+1604318628	85.58.17.122	E	en:devel:corebosws:methodreference	joebordes			-45
+1604319165	85.58.17.122	E	en:devel:corebosws:methodreference	joebordes	[Adding Comments] 		1142
+1604319187	85.58.17.122	E	en:devel:corebosws:methodreference	joebordes	[Adding Comments] 		3
+1604337027	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Upsert] 		1091
+1604337063	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Upsert] 		0
+1604337815	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes			64
+1604338148	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Mass Operations] 		469
+1604344835	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Mass Operations] 		1090
+1604345427	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Mass Operations] 		4040
+1604345471	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Mass Operations] 		12
+1604345518	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Mass Operations] 		4
+1604355754	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Validations. CRU] 		943
+1604356220	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Logging] 		549
+1604356240	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Javascript Logging] 		1
+1604356321	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Search Global Variable] 		48
+1604356959	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Translations] 		-241
+1604359026	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Other Information] 		1204
+1604359951	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Other Information] 		397
+1604360260	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Other Information] 		119
+1604360285	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Other Information] 		-1
+1604392371	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Other Information] 		840
+1604392652	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Other Information] 		946
+1604394012	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Relations] 		1595
+1604444717	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[Retrieve] 		77
+1605639139	185.191.88.212	E	en:devel:corebosws:methodreference	joebordes	[CRUD Users] 		339
