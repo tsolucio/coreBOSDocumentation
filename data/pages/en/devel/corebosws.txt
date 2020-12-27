@@ -11,6 +11,7 @@ This documentation describes the available application programming interface (AP
   * [[https://github.com/tsolucio/coreBOSwsBrowser|coreBOS Web Service Developer Tool Code on GitHub]]
   * [[https://github.com/tsolucio/coreBOSwsLibrary|coreBOS Web Service Library Code on GitHub]]
   * [[:en:devel:corebosws:coreboswsbrowser|coreBOS Web Service Developer Tool]]
+  * [[https://corebos.com/documentation/coreboswsapi|coreBOS Web Service OpenAPI specification]]
 
 ===== Web service things =====
 
