@@ -1,0 +1,144 @@
+=====Elastic Search/Kibana Integration=====
+
+===== Introduction =====
+
+The **coreBOS-ElasticSearch** integration works on the idea that ES (Elastic Search) is more than capable of handling ALL the information we have in our CRM, so we directly send it all over for you to analyze.
+
+The integration will continuously send to Elastic:
+
+  * Full CRM records for all modules installed
+  * All individual changes made to any field on any module
+  * All audit information it can pick up: for example, logins and each action executed by each user
+
+So, once setup, you will be able to plugin Kibana to your ES server and start analyzing and visualizing all your information.
+
+<WRAP center round info 75%>Note that the initial setup will give you a lot of information, almost everything ([[en:integrations:elasticsearchexternal#things_we_still_need_to_do|see below the pending list of things to do]]) that is happening in your CRM will be available to you, but there may still be room for improvement. We can create specialized indexes in order to facilitate the study of certain groups of actions by denormalizing tables for you, we can add information and events that you may be interested in, or we can simply help you analyze the enormous amount of information we just put at your finger tips, so **don't hesitate to contact us for help**</WRAP>
+
+The information will be saved in **three indexes**:
+
+==== companydata index====
+
+This index contains one type per each module in the CRM and inside all the records of that module in their current state in the CRM. Even the deleted ones, which will be marked with their "deleted" field set to 1.
+
+As with the special "deleted" field, each record also contains a few other common fields:
+
+  * **deleted**: 0 if the records is available in the CRM and 1 if not
+  * **record_id**: the internal crmid of the record
+  * **record_module**: the internal english name of the module: Potentials, HelpDesk, ...|
+  * **creatorid**: internal USERID of the user who created the record
+  * **apptags**: list of tags associated to the record
+
+====companydatachange index====
+
+This index contains a list of each individual change occurred on any record in the crm. The structure is like this:
+^ Field ^ Type ^ Contains ^
+|record_module|string|Name of the module affected by the change|
+|record_id|long|Internal CRMID of the record affected|
+|userid|long|Internal USERID of the user who made the change|
+|changedon|date|Date of the change|
+|operation|string|Action executed: CREATED or UPDATED|
+|field|string|Name of the field affected by the change|
+|prevalue|string|Value prior to the change|
+|postvalue|string|Value after the change|
+
+
+====companydataaudit index====
+
+This index contains a list of each individual action occurred in the application by the users in their daily use. The structure is like this:
+^ Field ^ Type ^ Contains ^
+|operation|string|Action executed: login, login portal, logout, detailview, webservice, ...|
+|record_module|string|Name of the module affected by the action|
+|record_id|long|Internal CRMID of the record affected|
+|userid|long|Internal USERID of the user who made the change|
+|doneon|date|Date of the action|
+|donefrom|ip|IP from which the action was requested|
+|moreinfo|string|A bucket of variable information related to the action|
+
+{{ :en:integrations:elasticsearch:cbelasticsearch.png?600 |}}
+
+===== Setup coreBOS =====
+
+  - Make sure you have an up to date coreBOS that supports all the events this extension looks for
+  - Go to Module Manager and install the extension
+  - Go to Settings for the extension and fill in the IP and access information for you ES server
+  - Verify that the cron for Elastic is present and **DEactivated**. We will activate it once we have imported all our current information
+  - Deactivate Audit History and Mod Tracker, simply to reduce overhead doing the same thing twice
+
+<WRAP center round info 70%>In general the heavy weight process is the audit trail, ModTracker is calculated for all records on all saves whether you decide to save the information or not so if your users are used to having it on screen and find it useful you can leave it. In my opinion, ES gives you a much more powerful interface to analyze this information, but you may not want to give access to the full change log to everybody.</WRAP>
+
+
+===== Setup Elastic Search =====
+
+This is, by far, the most important part of the setup. For Elastic to properly index our information it is fundamental that we give it a //mapping// of the information we have. We must define the type and the way we want each of our fields to be analyzed and indexed in order to be able to get the best out of our data.
+
+We have a process that will generate a default mapping based on the different types of fields supported by coreBOS. With this and the fantastic job Elastic does by default, we are in a pretty good situation to answer the questions we have about our business but there is still royom for improvement. Data analysis is a complex subject and really depends on the questions you need to answer and the things you want to study so the default mapping generated may need some special tuning for your exact data. Don't hesitate to contact us for help.
+
+  - You will need an Elastic Search server installed
+  - Go to the command line of your install and execute: <code>php modules/cbElasticSearch/generateESMap.php {version}> cbesmap.json</code> where {version} is a string that will be used to create the aliases for the indexes
+  - Open cbesmap.json in an editor. You will see the complete set of commands you need to send to your elastic server to get all the indexes defined. You can fine tune as necessary and the copy and paste those commands into your ES server.
+
+<WRAP center round info 70%>
+if the data generated is to big to paste in directly, you can send it in via POST on the command line with curl, something like this:
+<code>curl -XPOST 'http://localhost:9200/cdatav001' -d @cbes1.json</code>
+</WRAP>
+
+<WRAP center round important 60%>
+TODO: Add this to Settings: a button to generate the mapping and send it directly to ES
+</WRAP>
+
+Elastic is now ready to receive your information
+
+===== Import Current Data into Elastic =====
+
+As soon as you installed the coreBOS-ES integration extension it started picking up information about everything that is happening, but it won't be able to send it all until ES has the current state of our data. For this to happen we have to execute the import process which will pickup all the information in our CRM and send it to ES.
+
+The information sent is:
+
+  * The current set of fields for all records in all modules. Even the deleted ones
+  * It will look in the audit trail table and send all that information over
+  * It will look in the login history information and send all that information
+  * It will look in ModTracker for individual field changes and will send those over
+
+<WRAP center round important 70%>If you have your own change log module/extension this is the time to create a process to send that information over too</WRAP>
+
+Due to the amount of information that can be sent I would recommend doing this from the command line to avoid unnecessary timeouts. In any case the import process is prepared to stop and continue where it left off so you can just continue to execute it until you have all your information there.
+
+<code>php modules/cbElasticSearch/cbesimport.php</code>
+
+===== Getting Information from Elastic into the CRM =====
+
+Among other things that can be done I paste here ideas generated by team at in Albania.
+
+====Ajax JSON type related list====
+
+One way is to represent the changes of the normal index as lines of a related list inside the record that we want to explore.
+
+Evolutivo created a json “de-compiler” of another project called angular block inside the application itself. It produces a representation inside the detail view of the record. The Ajax technology used is an Angular.js grid.
+
+The best thing related to this approach of showing data, is the possibility to add actions related to that specific log, for example it would be possible to revert to a previous state.
+
+{{ :en:integrations:elasticsearch:esrelatedlist.png?600 |}}
+
+==== Elasticsearch extension in coreBOS====
+
+Another approach would be creating a search client directly as an extension in the application. There can also be found some ready to install clients using opensource software in order to embed them in the application, without having to re-create the whole thing from scratch. 
+
+{{ :en:integrations:elasticsearch:esembededsearch.png?600 |}}
+
+One intelligent approach would be also store the URL of the entity in the ES Document in order to directly access from the search
+
+==== Kibana integration====
+
+Another approach is the possibility to create an extension inside coreBOS and then show in that the search done by some super-user in the Kibana Application.
+
+This would help in order to improve some restrictions on security. 
+
+
+===== Things we still need to do =====
+
+  * Add in Settings: a button to generate the mapping and send it directly to ES
+  * Import full documents into ES for full document searches
+  * Control many to many relations. The current integration does not index this information. I need more experience and to see how the current relations are handled by real users asking questions
+  * User events. Since Users is a special module most events on users module aren't registered. We need to change that and index those events like any other module.
+  * Tags: add/delete events
+  * Inventory modules: denormalize? is InventoryModules enough? NestedObjects?

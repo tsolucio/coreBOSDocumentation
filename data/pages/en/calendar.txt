@@ -130,6 +130,34 @@ The new Calendar also provides the possibility to assign documents to events or 
 
 [[calendar_google_integration|Calendar Google Integration]]
 
+===== Frequently Asked Question =====
+
+~~QNA~~
+
+??? Hour is not the same in the calendar and email. Using a workflow that sends an email to the contact, with meeting time and date (variable existing in the event), there is a one hour difference between email received and event in agenda.
+
+!!! The email is sent in the timezone of the assigned user. Look at this example
+
+This is the workflow email:
+
+{{ :en:calendartz1.png |Workflow Email template}}
+
+The coreBOS install I am testing on is set to UTC in config.inc.php. I create a calendar to-do with a user in the UTC timezone with the start date at 2020-12-16 22:24 to 2020-12-16 22:29. With the record assigned to this same user (UTC) I see this email:
+
+{{ :en:calendartzutc.png | Email UTC}}
+
+With a user in UTC+1 I get this one:
+
+{{ :en:calendartzutcp1.png | Email UTC+1}}
+
+and with a user in UTC-3 I get:
+
+{{ :en:calendartzutcm3.png | Email UTC-3}}
+
+
+
+
+
 ===== Development =====
 
 [[en:devel:calendar|Calendar Development]]

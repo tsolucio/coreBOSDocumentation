@@ -1,27 +1,71 @@
 ====== Web Service Query Language ======
 
+===== Query =====
+
+^Purpose:|Retrieve a set of records with an SQL like language that understands the entities in the system and their relations|
+^Profile:|query(query:String):Object|
+^Send Type:|GET|
+^Parameters:|query: query language command terminated in semicolon|
+^Returns:|array of rows with the results found. each row will contain the same amount of columns corresponding to the query command executed|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=query&query=[query command]</code>|
+
 ===== Basic Query Language =====
 
-coreBOS provides a simple query language for fetching data based on a similar syntax to select queries in SQL. The general syntax looks like this:
+Since coreBOS is a complete business application it needed a more powerful service to retrieve information than the standard REST protocol could offer, something closer to a GraphQL interface (we didn't have GraphQL back then). To cover this need, a hybrid SQL language was created VQL (Vtigercrm Query Language). This language is a reduced subset of the standard  SQL language with extensions to "understand" the business entities contained in each coreBOS. The limitations are:
 
-<code>select * | <column_list> | <count(*)>
+  * subqueries are not supported
+  * no mathematical aggregation functions are supported except count(*)
+  * we can only execute queries against entities, not direct database tables and once we consult an entity we have access to all its fields no matter how many tables it is separated into in the database application. There are some special entities due to their non-standard internal structure:
+    * **Currency**: we can execute queries against defined currencies in the application
+    * **Groups**: we can get a list of defined groups
+    * **DocumentFolders**: we can get a list of document folders created
+    * **LoginHistory**: historic access data
+    * **AuditTrail**: operational data for all users
+    * **Workflow**: list the workflows in the application
+    * **ModTracker**: field-level changes on records
+  * the result set is restricted to 100 records by default. You can overcome this limit by specifically setting a limit clause and by paging the result set (recommended).
+
+
+Even with these limitations, it is an incredible and powerful language.
+
+The accepted format definition is: 
+
+<code>select [distinct] * | <column_list> | <count(*)>
 from <object>
 [where <conditionals>] 
 [order by <column_list>] [limit [<m>, ]<n>];
 </code>
 
-The column list in the order by clause can have at most two column names.
-
-  * column_list: comma separated list of field names
+  * column_list: comma-separated list of field names
   * object: module name
   * conditionals: condition operations, in clauses, or like clauses separated by 'and' or 'or' operands these are processed from left to right
-  * conditional operators: <, >, <=, >=, =, !=
-  * in clauses: <column name> in (<value list>)
-  * like clauses: <column name> like '<value pattern>'
-  * value list: a comma separated list of values
-  * m, n: integer values to specify the offset and limit respectively
+    * conditional operators: <, >, <=, >=, =, !=
+    * in clauses: <column name> in (<value list>)
+      * value list: a comma-separated list of values
+    * like clauses: <column name> like '<value pattern>'
+  * the column list in the order by clause can have at most two column names.
+  * m, n: integer values to specify the offset and limit respectively. If only one value is given it is applied as limit
 
-There are **three different syntaxes** supported.
+{{:en:devel:corebosws:coreboswebservicequery.png|}}
+
+Try these VQL commands.
+<code>
+select * from contacts
+select firstname,contact_no,phone from contacts
+select firstname,contact_no,phone from contacts order by firstname
+select count(*) from contacts
+/* Only four records starting from the first */
+select firstname,contact_no,phone from contacts order by firstname limit 4
+/* Only four records starting from the third */
+select firstname,contact_no,phone from contacts order by firstname limit 3, 4
+select * from groups
+select * from workflow
+select * from invoice where hdnGrandTotal > 5000
+select * from invoice where hdnGrandTotal > 5000 and invoicestatus = 'Created'
+select * from invoice where hdnGrandTotal > 5000 and invoicestatus like '%Created%'
+</code>
+
+There are **four different syntaxes** supported.
 
 One is **the original query language** inherited from vtiger CRM. This is rather limited as it doesn't support related entities nor parenthesis in the conditions.
 
@@ -40,12 +84,12 @@ So, be careful when sending a query as it can easily be sent to the syntax parse
 Let's go over that again.
 
   * All queries use the list type module name in the FROM and WHERE sections
-  * [[en:devel:corebosws:querylanguage#related_entity_query_syntax|Related Entity Query Syntax ]] is based on the getRelatedRecords web service endpoint, so anything you can do with the query language can be done with this end point. The reverse is not true as the getRelatedRecords method has some functionality that cannot be accessed through the query language. This query language functionality is deprecated and not recommended, it works, and will continue to do so, but the QueryGenerator syntax is more powerful and the recommended way to get information from the query language.
+  * [[en:devel:corebosws:querylanguage#related_entity_query_syntax|Related Entity Query Syntax ]] is based on the getRelatedRecords web service endpoint, so anything you can do with the query language can be done with this endpoint. The reverse is not true as the getRelatedRecords method has some functionality that cannot be accessed through the query language. This query language functionality is deprecated and not recommended, it works, and will continue to do so, but the QueryGenerator syntax is more powerful and the recommended way to get information from the query language.
   * Given a web service query, the detection of what parser to use follows these steps:
 
 === 1.- Related modules ===
 
-When a query is sent to the webservice query API it looks for the string "related."
+When a query is sent to the web service query API it looks for the string "related."
 
 If this string is found we apply the Related Entity Query Syntax.
 
@@ -80,21 +124,31 @@ FROM project
 where projectname like '%cap%' and (modifiedtime>'2016-06-30 19:11:59' or modifiedtime<'2016-07-30 19:11:59')
 </code>
 
-=== 3.- Original VQL syntax (no 'related') ===
+=== 3.- Use legacy VQL ===
 
-<code SQL>
-select * | <column_list> | <count(*)>
-from 
-[where ]
-[order by <column_list>] [limit [, ]];
+===== Query to more than one module (joins) =====
 
-SELECT * FROM Products
-where productname='sample' LIMIT 10
-</code>
+There are no "joins" in WebService Query Language, but coreBOS will do them for you. Remember that coreBOS WebService Query Language talks about entities, not tables.
+
+We do <wrap lo>select...from accounts</wrap>  not  <wrap lo>select...from vtiger_accounts</wrap>
+
+In this same line, you have to specify fields prefixed by their module name and WSQL will do whatever it has to do to get the field from the directly related module. For example
+
+<code>select firstname, Accounts.accountname from Accounts;</code>
+
+Note, that fields on the module **DO NOT** have a prefix. The result of this query is VERY different:
+
+<code>select Contacts.firstname, Accounts.accountname from Accounts;</code>
+
+In this second query, we are accessing the first name of the Contact RELATED to the contacts. The Contact module has a related field to itself (Reports To), the column in the query above is retrieving the name from the RELATED contact through the Reports To field, not the name on the contact record itself.
+
+So, if you want fields from a related module, just ask for them
 
 === Examples ===
 
-For example, we can launch a query like this:
+<code SQL>
+SELECT * FROM Products where productname='sample' LIMIT 10;
+</code>
 
 <code>
 select projectname,modifiedtime
@@ -128,7 +182,7 @@ returning a completely different set as the original query parser evaluates the 
 
 Besides the enhanced syntax, there are **two very important things to note** about this dynamic switch.
 
-**One** is that the original query parser and QueryGenerator parser use different ways of identifying a related record. The original parser uses the webservice ID while the QueryGenerator uses the record's entity field name. In other words, when adding conditions on related fields (uitype10), the original parser expects the CRMID of the related record while the QueryGenerator parser expects the value of the entity link field.
+**One** is that the original query parser and QueryGenerator parser use different ways of identifying a related record. The original parser uses the web service ID while the QueryGenerator uses the record's entity field name. In other words, when adding conditions on related fields (uitype10), the original parser expects the CRMID of the related record while the QueryGenerator parser expects the value of the entity link field.
 
 For example, this query:
 
@@ -150,7 +204,7 @@ from ProjectTask
 where (projectid='33x6772' and  modifiedtime>'2015-08-12 10:10:48' and modifiedtime<'2015-09-12 10:10:48')
 </code>
 
-with the parenthesis we are using the QueryGenerator parser and must set the projectid field to the entity link field which is project name. The correct query looks like this:
+with the parenthesis, we are using the QueryGenerator parser and must set the projectid field to the entity link field which is project name. The correct query looks like this:
 
 <code>
 select projecttaskname,projectid,modifiedtime
@@ -171,7 +225,9 @@ where (Project.id='33x6772' and  modifiedtime>'2015-08-12 10:10:48' and modified
 The **second** is that the original query parser will automatically add the "limit 100" to the query while the QueryGenerator will not do this.
 
 You can find a whole set of examples in the [[en:devel:corebosws:coreboswsbrowser|coreBOS Web Service Developer Tool]] and the [[https://github.com/tsolucio/coreBOSTests/blob/master/include/Webservices/VtigerModuleOperation_QueryTest.php|webservice query unit tests suite]].
-==== Query return limit ====
+
+===== Query return limit =====
+
 The select statement only returns 100 records. This is due to timeout and resource restrictions. If you want to obtain more records you must use the //limit// modifier. Any select statement with a limit modifier will try to return all the records indicated in the limit. So, if we have a contacts table with 150 records, this query:
 
 <code>select * from contacts;</code>
@@ -182,6 +238,14 @@ will return 100 records, while this query:
 
 will return the 150 records.
 
+<code>select firstname,contact_no,phone from contacts order by firstname limit 4;</code>
+
+Only four records starting from the first
+
+<code>select firstname,contact_no,phone from contacts order by firstname limit 3, 4</code>
+
+Only four records starting from the third
+
 <WRAP center round info 75%>If you are receiving timeouts you can increment the default timeout by modifying the code:
 [[https://github.com/tsolucio/coreBOSwsLibrary/blob/master/php/Net/HTTP_Client.php#L22|PHP]]\\
 [[https://github.com/tsolucio/coreBOSwsLibrary/blob/master/php/Net/HTTP_Client.php#L29|PHP]]\\
@@ -190,8 +254,6 @@ will return the 150 records.
 </WRAP>
 
 ===== Related Entity Query Syntax =====
-
-Implemented in ~~issue:127~~
 
 {{youtube>5B0A6IPMnJM}}
 \\
@@ -222,8 +284,8 @@ Select * from Products where related.Contacts='4x22' order by productname LIMIT 
   * queryparameters support column definitions, reducing the size of information being returned
   * **multiple entities, IDs or related modules** are **NOT** supported with this API. We have created the extended query language functionality, based on Query Generator for this.
 
-
 There are a few restrictions we couldn't overcome:
+
   * only one related entity may be used, as the getRelatedRecords function works with only one entity ID, we inherit this restriction. If more than one is put in the query, only the first is used and the rest are ignored and eliminated.
   * the product relation is limited to directly related records, which means that on a contact we will only have access to the ones on his +info tab, or for a product we can only see it's bundle child products.
   * advanced filtering (limited by current query syntax)
@@ -235,15 +297,15 @@ The Webservice extended query language functionality, based on Query GeneratorQu
 
 ===== Searching for empty relations =====
 
-When you have a webservice query, and you want to select records from a module where a certain UI10 field is empty use:
+When you have a web service query, and you want to select records from a module where a certain related (UI10) field is empty use:
 
 <code>
-select * from purchaseorder where po_related_soid = 15x0 
+select * from PurchaseOrder where po_related_soid = 15x0 
 </code>
 
-Where 15 is the webservice ID for the module of the UI10 field (in this case salesorders). Then use the 'x', and add a 0.
+Where 15 is the web service ID for the module of the UI10 field (in this case SalesOrder). Then use the 'x', and add a 0.
 
-'po_related_soid' is a placeholder for the fieldname you want to check on, replace that with your own. Of course also replace the module name with your own. 
+'po_related_soid' is a placeholder for the fieldname you want to check on, replace that with your own. Of course, also replace the module name with your own. 
 
 [[https://discussions.corebos.org/showthread.php?tid=912|Thanks Luke!]]
 
@@ -251,12 +313,38 @@ Where 15 is the webservice ID for the module of the UI10 field (in this case sal
 
 Besides errors that may be returned by the underlying code this function uses, it can return directly these errors:
 
-  * **INVALID_MODULE**: Given module (module) cannot be found.  Either of the two module parameters are incorrect, which one will be specified in the message.
-  * **ACCESSDENIED**: Permission to perform the operation on module (module) is denied. The current user cannot work with one of the two parameter modules
+  * **INVALID_MODULE**: Given module (module) cannot be found, which one will be specified in the message.
+  * **ACCESSDENIED**: Permission to perform the operation on module (module) is denied. The current user cannot work with one of the modules
   * **INVALIDID**: Id specified is incorrect. The given ID does not correspond to an entity in the application.
-  * **ACCESSDENIED**: Permission to read given object is denied.  The current user does not have read access to the related records.
-  * **RECORDNOTFOUND**: Record you are trying to access is not found. The given ID is pointing to a deleted record or is incorrect.
+  * **ACCESSDENIED**: Permission to read given object is denied.  The current user does not have read access to the records.
+  * **RECORDNOTFOUND**: The record you are trying to access is not found. The given ID is pointing to a deleted record or is incorrect.
 
 
+===== Connecting to the web service API with Postman =====
+
+Using [[https://www.postman.com/|Postman]] to access the coreBOS Web service API is rather easy. The main trick to keep in mind is that GET requests parameters go in the PARAMS tab and POST requests parameters go in the BODY tab.
+
+The [[en:devel:corebosws:login|Login is a two-step process]] so we have to create two requests and manually calculate the access token MD5.
+
+Here you can see the Challenge setup:
+
+{{ :en:devel:corebosws:postmanchallenge.png |GetChallenge}}
+
+Here you can see the Challenge setup:
+
+{{ :en:devel:corebosws:postmanlogin.png |Login}}
+
+Here you can see the Challenge setup:
+
+{{ :en:devel:corebosws:postmanquery.png |Query}}
+
+And here you can see a quick demo of how to do it:
+
+{{youtube>z4UZw0eQ7Kw}}
 
 
+----
+<WRAP right>
+[[:en:devel:corebosws:methodreference|Next: Method Reference]] | [[en:devel:corebosws:tableofcontents|Table of Contents]]
+</WRAP>
+----

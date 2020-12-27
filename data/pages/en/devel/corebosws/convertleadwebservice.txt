@@ -1,20 +1,9 @@
 ====== Convert Lead Webservice ======
 
-Usage example of convert lead webservice in order to convert an existing Leads into Accounts, Contacts & Opportunity using Webservice.
+Usage example of convert lead web service in order to convert an existing Leads into Accounts, Contacts & Opportunity using Webservice.
 
 Important points to note before using the following code:
-  * Check table vtiger_ws_entity to know the "id" (Webservice module ID) of "Leads" module. Ensure that the Lead ID passed to vtws_convertleads function is in 'x' format.
-  * Modify "vtiger_ws_operation_parameters" table as showen below to reflect right parameters for "convertlead" Webservice call.
-
-<code SQL>DELETE FROM vtiger_ws_operation_parameters WHERE operationid = (SELECT operationid from vtiger_ws_operation WHERE name = 'convertlead');
-INSERT INTO vtiger_ws_operation_parameters (operationid, name, type, sequence) VALUES ((SELECT operationid from vtiger_ws_operation WHERE name = 'convertlead'), 'element', 'encoded', '1');</code>
-
-We are making the change in the table vtiger_ws_operation_parameters because parameters required in vtws_convertlead function in include/Webservices/vtws_convertlead.php has changed in vtiger crm 5.4 compared to earlier versions. But corresponding change in vtiger_ws_operation_parameters has not been made.
-
-<WRAP center round info 80%>
-This change is not required in coreBOS where we have already applied it.
-</WRAP>
-
+  * Check table vtiger_ws_entity to know the "id" (Webservice module ID) of the "Leads" module. Ensure that the Lead ID passed to vtws_convertleads function is in 'x' format.
 
   * Following example uses standard vtwsclib library.
   * Sample code:<code><?php
@@ -75,6 +64,14 @@ echo vtws_convertleads($d);
 
 ?></code>
 
+
+^Purpose:|Permits the conversion of a lead into an account, contact and potential. This service is used by the application itself when converting leads.|
+^Profile:|convertlead($entityvalues): Map|
+^Send as:|POST|
+^Parameters:|<code> id: $entityvalues is an array. Consult the modules/Leads/LeadConvertToEntities.php to see an example.</code>|
+^Returns:|Array with all the information of the new objects created|
+^URL Format:|<code>http://vtiger_url/webservice.php?operation=deleteUser&sessionName=[session id]</code>|
+
 [[https://discussions.vtiger.com/index.php?p=/discussion/166499/usage-example-of-convert-lead-webservice|Thanks Ashutosh]]
 
 <WRAP center round info 90%>
@@ -92,15 +89,22 @@ $convert_lead_array['entities']['transferRelatedRecordsTo'] = 'Accounts';
 
 If you indicate that no Contact should be created the Lead values will be transferred to the Account.
 
-If you indicate that neither a Contact nor an Account should be created the process will fail with a webservice exception.
+If you indicate that neither a Contact nor an Account should be created the process will fail with a web service exception.
 
 </WRAP>
 
 <WRAP center round info 90%>
-By default the process will search for an existing Account with the same company name and relate the new records with this Account. This is done to avoid duplicates. You can override this behaviour by assigning a value to the meta-variable **//forcecreate//** like this:
+By default, the process will search for an existing Account with the same company name and relate the new records with this Account. This is done to avoid duplicates. You can override this behavior by assigning a value to the meta-variable **//forcecreate//** like this:
 
 $convert_lead_array['entities'][Accounts]['forcecreate'] = true;
 
 
 Be careful as this will easily create duplicate account names and you won't be able to edit them unless you set the global variable **//Accounts_BlockDuplicateName//** to false.
 </WRAP>
+
+
+----
+<WRAP right>
+[[:en:devel:corebosws:portallogin|Next: Portal user login]] | [[en:devel:corebosws:tableofcontents|Table of Contents]]
+</WRAP>
+----

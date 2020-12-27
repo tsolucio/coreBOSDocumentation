@@ -63,6 +63,9 @@ The actions supported are:
   * fieldDep_OnlyNumbers : return all numbers in new_value
   * fieldDep_OnlyLetters : return all letters in new_value
   * fieldDep_GetField : use getFieldValuesFromRecord to retrieve the value of the given field
+  * fieldDep_AssignUser : set the assigned user to the given (user) ID parameter
+  * fieldDep_AssignGroup : set the assigned user to the given (group) ID parameter
+  * fieldDep_AssignUserSelect : set the assigned user to the given user ID parameter for uitype 101 fields
   * **NOT IMPLEMENTED YET**
   * fieldDep_ChangeLabel: will permit changing the label of a field
   * fieldDep_Format : return sprintf formatting of new_value (use sprintf javascript library: https://github.com/alexei/sprintf.js)
@@ -560,3 +563,47 @@ function changeTaxDetails(change_field, action_field, new_value, old_value) {
 you can load the JS from a file in the footer with:
 
 <code>BusinessActions::addLink(getTabid("Invoice"), 'FOOTERSCRIPT', 'corebosjshookinvoice', 'modules/Invoice/corebosjshookinvoice.js', '', 0, null, false);</code>
+
+<WRAP center round box 80%>
+Force execution of functions on the load of the edit screen.
+</WRAP>
+
+The application is constructed to not permit this so we have to use a trick to consciously force this.
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>CobroPago</originname>
+  </originmodule>
+<dependencies>
+<dependency>
+    <field>cyp_no</field>
+    <actions>
+
+        <function>
+            <field>cyp_no</field>
+            <name>doNothing</name>
+            <parameters>
+              <parameter>this is a stub to force the next two functions to work. this is a conscious execution of functions on load</parameter>
+            </parameters>
+        </function>
+        <function>
+            <field>assigned_user_id</field>
+            <name>fieldDep_AssignUser</name>
+            <parameters>
+              <parameter>12</parameter>
+            </parameters>
+        </function>
+        <function>
+            <field>reports_to_id</field>
+            <name>fieldDep_AssignUserSelect</name>
+            <parameters>
+              <parameter>5</parameter>
+            </parameters>
+        </function>
+
+    </actions>
+</dependency>
+</dependencies>
+</map>
+</code>

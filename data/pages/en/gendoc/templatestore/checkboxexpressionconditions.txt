@@ -1,0 +1,33 @@
+===== GenDoc Template:: Use checkbox to show text conditionaly =====
+
+Example of using checkboxes to show different texts in the document
+
+---- dataentry ----
+name : checkbox_expression_conditions
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:checkbox_expression_conditions.odt
+pdfexample_img: :en:gendoc:templatestore:organization_chemex_labs_ltd.odt
+description_wiki: Example of using checkboxes to show different texts in the document
+keywords_tags : checkbox,expression,example
+language: EN
+module: Accounts
+version : 1
+release_dt : 2020-12-16
+licenses : CC
+price : Free
+distribution : Free
+authorname : Joe Bordes
+----
+\\
+
+I created a block with 4 checkboxes in Accounts and Contacts.
+
+{{ :en:gendoc:templatestore:checkboxesonmodules.png |}}
+
+then I created the template above that uses the values of those checkboxes inside a FOREACH and a simple normal table to show different text.
+
+{{ :en:gendoc:templatestore:gendoccheckboxesexampe.png |}}
+
+HTH
+
+

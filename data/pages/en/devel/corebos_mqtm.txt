@@ -130,7 +130,7 @@ The task manager is an independent process that must be launched or initiated ma
 
 <code>
 cd your_corebos_install_top_directory
-php include/cbmqtm/run.php
+php include/cbmqtm/run.php -d
 </code>
 
 This will run forever in an infinite loop that, on every iteration of the loop will check and expires messages accordingly. If a message must be delivered it will launch the indicated tasks for all subscribers so they can consume the messages.

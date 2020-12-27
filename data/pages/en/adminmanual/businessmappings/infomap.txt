@@ -1,0 +1,76 @@
+====== Information Map Business Mapping ======
+
+The accepted format is
+
+<code XML>
+<map>
+    <information>
+        <infotype>put here some distinctive category of your information</infotype>
+        <value>any information</value>
+        <value>you need</value>
+        <value>to use in your code</value>
+        <value>...</value>
+    </information>
+</map>
+</code>
+
+This type of map is useful when we have a set of information that we want the implementor to be able to change we relative ease but we don't want to create a new module just for that as the set is usually small and contains small pieces of data.
+
+For example, coreBOS uses this type of map as a parameter to the workflow expression methods that calculate business dates. The **next_date** and **holidaydifference** accept a comma separated list of dates to define which dates are holidays. Instead of having to repeat that list in every workflow where you need to use these functions and then have to edit them once a year, we can pass in as a parameter the crmid/name of an information business map with the dates, something like this:
+
+<code XML>
+<map>
+    <information>
+        <infotype>Holidays</infotype>
+        <value>2017-01-01</value>
+        <value>2017-01-06</value>
+        <value>2017-04-17</value>
+        <value>2017-04-25</value>
+        <value>2017-05-01</value>
+        <value>2017-06-02</value>
+        <value>2017-08-15</value>
+        <value>2017-11-01</value>
+        <value>2017-12-08</value>
+        <value>2017-12-25</value>
+        <value>2017-12-26</value>
+        <value>2018-01-01</value>
+        <value>2018-01-06</value>
+        <value>2018-04-01</value>
+        <value>2018-04-02</value>
+        <value>2018-04-25</value>
+        <value>2018-05-01</value>
+        <value>2018-06-02</value>
+        <value>2018-08-15</value>
+        <value>2018-11-01</value>
+        <value>2018-12-08</value>
+        <value>2018-12-25</value>
+        <value>2018-12-26</value>
+        <value>2019-01-01</value>
+        <value>2019-01-06</value>
+        <value>2019-04-21</value>
+        <value>2019-04-22</value>
+        <value>2019-04-25</value>
+        <value>2019-05-01</value>
+        <value>2019-06-02</value>
+        <value>2019-08-15</value>
+        <value>2019-11-01</value>
+        <value>2019-12-08</value>
+        <value>2019-12-25</value>
+        <value>2019-12-26</value>
+        <value>2020-01-01</value>
+        <value>2020-01-06</value>
+        <value>2020-04-12</value>
+        <value>2020-04-13</value>
+        <value>2020-04-25</value>
+        <value>2020-05-01</value>
+        <value>2020-06-02</value>
+        <value>2020-08-15</value>
+        <value>2020-11-01</value>
+        <value>2020-12-08</value>
+        <value>2020-12-25</value>
+        <value>2020-12-26</value>
+    </information>
+</map>
+</code>
+
+Making it much easier to maintain.

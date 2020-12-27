@@ -26,6 +26,7 @@ Use this small guide to get you going:
     * count
     * std
     * variance
+    * group_concat
 
 The related module is the module you want to aggregate from. This can be the same module as you're creating the workflow on. You would use this if you want to update a field on a related record by summing up (for instance) all the 'siblings' of the record you are editing. For instance, you could update a field in Accounts with the sum of all payments made to that account, whenever you edit or save one of those payments, without having to save the Account in question first.
 

@@ -1,4 +1,49 @@
 ====== Import Business Mapping ======
+
+This type of map is a developer/implementor tool. It permits you to mass import large files from the command line. It supports two different import methods.
+
+===== coreBOS based import process =====
+
+This method will use the same import process that is used from the application itself, the only difference is that through this map you can launch the whole process from the command line, making it easy to do unattended batch imports without having to go through the UI steps every time. All the other application import features are identical.
+
+<WRAP center round important 60%>
+The import CSV file MUST have a header and be in UTF8 format
+</WRAP>
+
+The accepted format is
+<code XML>
+  <map>
+  <mapname>application map name, saved while doing test import</mapname>
+  <delimiter>,|;</delimiter>
+  <duplicates>
+    <handling>skip|overwrite|merge</handling>
+    <fields>
+      <name>fieldname</name>
+      ...
+    </fields>
+  </duplicates>
+  </map>
+</code>
+
+The map name is mandatory. The idea is that you will launch a test import with a few rows and define the map with the field mapping and then use the name of that map in the business map so that the import process knows what to do. Remember to set default values, if needed.
+
+If no delimiter is given, the comma will be used.
+
+The duplicates section may be empty/missing in which no duplicates control will be applied.
+
+This is an example of a real import business map:
+
+<code XML>
+<map>
+  <mapname>cbimportBM1</mapname>
+</map>
+</code>
+===== Direct save import process =====
+
+This is a custom import process implemented in the business map itself. It has a different way of handling duplicates, permitting to update all duplicate records it finds or only the first/last one. It updates/creates records with a direct coreBOS save which does not launch workflows and will be faster than the normal coreBOS import process (which doesn't launch them either but the save process itself is a bit more complex).
+
+To import relations you must indicate the field to search on in the related module in the map.
+
 The accepted format is
 <code XML>
   <map>
@@ -37,4 +82,16 @@ The accepted format is
   </map>
 </code>
 
-This type of map is a developer tool. It permits you to define the relation of fields between two system in order to import and sync the information.
+
+===== Execute import process =====
+
+To execute the import you have to launch this command from the root of your coreBOS install
+
+<code>php modules/cbMap/processmap/importCSV.php file_to_import.csv name_or_id_of_business_map [thread]</code>
+
+The **thread** optional parameter is an alphanumeric string that will be concatenated to the import database temporary table. This permits us to launch various imports in parallel as long as different thread identifier strings are used.
+
+<WRAP center round info 60%>
+Since the business map for both supported methods is different, depending on the type of map found the correct process will be launched.
+</WRAP>
+

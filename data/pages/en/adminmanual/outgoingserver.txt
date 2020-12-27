@@ -12,15 +12,15 @@ The outgoing server settings can be set in the Settings section of the applicati
 
 {{ :images:outgoingserver.png?750 |}}
 
-^Outgoing Server|this is the server to which we must connect to send emails. This field supports a special extended syntax with which we can specify the protocol and port to use like this: <code>ssl://smtp.gmail.com:467</code> or <code>tsl://msexchange:587</code>|
+^Outgoing Server|this is the server to which we must connect to send emails. This field supports a special extended syntax with which we can specify the protocol and port to use like this: <code>tls://smtp.gmail.com:587</code> or <code>ssl://msexchange:587</code>|
 ^User Name and Password|the user name and passwords that will give us access to the server|
 ^Email From|This field will force all emails leaving the system to seem to come from this email. Although the email will be sent from this account, the "Reply to" field will be the email of the user sending the email. Thus if the recipient clicks on respond the response will be sent to the user. I suppose this has some spam/company image justification|
 ^Requires Authentication?|permits us to define the protocol to use for the connection|
 
-When you save the connection data, coreBOS will launch a test to connect and send an email. If the email is not successfully sent **NO** data will be saved. We will be returned to the configuration page with a message saying that the email could not be sent. At this point there is a connection, authentication or lack of RELAY support error and you must go to the [[en:devel:debuging#email|debugging techniques]].
+When you save the connection data, coreBOS will launch a test to connect and send an email. If the email is not successfully sent **NO** data will be saved. We will be returned to the configuration page with a message saying that the email could not be sent. At this point, there is a connection, authentication or lack of RELAY support error and you must go to the [[en:devel:debuging#email|debugging techniques]].
 
 <WRAP center round important 75%>
-When we are returned to the settings page, the previous values are present. We cannot see the password field, but is it most probably INCORRECT, the value you introduced is NOT filled in again. Please introduce the password on ALL tests that you launch.
+When we are returned to the settings page, the previous values are present. We cannot see the password field but is it most probably INCORRECT, the value you introduced is NOT filled in again. Please introduce the password on ALL tests that you launch.
 </WRAP>
 
 <WRAP center round important 75%>coreBOS prior to March 2015 did not support sending emails with an empty body. The error message returned was very misleading indicating that there was a problem with the email configuration. **DO NOT test** emails with empty bodies. As of March 2015 emails with no body are supported.</WRAP>
@@ -32,7 +32,7 @@ SMTP Error: data not accepted.</code>
 
 The mail server is saying that we do NOT have permission to send. It basically says that the error is because the account that is connected must be the same as the sender, the server does not support RELAY.
 
-If you reach this point, I recommend you register for an account at [[http://sendgrid.com|sendgrid]], it really works great and gives you much more information than you have now. They have free accounts with a limit of 400 emails a day and for a small amount of money you can do even more. We use it regularly to mass mailings from coreBOSCRM and to control administrative email deliveries. It is worth more than it costs.
+If you reach this point, I recommend you register for an account at [[http://sendgrid.com|sendgrid]], it really works great and gives you much more information than you have now. They have free accounts with a limit of 400 emails a day and for a small amount of money, you can do even more. We use it regularly to mass mailings from coreBOSCRM and to control administrative email deliveries. It is worth more than it costs.
 
 ===== Some pages related to problems configuring outgoing server =====
 
@@ -47,7 +47,7 @@ If you reach this point, I recommend you register for an account at [[http://sen
 
 !!! {{:en:corebos:vtigercrm_1and1_installation.pdf|This very old PDF file}} shared on the forum explains some issues. The important part is this one:
 
-Open the file vtigercrm/modules/Emails/class.phpmailer.php in your favourite text editor.
+Open the file vtigercrm/modules/Emails/class.phpmailer.php in your favorite text editor.
 
 Find the following lines:
 

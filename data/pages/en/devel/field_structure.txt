@@ -9,7 +9,7 @@ The following are some of the display types that are used:
   * **1** - Displayed both in Detail view and Edit view
   * **2** - Displayed only in the Detail view (Ex. Created time, Modified time) Read-only field. Must be given a value through the code
   * **3** - It is not displayed either in DetailView nor EditView, but can be shown in ListView. For example Total, subtotal in Invoice Module. These Fields are not tied to any block.
-  * **4** - a Read-Only field which can be modified with workflows
+  * **4** - a Read-Only field that can be modified with workflows. **NOTE** if you want to save a displaytype 4 field from inside your custom code using the normal "save" method, you **MUST** trick that save to think it is being called from the workflow system by setting the $from_wf global variable to true before the save (and back to false after)
   * **5** - Only in create mode. Cannot be used in workflows
 
 ===== typeofdata for Fields in Modules  =====

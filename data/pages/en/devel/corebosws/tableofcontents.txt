@@ -1,0 +1,24 @@
+===== Web service documentation: Table of Contents =====
+
+  * [[:en:devel:corebosws:manual:intro|Introduction]]
+  * [[:en:devel:corebosws:manual:ops|Operations]]
+    * [[:en:devel:corebosws:login|Login to webservice]]
+    * [[:en:devel:corebosws:querylanguage|Query language]]
+    * [[:en:devel:corebosws:methodreference|Method Reference]]
+    * [[:en:devel:corebosws:docenhance_examples|Working with Documents and Images]]
+    * [[:en:devel:corebosws:getpdfdata|GenDoc and PDF output]]
+    * [[:en:devel:corebosws:manual:wfrlqsat|Workflows, Rules, Questions and Actions]]
+    * [[:en:devel:corebosws:manual:globalsearch|Global Search]]
+    * [[:en:devel:corebosws:manual:autocomplete|Autocomplete]]
+    * [[:en:devel:corebosws:getrelatedrecords|get Related Records method]]
+    * [[:en:devel:corebosws:convertleadwebservice|Convert Lead Webservice]]
+    * [[:en:devel:corebosws:manual:portallogin|Portal user login]]
+    * [[:en:devel:corebosws:manual:session|Extend Session and Logout]]
+  * [[:en:devel:corebosws:manual:addws|Add web service end points]]
+  * [[:en:devel:corebosws:manual:libraries|Client Libraries]]
+
+----
+<WRAP right>
+[[:en:devel:corebosws:manual:intro|Next: Introduction]] | Table of Contents
+</WRAP>
+----

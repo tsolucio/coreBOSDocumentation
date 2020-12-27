@@ -52,5 +52,10 @@ this Potentials_ListColumns map is for Potentials lists, when you show a list of
 
 so, all the field references must be fields that are on the Potentials
 
-if you want to change how contacts appear in their lists then you have to create a Contacts_ListColumns and open a relatedlist section for Potentials
+if you want to change how contacts appear in their lists then you have to create a Contacts_ListColumns and open a related list section for Potentials
 </WRAP>
+
+<WRAP center round info 80%>
+If you need to modify the columns that appear in the Global Search for the module, create a section where parentmodule is set to **Utilities**.
+</WRAP>
+

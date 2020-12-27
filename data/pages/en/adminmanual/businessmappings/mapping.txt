@@ -232,3 +232,6 @@ Let's suppose we called this business map "getContactFromSeller", then we would 
 </code>
 
 
+===== Accessing via web service =====
+
+This type of map can be processed using the **ProcessMap** end-point

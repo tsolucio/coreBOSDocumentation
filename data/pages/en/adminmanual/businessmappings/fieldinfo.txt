@@ -17,8 +17,8 @@ The accepted format is:
           <value>feature_value</value>
           <values>
              <value>
-               <module>ModuleName</module>
-               <value>fieldname</value>
+               <module>module_name</module>
+               <value>value</value>
                ...
              </value>
              ...
@@ -195,6 +195,27 @@ or like this for a multioptional autocomplete field:
         <feature>
           <name>width</name>
           <value>350</value>
+        </feature>
+      </features>
+    </field>
+  </fields>
+</map>
+</code>
+
+===== Configuring Textarea Height =====
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Accounts</originname>
+  </originmodule>
+  <fields>
+    <field>
+      <fieldname>description</fieldname>
+      <features>
+        <feature>
+          <name>height</name>
+          <value>150</value>
         </feature>
       </features>
     </field>

@@ -12,13 +12,7 @@ So, for any view we can select that view in the initial picklist and then select
 
 With the "Default Setting" set to true, we can define the **C**reate, **R**etrieve, **U**pdate, **D**elete and **A**pprove permissions that all users will have over in the module.
 
-From a developer point of view, the module gives a set of services:
-
-  * getDefaultView(module, user): which returns the default view for a module and user
-  * getAllViews(module, user): will return all the views a user has access to on the module
-  * getPermission(CustomViewID, user): CRUD-A permissions on the filter or Module if the filter is ALL
-
-The getAllViews service can be retrieved via the **getAllViewsByModule** web service method.
+===== Sync with List View Filters =====
 
 When a new filter is created on a module, the application will automatically create a cbCVManagement record with these settings:
 
@@ -37,5 +31,26 @@ When a new filter is created on a module, the application will automatically cre
 
 This will permit you to create a workflow that detects the "Set Public" checkbox and send an email to any user who needs to **Approve** the filter for other users.
 
+When a filter is updated, the shared fields are updated.
+
+===== Escalation Rules =====
+
+The escalation process followed to decide if a view is accessible or not is
+  * search for a mandatory default record
+  * search for a non-mandatory record that belongs to the role of the user
+  * search for a non-mandatory record assigned to the user
+  * search for a non-mandatory record assigned to any group of the user
+  * search for a non-mandatory record as the default setting for the module
+  * if no record is found then the ALL view for the module will be returned
+  * if no record is found then an empty array will be returned
 
 
+===== Developement =====
+
+From a developer point of view, the module gives a set of services:
+
+  * getDefaultView(module, user): which returns the default view for a module and user
+  * getAllViews(module, user): will return all the views a user has access to on the module
+  * getPermission(CustomViewID, user): CRUD-A permissions on the filter or Module if the filter is ALL
+
+The getAllViews service can be retrieved via the **getAllViewsByModule** web service method.

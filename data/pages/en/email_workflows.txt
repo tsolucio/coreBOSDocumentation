@@ -6,7 +6,7 @@ TBD
 
 ==== Comments ====
 
-This meta variable was created to support the help desk process and permits you to add and format a list of the comments on the ticket to your email.
+This metavariable was created to support the help desk process and permits you to add and format a list of the comments on the ticket to your email.
 
 It also supports the FAQ module and all the other modules that have comments. So, although unlikely, you could send all the comments on an opportunity to the related account or contact, or, more interesting, send them to the user in charge of the opportunity when one is added.
 
@@ -23,7 +23,7 @@ where:
 ^dateformat|Optional PHP standard date formatting syntax that will be applied to all dates. If not given the date format of the user executing the command will be used|
 ^num|Indicates the number of comments you want, 0 will retrieve all comments|
 ^sort|a one letter indicator to sort created time ascending (a) or descending (d)|
-^format|text, html or table|
+^format|text, HTML or table|
 ^field|creator, comment, date, all: indicates the field to retrieve|
 
 === Examples ===
@@ -52,9 +52,9 @@ If you want to completely set the date format you can use the standard PHP date 
 </WRAP>
 
 
-The **comment field** will be stripped of any inline style or scripts to avoid potential hacks or compromises of clients computers.
+The **comment field** will be stripped of any inline style or scripts to avoid potential hacks or compromises of clients' computers.
 
-In **html format mode** all fields will be returned in an unordered list element (UL). Each comment will be in it's own DIV which will contain the unordered list and contain each field being returned in it's own list item (LI).
+In **HTML format mode** all fields will be returned in an unordered list element (UL). Each comment will be in its own DIV which will contain the unordered list and contain each field being returned in its own list item (LI).
 
 The whole set of comments will be enclosed in a DIV element.
 
@@ -73,7 +73,7 @@ So the structure looks like this:
 </div>
 </code>
 
-Since each element has it's own class you can add inline CSS to your email and format the comments as you like.
+Since each element has its own class you can add inline CSS to your email and format the comments as you like.
 
 As an example, this CSS:
 
@@ -115,4 +115,31 @@ As an example, this CSS:
 will produce the output you can see in the next image which is from my email reader (thunderbird) with the hover effect captured:
 
 {{ :en:helpdesk:notificationemails:workflowemailcommentmetavariablehtmlformatexample.png |}}
+
+==== Inventory Details ====
+
+Very similar to the Comments we can do the same with the product lines in the inventory modules.
+
+The syntax of this meta variable is:
+
+<code>$(general : (__VtigerMeta__) inventorydetails[_format[_field]]])</code>
+
+where:
+
+^format|text, HTML or table|
+^field|quantity, listprice, extgross, linetotal, or * for all fields. pdoname is always present as the name of the product or service|
+
+==== Related Lists ====
+
+Very similar to the Comments we can do the same with the related lists of the main module of the email.
+
+The syntax of this meta variable is:
+
+<code>$(general : (__VtigerMeta__) relatedlist_relatedmodulename[_format[_field]]])</code>
+
+where:
+
+^relatedmodulename|related module name. if the given module is not related the list will be empty|
+^format|text, HTML or table|
+^field|list of fields to show|
 

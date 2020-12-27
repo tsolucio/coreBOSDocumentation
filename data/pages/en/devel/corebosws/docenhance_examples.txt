@@ -1,10 +1,10 @@
-====== Webservice: Working with Documents ======
+====== Webservice: Working with Documents and Images ======
 
-=====Create, Update and Retrieve=====
+=====Create, Update and Retrieve Documents=====
 
-The purpose of these enhancements are to permit uploading files when we create/update documents through the webservice interface. This extension also adds functionality that permits establishing relationships with other entities to the document we are creating.
+The purpose of these enhancements are to permit uploading files when we create/update documents through the web service interface. This extension also adds functionality that permits establishing relationships with other entities to the document we are creating.
 
-Calls to REST methods of Create, Retrieve and Update maintain their profile and keep working as before. This extension adds to these calls a set of special fields which will be acknowledged by the enhancements.
+Calls to REST methods of Create, Retrieve and Update maintain their profile and keep working as before. This extension adds to these calls a set of special fields that will be acknowledged by the enhancements.
 
 The special fields are:
 
@@ -17,9 +17,9 @@ The special fields are:
 
 With the virtual field **relations** we can establish relationships between the document and any other record. For example, we can upload a document and automatically relate it with a trouble ticket (HelpDesk).
 
-Since a document can be related to many other records, the **relations** parameter is a comma separated list of entities. The document being created will be related to all of them.
+Since a document can be related to many other records, the **relations** parameter is a comma-separated list of entities. The document being created will be related to all of them.
 
-This new **relations** field will also be returned when executing a Retrieve. The format will be a comma separated list of related entities.
+This new **relations** field will also be returned when executing a Retrieve. The format will be a comma-separated list of related entities.
 
 To permit uploading documents we have added another virtual field called **filename**. It is an array with the four values we need to upload an attachment:
   * name: name of the attachment in the application
@@ -27,11 +27,13 @@ To permit uploading documents we have added another virtual field called **filen
   * type: type of the file being sent
   * content: base64 encoded string with the full contents of the file
 
-As of **coreBOS 5.6** you will also receive another virtual field when retrieving a document record. This field is called **_downloadurl** and represents the absolute path of the file attachment in the application. This will permit easy linking from external applications and websites. This functionality is specially useful for e-commerce sites.
+As of **coreBOS 5.6** you will also receive another virtual field when retrieving a document record. This field is called **_downloadurl** and represents the absolute path of the file attachment in the application. This will permit easy linking from external applications and websites. This functionality is especially useful for e-commerce sites.
+
+This virtual field is also added to the query language when it is possible.
 
 <WRAP center round info 60%>the **_downloadurl** virtual field will only be present in documents with a file location type of Internal</WRAP>
 
-Next you can find some examples.
+Next, you can find some examples.
 
 
 ====Create====
@@ -204,14 +206,15 @@ array
           0 => string '9x66873' (length=7)   !!! related to record 66873 of the entity 9 !!!
       '_downloadurl' => string 'http://localhost/coreBOSwork/storage/2014/August/week2/134063_1.jpg' (length=64)
 </code>
-=====Retrieve Attachment=====
 
-This new REST method returns the base64 encoded file attached to the given document. This call is added with two goals in mind, to obtain information of the attachment of a document without downloading the whole file which would slow many operations and to no have to added yet another virtual field to the native Retrieve operation to indicate if we want to receive the whole file or not.
+====Retrieve Attachment====
+
+This new REST method returns the base64 encoded file attached to the given document. This call is added with two goals in mind, to obtain information of the attachment of a document without downloading the whole file which would slow many operations, and to no have to add yet another virtual field to the native Retrieve operation to indicate if we want to receive the whole file or not.
 
 The **profile** of the method is
 <code>retrievedocattachment(id:Id,returnfile:boolean):Map</code>
 
-^id| a comma separated list of document identifiers of which we want to get the attachments|
+^id| a comma-separated list of document identifiers of which we want to get the attachments|
 ^returnfile| 1 if we want the whole file, 0 if we just want the attachment information|
 
 The **response** is an object with the fields of the attachment. For each given identifier we will get an array with this structure:
@@ -224,7 +227,7 @@ The **response** is an object with the fields of the attachment. For each given 
 
 If the parameter **returnfile** is 0, the field **content** will be empty (no file sent, reducing bandwidth usage and time)
 
-Find next example code of a call to this method followed by the resulting output.
+Find next an example code of a call to this method followed by the resulting output.
 
 ** Example Code of Call**
 <code php>
@@ -269,7 +272,7 @@ header('Content-Disposition: attachment; filename="'.$jsonResponse['result']['0'
 The Content-transfer-encoding header should be binary, since the file will be read
 directly from the disk and the raw bytes passed to the downloading computer.
 The Content-length header is useful to set for downloads. The browser will be able to
-show a progress meter as a file downloads. The content-lenght can be determines by
+show a progress meter as a file downloads. The content-lenght can be determined by
 filesize function returns the size of a file.
 */
 header("Content-Transfer-Encoding: binary");
@@ -314,3 +317,74 @@ array
           'attachment' => string 'LS0KLS0gUmV0cmVpdmUgRG9jdW1lbnQgYW5kIENoYW5nZSBEb2N1bWVudCBjbGFzcwotLQp1cGRhdGUgdnRpZ2VyX3dzX29wZXJhdGlvbl9zZXEgc2V0IGlkPWlkKzE7CklOU0VSVCBJTlRPIGB2dGlnZXJfd3Nfb3BlcmF0aW9uYCAoCmBvcGVyYXRpb25pZGAsCmBuYW1lYCAsCmBoYW5kbGVyX3BhdGhgICwKYGhhbmRsZXJfbWV0aG9kYCAsCmB0eXBlYCAsCmBwcmVsb2dpbmAKKQpWQUxVRVMgKAooc2VsZWN0IG1heChpZCkgZnJvbSB2dGlnZXJfd3Nfb3BlcmF0aW9uX3NlcSksJ3JldHJpZXZlZG9jYXR0YWNobWVudCcsICdpbmNsdWRlL1dlYnNlcnZpY2VzL1JldHJpZXZlRG9jQXR0YWNobWVudC5waHAnLCAndnR3c19yZXRyaWV2ZWRvY2F0dGFjaG1lbnQnLCAnUE9TVCcsICcw'... (length=1232)
 
 </code>
+
+=====Create, Update and Retrieve Images=====
+
+Following a similar approach as the **filename** virtual field added for uploading document files, we have added also a generic virtual field to all the other modules in the application named **attachments**.
+
+**attachments** is an array of file information for each image field contained in a module where you want to upload a file and can be used in Create, Update and Revise operations.
+
+Let's suppose that you have two image fields on a module named cf_998 and cf_999. You can upload files to these two fields with an array like this:
+
+<code PHP>
+$recordInfo = array(
+	...other fields in the record...
+	'cf_998' => 'barcode',
+	'cf_999' => 'somename',
+	'attachments' => array(
+		'cf_998' => array(
+			'name'=>'barcode',  // no slash nor paths in the name
+			'size'=>strlen($file_data),
+			'type'=>'image/png',
+			'content'=>base64_encode($file_data)
+		),
+		'cf_999' => array(
+			'name'=>'somename',  // no slash nor paths in the name
+			'size'=>strlen($file2_data),
+			'type'=>'application/pdf',
+			'content'=>base64_encode($file2_data)
+		),
+	),
+	...other fields in the record...
+);
+</code>
+
+A normal Retrieve call on a record with images will return the information of the file; the name, the location on disk (URL), and some other metadata in a virtual field with the same name of the field followed by "imageinfo", but we have also added a method in order to retrieve file information of a record.
+
+getRecordImages allows a web service client to retrieve the information of the image attachments associated with a record, which can then be used with the build/HelperScripts/getImageData.php script to obtain the image data itself.
+
+^Method:|**getRecordImages**|
+^Purpose:|Returns an array of file information for each image field of a module.|
+^Profile:|getRecordImages(id:string):Map|
+^Send as:|GET|
+^Parameters:| => id: web service id of the record with image fields we want to get.|
+^Response:|an array with: name, path, URL, type, internal ID, for each file in the record|
+
+Examples:
+
+  * [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/438_createWithImage.php|Create with Image]]
+  * [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/438_updateWithImage.php|Update with Image]]
+  * [[:en:devel:updateimagefield|How to update an image field from code]]
+
+
+==== Product Multi-Image field====
+
+The product module contains a special, non-standard image field which may contain many images. coreBOS does not recommend the use of this field. Individual images should be used instead.
+
+When calling Retrieve on a product the first image found in the multi-image field will be returned. It is NOT guaranteed to always get the same image.
+
+You can use the **addProductImages** method to insert images in this field.
+
+^Method:|**addProductImages**|
+^Purpose:|Inserts a set of images into the Product multi-image field|
+^Profile:|addProductImages(id:string, files:Map):Map|
+^Send as:|POST|
+^Parameters:| => id: web service ID of the product record to upload the images to \\ => files: an array of images to upload, each array entry must contain two fields: name and content (base64 encoded)|
+^Response:|an array with information of the executed operations|
+
+
+----
+<WRAP right>
+[[:en:devel:corebosws:getpdfdata|Next: GenDoc and PDF output]] | [[en:devel:corebosws:tableofcontents|Table of Contents]]
+</WRAP>
+----

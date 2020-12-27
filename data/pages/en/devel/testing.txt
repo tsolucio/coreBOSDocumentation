@@ -1,0 +1,5 @@
+====== coreBOS Testing Project ======
+
+[[https://github.com/tsolucio/coreBOSTests|coreBOS Tests Project]]
+
+  * [[en:devel:testing:workflowoperator|Adding unit tests for new workflow operator]]

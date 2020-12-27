@@ -4,6 +4,7 @@
   *[[:calendar4you_google_integration|Google calendar]]
   *[[en:contacts|Google contacts]]
   *Google apps
+  *[[https://www.integromat.com/en/integrations/corebos?utm_source=corebos&utm_medium=partner&utm_content=partner-page&utm_campaign=corebos-partner-program|Integromat support]]
   *[[en:integrations:surveys|Survey]] -> Google forms
   *Google sheets programming
   *[[en:extensions:extensions:googlemeasurementprotocol|Google Measurement Protocol: Google Analytics]]
@@ -23,6 +24,7 @@
   *RSS
   *Pentaho
   *[[en:integrations:oocommerce|WordPress oocommerce]]
+  *[[en:integrations:woocommerce|WordPress Woocommerce]]
   *Prestashop
   *[[en:extensions:coreboswswebform|Webforms]]
   *AEPD 
@@ -40,3 +42,7 @@
   *[[en:integrations:dokuwiki|Dokuwiki. HelpMeNow]]
   *[[en:integrations:whatsapp|Twilio Whatsapp]]
   *Mattermost
+  *[[en:integrations:onesignal|OneSignal]]
+  *[[en:integrations:sso|Single Sign On]]
+  *PSR-16 Cache: memcache and redis
+  *[[https://facturascripts.com/|FacturaScripts]]

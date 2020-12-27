@@ -1,0 +1,29 @@
+=====OneSignal Integration=====
+
+==== Configuration ====
+
+The [[https://onesignal.com/|OneSignal]] configuration [[https://documentation.onesignal.com/docs/web-push-typical-setup|is really simple]].
+
+  - Create an account on OneSignal site. Go to the login page, click on "Sign Up" and follow the steps
+  - Create an App, for example, "coreBOS", select WebPush
+  - **Site Name**: set it to a name that identifies your install, this will usually be the name you have set in your coreBOS
+  - **Site URL**: the URL of your coreBOS install (must be publically accessible)
+  - upload an icon {{ :en:integrations:onesignalsitesetup.png |}}
+  - Configure the initial permission prompt. All users MUST accept that we send them notifications. The first time a user access coreBOS with OneSignal active, the permission prompt will appear. If they do not accept that we send them notifications, we will not be able to do so. {{ :en:integrations:onesignalpermissionprompt.png |}}
+  - Configure a welcome notification. This is not mandatory but it is good practice and validates that the authorization went correctly.
+  - Leave the Webhooks, Click Behavior, and Persistence in the advanced options at their default {{ :en:integrations:onesignaladvanced.png |}}
+  - The advanced options **Service Workers** settings may need modifications. If your coreBOS has its' own domain, which is the one you entered in Site URL above, then you can leave this option unchecked. If your coreBOS is installed in a subdirectory then you must check this option and set the name of the directory. Supposing that the coreBOS we are configuring is in a subdirectory named "reserveit", then our settings will look like this: {{ :en:integrations:onesignalsw.png |}}
+  - Go to Keys & IDs: copy them into coreBOS settings (index.php?action=integration&module=Utilities&_op=getconfigonesignal) and activate the integration
+  - the next time a user logs in he will see the authorization notification {{ :en:integrations:onesignalauth.png |}}
+  - from this point on coreBOS can send notifications to this user {{ :en:integrations:asteriskincomingnotification.png |}}
+
+
+You can use the **Test** button that will appear once you have saved the API key and ID to verify that the integration is working. It will send a notification with a test message.
+
+{{ :en:integrations:testnotification.png |}}
+
+==== Links ====
+  * [[https://onesignal.com/docs|OneSignal]]
+  * [[https://documentation.onesignal.com/docs|Documentation]]
+  * [[https://documentation.onesignal.com/docs/internal-database-crm|Database, DMP, & CRM Integration]]
+  * [[https://blog.corebos.org/blog/onesignal|Announcment Blog Post]]

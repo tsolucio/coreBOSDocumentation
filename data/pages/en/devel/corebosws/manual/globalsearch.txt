@@ -1,0 +1,9 @@
+===== Global Search =====
+
+
+
+----
+<WRAP right>
+[[en:devel:corebosws:manual:autocomplete|Next: Autocomplete]] | [[en:devel:corebosws:tableofcontents|Table of Contents]]
+</WRAP>
+----

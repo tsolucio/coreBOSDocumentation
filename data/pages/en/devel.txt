@@ -29,11 +29,13 @@
   * [[:en:devel:asterisk|Asterisk]]
   * [[:en:devel:menuselection|Menu Selection]]
   * [[:en:devel:installprocess|coreBOS Installation Process]]
+  * [[:en:devel:serviceworker|coreBOS Service Worker]]
 
 
   * [[:en:devel:coreboscp|coreBOS Customer Portal Development]]
   * [[:en:devel:corebosws|Webservice Development]]
   * [[:en:devel:cbproductprice|Product/Price Enhancements]]
+  * [[:en:devel:Testing|coreBOS Testing Project]]
 
 ====== Vulnerabilities and Errorneous Changesets ======
   * [[en:devel:vulnerabilities|Vulnerabilities]]

@@ -86,6 +86,8 @@ where {rule_name} can be:
     *restrictions: date in ISO format
   *dateAfter - Field is a valid date and is after the given date
     *restrictions: date in ISO format
+  *dateEqualOrAfter - Field is a valid date and is equal or after the given date
+    *restrictions: date in ISO format
   *contains - Field is a string and contains the given string
     *restrictions: string
   *creditCard - Field is a valid credit card number
@@ -99,10 +101,10 @@ where {rule_name} can be:
   *arrayhaskeys
   *IBAN_BankAccount - validate IBAN Bank Account number
     *restrictions: none
-  *EU_VAT - validate EU VAT number
+  *EU_VAT - validate EU VAT number: the EU VAT validation checks if the VAT no. is in use, which implicitly  checks the format
     *restrictions: none
   *notDuplicate - checks that no other record with the same value exists on the given field name
-    *restrictions: none
+    *restrictions: list of [[https://discussions.corebos.org/showthread.php?tid=1934&pid=8265#pid8265|other fields you want to combine]] with the main field to search all at once
   *expression - accept a workflow expression map and evaluate it in the context of the new screen values
     *restrictions: map name or id
   *validateRelatedModuleExists
@@ -110,11 +112,6 @@ where {rule_name} can be:
   *custom - launch custom function that can be found in the indicated file
     * restrictions: filename, validation test name, function name and label to show on error (will be translated)
     * parameters: parameters can be passed to custom functions using the parameters-parameter directives 
-
-<WRAP center round info 100%>
-All of the rules above accept an optional directive named __message__ where you can set the error message you want the user to see when an error on that field happens. If this is not established a standard error message will be returned. Inside this message you can use the curly brace __field__ tag to indicate where you want the field name to appear:
-  <message>This is my custom msg for field: {field}</message>
-</WRAP>
 
 <WRAP center round info 100%>
 The parameters directive permits us to send values to our custom validation method with a structure like this:
@@ -128,6 +125,20 @@ The parameters directive permits us to send values to our custom validation meth
 </code>
 these parameters will be sent as a name indexed array to the function
 </WRAP>
+
+===== Validation Message =====
+
+All of the rules above accept an optional directive named __message__ where you can set the error message you want the user to see when an error on that field happens. If this is not established, a standard error message will be returned. Inside this custom message you can use the curly brace __field__ tag to indicate where you want the field name to appear:
+
+<code XML>
+  <message>This is my custom msg for field: {field}</message>
+</code>
+
+Besides this option, which covers almost all the use cases, we have run into an edge case where we needed the message to be dynamically set. The problem with this is that the way the valitron library works we need to give it all the rules and messages before we start but in this case, we didn't know the message until the validation was launched. So we added support for defining the message before validating the rule for custom functions.
+
+To retrieve the message to be used, the validation map will look for a function with the same name as custom function concatenated with the string "GetMessage". So, if we have a custom rule named "validateFlowStep" and we define another function named "validateFlowStepGetMessage", then the validation map will execute this second function giving it the same parameters as the validation function plus the current validation message. This way your custom validation function can determine which message to return. This is almost like launching the validation twice, so it comes at a price.
+
+You can see an example of this in the [[https://github.com/coreBOS/ProcessFlowPerspective|BPM Process Flow Perspective]]. Look in the Process Flow module for the validateFlowStep script.
 
 ===== Activating the validation maps =====
 
@@ -227,6 +238,12 @@ pdoInformation => array(
  ... all product/service lines ..
 </code>
 
+
+===== Accessing via web service =====
+
+Validation maps have their own web service end-point: **ValidateInformation**
+
+Also, we have **CreateWithValidation**, **UpdateWithValidation**, and **ReviseWithValidation**
 
 ===== Some other examples =====
 

@@ -214,3 +214,431 @@ The other big step upon which the perspective concept stands is the [[en:devel:p
 The patch will add the changes that the code needs while the coreBOS updater .xml changeset file and the composer.json file will define the set of database changes and new modules that are needed to convert the raw application into the verticalization we need.
 
 [[https://blog.corebos.org/blog/cbperspective|Read this blog post for more information]]
+
+====== coreBOS Updater :: Custom Changesets without coding ======
+
+The majority of changes in the updater will come from the coreBOS project development effort. You will update your code and get new changesets as required. These changeset records will be marked as "Application Changesets" and you will not be able to edit nor delete them.
+
+The other type of changesets are the ones you can create as any other record in the application. These "manual" changesets support a very restricted set of actions but can turn out to be very useful to customize a coreBOS install for your users in certain cases.
+
+Some of these **restrictions** are:
+
+  * you can only execute one action per changeset
+  * you cannot undo these changesets
+  * you can only execute the supported actions
+
+The way these changesets work is by defining the action to execute with a JSON object saved in the **description** field. The other fields are either not used or maintain their normal meaning.
+
+All the JSON objects have a set of common fields:
+
+  * **name**: a name for your changeset. this field is descriptive (not used)
+  * **description**: a description for your changeset. this field is descriptive (not used)
+  * **operation**: supported action
+  * **setting**: configuration options for the selected action
+
+Next, we document the JSON format for each of the supported actions with some examples.
+
+===== deleteAllPicklistValues =====
+
+Will delete **ALL** the values in a picklist.
+
+<code javascript>
+{
+"name": "del values industry",
+"description": "delete all the current values in the industry picklist of Accounts",
+"operation": "deleteAllPicklistValues",
+"setting": {
+   "table": "industry",
+   "module": "Accounts"
+ }
+}
+</code>
+<code javascript>
+{
+"name": "del values building",
+"description": "delete all the current values in the building picklist of Products",
+"operation": "deleteAllPicklistValues",
+"setting": {
+   "table": "building",
+   "module": "Products"
+ }
+}
+</code>
+
+===== deletePicklistValues =====
+
+Will delete **the given** values from a picklist.
+
+<code javascript>
+{
+"name": "del values industry",
+"description": "delete some values from the industry picklist of Accounts",
+"operation": "deletePicklistValues",
+"setting": {
+   "table": "industry",
+   "module": "Accounts",
+   "values": ["Telecommunications", "Banking"]
+ }
+}
+</code>
+<code javascript>
+{
+"name": "del values prodtype",
+"description": "delete some values from the prodtype picklist of Products",
+"operation": "deletePicklistValues",
+"setting": {
+   "table": "prodtype",
+   "module": "Products",
+   "values": ["Sell", "Rent Holiday"]
+ }
+}
+</code>
+
+
+===== setQuickCreateFields =====
+
+Given an array of field names, this method will activate them in Quick Create in the given order. All the other fields will be deactivated.
+
+<code javascript>
+{
+"operation": "setQuickCreateFields",
+"setting": {
+   "fields": ["fieldname1", "fieldname2", "fieldname3"],
+   "module": "Accounts"
+ }
+}
+</code>
+<code javascript>
+
+{
+"operation": "setQuickCreateFields",
+"setting": {
+   "fields": ["floor", "internet", "building"],
+   "module": "Products"
+ }
+}
+</code>
+
+===== massCreateFields =====
+
+Given an array of field definitions, this method will create or activate the fields. The layout is an array of Module Name, Block Name, and Field Definition.
+
+<code javascript>
+{
+"operation": "massCreateFields",
+"setting":
+  {
+   "module":{
+   "block name or ID":{
+       "fieldname1": {
+           "columntype": "decimal(10,3)",
+           "typeofdata": "NN~O",
+           "uitype": "1",
+           "displaytype": "3",
+           "label": "", // optional, if empty fieldname will be used
+           "massedit":  0 | 1  // optional, if empty 0 will be set
+           "mods": [module names], // used if uitype 10
+           "vals": [picklist values], // used if uitype 15, 16 or 33           
+         },
+       "fieldname2": {
+           "columntype": "decimal(10,3)",
+           "typeofdata": "NN~O",
+           "uitype": "1",
+           "displaytype": "3",
+           "label": "", // optional, if empty fieldname will be used
+           "massedit":  0 | 1  // optional, if empty 0 will be set
+           "mods": [module names], // used if uitype 10
+           "vals": [picklist values], // used if uitype 15, 16 or 33           
+         }
+     }
+    }
+  }
+}
+</code>
+<code javascript>
+{
+"operation": "massCreateFields",
+"setting":
+  {
+   "Vendors": {
+      "Custom Information": {
+           "cal": {
+             "columntype": "int(11)",
+             "typeofdata": "V~O",
+             "uitype": "10",
+             "displaytype": "1",
+             "label": "Sabi",
+             "massedit":  "1",
+              "mods":"Products"
+           },
+           "volume": {
+             "columntype": "varchar(100)",
+             "typeofdata": "V~O",
+             "uitype": "1",
+             "displaytype": "1",
+             "label": "Volume",
+             "massedit":  "1"
+           }
+      }
+    }
+ }
+}
+</code>
+
+<code javascript>
+{
+"operation": "massCreateFields",
+"setting":
+  {
+   "Vendors": {
+      "Custom Information": {
+           "palm": {
+             "columntype": "int(11)",
+             "typeofdata": "V~O",
+             "uitype": "10",
+             "displaytype": "1",
+             "label": "Palm",
+             "massedit":  "1",
+              "mods":"Products"
+           },
+           "pressures": {
+             "columntype": "varchar(100)",
+             "typeofdata": "V~O",
+             "uitype": "1",
+             "displaytype": "1",
+             "label": "Pressures",
+             "massedit":  "1"
+           }
+      }
+    },
+ "Products": {
+      "Custom Information": {
+           "uniqueapplicationfieldname": {
+             "columntype": "int(11)",
+             "typeofdata": "V~O",
+             "uitype": "15",
+             "displaytype": "1",
+             "label": "Values",
+             "massedit":  "1",
+              "vals":["Accounts","Bank","VICOBA"]
+           },
+           "volume": {
+             "columntype": "varchar(100)",
+             "typeofdata": "V~O",
+             "uitype": "1",
+             "displaytype": "1",
+             "label": "Volume",
+             "massedit":  "1"
+           }
+      }
+    }
+ }
+}
+</code>
+
+
+===== massHideFields =====
+
+Given an array of field names this method will hide the fields.
+
+<code javascript>
+{
+"operation": "massHideFields",
+"setting": {
+   "fields": ["fieldname1", "fieldname2", "fieldname3"],
+   "module": "Accounts"
+ }
+}
+</code>
+<code javascript>
+{
+"operation": "massHideFields",
+"setting": {
+   "fields": ["bill_street", "ship_street", "ownership"],
+   "module": "Accounts"
+ }
+}
+</code>
+
+===== massDeleteFields =====
+
+Given an array of field names this method will delete the fields.
+
+<code javascript>
+{
+"operation": "massDeleteFields",
+"setting": {
+   "fields": ["fieldname1", "fieldname2", "fieldname3"],
+   "module": "Accounts"
+ }
+}
+</code>
+
+<code javascript>
+{
+"operation": "massDeleteFields",
+"setting": {
+   "fields": ["website", "email1", "bill_city"],
+   "module": "Accounts"
+ }
+}
+</code>
+
+===== massMoveFieldsToBlock =====
+
+Given an array of field names this method will move the fields to the specified Block.
+
+<code javascript>
+{
+"operation": "massMoveFieldsToBlock",
+"setting": {
+   "fields": ["fieldname1", "fieldname2", "fieldname3"],
+   "module": "Accounts",
+   "block": "label or ID of the destination block"
+ }
+}
+</code>
+<code javascript>
+{
+"operation": "massMoveFieldsToBlock",
+"setting": {
+   "fields": ["city", "street"],
+   "module": "Vendors",
+   "block": "LBL_VENDOR_INFORMATION"
+ }
+}
+</code>
+===== orderFieldsInBlocks =====
+
+Given an array of blocks and field names, this method will sort the fields in the given order.
+
+  * All unspecified fields in the block will be moved to the end
+  * Any field that is not in the block will be ignored
+  * The layout is an array of Module Name, block, and Field Names
+
+<code javascript>
+{
+"operation": "orderFieldsInBlocks",
+"setting": 
+  {
+   "Module":{
+   "block label or ID": 
+     {
+       "fields": ["fieldname1", "fieldname2", "fieldname3"]
+     }
+   }
+  }
+}
+</code>
+
+<code javascript>
+{
+"operation": "orderFieldsInBlocks",
+"setting":
+  {
+   "Vendors":{
+   "LBL_VENDOR_INFORMATION":
+   ["vendorname", "vendor_no","glacct"]
+}
+}
+}
+</code>
+
+<code javascript>
+{
+"operation": "orderFieldsInBlocks",
+"setting":
+  {
+   "Vendors":{
+   "LBL_VENDOR_INFORMATION":
+["vendor_no", "vendorname","glacct"]
+
+},
+   "Products":{
+   "LBL_PRODUCT_INFORMATION":
+["product_no", "productname","expiry_date"]
+}
+}
+}
+</code>
+
+
+===== convertTextFieldToPicklist =====
+
+Convert a text field into a picklist. It will fill the picklist with the distinct values in the text field. The multiple parameter indicates if the new picklist with be multiple (true) or simple (false)
+
+<code javascript>
+{
+"operation": "convertTextFieldToPicklist",
+"setting": {
+   "module": "Accounts",
+   "field": "industry",
+   "multiple": false
+  }
+}
+</code>
+<code javascript>
+{
+"operation": "convertTextFieldToPicklist",
+"setting": {
+   "module": "Invoice",
+   "field": "salescommission",
+   "multiple": false
+  }
+}
+</code>
+
+
+===== setTooltip =====
+
+Set the tooltip configuration for fields. The layout is an array of Module Name, hover fields and Field Names
+
+<code javascript>
+{
+"operation": "setTooltip",
+"setting": [
+  {
+   "module": "Accounts",
+   "hoverfield": "fieldname that triggers the tooltip",
+   "fields2show": ["fieldname1", "fieldname2", "fieldname3"]
+  }
+]
+}
+</code>
+<code javascript>
+{
+"operation": "setTooltip",
+"setting": [
+  {
+   "module": "Vendors",
+   "hoverfield": "vendorname",
+   "fields2show": ["state", "street"]
+  }
+]
+}
+</code>
+
+===== removeAllMenuEntries =====
+
+Will delete all menu entries of a given module.
+
+<code javascript>
+{
+"name": "del Accounts from menu",
+"description": "delete all Accounts module entries in the menu",
+"operation": "removeAllMenuEntries",
+"setting": {
+   "module": "Accounts"
+ }
+}
+</code>
+<code javascript>
+{
+"name": "del invoice module from menu",
+"description": "delete all invoice module entries in the menu",
+"operation": "removeAllMenuEntries",
+"setting": {
+   "module": "Invoice"
+ }
+}
+</code>

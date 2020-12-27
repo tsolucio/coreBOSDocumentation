@@ -1,4 +1,6 @@
-====== Get inventory modules PDF output ======
+====== GenDoc and PDF output ======
+
+===== Inventory modules =====
 
 ^Profile|array getpdfdata(id)|
 ^Parameters| id – quote, salesorder, invoice or purchaseorder REST ID|
@@ -6,3 +8,9 @@
 ^Notes|The user must have read access on the ID and the ID must belong to an inventory module.\\ There are 4 Global Variables that permit defining what method and template to use for the output.|
 ^Example|see **400_getpdf.php** and **400_getpdfdirect.php** in [[http://github.com/tsolucio/coreboswsbrowser|coreBOSwsBrowser]]|
 ^Issue Reference|~~issue:124~~|
+
+----
+<WRAP right>
+[[:en:devel:corebosws:manual:wfrlqsat|Next: Workflows, Rules, Questions and Actions]] | [[en:devel:corebosws:tableofcontents|Table of Contents]]
+</WRAP>
+----

@@ -75,6 +75,7 @@ We will be able to define the conditions to filter the records in the module and
       <search>
         <condition>
           <input></input>  <!-- context variable name -->
+          <preprocess></preprocess>  <!-- optional: if present, the result of the expression it contains will be used as the input -->
           <operation></operation>  <!-- QueryGenerator operators -->
           <field></field>  <!-- fieldname of module -->
         </condition>
@@ -87,6 +88,11 @@ We will be able to define the conditions to filter the records in the module and
 </rules>
 </decision>
 </code>
+
+<WRAP center round info 80%>
+To make this type of map easier to construct when we have a large number of input variables, the input variables accept the special value **"%%__IGNORE__%%"**. When an input variable is set to this value the whole search on that column will be ignored. This permits us to establish rules that are more generic reducing the repetition of very similar rules.
+</WRAP>
+
 ===== Hit Policy =====
 
   * **U**nique: Only a single rule can be satisfied. The decision table result contains the output entries of the satisfied rule. If more than one rule is satisfied, the Unique hit policy is violated.
@@ -115,6 +121,43 @@ To execute a decision map and get the result we use the [[en:devel:corebos_rules
 <code php>
 $result = coreBOS_Rule::evaluate(put your decision map ID or name here, $context);
 </code>
+
+
+===== Web service execution =====
+
+You can evaluate Decision Maps via the web service endpoint: **cbRule**
+
+<code PHP>
+$context = array(
+	'guestcount' => '4',
+	'season' => 'Winter',
+);
+$context = json_encode($context);
+$mapid = 'SeasonDish twocolumns';
+
+//sessionId is obtained from loginResult.
+$params = "sessionName=$cbSessionID";
+$params.= "&operation=cbRule";
+$params.= "&conditionid=".urlencode($mapid);
+$params.= "&context=".urlencode($context);
+
+//Retrieve must be GET Request.
+$response = $httpc->fetch_url("$cbURL?$params");
+$dmsg.= debugmsg("Raw response (json)", $response);
+
+//decode the json encode response from the server.
+$jsonResponse = json_decode($response, true);
+$dmsg.= debugmsg("Webservice response", $jsonResponse);
+
+//operation was successful get the token from the response.
+if($jsonResponse['success']==false) {
+	$dmsg.= debugmsg('failed:'.$jsonResponse['error']['message']);
+	echo 'rule failed!';
+} else {
+	echo $jsonResponse['result'];
+}
+</code>
+
 
 
 ====== Examples ======
@@ -287,7 +330,74 @@ where operator can be '[]', '[[', ']]', '][' among many others
 
 the possibilities that the implementor has are very big.
 
+===== IGNORE Reserved Word =====
+
 Finally, comment on a very important option where you can set the value of any variable in the context to **%%__IGNORE__%%** to have that variable eliminated from the decision. This permits us to create complex rules with many variables where we search on only a few of them at a time.
+
+We can also use this special reserved word in the rules table itself to create rules which cover many cases. For example, we could have a table of rules like this:
+
+^input1^input2^output^
+|e1|c1|r1|
+|%%__IGNORE__%%|c2|r2|
+|e3|c3|r3|
+
+
+With these rules in place, any decision that has input2==c2 will pass no matter what value is passed in as input1. Note that this can easily cause that more than one rule to pass. If we add a rule to the table above, like this:
+
+^input1^input2^output^
+|e1|c1|r1|
+|%%__IGNORE__%%|c2|r2|
+|e2|c2|r2b|
+|e3|c3|r3|
+
+and we pass in the values
+
+  - input1=e2
+  - input2=c2
+
+**both r2 and r2b will pass** and be returned, so if we have a hit policy of Unique it will fail and if we have a hit policy of First then the sequence is of utmost importance to get the correct result.
+
+===== Default Value =====
+
+Using the %%__IGNORE__%% reserved word we can implement a default value for our rules. If we define a rule where all the input values are set to %%__IGNORE__%%, this rule will pass for all input values. If we set the hit policy of the decision map to First and order the rules in a way that the all %%__IGNORE__%% rule is always the last to be evaluated we accomplish a decision table where any combination of input values that is not explicitly defined will return the values in the all %%__IGNORE__%% rule instead of %%__DoesNotPass__%%
+===== Preprocess Directive =====
+
+Following the new enhancements, we don't have to valorize context variables on the Decision Table map using the Execute Expression Workflow before evaluating the Decision table map. The map will be evaluated on the context of the values that are present on the screen.
+
+But there may be cases where we don’t want the context variable to hold the entire value of the field. 
+Here comes in play the preprocess directive. The preprocess directive is optional. That being said, if it is present it will send its value to the workflow expression system, get back the result and use that result to search the Decision Table Module.
+If you think about it the preprocess directive carries the work of the Execute Expression workflow task. You don’t need to explicitly use the workflow system because the preprocess directive will “call” it for you.
+
+**Example:**
+
+Let's change the logic we had in the last example above.
+
+Remove all the records with the season of Spring and add this new rule on the decision table module: //If the season is Spring then regardless of how many guests there are I want the desired dish to be Beef//.
+
+That would be a record like this in the decision table module.
+ 
+^ sequence ^ season ^ guestcount ^ desireddish ^
+| 1 | Fall | 8 | Spareribs |
+| 2 | Fall | 10000 | Stew |
+| 3 | Spring | * | Beef |
+| 5 | Winter | 8 | Roastbeef |
+| 6 | Winter | 10000 | Stew |
+| 7 | Summer | 10000 | Light Salad and a nice Steak |
+
+ Lets see how that will look on our Decision Table map:
+
+<code XML>
+<condition>
+ <input>guestcount</input> <!-- context variable name -->
+ <preprocess>if '$[season]' == 'Spring' then '*' else '$[guestcount]' end</preprocess>  <!-- if present sends the expression to the workflow expression system-->
+ <operation>e</operation> <!-- QueryGenerator operators -->
+ <field>guestcount</field> <!-- fieldname of module -->
+</condition>
+ </code>
+
+As you can see we are using the preprocess directive. What is inside the preprocess directive will be sent to the workflow system.
+
+So if the season is Spring that valorizes the context variable with the value * and then searches the decision table module for a match. Now, whenever the decision map gets evaluated on a record whose value of the Season field is Spring it will consider the value of Guest Number as * and for our Decision Table module that means that the desired dish is Beef.
 
 ===== Select Global Variable Escalation =====
 

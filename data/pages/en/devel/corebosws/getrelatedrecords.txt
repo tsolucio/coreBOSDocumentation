@@ -1,7 +1,5 @@
 ====== Web service get Related Records method ======
 
-Implemented in ~~issue:127~~
-
 {{youtube>5B0A6IPMnJM}}
 \\
 
@@ -86,10 +84,28 @@ The possible combinations are:
 **NOTES:**\\
   * This exact same functionality is available for Services. The productDiscriminator parameter accepts the SAME values; ProductLine* not ServiceLine*
   * The user may have no permission to read Quotes, SO or Invoices and will still retrieve products related through these entities as long as the user has read permission on products.
+===== getRelatedRecordsThroughModule =====
+
+In some use cases, it is useful to be able to get a list of records related at a second level. For example, we want to get a list of project tasks related to an account going through the Projects related to the account. For this sort of question, we construct upon the getRelatedRecords method to create getRelatedRecordsThroughModule.
+
+^Purpose:|Returns a list of Object records related to the given record passing through another related module.|
+^Profile:|getRelatedRecordsThroughModule(id:string, module:string, relatedModule:string, bridgeModule:string, queryParameters:Map):Map|
+^Send as:|POST|
+^Parameters:| => id: web service ID of the main record \\ => module: module of the record in ID \\ => relatedModule:string: second level related module name we want to get the records from \\ => direct related module name that connects the ID with the related module \\ => queryParameters: additional parameters supported by the getRelatedRecords method|
+^Response:|list of related module records related to the ID record|
+
 ===== Others =====
 
-The rest of relations are based on a great idea of Prasad from vtiger where we retrieve the query that represents the relation from the relation function used in the related list //more information// tab. This way we use the same information that is already in the application to relate the two entities.
+The rest of the relations are based on a great idea of Prasad from vtiger where we retrieve the query that represents the relation from the relation function used in the related list //more information// tab. This way we use the same information that is already in the application to relate the two entities.
 
 The biggest limitation of this approach is that these functions are basically static in their column set as the columns present in the +info tab cannot be changed without coding so, in some cases, the query is limited to obtain only those columns, while we have made the getRelatedRecords function to return all the columns the current user has access to. So to get this working we have had to manipulate the SQL returned from the functions.
 
-In general this approaches permits the function to support any relation established using the related list vtlib, which makes it very powerful and flexible.
+In general, this approaches permits the function to support any relationship established using the related list vtlib, which makes it very powerful and flexible.
+
+
+----
+<WRAP right>
+[[:en:devel:corebosws:convertleadwebservice|Next: Convert Lead Webservice]] | [[en:devel:corebosws:tableofcontents|Table of Contents]]
+</WRAP>
+----
+

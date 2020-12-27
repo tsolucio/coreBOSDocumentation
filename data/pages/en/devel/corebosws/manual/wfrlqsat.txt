@@ -1,0 +1,9 @@
+===== Workflows, Rules, Questions and Actions =====
+
+
+
+----
+<WRAP right>
+[[:en:devel:corebosws:manual:globalsearch|Next: Global Search]] | [[en:devel:corebosws:tableofcontents|Table of Contents]]
+</WRAP>
+----

@@ -10,6 +10,7 @@
   * [[en:devel:relatedlists|How to add related lists to a module]]
   * [[en:devel:corebosupdater|How to prepare and distribute system changes using coreBOS Updater]]
   * [[en:devel:entityidentifier|How to change entity identifier]]
+  * [[en:devel:renamedeletefield|How to rename or delete a field]]
   * [[en:devel:saverecordfromwithin|How to properly save a record from within the application]]
   * [[en:devel:listpricereadonly|How to Make List Price Read Only On Inventory Modules]]
   * [[en:devel:addworkflowfunction|How to add a workflow custom function]]

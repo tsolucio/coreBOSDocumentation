@@ -19,8 +19,8 @@ They can be retrieved via the **getBusinessActions** web service method.
 
 [[en:devel:add_special_block|Developer Blocks]] are a very powerful way of adding custom functionality into coreBOS. With them, we can easily create all sorts of scripts with any functionality we need, but sometimes we just want to launch a script or method and get a result message back on screen. To accomplish this we can create a business action that calls **runBAScript**. This function accepts a URI to call and expects one of three responses:
 
-  * **%%%MSG%%%** followed by a message that will be shown in the inline message box of the application.
-  * **%%%FUNCTION%%%funcname%%%PARAMS%%%onefunctionparameter** which will execute the named function if it exists
+  * **<nowiki>%%%MSG%%%</nowiki>** followed by a message that will be shown in the inline message box of the application.
+  * **<nowiki>%%%FUNCTION%%%funcname%%%PARAMS%%%onefunctionparameter</nowiki>** which will execute the named function if it exists
   * anything else will be shown as an alert message box
 
 For example, if we create a script named **write2log.php** inside the Accounts module we could create this Business Action:
@@ -46,6 +46,112 @@ As can be seen in the previous script the URI called will always receive two add
 
   * **%%__module%%** the current module
   * **%%__crmid%%** the current crmid if it exists (detail view)
+
+The exact same idea is supported on the ListView using the **runBAScriptFromListView** function. This function will permit us to add a button on the list view that calls this function. The function will do the typical boilerplate of checking that at least one element is selected in the list and asking for confirmation to proceed if there are too many. It will then call the given URI and send the result to a callback function you must implement. This way you can concentrate on your functionality.
+
+Usually, on the list view, we are doing mass actions against a large set of selected records. For these cases, it isn't user friendly to launch a script that takes a long time to process and not give the user some feedback. Ideally, we will process each record selected and return some indication to the user.
+
+This is how the Mass edit feature works. It updates each record and returns the results in a progress information screen.
+
+coreBOS gives us a way to use that same functionality but sending our own messages as we process the list of selected records. To do this we have to create a business action that will execute the **runBAScriptFromListViewSSE** function.
+
+We use [[en:devel:corebos_sse|Server-Side Events]] for these long-running processes. Server-Side Events require us to create two scripts, one in javascript which will receive the messages and show them on screen and another in PHP that will be processing the records and sending the progress messages.
+
+There are a lot of resources on Server-Side Events and also on how to include custom code in coreBOS, so I am just going to explain an example of how this would work.
+
+The javascript function is really simple as it just has to receive the message and update the screen. It has to consider the "CLOSE" event, but since most of the screen processing already exists it looks like this:
+
+<code JS>
+function run_customsse(e) {
+	var message = e.data;
+	if (e.data == 'CLOSE') {
+		__addLog('<br><b>' + alert_arr.ProcessFINISHED + '!</b>');
+		var pBar = document.getElementById('progressor');
+		pBar.value = pBar.max; //max out the progress bar
+	} else {
+		__addLog(message.message);
+		var pBar = document.getElementById('progressor');
+		pBar.value = message.progress;
+		var perc = document.getElementById('percentage');
+		perc.innerHTML   = message.progress + '% &nbsp;&nbsp;' + message.processed + '/' + message.total;
+		perc.style.width = (Math.floor(pBar.clientWidth * (message.progress/100)) + 15) + 'px';
+	}
+}
+</code>
+
+we get the message in e.data, use <nowiki>__addLog</nowiki> to post the message and update the progress bar (which should be made easier bu passing the information to <nowiki>__addLog</nowiki> to avoid the redundant boiler plate)
+
+The backend script is a bit more interesting, it will receive 1 parameter that gives us access to 4 more. The **SSE_SOURCE_KEY** parameter is a coreBOS Settings key where the runBAScriptFromListViewSSE has saved all the information the users selected on the ListView. So, when the user selects records in the screen and clicks on the button we have added, the runBAScriptFromListViewSSE function will gather 4 variables and save them in the coreBOS Settings key-value store. We do it this way because the amount of data may be too big to send via GET (which is the only method SSE accepts). The variables are:
+
+  * ids: list of all the selected IDs separated by a semicolon
+  * excludedRecords: list of IDs excluded from the set
+  * viewname: custom view ID, the selected Filter active on screen
+  * searchurl: any search conditions the user may have launched
+
+The script below will access all these variables and send them to the progress screen
+
+<code PHP>
+header('Content-Type: text/event-stream');
+header('Cache-Control: no-cache'); // recommended to prevent caching of event data.
+set_time_limit(0);
+
+global $app_strings, $currentModule;
+
+function send_message($id, $message, $progress, $processed, $total) {
+	$d = array('message' => $message , 'progress' => $progress, 'processed' => $processed, 'total' => $total);
+	echo "id: $id" . PHP_EOL;
+	echo 'data:'. json_encode($d) . PHP_EOL;
+	echo PHP_EOL;
+	ob_flush();
+	flush();
+}
+$recordcount = count($_REQUEST)+3+4;
+$recordprocessed = 0;
+$id = 1;
+$SSE_SOURCE_KEY = '';
+foreach ($_REQUEST as $key => $value) {
+	$progress = round($recordprocessed / $recordcount * 100, 0);
+	$msg = $key.' => '.$value;
+	send_message($id++, $msg, $progress, $recordprocessed, $recordcount);
+	$recordprocessed++;
+	if ($key=='params') {
+		$params = json_decode(vtlib_purify($value), true);
+		foreach ($params as $pkey => $pvalue) {
+			$msg = $pkey.' => '.$pvalue;
+			send_message($id++, $msg, $progress, $recordprocessed, $recordcount);
+			$recordprocessed++;
+			$progress = round($recordprocessed / $recordcount * 100, 0);
+			if ($pkey=='SSE_SOURCE_KEY') {
+				$SSE_SOURCE_KEY = $pvalue;
+				$listparams = coreBOS_Settings::getSetting($SSE_SOURCE_KEY, null);
+				$listparams = json_decode($listparams, true);
+				foreach ($listparams as $lkey => $lvalue) {
+					$msg = $lkey.' => '.$lvalue;
+					send_message($id++, $msg, $progress, $recordprocessed, $recordcount);
+					$recordprocessed++;
+					$progress = round($recordprocessed / $recordcount * 100, 0);
+				}
+			}
+		}
+	}
+}
+
+send_message('CLOSE', $app_strings['processcomplete'], 100, $recordcount, $recordcount);
+coreBOS_Settings::delSetting($SSE_SOURCE_KEY);
+</code>
+
+Finally, we add two business actions to load the code:
+
+**FOOTERSCRIPT**  The javascript code
+
+<code>modules/Vtiger/customsse.js</code>
+
+**LISTVIEWBASIC**  The button
+
+<code>javascript:runBAScriptFromListViewSSE('customsse', 'Assets', run_customsse)</code>
+
+
+
 
 
 ====== Business Action::Launch workflow ======

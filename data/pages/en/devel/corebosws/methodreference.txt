@@ -1,16 +1,588 @@
-====== Webservice Method Reference ======
+====== Web service Method Reference ======
 
-=====Retrieve Attachment=====
-^Purpose:|Retrieve file attached to a document as a base64 encoded string. This method was added instead of modifying the already existing Retrieve method to avoid having to download all attachments when only a list is required and so we wouldn't have to modify the existing interface of the retrieve method.|
-^Profile:|retrievedocattachment(id:Id,returnfile:boolean):Map|
+===== CRUD Operations =====
+
+The API gives us a way of executing the basic operations of Create, Retrieve, Update, and Delete against any module installed in the associated coreBOS. Obviously, permission restrictions exist for the connected user as if he were inside coreBOS itself.
+
+====Create====
+
+^Purpose:|Creates a new record in the application.|
+^Profile:|create(elementType:string, element:Map):Object|
 ^Send as:|POST|
-^Parameters:|<code> id: comma separated list of document identifiers to obtain
- returnfile: true if we need to really get the file, false to just get the information of the attachment</code>|
-^Response:|A map object with all the information of the attachment|
-^URL Format:|<code>http://corebos_url/webservice.php?operation=retrievedocattachment&sessionName=[session id]&id=[id documento]&returnfile=[0|1]</code>|
-^Examples:|[[en:devel:corebosws:docenhance_examples|REST Document Manipulation Enhancements]]|
+^Parameters:| => elementType: module name where we want to create the record \\ => element: map with all the field-value entries to save|
+^Response:|An object with all the information of the new record|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/020lib_createContact.php|Development Tool]]|
 
-=====Revise=====
+====Retrieve====
 
-The main difference between vtws_revise and vtws_update is that for revise you can send only those fields that needs to be changed, but for update api you need to send all the mandatory fields to update a record. 
-If you send unknown fields then it will silently ignore them, the reason for this behavior is that the user may not have permission for few fields and the system may not know if these fields are not available in the system or the user does not have permission for these fields.
+Get all the values the user has access to, of an existent record in the application. Given a web service ID of a record this service will return an array with all the fields and their values.
+
+All reference type fields which are pointing to another record will have valid web service IDs.
+
+In all retrieve operations a series of special fields are included which contain extended information to reduce the number of network calls.
+
+ * for all reference fields with a value, we will get a virtual field with the same name of the field followed by "ename". This field contains an array of 3 values:
+    * module: the module of the record saved in the field (each related field may contain more than one module)
+    * reference: the string representation of the record, so we don't have to make another call to the coreBOS application
+    * cbuuid of the record
+  * if the module has image fields the information of the image will be returned in a virtual field with the same name of the field followed by "imageinfo".
+  * if the record is a user, the role name assigned to the user will also be returned
+
+
+^Purpose:|Get all the values the user has access to, of an existent record in the application.|
+^Profile:|retrieve(id:string):Object|
+^Send as:|GET|
+^Parameters:| => id: web service ID or cbuuid of the record we want to recover|
+^Response:|An object with all the information of the record|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=retrieve&sessionName=[session id]&id=[wsid]</code>|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/040lib_retrieve.php|Development Tool]]|
+
+====Update====
+
+This service updates ALL the fields of a given record. Once again; ALL FIELDS. This endpoint does not support updating of individual fields, so, in many cases, updating becomes a two-step operation; first retrieve all the records, assign the new values leaving the others untouched and update the whole record.
+
+^Purpose:|Updates ALL the fields of a given record.|
+^Profile:|update(element:Object):Object|
+^Send as:|POST|
+^Parameters:| => element: record object with fields to update. It is mandatory to set the ID field in the Object and send in all fields|
+^Response:|An object with all the information of the record (even [[:en:devel:corebosws:methodreference#retrieve|extended information]])|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/060lib_update.php|Development Tool]]|
+
+====Delete====
+
+^Purpose:|Eliminate any record we have permission to delete.|
+^Profile:|delete(id:string):string|
+^Send as:|POST|
+^Parameters:| => id: web service ID or cbuuid of the record we want to delete|
+^Response:|successful|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/070lib_delete.php|Development Tool]]|
+
+====Revise====
+
+The main difference between Revise and Update is that for revise you can send only those fields that need to be changed, but with update, you need to send all the mandatory fields to update a record.
+
+If you send unknown fields then it will silently ignore them, the reason for this behavior is that the user may not have permission for a few fields and the system may not know if these fields are not available in the system or the user does not have permission for these fields.
+
+^Purpose:|Updates fields of a given record.|
+^Profile:|revise(element:Object):Object|
+^Send as:|POST|
+^Parameters:| => element: record object with fields to update. It is mandatory to set the ID field in the Object|
+^Response:|An object with all the information of the record (even [[:en:devel:corebosws:methodreference#retrieve|extended information]])|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/450_libreviseSO.php|Development Tool]]|
+
+==== CRUD Users ====
+
+The current API supports the manipulation of users as if it were any other entity, that is, you can use Create, Update, Retrieve, and Query as with any other entity. The restriction is that it must be an administrator user who executes the calls, as happens within the application or you will only be able to get information about the connected user.
+
+In order to delete a user, the **DeleteUser** method must be used because, as within the application and unlike the normal Delete, it is necessary to give the recipient user of the records assigned to the user that we are going to delete.
+
+https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/028lib_createUser.php
+
+https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/060lib_updateUser.php
+
+https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/070lib_deleteUser.php
+
+^Method:|deleteUser|
+^Purpose:|Permits us to delete a user and transfer all his assigned records to another user.|
+^Profile:|deleteUser(id:string, newOwnerId:string):string|
+^Send as:|POST|
+^Parameters:| => id: user web service ID that will be deleted \\ => newOwnerId: user web service ID to transfer records to|
+^Response:|successfull|
+
+Users have another additional endpoint which permits them to change their password.
+
+^Method:|changePassword|
+^Purpose:|Permits a user to change his password or the password of another user if the connected user is an administrator.|
+^Profile:|changePassword(id:string, oldPassword:string, newPassword:string, confirmPassword:string):string|
+^Send as:|POST|
+^Parameters:| => id: user web service ID \\ => typical password change parameters.|
+^Response:|successfull|
+
+<WRAP center round alert 80%>
+Note that the changePassword is only useful if using the Password option login method. The access key is changed when the password changes effectively blocking out the user if he connects with the access key method.
+</WRAP>
+
+==== CRUD Documents ====
+
+[[en:devel:corebosws:docenhance_examples|Read full information here]]
+
+==== Adding Comments ====
+
+Most modules support the (now) standard ModComments module to manage comments on the records. Since ModComments is a normal module it can be managed using the CRUD commands indicated above.
+
+There are two historical modules which have a non-standard way of managing comments: Support Tickets (HelpDesK) and Frequently Asked Questions (Faq). For these two modules, we have a specific endpoint: **addTicketFaqComment**
+
+^Purpose:|Function used to add comments to Tickets and Faq.|
+^Profile:|addTicketFaqComment(id:string, values:Object):Object|
+^Send as:|POST|
+^Parameters:| => id: web service id of the trouble ticket or faq to which we must attach the comment \\ => values: array with the parameters of the comment. these parameters can be: \\ 	'from_portal' 0 or 1: 0 = 'user',  1 = 'customer' \\ 	'parent_id' webservice id of the contact creating the comment from the portal \\ 	'comments' string, comment to add|
+^Response:|An object with all the information of the record (even [[:en:devel:corebosws:methodreference#retrieve|extended information]])|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/328_addTicketFaqComment.php|Development Tool]]|
+
+==== CRUD Mass Operations ====
+
+Since network calls are very expensive we have added **mass operations** for the main actions.
+
+=== MassCreate ===
+
+^Purpose:|Create a set of records.|
+^Profile:|MassCreate(elements:array of Objects):Object|
+^Send as:|POST|
+^Parameters:| => elements: an array of Object to create (see below for the accepted structure)|
+^Response:|An object with two elements: \\ => success_creates: array of created Object \\ => failed_creates: array of Object that could not be created with their error message|
+
+The Mass Create elements structure is an intelligent layout that permits us not only to create many records in one call but also to establish relationships among the different records.
+
+The generic structure looks like this
+
+<code JSON>
+[
+    {
+      "elementType" : "modulex",
+      "referenceId" : "refRecord1",
+      "element" : {
+        "field" : "value"
+      }
+    },
+    {
+      "elementType" : "moduley",
+      "referenceId" : "refRecord2",
+      "element" : { 
+        "field" : "value",
+        "modulex_field" : "@{refRecord1.id}"
+      }
+    }
+...
+]
+</code>
+
+Each element of the array represents a record to be created. It contains an **elementType** so we know what module to create the record in, a **referenceId** that identifies the record inside the structure, and a **field-value Object** with the fields of the new record.
+
+The reference fields in a record can reference existing records in the application but they can also reference new records that will be created using the **referenceId** field. This would permit us to create a Contact record and then a Potential record related to the Contact that has just been created.
+
+An example structure to test with:
+
+<code JSON>
+[
+    {
+      "elementType" : "HelpDesk",
+      "referenceId" : "",
+      "element" : {
+        "ticket_title":"support ticket 1",
+        "parent_id":"@{refAccount1.id}",
+        "assigned_user_id":"19x5",
+        "product_id":"@{refProduct.id}",
+        "ticketpriorities":"Low",
+        "ticketstatus":"Open",
+        "ticketseverities":"Minor",
+        "hours":"1.1",
+        "ticketcategories":"Small Problem",
+        "days":"1",
+        "description":"ST mass create test 1",
+        "solution":"",
+      }
+    },
+    {
+      "elementType" : "HelpDesk",
+      "referenceId" : "",
+      "element" : {
+        "ticket_title":"support ticket 2",
+        "parent_id":"@{refAccount2.id}",
+        "assigned_user_id":"19x5",
+        "product_id":"@{refProduct.id}",
+        "ticketpriorities":"Low",
+        "ticketstatus":"Open",
+        "ticketseverities":"Minor",
+        "hours":"1.1",
+        "ticketcategories":"Small Problem",
+        "days":"1",
+        "description":"ST mass create test 2",
+        "solution":"",
+      }
+    },
+    {
+      "elementType" : "HelpDesk",
+      "referenceId" : "",
+      "element" : {
+        "ticket_title":"support ticket 3",
+        "parent_id":"@{refAccount1.id}",
+        "assigned_user_id":"19x5",
+        "product_id":"14x2617",
+        "ticketpriorities":"Low",
+        "ticketstatus":"Open",
+        "ticketseverities":"Minor",
+        "hours":"1.1",
+        "ticketcategories":"Small Problem",
+        "days":"1",
+        "description":"ST mass create test 3",
+        "solution":"",
+      }
+    },
+    {
+      "elementType" : "Accounts",
+      "referenceId" : "refAccount1",
+      "element" : {
+        "accountname":"MassCreate Test 1",
+        "website":"https://corebos.org",
+        "assigned_user_id":"19x5",
+        "description":"mass create test",
+      }
+    },
+    {
+      "elementType" : "Accounts",
+      "referenceId" : "refAccount2",
+      "element" : {
+        "accountname":"MassCreate Test 2",
+        "website":"https://corebos.org",
+        "assigned_user_id":"19x5",
+        "description":"mass create test",
+      }
+    },
+    {
+      "elementType" : "Accounts",
+      "referenceId" : "",
+      "element" : {
+        "accountname":"MassCreate Test",
+        "website":"https://corebos.org",
+        "assigned_user_id":"19x1",
+        "description":"mass create just another account with no relations",
+      }
+    },
+    {
+      "elementType" : "Products",
+      "referenceId" : "",
+      "element" : {
+        "productname":"MassCreate Test",
+        "website":"https://corebos.org",
+        "assigned_user_id":"19x1",
+        "description":"mass create product test",
+      }
+    },
+]
+</code>
+
+and you can see some more examples [[https://github.com/tsolucio/coreBOSTests/blob/master/include/Webservices/MassCreateTest.php|in the unit tests]].
+
+=== MassRetrieve ===
+
+^Purpose:|Retrieve a set of records.|
+^Profile:|MassRetrieve(ids:string):array of Object|
+^Send as:|GET|
+^Parameters:| => ids: a comma-separated string of web service ID of the records to retrieve |
+^Response:|An array of Object with all the information of the records that were possible to obtain|
+
+=== MassUpdate ===
+
+^Purpose:|Update a set of records.|
+^Profile:|MassUpdate(elements:array of Objects):Object|
+^Send as:|POST|
+^Parameters:| => elements: an array of Object to update, each one must contain the web service ID of the record to update and the field-value list of fields to update|
+^Response:|An object with two elements: \\ => success_updates: array of updated IDs \\ => failed_updates: array of IDs that could not be updated with their error message|
+
+=== MassDelete ===
+
+^Purpose:|Delete a set of records.|
+^Profile:|MassDelete(ids:String):Object|
+^Send as:|POST|
+^Parameters:| => ids: comma-separated list of web service IDs to delete|
+^Response:|An object with two elements: \\ => success_deletes: array of deleted IDs \\ => failed_deletes: array of IDs that could not be deleted with their error message|
+
+==== Validations. CRU ====
+
+^Purpose:|Apply application configured validations on a set of fields.|
+^Profile:|ValidateInformation(context:Object):Object|
+^Send as:|POST|
+^Parameters:| => context: an Object with the field-value pairs to validate. Either a "module" or a "record" entry must exist in the object. If "record" is given the validations will be evaluated with the fields of the record.|
+^Response:|true or false in the success field. If false is returned the result will contain an array wit all the validations that have failed|
+
+Besides the ValidateInformation endpoint, we also have create and update options that are identical to their base counterparts explained above just that they will validate the values before executing any operation and return the error messages without taking any action if the validations do not pass.
+
+  * **CreateWithValidation** [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/020_createContactValidation.php|Development Tool]]
+  * **UpdateWithValidation**
+  * **ReviseWithValidation**
+
+==== Upsert ====
+
+The **upsert** method will permit us to execute a search on some fields in a module, if we find a record that matches the search we will update it with the given values, if no record can be found we will create a new one with the given values. So it is a Search and Update or Create in one call.
+
+^Purpose:|Search and update or create a record.|
+^Profile:|upsert(elementType:string, element:Object, searchOn:string , updatedfields:string ):Object|
+^Send as:|POST|
+^Parameters:| => elementType: module name where we search and operate \\ => element: record object with fields to update/create \\ => searchOn: comma-separated list of fields to search on, the values will be obtained from element \\ => updatedfields: comma-separated list of fields to update if the record is found, the values will be obtained from element|
+^Response:|An object with all the information of the record updated/created (even [[:en:devel:corebosws:methodreference#retrieve|extended information]])|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/065_libUpsert.php|Development Tool]]|
+
+
+==== Relations ====
+
+coreBOS API supports defining 1:N and N:N relations between modules.
+
+By setting a value in a foreign key (relation field or uitype 10) we establish a direct relationship between two modules.
+
+The Create and Update operations also support a virtual meta-field named **relations** which contains an array of web service IDs with which we want to relate the record being created or updated. You can see an [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/410_createServiceWithRelation.php|example of this here]].
+
+Finally, we have two endpoints that can establish or delete relations with a large set of records.
+
+SetRelation
+UnsetRelation
+
+^Method:|**SetRelation**|
+^Purpose:|Sets relations between one record and a set of other records.|
+^Profile:|SetRelation(relateThisId:string, withTheseIds:Map):Map|
+^Send as:|POST|
+^Parameters:| => relateThisId: web service ID of the main record to relate \\ => withTheseIds: array of web service IDs to relate to the main record|
+^Response:| |
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/424lib_setrelated.php|Development Tool]]|
+
+^Method:|**UnsetRelation**|
+^Purpose:|Deletes relations between one record and a set of other records.|
+^Profile:|UnsetRelation(unrelateThisId:string, withTheseIds:Map):Map|
+^Send as:|POST|
+^Parameters:| => unrelateThisId: web service ID of the main record to unrelate \\ => withTheseIds: array of web service IDs to unrelate from the main record|
+^Response:| |
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/424lib_setrelated.php|Development Tool]]|
+
+
+
+=====Metadata information=====
+
+====List Types====
+
+^Method:|listtypes|
+^Purpose:|Returns a list of module names the currently connected user has access to.|
+^Profile:|listtypes(fieldTypeList:string):Map|
+^Send as:|GET|
+^Parameters:| => fieldTypeList: comma-separated list of field types the modules must have. Is optional.|
+^Response:|list of modules the user has access to which contain at least one field of the types given. If no types are given all accessible modules are returned|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=listtypes&sessionName=[session id]&fieldTypeList=phone,email</code>|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/090lib_listtypes.php|Development Tool]]|
+
+====Describe====
+
+The Describe service gives us detailed information about the module which we are trying to access. It will inform us both of the types of actions permitted and all the information of the fields which we have access to.
+
+This is extremely important as it is the only way to obtain the objectid of a module. In the introduction, we explained that each record in web service has a unique identifier composed of the module web service id and the record's crmid. The Describe service returns the module id we need to construct this unique identifier.
+
+The object returned by this service contains:
+  * idPrefix - web service module ID
+  * isEntity - true if it is an entity, false if it is an extension
+  * label – label name of the module translated to the language of the connected user
+  * label_raw – internal label name of the module
+  * name – internal name of the module.
+  * createable – boolean value indicating if the connected user can create new records.
+  * updateable - boolean value indicating if the connected user can update existing records.
+  * deleteable - boolean value indicating if the connected user can delete existing records.
+  * retrieveable - boolean value indicating if the connected user can retrieve records.
+  * labelFields - main fields that represent the records in the module, the link fields
+  * filterFields - the default column fields to show when listing the records. Contains also the link fields and page size
+  * relatedModules - all the information of the modules related to this module
+  * fields - an array that contains all the accessible fields and their related information. Each field   has these values:
+    * name – internal field name.
+    * label – label name translated
+    * label_raw – internal label name
+    * mandatory – a boolean value which indicates if it is mandatory on creation or not.
+    * type – array with field data type information.
+    * default – the default value of the field.
+    * nullable – boolean value indicating if the field can be empty.
+    * editable – boolean value indicating if the field can be modified.
+    * uitype – UI type of the field
+    * typeofdata – basic validation information
+    * sequence – order of the fields in the application
+    * quickcreate – boolean value indicating if the field is present in quick create or not
+    * [[en:devel:field_structure#display_types_for_fields_in_modules|displaytype]]
+    * summary – letter indicating if the field is present in the page header information
+      * T: should appear in title
+      * H: should appear in header
+      * B: should appear in body
+      * N: does not appear in page header
+    * block – array with block information
+      * blockid: internal ID of the block
+      * blocksequence: order of the block
+      * blocklabel: raw label of the block
+      * blockname: translated label of the block
+
+^Method:|Describe|
+^Purpose:|Returns metadata of a list of module names.|
+^Profile:|describe(elementType:string):Map|
+^Send as:|GET|
+^Parameters:| => elementType: comma-separated list of modules.|
+^Response:|see above|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=describe&sessionName=[session id]&elementType=Contacts,Accounts</code>|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/080lib_describe.php|Development Tool]]|
+
+====Filters/Views====
+
+^Method:|getfilterfields|
+^Purpose:|Retrieve the default list of fields to show in a list view along with the link field and pagesize|
+^Profile:|getfilterfields(module:String):Map|
+^Send as:|POST|
+^Parameters:| => module: module name to get the fields for|
+^Response:|A map object with a list of the fields, the link fields and the default page size|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=getfilterfields&sessionName=[session id]&module=[name]</code>|
+
+
+^Method:|getViewsByModule|
+^Purpose:|Retrieve a list of available filters on a module with all the available information of each: fields, conditions, default, and also the link field and page size. This method is similar to getFiltersByModule being the difference one property (HTML output) and that this method applies permission based on the coreBOS Custom View Management module.|
+^Profile:|getViewsByModule(module:String):Map|
+^Send as:|POST|
+^Parameters:| => module: module name to get the filters for|
+^Response:|A map object with a list of the filters, the link fields, and the default page size|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=getViewsByModule&sessionName=[session id]&module=[name]</code>|
+
+
+^Method:|getFiltersByModule|
+^Purpose:|Retrieve a list of available filters on a module with all the available information of each: fields, conditions, default, and also the link field and page size. This method is similar to getViewsByModule being the difference one property (HTML output) and that this method applies permission based on the Custom View Management (filters, public, and approve).|
+^Profile:|getFiltersByModule(module:String):Map|
+^Send as:|POST|
+^Parameters:| => module: module name to get the filters for|
+^Response:|A map object with a list of the filters in HTML and array format and the link fields|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=getFiltersByModule&sessionName=[session id]&module=[name]</code>|
+
+====User Information====
+
+^Method:|getPortalUserInfo|
+^Purpose:|Retrieve a list of available fields for the connected user|
+^Profile:|getPortalUserInfo():Map|
+^Send as:|POST|
+^Parameters:||
+^Response:|'date_format','first_name','last_name','email1','id','is_admin','roleid','rolename','language','currency_grouping_pattern','currency_decimal_separator','currency_grouping_separator','currency_symbol_placement'|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=getPortalUserInfo&sessionName=[session id]</code>|
+
+
+^Method:|getPortalUserDateFormat|
+^Purpose:|Retrieve the date format of the connected user|
+^Profile:|getPortalUserDateFormat():Map|
+^Send as:|POST|
+^Parameters:||
+^Response:|date_format, if none is set ISO (yyyy-mm-dd) will be returned|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=getPortalUserDateFormat&sessionName=[session id]</code>|
+
+
+^Method:|getAllUsers|
+^Purpose:|Retrieve a list of all existing users name|
+^Profile:|getAllUsers():Map|
+^Send as:|POST|
+^Parameters:||
+^Response:|list of user names indexed by ID|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=getAllUsers&sessionName=[session id]</code>|
+
+
+^Method:|getAssignedUserList|
+^Purpose:|Retrieve a list of all users with access to a module|
+^Profile:|getAssignedUserList(module):Map|
+^Send as:|GET|
+^Parameters:| => module: module name to get the users for|
+^Response:|list of user IDs and names|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=getAssignedUserList&sessionName=[session id]&module=[name]</code>|
+
+
+^Method:|getUsersInSameGroup|
+^Purpose:|return all the users in the groups that the given user is part of.|
+^Profile:|getUsersInSameGroup(id:String):Map|
+^Send as:|POST|
+^Parameters:| => id: userid to get the group users for. Note: application ID not web service ID|
+^Response:|array user names of all the users in the groups that this user is part of indexed by their ID|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=getUsersInSameGroup&sessionName=[session id]&id=[userid]</code>|
+
+====Other Information====
+
+^Method:|**getRelatedModulesManytoOne**|
+^Purpose:|Returns an array of metadata information about the modules related to the given module in N:1 mode.|
+^Profile:|getRelatedModulesManytoOne(module:string):array of Map|
+^Send as:|GET|
+^Parameters:| => module: main module for which we want to know the list of related modules.|
+^Response:|An array of module information which contains: \\ => name: related module name \\  => label: translated module label \\  => field: field that relates the modules|
+
+^Method:|**GetRelatedModulesOneToMany**|
+^Purpose:|Returns an array of metadata information about the modules related to the given module in 1:N mode.|
+^Profile:|GetRelatedModulesOneToMany(module:string):array of Map|
+^Send as:|GET|
+^Parameters:| => module: main module for which we want to know the list of related modules.|
+^Response:|An array of module information which contains: \\ => name: related module name \\  => label: translated module label \\  => field: field that relates the modules|
+
+^Method:|**getRelatedModulesInfomation**|
+^Purpose:|Returns an array of metadata information about the modules related to the given module.|
+^Profile:|getRelatedModulesInfomation(module:string):array of Map|
+^Send as:|POST|
+^Parameters:| => module: main module for which we want to know the list of related modules.|
+^Response:|An array of module information which contains: \\  => related_tabid: internal ID of the module \\  => related_module: module name \\  => label: module label \\  => labeli18n: translated module label \\  => actions: supported actions \\  => relationId: internal relation ID \\  => relatedfield: field that relates the module \\  => relationtype: 1:N or N:N \\  => filterFields: array of fields that should be listed when showing the related records|
+^Notes:|The information returned with this function is present in the Describe response|
+
+
+^Method:|**getReferenceValue**|
+^Purpose:|convert web service IDs into their entity names.|
+^Profile:|getReferenceValue(id:string):string|
+^Send as:|GET|
+^Parameters:| => id: PHP serialzed array of web service IDs to convert.|
+^Response:|A web service ID indexed map with these three entries: \\ => module: the module of the record in the field \\ => reference: entity name reference \\ => cbuuid: of the record|
+^Notes:|The information returned with this function is equivalent to the "ename" virtual fields returned by Retrieve|
+
+^Method:|**getModulePermissionQuery**|
+^Purpose:|returns SQL query restrictions that must be applied to enforce application permissions. This is used to generate external SQL reports with tools like SuperSet or Metabase while applying the same rules configured inside the application.|
+^Profile:|getModulePermissionQuery(module:string):Map|
+^Send as:|GET|
+^Parameters:| => module: name of the module for which we want to retrieve the restrictions.|
+^Response:|A map with these three entries: \\ => permissonTable: if a temporary table is required this will contain it's name \\ => permissionQuery: full permission query \\ => permissionJoin: only the join conditions of the query|
+
+^Method:|**getPicklistValues**|
+^Purpose:|get picklist fields for the given module and all their possible values.|
+^Profile:|getPicklistValues(module:string):Map|
+^Send as:|POST|
+^Parameters:| => module: name of the module for which we want to retrieve the picklist values.|
+^Response:|A map of picklist fields and all their values|
+
+^Method:|**getEntityNum**|
+^Purpose:|get the auto numeric field prefixes of all modules with a uitype 4 field.|
+^Profile:|getEntityNum():Map|
+^Send as:|POST|
+^Parameters:| |
+^Response:|A map of auto numeric prefixes with module names as key|
+
+===== Other Operations =====
+
+====Search Global Variable====
+
+[[:en:adminmanual:globalvariables#web_service|SearchGlobalVar]]
+
+====Translations====
+
+^Purpose:|This method permits us to use the translations in the application in our frontend application.|
+^Profile:|gettranslation(totranslate:Map, language:string, module:string):Map|
+^Send as:|POST|
+^Parameters:| => totranslate: Object with the keys to translate, the value will be ignored if a translation exists or returned if no translation exists \\ => language: a valid application language identifier (e.g. es_es) \\ => module: module to start the translations from|
+^Response:|A map object with all the keys translated where possible|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/324_getTranslate.php|Developer Tool]]|
+
+====Javascript Logging====
+
+The **jsLog** endpoint permits us to send any message from javascript to our coreBOS backend. If we activate the [[https://github.com/tsolucio/corebos/blob/master/log4php.properties#L58|javascript logging section]] we will be able to send messages from javascript to our logs directory for tracing.
+
+^Purpose:|Updates fields of a given record.|
+^Profile:|jsLog(level:string, message:string)|
+^Send as:|POST|
+^Parameters:| => level: log4php logging level \\ => message: the string to write in the log if the given level is matched|
+^Response:| |
+
+====Sync====
+
+The sync service returns the complete set of changes that occurred to all records assigned to the connected user from a given date and time.
+
+^Purpose:|Returns a SyncResult object which contains all the changes that occurred in the application since the parameter modifiedTime to records assigned to the connected user. Optionally, if the connected user is an administrator he can ask for all changes in the application disregarding who the records are assigned to.|
+^Profile:|sync(modifiedTime: Timestamp, elementType: String, syncType: String):SyncResult|
+^Send as:|GET|
+^Parameters:| => modifiedTime: timestamp of last synchronization \\ => elementType: optional parameter, name of the module we want to get the changes for, if not set all records affected in all modules will be returned \\ => syncType: a string which can be empty or contain the value 'application'. If it is 'application' and the connected user is an administrator, all changes to the application will be returned.|
+^Response:|SyncResult object with changes: \\ <code>SyncResult {
+updated:[Object] //List of created or modified objects.
+deleted:[Id] //List of webserviceid of deleted objects
+lastModifiedTime:Timestamp // date/time of last change, this can be used in the next call to the sync service to get next set of changes
+}</code>|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=sync&sessionName=[session
+id]&modifiedTime=[timestamp]&elementType=[elementType]</code>|
+^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/050_sync.php|Development Tool]]|
+
+
+----
+<WRAP right>
+[[:en:devel:corebosws:docenhance_examples|Next: Working with Documents]] | [[en:devel:corebosws:tableofcontents|Table of Contents]]
+</WRAP>
+----

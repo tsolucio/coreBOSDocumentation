@@ -1,5 +1,15 @@
 ====== How to add related lists to a module ======
 
+the TLDR; version is
+
+  * Relate with Documents > get_attachments
+  * Relate with Calendar > get_activities
+  * Relate with Emails > get_emails
+  * Is custom relation > whatever function you have implemented
+  * 1:m > get_dependents_list
+  * m:m > get_related_list
+
+
 =====How to associate Standard Modules such as Accounts, Potentials & Vendors to a New module (Payslip) with m:m relation=====
 
 Through vtlib we can establish a relation between a standard module and a new one using the setRelatedList function:
@@ -100,4 +110,17 @@ Thanks Agamenon
 
 =====Adding a related list to an existing module without modifying it's code=====
 
-Since November 2014 the application has a way of adding related lists to a module without having to modify it's main class. [[en:devel:corebos_hooks#related_list_hook|Read all about it on the hooks wiki page!]]
+Since November 2014 the application has a way of adding related lists to a module without having to modify its main class. [[en:devel:corebos_hooks#related_list_hook|Read all about it on the hooks wiki page!]]
+
+===== Frequently Asked Questions =====
+
+??? Why doesn't get_dependents_list support the SELECT button?
+!!! select is directly eliminated in get_dependents_list because that action is dangerous and not supported
+
+think about it
+
+a get_dependents_list is a 1:N relation, so on the related list, you are seeing those records that have a certain ID in their uitype 10. If I am on an Account, and looking at the contacts related list, I am seeing those contacts that have that accountid in their field. Select would mean that we would have to **overwrite** that value for the selected records, effectively **UNRELATING** them from the records they are related to now. **That is dangerous** and probably NOT what the user wants to do.
+
+If it IS what you want to do you have to go to the module (contacts in the example above) filter and mass edit the accountid field. So you can "select" if you want, but you have to do it through mass edit. It must be a conscious and intentional act, not an unintentional one.
+
+> "ah, I thought it worked like the other select not that it was going to trash all my relations!"

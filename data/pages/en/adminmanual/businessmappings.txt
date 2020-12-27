@@ -39,6 +39,7 @@ There are currently these different types of mappings:
   * [[en:adminmanual:businessmappings:field_set|Field Set Mapping]]
   * [[en:adminmanual:businessmappings:masterdetailmapping|Master Detail Mapping]]
   * [[en:adminmanual:businessmappings:iomap|IOMap]]
+  * [[en:adminmanual:businessmappings:infomap|Information Map]]
   * [[en:adminmanual:businessmappings:field_dependency|Field Dependency]]
   * [[en:adminmanual:businessmappings:validations|Validations]]
   * [[en:adminmanual:businessmappings:relatedpanes|Related Panes]]
@@ -50,7 +51,7 @@ There are currently these different types of mappings:
   * [[en:adminmanual:businessmappings:webservicecall|REST/SOAP call and retrieval]]
   * <del>[[en:adminmanual:businessmappings:search_and_update|Search and Update]]</del> TBD
 
-Depending on the type of the business mapping the contents of the record changes as explained next.
+Depending on the type of business mapping the contents of the record changes as explained next.
 
 
 <WRAP center round important 75%>

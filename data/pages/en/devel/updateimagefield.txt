@@ -16,7 +16,7 @@ $data = $barcodeobj->getBarcodePngData(3, 3, array(0,128,0));
 $model_filename=array(
 	'name'=>'barcode',  // no slash nor paths in the name
 	'size'=>strlen($data),
-	'type'=>' image/png',
+	'type'=>'image/png',
 	'content'=>base64_encode($data)
 );
 

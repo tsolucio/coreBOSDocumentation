@@ -2,9 +2,9 @@
 
 ===== Access to the System =====
 
-You need a valid coreBOS user to access the webservice interface. All the operations you can do through the REST interface will be limited by the coreBOS permission system of the connected user.
+You need a valid coreBOS user to access the webservice. All the operations you can do through the REST interface will be limited by the coreBOS permission system of the connected user.
 
-The REST API can use the users password to connect or the user's access key which is a unique identifier created for each user that can be found in the user's preferences page. This will depend on how you implement your application login screen.
+The REST API does not use the users password to connect. Instead it needs the user's access key which is a unique identifier created for each user that can be found in the user's preferences page.
 
 {{ :en:devel:corebosws:accesskey.png?800 |}}
 
@@ -27,11 +27,12 @@ expireTime:TimeStamp //expire time of token
 
 ====Login====
 
-Now that we have the challenge token we can proceed with the login step. For this we have to send the **user name** and a **verification string**. This verification string can be constructed in two ways:
-  * as an md5 encrypted string of the challenge token plus the user's access key
-  * as a the concatenation of the token string plus the user's password
+ Now that we have the challenge token we can proceed with the login step. For this we have to send the user name and a verification string. This verification string can be constructed in two ways:
 
-This operation is executed as POST.
+    *as an md5 encrypted string of the challenge token plus the user's access key
+    *as a concatenation of the token string plus the user's password <wrap em>this is insecure and NOT recommended</wrap>
+
+This operation is executed as POST
 
 ^Purpose:|Validate the user's access in the web service interface. The use of the getchallenge token is required|
 ^Profile:|login(username:String, accessKey:String):LoginResult|
@@ -44,9 +45,10 @@ version:String //Webservice interface version
 vtigerVersion:String //coreBOS version
 }</code>|
 ^URL Format:|<code>http://corebos_url/webservice.php?operation=login&username=[username]&accessKey=[accessKey]</code>|
-^Comments:|The accessKey parameter is written with a capital 'K'\\ The user's access key can be found o nthe user's profile screen inside the application|
+^Comments:|The accessKey parameter is written with a capital 'K'\\ The user's access key can be found on the user's profile screen inside the application|
 
-Once these two steps have been taken we can continue by calling any of the webservice functions.
+
+Once these two steps have been taken we can continue by calling any of the web service functions.
 
 
 
@@ -54,4 +56,8 @@ Once these two steps have been taken we can continue by calling any of the webse
 
   * This method of authentication is called Challenge-Handshake Authentication Protocol and it is more secure than a username/password authentication. [[https://tools.ietf.org/html/rfc1994|Read here for more information]]
 
-
+----
+<WRAP right>
+[[:en:devel:corebosws:querylanguage|Next: Query language]] | [[en:devel:corebosws:tableofcontents|Table of Contents]]
+</WRAP>
+----

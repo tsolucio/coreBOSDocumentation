@@ -163,3 +163,11 @@ and it worked as expected.
 
 If you have blocked all the admin users you will have to go directly to the database, find the admin users' row in the vtiger_users table and set the "loginattempts" column to 0
 
+??? How can we rollback a mass edit?
+
+!!! Some ideas come to mind, all rather "techy":
+
+  * Recover from a backup of the database. This is the easiest option with the only downside of losing information/work since the last backup, but you are doing frequent backups anyway, right?  :-)
+  * If the amount of work done doesn't permit you to recover from the database then you can recover the backup database into a copy, extract the table with the lost data, and copy it into the production database. Now create an update SQL command to update the incorrectly updated fields from the backup table. This option is a surgical backup recovery only of the fields you have updated instead of a full backup recovery.
+  * Another similar alternative to the last step is using the coreBOS history tracker. If you have ModTracker activated on the module you have mass edited, then you have a register of the old and new value in the ModTracker database tables. So you can manually handcraft update SQL commands to recover the original values. This is like recovering from the backup table but harder and you must have ModTracker active before doing the mass edit.
+  * If you have Record Versioning active on the module with the mass edit error then it is REALLY simple, you just set the previous version as the active record. I don't remember if that can be done as a mass action but since all the other solutions require going to the database, you can go there also to make the previous version active if it can't be done through the UI.

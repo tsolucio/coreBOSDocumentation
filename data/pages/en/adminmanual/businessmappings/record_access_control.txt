@@ -137,3 +137,78 @@ with this mapping:
 =====Block Tickets if assigned user is not creator=====
 
 {{youtube>Iryw1xw78t4}}
+
+=====Accessing via web service=====
+
+RAC rules must be evaluated on a per Module-Action-Record basis. For each combination of these three values, a search must be made in the workflow system, then each candidate RAC workflow must have its' conditions evaluated, and then, once one is found the map must be read and processed according to the triple given.
+
+coreBOS does exactly this process among some other steps in the function **isPermitted** It is this function that we need to call to get the RAC rules in our external applications. This can be easily achieved using a condition expression business map of type function set to isPermitted like this:
+
+<code XML>
+<map>
+<function>
+	<name>isPermitted</name>
+	<parameters>
+		<parameter>permitted_module</parameter>
+		<parameter>permitted_action</parameter>
+		<parameter>permitted_record</parameter>
+	</parameters>
+</function>
+</map>
+</code>
+
+which can be called like this:
+
+<code PHP>
+$response = $cbconn->doInvoke(
+	'cbRule',
+	array(
+		'conditionid' => '37x118348',
+		'context' => json_encode(
+			array(
+				'record_id' => '37x118348',
+				'permitted_module' => 'cbMap',
+				'permitted_action' => 'ListView',
+				'permitted_record' => '',
+			)
+		),
+	),
+	'GET'
+);
+var_dump($response);
+</code>
+
+You can also call this with the map name. Let's suppose that the map above has the name **RACRulePermittedCheck** you could do this:
+
+<code PHP>
+$response = $cbconn->doInvoke(
+	'cbRule',
+	array(
+		'conditionid' => 'RACRulePermittedCheck',
+		'context' => json_encode(
+			array(
+				'record_id' => '11x74',
+				'permitted_module' => 'Accounts',
+				'permitted_action' => 'EditView',
+				'permitted_record' => '11x74',
+			)
+		),
+	),
+	'GET'
+);
+var_dump($response);
+</code>
+
+In general, the idea is:
+
+<code XML>
+{
+ "conditionid": "RACRulePermittedCheck",
+ "context": {
+   "record_id": record you want to know the permissions for may be empty (I think),
+   "permitted_module": module name of the record you want the permission for
+   "permitted_action": the action you want to know the access fo
+   "permitted_record": in case the action requires an ID of a record put it here
+ }
+}
+</code>

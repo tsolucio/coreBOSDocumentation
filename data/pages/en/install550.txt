@@ -1,8 +1,8 @@
 ====== Install coreBOS ======
 ===== Requirements =====
   * Apache 2.x or above.
-  * MySQL 5.x
-  * PHP from 5.6.x to 7.4.x. PHP 7.3 is recommended.
+  * MySQL 5.x and 8.x
+  * PHP from 5.6.x to 7.4.x. PHP 7.4 is recommended.
 <WRAP center round info 75%>
 This is a typical **WAMP/LAMP stack**. All linux distributions have this natively so we recommend you install the packages from your distribution (make sure you have the right versions). On windows download the XAMPP stack from apache friends. You can see the [[http://code.stephenmorley.org/articles/xampp-version-history-apache-mysql-php|list of application versions here]].
 </WRAP>
@@ -99,16 +99,16 @@ Please make sure you meet all these requirements
 =====Install=====
 
   * Download the source code from GitHub
-  * copy the code into a folder in accessible from your webserver install
+  * copy the code into a folder inaccessible from your web server install
   * type in the URL of the folder into your browser
   * you should get the **Configuration Wizard** welcome page
 
 {{ :en:corebosinstall01.png?800 |}}
 
   * click on the Install button and accept the license
-  * Review all the pre installation checks. You should be able to proceed with some PHP recommendations in red, but ONLY those, any other red check MUST be fixed before proceeding.
+  * Review all the pre-installation checks. You should be able to proceed with some PHP recommendations in red, but ONLY those, any other red check MUST be fixed before proceeding.
   * Fill in all the information required and continue
-    * you will need a mysql user with access to a database that may exist or not, if it doesn't exist you will also need a mysql user with enough permission to create a database
+    * you will need a MySQL user with access to a database that may exist or not, if it doesn't exist you will also need a MySQL user with enough permission to create a database
 
 <WRAP center round important 60%>
 If the database exists it **MUST** be empty, the install procedure DOES NOT migrate, there is a migration procedure available if necessary.
@@ -129,7 +129,8 @@ If the database exists it **MUST** be empty, the install procedure DOES NOT migr
 <WRAP center round important 80%>
 For additional security it is recommended that you take two more steps:
   - Configure a [[https://wiki.apache.org/httpd/PasswordBasicAuth|Basic Authentication]] password protection on the application
-  - Delete all unused files. You can launch the bettersafe.sh script and also remember to eliminate the install and migration scripts and directory which have been renamed during the install process
+  - Delete all unused files. You can launch the **bettersafe.sh** script and also remember to eliminate the install and migration scripts and directory which have been renamed during the install process
+  - the **bettersafe.sh** will also **set the config.inc.php file to read-only** which is a very good idea even if you don't want to execute bettersafe
 </WRAP>
 
 

@@ -241,7 +241,7 @@ Actions called on the indicated events
 
 ===corebos.filter.inventory.getprice===
 
-When the application requires a product/service price, it will get the unit price field from the database and the call this filter with some information so we can calculate some other price to be returned.
+When the application requires a product/service price, it will get the unit price field from the database and then call this filter with some information so we can calculate some other price to be returned.
 
 This filter receives these parameters:
   * the unit price
@@ -252,6 +252,7 @@ This filter receives these parameters:
     * accountid (maybe 0 if not selected)
     * contactid (maybe 0 if not selected)
     * productid/serviceid
+    * related_module
 
 
 
@@ -301,6 +302,7 @@ Each hook requires its' own specific magic and steps to get them working and cov
   * [[en:devel:corebos_hooks:popup_capture_hook|Popup capture hook]]
   * [[en:devel:corebos_hooks:popup_query_hook|Popup query hook]]
   * [[en:devel:corebos_hooks:related_list_hook|Related List hook]]
+  * afterImportRecord
 
 ===== LINKS: Types and usage =====
 

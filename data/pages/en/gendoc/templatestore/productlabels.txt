@@ -1,0 +1,21 @@
+===== GenDoc Template:: Product Labels =====
+
+Print out labels 30x40 template
+
+---- dataentry ----
+name : 30mmx40mm
+type : gendoctemplate
+template_img : :en:gendoc:templatestore:30mmx40mm.odt
+pdfexample_img: :en:gendoc:templatestore:30mmx40mm.pdf
+description_wiki: Print out labels 30x40 template
+keywords_tags : labels,layout,etiquetas
+language: ES
+module: Products
+version : 1.0
+release_dt : 2020-12-26
+licenses : CC
+price : Free
+distribution : Free
+authorname : Omar Llorens
+----
+\\

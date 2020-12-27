@@ -14,16 +14,15 @@ The fields have all been added to a new block called "Financial Information" and
   * **Global discount**: the value of the global discount applied in the footer of the record
   * **Total discount**: the sum of line and global discount
   * **Net before global discount**: gross total minus individual line discounts
-  * **Net total (after global discount)**: gross total minus total discounts
-  * **Tax totals**: a field with the sum of all taxes applied for each tax active
+  * **Net total (after global discount)**: gross total minus ALL (total sum of all) discounts
   * **Tax retention**: the sum of all taxes marked as type retention
   * **Total tax**: the sum of all taxes applied
-  * **Shipping and handling total**: copy of the value in the footer
+  * **Shipping and handling total**: a copy of the value in the footer
   * **Shipping and handling tax**: the sum of taxes applied to shipping and handling
-  * **Adjustment**: copy of the value in the footer
-  * **Grand total**: copy of the value in the footer
+  * **Adjustment**: a copy of the value in the footer
+  * **Grand total**: a copy of the value in the footer
 
-In a more mathematical notation it would be
+In a more mathematical notation, it would be
 
   * gross =  ∑linetotals
   * line_discount =∑line_discounts
@@ -33,3 +32,148 @@ In a more mathematical notation it would be
   * grand_total = net + total_tax + s&h + s&h_tax + adjustment
 
 The **retention tax** type can be established in the **tax settings** page and is simply to sum them separately.
+
+===== Inventory Details Line Module =====
+
+This section is intended to signify the meaning of InventoryDetails fields. Since there are four main inventory modules, each field should receive a separate meaning for each 'context' (the inventory module the record belongs to). When the meaning is similar in all contexts, only one will be provided.
+
+====Inventory Details No====
+^Context^Purpose^
+|All|Give the record a unique identifier on the frontend|
+
+====Related To====
+^Context^Purpose^
+|All|Provide a link to the record this inventorydetailsline is used on. The type of module of this 'master' record is used as the context of the inventorydetails record|
+
+====Contacts====
+^Context^Purpose^
+|Quotes|B2C: To who are we offering the product or service\\ B2B: Person in the organization who is responsible for the quote|
+|SalesOrder|B2C: To who are we selling the product or service\\ B2B: Person in the organization who is responsible for the Sales Order|
+|Invoice|B2C: To who are we invoicing the product or service\\ B2B: Person in the organization who is responsible for the Invoice|
+|PurchaseOrder|Our sales representative at the Vendor|
+
+====Sequence No====
+^Context^Purpose^
+|All|Provide a whole number that signifies the sequence no. In which this inventory details line is placed when used in its context (e.g.: the 'master' record)|
+
+====Quantity====
+^Context^Purpose^
+|Quotes|How many units were offered to an account|
+|SalesOrder|How many units were sold to an account|
+|Invoice|How many units were invoiced to an account|
+|PurchaseOrder|How many items were ordered at the vendor|
+
+====Tax Percent====
+^Context^Purpose^
+|Quotes, SalesOrder, Invoice|Is the sum of all tax percentages used on this line. So when, for instance a VAT of 21% was used and a Sales Tax of 2%, this field would carry 23%|
+|PurchaseOrder|The sum of all tax percentages as invoiced to us by the vendor. Should be 0 when creating PurchaseOrders.|
+
+====Discount percent====
+^Context^Purpose^
+|Quotes|The percentage of discount offered on this line|
+|SalesOrder, Invoice|The percentage of discount awarded on this line|
+|PurchaseOrder|The percentage of discount awarded by the vendor for this product to us|
+
+====Net Price====
+^Context^Purpose^
+|All|An amount of money that follows the formula:\\ (Unit Price * Quantity) – Line Discount Amount\\ This is the amount of money the line represents after deducting discounts but before adding individual line taxes.|
+
+====Line Total====
+^Context^Purpose^
+|All|The final total of the line. This follows the formula:\\ Net Price + Line Tax\\ The is the amount of money the line represents after discount, after individual taxes|
+
+====Line Completed====
+^Context^Purpose^
+|Quotes|This field has no meaning|
+|SalesOrder|This field signifies whether all units of the line have been delivered. When no units have been delivered or a part of the sold units (field: Quantity) has been delivered, this field should remain unchecked.\\ Only when all sold units have been delivered to the Organization this field should be set to 'yes'|
+|Invoice|This field has no meaning|
+|PurchaseOrder|This field signifies whether all units ordered at the vendor (Quantity field) have been received by us. As long as there are more units in the Quantity-field than in the 'Delivered/Received' field, this field should remain unchecked\\ When the no. in 'Units Delivered / Received' meets or exceeds the no. in 'Quantity', this field should be set to 'yes'.|
+
+====Cost Price====
+^Context^Purpose^
+|Quotes, SalesOrder, Invoice|This field indicates the cost price of the product or service, per unit|
+|PurchaseOrder|This field should be zero. The cost price of a product should, in the context of a purchase order, be represented on the 'Unit Price' field.|
+
+====Total Stock====
+^Context^Purpose^
+|All|This field should carry the value of the stock level of the related product of the line **at the moment the line was created and the master-record was first saved.** After the initial save, this field should never be altered.\\ The stock we use to fill in this field will respect the units delivered/received field as such: when a master-record (like SalesOrders) ‘delivers’ units, the stock saved on this field will reflect the stock on the product, minus the units delivered on the first save. When a master-record receives products (like PurchaseOrders), the field will hold the product stock plus the units received at the first save.\\ Subsequent changes to the units delivered/received field will not update this field.|
+
+====Remaining Units====
+^Context^Purpose^
+|Quotes|No meaning|
+|SalesOrder|The number of units that remain to be delivered to the Organization. Should always be the 'Quantity' minus the 'Units Delivered/Received'.|
+|Invoice|No meaning|
+|PurchaseOrder|The number of units that remain to be received from the vendor. Should always be the 'Quantity' minus the 'Units Delivered/Received'.|
+
+====Products====
+^Context^Purpose^
+|Quotes|Which product/service are we offering?|
+|SalesOrder|Which product/service are we selling?|
+|Invoice|Which product/service are we invoicing?|
+|PurchaseOrder|Which product/service are we buying?|
+
+====Organizations====
+^Context^Purpose^
+|Quotes|B2C: Empty, or the company the contact works in\\ B2B: To who are we offering the product or service|
+|SalesOrder|B2C: Empty, or the company the contact works in\\ B2B: To who are we selling the product or service|
+|Invoice|B2C: Empty, or the company the contact works in\\ B2B: To who are we invoicing the product or service|
+|PurchaseOrder|No meaning should be empty|
+
+====Vendor====
+^Context^Purpose^
+|All|If the Product field contains a Product (not a service), the main vendor of that product|
+|PurchaseOrder|**Concept: not in production:**\\ From whom are we buying the product or service?|
+
+====Line Item ID====
+^Context^Purpose^
+|All|A reference to the legacy 'productinventoryrel' table ID|
+
+====Unit Price====
+^Context^Purpose^
+|Quotes, SalesOrder, Invoice|The unit price of the Product or Service on the Product-field|
+|PurchaseOrder|The cost price of the Product or Service on the Product-field|
+
+====Gross Price====
+^Context^Purpose^
+|All|The total amount of money this line represents, before discounts or individual taxes. The formula would be\\ Quantity * Unit Price|
+
+====Discount Amount====
+^Context^Purpose^
+|Quotes, SalesOrder, Invoice|The discount awarded to the Organization for this particular line, represented as an absolute amount of money.\\ When there is a direct discount awarded to this line, that amount will be placed here directly.\\ When there is a discount percentage awarded to this line, the amount represented by that percentage will be calculated and automatically filled in here.|
+|PurchaseOrder|The discount awarded by the Vendor to us for this particular line, represented as an absolute amount of money. An administration department should later verify that this discount was actually deducted when we receive the Invoice.\\ When there is a direct discount awarded to this line, that amount will be placed here directly.\\ When there is a discount percentage awarded to this line, the amount represented by that percentage will be calculated and automatically filled in here.|
+
+====Line Tax====
+^Context^Purpose^
+|All|A quantified representation of the sum of all tax percentages. This follows the formula:\\ Net Total * (Tax Percent / 100).\\ The Net Total and the Line Tax together form the Line Total|
+
+====Units Delivered/Received====
+^Context^Purpose^
+|Quotes|No meaning|
+|SalesOrder|The number of units that have been delivered to the Organization.|
+|Invoice|No meaning|
+|PurchaseOrder|The number of units that have been received from the vendor.|
+
+====Cost Total====
+^Context^Purpose^
+|Quotes, SalesOrder, Invoice|The total cost price of this line, represented as an amount of money. This follows the formula:\\ Cost Price * Quantity|
+|PurchaseOrder|This field should always be zero|
+
+====Related Line Item ID====
+
+This field needs to be discussed. What I don't like is that it is uitype 1. Not only is this the wrong Uitype for an ID (should be 7 since it's always a number), it's also not a reference field. So if we decide to give some meaning to this field, we won't be able to use workflows on it.
+
+^Context^Purpose^
+|Quotes|No meaning. Should be empty|
+|SalesOrder|References the InventoryDetails line on which this line was offered. So the context of the line referenced is a Quote|
+|Invoice|References the InventoryDetails line on which this line was sold. So the context of the referenced line is a SalesOrder. There could be multiple Invoicelines referencing a single SalesOrderline since a SalesOrder could be Invoiced in multiple tranches|
+|PurchaseOrder|References a possible InventoryDetails line on which this product was sold. Only applicable when there is a direct and true relationship between these lines. Meaning: a product sold to an Organization on a SalesOrder is ordered at a Vendor in the same Quantity.\\ Note: there could be 'collector' lines for PurchaseOrders, e.g.: PurchaseOrder lines that order Products in one line that are meant to fulfill multiple SalesOrderlines. This can, in this configuration only be done by relating those records on a M:M basis.|
+
+===== Some Internals =====
+
+==== vtiger_productcurrencyrel ====
+
+This table holds the relation of the unit price of the product for each currency configured in the application. It contains two values:
+
+  * the **actual unit price** of the product in each currency. This is the price introduced by the user in the application
+  * the **converted price** of the product in each currency. This represents the mathematical calculation of the price in that currency based on the conversion rate. This value is not used anywhere in the application, it is only a reference value
+

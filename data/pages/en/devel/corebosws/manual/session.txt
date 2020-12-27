@@ -1,0 +1,24 @@
+===== Extend Session and Logout =====
+
+The extend session service permits us to access the web service API from within coreBOS itself. If the user has already validated his session in the application we can use that information to log in to the web service API and execute commands as if we were connecting from outside the application. It is worth noting that both sessions become dependent so if the user logs out of either he will automatically be logged out of the other connection.
+
+^Method:|extendsession|
+^Purpose:|When a user has already logged in and has an active session, it is useful to be able to use that same session to access the web service API without forcing the user to log in again. This method will detect the existing session and return a validated login session for the web service API|
+^Profile:|extendsession():Map|
+^Send as:|POST|
+^Parameters:| |
+^Response:|A map which contains these fields: \\ => sessionName: validated session ID to use in subsequent calls \\ => userId: web service ID of the connected user \\ => version: coreBOS and web service version numbers|
+
+^Method:|logout|
+^Purpose:|The logout service eliminates the session information, invalidating any further operations with that session ID. For security reasons this method should be called when the user of the external application finishes his tasks. He should have an option to close the application.|
+^Profile:|logout(sessionId:string):Map|
+^Send as:|POST|
+^Parameters:| => sessionId: session ID to invalidate.|
+^Response:|map with one entry: successfull|
+
+
+----
+<WRAP right>
+[[:en:devel:corebosws:manual:addws|Next: Add web service end points]] | [[en:devel:corebosws:tableofcontents|Table of Contents]]
+</WRAP>
+----

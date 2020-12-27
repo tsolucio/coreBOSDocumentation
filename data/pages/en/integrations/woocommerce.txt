@@ -1,0 +1,126 @@
+=====WordPress Woocommerce Integration=====
+
+This integration supports a two-way synchronization of products and customers between the two applications and a one-way synchronization of orders from the WordPress website to your coreBOS. So we will be able to automatically receive all our website orders inside coreBOS where we can manage them in our business logic while triggering all our workflows and business processes.
+
+Once configured the integration just works transparently in the background.
+
+The configuration has two parts, one in coreBOS and the other in WooCommerce.
+
+**In WooCommerce**
+
+  - go to WooCommerce > Settings > Advanced > REST API {{ :en:integrations:woocommercerestapi1.png |}}
+  - set a name for the access
+  - select a user (admin)
+  - give Read/Write permission
+  - click next to see the consumer key and secret. Copy these values as you will need to give them to coreBOS
+  - select the "webhooks" option (next to REST API)  {{ :en:integrations:woocommercenot.png |}}
+  - add new web hooks for
+    - Product Create, Update, Delete and Restore
+    - Customer Create, Update, Delete and Restore
+    - Order Create, Update, Delete and Restore
+  - give them names and make them Active
+  - set the URL to <code>https://your_corebos_server/your_corebos/notifications.php?type=wcintegration</code>
+  - define a strong secret and copy it to save it in coreBOS later
+  - use the latest API version (3 minimum)
+  - now activate and define the taxes for your website
+
+**In coreBOS**
+
+  - go to the Integrations page in Utilities <code>https://your_corebos_server/your_corebos/index.php?module=Utilities&action=index</code>
+  - Click on the WooCommerce section {{ :en:integrations:cbwoocommerceconfig.png |}}
+  - set the consumer key, the consumer secret, and the notifications secret which you set in WooCommerce
+  - set the WordPress URL
+  - select the default modules we will sync with. WooCommerce has three entities: Products, Customers, and Orders. In coreBOS, we can map Customers to Accounts or Contacts, Products to Products or Services, and Orders to SalesOrders or Invoices. You must define the modules you want to work with by default. Despite this selection, you can still synchronize the other modules for Customers and Products.
+  - finally, you have to activate the message queue processor which is done in the operating system with the command <code>php include//cbmqtm/run.php</code> you have to make sure this process is running continuously for the integration to work
+
+Here you have a video presentation of the steps and the functionality.
+
+{{youtube>eUhGmZK4zlQ}}
+
+These are the two maps I used for testing:
+
+**WC2Products**
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>woocommerce</originname>
+  </originmodule>
+  <targetmodule>
+    <targetname>Products</targetname>
+  </targetmodule>
+  <fields>
+    <field>
+      <fieldname>productsheet</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>slug</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+    <field>
+      <fieldname>description</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>description</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+  </fields>
+</map>
+</code>
+
+**Products2WC**
+
+<code XML>
+<map>
+  <originmodule>
+    <originname>Products</originname>
+  </originmodule>
+  <targetmodule>
+    <targetname>woocommerce</targetname>
+  </targetmodule>
+  <fields>
+    <field>
+      <fieldname>stock_quantity</fieldname>
+      <Orgfields>
+        <Orgfield>
+          <OrgfieldName>qtyinstock</OrgfieldName>
+        </Orgfield>
+      </Orgfields>
+    </field>
+  </fields>
+</map>
+</code>
+
+<WRAP center round info 80%>
+We have created a module named **wcProductImage** which is supported natively by this integration. It permits you to save images with meta information that will be sent to WooCommerce. Contact us if you are interested.
+</WRAP>
+
+==== Links ====
+
+  * [[https://woocommerce.com/|WordPress Woocommerce]]
+  * [[https://github.com/woocommerce/wc-api-php|WooCommerce API - PHP Client]]
+  * [[http://woocommerce.github.io/woocommerce-rest-api-docs/?php|Woocommerce REST API]]
+  * This integration uses the [[en:devel:corebos_mqtm|coreBOS Message Queue]]
+
+==== Frequently Asked Questions ====
+
+~~QNA~~
+
+??? How can we send HTML descriptions to WooCommerce and back.
+
+In WooCommerce the description will be stored in the **wp_posts** table inside **post_content** column. In general WordPress uses some filters to encode and decode the value of **post_content** before saving and displaying it. You need to use Wordpress **wp_insert_post_data** hook to modify the passed value of **post_content** before saving it to the database.
+
+You can modify that hook like this;
+<code PHP>
+add_filter( 'wp_insert_post_data' , 'filter_post_data' , '99', 2 );
+
+function filter_post_data( $data , $postarr ) {
+    // Change post content
+    $data['post_content'] = html_entity_decode($data['post_content']);
+    return $data;
+}
+</code>
+
+The goal is to save the raw data with html tags on the database. That script can be added to your child theme’s **functions.php** file or via a plugin that allows custom functions to be added.
