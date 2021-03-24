@@ -17,6 +17,7 @@ In the next sections you will be able to find more information on these steps.
 
 ===== Workflow Tasks =====
   * [[..:update_workflows|Update Workflow Tasks]]
+  * [[..:upsert_workflows|Upsert Workflow Task]]
   * [[..:addeltag_workflows|Add/Delete Tags Workflow Tasks]]
   * [[..:relateproductservice_workflow|Related Product/Service Workflow Task]]
   * [[..:invokecustomfunction_workflows|Invoke Custom Functions Workflow Tasks]]

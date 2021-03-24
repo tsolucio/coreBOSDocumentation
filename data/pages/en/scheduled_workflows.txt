@@ -79,10 +79,16 @@ Then we have a set of special operators which will take a number of hours or day
   * More than days ago 
   * More than days later
 
-These divide time in four ranges and permits us to set our target date/time in any one of them. The next image depicts the four ranges and you can get a better understanding looking at the examples below.
+These divide time into four ranges and permits us to set our target date/time in any one of them. The next image depicts the four ranges and you can get a better understanding looking at the examples below.
 
 {{ :en:corebos:workflow:sworkflow.png |}}
 
+  * less than days ago = yellow, less than X days ago
+  * more than days ago = blue, more than X days ago
+  * in less than = green, Less than X days later
+  * in more than = red, More than X days later
+  * days ago = yellow+blue, X days ago
+  * days later = green+red, X days after
 ===== Scheduled Workflow Conditions Examples =====
 
 <WRAP center round tip 75%>
