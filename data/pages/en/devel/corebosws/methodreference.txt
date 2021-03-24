@@ -13,6 +13,59 @@ The API gives us a way of executing the basic operations of Create, Retrieve, Up
 ^Response:|An object with all the information of the new record|
 ^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/020lib_createContact.php|Development Tool]]|
 
+The Create operation also supports a virtual meta-field named **relations** which contains an array of web service IDs with which we want to relate the record being created. You can see an [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/410_createServiceWithRelation.php|example of this here]].
+
+===Create Inventory Modules===
+
+Inventory modules are special in many ways due to their master-detail relation with products and services, different tax mode, and support for taxes among other features. In order to support this functionality through the web service API, these modules have a set of additional rules.
+
+__Product Items/Lines__
+
+These modules support a virtual field named **pdoInformation**, this field contains an array of line items with this format:
+
+<code>
+'pdoInformation' => array(
+ array(
+	"productid"=>2618,
+	"comment"=>'cmt1',
+	"qty"=>1,
+	"listprice"=>10,
+	'discount'=>0,  // 0 no discount, 1 discount
+	"discount_type"=>'amount',  //  amount/percentage
+	"discount_percentage"=>0,  // not needed nor used if type is amount
+	"discount_amount"=>0,  // not needed nor used if type is percentage
+  ),
+  array(
+	"productid"=>2619,
+	"qty"=>2,
+	"comment"=>'cmt2',
+	"listprice"=>10,
+	'discount'=>1,
+	"discount_type"=>'percentage',  //  amount/percentage
+	"discount_percentage"=>2,
+	"discount_amount"=>0
+  ),
+),
+</code>
+
+  * This is mandatory for inventory modules
+  * This is also supported in update
+  * [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/440_libcreateSO.php|you can see an example here]]
+
+__Tax Mode__
+
+Tax mode, group or individual is also mandatory. It is set with [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/440_libcreateSO.php#L50|the 'taxtype' field]]
+
+__Product Taxes__
+
+Taxes are always applied as per system settings. In other words, you can NOT set taxes in the web service call, the taxes will be automatically set as they are defined in the application. So, if the taxtype is Group, all the available/active taxes defined in settings will be applied to the inventory record. If the taxtype is individual, the taxes configured in each product will be applied automatically.
+
+__Shipping charges and taxes__
+
+Shipping charge is [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/440_libcreateSO.php#L44|set using the field 'shipping_handling_charge']].
+
+Shipping taxes are set [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/440_libcreateSO.php#L45:L47|using the tax name defined in Settings.]]
+
 ====Retrieve====
 
 Get all the values the user has access to, of an existent record in the application. Given a web service ID of a record this service will return an array with all the fields and their values.
@@ -48,6 +101,7 @@ This service updates ALL the fields of a given record. Once again; ALL FIELDS. T
 ^Response:|An object with all the information of the record (even [[:en:devel:corebosws:methodreference#retrieve|extended information]])|
 ^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/060lib_update.php|Development Tool]]|
 
+The Update operation also supports a virtual meta-field named **relations** which contains an array of web service IDs with which we want to relate the record being updated. You can see an [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/410_createServiceWithRelation.php|example of this here]].
 ====Delete====
 
 ^Purpose:|Eliminate any record we have permission to delete.|
@@ -287,7 +341,7 @@ and you can see some more examples [[https://github.com/tsolucio/coreBOSTests/bl
 ^Parameters:| => ids: comma-separated list of web service IDs to delete|
 ^Response:|An object with two elements: \\ => success_deletes: array of deleted IDs \\ => failed_deletes: array of IDs that could not be deleted with their error message|
 
-==== Validations. CRU ====
+==== Validations. Create, Update and Revise with Validations ====
 
 ^Purpose:|Apply application configured validations on a set of fields.|
 ^Profile:|ValidateInformation(context:Object):Object|
@@ -321,10 +375,7 @@ By setting a value in a foreign key (relation field or uitype 10) we establish a
 
 The Create and Update operations also support a virtual meta-field named **relations** which contains an array of web service IDs with which we want to relate the record being created or updated. You can see an [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/410_createServiceWithRelation.php|example of this here]].
 
-Finally, we have two endpoints that can establish or delete relations with a large set of records.
-
-SetRelation
-UnsetRelation
+Finally, we have two endpoints that can establish or delete many to many relations with a large set of records: **SetRelation** and **UnsetRelation**
 
 ^Method:|**SetRelation**|
 ^Purpose:|Sets relations between one record and a set of other records.|
@@ -513,7 +564,7 @@ The object returned by this service contains:
 ^Purpose:|convert web service IDs into their entity names.|
 ^Profile:|getReferenceValue(id:string):string|
 ^Send as:|GET|
-^Parameters:| => id: PHP serialzed array of web service IDs to convert.|
+^Parameters:| => id: PHP serialized array of web service IDs to convert.|
 ^Response:|A web service ID indexed map with these three entries: \\ => module: the module of the record in the field \\ => reference: entity name reference \\ => cbuuid: of the record|
 ^Notes:|The information returned with this function is equivalent to the "ename" virtual fields returned by Retrieve|
 
@@ -537,6 +588,40 @@ The object returned by this service contains:
 ^Send as:|POST|
 ^Parameters:| |
 ^Response:|A map of auto numeric prefixes with module names as key|
+
+^Method:|**findByPortalUserName**|
+^Purpose:|Returns if a portal user with the given name exists or not.|
+^Profile:|findByPortalUserName(username:string):Object|
+^Send as:|POST|
+^Parameters:| => username: string.|
+^Response:|boolean: if a portal user with that name exists or not|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=findByPortalUserName&sessionName=[session id]&username=joebordes</code>|
+
+^Method:|**getMaxLoadSize**|
+^Purpose:|Returns maximum upload size as per PHP settings, so we can adapt our external application to the configured restrictions in the server.|
+^Profile:|getMaxLoadSize():String|
+^Send as:|POST|
+^Parameters:||
+^Response:|return maximum upload size as per PHP settings|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=getMaxLoadSize&sessionName=[session id]</code>|
+
+There are two deprecated endpoints that you can use to get specific information that is already available using **Describe**. These methods will not be eliminated, so they can be used if you need them.
+
+^Method:|**getUItype**|
+^Purpose:|Returns a list of all the fields in the module with their uitype.|
+^Profile:|getUItype(module:string):List|
+^Send as:|POST|
+^Parameters:| => module: module name.|
+^Response:|list of fields and their type|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=getUItype&sessionName=[session id]&module=Contacts</code>|
+
+^Method:|**vtyiicpng_getWSEntityId**|
+^Purpose:|Returns the given modules' web service entity ID.|
+^Profile:|vtyiicpng_getWSEntityId(entityName:string):String|
+^Send as:|POST|
+^Parameters:| => entityName: module name.|
+^Response:|string with the modules' web service ID|
+^URL Format:|<code>http://corebos_url/webservice.php?operation=vtyiicpng_getWSEntityId&sessionName=[session id]&entityName=Contacts</code>|
 
 ===== Other Operations =====
 
@@ -565,12 +650,12 @@ The **jsLog** endpoint permits us to send any message from javascript to our cor
 
 ====Sync====
 
-The sync service returns the complete set of changes that occurred to all records assigned to the connected user from a given date and time.
+The sync service returns the complete set of changes that occurred to all records **assigned to the connected user** from a given date and time.
 
-^Purpose:|Returns a SyncResult object which contains all the changes that occurred in the application since the parameter modifiedTime to records assigned to the connected user. Optionally, if the connected user is an administrator he can ask for all changes in the application disregarding who the records are assigned to.|
+^Purpose:|Returns a SyncResult object which contains all the changes that occurred in the application since the parameter modifiedTime to records **assigned to the connected user**. Optionally, if the connected user is an administrator he can ask for all changes in the application disregarding who the records are assigned to. The OnDemand configuration setting variable **$cbodCSAppSyncUser** will permit you to define additional non-admin users that will be able to download changes in all modules.|
 ^Profile:|sync(modifiedTime: Timestamp, elementType: String, syncType: String):SyncResult|
 ^Send as:|GET|
-^Parameters:| => modifiedTime: timestamp of last synchronization \\ => elementType: optional parameter, name of the module we want to get the changes for, if not set all records affected in all modules will be returned \\ => syncType: a string which can be empty or contain the value 'application'. If it is 'application' and the connected user is an administrator, all changes to the application will be returned.|
+^Parameters:| => modifiedTime: timestamp of last synchronization \\ => elementType: optional parameter, name of the module(s) we want to get the changes for, if not set all records affected in all modules will be returned. Can be a comma-separated list of module names \\ => syncType: a string which can be empty or contain the value 'application'. If it is 'application' and the connected user is an administrator, all changes to the application will be returned.|
 ^Response:|SyncResult object with changes: \\ <code>SyncResult {
 updated:[Object] //List of created or modified objects.
 deleted:[Id] //List of webserviceid of deleted objects

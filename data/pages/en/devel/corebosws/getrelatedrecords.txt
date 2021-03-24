@@ -3,7 +3,7 @@
 {{youtube>5B0A6IPMnJM}}
 \\
 
-The **getRelatedRecords()** webservice interface function permits us to retrieve the set of related records that belong to any given record. In other words, given an entity ID that represents one record in the application and the name of a module that is related to this entity, we will get the full set of records related to the ID.
+The **getRelatedRecords()** web service interface function permits us to retrieve the set of related records that belong to any given record. In other words, given an entity ID that represents one record in the application and the name of a module that is related to this entity, we will get the full set of records related to the ID.
 
 For example, suppose we have a contact record with id 22. We know that one contact can have many invoices. So if we want to see the invoices related to the contact with id 22 we would execute something like this:
 
@@ -14,7 +14,7 @@ The profile of the function is:
 <code>getRelatedRecords($id, $module, $relatedModule, $productDiscriminator, $user) return records=array({records})</code>
 
 where
-  * **id**  a webservice ID corresponding to the main record we want to relate
+  * **id**  a web service ID corresponding to the main record we want to relate
   * **module** the module name of the id, this must be of the same type as the ID, if not an error will be returned
   * **relatedModule** the name of the module related to the main module, this represents the type of records to be returned
   * **queryParameters** an array with parameters to modify the query and set of returned results in different ways. Accepted values in the array are:
@@ -24,16 +24,18 @@ where
       * ProductLineInvoice{Only}: relation Account|Contact-Products, return products related through Invoice (only)
       * ProductLineSalesOrder{Only}: relation Account|Contact-Products, return products related through SalesOrder (only)
       * ProductLineQuote{Only}: relation Account|Contact-Products, return products related through Quote (only)
-      * ProductLineAll: relation Account|Contact-Products, return products related through Quote, SalesOrder and Invoice
+      * ProductLineAll: relation Account|Contact-Products, return products related through Quote, SalesOrder, and Invoice
       * ProductLineNone: relation Account|Contact-Products, return only products directly related, this is the default behavior
     * **limit**: a string indicating the limit of records to be returned. this is needed for paging
     * **offset**: a string indicating the initial offset for returning values. this is needed for paging
-    * **orderby**: a syntactically and semantically correct order by directive wihtout the "order by", only the fields and their order (no validation is done)
-    * **columns**: a a comma separated string of column names that are to be returned. The special value "*" will return all fields. for example: 'assigned_user_id,id,createdtime,notes_title,filedownloadcount,filelocationtype,filesize'
+    * **orderby**: a syntactically and semantically correct order by directive without the "order by", only the fields and their order (no validation is done)
+    * **columns**: a comma separated string of column names that are to be returned. The special value "*" will return all fields. for example: 'assigned_user_id,id,createdtime,notes_title,filedownloadcount,filelocationtype,filesize'
+    * **relationtouse**: label of the relation to select when more than one is found, if not given, or not found an exception will be thrown. when two modules are related by more than one function, the code does not know which one to use, in that case, it will throw an exception. Using this parameter you can tell the code which of the various relations you want to use. You must set the parameter to the internal (untranslated) label of the relation (vtiger_relatedlists.label)
+    * **returnattachments**: for Document module will return the file attached if present
 
-  * **returns** an array where each element represents a webservice record of the type of the related module. Only the columns and records the current user has access to will be returned. If the current user cannot access the main module or the related module, an error will be returned.
+  * **returns** an array where each element represents a web service record of the type of the related module. Only the columns and records the current user has access to will be returned. If the current user cannot access the main module or the related module, an error will be returned.
 
-The method has been created with complete support in mind, but this is really hard to achieve due to the great variety of relations that exist and the different ways in which they are established. On top of that there is no one place to turn to to get the information on how two entities are related.
+The method has been created with complete support in mind, but this is really hard to achieve due to the great variety of relations that exist and the different ways in which they are established. On top of that, there is no one place to turn to to get the information on how two entities are related.
 
 Since we try to cover all the relations we have forced the method to return some non-standard relations that I will try to explain next.
 
