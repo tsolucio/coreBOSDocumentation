@@ -47,11 +47,28 @@ Creating API Keys in SendGrid is a trivial task: Settings > API keys, create and
 
 There are two ways to configure SendGrid in coreBOS, one is using it as a normal SMTP server and configure the settings in the Outgoing Email Server, the other is using the integration.
 
-To use the Outgoing Email Server you must [[https://sendgrid.com/docs/for-developers/sending-email/getting-started-smtp/|follow the steps indicated in the SendGrid documentation]]. Which says that we have to use the base64 encoded user name and API key. The user name is always the same: "apikey", and the API key value is the one you generated in SendGrid dashboard. so the settings would be
+**OBSOLETE: This next explanation used to work a few months ago. In march 2021 it seems that it doesn't anymore and I had to use the steps indicated after this block. I leave the block here in case you need to try this one too.**
+
+
+----
+
+<del>To use the Outgoing Email Server you must [[https://sendgrid.com/docs/for-developers/sending-email/getting-started-smtp/|follow the steps indicated in the SendGrid documentation]]. Which says that we have to use the base64 encoded user name and API key. The user name is always the same: "apikey", and the API key value is the one you generated in SendGrid dashboard. So the settings would be</del>
 
 ^Server Name|smtp.sendgrid.net|
-^User Name|YXBpa2V5|
-^Password|base64_encode(your API Key)|
+^User Name|<del>YXBpa2V5</del>|
+^Password|<del>base64_encode(your API Key)</del>|
+^Authenticate|TLS|
+
+----
+
+**OBSOLETE: block above**
+
+To use the Outgoing Email Server you must [[https://sendgrid.com/docs/for-developers/sending-email/integrating-with-the-smtp-api/|follow the steps indicated in the SendGrid documentation]]. Which says that we have to use the user name "apikey" and the API key value you generated in SendGrid dashboard. So the settings would be
+
+^Server Name|smtp.sendgrid.net|
+^User Name|apikey|
+^Password|<your API Key>|
+^Authenticate|TLS|
 
 
 In April 2019, coreBOS updated its SendGrid integration and only accepts API key configurations. But we had an integration based on username-password before this date which is still operative in some installs. If you are configuring SendGrid in coreBOS using the Utilities/Integrations section (see image above) you are using the API Key and will just keep working after December.
