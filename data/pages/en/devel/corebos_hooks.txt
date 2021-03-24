@@ -254,7 +254,9 @@ This filter receives these parameters:
     * productid/serviceid
     * related_module
 
+===corebos.filter.announcement===
 
+return the announcement to show. permits creating dynamic announcements
 
 ====Custom Permission Hooks====
 **corebos.permission.[accessquery|ispermitted]**: [[en:devel:corebos_permission_hooks|Custom Permission Hooks]]

@@ -1,27 +1,22 @@
-1607125235	185.191.88.212	E	en:integrations:woocommerce	joebordes	[WordPress Woocommerce Integration] 		0
-1607129386	185.191.88.212	E	en:integrations:woocommerce	joebordes	[WordPress Woocommerce Integration] 		1319
-1607129409	185.191.88.212	E	en:integrations:woocommerce	joebordes	[WordPress Woocommerce Integration] 		0
-1607421346	185.191.88.212	E	en:devel:corebosws	joebordes	[Web service documentation] 		-4
-1607531531	185.191.88.212	E	en:adminmanual:businessmappings:list_columns	joebordes			9
-1607640653	185.191.88.212	E	en:devel:updateimagefield	joebordes			-1
-1607864892	185.191.88.212	E	en:devel:corebos_mqtm	joebordes	[Task Manager] 		3
-1608073751	185.191.88.212	E	en:calendar	joebordes	[Google Integration] 		911
-1608078962	185.191.88.212	C	en:gendoc:templatestore:checkboxexpressionconditions	joebordes	created		982
-1608079418	185.191.88.212	E	en:gendoc:templatestore:checkboxexpressionconditions	joebordes			-9
-1608247058	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Web Service Query Language] 		511
-1608247114	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Errors that can be returned] 		61
-1608247870	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Connecting to the web service API with Postman] 		654
-1608247941	185.191.88.212	E	en:devel:corebosws:querylanguage	joebordes	[Connecting to the web service API with Postman] 		74
-1608558891	185.191.88.212	E	en:integrations:woocommerce	joebordes	[Links] 		120
-1608558926	185.191.88.212	E	en:integrations:woocommerce	joebordes	[Frequently Asked Questions] 		0
-1608564384	212.103.50.246	E	en:integrations:woocommerce	timothy	[Frequently Asked Questions] 		811
-1608564781	212.103.50.246	E	en:integrations:woocommerce	timothy	[Frequently Asked Questions] 		27
-1608565185	212.103.50.246	E	en:integrations:woocommerce	timothy	[Frequently Asked Questions] 		4
-1608565210	212.103.50.246	E	en:integrations:woocommerce	timothy	[Frequently Asked Questions] 		1
-1609025305	185.191.88.212	E	en:extensions:extensions:autonumberprefix	joebordes	[Configuration] 		114
-1609025328	185.191.88.212	E	en:extensions:extensions:autonumberprefix	joebordes	[Configuration] 		6
-1609025395	185.191.88.212	E	en:extensions:extensions:autonumberprefix	joebordes	[Auto Number Prefix Information] 		33
-1609025521	185.191.88.212	E	en:extensions:extensions:autonumberprefix	joebordes	[Number formatting] 		188
-1609025570	185.191.88.212	E	en:extensions:extensions:autonumberprefix	joebordes	[Number formatting] 		-32
-1609070270	185.191.88.212	C	en:gendoc:templatestore:productlabels	joebordes	created		486
-1609071852	185.191.88.212	E	en:devel:corebosws	joebordes	[Web service tools] 		97
+1614807686	62.83.196.227	E	en:upsert_workflows	joebordes			366
+1614809044	62.83.196.227	E	en:upsert_workflows	joebordes			578
+1614820196	62.83.196.227	E	en:upsert_workflows	joebordes			-1
+1615148779	62.83.196.227	E	en:adminmanual:workflows	joebordes	[Workflow Tasks] 		49
+1615203691	62.83.196.227	E	en:smsnotifier	joebordes	[Writing Custom Providers] 		257
+1615203789	62.83.196.227	E	en:smsnotifier	joebordes	[More Information] 		262
+1615421984	62.83.196.227	E	en:productstockcontrol	joebordes	[Product Stock Control] 		75
+1615474448	62.83.196.227	E	en:adminmanual:faq	joebordes			25
+1615565736	62.83.196.227	E	en:devel:debuging	joebordes	[PHP] 		-42
+1615565806	62.83.196.227	E	en:devel:debuging	joebordes	[PHP] 		142
+1615588083	62.83.196.227	E	en:scheduled_workflows	joebordes	[Scheduled Workflow Conditions] 		272
+1615588102	62.83.196.227	E	en:scheduled_workflows	joebordes	[Scheduled Workflow Conditions] 		12
+1615822349	62.83.196.227	E	en:adminmanual:businessmappings:detailviewlayout	joebordes			1
+1616085549	62.83.196.78	E	en:adminmanual:businessmappings:webservicecall	joebordes	[An example of two tasks passing context] 		202
+1616371371	62.83.196.78	E	en:integrations:sendgrid	joebordes	[Authenticate with API Keys] 		701
+1616371393	62.83.196.78	E	en:integrations:sendgrid	joebordes			1
+1616371438	62.83.196.78	E	en:integrations:sendgrid	joebordes	[Authenticate with API Keys] 		14
+1616371941	62.83.196.78	E	en:integrations:sendgrid	joebordes	[Authenticate with API Keys] 		33
+1616432298	62.83.196.78	E	en:adminmanual:businessmappings:webservicecall	joebordes	[wsconfig] 		0
+1616433089	62.83.196.78	E	en:adminmanual:businessmappings:webservicecall	joebordes	[wsconfig] 		87
+1616605962	77.227.116.3	E	en:install550	joebordes	[PHP Configuration] 		368
+1616605997	77.227.116.3	E	en:install550	joebordes			0

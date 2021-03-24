@@ -58,6 +58,8 @@ The status of the message can be **Delivered**, **Processing** or **Failed**. Th
 
 When an SMS is sent to a record(s) of any module (like Organizations, Contacts or Leads), the history of messages sent will be listed in the //More Information// tab of the particular record.
 
+By default, a copy of the SMS will be sent to the user sending the SMS if that user has his mobile phone configured in his preferences. If you want to deactivate that functionality you can use the global variable **SMSNotifier_SendCopyToUser** setting it to 0 
+
 ===== SMS Task with Work flow  =====
 
 Create a Work Flow and save it with the desired conditions. Click on the //New Task// button and select SMS Task to automate the process of sending SMS.
@@ -71,6 +73,11 @@ Create a Work Flow and save it with the desired conditions. Click on the //New T
 Provide a label to the task and set the Status of the workflow. From the Recipients field, select the number of users to whom the message should be sent. While composing the message, Select the field values from the dropdown to fill the values in the text area below. 
 
 {{ :en:smsnotifier:WorkflowMessage.png |}}
+
+
+===== Test Provider =====
+
+There is one special provider named Test Functionality that will activate the service and log the calls made to the SMS gateway in the log file. This is very useful for debugging and validating the functionality of the service.
 
 
 ===== Writing Custom Providers =====

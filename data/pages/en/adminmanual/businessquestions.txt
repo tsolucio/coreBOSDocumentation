@@ -149,7 +149,7 @@ The extended syntax looks like this:
 
 The only nodes and links that will be styled are those that the record has gone through, all the others will use the default mermaid styling.
 
-If a node has a condition, the business map will be executed, if it passes the "*styleaccepted" will be applied and if not the "*stylerejected". If either of them are empty, or there is no condition the styling rules defined in the "defaults" section will be applied.
+If a node has a condition, the business map will be executed, if it passes the "*styleaccepted" will be applied, and if not the "*stylerejected". If either of them are empty, or there is no condition the styling rules defined in the "defaults" section will be applied.
 
 The node and link MUST appear in the definition section or they will not be styled.
 
@@ -332,7 +332,7 @@ This is how the Detail View widget looks in a potential record that has followed
 
 {{:en:adminmanual:cbmermaid04.png|}}
 
-and this is how it looks on a potential record which has not followed the defined steps:
+and this is how it looks on a potential record that has not followed the defined steps:
 
 {{:en:adminmanual:cbmermaid03.png|}}
 

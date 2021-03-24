@@ -2,17 +2,26 @@
 
 =====PHP=====
 
-  * Turn on log4php.debug library usage, in file config.inc.php <code>$LOG4PHP_DEBUG = true;</code>
-  * Set the log level, in file log4php.properties <code>log4php.rootLogger = DEBUG, A1</code>
-  * The log files will be written in the **logs** directory. For the rootLogger it will be logs/vtigercrm.log
+  * Turn on logging library usage, in file config.inc.php <code>$LOG4PHP_DEBUG = true;</code>
+  * Activate the type of logging and log level, in the file include/logging/config.php
+    * for example, for the main application log file set <code>	'APPLICATION' => [
+		'Enabled' => true,
+		'Level' => 'DEBUG',
+		'MaxBackup' => 10,
+		'File' => 'corebosapp',
+	],
+</code>
+  * The log files will be written in the **logs** directory. For the rootLogger it will be logs/corebosapp-{date}.log
 <WRAP center round important 70%>
 Make sure logs/ folder has write access to apache server process owner.
 </WRAP>
 
 <WRAP center round info 70%>
-When you activate the DEBUG level a lot of information gets written into the log file, among this data is the regular Activity Reminder call which is rather bothersome. You can do two things to reduce this noise.
-  * go to user preferences and set the reminder to none
-  * in the javascript console type <code>ActivityReminder_Deactivated = true;</code> This variable is defined in include/js/general.js around line 3100 if you want to make it permanent during your debugging session.
+When you activate the DEBUG level a lot of information gets written into the log file, among this data is the regular Activity Reminder call which is rather bothersome. You can deactivate that call using the **Debug_ActivityReminder_Deactivated** global variable
+</WRAP>
+
+<WRAP center round info 70%>
+In coreBOS installs prior to March 2021, you have to set the debug level in the file log4php.properties
 </WRAP>
 
 =====Database=====

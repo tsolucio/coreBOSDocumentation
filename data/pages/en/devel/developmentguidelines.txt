@@ -62,7 +62,7 @@ We will probably get to this in the future but it is not a high priority right n
   * Opening parentheses for control structures MUST NOT have a space after them, and closing parentheses for control structures MUST NOT have a space before.
   * Strings should be enclosed in SINGLE QUOTES where possible.
 
-
+The [[https://docs.nextcloud.com/server/14/developer_manual/general/codingguidelines.html|Nextcloud coding style is a very sane set of rules also]]
 
 
 ===== Error Reporting =====
@@ -81,21 +81,31 @@ Security is a very complex **and important** issue which requires a lot of dedic
 
   * use vtlib_purify on all incoming and outgoing information
   * user Vtiger_Request to construct URLs
+
+[[https://docs.nextcloud.com/server/14/developer_manual/general/codingguidelines.html|Read the Nextcloud recommendations]]
 ===== Commit Guidelines =====
 
 ==== BEFORE Committing ====
 
-This is a list of things that you MUST do before executing a commit:
+This is a [[https://github.com/tsolucio/corebos/issues/911#issue-719191770|list of things that you MUST do before executing a commit]]:
 
-  * Check if you must separate the code changes in various commits. When I program I usually make some cosmetic changes or modifications that are not related to the requirement I am implementing. You can use the "-p" directive to split unrelated changes creating concise and cohesive commit changes.
+  * //git diff// check all the files that have been modified, read the diff, and mentally review the change. eliminate debug messages and passwords.
   * Check for debug messages you may have left behind. Before I launch a commit I usually execute these commands: <code>git diff {files} | grep dump
 git diff {files} | grep fatal
 git diff {files} | grep log
 </code>
   * Check for php errors <code>for f in {diff file list}; do php -l $f; done;</code>
-  * Ideally you should run a lint process on both php and javascript. Please look below for the tools we use and how to execute them. I will add it to the Pull Request acceptance process at some point.
+  * //git status// any new/untracked files to add?
+  * Any strings that should be translated?
+  * If you alter an existing function, did you check if all the existing references to that function will still behave the same way?
+  * If you created new code, did you try and use existing functionality as much as possible?
+  * [[en:devel:developmentguidelines#code_formatting_and_validation_tools|code formatting]]
+  * Ideally you should run a lint process on both PHP and javascript. Please look below for the tools we use and how to execute them. I will add it to the Pull Request acceptance process at some point.
   * see the checkfile executable below
-
+  * Did you execute the unit tests and/or e2e tests?
+  * //git add -p// to separate commits into semantically meaningful chunks. Check if you must separate the code changes in various commits. When I program I usually make some cosmetic changes or modifications that are not related to the requirement I am implementing. You can use the "-p" directive to split unrelated changes creating concise and cohesive commit changes.
+  * dedicate a moment to [[en:devel:developmentguidelines#commit_guidelines|think about the commit message]]
+  * Any documentation that should be added to the wiki?
 
 {{page>en:devel:commitguidelines&nofooter&nouser&nodate&noeditbtn}}
 

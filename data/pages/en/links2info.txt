@@ -5,8 +5,6 @@ References and links to information outside this site.
   *[[http://www.lulu.com/shop/lorenzo-p%C3%A9rez/manual-de-usuario-de-corebos-crm/paperback/product-22820731.html|Manual de usuario de coreBOS CRM]] {{ :images:manual:cbcrmmanual.jpeg |}}
   *[[http://www.lulu.com/product/tapa-blanda/vtiger-crm-manual-del-usuario-y-administrador-v5x-cuarta-edici%c3%b3n/5618421|Traducción Manual de CRM-NOW en castellano]] {{:images:manual:vtcrmmanual.jpeg?80|}}
   *[[http://www.lulu.com/shop/joe-bordes-jpl-tsolucio/vtiger-crm-manual-de-desarrollo-webservices-rest-versi%C3%B3n-para-vtiger-crm-54/ebook/product-20637811.html|Manual de Referencia de Programación Webservice (REST) en castellano]]  {{:images:manual:vtcrmrestmanual.jpeg?80|}}
-  *[[https://wiki.vtiger.com/index.php/Overview|Manual del Usuario (en inglés)]]
-  *[[https://wiki.vtiger.com/index.php/CRM_Administration|Manual del Administrador (en inglés)]]
   *[[http://www.lulu.com/shop/frank-piepiorra/manual-for-vtiger-crm-v540/ebook/product-20449040.html|Manual de CRM-NOW (en inglés)]]
   *[[http://www.lulu.com/shop/joe-bordes-jpl-tsolucio/vtiger-crm-webservices-rest-reference-and-examples-for-vtiger-crm-540/paperback/product-20453272.html|vtiger CRM WEBSERVICES (REST) REFERENCE AND EXAMPLES for vtiger CRM 5.4.0 ]]  {{:images:manual:vtcrmrestenmanual.jpeg?80|}}
   *[[en:links2info:vtigercrmbeginnersguide|vtiger CRM Beginner's Guide Review]]

@@ -2,3 +2,11 @@
 
 ===== Emails =====
 {{ :en:devel:emailer.png?630 |}}
+
+===== vtiger_def_org_field =====
+
+Settings > Fields Access: Define global field-level access in each module
+
+===== Picklists =====
+
+{{ :en:devel:picklister.png |Picklist Entity-Relation}}
