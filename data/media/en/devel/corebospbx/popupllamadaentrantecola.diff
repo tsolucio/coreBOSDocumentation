@@ -1,0 +1,65 @@
+diff --git a/cron/modules/PBXManager/AsteriskClient.php b/cron/modules/PBXManager/AsteriskClient.php
+index 1478c86e2..81f5df121 100644
+--- a/cron/modules/PBXManager/AsteriskClient.php
++++ b/cron/modules/PBXManager/AsteriskClient.php
+@@ -112,10 +112,18 @@ function asterisk_handleResponse1($mainresponse, $state, $adb) {
+ 		if (!empty($mainresponse['CallerIDName'])) {
+ 			$callerName = $mainresponse['CallerIDName'];
+ 		}
+-		$channel = $mainresponse['Channel'];
+-
+-		$sql = 'INSERT INTO vtiger_asteriskincomingevents (uid, channel, from_number, from_name, timer, flag) VALUES(?,?,?,?,?,?)';
+-		$adb->pquery($sql, array($uniqueid, $channel, $callerNumber, $callerName, time(), -1));
++		$resultado = $adb->pquery('SELECT COUNT(uid) as cant FROM vtiger_asteriskincomingevents WHERE flag=-1 and uid=?', array($uniqueid));
++		if ($adb->query_result($resultado, 0, 'cant')>0 && !empty($callerNumber)) {
++			$adb->pquery(
++				'UPDATE vtiger_asteriskincomingevents SET from_number=?, timer=?, from_name=? WHERE uid=?',
++				array($callerNumber, time(), $callerName, $uniqueid)
++			);
++		} else {
++			$adb->pquery(
++				'INSERT INTO vtiger_asteriskincomingevents (uid, channel, from_number, from_name, timer, flag) VALUES(?,?,?,?,?,?)',
++				array($uniqueid, $mainresponse['Channel'], $callerNumber, $callerName, time(), -1)
++			);
++		}
+ 		return false;
+ 	}
+ 	return true;
+@@ -124,6 +132,7 @@ function asterisk_handleResponse1($mainresponse, $state, $adb) {
+ function asterisk_handleResponse2($mainresponse, $adb, $asterisk, $state) {
+ 	$appdata = isset($mainresponse['AppData']) ? $mainresponse['AppData'] : '';
+ 	$uniqueid = $channel = $callerType = $extension = null;
++	$dial_event = false;
+ 	$parseSuccess = false;
+ 	if ($mainresponse['Event'] == 'Newexten' && (strstr($appdata, '__DIALED_NUMBER') || strstr($appdata, 'EXTTOCALL'))) {
+ 		$uniqueid = $mainresponse['Uniqueid'];
+@@ -133,6 +142,16 @@ function asterisk_handleResponse2($mainresponse, $adb, $asterisk, $state) {
+ 		$splits = explode('=', $appdata);
+ 		$extension = $splits[1];
+ 		$parseSuccess = true;
++	} elseif ($mainresponse['Event'] == 'Dial' && !empty($mainresponse['SubEvent']) && $mainresponse['SubEvent'] == 'Begin') {
++		$uniqueid = $mainresponse['Uniqueid'];
++		$channel = $mainresponse['Channel'];
++		$splits = explode('/', $channel);
++		$callerType = $splits[0];
++		$extension = $mainresponse['Dialstring'];
++		$caller = $mainresponse['CallerIDNum'];
++		$name = $mainresponse['CallerIDName'];
++		$dial_event = true;
++		$parseSuccess = true;
+ 	} elseif ($mainresponse['Event'] == 'OriginateResponse') {
+ 		//if the event is OriginateResponse then its an outgoing call and set the flag to 1, so that AsteriskClient does not pick up as incoming call
+ 		$uniqueid = $mainresponse['Uniqueid'];
+@@ -143,6 +162,12 @@ function asterisk_handleResponse2($mainresponse, $adb, $asterisk, $state) {
+ 		if (checkExtension($extension, $adb)) {
+ 			$sql = 'UPDATE vtiger_asteriskincomingevents SET to_number=?, callertype=?, timer=?, flag=? WHERE uid=?';
+ 			$adb->pquery($sql, array($extension, $callerType, time(), 0, $uniqueid));
++			if ($dial_event) {
++				$adb->pquery(
++					'UPDATE vtiger_asteriskincomingevents SET from_number=?, to_number=?, from_name=?, callertype=?, timer=?, flag=? WHERE uid=?',
++					array($caller, $extension, $name,$callerType, time(), 0, $uniqueid)
++				);
++			}
+ 			$callerinfo = $adb->pquery('SELECT from_number,from_name FROM vtiger_asteriskincomingevents WHERE uid = ?', array($uniqueid));
+ 			if ($adb->num_rows($callerinfo) > 0) {
+ 				$callerNumber = $adb->query_result($callerinfo, 0, 'from_number');
