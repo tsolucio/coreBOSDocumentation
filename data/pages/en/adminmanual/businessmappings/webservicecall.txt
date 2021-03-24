@@ -24,7 +24,7 @@ The "**Web Service Mapping**" defines the web service method parameters that wil
   * <methodname>define the method that should be called</methodname>
   * wsuser and wspass in case the service uses these
   * wsheader contain keyname and keyvalue pairs with information that must be sent in the header of the call
-    * a special header is "Authorization", this keyname accepts a special syntax in it's keyvalue: **getContext(variable_name)**. this expression will search for the variable_name in the workflow context and use that instead of the hard coded value which can be set here also.
+    * header keyvalue will be processed in search of the command **getContext(variable_name)** or **getSetting(variable_name)** (note that there are no quotes around the variable name). This expression will search for the variable_name in the workflow context or the coreBOS key-value store and use that instead of the hardcoded value which can be set here also.
   * <wstype>REST or SOAP</wstype>
   * <inputtype>XML/URL/JSON/URLRESTFUL</inputtype>
   * <outputtype>JSON or XML</outputtype>
@@ -33,7 +33,7 @@ Most of the directives are self-explanatory but there are a few that need to be 
 
 The **INPUTTYPE** defines how we will send the parameters (fields) to the end-point:
 
-  * XML and JSON will be set in the body of the call. The XML value will be urlencoded
+  * XML and JSON will be set in the body of the call. The XML value will be URL-encoded
   * URL will have the values added in the URL as GET parameters
   * URLRESTFUL will search the wsurl directive for variables defined in the fields section preceded with a dollar sign. If they are present they will be substituted by the calculated value.
 
@@ -283,3 +283,8 @@ This first map executes an authentication call and loads the authorization token
 </Response>
 </map>
 </code>
+
+==== Related Articles ====
+
+  * [[https://blog.corebos.org/blog/runwswftask|Run Web Service Workflow Task]]
+  * [[https://blog.corebos.org/blog/runwswftaskchange|Run Web Service Workflow Task Change]]

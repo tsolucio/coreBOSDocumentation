@@ -11,7 +11,7 @@ There are 6 types of blocks:
   * **RelatedList**: a related list of records with actions
   * **Widget**: this is a block that must be constructed following the [[en:devel:add_special_block|DetailViewWidget specification]]. You have full control of the space designated to this block
   * **CodeWithoutHeader**: this will open a "div" and directly include your code inside
-  * **CodeWithHeader**: this will add a header following the look and feel of the default related list blocks and the open a "div" and directly include your code inside
+  * **CodeWithHeader**: this will add a header following the look and feel of the default related list blocks and then open a "div" and directly include your code inside
 
 The accepted format is:
 <code xml>

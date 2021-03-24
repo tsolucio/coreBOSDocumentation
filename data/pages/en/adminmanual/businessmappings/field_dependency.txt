@@ -1,6 +1,6 @@
 ====== Field Dependency Business Mapping ======
 
-This type of map permits you to define dependencies between fields in edit mode. For example, it will permit you to make a field readonly (not editable) or not depending on the value selected in a given field or to change the available values in a picklist depending on the value.
+This type of map permits you to define dependencies between fields in edit mode. For example, it will permit you to make a field read-only (not editable) or not depending on the value selected in a given field or to change the available values in a picklist depending on the value.
 
 The goal of this mapping is to define a set of rules/conditions and actions to be applied while editing a field in a coreBOS form.
 
@@ -39,36 +39,44 @@ Group conditions can be created concatenating with the typical AND/OR operators.
 
 The actions supported are:
 
-  * change : will assign a value or set of values to another field
-  * setoptions : will add selectable options in a picklist
-  * deloptions : will eliminate selectable options from a picklist
-  * hide : hide a field and its’ label
-  * show : show a field and its’ label
-  * collapse : will collapse a block
-  * open : will open a block
-  * disappear : will hide a block
-  * appear : will show a block
-  * readonly : will make a field readonly
-  * editable : will make a field not readonly
-  * enable : will enable a field
-  * disable : will disable a field
-  * function : will call the given function with the parameters:
+  * change: will assign a value or set of values to another field
+  * setoptions: will add selectable options in a picklist
+  * deloptions: will eliminate selectable options from a picklist
+  * hide: hide a field and its’ label
+  * show: show a field and its’ label
+  * collapse: will collapse a block
+  * open: will open a block
+  * disappear: will hide a block
+  * appear: will show a block
+  * readonly: will make a field read-only
+  * editable: will make a field not read-only
+  * enable: will enable a field
+  * disable: will disable a field
+  * function: will call the given function with the parameters:
     * change_field, action_field, new_value, old_value, any additional parameters in XML
 
 “Function” leaves the door open to all sorts of options, giving total control to the programmer. We will provide a set of common functions to be used:
 
-  * fieldDep_AssignNewValue : return new value in the action_field
-  * fieldDep_AddDays : add the given number of days to new_value and return the result
-  * fieldDep_SubDays : subtract the given number of days from new_value and return the result
-  * fieldDep_OnlyNumbers : return all numbers in new_value
-  * fieldDep_OnlyLetters : return all letters in new_value
-  * fieldDep_GetField : use getFieldValuesFromRecord to retrieve the value of the given field
-  * fieldDep_AssignUser : set the assigned user to the given (user) ID parameter
-  * fieldDep_AssignGroup : set the assigned user to the given (group) ID parameter
-  * fieldDep_AssignUserSelect : set the assigned user to the given user ID parameter for uitype 101 fields
+  * fieldDep_AssignNewValue: return new value in the action_field
+  * fieldDep_CopyFieldValue: copies the value in the field defined by the first parameter into the action field <code>        <function>
+            <field>description</field>
+            <name>fieldDep_CopyFieldValue</name>
+            <parameters>
+              <parameter>template_language</parameter>
+            </parameters>
+        </function>
+</code>
+  * fieldDep_AddDays: add the given number of days to new_value and return the result
+  * fieldDep_SubDays: subtract the given number of days from new_value and return the result
+  * fieldDep_OnlyNumbers: return all numbers in new_value
+  * fieldDep_OnlyLetters: return all letters in new_value
+  * fieldDep_GetField: will use getFieldValuesFromRecord to retrieve the value of the given field from a related record. In other words, this works on related capture fields in the record and retrieves information from the selected related record
+  * fieldDep_AssignUser: set the assigned user to the given (user) ID parameter
+  * fieldDep_AssignGroup: set the assigned user to the given (group) ID parameter
+  * fieldDep_AssignUserSelect: set the assigned user to the given user ID parameter for uitype 101 fields
   * **NOT IMPLEMENTED YET**
   * fieldDep_ChangeLabel: will permit changing the label of a field
-  * fieldDep_Format : return sprintf formatting of new_value (use sprintf javascript library: https://github.com/alexei/sprintf.js)
+  * fieldDep_Format: return sprintf formatting of new_value (use sprintf javascript library: https://github.com/alexei/sprintf.js)
 
 
 ===== XML Format =====
