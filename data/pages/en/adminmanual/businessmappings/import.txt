@@ -40,7 +40,7 @@ This is an example of a real import business map:
 </code>
 ===== Direct save import process =====
 
-This is a custom import process implemented in the business map itself. It has a different way of handling duplicates, permitting to update all duplicate records it finds or only the first/last one. It updates/creates records with a direct coreBOS save which does not launch workflows and will be faster than the normal coreBOS import process (which doesn't launch them either but the save process itself is a bit more complex).
+This is a custom import process implemented in the business map itself. It has a different way of handling duplicates, permitting to update all duplicate records it finds or only the first/last one. It updates/creates records with a direct coreBOS save which does not launch workflows and will be faster than the normal coreBOS import process (which does launch them and the save process is a bit more complex).
 
 To import relations you must indicate the field to search on in the related module in the map.
 

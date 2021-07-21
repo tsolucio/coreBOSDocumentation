@@ -11,7 +11,7 @@ There are 6 types of blocks:
   * **RelatedList**: a related list of records with actions
   * **Widget**: this is a block that must be constructed following the [[en:devel:add_special_block|DetailViewWidget specification]]. You have full control of the space designated to this block
   * **CodeWithoutHeader**: this will open a "div" and directly include your code inside
-  * **CodeWithHeader**: this will add a header following the look and feel of the default related list blocks and then open a "div" and directly include your code inside
+  * **CodeWithHeader**: this will add a header following the look and feel of the default related-list blocks and then open a "div" and directly include your code inside
 
 The accepted format is:
 <code xml>
@@ -31,8 +31,6 @@ The accepted format is:
         </row>
       </layout>
       <loadfrom></loadfrom> related list label or id | file to load | widget reference
-      <loadcode></loadcode>
-      <handler_path></handler_path>
       <handler_class></handler_class>
       <handler></handler>
     </block>
@@ -40,6 +38,139 @@ The accepted format is:
 </map>
 </code>
 
-If //loadfrom// is **Widget** then the directives //handler_path//, //handler_class// and //handler//, if given, will be used to construct the Detail View Widget reference object.
+Let's explain the dependencies between the directives and their meaning a little more.
 
-If //loadcode// is given the file indicated as the value will be executed inside the context of the record being loaded.
+The //type// directive defines the meaning of the rest of the directives.
+
+If //type// is **ApplicationFields** we just need the **blockid** to get the fields from, so all the other directives are ignored.
+
+If //type// is **FieldList** we just need the **layout** directive to get the list of fields to show and their distribution on screen, so all the other directives are ignored.
+
+If //type// is **RelatedList** we just need the name or ID of the related list to show. This value is given in the directive **loadfrom**, so all the other directives are ignored.
+
+If //type// is **Widget** then we have two ways of defining the widget to show. One is setting the directive //loadfrom// to the [[en:devel:add_special_block|DetailViewWidget specification]] you need, usually starts with "block:". It would be what you would put in a [[en:adminmanual:businessactions|Business Action]]. The other option is to set //loadfrom// to the path of the file that contains the widget and use the directive //handler_class// to define the name of the widget. In this case, the two directives will be used to construct the Detail View Widget reference object, with no additional parameters. It would be constructed like this:
+
+<code>block://handler_class:loadfrom</code>
+
+If //type// is **CodeWithHeader** or **CodeWithoutHeader** we have two options depending on how the code has been created.
+
+If it is a flat, function-based script, then we just need the name of the file that will be directly included in the flow of execution showing any output directly in the block. In this case, we just need the name of the file which will be obtained from the //loadfrom// directive.
+
+If the script is class-based, then you can (optionally), define the name of the class to instantiate in the directive //handler_class// and the method to execute in the directive //handler//. If these two directives have values the code will be loaded like this:
+
+<code PHP>
+$dvl = new handler_class();
+$dvl->handler();
+</code>
+
+====== Detail View Layout Widget ======
+
+Constructing on this map we have created a widget that reads the different options and adds the result into a block in a modules' detail view. This permits us, for example, to show fields from a directly related module, or the result of some code.
+
+Note that coreBOS already has mechanisms to add most of these types of blocks, which, in some cases can be easier than using this widget. The big advantage of the widget is that it is configured using [[en:adminmanual:businessactions|Business Actions]] and these are natively applied per user/role/condition making it extremely flexible to show different blocks to different users or different types of records (for example). As usual, putting pieces of the puzzle together to construct a beautiful picture.
+
+The name of the widget is **showSetOfFieldsWidget** and the syntax of the business action for each type is:
+
+<code>block://showSetOfFieldsWidget:modules/Utilities/showSetOfFieldsWidget.php:record_id=$RECORD$&mapid=detailviewlayout_mapid</code>
+
+to get it in the right action panel you would use:
+
+<code>module=Utilities&action=UtilitiesAjax&file=showSetOfFieldsWidget&MODULE=HelpDesk&RECORDID=$RECORD$&dvmodule=Products&dvrecord=$product_id&mapid=detailviewlayout_mapid</code>
+
+The **ApplicationFields** and **FieldList** types require two additional parameters which represent the module (dvmodule) and record (dvrecord) from where they are supposed to get the fields to show.
+
+<code>block://showSetOfFieldsWidget:modules/Utilities/showSetOfFieldsWidget.php:record_id=$RECORD$&dvmodule=module_to_show&dvrecord=field_with_recordid&mapid=detailviewlayout_mapid</code>
+
+Watch the video presentation to get a full idea of the possibilities
+
+{{youtube>RrTJ19hBBFE}}
+
+You can find next the relation of maps I used for testing and the video presentation.
+
+**Detail View Widget**
+
+<code XML>
+<map>
+<blocks>
+  <block>
+    <type>Widget</type>
+    <label>coreBOS Website</label>
+    <loadfrom><![CDATA[block://showHTMLBlock:modules/Utilities/showHTMLBlock.php:op=iframe&height=400px&ex=http%3A%2F%2Fcorebos.org%3Fifcrmid%3D%24RECORD%24%26ifmodule%3D%24MODULE%24]]></loadfrom>
+  </block>
+</blocks>
+</map>
+</code>
+
+**Application Fields**
+
+<code XML>
+<map>
+<originmodule>
+    <originname>Products</originname>
+</originmodule>
+<blocks>
+  <block>
+    <type>ApplicationFields</type>
+    <blockid>36</blockid>
+  </block>
+</blocks>
+</map>
+</code>
+
+**Code With/Without Header**
+
+<code XML>
+<map>
+<blocks>
+  <block>
+    <type>CodeWithHeader</type>
+    <loadfrom>sayhi.php</loadfrom>
+  </block>
+</blocks>
+</map>
+</code>
+
+The //sayhi.php// is a script in the root of the coreBOS install with this contents:
+
+<code PHP>
+<?php
+echo "hello widget!";
+</code>
+
+**Field List**
+
+<code XML>
+<map>
+<originmodule>
+    <originname>Products</originname>
+</originmodule>
+<blocks>
+  <block>
+    <type>FieldList</type>
+    <label>pdofields</label>
+    <layout>
+      <row><column>productname</column><column>productcode</column></row>
+      <row><column>sales_start_date</column><column>sales_end_date</column><column>start_date</column><column>expiry_date</column></row>
+      <row><column>vendor_id</column><column>vendor_part_no</column></row>
+    </layout>
+  </block>
+</blocks>
+</map>
+</code>
+
+**Related List**
+
+<code XML>
+<map>
+<originmodule>
+    <originname>HelpDesk</originname>
+</originmodule>
+<blocks>
+  <block>
+    <type>RelatedList</type>
+    <label>ServiceContracts</label>
+    <loadfrom>ServiceContracts</loadfrom>
+  </block>
+</blocks>
+</map>
+</code>

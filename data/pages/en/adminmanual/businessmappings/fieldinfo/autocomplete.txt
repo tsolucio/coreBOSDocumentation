@@ -116,9 +116,9 @@ This next map will activate the functionality on the Potentials Name and Related
 </map>
 </code>
 
-There are only two types of fields that support autocomplete: relation or capture fields (uitype 10) and uitype 2 text fields. The only way to create uitype 2 text fields is by programming.
+There are only three types of fields that support autocomplete: relation or capture fields (uitype 10) and uitype 1 and 2 text fields. The only way to create uitype 2 text fields is by programming.
 
-Each of the two types have a **different** extended information structure as can be seen in the example above. The potentialname field has a flat value directive as it only can be searching on one module while the related_to field has a richer syntax due to the possibility of having to search on more than one related module.
+Each of those types have a **different** extended information structure as can be seen in the example above. The potentialname field has a flat value directive as it only can be searching on one module while the related_to field has a richer syntax due to the possibility of having to search on more than one related module.
 
 <WRAP center round important 60%>
 Please apply the correct XML structure (as explained above) for your type of field or this functionality will not work correctly.
