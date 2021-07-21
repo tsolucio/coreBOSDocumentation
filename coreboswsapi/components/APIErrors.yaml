@@ -1,0 +1,273 @@
+INVALID_USER:
+  type: object
+  description: invalid User web service ID
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: INVALID_USER
+      properties:
+        code:
+          type: string
+          example: INVALID_USER
+        message:
+          type: string
+          example: Given ID is not a valid user ID
+PASSWORD_NOT_STRONG:
+  type: object
+  description: given password does not comply with security restrictions
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: PASSWORD_NOT_STRONG
+      properties:
+        code:
+          type: string
+          example: PASSWORD_NOT_STRONG
+        message:
+          type: string
+          example: insecure password given
+INVALID_OLD_PASSWORD:
+  type: object
+  description: given password does not match existing password
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: INVALID_OLD_PASSWORD
+      properties:
+        code:
+          type: string
+          example: INVALID_OLD_PASSWORD
+        message:
+          type: string
+          example: current password does not match given password
+DATABASE_QUERY_ERROR:
+  type: object
+  description: Database error while performing requested operation
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: DATABASE_QUERY_ERROR
+      properties:
+        code:
+          type: string
+          example: DATABASE_QUERY_ERROR
+        message:
+          type: string
+          example: Database error while performing requested operation
+CHANGE_PASSWORD_FAILURE:
+  type: object
+  description: error trying to change password
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: CHANGE_PASSWORD_FAILURE
+      properties:
+        code:
+          type: string
+          example: CHANGE_PASSWORD_FAILURE
+        message:
+          type: string
+          example: Failed to change password
+INVALID_ID_ATTRIBUTE:
+  type: object
+  description: given ID is not a valid type for the operation
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: INVALID_ID_ATTRIBUTE
+      properties:
+        code:
+          type: string
+          example: INVALID_ID_ATTRIBUTE
+        message:
+          type: string
+          example: Id specified is incorrect
+RECORD_NOT_FOUND:
+  type: object
+  description: given ID is not found error
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: RECORD_NOT_FOUND
+      properties:
+        code:
+          type: string
+          example: RECORD_NOT_FOUND
+        message:
+          type: string
+          example: Record you are trying to access is not found
+OPERATION_NOT_SUPPORTED:
+  type: object
+  description: the requested operation is not compatible with the configuration of the application
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: OPERATION_NOT_SUPPORTED
+      properties:
+        code:
+          type: string
+          example: OPERATION_NOT_SUPPORTED
+        message:
+          type: string
+          example: Customer portal access with no contact information
+UNKNOWN_ENTITY:
+  type: object
+  description: module or record could not be found
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: UNKNOWN_ENTITY
+      properties:
+        code:
+          type: string
+          example: UNKNOWN_ENTITY
+        message:
+          type: string
+          example: Given related module cannot be found
+MODULES_NOT_RELATED:
+  type: object
+  description: Cannot find relation between the modules
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: MODULES_NOT_RELATED
+      properties:
+        code:
+          type: string
+          example: MODULES_NOT_RELATED
+        message:
+          type: string
+          example: Cannot find relation between the modules
+MANY_RELATIONS:
+  type: object
+  description: More than one relation exists between the modules
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: MANY_RELATIONS
+      properties:
+        code:
+          type: string
+          example: MANY_RELATIONS
+        message:
+          type: string
+          example: More than one relation exists between the modules
+INVALID_PARAMETER:
+  type: object
+  description: one of the given parameters is incorrect
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: INVALID_PARAMETER
+      properties:
+        code:
+          type: string
+          example: INVALID_PARAMETER
+        message:
+          type: string
+          example: Invalid parameter
+INVALID_MODULE:
+  type: object
+  description: the given module parameter is incorrect
+  required:
+    - success
+    - error
+  properties:
+    success:
+      type: boolean
+      description: "false"
+      example: false
+    error:
+      type: object
+      description: INVALID_MODULE
+      properties:
+        code:
+          type: string
+          example: INVALID_MODULE
+        message:
+          type: string
+          example: Invalid module parameter
