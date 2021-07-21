@@ -1,5 +1,10 @@
 ===== PDF Structure =====
 
+<WRAP center round info 60%>
+This is **OBSOLETE** > Use [[[[en:extensions:extensions:gendoc|GenDoc]]
+</WRAP>
+
+
 {{ :en:devel:pdfstructure:pdf-breakdown.png |}}
 
 {{ :en:devel:pdfstructure:pdf-header.png |}}

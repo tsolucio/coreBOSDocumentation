@@ -1,8 +1,13 @@
 ======Packaging and Release Numbers======
 
-<wrap hi>[[http://producingoss.com/en/development-cycle.html|Based on Produccing Open Source Software]]</wrap>
+<wrap info 80%>
+We don't use version numbers, [[https://blog.corebos.org/blog/nomoreversions|it makes no sense in our project.]]
+</wrap>
+
 
 =====Release Numbers=====
+
+[[http://producingoss.com/en/development-cycle.html|Based on Producing Open Source Software]]
 
 We will follow the convention laid out in the book [[http://producingoss.com|Produccing Open Source Software]] whereas, we will use three number components in the version name:
 

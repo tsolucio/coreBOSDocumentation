@@ -8,15 +8,18 @@
   * [[:en:devel:prototype2jquery|Migrate from prototype/scriptaculous to jQuery]]
 
 ====== Technical Articles ======
+
+  * [[:en:devel:develtutorials|Development Tutorials]]
+  * [[:en:devel:corebosws|Webservice Development]]
+  * [[en:devel:developmentguidelines|Development Guidelines we try to adhere to]]
+
   * [[:en:devel:setupdevel|How to setup a coreBOS development environment]]
   * [[:en:devel:debuging|Debugging]]
   * [[:en:devel:jsdebuging|Javascript Debugging]]
-  * [[en:devel:developmentguidelines|Development Guidelines we try to adhere to]]
   * [[en:devel:commitguidelines|Commit Guidelines we try to adhere to]]
   * [[en:devel:contribute|How to Contribute]]
   * [[:en:devel:bugreport|Bug Reports]]
   * [[en:devel:corebos_hooks|coreBOS Events, Links and Hooks]]
-  * [[:en:devel:develtutorials|Development Tutorials]]
   * [[:en:devel:develtips|Developer Tips and Tricks]]
   * [[:en:devel:database|Database Structure]]
   * [[:en:devel:pdfstructure|PDF Structure]]
@@ -33,7 +36,6 @@
 
 
   * [[:en:devel:coreboscp|coreBOS Customer Portal Development]]
-  * [[:en:devel:corebosws|Webservice Development]]
   * [[:en:devel:cbproductprice|Product/Price Enhancements]]
   * [[:en:devel:Testing|coreBOS Testing Project]]
 
