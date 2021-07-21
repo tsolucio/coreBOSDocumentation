@@ -50,11 +50,21 @@ vtigerVersion:String //coreBOS version
 
 Once these two steps have been taken we can continue by calling any of the web service functions.
 
+====Logout====
+
+^Method:|logout|
+^Purpose:|The logout service eliminates the session information, invalidating any further operations with that session ID. For security reasons this method should be called when the user of the external application finishes his tasks. He should have an option to close the application.|
+^Profile:|logout(sessionId:string):Map|
+^Send as:|POST|
+^Parameters:| => sessionId: session ID to invalidate.|
+^Response:|map with one entry: successfull|
+
 
 
 ====More Information====
 
   * This method of authentication is called Challenge-Handshake Authentication Protocol and it is more secure than a username/password authentication. [[https://tools.ietf.org/html/rfc1994|Read here for more information]]
+  * [[en:devel:corebosws:methodreference#crud_users|Read here for methods on how to change the user password and/or access key]]
 
 ----
 <WRAP right>

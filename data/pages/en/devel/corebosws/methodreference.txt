@@ -143,18 +143,23 @@ https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/070lib_del
 ^Parameters:| => id: user web service ID that will be deleted \\ => newOwnerId: user web service ID to transfer records to|
 ^Response:|successfull|
 
-Users have another additional endpoint which permits them to change their password.
+Users have two other additional endpoints that permit them to change their password and Access Key.
 
 ^Method:|changePassword|
 ^Purpose:|Permits a user to change his password or the password of another user if the connected user is an administrator.|
 ^Profile:|changePassword(id:string, oldPassword:string, newPassword:string, confirmPassword:string):string|
 ^Send as:|POST|
-^Parameters:| => id: user web service ID \\ => typical password change parameters.|
-^Response:|successfull|
+^Parameters:| => id: user web service ID \\ => oldPassword \\ => newPassword \\ => confirmPassword|
+^Response:| => permission error message \\ => success message with the new **Access Key**|
+^Comments:|<WRAP center round important 100%>Note that the changePassword function will change also the Access Key of the user, so your next login will have to be with the new Access Key that is returned from the call. The new Access Key will only be visible in this response so be sure to save it.</WRAP>|
 
-<WRAP center round alert 80%>
-Note that the changePassword is only useful if using the Password option login method. The access key is changed when the password changes effectively blocking out the user if he connects with the access key method.
-</WRAP>
+
+^Method:|changeAccessKey|
+^Purpose:|Permits a user to change his Access Key or the Access Key of another user if the connected user is an administrator.|
+^Profile:|changeAccessKey(id:string):string|
+^Send as:|POST|
+^Parameters:| => id: user web service ID|
+^Response:| => permission error message \\ => success message with the new **Access Key**|
 
 ==== CRUD Documents ====
 
@@ -177,7 +182,7 @@ There are two historical modules which have a non-standard way of managing comme
 
 Since network calls are very expensive we have added **mass operations** for the main actions.
 
-=== MassCreate ===
+=== MassCreate (MassUpsert) ===
 
 ^Purpose:|Create a set of records.|
 ^Profile:|MassCreate(elements:array of Objects):Object|
@@ -317,6 +322,12 @@ An example structure to test with:
 
 and you can see some more examples [[https://github.com/tsolucio/coreBOSTests/blob/master/include/Webservices/MassCreateTest.php|in the unit tests]].
 
+**MassUpsert** The Mass create method can work also as a Mass Upsert method as it supports search and update functionality by means of the "searchon" parameter which you can add to any record in the composite object entries that create accepts.
+
+The "searchon" parameter is a comma-separated list of fields you want to search on. The method will search for equality on all given fields using the values in the "elements" array. This is the exact same syntax you will find in the Upsert method below.
+
+You can [[https://github.com/tsolucio/coreBOSTests/blob/master/include/Webservices/MassCreateTest.php#L203|find an example in the unit tests.]]
+
 === MassRetrieve ===
 
 ^Purpose:|Retrieve a set of records.|
@@ -347,7 +358,7 @@ and you can see some more examples [[https://github.com/tsolucio/coreBOSTests/bl
 ^Profile:|ValidateInformation(context:Object):Object|
 ^Send as:|POST|
 ^Parameters:| => context: an Object with the field-value pairs to validate. Either a "module" or a "record" entry must exist in the object. If "record" is given the validations will be evaluated with the fields of the record.|
-^Response:|true or false in the success field. If false is returned the result will contain an array wit all the validations that have failed|
+^Response:|true or false in the success field. If false is returned the result will contain an array with all the validations that have failed|
 
 Besides the ValidateInformation endpoint, we also have create and update options that are identical to their base counterparts explained above just that they will validate the values before executing any operation and return the error messages without taking any action if the validations do not pass.
 

@@ -1,13 +1,33 @@
 ====== GenDoc and PDF output ======
 
+===== GenDoc Template Merge =====
+
+^Purpose:|Get the binary representation of a template with records from a GenDoc supported module.|
+^Profile:|getmergedtemplate(template, crmids, output_format)|
+^Send as:|GET|
+^Parameters:| template – document web service ID that contains the template to merge\\  crmids – comma-separated list of records to merge with the template\\ output_format – pdf, odt, onepdf, oneodt|
+^Response:| array –\\ **message**: yes/no result,\\ **file**: file name to a zip archive that contains the merged document(s)|
+
+
+===== GenDoc Document Conversion =====
+
+^Purpose:|Allows a web service client to send an OpenOffice/LibreOffice document for it to be converted into any format supported by unoconv and retrieve the resulting file|
+^Profile:|gendoc_convert(file: encoded, convert_format: string)|
+^Send as:|POST|
+^Parameters:| **file** – file structure\\  - name: filename\\ - size: size\\ - type: type of the document\\ - content: base 64 encoded content of the file\\ **convert_format**: string, format to convert input file|
+^Response:| **result**: result of operation (success%%|%%error)\\ **file**: file: resulting file structure (same as input parameter)|
+^Comments:|one of the unoconv alternatives must be installed and functional in the coreBOS install|
+
+
 ===== Inventory modules =====
 
-^Profile|array getpdfdata(id)|
-^Parameters| id – quote, salesorder, invoice or purchaseorder REST ID|
-^Returns| array –\\ **recordid**: ID passed as parameter,\\ **modulename**: name of the module of the ID,\\ **pdf_data**: base64 encoded string representing the PDF|
-^Notes|The user must have read access on the ID and the ID must belong to an inventory module.\\ There are 4 Global Variables that permit defining what method and template to use for the output.|
+^Purpose:|Get the PDF representation of an inventory or supported module record.|
+^Profile:|getpdfdata(id)|
+^Send as:|POST|
+^Parameters:| id – quote, salesorder, invoice, purchaseorder or custom module web service ID.\\  CustomerPortal_PDF_Modules – global variable defines more modules supported by this endpoint.\\ CustomerPortal_PDF – global variable defines how to get the PDF: PDFMaker, GenDoc, or Native\\ CustomerPortal_PDFTemplate_{module} – defines the templateID to use for GenDoc and PDFMaker|
+^Response:| array –\\ **recordid**: ID passed as parameter,\\ **modulename**: name of the module of the ID,\\ **pdf_data**: base64 encoded string representing the PDF|
+^Comments:|The user must have read access to the ID and the ID must belong to a supported module.\\ There are 4 Global Variables that permit defining what method and template to use for the output.|
 ^Example|see **400_getpdf.php** and **400_getpdfdirect.php** in [[http://github.com/tsolucio/coreboswsbrowser|coreBOSwsBrowser]]|
-^Issue Reference|~~issue:124~~|
 
 ----
 <WRAP right>
