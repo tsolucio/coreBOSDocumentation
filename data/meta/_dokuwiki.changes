@@ -1,22 +1,20 @@
-1614807686	62.83.196.227	E	en:upsert_workflows	joebordes			366
-1614809044	62.83.196.227	E	en:upsert_workflows	joebordes			578
-1614820196	62.83.196.227	E	en:upsert_workflows	joebordes			-1
-1615148779	62.83.196.227	E	en:adminmanual:workflows	joebordes	[Workflow Tasks] 		49
-1615203691	62.83.196.227	E	en:smsnotifier	joebordes	[Writing Custom Providers] 		257
-1615203789	62.83.196.227	E	en:smsnotifier	joebordes	[More Information] 		262
-1615421984	62.83.196.227	E	en:productstockcontrol	joebordes	[Product Stock Control] 		75
-1615474448	62.83.196.227	E	en:adminmanual:faq	joebordes			25
-1615565736	62.83.196.227	E	en:devel:debuging	joebordes	[PHP] 		-42
-1615565806	62.83.196.227	E	en:devel:debuging	joebordes	[PHP] 		142
-1615588083	62.83.196.227	E	en:scheduled_workflows	joebordes	[Scheduled Workflow Conditions] 		272
-1615588102	62.83.196.227	E	en:scheduled_workflows	joebordes	[Scheduled Workflow Conditions] 		12
-1615822349	62.83.196.227	E	en:adminmanual:businessmappings:detailviewlayout	joebordes			1
-1616085549	62.83.196.78	E	en:adminmanual:businessmappings:webservicecall	joebordes	[An example of two tasks passing context] 		202
-1616371371	62.83.196.78	E	en:integrations:sendgrid	joebordes	[Authenticate with API Keys] 		701
-1616371393	62.83.196.78	E	en:integrations:sendgrid	joebordes			1
-1616371438	62.83.196.78	E	en:integrations:sendgrid	joebordes	[Authenticate with API Keys] 		14
-1616371941	62.83.196.78	E	en:integrations:sendgrid	joebordes	[Authenticate with API Keys] 		33
-1616432298	62.83.196.78	E	en:adminmanual:businessmappings:webservicecall	joebordes	[wsconfig] 		0
-1616433089	62.83.196.78	E	en:adminmanual:businessmappings:webservicecall	joebordes	[wsconfig] 		87
-1616605962	77.227.116.3	E	en:install550	joebordes	[PHP Configuration] 		368
-1616605997	77.227.116.3	E	en:install550	joebordes			0
+1624098540	148.3.250.64	E	en:adminmanual:businessmappings:record_set	joebordes			6
+1626114837	77.227.174.152	E	en:gendoc:gramatica	joebordes			4
+1626115091	77.227.174.152	E	en:gendoc:gramatica	joebordes			4
+1626302341	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[Inventory modules] 		1539
+1626302378	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[Inventory modules] 		11
+1626302447	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[Inventory modules] 		-1
+1626302810	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[Inventory modules] 		106
+1626303557	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes			570
+1626304118	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Template Merge] 		-370
+1626305957	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		-190
+1626305973	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		1
+1626305987	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		3
+1626306031	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		2
+1626306047	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		4
+1626306056	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		1
+1626306070	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		-7
+1626306108	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		31
+1626306120	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		-22
+1626306148	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		1
+1626737812	77.227.174.152	E	en:devel:corebosws:methodreference	joebordes	[Validations. Create, Update and Revise with Validations] 		1

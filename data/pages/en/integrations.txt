@@ -13,7 +13,7 @@
   *SMS
   *[[en:integrations:sendgrid|Sendgrid]]
   *ActON
-  *Thunderbird
+  *Thunderbird (needs to be updated)
   *[[en:integrations:surveys|Survey]] -> [[en:integrations:typeform|Typeform]]
   *[[en:integrations:elasticsearch|Elastic Search]]
   *[[en:integrations:maps|GoogleMaps and Openstreetmap. Geodistance]]
@@ -23,7 +23,7 @@
   *Webcam photos
   *Email converter: Nagios, pandorafms
   *RSS
-  *Pentaho
+  *Pentaho (needs to be updated)
   *[[en:integrations:oocommerce|WordPress oocommerce]]
   *[[en:integrations:woocommerce|WordPress Woocommerce]]
   *Prestashop

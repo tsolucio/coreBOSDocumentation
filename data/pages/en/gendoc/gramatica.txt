@@ -1,6 +1,6 @@
 ===== Documentation Generation::Fields and Templates Grammar =====
 
-We have a special helper extension which can be found under the Tools menu called OOMerge Fields. This extension will list all available fields for each module and their internal name so we can easily copy and paste the field names into out OpenOffice template documents.
+We have a special helper extension that can be found under the Tools menu called OOMerge Fields. This extension will list all available fields for each module and their internal name so we can easily copy and paste the field names into our OpenOffice template documents.
 
 ==== Template Grammar ====
 
@@ -12,9 +12,9 @@ We have a special helper extension which can be found under the Tools menu calle
     * examples: {ifexists asset},  {ifexists contact}, {ifexists campaign}, {ifexists product}, {ifexists invoice}
   * **{ifexists entity.field=value}...{/ifexists}**
     * all text contained inside the {ifexists} and {/ifexists} will be added to the final document if there exists at least one entity related to the main entity of the merge whose indicated field has the indicated value. For fields with multiple values (multiple select picklist), the string |##| must be used to separate the values and ALL values in the field must be the same as the value for the entity to qualify as equal.
-    * if the entity or field do not exist the whole block will be ignored.
+    * if the entity or field does not exist the whole block will be ignored.
     * inside the block fields of the first entity found may be used
-    * other operators are supported: >  <  >=  <=  =  !=
+    * other operators are supported: %%>  <  >=  <=  =  !=%%
     * examples: {ifexists asset.type=Fichero},  {ifexists contact.type=Responsable Seguridad}, {ifexists campaign=GAdwords Noviembre08}
   * **{ifexists entity.field in (value1,value2,value3)}...{/ifexists}**
     * all text contained inside the {ifexists} and {/ifexists} will be added to the final document if there exists at least one entity related to the main entity of the merge whose indicated field has at least one of the indicated values. Fields with multiple values (multiple select picklist) are directly supported, no special syntax is needed.
@@ -33,7 +33,7 @@ We have a special helper extension which can be found under the Tools menu calle
   * **{foreach entity.field=value}...{/foreach}**
     * for each related entity of the main merge entity whose indicated field has the indicated value we will merge the whole text contained between the two commands and add the result to the final document. For fields with multiple values (multiple select picklist), the string |##| must be used to separate the values and ALL values in the field must be the same as the value for the entity to qualify as equal.
     * if no related entity is found the whole block will be ignored
-    * other operators are supported: >  <  >=  <=  =  !=
+    * other operators are supported: %%>  <  >=  <=  =  !=%%
   * **{foreach entity.field in (value1,value2,value3)}...{/foreach}**
     * for each related entity of the main merge entity whose indicated field has at least one of the indicated value we will merge the whole text contained between the two commands and add the result to the final document. Fields with multiple values (multiple select picklist) are directly supported, no special syntax is needed.
     * if no related entity is found the whole block will be ignored
@@ -41,7 +41,7 @@ We have a special helper extension which can be found under the Tools menu calle
     * negative case of **{foreach...}**
   * **{foreach entity.field !in (value1,value2,value3)}...{/foreach}**
     * negative case of **{foreach...}**
-  * **{foreach entity [field1 op value1 && field2 op value2 || field3 op value3)}...{/foreach}**
+  * **{foreach entity [field1 op value1 && field2 op value2 || field3 op value3]}...{/foreach}**
     * advanced conditions on fields with fields and operations %%(=,>,<,>=,<=,!=)%% and limited logical connectors || (or) and && (and)
   * **iteration**: inside the {foreach} blocks you can reference a special variable called {iteration} whose value will be that of the current loop iteration. This can be useful to enumerate the elements or to print conditional text based on the iteration. See [[:en:gendoc:gendocejemplos|Examples]].
   * **{include Document_Num}**
@@ -60,14 +60,14 @@ We have a special helper extension which can be found under the Tools menu calle
   * **{image entity}**
     *This directive must be at the start of a paragraph.
     *The paragraph with the directive will be completely eliminated
-    *The next paragraph must contain an image which will be the one substituted by the actual entity image
+    *The next paragraph must contain an image that will be the one substituted by the actual entity image
     *In the case of needing various images, each image to be substituted must be different
     *All the configurations made on the image will be respected, only the image will be substituted
     *We treat the image directives in a special way. The idea is that there are so many possible configuration options for an image (width, height, alignment, ...) that it would be complicated to include them in the image directive to indicate how the image should be rendered. So we decided that you include any image, format it as you need using the options that OpenOffice gives you for this and then we will substitute only the image leaving all the formating as you defined it.
     *In case there is more than one image field on the module you can specify which one you want using the dot notation: Contacts.myimage.
     *There is a special case in the Project module to retrieve the GanttChart: **Project.GanttChart**
   * **Rules**
-    * Directives must be on the same paragraph. There can not be a new paragraph in the middle of a directive. For example,<code>Dear {Contact.
+    * Directives must be in the same paragraph. There can not be a new paragraph in the middle of a directive. For example,<code>Dear {Contact.
 firstname},</code> is incorrect.
     * The directives {ifexists}, {ifnotexists}, {foreach} and their closings must appear at the very beginning of the line in their own paragraph. The whole line will be eliminated. For example,<code>this is the end of the previous paragraph.
 {ifexists Activo.tipo=fichero}

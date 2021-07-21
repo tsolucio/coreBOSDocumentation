@@ -13,3 +13,6 @@
   * They will have to use their username and access key to be granted access
   * Enjoy
 
+==== Mount Filesystem command ====
+
+<code>sudo mount.davfs http://localhost/coreBOSTest/webdav webdav -o rw,uid=joe</code>

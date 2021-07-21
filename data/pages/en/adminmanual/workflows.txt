@@ -26,3 +26,4 @@ In the next sections you will be able to find more information on these steps.
 ===== Workflow Examples =====
   * [[..:workflow_examples|Workflow Examples]]
   * [[..:workflow_weekendwarning|How to send emails/sms on specific week days]]
+  * [[..:workflow_tricksandtips|Workflow tricks and tips]]

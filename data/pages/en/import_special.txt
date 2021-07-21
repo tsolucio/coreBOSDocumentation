@@ -54,10 +54,53 @@ Using the **Export_RelatedField_GetValueFrom** global variable you can indicate 
 
 Additionally, you can set the **Export_RelatedField_NameForSearch** global variable to any value in order to have that value appended to the end of the related field export.
 
-Another example. Let's suppose that we want to migrate information from one coreBOS system to another. In the origin application, you have a custom field on your accounts module labeled VATID. This field contains a unique identifier for each Account. The internal name of this fields is cf_999. In the second application, this field has been assigned the internal field name cf_888
+Another example. Let's suppose that we want to migrate information from one coreBOS system to another. In the origin application, you have a custom field on your accounts module labeled VATID. This field contains a unique identifier for each Account. The internal name of this field is cf_999. In the second application, this field has been assigned the internal field name cf_888
 
 If we set the **Export_RelatedField_GetValueFrom** global variable to "cf_999" and the **Export_RelatedField_GetValueFrom** global variable to "cf_888" and export potentials from the first system, the "Related to" reference field will read the values of accounts from the "cf_999" field and export a string that looks like this:
 
 <code>Accounts::::B99999999::::cf_888</code>
 
 which is ready to import correctly into the second application.
+
+===== Export Options for Comments =====
+
+Comments are, to most effects, just another normal module. So you can go to the ModComments module and use all the import and export options there, but, the comments module has a special developer block that permits us to interact with the comments records directly on the module they apply to. This block must be activated defining a [[en:adminmanual:businessactions|Business Action]].
+
+The comments module has another functionality that permits us to directly export the comments related to a record. You can define a [[en:adminmanual:businessactions|Business Action]] to add a link (or button) to export the comments like this:
+
+<code>
+Link Type: DETAILVIEWBASIC
+Link Label: Export Comments
+Link Url: javascript:window.location.href = 'index.php?module=Contacts&action=ContactsAjax&file=ExecuteFunctions&functiontocall=exportUserComments&record=$RECORD$';
+Module List: Contacts
+</code>
+
+Obviously, you can adapt that to any module.
+
+{{ :en:modcommentsexportaction.png |Comments export business action}}
+
+There is also a [[en:adminmanual:globalvariables|Global Variable]] named **ModComments_Export_Format** that permits us to obtain the export in a spreadsheet format instead of the default CSV.
+
+Finally, the export returns the comment and creation date columns but you can create a [[en:adminmanual:businessmappings:field_set|Field Set Business Map]] named **Comments_Export_Columns** to specify the fields you want to export.
+
+<code XML>
+<map>
+  <module>
+  <name>ModComments</name>
+  <fields>
+	<field>
+	  <name>commentcontent</name>
+	</field>
+	<field>
+	  <name>createdtime</name>
+	</field>
+	<field>
+	  <name>assigned_user_id</name>
+	</field>
+	<field>
+	  <name>related_to</name>
+	</field>
+  </fields>
+  </module>
+ </map>
+</code>
