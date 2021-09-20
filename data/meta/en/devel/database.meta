@@ -1,4 +1,4 @@
-a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1420388774;s:8:"modified";i:1612656158;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1612656158;s:2:"ip";s:12:"95.61.43.231";s:4:"type";s:1:"E";s:2:"id";s:17:"en:devel:database";s:4:"user";s:9:"joebordes";s:3:"sum";s:12:"[Picklists] ";s:5:"extra";s:0:"";s:10:"sizechange";i:57;}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}s:5:"title";s:18:"Database Structure";s:11:"description";a:2:{s:15:"tableofcontents";a:4:{i:0;a:4:{s:3:"hid";s:18:"database_structure";s:5:"title";s:18:"Database Structure";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:6:"emails";s:5:"title";s:6:"Emails";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:20:"vtiger_def_org_field";s:5:"title";s:20:"vtiger_def_org_field";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:3;a:4:{s:3:"hid";s:9:"picklists";s:5:"title";s:9:"Picklists";s:4:"type";s:2:"ul";s:5:"level";i:2;}}s:8:"abstract";s:164:"Database Structure
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1420388774;s:8:"modified";i:1627229330;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1627229330;s:2:"ip";s:14:"77.227.174.152";s:4:"type";s:1:"E";s:2:"id";s:17:"en:devel:database";s:4:"user";s:9:"joebordes";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:596;}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}s:5:"title";s:18:"Database Structure";s:11:"description";a:2:{s:15:"tableofcontents";a:5:{i:0;a:4:{s:3:"hid";s:18:"database_structure";s:5:"title";s:18:"Database Structure";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:6:"emails";s:5:"title";s:6:"Emails";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:20:"vtiger_def_org_field";s:5:"title";s:20:"vtiger_def_org_field";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:3;a:4:{s:3:"hid";s:9:"picklists";s:5:"title";s:9:"Picklists";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:4;a:4:{s:3:"hid";s:16:"entity_relations";s:5:"title";s:16:"Entity Relations";s:4:"type";s:2:"ul";s:5:"level";i:2;}}s:8:"abstract";s:319:"Database Structure
 
 Emails
 
@@ -10,4 +10,19 @@ Settings > Fields Access: Define global field-level access in each module
 
 Picklists
 
-[Picklist Entity-Relation]";}s:8:"relation";a:2:{s:5:"media";a:2:{s:20:"en:devel:emailer.png";b:1;s:23:"en:devel:picklister.png";b:1;}s:10:"firstimage";s:20:"en:devel:emailer.png";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1420388774;s:8:"modified";i:1612656158;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1612656158;s:2:"ip";s:12:"95.61.43.231";s:4:"type";s:1:"E";s:2:"id";s:17:"en:devel:database";s:4:"user";s:9:"joebordes";s:3:"sum";s:12:"[Picklists] ";s:5:"extra";s:0:"";s:10:"sizechange";i:57;}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}}}
+[Picklist Entity-Relation]
+
+Entity Relations
+
+[Account]
+[Campiagns]
+[Contact]
+[Support Ticket]
+[Invoice]
+[Lead]
+[Potential]
+[Product]
+[Purchase Order]
+[Quote]
+[Sales Order]
+[Vendor]";}s:8:"relation";a:2:{s:5:"media";a:14:{s:20:"en:devel:emailer.png";b:1;s:23:"en:devel:picklister.png";b:1;s:29:"en:devel:accountrelations.png";b:1;s:30:"en:devel:campaignrelations.png";b:1;s:29:"en:devel:contactrelations.png";b:1;s:30:"en:devel:helpdeskrelations.png";b:1;s:29:"en:devel:invoicerelations.png";b:1;s:27:"en:devel:leadsrelations.png";b:1;s:31:"en:devel:potentialrelations.png";b:1;s:29:"en:devel:productrelations.png";b:1;s:35:"en:devel:purchaseorderrelations.png";b:1;s:27:"en:devel:quoterelations.png";b:1;s:32:"en:devel:salesorderrelations.png";b:1;s:28:"en:devel:vendorrelations.png";b:1;}s:10:"firstimage";s:20:"en:devel:emailer.png";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1420388774;s:8:"modified";i:1627229330;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1627229330;s:2:"ip";s:14:"77.227.174.152";s:4:"type";s:1:"E";s:2:"id";s:17:"en:devel:database";s:4:"user";s:9:"joebordes";s:3:"sum";s:0:"";s:5:"extra";s:0:"";s:10:"sizechange";i:596;}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}}}

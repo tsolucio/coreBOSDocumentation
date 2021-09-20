@@ -1,0 +1,46 @@
+====== Kanban View Mapping ======
+
+The purpose of this mapping is to define a kanban lane view of the records of a module. This map is in the "View Business Map" category as it serves the purpose of showing the records of a module in a different way than we usually see them in the list view.
+
+With this map, we will be able to divide the records into kanban lanes based on the distinct values in a field of the module as well as filter the records based on a search or custom view settings. The kanban view will permit us to move the records around, effectively changing the value of the field the lanes are based on as well as get more information and apply the typical coreBOS actions on each record.
+
+As usual, the map to apply is selected using the name of the map which must be **{ModuleName}_Kanban** and you can use the global variable **BusinessMapping_{ModuleName}_Kanban** to define maps based on user and roles (among other escalation rules) just like most of the other maps.
+
+The accepted format is:
+<code xml>
+<map>
+    <module>Module name</module>
+    <lanefield>Module field name</lanefield>
+    <showsearch>0|1</showsearch>
+    <showfilter>0|1</showfilter>
+    <applyfilter>filter name</applyfilter>
+    <pagesize>number of records per lane, by default Application_ListView_PageSize</pagesize>
+    <lanes>
+      <lane>
+        <name>value of module field name</name>
+        <sequence></sequence>
+        <image>
+         <library>LDS library name</library>
+         <icon>LDS icon name</icon>
+        </image>
+        <color>CSS color definition</color>
+      </lane>
+    </lanes>
+    <card>
+      <title>Module field name</title>
+      <showfields>
+        <field>Module field name</field>
+        ...
+      </showfields>
+      <morefields>
+        <field>Module field name</field>
+        ...
+      </morefields>
+    </card>
+</map>
+</code>
+
+<WRAP center round info 60%>
+Only module and lanefield are mandatory.
+</WRAP>
+

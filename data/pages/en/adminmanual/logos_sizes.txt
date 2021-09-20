@@ -1,7 +1,8 @@
 ====== Logo sizes ======
 
-  * Official orange color:  ffb018
-  * Official blue color: 04579b
+  * Official orange color: #ffb018
+  * Official blue color: #04579b
+  * Official blue background: #0B2559
 
 coreBOS supports three types of logos for customizations:
 

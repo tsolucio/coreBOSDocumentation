@@ -1,0 +1,13 @@
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1629555958;s:8:"modified";i:1629646515;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1629646515;s:2:"ip";s:14:"77.227.174.152";s:4:"type";s:1:"E";s:2:"id";s:20:"en:devel:anonymizedb";s:4:"user";s:9:"joebordes";s:3:"sum";s:22:"[Anonymization Rules] ";s:5:"extra";s:0:"";s:10:"sizechange";i:90;}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}s:5:"title";s:42:"How to Anonymize your database: masquerade";s:11:"description";a:2:{s:15:"tableofcontents";a:3:{i:0;a:4:{s:3:"hid";s:40:"how_to_anonymize_your_databasemasquerade";s:5:"title";s:42:"How to Anonymize your database: masquerade";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:19:"anonymization_rules";s:5:"title";s:19:"Anonymization Rules";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:10:"references";s:5:"title";s:10:"References";s:4:"type";s:2:"ul";s:5:"level";i:2;}}s:8:"abstract";s:293:"How to Anonymize your database: masquerade
+
+1.- Clone the base project
+
+
+git clone https://github.com/coreBOS/masqueradeAnonymizer.git
+
+
+2.- Install masquerade
+
+
+curl -L -o masquerade.phar https://github.com/elgentos/masquerade/releases/latest/download/masquerade.phar
+chmod +x masquerade.phar";}s:8:"relation";a:2:{s:10:"references";a:1:{s:20:"en:devel:anonymizedb";b:1;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1629555958;s:8:"modified";i:1629646515;}s:7:"creator";s:10:"Joe Bordes";s:4:"user";s:9:"joebordes";s:11:"last_change";a:8:{s:4:"date";i:1629646515;s:2:"ip";s:14:"77.227.174.152";s:4:"type";s:1:"E";s:2:"id";s:20:"en:devel:anonymizedb";s:4:"user";s:9:"joebordes";s:3:"sum";s:22:"[Anonymization Rules] ";s:5:"extra";s:0:"";s:10:"sizechange";i:90;}s:11:"contributor";a:1:{s:9:"joebordes";s:10:"Joe Bordes";}}}

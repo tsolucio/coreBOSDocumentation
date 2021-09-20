@@ -1,20 +1,20 @@
-1624098540	148.3.250.64	E	en:adminmanual:businessmappings:record_set	joebordes			6
-1626114837	77.227.174.152	E	en:gendoc:gramatica	joebordes			4
-1626115091	77.227.174.152	E	en:gendoc:gramatica	joebordes			4
-1626302341	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[Inventory modules] 		1539
-1626302378	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[Inventory modules] 		11
-1626302447	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[Inventory modules] 		-1
-1626302810	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[Inventory modules] 		106
-1626303557	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes			570
-1626304118	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Template Merge] 		-370
-1626305957	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		-190
-1626305973	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		1
-1626305987	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		3
-1626306031	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		2
-1626306047	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		4
-1626306056	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		1
-1626306070	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		-7
-1626306108	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		31
-1626306120	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		-22
-1626306148	77.227.174.152	E	en:devel:corebosws:getpdfdata	joebordes	[GenDoc Document Conversion] 		1
-1626737812	77.227.174.152	E	en:devel:corebosws:methodreference	joebordes	[Validations. Create, Update and Revise with Validations] 		1
+1629882303	79.106.126.70	E	en:import_basic	a.sinani	[Step 3: Duplicate Record Handling] 		1320
+1629989490	77.227.174.152	E	en:integrations:webdav	joebordes	[Configuration] 		58
+1629995158	77.227.174.152	E	en:adminmanual:businessactions	joebordes	[Business Action::Launch script] 		47
+1629995219	77.227.174.152	E	en:devel:corebos_sse	joebordes			90
+1630011889	77.227.174.152	E	en:adminmanual:businessmappings:module_set	joebordes			-5
+1630013328	77.227.174.152	C	en:adminmanual:businessmappings:kanban	joebordes	created		1585
+1630013705	77.227.174.152	E	en:adminmanual:businessmappings:kanban	joebordes			284
+1630013799	77.227.174.152	E	en:adminmanual:businessmappings:kanban	joebordes			1
+1630014404	77.227.174.152	E	en:adminmanual:businessmappings:kanban	joebordes			40
+1630015195	77.227.174.152	E	en:adminmanual:businessmappings:kanban	joebordes			30
+1630059739	77.227.174.152	E	en:devel:field_structure	joebordes			77
+1630059793	77.227.174.152	E	en:devel:field_structure	joebordes			46
+1630618482	77.227.174.152	E	en:adminmanual:users_auth	joebordes	[SQL Database Authentication] 		118
+1631461130	77.227.174.152	E	en:gendoc:howto	joebordes	[PDF Output] 		38
+1631461151	77.227.174.152	E	en:gendoc:howto	joebordes	[PDF Output] 		5
+1631461167	77.227.174.152	E	en:gendoc:howto	joebordes	[PDF Output] 		-1
+1631461187	77.227.174.152	E	en:gendoc:howto	joebordes	[PDF Output] 		-1
+1631831707	92.119.237.34	C	en:adminmanual:businessmappings:applicationmenu	joebordes	created		476
+1631833466	92.119.237.34	E	en:adminmanual:businessmappings:applicationmenu	joebordes			-6
+1632037546	109.69.1.68	E	en:adminmanual:businessmappings:store:vendoraddresspo	joebordes			37

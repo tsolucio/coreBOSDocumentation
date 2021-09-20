@@ -7,7 +7,7 @@ Each field has to be displayed in two different ways for the Detail view and Edi
 The following are some of the display types that are used:
 
   * **1** - Displayed both in Detail view and Edit view
-  * **2** - Displayed only in the Detail view (Ex. Created time, Modified time) Read-only field. Must be given a value through the code
+  * **2** - Displayed only in the Detail view (Ex. Created time, Modified time) Read-only field. The application will never update this type of field, the only way to set a value is using direct SQL (save_module or custom handler, for example)
   * **3** - It is not displayed either in DetailView nor EditView, but can be shown in ListView. For example Total, subtotal in Invoice Module. These Fields are not tied to any block.
   * **4** - a Read-Only field that can be modified with workflows. **NOTE** if you want to save a displaytype 4 field from inside your custom code using the normal "save" method, you **MUST** trick that save to think it is being called from the workflow system by setting the $from_wf global variable to true before the save (and back to false after)
   * **5** - Only in create mode. Cannot be used in workflows
@@ -27,7 +27,7 @@ The following are some of the display types that are used:
 |T|Time|
 |V|Varchar|
 
-**Examples:** extracted directly from database
+**Examples:** extracted directly from the database
 
 ^ typeofdata ^
 |C~O|
@@ -81,7 +81,7 @@ Date fields accept the same comparison operator followed by the field name of an
 
 <code>D~O~OTH~GE~dateinservice~Date in Service</code>
 
-the date in this field will be equal or bigger than the value in dateinservice field
+the date in this field will be equal to or bigger than the value in dateinservice field
 
 Accepted comparators are: L,LE,E,NE,G,GE
 ===== Mass Edit =====
@@ -90,10 +90,10 @@ Accepted comparators are: L,LE,E,NE,G,GE
   * 2 is disabled mass editable but can be enabled in layout editor
 
 ===== Quick Create =====
-  * 0 is always shown and cannot be deactivated in layout editor
+  * 0 is always shown and cannot be deactivated in the layout editor
   * 1 is not shown but can be set in the layout editor
   * 2 is shown but can be unset in the layout editor
-  * 3 is never shown and cannot be activated in layout editor
+  * 3 is never shown and cannot be activated in the layout editor
 
 ===== Presence =====
   * 0 always active, cannot be modified in layout editor

@@ -10,3 +10,18 @@ Settings > Fields Access: Define global field-level access in each module
 ===== Picklists =====
 
 {{ :en:devel:picklister.png |Picklist Entity-Relation}}
+
+===== Entity Relations =====
+
+{{ :en:devel:accountrelations.png |Account}}
+{{ :en:devel:campaignrelations.png |Campiagns}}
+{{ :en:devel:contactrelations.png |Contact}}
+{{ :en:devel:helpdeskrelations.png |Support Ticket}}
+{{ :en:devel:invoicerelations.png |Invoice}}
+{{ :en:devel:leadsrelations.png |Lead}}
+{{ :en:devel:potentialrelations.png |Potential}}
+{{ :en:devel:productrelations.png |Product}}
+{{ :en:devel:purchaseorderrelations.png |Purchase Order}}
+{{ :en:devel:quoterelations.png |Quote}}
+{{ :en:devel:salesorderrelations.png |Sales Order}}
+{{ :en:devel:vendorrelations.png |Vendor}}

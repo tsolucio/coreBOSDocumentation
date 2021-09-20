@@ -150,7 +150,7 @@ Finally, we add two business actions to load the code:
 
 <code>javascript:runBAScriptFromListViewSSE('customsse', 'Assets', run_customsse)</code>
 
-
+See how it works here:  {{youtube>ovCt_ljx0J4}}
 
 
 

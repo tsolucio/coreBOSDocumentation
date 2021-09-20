@@ -28,14 +28,25 @@ The 'Has Header' property is to indicate whether the csv file has a header row o
 ==== Step 3: Duplicate Record Handling====
 This is an optional step, which allows you to configure duplicate record handling during Import. You can configure the criteria, for duplicate records look up and can also configure the action to be taken when duplicate records are found.
 
-{{ :en:corebos:import:duplicaterecordhandling.png }}
+{{:en:import:handleduplicates.png}}
 
     * Select the action to be taken on duplicate records. Actions allowed are:
-      *Skip : When a record from the import file is a duplicate of already existing record in the CRM, then that record is skipped from importing into the system.
-      *Overwrite: When a record from the import file, has duplicate records in the CRM, all the existing duplicate records in the CRM are deleted except for the last one. Last duplicate record is overwritten by the newly imported record from the file.
-      *Merge : When a record from the import file, has duplicate records in the CRM, all the existing duplicate records in the CRM are deleted except for the last one. Only the non-empty values from the newly imported record from the file, are overwritten on the last duplicate record of the system.
+      *Skip: When a record from the import file is a duplicate of an already existing record in the CRM, then that record is skipped from importing into the system.
+      *Overwrite: When a record from the import file, has duplicate records in the CRM, all the existing duplicate records in the CRM are deleted except for the last one. The last duplicate record is overwritten by the newly imported record from the file.
+      *Merge: When a record from the import file, has duplicate records in the CRM, all the existing duplicate records in the CRM are deleted except for the last one. Only the non-empty values from the newly imported record from the file, are overwritten on the last duplicate record of the system.
+      *Skip record creation (only update): By default, if the record we are trying to import isn't a duplicate of an already existing record in the CRM, a new record with be created. If this button is on, instead of creating the new record, it will skip it.
+      * Select a rule to decide if the record is duplicate or not: If you select a Business Map here the Matching Fields will be ignored. The map can be a Condition Query or Condition Expression business map, that MUST return an array of duplicate IDS or a comma-separated list of duplicated IDs.
+We have implemented a new workflow expression: <code>executeSQL(query, parameters...)</code>
+that can be used inside a condition expression map as the following example:
+<code xml>
+<?xml version="1.0" encoding="UTF-8"?>
+<map>
+	<expression>executeSQL('SELECT accountid FROM vtiger_account INNER JOIN vtiger_crmentity ON vtiger_crmentity.crmid=vtiger_account.accountid WHERE vtiger_crmentity.deleted=0 AND vtiger_account.accountname=?',substring(accountname,0,10))</expression>
+</map>
+</code>
+This map will return the ids of the non deleted account records, whose account name matches with the 10 first characters of the column mapped with accountname in the file. Based on the Duplicates Handle Method chosen the records with the ids returned might be skipped/overwritten/merged.
 
-    * Select the fields for duplicate records look up: Configure the combination of fields, based on which the duplicate records need to be searched for. All the records which have the same values for the combination of the selected fields, will be considered as duplicate records.
+    * Select the fields for duplicate records lookup: Configure the combination of fields, based on which the duplicate records need to be searched for. All the records which have the same values for the combination of the selected fields will be considered as duplicate records.
 
 ==== Step 4: Map Columns to Module Fields====
 The last step is to configure the mapping between the import file columns/headers to the Module fields.

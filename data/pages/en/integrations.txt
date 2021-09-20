@@ -48,3 +48,4 @@
   *[[en:integrations:sso|Single Sign On]]
   *PSR-16 Cache: Memcache and Redis
   *[[https://facturascripts.com/|FacturaScripts]]
+  *[[en:devel:anonymizedb|Masquerade]]

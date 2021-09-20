@@ -1,5 +1,7 @@
 ===== Server Side Events =====
 
+[[en:adminmanual:businessactions#business_actionlaunch_script|See how coreBOS does it!]]
+
 Server side events in coreBOS are very easy to implement. Since you have control of many ways to add javascript code to the application and also many ways to add PHP code, you can insert your EventSource javascript code and call a PHP script via ajax in order for it to send the header and subsequent messages.
 
 You can find an example of this in the [[https://github.com/tsolucio/coreBOSIERelations|Import/Export Relations Extension]] which uses SSE to launch the import process and inform the user of the progress of the operation.

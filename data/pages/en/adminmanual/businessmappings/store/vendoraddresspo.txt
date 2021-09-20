@@ -29,6 +29,7 @@ supportemail_mail : info(at)tsolucio(dot)com
     <field>vendor_id</field>
     <actions>
         <function>
+            <field>vendor_id</field>
             <name>fieldDep_GetField</name>
             <parameters>
               <parameter>street,city,state,code,country,postalcode</parameter>
