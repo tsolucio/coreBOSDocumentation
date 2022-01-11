@@ -1,13 +1,5 @@
-1612129089	95.61.43.231	C	en:devel:corebospbx:popupllamadaentrantecola.diff	joebordes	created		3596
-1612431922	197.250.226.47	C	en:extensions:documentation_query_builder.docx	gmoshi	created		340969
-1612656142	95.61.43.231	C	en:devel:picklister.odg	joebordes	created		12095
-1612656142	95.61.43.231	C	en:devel:picklister.png	joebordes	created		27814
-1617359056	77.227.116.3	C	en:devel:corebosws:manual:portalloginfields.png	joebordes	created		78114
 1622990424	148.3.250.64	C	en:adminmanual:businessmappings:detailviewinsidediv.png	joebordes	created		85265
 1623189111	148.3.250.64	C	en:modcommentsexportaction.png	joebordes	created		49803
-1627229096	77.227.174.152	C	en:devel:contactrelations.png	joebordes	created		34205
-1627229096	77.227.174.152	C	en:devel:helpdeskrelations.png	joebordes	created		22061
-1627229096	77.227.174.152	C	en:devel:invoicerelations.png	joebordes	created		22237
 1627229096	77.227.174.152	C	en:devel:leadsrelations.png	joebordes	created		23417
 1627229096	77.227.174.152	C	en:devel:potentialrelations.png	joebordes	created		25565
 1627229096	77.227.174.152	C	en:devel:productrelations.png	joebordes	created		37137
@@ -17,4 +9,12 @@
 1627229096	77.227.174.152	C	en:devel:vendorrelations.png	joebordes	created		22153
 1627229096	77.227.174.152	C	en:devel:accountrelations.png	joebordes	created		31159
 1627229096	77.227.174.152	C	en:devel:campaignrelations.png	joebordes	created		25412
+1627229096	77.227.174.152	C	en:devel:contactrelations.png	joebordes	created		34205
+1627229096	77.227.174.152	C	en:devel:helpdeskrelations.png	joebordes	created		22061
+1627229096	77.227.174.152	C	en:devel:invoicerelations.png	joebordes	created		22237
 1629877206	79.106.126.70	C	en:import:handleduplicates.png	a.sinani	created		44267
+1634054090	77.227.174.152	C	en:adminmanual:businessmappings:preview-screenshot_at_2021-10-08_17-27-20.png	joebordes	created		10159
+1634056907	77.227.174.152	C	en:adminmanual:businessmappings:preview-screenshot_at_2021-10-08_17-27-20.png.png	joebordes	created		221074
+1634056948	77.227.174.152	E	en:adminmanual:businessmappings:preview-screenshot_at_2021-10-08_17-27-20.png.png	joebordes			0
+1634056967	77.227.174.152	E	en:adminmanual:businessmappings:preview-screenshot_at_2021-10-08_17-27-20.png	joebordes			210915
+1634056974	77.227.174.152	D	en:adminmanual:businessmappings:preview-screenshot_at_2021-10-08_17-27-20.png.png	joebordes	removed		-221074

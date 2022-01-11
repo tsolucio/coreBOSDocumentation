@@ -93,3 +93,11 @@ Some notes:
 
   * As of December you will also have to set two-factor authentication on the SendGrid access. It is IMPORTANT that you activate this AFTER activating the API key change. As soon as you activate 2FA the username-password combination will STOP working. To avoid downtime and pressure **activate 2FA AFTER you finished testing the API key change**.
   * for **sub-user accounts** you must treat them as if they were normal accounts. From the parent account click on the top menu and click on "Switch User". Once you have switched to the sub-user, you create an API key as you would for a normal account, and use that API key where you had the sub-user configured. Also, you may access as the sub-user and create the API key normally.
+
+===== Authenticate with API Keys: Errors =====
+
+**Caught SENDGRID email error: 403**
+
+The from address does not match a verified Sender Identity. Mail cannot be sent until this error is resolved. Visit https://sendgrid.com/docs/for-developers/sending-email/sender-identity/ to see the Sender Identity requirements
+
+

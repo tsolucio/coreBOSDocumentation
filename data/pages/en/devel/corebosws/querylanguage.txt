@@ -134,11 +134,11 @@ We do <wrap lo>select...from accounts</wrap>  not  <wrap lo>select...from vtiger
 
 In this same line, you have to specify fields prefixed by their module name and WSQL will do whatever it has to do to get the field from the directly related module. For example
 
-<code>select firstname, Accounts.accountname from Accounts;</code>
+<code>select firstname, Accounts.accountname from Contacts;</code>
 
 Note, that fields on the module **DO NOT** have a prefix. The result of this query is VERY different:
 
-<code>select Contacts.firstname, Accounts.accountname from Accounts;</code>
+<code>select Contacts.firstname, Accounts.accountname from Contacts;</code>
 
 In this second query, we are accessing the first name of the Contact RELATED to the contacts. The Contact module has a related field to itself (Reports To), the column in the query above is retrieving the name from the RELATED contact through the Reports To field, not the name on the contact record itself.
 

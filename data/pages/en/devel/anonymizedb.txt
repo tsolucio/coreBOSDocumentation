@@ -28,6 +28,8 @@ chmod +x masquerade.phar
 
 7.- Debug and repeat until finished
 
+8.- After finishing the anonymization, we recommend you put all the files in the build directory of coreBOS, something like: ''build/anonymize'' and version them inside the project.
+
 
 ===== Anonymization Rules =====
 

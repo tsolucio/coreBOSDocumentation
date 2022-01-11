@@ -6,6 +6,26 @@ With this map, we will be able to divide the records into kanban lanes based on 
 
 As usual, the map to apply is selected using the name of the map which must be **{ModuleName}_Kanban** and you can use the global variable **BusinessMapping_{ModuleName}_Kanban** to define maps based on user and roles (among other escalation rules) just like most of the other maps.
 
+The actions supported are:
+
+  * module: Module name to appy the Kanban view
+  * lanefield: module field name you want to be showed in kanban lane view
+  * showsearch: shows the search in kanban view(boolean value)
+  * showfilter: shows the filter in kanban view(boolean value)
+  * applyfilter: put the filter name you want to apply in kanban view
+  * pagesize: number of records to show per lane
+  * lanes: here you can customize each lane
+  * name: value of module field name to address the changes
+  * sequence: the place a lane is going to have in a row
+  * library: LDS library name
+  * icon: LDS icon name
+  * color: CSS color to put to the specific value
+  * card: here you can show fields inside a lane's record
+  * title: module field name to show as title inside a lane's record
+  * field: main field to show inside a record  
+  * morefields: more fields you can choose to see inside a lane's record
+
+
 The accepted format is:
 <code xml>
 <map>
@@ -35,6 +55,57 @@ The accepted format is:
       <morefields>
         <field>Module field name</field>
         ...
+      </morefields>
+    </card>
+</map>
+</code>
+
+Here is a custom template you can try: 
+<code xml>
+<map>
+    <module>Accounts</module>
+    <lanefield>rating</lanefield>
+    <showsearch>1</showsearch>
+    <showfilter>1</showfilter>
+    <applyfilter>all</applyfilter>
+    <pagesize>6</pagesize>
+
+<lanes>
+    <lane>
+        <name>Acquired</name>
+        <sequence>1</sequence>
+        <color>red</color>
+   </lane>
+   <lane>
+        <name>Active</name>
+        <sequence>2</sequence>
+        <color>red</color>
+   </lane>
+   <lane>
+        <name>Market Failed</name>
+        <sequence>3</sequence>
+        <color>red</color>
+   </lane>
+   <lane>
+        <name>Project Cancelled</name>
+        <sequence>4</sequence>
+        <color>red</color>
+   </lane>
+   <lane>
+        <name>Shutdown</name>
+        <sequence>5</sequence>
+        <color>red</color>
+   </lane>
+</lanes>
+
+    <card>
+      <title>accountname</title>
+      <showfields>
+        <field>industry</field>
+      </showfields>
+      <morefields>
+        <field>email1</field>
+        <field>phone</field>
       </morefields>
     </card>
 </map>

@@ -1,20 +1,20 @@
-1629882303	79.106.126.70	E	en:import_basic	a.sinani	[Step 3: Duplicate Record Handling] 		1320
-1629989490	77.227.174.152	E	en:integrations:webdav	joebordes	[Configuration] 		58
-1629995158	77.227.174.152	E	en:adminmanual:businessactions	joebordes	[Business Action::Launch script] 		47
-1629995219	77.227.174.152	E	en:devel:corebos_sse	joebordes			90
-1630011889	77.227.174.152	E	en:adminmanual:businessmappings:module_set	joebordes			-5
-1630013328	77.227.174.152	C	en:adminmanual:businessmappings:kanban	joebordes	created		1585
-1630013705	77.227.174.152	E	en:adminmanual:businessmappings:kanban	joebordes			284
-1630013799	77.227.174.152	E	en:adminmanual:businessmappings:kanban	joebordes			1
-1630014404	77.227.174.152	E	en:adminmanual:businessmappings:kanban	joebordes			40
-1630015195	77.227.174.152	E	en:adminmanual:businessmappings:kanban	joebordes			30
-1630059739	77.227.174.152	E	en:devel:field_structure	joebordes			77
-1630059793	77.227.174.152	E	en:devel:field_structure	joebordes			46
-1630618482	77.227.174.152	E	en:adminmanual:users_auth	joebordes	[SQL Database Authentication] 		118
-1631461130	77.227.174.152	E	en:gendoc:howto	joebordes	[PDF Output] 		38
-1631461151	77.227.174.152	E	en:gendoc:howto	joebordes	[PDF Output] 		5
-1631461167	77.227.174.152	E	en:gendoc:howto	joebordes	[PDF Output] 		-1
-1631461187	77.227.174.152	E	en:gendoc:howto	joebordes	[PDF Output] 		-1
-1631831707	92.119.237.34	C	en:adminmanual:businessmappings:applicationmenu	joebordes	created		476
-1631833466	92.119.237.34	E	en:adminmanual:businessmappings:applicationmenu	joebordes			-6
-1632037546	109.69.1.68	E	en:adminmanual:businessmappings:store:vendoraddresspo	joebordes			37
+1639128605	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			678
+1639128716	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			12
+1639128919	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			16
+1639130943	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			15
+1639131936	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			95
+1639132045	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			7
+1639132178	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			48
+1639132588	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			2
+1639133467	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			998
+1639133722	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			42
+1639134037	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			22
+1639134088	109.234.234.205	E	en:adminmanual:businessmappings:kanban	artemisa.puci			1
+1639310223	62.82.112.225	E	en:adminmanual:businessmappings:condition_expression	joebordes			123
+1639311272	62.82.112.225	E	en:adminmanual:businessmappings:infomap	joebordes			2
+1640122489	82.159.226.23	E	en:adminmanual:businessmappings:field_dependency	joebordes			209
+1640124516	82.159.226.23	E	en:upgradevt2cb	joebordes	[Upgrade from vtiger CRM 5.2/5.3 to coreBOS] 		78
+1640705286	109.234.234.189	E	en:adminmanual:businessmappings:kanban	artemisa.puci			28
+1640705505	109.234.234.189	E	en:adminmanual:businessmappings:kanban	artemisa.puci			0
+1640705543	109.234.234.189	E	en:adminmanual:businessmappings:kanban	artemisa.puci			10
+1641598311	82.159.226.23	E	en:devel:corebosws:methodreference	joebordes	[Retrieve] 		390

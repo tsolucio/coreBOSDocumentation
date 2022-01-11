@@ -52,6 +52,7 @@ The actions supported are:
   * editable: will make a field not read-only
   * enable: will enable a field
   * disable: will disable a field
+  * setclass: set CSS class
   * function: will call the given function with the parameters:
     * change_field, action_field, new_value, old_value, any additional parameters in XML
 
@@ -106,6 +107,11 @@ The accepted format is:
         <readonly>
             <field>campaignname</field>
         </readonly>
+        <setclass>
+            <field>somefield</field>
+            <fieldclass>someCSSclass</fieldclass>
+            <labelclass>someOtherCSSclass</labelclass>
+        </setclass>
         <collapse>
         <block>sponsor</block>
         </collapse>

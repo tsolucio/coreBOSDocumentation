@@ -14,7 +14,7 @@ The accepted format is
 </map>
 </code>
 
-This type of map is useful when we have a set of information that we want the implementor to be able to change we relative ease but we don't want to create a new module just for that as the set is usually small and contains small pieces of data.
+This type of map is useful when we have a set of information that we want the implementor to be able to change with relative ease but we don't want to create a new module just for that as the set is usually small and contains small pieces of data.
 
 For example, coreBOS uses this type of map as a parameter to the workflow expression methods that calculate business dates. The **next_date** and **holidaydifference** accept a comma separated list of dates to define which dates are holidays. Instead of having to repeat that list in every workflow where you need to use these functions and then have to edit them once a year, we can pass in as a parameter the crmid/name of an information business map with the dates, something like this:
 

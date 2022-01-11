@@ -70,6 +70,8 @@ Shipping taxes are set [[https://github.com/tsolucio/coreBOSwsDevelopment/blob/m
 
 Get all the values the user has access to, of an existent record in the application. Given a web service ID of a record this service will return an array with all the fields and their values.
 
+Note that the way coreBOS works is that you get the values in the format of the database but you must return them in the format of the user. There is a way to [[en:devel:corebosws:skipconvertfields|inform coreBOS to accept values in database format]] and there is a Global Variable (**Webservice_Return_FormattedValues**) to retrieve values in the format of the user connected to the API.
+
 All reference type fields which are pointing to another record will have valid web service IDs.
 
 In all retrieve operations a series of special fields are included which contain extended information to reduce the number of network calls.
@@ -390,17 +392,17 @@ Finally, we have two endpoints that can establish or delete many to many relatio
 
 ^Method:|**SetRelation**|
 ^Purpose:|Sets relations between one record and a set of other records.|
-^Profile:|SetRelation(relateThisId:string, withTheseIds:Map):Map|
+^Profile:|SetRelation(relate_this_id:string, with_these_ids:Map):Map|
 ^Send as:|POST|
-^Parameters:| => relateThisId: web service ID of the main record to relate \\ => withTheseIds: array of web service IDs to relate to the main record|
+^Parameters:| => relate_this_id: web service ID of the main record to relate \\ => with_these_ids: array of web service IDs to relate to the main record|
 ^Response:| |
 ^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/424lib_setrelated.php|Development Tool]]|
 
 ^Method:|**UnsetRelation**|
 ^Purpose:|Deletes relations between one record and a set of other records.|
-^Profile:|UnsetRelation(unrelateThisId:string, withTheseIds:Map):Map|
+^Profile:|UnsetRelation(unrelate_this_id:string, with_these_ids:Map):Map|
 ^Send as:|POST|
-^Parameters:| => unrelateThisId: web service ID of the main record to unrelate \\ => withTheseIds: array of web service IDs to unrelate from the main record|
+^Parameters:| => unrelate_this_id: web service ID of the main record to unrelate \\ => with_these_ids: array of web service IDs to unrelate from the main record|
 ^Response:| |
 ^Examples:|[[https://github.com/tsolucio/coreBOSwsDevelopment/blob/master/testcode/424lib_setrelated.php|Development Tool]]|
 
